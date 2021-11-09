@@ -1,0 +1,151 @@
+******************************************
+* First attempt for Czech grammar, childish sentences
+* Now augmented with the tectogrammatical level.
+
+
+% Ok.
+ema má mísu .
+ema mísu má .
+mísu ema má .
+mísu má ema .
+
+petr dá soubor na mísu .
+na mísu dá petr soubor .
+na mísu soubor petr dá .
+
+do mísy dá petr soubor .
+na soubor dá petr soubor .
+
+% Nonsenses:
+na dá petr soubor mísu .
+
+% Permutations, several nonsenses:
+dá mísu na petr soubor .
+dá mísu na soubor petr .
+dá mísu petr na soubor .
+dá mísu petr soubor na .
+dá mísu soubor na petr .
+dá mísu soubor petr na .
+dá na mísu petr soubor .
+dá na mísu soubor petr .
+dá na petr mísu soubor .
+dá na petr soubor mísu .
+dá na soubor mísu petr .
+dá na soubor petr mísu .
+dá petr mísu na soubor .
+dá petr mísu soubor na .
+dá petr na mísu soubor .
+dá petr na soubor mísu .
+dá petr soubor mísu na .
+dá petr soubor na mísu .
+dá soubor mísu na petr .
+dá soubor mísu petr na .
+dá soubor na mísu petr .
+dá soubor na petr mísu .
+dá soubor petr mísu na .
+dá soubor petr na mísu .
+mísu dá na petr soubor .
+mísu dá na soubor petr .
+mísu dá petr na soubor .
+mísu dá petr soubor na .
+mísu dá soubor na petr .
+mísu dá soubor petr na .
+mísu na dá petr soubor .
+mísu na dá soubor petr .
+mísu na petr dá soubor .
+mísu na petr soubor dá .
+mísu na soubor dá petr .
+mísu na soubor petr dá .
+mísu petr dá na soubor .
+mísu petr dá soubor na .
+mísu petr na dá soubor .
+mísu petr na soubor dá .
+mísu petr soubor dá na .
+mísu petr soubor na dá .
+mísu soubor dá na petr .
+mísu soubor dá petr na .
+mísu soubor na dá petr .
+mísu soubor na petr dá .
+mísu soubor petr dá na .
+mísu soubor petr na dá .
+na dá mísu petr soubor .
+na dá mísu soubor petr .
+na dá petr mísu soubor .
+na dá petr soubor mísu .
+na dá soubor mísu petr .
+na dá soubor petr mísu .
+na mísu dá petr soubor .
+na mísu dá soubor petr .
+na mísu petr dá soubor .
+na mísu petr soubor dá .
+na mísu soubor dá petr .
+na mísu soubor petr dá .
+na petr dá mísu soubor .
+na petr dá soubor mísu .
+na petr mísu dá soubor .
+na petr mísu soubor dá .
+na petr soubor dá mísu .
+na petr soubor mísu dá .
+na soubor dá mísu petr .
+na soubor dá petr mísu .
+na soubor mísu dá petr .
+na soubor mísu petr dá .
+na soubor petr dá mísu .
+na soubor petr mísu dá .
+petr dá mísu na soubor .
+petr dá mísu soubor na .
+petr dá na mísu soubor .
+petr dá na soubor mísu .
+petr dá soubor mísu na .
+petr dá soubor na mísu .
+petr mísu dá na soubor .
+petr mísu dá soubor na .
+petr mísu na dá soubor .
+petr mísu na soubor dá .
+petr mísu soubor dá na .
+petr mísu soubor na dá .
+petr na dá mísu soubor .
+petr na dá soubor mísu .
+petr na mísu dá soubor .
+petr na mísu soubor dá .
+petr na soubor dá mísu .
+petr na soubor mísu dá .
+petr soubor dá mísu na .
+petr soubor dá na mísu .
+petr soubor mísu dá na .
+petr soubor mísu na dá .
+petr soubor na dá mísu .
+petr soubor na mísu dá .
+soubor dá mísu na petr .
+soubor dá mísu petr na .
+soubor dá na mísu petr .
+soubor dá na petr mísu .
+soubor dá petr mísu na .
+soubor dá petr na mísu .
+soubor mísu dá na petr .
+soubor mísu dá petr na .
+soubor mísu na dá petr .
+soubor mísu na petr dá .
+soubor mísu petr dá na .
+soubor mísu petr na dá .
+soubor na dá mísu petr .
+soubor na dá petr mísu .
+soubor na mísu dá petr .
+soubor na mísu petr dá .
+soubor na petr dá mísu .
+soubor na petr mísu dá .
+soubor petr dá mísu na .
+soubor petr dá na mísu .
+soubor petr mísu dá na .
+soubor petr mísu na dá .
+soubor petr na dá mísu .
+soubor petr na mísu dá .
+
+petr má soubor .
+soubor má petr .
+soubor má soubor .
+
+% Unplausible examples.
+% but the grammar doesn't take the ./? into account
+má ema mísu .
+má mísu ema .

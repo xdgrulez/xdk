@@ -1,0 +1,184 @@
+@section Principles overview
+In this section, we give an overview of the @emph{principle library}.
+@cindex principle library
+Roughly, we divide the principles into families lumped together under
+explanatory themes.
+
+@subsection Graph
+This family defines graphs and further restricts them. It contains
+the following principles:
+@itemize @bullet
+@item Graph (@ref{Graph})
+@item GraphConstraints (@ref{GraphConstraints})
+@item GraphDist (@ref{GraphDist})
+@item Graph1 (@ref{Graph1})
+@item Graph1Constraints (@ref{Graph1Constraints})
+@item Graph1Dist (@ref{Graph1Dist})
+@item Dag (@ref{Dag})
+@item Tree (@ref{Tree})
+@item Tree1 (@ref{Tree1})
+@end itemize
+The Graph1 principle is more efficient than the Graph principle, but
+it is not compatible with some of the principles, e.g. the Valency
+principle (@ref{Valency1}).
+
+The Graph1Constraints and GraphConstraints omit non-deterministic
+@emph{distribution},
+@cindex distribution
+which can be added on using resp. Graph1Dist and GraphDist.
+Omitting distribution can be useful if you do not want to enumerate
+the models on a particular dimension, e.g. for scope
+underspecification (cf. the Chorus grammar (@ref{Chorus})).
+
+The Dag and Tree principles further restrict the graphs to be
+@emph{directed acyclic graphs (dags)}
+@cindex directed acyclic graph
+@cindex dag
+or @emph{trees}.
+@cindex tree
+
+@subsection Valency
+This family constrains the incoming and outgoing edges of nodes. It
+contains the following principles:
+@itemize @bullet
+@item In (@ref{In})
+@item In1 (@ref{In1})
+@item In2 (@ref{In2})
+@item Out (@ref{Out})
+@item Valency (@ref{Valency1})
+@end itemize
+
+@subsection Agreement
+This family controls agreement and government.  It contains the
+following principles:
+@itemize @bullet
+@item Agr (@ref{Agr})
+@item Agreement (@ref{Agreement})
+@item Agreement1 (@ref{Agreement1})
+@item AgreementSubset (@ref{AgreementSubset})
+@item Government (@ref{Government})
+@item Government1 (@ref{Government1})
+@item PartialAgreement (@ref{PartialAgreement})
+@end itemize
+Both the Agreement and the Government principles depend on the Agr
+principle. 
+
+@subsection Order
+This family defines order on graphs and further restricts it. It contains
+the following principles:
+@itemize @bullet
+@item Order (@ref{Order})
+@item Order1 (@ref{Order1})
+@item Order1Constraints (@ref{Order1Constraints})
+@item Order1Dist (@ref{Order1Dist})
+@item Order2 (@ref{Order2})
+@item Order2Constraints (@ref{Order2Constraints})
+@item Order2Dist (@ref{Order2Dist})
+@item OrderConstraints (@ref{OrderConstraints})
+@item OrderDist (@ref{OrderDist})
+@item Projectivity (@ref{Projectivity})
+@end itemize
+The Order1 principle is more general than the Order principle: It
+orders sets of labels instead of just labels. The Order2 principle
+lexicalized but less efficient.
+
+The Order1Constraints and OrderConstraints omit non-deterministic
+@emph{distribution},
+@cindex distribution
+which can be added on using resp. Order1Dist and OrderDist.
+
+The Parse principle further restricts the Order and Order1 principles
+to respect the order of the input. If it is not used, the input is
+regarded as a bag of words.
+
+The SameOrder principle also further restricts the Order and Order1
+principles. For all nodes, it equates the positions of the
+corresponding words.
+
+@subsection Climbing
+This family specifies and further restricts the climbing relation
+between two dimensions. It contains the following principles:
+@itemize @bullet
+@item Climbing (@ref{Climbing})
+@item Barriers (@ref{Barriers})
+@item BarriersAttrib (@ref{BarriersAttrib})
+@item BarriersLabels (@ref{BarriersLabels})
+@end itemize
+The Barriers, BarriersAttrib and BarriersLabels principles depends on
+the Climbing principle, and specifies further restrictions on
+climbing.
+
+@subsection Linking
+This is the family of @emph{linking principles},
+@cindex linking
+@cindex linking principles
+stipulating, for each edge from @math{v} to @math{v'} labeled @math{l}
+on @code{D1}, the corresponding path (from @math{v}) to @math{v'} on
+@code{D2}.
+
+It contains the following principles:
+@itemize @bullet
+@item Linking12BelowStartEnd (@ref{Linking12BelowStartEnd})
+@item LinkingAbove (@ref{LinkingAbove})
+@item LinkingAboveBelow1or2Start (@ref{LinkingAboveBelow1or2Start})
+@item LinkingAboveEnd (@ref{LinkingAboveEnd})
+@item LinkingAboveStart (@ref{LinkingAboveStart})
+@item LinkingAboveStartEnd (@ref{LinkingAboveStartEnd})
+@item LinkingBelow (@ref{LinkingBelow})
+@item LinkingBelow1or2Start (@ref{LinkingBelow1or2Start})
+@item LinkingBelowEnd (@ref{LinkingBelowEnd})
+@item LinkingBelowStart (@ref{LinkingBelowStart})
+@item LinkingBelowStartEnd (@ref{LinkingBelowStartEnd})
+@item LinkingDaughter (@ref{LinkingDaughter})
+@item LinkingDaughterEnd (@ref{LinkingDaughterEnd})
+@item LinkingEnd (@ref{LinkingEnd})
+@item LinkingMother (@ref{LinkingMother})
+@item LinkingMotherEnd (@ref{LinkingMotherEnd})
+@item LinkingNotDaughter (@ref{LinkingNotDaughter})
+@item LinkingNotMother (@ref{LinkingNotMother})
+@item LinkingSisters (@ref{LinkingSisters})
+@end itemize
+
+Some principles (@ref{LinkingNotDaughter}, @ref{LinkingNotMother},
+@ref{LinkingSisters} do not stipulate a path, but we dub them
+@emph{linking principles} nonetheless since they follow a similar
+concept.
+
+@subsection TAG encoding
+This family includes constraints developed for the encoding of
+@emph{Tree Adjoining Grammar (TAG)}.
+@cindex Tree Adjoining Grammar
+@cindex TAG
+It includes the following constraints:
+@itemize @bullet
+@item OrderWithCuts (@ref{OrderWithCuts})
+@item TAG (@ref{TAG})
+@item XTAG (@ref{XTAG1})
+@item XTAGLinking (@ref{XTAGLinking})
+@item XTAGRedundant (@ref{XTAGRedundant})
+@item XTAGRoot (@ref{XTAGRoot})
+@end itemize
+
+@subsection Test
+This principle can be used to test out constraints:
+@itemize @bullet
+@item Test (@ref{Test})
+@end itemize
+
+@subsection Miscellaneous
+These are the remaining constraints, defying to be lumped together
+yet:
+@itemize @bullet
+@item Chorus (@ref{Chorus1})
+@item Coindex (@ref{Coindex})
+@item CSD (@ref{CSD1})
+@item Customs (@ref{Customs})
+@item Dutch (@ref{Dutch})
+@item Entries (@ref{Entries})
+@item LockingDaughters (@ref{LockingDaughters})
+@item LookRight (@ref{LookRight})
+@item PL (@ref{PL})
+@item Relative (@ref{Relative})
+@item SameEdges (@ref{SameEdges})
+@item Subgraphs (@ref{Subgraphs})
+@end itemize

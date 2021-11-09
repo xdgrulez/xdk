@@ -1,0 +1,13 @@
+defdim id {
+
+  [ ... ]  
+
+  useprinciple "principle.graph" {
+    dims {D: id}}
+  useprinciple "principle.tree" {
+    dims {D: id}}
+  useprinciple "principle.valency" {
+    dims {D: id}}
+  useprinciple "principle.csd" {
+    dims {D: id}}
+}

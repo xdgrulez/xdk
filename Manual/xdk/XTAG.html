@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+<title>XTAG - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Grammars.html#Grammars" title="Grammars">
+<link rel="next" href="Solver.html#Solver" title="Solver">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="XTAG"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Solver.html#Solver">Solver</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Grammars.html#Grammars">Grammars</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">6 XTAG</h2>
+
+<p>The XTAG grammar generator generates XDG grammars from the TAG grammar
+developed in the XTAG project
+(<a href="http://www.cis.upenn.edu/~xtag/">http://www.cis.upenn.edu/~xtag/</a>). For installing the relevant
+files from the XTAG grammar, see <a href="Installation.html#Installation">Installation</a> (optional
+installation bits, XTAG grammar generator, XTAG additional
+functionality).
+
+   <p>The grammar generator uses the socket functionality of the XDK, which
+provides the possibility to read in grammars for specific input
+sentences from a server (over a socket connection).
+
+   <p>To make it work, you need to take two steps:
+     <ol type=1 start=1>
+<li>Start a grammar generator server by entering the <code>XTAG</code> directory
+and then starting the server by typing:
+     <pre class="example">          ./XTAGServer.exe -p 4712
+</pre>
+     <p>where the <code>-p</code> option determines the port which is taken by the
+server (default: 4712). 
+<li>Start the XDK and open the grammar &ldquo;file&rdquo; <code>4712.ulsocket</code> (given the server runs on port 4712). Now, if the connection of the XDK and the server could be established, you can parse English sentences using the XTAG grammar. For each sentence, a new grammar is generated on-the-fly.
+        </ol>
+
+   <p>The full set of commandline arguments is the following:
+     <ul>
+<li><code>--help</code> or <code>--nohelp</code> (short version: <code>-h</code>): Display an
+overview of the commandline arguments. Default: <code>--nohelp</code>. 
+<li><code>--prune</code> or <code>--noprune</code> (<code>-r</code>): Prune tree lookup, i.e., when looking
+up the elementary trees for a word in the input, remove those multiply
+anchored trees where any of the additional anchors is not present in
+the input sentence. Pruning is used per default. 
+<li><code>--filter none</code> or <code>--filter simple</code> or <code>--filter tagger</code> or <code>--filter supertagger</code> (<code>-f none</code> or <code>-f simple</code> or <code>-f tagger</code> or <code>-f supertagger</code>): Filter the set of elementary trees
+selected for the words in the input. <code>none</code> does not filter,
+<code>simple</code> uses a reimplementation of <code>simple_filter.pl</code>, the
+default tree filter from the lem parser distribution, <code>tagger</code> a
+reimplementation of <code>tagger_filter.pl</code>, and <code>supertagger</code>
+uses the supertagger available on the XTAG webpage.  For the
+<code>tagger</code> option, the <code>mxpost</code> tagger by Adwait Ratnaparkhi
+must be installed in the directory denoted by the environment variable
+<code>MXPOST</code>.  For the <code>supertagger</code> option, the environment
+variable <code>COREF</code> must point to the currently used data directory
+within the supertagger directory (as stated in the <code>README</code>
+there), e.g. to the <code>200K.data</code> directory.  Default:
+<code>--filter none</code>. 
+</ul>
+
+   <p>The XDG grammars generated from the XTAG grammar make use of the
+principles:
+     <ul>
+<li><code>principle.xTAG</code> (<a href="XTAG1.html#XTAG1">XTAG1</a>)
+<li><code>principle.xTAGRedundant</code> (<a href="XTAGRedundant.html#XTAGRedundant">XTAGRedundant</a>)
+<li><code>principle.xTAGRoot</code> (<a href="XTAGRoot.html#XTAGRoot">XTAGRoot</a>)
+</ul>
+
+   <p>And the output <code>output.xTAGDerivation</code> (<a href="XTAGDerivation.html#XTAGDerivation">XTAGDerivation</a>) to
+display XTAG derivation trees using the tree viewer from the XTAG
+project lem parser.
+
+<!-- ************************************************************ -->
+   </body></html>
+

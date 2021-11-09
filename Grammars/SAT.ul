@@ -1,0 +1,76 @@
+usedim pl
+usedim lex
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension pl
+defdim pl {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "pl.label" {arg1 arg2 bar "^"}
+  deflabeltype "pl.label"
+  defattrstype {truth: bool
+                bars: int}
+  defentrytype {in: valency("pl.label")
+                out: valency("pl.label")
+                order: set(tuple("pl.label" "pl.label"))}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph" {
+    dims {D: pl}}
+  useprinciple "principle.tree" {
+    dims {D: pl}}
+  useprinciple "principle.valency" {
+    dims {D: pl}}
+  useprinciple "principle.order2" {
+    dims {D: pl}}
+  useprinciple "principle.projectivity" {
+    dims {D: pl}}
+  useprinciple "principle.pl" {
+    dims {D: pl}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lex
+defdim lex {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype {word: string}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.entries" {}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dags1"
+  output "output.latexs1"
+  useoutput "output.dags1"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lexicon
+%% i.e., the ordered fragments
+
+%% implications
+defentry {
+  dim pl {in: {arg1? arg2?}
+          out: {arg1! arg2!}
+          order: <"^" arg1 arg2>}
+  dim lex {word: "impl"}}
+
+%% zeros
+defentry {
+  dim pl {in: {arg1? arg2?}}
+  dim lex {word: "0"}}
+
+%% variables
+defentry {
+  dim pl {in: {arg1? arg2?}
+          out: {bar!}
+          order: <"^" bar>} 
+  dim lex {word: "var"}}
+
+%% bars
+defentry {
+  dim pl {in: {bar!}
+          out: {bar?}
+          order: <"^" bar>}
+  dim lex {word: "I"}}

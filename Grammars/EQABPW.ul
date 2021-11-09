@@ -1,0 +1,37 @@
+usedim id
+usedim lex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define id dimension
+defdim id {
+  deftype "id.label" {a b}
+  deflabeltype "id.label"
+  defentrytype {in: set(tuple("id.label" {"!" "?" "+" "*"}))
+                out: set(tuple("id.label" {"!" "?" "+" "*"}))}
+%%
+  useprinciple "principle.graphPW" { dims {D: id} }
+  useprinciple "principle.treePW" { dims {D: id} }
+  useprinciple "principle.valencyPW" { dims {D: id} }
+%%
+  output "output.pretty"
+  output "output.pretty1"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lex dimension
+defdim lex {
+  defentrytype {word: string}
+%%
+  output "output.dags1"
+  output "output.latexs1"
+  useoutput "output.dags1"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lexicon
+
+defentry {
+  dim id {in: {a?}
+          out: {a? b!}}
+  dim lex {word: "a"}}
+
+defentry {
+  dim id {in: {b!}}
+  dim lex {word: "b"}}

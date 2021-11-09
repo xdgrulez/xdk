@@ -1,0 +1,99 @@
+\chapter{Kontextfreie Grammatik der PWUL}
+\label{produktionsregeln}
+% 
+\Equsl{rclr}{1.0}{%
+  \UlS&::=&\UlDefType* \UlDefPrinciple+}{eq:S}
+%
+
+% 
+\Equsl{rclr}{1.0}{%
+  \UlDefType&::=&\Ulp{deftype}\ \UlConstant\ \UlType&\text{(type definition)}}{eq:DefType}
+%
+
+% 
+\Equsl{rclr}{1.0}{%
+  \UlDefPrinciple&::=&\Ulp{defprinciple}\ \UlConstant\ \Ulp{\{}\ \UlDims\ \UlConstraints\ \Ulp{\}}&\text{(principle definition)}}{eq:DefPrinciple}
+%
+
+% 
+\Equsl{rclr}{1.0}{%
+  \UlDims&::=&\Ulp{dims}\ \Ulp{\{}\ \UlConstant+ \Ulp{\}}&\text{(dimensions)}}{eq:Dims}
+%
+
+% 
+\Equsl{rclr}{1.0}{%
+  \UlConstraints&::=&\Ulp{constraints}\ \Ulp{\{}\ \UlForm+ \Ulp{\}}&\text{(constraints)}}{eq:Constraints}
+%
+
+% 
+\Equsl{rclr}{1.0}{%
+  \UlDom&::=&\Ulp{\{}\UlConstant+\Ulp{\}}&\text{(domain)}\\
+  &|&\Ulp{label(}\UlConstant\Ulp{)}&\text{(edge labels)}\\
+  &|&\Ulp{node}&\text{(nodes)}\\
+  &|&\Ulp{dim}&\text{(dimensions)}\\
+  &|&\Ulp{attr}&\text{(attributes)}\\
+  &|&\Ulp{word}&\text{(words)}\\
+  &|&\UlConstant&\text{(type reference)}}{eq:Dom}
+%
+
+% 
+\Equsl{rclr}{1.0}{%
+  \UlType&::=&\UlDom&\text{(domain)}\\
+  &|&\Ulp{set(}\UlDom\Ulp{)}&\text{(set)}\\
+  &|&\Ulp{tuple(}\UlDom+\Ulp{)}&\text{(tuple)}\\
+  &|&\Ulp{set(tuple(}\UlDom+\Ulp{))}&\text{(set of tuples)}\\
+  &|&\Ulp{(}\UlType\Ulp{)}&\text{(bracketing)}}{eq:Type}
+%
+
+% 
+\Equsl{rclr}{1.0}{%
+  \UlTerm&::=&\UlConstant&\text{(constant)}\\
+  &|&\UlInteger&\text{(integer)}}{eq:Term}
+%
+
+%
+\Equsl{rclr}{1.0}{%
+  \UlTuple&::=&\Ulp{[}\UlTerm+\Ulp{]}&\text{(tuple)}}{eq:Tuple}
+%
+
+% 
+\Equsl{rclr}{1.0}{%
+  \UlExpr&::=&\UlTerm&\text{(term)}\\
+  &|&\Ulp{\{}\UlTerm+\Ulp{\}}&\text{(set)}\\
+  &|&\UlTuple&\text{(tuple)}\\
+  &|&\Ulp{\{}\UlTuple+\Ulp{\}}&\text{(set of tuples)}\\
+  &|&\UlExpr\ \Ulp{::}\ \UlType&\text{(type annotation)}\\
+  &|&\UlTerm\ \Ulp{.}\ \UlConstant_1\ \Ulp{.}\ \Ulp{entry}\ \Ulp{.}\ \UlConstant_2&\text{(lexical attributes access)}\\
+  &|&\UlTerm\ \Ulp{.}\ \UlConstant_1\ \Ulp{.}\ \Ulp{attrs}\ \Ulp{.}\ \UlConstant_2&\text{(non-lexical attributes access)}\\
+  &|&\Ulp{(}\UlExpr\Ulp{)}&\text{(bracketing)}}{eq:Expr}
+%
+
+% 
+\Equsl{rclr}{1.0}{%
+  \UlForm&::=&\Ulp{\textasciitilde}\ \UlForm&\text{(negation)}\\
+  &|&\UlForm_1\ \Ulp{\&}\ \UlForm_2&\text{(conjunction)}\\
+  &|&\UlForm_1\ \Ulp{|}\ \UlForm_2&\text{(disjunction)}\\
+  &|&\UlForm_1\ \Ulp{=>}\ \UlForm_2&\text{(implication)}\\
+  &|&\UlForm_1\ \Ulp{<=>}\ \UlForm_2&\text{(equivalence)}\\
+  &|&\Ulp{exists}\ \UlConstant\ \Ulp{::}\ \UlDom\ \Ulp{:}\ \UlForm&\text{(existential quantification)}\\
+  &|&\Ulp{existsone}\ \UlConstant\ \Ulp{::}\ \UlDom\ \Ulp{:}\ \UlForm&\text{(one-existential quantification)}\\
+  &|&\Ulp{forall}\ \UlConstant\ \Ulp{::}\ \UlDom\ \Ulp{:}\ \UlForm&\text{(universal quantification)}\\
+  &|&\UlExpr_1\ \Ulp{=}\ \UlExpr_2&\text{(equality)}\\
+  \\
+  &|&\UlExpr_1\ \Ulp{in}\ \UlExpr_2&\text{(element)}\\
+  &|&\UlExpr_1\ \Ulp{notin}\ \UlExpr_2&\text{(not element)}\\
+  &|&\UlExpr_1\ \Ulp{subseteq}\ \UlExpr_2&\text{(subset)}\\
+  &|&\UlExpr_1\ \Ulp{disjoint}\ \UlExpr_2&\text{(disjointness)}\\
+  &|&\UlExpr_1\ \Ulp{intersect}\ \UlExpr_2\ \Ulp{=}\ \UlExpr_3&\text{(intersection)}\\
+  &|&\UlExpr_1\ \Ulp{union}\ \UlExpr_2\ \Ulp{=}\ \UlExpr_3&\text{(union)}\\
+  &|&\UlExpr_1\ \Ulp{minus}\ \UlExpr_2\ \Ulp{=}\ \UlExpr_3&\text{(minus)}\\
+  \\
+  &|&\Ulp{edge(}\UlTerm_1\ \UlTerm_2\ \UlTerm_3\ \UlTerm_4\Ulp{)}&\text{(labeled edge (v v l d))}\\
+  &|&\Ulp{edge(}\UlTerm_1\ \UlTerm_2\ \UlTerm_3\Ulp{)}&\text{(edge (v v d)))}\\
+  &|&\Ulp{dom(}\UlTerm_1\ \UlTerm_2\ \UlTerm_3\ \UlTerm_4\Ulp{)}&\text{(labeled strict dominance (v v l d))}\\
+  &|&\Ulp{dom(}\UlTerm_1\ \UlTerm_2\ \UlTerm_3\Ulp{)}&\text{(strict dominance (v v d))}\\
+  &|&\Ulp{domeq(}\UlTerm_1\ \UlTerm_2\ \UlTerm_3\Ulp{)}&\text{(dominance (v v d))}\\
+  &|&\UlTerm_1\ \Ulp{<}\ \UlTerm_2&\text{(precedence)}\\
+  &|&\UlTerm_1\ \Ulp{.}\ \Ulp{word}\ \Ulp{=}\ \UlTerm_2&\text{(word)}\\
+  \\
+  &|&\Ulp{(}\UlForm\Ulp{)}&\text{(bracketing)}}{eq:Form}

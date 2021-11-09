@@ -1,0 +1,581 @@
+<html lang="en">
+<head>
+<title>XML syntax - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Compiler.html#Compiler" title="Compiler">
+<link rel="prev" href="UL-syntax.html#UL-syntax" title="UL syntax">
+<link rel="next" href="IL-syntax.html#IL-syntax" title="IL syntax">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="XML-syntax"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="IL-syntax.html#IL-syntax">IL syntax</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="UL-syntax.html#UL-syntax">UL syntax</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Compiler.html#Compiler">Compiler</a>
+<hr>
+</div>
+
+<h3 class="section">4.11 XML syntax</h3>
+
+<p>In this section, we describe the syntax of the XML language by going
+through the <em>Document Type Declaration (DTD)</em> of it. To validate
+your own XML language files, we recommend the use of an XML validator
+such as the free <code>rxp</code> (available here:
+<a href="http://www.cogsci.ed.ac.uk/~richard/rxp.html">http://www.cogsci.ed.ac.uk/~richard/rxp.html</a>).  To understand
+the XML terminology, we recommend to read the W3C XML specification
+(available here: <a href="http://www.w3.org/TR/REC-xml">http://www.w3.org/TR/REC-xml</a>).
+
+   <p>Note that we provide an example grammar file in the XML language in
+<code>Grammars/Acl01.xml</code>. The grammar file defines exactly the same
+grammar as <code>Grammars/Acl01.ul</code>, so that it is easy to compare the
+two grammar file input languages.
+
+<h4 class="subsection">4.11.1 Parameter entities</h4>
+
+<p>The DTD for the XML language begins with the definition of a couple of
+<em>parameter entities</em>:
+<a name="index-parameter-entity-174"></a>
+<pre class="example">     &lt;!ENTITY % type "(typeDomain|typeSet|typeISet|typeTuple|typeList|
+                       typeRecord|typeValency|typeCard|typeVec|
+                       typeInt|typeInts|typeString|typeBool|typeRef|
+                       typeLabelRef|typeVariable)"&gt;
+     &lt;!ENTITY % types "(%type;*)"&gt;
+     &lt;!ENTITY % term "(constant|variable|integer|top|bot|
+                       constantCard|constantCardSet|constantCardInterval|
+                       variableCard|variableCardSet|variableCardInterval|
+                       set|list|record|setGen|featurePath|annotation|
+                       conj|disj|concat|order|feature|varFeature)"&gt;
+     &lt;!ENTITY % terms "(%term;*)"&gt;
+     &lt;!ENTITY % class "(classDimension|useClass|classConj|classDisj)"&gt;
+     &lt;!ENTITY % classes "(%class;*)"&gt;
+     &lt;!ENTITY % recSpec "(feature|varFeature|recordConj|recordDisj)"&gt;
+     &lt;!ENTITY % recSpecs "(%recSpec;*)"&gt;
+     &lt;!ENTITY % setGenSpec "(constant|setGenConj|setGenDisj)"&gt;
+     &lt;!ENTITY % setGenSpecs "(%setGenSpec;*)"&gt;
+     
+     &lt;!ENTITY principleDefs SYSTEM "../../Solver/Principles/principles.xml"&gt;
+     &lt;!ENTITY outputDefs SYSTEM "../../Outputs/outputs.xml"&gt;
+</pre>
+   <p>The parameter entity <code>type</code> corresponds to the <em>enumerated
+type</em>
+<a name="index-enumerated-type-175"></a>encompassing the <em>elements</em>
+<a name="index-element-176"></a><code>typeDomain</code>, <code>typeSet</code>, <code>typeISet</code>, <code>typeTuple</code>,
+<code>typeList</code>, <code>typeRecord</code>, <code>typeValency</code>,
+<code>typeCard</code>, <code>typeVec</code>,
+<code>typeInt</code>, <code>typeInts</code>, <code>typeString</code>, <code>typeBool</code>,
+<code>typeRef</code>, <code>typeLabelRef</code>, and <code>typeVariable</code>.
+
+   <p>The parameter entity <code>types</code> corresponds to zero or more occurrences
+of the parameter entity <code>type</code>.
+
+   <p>The parameter entity <code>term</code> corresponds to the enumerated type
+encompassing the elements <code>constant</code>, <code>variable</code>,
+<code>integer</code>, <code>top</code>, <code>bot</code>, <code>constantCard</code>,
+<code>constantCardSet</code>, <code>constantCardInterval</code>,
+<code>variableCard</code>, <code>variableCardSet</code>,
+<code>variableCardInterval</code>, <code>set</code>, <code>list</code>, <code>record</code>,
+<code>setGen</code>, <code>featurePath</code>, <code>annotation</code>,
+<code>conj</code>, <code>disj</code>, <code>concat</code>, <code>order</code>, <code>feature</code>
+and <code>varFeature</code>.
+
+   <p>The parameter entity <code>terms</code> corresponds to zero or more occurrences
+of the parameter entity <code>term</code>.
+
+   <p>The parameter entity <code>class</code> corresponds to the enumerated type
+encompassing the elements <code>classDimension</code>, <code>useClass</code>,
+<code>classConj</code>, <code>classDisj</code>.
+
+   <p>The parameter entity <code>classes</code> corresponds to zero or more occurrences
+of the parameter entity <code>class</code>.
+
+   <p>The parameter entity <code>recSpec</code> corresponds to the enumerated type
+encompassing the elements <code>feature</code>, <code>varFeature</code>,
+<code>recordConj</code>, <code>recordDisj</code>.
+
+   <p>The parameter entity <code>recSpecs</code> corresponds to zero or more occurrences
+of the parameter entity <code>recSpec</code>.
+
+   <p>The parameter entity <code>setGenSpec</code> corresponds to the enumerated type
+encompassing the elements <code>constant</code>, <code>setGenConj</code>,
+<code>setGenDisj</code>.
+
+   <p>The parameter entity <code>setGenSpecs</code> corresponds to zero or more occurrences
+of the parameter entity <code>setGenSpec</code>.
+
+   <p>The parameter entity <code>principleDefs</code> corresponds to the
+<em>system identifier</em>
+<a name="index-system-identifier-177"></a><code>"../../Solver/Principles/principles.xml"</code>, an XML file which
+declares all available principle identifiers. Since XDK grammar files
+do not contain principle definitions but only principle uses, this is
+how the XML grammar file &ldquo;knows&rdquo; the principle identifiers which can
+be used. Note that you can adapt the path of the system identifier to
+a more suitable one (whether it is suitable will depend on your XML
+validator).
+
+   <p>The parameter entity <code>outputDefs</code> corresponds to the
+<em>system identifier</em>
+<a name="index-system-identifier-178"></a><code>"../../Outputs/outputs.xml"</code>, an XML file which declares all
+available output identifiers. Since XDK grammar files do not contain
+output definitions but only output uses, this is how the XML grammar
+file &ldquo;knows&rdquo; the output identifiers which can be used. Note that you
+can adapt the path of the system identifier to a more suitable one
+(whether it is suitable will depend on your XML validator).
+
+<h4 class="subsection">4.11.2 Elements</h4>
+
+<h5 class="subsubsection">4.11.2.1 Root element (grammar)</h5>
+
+<p>The <em>root element type</em>
+<a name="index-root-element-type-179"></a>of the XML language is <code>grammar</code>, defined as follows:
+
+<pre class="example">     &lt;!ELEMENT grammar (principleDef*,outputDef*,useDimension*,
+                        dimension*,classDef*,entry*)&gt;
+</pre>
+   <p>I.e. a grammar file in the XML language starts with zero or more
+principle definitions (<code>principleDef*</code>), then zero or more output
+definitions (<code>outputDef*</code>), then zero or more dimension uses
+(<code>useDimension*</code>), then zero or more dimension definitions
+(<code>dimension*</code>), then zero or more lexical class definitions
+(<code>classDef*</code>), and finally zero or more lexical entry definitions
+(<code>entry*</code>).
+
+<h5 class="subsubsection">4.11.2.2 Principle definitions (principleDef)</h5>
+
+<p>XDK grammar files do not include principle definitions. The principle
+definitions in the XML language only introduce the principle
+identifiers to enable the file to be validated properly:
+
+<pre class="example">     &lt;!ELEMENT principleDef EMPTY&gt;
+     &lt;!ATTLIST principleDef id ID #REQUIRED&gt;
+</pre>
+   <p>The <code>principleDef</code> element has the required <em>attribute</em>
+<a name="index-attribute-180"></a><code>id</code> which is an XML ID corresponding to the principle
+identifier.
+
+<h5 class="subsubsection">4.11.2.3 Output definitions (outputDef)</h5>
+
+<p>XDK grammar files do not include output definitions. The output
+definitions in the XML language only introduce the output
+identifiers to enable the file to be validated properly:
+
+<pre class="example">     &lt;!ELEMENT outputDef EMPTY&gt;
+     &lt;!ATTLIST outputDef id ID #REQUIRED&gt;
+</pre>
+   <p>The <code>outputDef</code> element has the required attribute <code>id</code>
+which is an XML ID corresponding to the output identifier.
+
+<h5 class="subsubsection">4.11.2.4 Dimension use (useDimension)</h5>
+
+<p>Here is the syntax for using dimensions:
+
+<pre class="example">     &lt;!ELEMENT useDimension EMPTY&gt;
+     &lt;!ATTLIST useDimension idref IDREF #REQUIRED&gt;
+</pre>
+   <p>The <code>useDimension</code> element has the required attribute
+<code>idref</code> which is an XML ID reference corresponding to the
+dimension identifier.
+
+<h5 class="subsubsection">4.11.2.5 Dimension definition (dimension)</h5>
+
+<p>Here is the syntax for defining dimensions:
+
+<pre class="example">     &lt;!ELEMENT dimension (attrsType?,entryType?,labelType?,typeDef*,
+                          usePrinciple*,output*,useOutput*)&gt;
+     &lt;!ATTLIST dimension id ID #REQUIRED&gt;
+</pre>
+   <p>I.e. a dimension definition starts with zero or one definitions of the
+attributes type (<code>attrsType?</code>), then with zero or one definitions
+of the entry type (<code>entryType?</code>), then with zero or one
+definitions of the label type (<code>labelType?</code>).  Then, it continues
+with zero or more additional type definitions (<code>typeDef*</code>), then
+zero or more used principle (<code>usePrinciple*</code>), zero or more
+chosen outputs (<code>output*</code>), and finally zero or more used
+outputs (<code>useOutput*</code>).
+
+   <p>It has the required attribute <code>id</code> which is an XML ID
+corresponding to the dimension identifier.
+
+<h5 class="subsubsection">4.11.2.6 Attributes type (attrsType)</h5>
+
+<p>Here is the syntax for defining the attributes type:
+
+<pre class="example">     &lt;!ELEMENT attrsType %type;&gt;
+</pre>
+   <p>I.e. the <code>attrsType</code> element has one obligatory child which is a
+type.
+
+<h5 class="subsubsection">4.11.2.7 Entry type (entryType)</h5>
+
+<p>Here is the syntax for defining the entry type:
+
+<pre class="example">     &lt;!ELEMENT entryType %type;&gt;
+</pre>
+   <p>I.e. the <code>entryType</code> element has one obligatory child which is a
+type.
+
+<h5 class="subsubsection">4.11.2.8 Label type (labelType)</h5>
+
+<p>Here is the syntax for defining the label type:
+
+<pre class="example">     &lt;!ELEMENT labelType %type;&gt;
+</pre>
+   <p>I.e. the <code>labelType</code> element has one obligatory child which is a
+type.
+
+<h5 class="subsubsection">4.11.2.9 Choosing an output (output)</h5>
+
+<p>Here is the syntax for choosing an output:
+
+<pre class="example">     &lt;!ELEMENT output EMPTY&gt;
+     &lt;!ATTLIST output idref IDREF #REQUIRED&gt;
+</pre>
+   <p>The <code>output</code> element has the required attribute <code>idref</code>
+which is an XML ID reference corresponding to the output identifier.
+
+<h5 class="subsubsection">4.11.2.10 Using an output (useOutput)</h5>
+
+<p>Here is the syntax for using an output:
+
+<pre class="example">     &lt;!ELEMENT useOutput EMPTY&gt;
+     &lt;!ATTLIST useOutput idref IDREF #REQUIRED&gt;
+</pre>
+   <p>The <code>useOutput</code> element has the required attribute <code>idref</code>
+which is an XML ID reference corresponding to the output identifier.
+
+<h5 class="subsubsection">4.11.2.11 Type definition (typeDef)</h5>
+
+<p>Here is the syntax for defining a type:
+
+<pre class="example">     &lt;!ELEMENT typeDef %type;&gt;
+     &lt;!ATTLIST typeDef id ID #REQUIRED&gt;
+</pre>
+   <p>I.e. the <code>typeDef</code> element has one child which is a type.
+
+   <p>It has the required attribute <code>id</code> which is an XML ID
+corresponding to the type identifier.
+
+<h5 class="subsubsection">4.11.2.12 Types (type parameter entity)</h5>
+
+<p>Here is the syntax of types:
+
+<pre class="example">     &lt;!ELEMENT typeDomain (constant*)&gt;
+     &lt;!ELEMENT typeSet %type;&gt;
+     &lt;!ELEMENT typeISet %type;&gt;
+     &lt;!ELEMENT typeTuple %types;&gt;
+     &lt;!ELEMENT typeList %type;&gt;
+     &lt;!ELEMENT typeRecord (typeFeature*)&gt;
+     &lt;!ELEMENT typeValency %type;&gt;
+     &lt;!ELEMENT typeCard EMPTY&gt;
+     &lt;!ELEMENT typeVec (%type;,%type;)&gt;
+     &lt;!ELEMENT typeInt EMPTY&gt;
+     &lt;!ELEMENT typeInts EMPTY&gt;
+     &lt;!ELEMENT typeString EMPTY&gt;
+     &lt;!ELEMENT typeBool EMPTY&gt;
+     &lt;!ELEMENT typeRef EMPTY&gt;
+     &lt;!ATTLIST typeRef idref IDREF #REQUIRED&gt;
+     &lt;!ELEMENT typeLabelRef EMPTY&gt;
+     &lt;!ATTLIST typeLabelRef data NMTOKEN #REQUIRED&gt;
+     &lt;!ELEMENT typeVariable EMPTY&gt;
+</pre>
+   <p><code>typeDomain</code> is a finite domain of constants <code>constant*</code>.
+
+   <p><code>typeSet</code> is an accumulative set with domain <code>%type;</code>.
+
+   <p><code>typeISet</code> is an intersective set with domain <code>%type;</code>.
+
+   <p><code>typeTuple</code> is a tuple with projections <code>%types;</code>.
+
+   <p><code>typeList</code> is a list with domain <code>%type;</code>.
+
+   <p><code>typeRecord</code> is a record with features <code>typeFeature*</code>.
+
+   <p><code>typeValency</code> is a valency with domain <code>%type;</code>.
+
+   <p><code>typeCard</code> is a cardinality set.
+
+   <p><code>typeVec</code> is a vector with fields and value type
+<code>(%type;,%type;)</code>.
+
+   <p><code>typeInt</code> is an integer.
+
+   <p><code>typeInts</code> is a set of integers.
+
+   <p><code>typeString</code> is a string.
+
+   <p><code>typeBool</code> is a boolean.
+
+   <p><code>typeRef</code> is a type reference to the type identifier specified by
+its required <code>idref</code> attribute (an XML ID reference).
+
+   <p><code>typeLabelRef</code> is a reference to the label type of the dimension
+variable specified by the required <code>data</code> attribute (an XML
+<em>name token</em>). 
+<a name="index-name-token-181"></a>
+<code>typeVariable</code> is a type variable.
+
+<h5 class="subsubsection">4.11.2.13 Features (typeFeature and feature)</h5>
+
+<p>Here is the syntax for type features:
+
+<pre class="example">     &lt;!ELEMENT typeFeature %type;&gt;
+     &lt;!ATTLIST typeFeature
+               data NMTOKEN #REQUIRED&gt;
+     &lt;!ELEMENT feature %term;&gt;
+     &lt;!ATTLIST feature
+               data NMTOKEN #REQUIRED&gt;
+     &lt;!ELEMENT varFeature %term;&gt;
+     &lt;!ATTLIST varFeature
+               data NMTOKEN #REQUIRED&gt;
+</pre>
+   <p>The <code>typeFeature</code> element has one child which is a type (<code>%type;</code>),
+and the required attribute <code>data</code> (an XML name token) which is its field.
+
+   <p>The <code>feature</code> element has one child which is a term
+(<code>%term;</code>), and the required attribute <code>data</code> (an XML name
+token) which is its field.
+
+   <p>The <code>varFeature</code> element has one child which is a term
+(<code>%term;</code>), and the required attribute <code>data</code> (an XML name
+token) which is its field.
+
+<h5 class="subsubsection">4.11.2.14 Principle use (usePrinciple)</h5>
+
+<p>Here is the syntax for using principles:
+
+<pre class="example">     &lt;!ELEMENT usePrinciple (dim*,arg*)&gt;
+     &lt;!ATTLIST usePrinciple idref IDREF #REQUIRED&gt;
+     
+     &lt;!ELEMENT dim EMPTY&gt;
+     &lt;!ATTLIST dim
+               var NMTOKEN #REQUIRED
+               idref IDREF #REQUIRED&gt;
+     
+     &lt;!ELEMENT arg %term;&gt;
+     &lt;!ATTLIST arg
+               var NMTOKEN #REQUIRED&gt;
+</pre>
+   <p>The <code>usePrinciple</code> element has zero or more <code>dim</code> children
+which establish the dimension mapping, followed by zero or more
+<code>arg</code> children which establish the argument mapping.  It has the
+required attribute <code>idref</code> which is an XML ID reference to the
+used principle identifier.
+
+   <p>The <code>dim</code> element has the required attributes <code>var</code> (an XML
+name token), and <code>idref</code> (an XML ID reference).  <code>var</code> is
+the dimension variable, and <code>idref</code> is the dimension ID to which
+the former is bound.
+
+   <p>The <code>arg</code> element has one child which is a term
+(<code>%term;</code>). It has the required attribute <code>var</code> (an XML name
+token). <code>var</code> is the argument variable to which the term is
+bound.
+
+<h5 class="subsubsection">4.11.2.15 Class definitions (classDef)</h5>
+
+<p>Here is the syntax for class definitions:
+
+<pre class="example">     &lt;!ELEMENT classDef (variable*,%classes;)&gt;
+     &lt;!ATTLIST classDef
+               id ID #REQUIRED&gt;
+</pre>
+   <p>I.e. the <code>classDef</code> element has zero or more <code>variable</code>
+children, and one child corresponding to the parameter entity
+<code>classes</code> (<code>%classes;</code>).
+
+   <p>It has the required attribute <code>id</code>, an XML ID corresponding to
+the class identifier.
+
+<h5 class="subsubsection">4.11.2.16 Class bodies</h5>
+
+<p>Here is the syntax for class bodies:
+
+   <p>The parameter entity <code>classes</code> corresponds to either of the
+elements <code>classDimension</code>, <code>useClass</code>, <code>classConj</code>, or
+<code>classDisj</code>:
+
+<pre class="example">     &lt;!ELEMENT classDimension %term;&gt;
+     &lt;!ATTLIST classDimension idref IDREF #REQUIRED&gt;
+     
+     &lt;!ELEMENT useClass (feature*)&gt;
+     &lt;!ATTLIST useClass idref IDREF #REQUIRED&gt;
+     
+     &lt;!ELEMENT classConj %classes;&gt;
+     
+     &lt;!ELEMENT classDisj %classes;&gt;
+</pre>
+   <p>The <code>classDimension</code> element specifies a dimension entry
+(<code>%term;</code>) for the dimension with the identifier given by the
+required attribute <code>idref</code> (an XML ID reference).
+
+   <p>The <code>useClass</code> element specifies the use of a lexical class with
+the class identifier given by the required attribute <code>idref</code> (an
+XML ID reference). The parameters of this class are specified as a
+list of features (<code>features*</code>).
+
+   <p>The <code>classConj</code> element specifies the conjunction of its
+children.
+
+   <p>The <code>classDisj</code> element specifies the disjunction of its
+children.
+
+<h5 class="subsubsection">4.11.2.17 Lexical entries (entry)</h5>
+
+<p>Here is the syntax for lexical entries:
+
+<pre class="example">     &lt;!ELEMENT entry %classes;&gt;
+</pre>
+   <p>I.e. the <code>entry</code> element specifies a lexical entry as a list of
+class bodies (<code>%classes;</code>).
+
+<h5 class="subsubsection">4.11.2.18 Terms (term parameter entity)</h5>
+
+<p>Here is the syntax for terms:
+
+<pre class="example">     &lt;!ELEMENT constant EMPTY&gt;
+     &lt;!ATTLIST constant data NMTOKEN #REQUIRED&gt;
+     &lt;!ELEMENT integer EMPTY&gt;
+     &lt;!ATTLIST integer data NMTOKEN #REQUIRED&gt;
+     &lt;!ELEMENT top EMPTY&gt;
+     &lt;!ELEMENT bot EMPTY&gt;
+     &lt;!ELEMENT variable EMPTY&gt;
+     &lt;!ATTLIST variable data NMTOKEN #REQUIRED&gt;
+     &lt;!ELEMENT constantCard EMPTY&gt;
+     &lt;!ATTLIST constantCard
+               data NMTOKEN #REQUIRED
+     	  card (one|opt|any|geone) "one"&gt;
+     &lt;!ELEMENT constantCardSet (integer*)&gt;
+     &lt;!ATTLIST constantCardSet
+               data NMTOKEN #REQUIRED&gt;
+     &lt;!ELEMENT constantCardInterval (integer,integer)&gt;
+     &lt;!ATTLIST constantCardInterval
+               data NMTOKEN #REQUIRED&gt;
+     &lt;!ELEMENT variableCard EMPTY&gt;
+     &lt;!ATTLIST variableCard
+               data NMTOKEN #REQUIRED
+     	  card (one|opt|any|geone) "one"&gt;
+     &lt;!ELEMENT variableCardSet (integer*)&gt;
+     &lt;!ATTLIST variableCardSet
+               data NMTOKEN #REQUIRED&gt;
+     &lt;!ELEMENT variableCardInterval (integer,integer)&gt;
+     &lt;!ATTLIST variableCardInterval
+               data NMTOKEN #REQUIRED&gt;
+     &lt;!ELEMENT set %terms;&gt;
+     &lt;!ELEMENT list %terms;&gt;
+     &lt;!ELEMENT record %recSpecs;&gt;
+     &lt;!ELEMENT recordConj %recSpecs;&gt;
+     &lt;!ELEMENT recordDisj %recSpecs;&gt;
+     &lt;!ELEMENT setGen %setGenSpecs;&gt;
+     &lt;!ELEMENT setGenConj %setGenSpecs;&gt;
+     &lt;!ELEMENT setGenDisj %setGenSpecs;&gt;
+     &lt;!ELEMENT featurePath (constant*)&gt;
+     &lt;!ATTLIST featurePath
+               root (down|up) #REQUIRED
+               dimension NMTOKEN #REQUIRED
+               aspect (entry|attrs) #REQUIRED&gt;
+     &lt;!ELEMENT annotation (%term;,%type;)&gt;
+     &lt;!ELEMENT conj %terms;&gt;
+     &lt;!ELEMENT disj %terms;&gt;
+     &lt;!ELEMENT concat %terms;&gt;
+</pre>
+   <p>The <code>constant</code> element defines a constant. It has the required
+attribute <code>data</code> (an XML name token) which is the constant itself
+
+   <p>The <code>integer</code> element defines an integer. It has the required
+attribute <code>data</code> (an XML name token) which is the integer itself.
+
+   <p>The <code>top</code> element corresponds to lattice top.
+
+   <p>The <code>bot</code> element corresponds to lattice bottom.
+
+   <p>The <code>variable</code> element defines a variable. It has the required
+attribute <code>data</code> (an XML name token) which is the variable
+itself.
+
+   <p>The <code>constantCard</code> element defines a cardinality
+specification. It has the attributes <code>data</code> (an XML name token)
+and <code>card</code>, of which <code>data</code> is required and <code>card</code> is
+optional (with <em>attribute default</em>
+<a name="index-attribute-default-182"></a><code>one</code>). <code>data</code> corresponds to the field of the cardinality
+specification, and <code>card</code> to the cardinality set. Here,
+<code>one</code> corresponds to <code>!</code> in the UL, <code>opt</code> to <code>?</code>,
+<code>any</code> to <code>*</code>, and <code>geone</code> to <code>+</code>.
+
+   <p>The <code>constantCardSet</code> element also defines a cardinality
+specification.  It has zero or more <code>integer</code> children and the
+required attribute <code>data</code> (an XML name token). <code>data</code> is the
+field of the cardinality specification. The <code>integer</code> children
+the set of integers in the cardinality set.
+
+   <p>The <code>constantCardInterval</code> element also defines a cardinality
+specification. It has two <code>children</code> and the required attribute
+<code>data</code> (an XML name token). <code>data</code> is the field of the
+cardinality specification. The two integers define the cardinality set
+by a closed interval.
+
+   <p><code>variableCard</code>, <code>variableCardSet</code> and
+<code>variableCardInterval</code> have variable instead of constant features.
+
+   <p>The <code>set</code> element specifies a set of terms (<code>%terms;</code>).
+
+   <p>The <code>list</code> element specifies a list of terms (<code>%terms;</code>).
+
+   <p>The <code>record</code> element specifies a record. Therefore, it utilizes
+record specifications (<code>%recSpecs;</code>). A record specification is
+either a feature (<code>feature</code>), a variable feature
+(<code>varFeature</code>), a conjunction of record specifications
+(<code>recordConj</code>), or a disjunction of record specifications
+(<code>recordDisj</code>).
+
+   <p>The <code>setGen</code> element specifies a set generator expression. The
+body of a set generator expression is a list of specifications
+(<code>%setGenSpecs;</code>).  A set generator expression specification is
+either a constant (<code>constant</code>), a conjunction of set generator
+expression specifications (<code>setGenConj</code>), or a disjunction of set
+generator expression specifications (<code>setGenDisj</code>).
+
+   <p>The <code>featurePath</code> element specifies a feature path.  The required
+attribute <code>root</code> (<code>down</code> or <code>up</code>) corresponds to the root
+variabe of the feature path, the required attribute <code>dimension</code> to
+the dimension variable, and the required attribute <code>aspect</code> to the
+aspect (<code>entry</code> or <code>attrs</code>). The <code>constant</code> children of
+the <code>featurePath</code> element correspond to the fields of the feature
+path. Note that the root variable value <code>down</code> corresponds to
+<code>_</code> in the UL, and <code>up</code> to <code>^</code>.
+
+   <p>The <code>annotation</code> element specifies a type annotation for a
+term. Its first child is a term (<code>%term;</code>), and its second child
+a type (<code>%type;</code>).
+
+   <p>The <code>conj</code> element specifies the conjunction of a list of terms
+(<code>%terms;</code>).
+
+   <p>The <code>disj</code> element specifies the disjunction of a list of terms
+(<code>%terms;</code>).
+
+   <p>The <code>concat</code> element specifies the <em>concatenation</em>
+<a name="index-concatenation-183"></a>of a list of terms (<code>%terms;</code>). Concatenation is restricted to
+strings.
+
+   <p>The <code>order</code> element specifies an <em>order generator</em>
+<a name="index-order-generator-184"></a>for a list of terms (<code>%terms;</code>).
+
+<!-- ************************************************************ -->
+   </body></html>
+

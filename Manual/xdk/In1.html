@@ -1,0 +1,119 @@
+<html lang="en">
+<head>
+<title>In1 - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="In.html#In" title="In">
+<link rel="next" href="In2.html#In2" title="In2">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="In1"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="In2.html#In2">In2</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="In.html#In">In</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.25 In1 principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.in1</code>
+<li>dimension variables: <code>D</code>
+<li>argument variables:<br>
+<code>In: valency(label(D))</code>
+<li>default values:<br>
+<code>In: _.D.entry.in</code>
+<li>model record: empty
+<li>constraints: <code>In1</code> (priority 130)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle assumes that the Graph principle (<a href="Graph.html#Graph">Graph</a>) is used
+on dimension <code>D</code>.<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>
+
+   <p>The <code>In</code> argument variable defines the <em>incoming edge labels
+cardinality specification</em>. 
+<a name="index-incoming-edge-label-253"></a><a name="index-incoming-edge-labels-254"></a><a name="index-cardinality-255"></a><a name="index-in-specification-256"></a><a name="index-incoming-edge-labels-cardinality-specification-257"></a>Its default value is lexicalized by the lexical entry feature
+<code>in</code> on <code>D</code>.
+
+   <p>It stipulates for all nodes v that:
+     <ul>
+<li>the incoming edges of v must satisfy the
+incoming edge labels cardinality specification
+</ul>
+
+   <p>The In1 principle is symmetric to the Out principle (<a href="Out.html#Out">Out</a>), and
+is now mostly superseded by the Valency principle (<a href="Valency1.html#Valency1">Valency1</a>).
+
+   <p>Here is the definition of the <code>In1</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+   
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+prepare
+   RecordForAllInd = Record.forAllInd
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      DIDA = {DVA2DIDA 'D'}
+   in
+      %% check features
+      if {Helpers.checkModel 'In1.oz' Nodes
+	  [DIDA#mothersL]} then
+	 for Node in Nodes do
+	    LAInMRec = {ArgRecProc 'In' o('_': Node)}
+	 in
+	    {RecordForAllInd LAInMRec
+	     proc {$ LA InM}
+		%% |motherset_l(v)| in in_l(v)
+		CardMothersLD = {FS.card Node.DIDA.model.mothersL.LA}
+	     in
+		{FS.include CardMothersLD InM}
+	     end}
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> This principle does not work in
+conjunction with the Graph1 principle (<a href="Graph1.html#Graph1">Graph1</a>) as it accesses
+the model record feature <code>mothersL</code> only introduced by the Graph
+principle (<a href="Graph.html#Graph">Graph</a>).</p>
+
+   <hr></div>
+
+   </body></html>
+

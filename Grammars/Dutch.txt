@@ -1,0 +1,142 @@
+dat jan marie het boek laat lezen
+
+dat jan marie piet het boek ziet geven
+dat jan piet marie het boek ziet geven
+
+************************************************
+* Van Noord, Bouma 1996
+* Dutch Verb Clustering without Verb Clusters
+************************************************
+
+**************************************************
+** 1 Introduction
+** 1.1 The cross-serial dependency construction
+**************************************************
+dat jan het boek wil lezen
+dat jan marie het boek laat lezen
+dat jan marie het boek wil laten lezen
+
+*************************************
+** 1.2 Problems with Verb-clusters
+*************************************
+*
+dat jan wil het boek lezen
+*
+dat jan marie laat het boek lezen
+
+*************************************************
+** 4 Partial VPs
+** 4.1 Extraposition and partial extraposition
+** 4.1.1 Extraposition
+*************************************************
+dat jan heeft geprobeerd het boek te lezen
+dat jan heeft geprobeerd om het boek te lezen
+dat jan piet heeft gedwongen het boek te lezen
+dat jan piet heeft gedwongen om het boek te lezen
+
+dat jan de vrouwen heeft zien slapen
+*
+dat jan de vrouwen heeft gezien slapen
+
+dat jan piet heeft zien slapen
+dat jan piet heeft gedwongen te slapen
+
+*********************************
+** 4.1.2 Partial Extraposition
+*********************************
+dat jan de trainer van zijn gelijk heeft gemeend te overtuigen
+dat jan heeft gemeend de trainer van zijn gelijk te overtuigen
+dat jan de trainer heeft gemeend van zijn gelijk te overtuigen
+
+dat jan de vrouwen heeft geprobeerd te kussen
+*
+dat jan de vrouwen heeft geprobeerd om te kussen
+dat jan heeft geprobeerd om de vrouwen te kussen
+
+dat jan de vrouwen heeft proberen te kussen
+dat jan de vrouwen heeft geprobeerd te kussen
+*
+dat jan heeft proberen de vrouwen te kussen
+dat jan heeft geprobeerd de vrouwen te kussen
+
+*****************************
+** 4.2 Partial VP fronting
+*****************************
+
+%bezocht heeft jan dat congres nog nooit
+%bezoeken zou jan dat congres niet willen
+%willen bezoeken heeft jan dat congres nooit
+
+*********************************
+** 5 Verb Clusters and Binding
+*********************************
+
+**...
+
+*************************************************
+** 6 Word Order Variation in the Verb Sequence
+** 6.1 Inversion
+*************************************************
+
+dat jan het boek wil lezen
+dat jan het boek lezen wil
+
+dat jan het boek zou moeten lezen
+*
+dat jan het boek zou lezen moeten
+*
+dat jan het boek lezen zou moeten
+
+*
+dat jan het boek moeten lezen zou
+*
+dat jan het boek moeten zou lezen
+dat jan marie kan horen zingen
+*
+dat jan marie horen zingen kan
+*
+dat jan marie horen kan zingen
+dat jan dit boek moet hebben gelezen
+*
+dat jan dit boek hebben gelezen moet
+*
+dat jan dit boek hebben moet gelezen
+
+dat jan het boek heeft gelezen
+dat jan het boek gelezen heeft
+
+dat jan het boek moet hebben gelezen
+dat jan het boek gelezen moet hebben
+*?
+dat jan het boek moet gelezen hebben
+
+dat jan marie heeft horen zingen
+*
+dat jan marie horen zingen heeft
+*
+dat jan marie horen heeft zingen
+dat jan dit boek heeft moeten lezen
+*
+dat jan dit boek moeten lezen heeft
+*
+dat jan dit boek moeten heeft lezen
+
+*********************************
+** 6.2 Separable Verb Prefixes
+*********************************
+dat jan marie aanspreekt
+jan spreekt marie aan
+
+dat jan marie zou hebben aangesproken
+*?
+dat jan marie zou aan hebben gesproken
+dat jan marie aan zou hebben gesproken
+
+*
+jan aanspreekt marie
+
+dat jan marie aangesproken zou hebben
+*
+dat jan marie gesproken zou aan hebben
+*
+dat jan marie gesproken aan zou hebben

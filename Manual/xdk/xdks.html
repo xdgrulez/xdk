@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+<title>xdks - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Programs.html#Programs" title="Programs">
+<link rel="prev" href="xdkconv.html#xdkconv" title="xdkconv">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="xdks"></a>
+<p>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="xdkconv.html#xdkconv">xdkconv</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Programs.html#Programs">Programs</a>
+<hr>
+</div>
+
+<h3 class="section">11.5 xdks</h3>
+
+<p>This section is about the standalone solver of the XDK
+(<code>xdks</code>). It outputs solving statistics in XML format (DTD:
+<code>Extras/statistics.dtd</code>).  Unix users can use the shell script
+<code>diffnotime</code> to compare two solving statistics without taking the
+solving time into account (e.g. to spot the differences with respect
+to solutions, choices and failures).
+
+<h4 class="subsection">11.5.1 Invocation</h4>
+
+<p>These are the commandline arguments of <code>xdks</code>:
+
+     <ul>
+<li><code>--help</code> or <code>--nohelp</code> (short version: <code>-h</code>): Display an
+overview of the commandline arguments. Default: <code>--nohelp</code>. 
+<li><code>--grammars</code> (<code>-g</code>): Select the list of
+grammar files which shall be compiled (and then merged). Default: no files. 
+<li><code>--examples</code> (<code>-e</code>): Select the examples
+file. Default: <code>""</code>. 
+<li><code>--input</code> (<code>-i</code>): Supply a sentence
+(which is then appended to the examples). Default: <code>""</code>. 
+<li><code>--search first</code>, <code>--search all</code>,
+<code>--search print</code> or <code>--search flatzinc</code> (<code>-s first</code>,
+<code>-s all</code>, <code>-s print</code> or <code>-s flatzinc</code>): Specify whether
+the solver shall search only for the first solution, enumerate all
+solutions or print the propagators to a file.  Default: <code>--search
+all</code>. 
+<li><code>--solutions &lt;Int&gt;</code> (<code>-u</code>): Set maximum number of solutions to
+<code>&lt;Int&gt;</code>. Default: <code>1000</code>. 
+<li><code>--failures &lt;Int&gt;</code> (<code>-u</code>): Set maximum number of failures to
+<code>&lt;Int&gt;</code>. Default: <code>1000</code>. 
+<li><code>--reco &lt;Int&gt;</code> (<code>-c</code>): Set maximum recomputation distance to
+<code>&lt;Int&gt;</code>. Default: <code>5</code>. 
+<li><code>--profile</code> or <code>--noprofile</code> (<code>-p</code>): Toggle profiling
+Default: <code>noprofile</code>. 
+<li><code>--outputs</code> or <code>--nooutputs</code> (<code>-o</code>): Open all used outputs. 
+Default: <code>nooutputs</code>. 
+<li><code>--debug</code> or <code>--nodebug</code> (<code>-d</code>): Switch on the debug mode. 
+Default: <code>nodebug</code>. 
+</ul>
+
+<!-- ************************************************************ -->
+   </body></html>
+

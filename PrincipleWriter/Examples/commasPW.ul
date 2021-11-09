@@ -1,0 +1,16 @@
+defprinciple "principle.commasPW" {
+  dims {D1 D2 D3}
+  constraints {
+
+forall V:
+  forall L: forall L1:
+  forall L2: forall L3:
+    [L L1 L2 L3] in V.D3.entry.commas =>
+      forall V1: forall V2:
+      (exists V3: 
+        (((L="^" & V=V3) | edge(V V3 L D2)) & edge(V3 V1 L1 D1))) &
+      (exists V3:
+        (((L2="^" & V=V3) | edge(V V3 L2 D2)) & edge(V3 V2 L3 D1))) =>
+          exists V3: (V1<V3 & V3<V2)
+  }
+}

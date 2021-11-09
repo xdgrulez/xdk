@@ -1,0 +1,8 @@
+defdim id {
+  deftype "id.label" {n v}
+  deflabeltype "id.label"
+  defentrytype {in: tuple("id.label" {"!","?","+","*"})
+                out: tuple("id.label" {"!","?","+","*"}}
+
+  [ ... ]
+}

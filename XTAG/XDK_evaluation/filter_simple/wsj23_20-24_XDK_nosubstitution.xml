@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE statistics SYSTEM "Extras/statistics.dtd">
+<statistics>
+  <grammar data="4712.ulsocket"/>
+  <examples data="XTAG/XDK_evaluation/wsj23_20-24.txt" count="439"/>
+  <date data="Jun 1, 2007 10:57:31"/>
+  <solutions data="1"/>
+  <failures data="9999"/>
+  <timeout data="1800"/>
+  <reco data="5"/>
+  <dimensions>
+    <dimension data="id"/>
+    <dimension data="idlp"/>
+    <dimension data="lex"/>
+    <dimension data="lp"/>
+  </dimensions>
+  <principles>
+    <principle data="id principle.graph1Constraints (id)"/>
+    <principle data="id principle.graph1Dist (id)"/>
+    <principle data="id principle.tree (id)"/>
+    <principle data="id principle.in (id)"/>
+    <principle data="id principle.out (id)"/>
+    <principle data="id principle.xTAGRoot (id)"/>
+    <principle data="lp principle.graph1Constraints (lp)"/>
+    <principle data="lp principle.graph1Dist (lp)"/>
+    <principle data="lp principle.tree (lp)"/>
+    <principle data="lp principle.in (lp)"/>
+    <principle data="lp principle.out (lp)"/>
+    <principle data="lp principle.government (lp)"/>
+    <principle data="lp principle.xTAG (lp)"/>
+    <principle data="lp principle.parse (lp)"/>
+    <principle data="idlp principle.xTAGLinking (id,lp,idlp)"/>
+    <principle data="idlp principle.xTAGRedundant (id,lp)"/>
+    <principle data="lex principle.entries ()"/>
+  </principles>
+  <gprofile fd="6" fs="291" fdfs="297" entries="222">
+    <gpnode fd="2" fs="1" fdfs="3"/>
+    <gpattrs fd="0" fs="0" fdfs="0">
+      <gpdimension data="id" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="idlp" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="0" fs="0" fdfs="0"/>
+    </gpattrs>
+    <gpentry fd="2" fs="157" fdfs="159">
+      <gpdimension data="id" fd="0" fs="35" fdfs="35"/>
+      <gpdimension data="idlp" fd="0" fs="40" fdfs="40"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="2" fs="82" fdfs="84"/>
+    </gpentry>
+    <gpmodel fd="2" fs="133" fdfs="135">
+      <gpdimension data="id" fd="1" fs="42" fdfs="43"/>
+      <gpdimension data="idlp" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="1" fs="91" fdfs="92"/>
+    </gpmodel>
+    <gplabel>
+      <gpdimension data="id" label="34"/>
+      <gpdimension data="idlp" label="0"/>
+      <gpdimension data="lex" label="0"/>
+      <gpdimension data="lp" label="40"/>
+    </gplabel>
+  </gprofile>
+  <string id="string11">
+    <words>
+    i just think it 's nonproductive at this point to get into a debate if index arbitrage would have helped or hurt things .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="5271"/>
+    <depth data="85"/>
+    <failed data="5257"/>
+    <succeeded data="0"/>
+    <time data="1800330"/>
+    <sprofile fd="222576" fs="71240" fdfs="293816" pr="392676" entries="16.583" words="24">
+      <spnode index="1" word="i" entries="3" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="2" word="just" entries="12" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="3" word="think" entries="33" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="4" word="it" entries="6" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="5" word="'s" entries="7" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="6" word="nonproductive" entries="3" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="7" word="at" entries="15" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="8" word="this" entries="5" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="9" word="point" entries="23" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="10" word="to" entries="22" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="11" word="get" entries="115" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="12" word="into" entries="12" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="13" word="a" entries="5" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="14" word="debate" entries="23" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="15" word="if" entries="6" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="16" word="index" entries="18" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="17" word="arbitrage" entries="3" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="18" word="would" entries="2" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="19" word="have" entries="26" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="20" word="helped" entries="15" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="21" word="or" entries="14" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="22" word="hurt" entries="25" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="23" word="things" entries="3" fd="6" fs="301" fdfs="307" pr="475"/>
+      <spnode index="24" word="." entries="2" fd="6" fs="301" fdfs="307" pr="475"/>
+    </sprofile>
+  </string>
+      <spnode index="15" word="pit" entries="18" fd="6" fs="261" fdfs="267" pr="411"/>
+      <spnode index="16" word="stayed" entries="20" fd="6" fs="261" fdfs="267" pr="411"/>
+      <spnode index="17" word="locked" entries="20" fd="6" fs="261" fdfs="267" pr="411"/>
+      <spnode index="18" word="at" entries="15" fd="6" fs="261" fdfs="267" pr="411"/>
+      <spnode index="19" word="its" entries="2" fd="6" fs="261" fdfs="267" pr="411"/>
+      <spnode index="20" word="political" entries="3" fd="6" fs="261" fdfs="267" pr="411"/>
+      <spnode index="21" word="trading" entries="20" fd="6" fs="261" fdfs="267" pr="411"/>
+      <spnode index="22" word="limit" entries="18" fd="6" fs="261" fdfs="267" pr="411"/>
+      <spnode index="23" word="." entries="2" fd="6" fs="261" fdfs="267" pr="411"/>
+    </sprofile>
+  </string>
+  <string id="string15">
+    <words>
+    obviously we 'll take a close look at any situation in which we think the political obligations were not met , he said .
+    </words>
+    <outputs>

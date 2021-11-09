@@ -1,0 +1,216 @@
+@unnumbered References
+
+Regine Bader, Christine Foeldesi, Ulrich Pfeiffer and Jochen Steigner
+2004, @cite{Modellierung grammatischer Phaenomene der deutschen
+Sprache mit Topologischer Dependenzgrammatik},
+Softwareprojekt-Bericht, Saarland University,
+@*@uref{http://www.ps.uni-sb.de/~rade/fopra/softproj.pdf}.
+
+Ondrej Bojar 2004, @cite{Problems of Inducing Large Coverage
+Constraint-Based Dependency Grammar}, Proceedings of CSLP 2004,
+Roskilde/DK,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/related/Bojar04.pdf}.
+
+Benoit Crabbe 2003, @cite{Lexical Classes for Structuring the Lexicon
+of a TAG}, In Prospects and Advances in the Syntax/Semantics
+Interface, Nancy/FRA,
+@*@uref{http://www.loria.fr/~duchier/Lorraine-Saarland/crabbe.ps}.
+
+Benoit Crabbe and Denys Duchier 2004, @cite{Metagrammar Redux},
+Proceedings of CSLP 2004, Roskilde/DK,
+@*@uref{http://www.loria.fr/~crabbe/}.
+
+Marie-Helene Candito 1996, @cite{Generating an LTAG out of a
+Principle-based Hierarchical Representation}, In Proceedings of ACL
+1996, Santa Cruz/US,
+@*@uref{http://acl.ldc.upenn.edu/P/P96/P96-1045.pdf}.
+
+Ralph Debusmann 2001, @cite{A Declarative Grammar Formalism For
+Dependency Grammar}, Diplomarbeit, Saarland University,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/da.pdf}.
+
+Ralph Debusmann 2001, @cite{Movement as well-formedness conditions},
+Proceedings of the ESSLLI 2001 Student Session, Helsinki/FI,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/esslli01.pdf}.
+
+Ralph Debusmann 2001, @cite{Topologische Dependenzgrammatik}, In
+Proceedings of StuTS 2001, Saarbrücken/DE,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/stuts01.pdf}.
+
+Ralph Debusmann 2003, @cite{Dependency Grammar as Graph Description},
+In Prospects and Advances in the Syntax/Semantics Interface,
+Nancy/FRA,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/passi03.pdf}.
+
+Ralph Debusmann 2003, @cite{A Parser System for Extensible Dependency
+Grammar}, In Prospects and Advances in the Syntax/Semantics Interface,
+Nancy/FRA,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/passi03demo.pdf}.
+
+Ralph Debusmann and Denys Duchier 2002, @cite{Topological Dependency
+Analysis of the Dutch Verb Cluster}, unpublished manuscript,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/acl02.pdf}.
+
+Ralph Debusmann and Denys Duchier 2003, @cite{A Meta-Grammatical
+Framework for Dependency Grammar}, unpublished manuscript,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/acl03.pdf}.
+
+Ralph Debusmann and Denys Duchier 2003, @cite{Towards a
+Syntax-Semantics Interface for Topological Dependency Grammar},
+unpublished manuscript,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/taln03.pdf}.
+
+Ralph Debusmann 2004, @cite{Taking Linguistic Dimensions More
+Seriously: The New Grammar Formalism of Extensible Dependency
+Grammar}, unpublished manuscript,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/acl04.pdf}.
+
+Ralph Debusmann 2004, @cite{Multiword expressions as dependency
+subgraphs}, In Proceedings of the ACL 2004 Workshop on Multiword
+Expressions: Integrating Processing, Barcelona/ES,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/acl04mwe.pdf}.
+
+Ralph Debusmann and Denys Duchier and Geert-Jan M. Kruijff 2004,
+@cite{Extensible Dependency Grammar: A New Methodology}, In
+Proceedings of the COLING 2004 Workshop on Recent Advances in
+Dependency Grammar, Geneva/CH,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/dgcoling04.pdf}.
+
+Ralph Debusmann and Denys Duchier and Marco Kuhlmann and Stefan Thater
+2004, @cite{TAG Parsing as Model Enumeration}, In Proceedings of
+TAG+7, Vancouver/CA,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/tag7.pdf}.
+
+Ralph Debusmann and Denys Duchier and Alexander Koller and Marco
+Kuhlmann and Gert Smolka and Stefan Thater 2004, @cite{A Relational
+Syntax-Semantics Interface Based on Dependency Grammar}, In
+Proceedings of COLING 2004, Geneva/CH,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/coling04.pdf}.
+
+Ralph Debusmann and Denys Duchier and Marco Kuhlmann 2004,
+@cite{Multi-dimensional Graph Configuration for Natural Language
+Processing}, In Proceedings of CSLP 2004, Roskilde/DK,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/cslp04.pdf}.
+
+Ralph Debusmann and Denys Duchier and Joachim Niehren 2004, @cite{The
+XDG Grammar Development Kit}, In Proceedings of MOZ04, Charleroi/BEL,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/moz04.pdf}.
+
+Ralph Debusmann and Oana Postolache and Maarika Traat 2005, @cite{A
+Modular Account of Information Structure in Extensible Dependency
+Grammar}, In Proceedings of CICLING 2005, Mexico City/MX,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/igk.pdf}.
+
+Ralph Debusmann and Denys Duchier and Andreas Rossberg, @cite{Modular
+Grammar Design with Typed Parametric Principles}, In Proceedings of
+FGMOL 2005, Edinburgh/UK,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/fgmol05.pdf}.
+
+Ralph Debusmann and Gert Smolka 2006, @cite{Multi-dimensional Dependency
+Grammar as Multigraph Description}, In Proceedings of FLAIRS 2006,
+Melbourne/US,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/flairs.pdf}.
+
+Ralph Debusmann 2006, @cite{Extensible Dependency Grammar - A Modular
+Grammar Formalism Based On Multigraph Description}, PhD thesis,
+Saarland University,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/diss.pdf}.
+
+Ralph Debusmann 2007, @cite{Scrambling as the Combination of Relaxed
+Context-Free Grammars in a Model-Theoretic Grammar Formalism}, ESSLLI
+2007 Workshop Model Theoretic Syntax at 10, Dublin/IE,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/mts10.pdf}.
+
+Ralph Debusmann 2007, @cite{Ralph Debusmann The Complexity of
+First-Order Extensible Dependency Grammar}, unpublished manuscript,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/fg07.pdf}.
+
+Ralph Debusmann and Marco Kuhlmann 2007, @cite{Dependency Grammar:
+Classification and Exploration}, Project Report (CHORUS, SFB 378),
+Saarland University,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/sfb.pdf}.
+
+Peter Dienes, Alexander Koller and Marco Kuhlmann 2003,
+@cite{Statistical A-Star Dependency Parsing}, Workshop: Prospects and
+Advances in the Syntax-Semantics Interface, Nancy/FRA,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/related/DienesEtal03.pdf}.
+
+Denys Duchier 1999, @cite{Axiomatizing Dependency Parsing Using Set
+Constraints}, In Proceedings of MOL6, Orlando/US,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/related/Duchier99.pdf}.
+
+Denys Duchier 2001, @cite{Lexicalized Syntax and Topology for
+Non-projective Dependency Grammar}, In Proceedings of FGMOL-01,
+Helsinki/FI,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/related/Duchier01.pdf}.
+
+Denys Duchier 2003, @cite{Configuration Of Labeled Trees Under
+Lexicalized Constraints And Principles}, Journal of Research on
+Language and Computation,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/related/Duchier03.pdf}.
+
+Denys Duchier 2003, @cite{A Metagrammatical Formalism for Lexicalized
+TAGs}, In Prospects and Advances in the Syntax/Semantics Interface,
+Nancy/FRA,
+@*@uref{http://www.loria.fr/~duchier/Lorraine-Saarland/duchier-demo.ps}.
+
+Denys Duchier and Ralph Debusmann 2001, @cite{Topological Dependency
+Trees: A Constraint-Based Account of Linear Precedence}, In
+Proceedings of ACL 2001, Toulouse/FRA,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/acl01.pdf}.
+
+Alexander Koller, Ralph Debusmann, Malte Gabsdil and Kristina
+Striegnitz 2004, @cite{Put my galakmid coin into the dispenser and
+kick it: Computational Linguistics and Theorem Proving in a Computer
+Game}, Journal of Logic, Language And Information,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/jolli04.pdf}.
+
+Alexander Koller and Kristina Striegnitz 2002, @cite{Generation as
+Dependency Parsing}, In Proceedings of ACL 2002, Philadelphia/US,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/related/KollerStriegnitz02.pdf}.
+
+Christian Korthals and Ralph Debusmann 2002, @cite{Linking syntactic
+and semantic arguments in a dependency-based formalism}, In
+Proceedings of COLING 2002, Taipei/TW,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/coling02.pdf}.
+
+Christian Korthals 2003, @cite{Unsupervised Learning of Word Order
+Rules}, Diploma thesis, Saarland University,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/related/Korthals03.pdf}.
+
+Christian Korthals and Geert-Jan M. Kruijff 2003, @cite{Unsupervised,
+graph-based learning of topological fields}, unpublished manuscript,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/related/KorthalsKruijff03.pdf}.
+
+Marco Kuhlmann 2002, @cite{Towards a Constraint Parser for Categorial
+Type Logics}, MSc. Thesis, University of Edinburgh,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/related/Kuhlmann02.pdf}.
+
+Pierre Lison 2006, @cite{Implémentation d'une Interface
+Sémantique-Syntaxe basée sur des Grammaires d'Unification Polarisées},
+MSc. Thesis, Université Catholique de Louvain,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/related/Lison06.pdf}.
+
+Mathias Moehl 2004, @cite{Modellierung natuerlicher Sprache mit Hilfe
+von Topologischer Dependenzgrammatik}, Forschungsprojekt-Bericht,
+Saarland University,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/related/Moehl04.pdf}.
+
+Renjini Narendranath 2004, @cite{Evaluation of the Stochastic
+Extension of a Constraint-Based Dependency Parser}, BSc. Thesis,
+Saarland University,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/related/Narendranath04.pdf}.
+
+Marwan Odeh 2004, @cite{Topologische Dependenzgrammatik fürs
+Deutsche}, Forschungspraktikum-Bericht/BSc. Thesis, Saarland
+University, @*@uref{http://www.ps.uni-sb.de/~rade/fopra/Arabic.pdf}.
+
+Jorge Marques Pelizzoni and and Maria das Gracas Volpe Nunes 2005,
+@cite{N:M Mapping in XDG - The Case for Upgrading Groups}, In
+Proceedings of the Workshop Constraint Solving and Language
+Processing, CSLP 2005, Sitges/ES,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/related/PelizzoniDasGracasVolpeNunes05.pdf}.
+
+Jochen Setz 2007, @cite{A Principle Compiler for Extensible Dependency
+Grammar}, BSc. Thesis, Saarland University,
+@*@uref{http://www.ps.uni-sb.de/~rade/papers/related/Setz07.pdf}.

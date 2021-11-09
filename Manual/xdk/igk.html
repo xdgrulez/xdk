@@ -1,0 +1,475 @@
+<html lang="en">
+<head>
+<title>igk - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Grammars.html#Grammars" title="Grammars">
+<link rel="prev" href="ema_005fth.html#ema_005fth" title="ema_th">
+<link rel="next" href="nut.html#nut" title="nut">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="igk"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="nut.html#nut">nut</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="ema_005fth.html#ema_005fth">ema_th</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Grammars.html#Grammars">Grammars</a>
+<hr>
+</div>
+
+<h3 class="section">5.44 igk</h3>
+
+<p>This grammar covers a small fragment of English, and includes the two
+graph dimensions of Prosodic Structure (PS) and Information Structure
+(IS). It was written by Ralph Debusmann, in a project at the IGK
+annual meeting 2004 in Edinburgh together with Ciprian Gerstenberger,
+Oana Postolache, Stefan Thater and Maarika Traat. It is described in
+<cite>A Modular Account of Information Structure in Extensible
+Dependency Grammar</cite> (<a href="References.html#References">References</a>).
+
+<pre class="verbatim">usedim id
+usedim lp
+usedim ps
+usedim is
+usedim lex
+usedim multi
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension id
+defdim id {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "id.entry" {in: valency("id.label")
+                      out: valency("id.label")}
+  deftype "id.label" {subj obj det adj root}
+  defentrytype "id.entry"
+  deflabeltype "id.label"
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph" {
+    dims {D: id}}
+  useprinciple "principle.tree" {
+    dims {D: id}}
+  useprinciple "principle.valency" {
+    dims {D: id}
+    args {In: _.D.entry.in
+          Out: _.D.entry.out}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.latex"
+  output "output.latex1"
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lp
+defdim lp {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "lp.entry" {in: valency("lp.label")
+                      out: valency("lp.label")
+                      on: iset("lp.label")}
+  deftype "lp.label" {topf subjf f objf
+                      detf adjf n
+                      d a
+                      root r}
+  defentrytype "lp.entry"
+  deflabeltype "lp.label"
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph" {
+    dims {D: lp}}
+  useprinciple "principle.tree" {
+    dims {D: lp}}
+  useprinciple "principle.valency" {
+    dims {D: lp}
+    args {In: _.D.entry.in
+          Out: _.D.entry.out}}
+  useprinciple "principle.order" {
+    dims {D: lp}
+    args {On: _.D.entry.on
+          Order: [topf subjf f objf
+                  detf adjf n
+                  d a
+                  root r]
+          Yields: true}}
+  useprinciple "principle.projectivity" {
+    dims {D: lp}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension ps
+defdim ps {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "ps.entry" {in: valency("ps.label")
+                      out: valency("ps.label")
+                      on: iset("ps.label")}
+  deftype "ps.label" {"L+H*" "H*" "LH%" "LL%" "L+H*_LH%" "H*_LL%" na nb b}
+  defentrytype "ps.entry"
+  deflabeltype "ps.label"
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph" {
+    dims {D: ps}}
+  useprinciple "principle.tree" {
+    dims {D: ps}}
+  useprinciple "principle.valency" {
+    dims {D: ps}
+    args {In: _.D.entry.in
+          Out: _.D.entry.out}}
+   useprinciple "principle.order1" {
+     dims {D: ps}
+     args {On: _.D.entry.on
+           Order: [{"L+H*" "H*" "LH%" "LL%" "L+H*_LH%" "H*_LL%" na nb} {b}]
+           Yields: true}}
+   useprinciple "principle.projectivity" {
+     dims {D: ps}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension is
+defdim is {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "is.entry" {in: valency("is.label")
+                      out: valency("is.label")
+                      on: iset("is.label")}
+  deftype "is.label" {f nf theme rheme umtheme backgr}
+  defentrytype "is.entry"
+  deflabeltype "is.label"
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph" {
+    dims {D: is}}
+  useprinciple "principle.tree" {
+    dims {D: is}}
+  useprinciple "principle.valency" {
+    dims {D: is}
+    args {In: _.D.entry.in
+          Out: _.D.entry.out}}
+  useprinciple "principle.order" {
+    dims {D: is}
+    args {On: _.D.entry.on
+          Order: []
+          Yields: true}}
+   useprinciple "principle.projectivity" {
+     dims {D: is}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lex
+defdim lex {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype {word: string}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dags"
+  output "output.dags1"
+  output "output.dags2"
+  output "output.dags3"
+  output "output.latexs"
+  output "output.latexs1"
+  output "output.latexs2"
+  output "output.latexs3"
+  %%
+  useoutput "output.dags1"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension multi
+defdim multi {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype {blocks_lpid: set("id.label")
+                %%
+                linkEnd_lpis: vec("lp.label" set("is.label"))}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.climbing" {
+    dims {D1: lp
+          D2: id}}
+  useprinciple "principle.barriers" {
+    dims {D1: lp
+          D2: id
+          D3: multi}
+    args {Blocks: _.D3.entry.blocks_lpid}}
+  %%
+  useprinciple "principle.subgraphs" {
+    dims {D1: is
+          D2: ps
+          D3: multi}
+    args {Start: {theme: {"LH%" "L+H*_LH%"}
+                  rheme: {"LL%" "H*_LL%"}
+                  umtheme: bot}}}
+  %%
+  useprinciple "principle.linkingEnd" {
+    dims {D1: lp
+          D2: is
+          D3: multi}
+    args {End: ^.D3.entry.linkEnd_lpis}}
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lexical classes
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% syntax
+
+defclass "noun_idlp" {
+  (dim id {in: {subj?}} &amp; dim lp {in: {subjf? topf?}} |
+   dim id {in: {obj?}} &amp; dim lp {in: {objf? topf?}})
+  dim id {in: {root?}}
+  dim lp {in: {root?}
+          on: {n}}}
+
+defclass "pname_idlp" {
+  "noun_idlp"}
+
+defclass "cnoun_idlp" {
+  "noun_idlp"
+  dim id {out: {det! adj*}}
+  dim lp {out: {detf? adjf*}}}
+          
+defclass "det_idlp" {
+  dim id {in: {det? root?}}
+  dim lp {in: {detf? root?}
+          on: {d}}}
+
+defclass "adj_idlp" {
+  dim id {in: {adj? root?}}
+  dim lp {in: {adjf? root?}
+          on: {a}}}
+
+defclass "tv_idlp" {
+  dim id {in: {root?}
+          out: {subj! obj!}}
+  dim lp {in: {root?}
+          out: ({topf! subjf!}|
+                {subjf! objf!})
+          on: {f}}
+  dim multi {linkEnd_lpis: {topf: {theme umtheme}}}}
+
+defclass "root_idlp" {
+  dim id {in: {}
+          out: {root!}}
+  dim lp {in: {}
+          out: {root!}
+          on: {r}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% prosodic structure
+
+defclass "pa1" Word {
+  dim ps {in: {"L+H*"?}
+          on: {nb}}
+  dim lex {word: Word@"_L+H*"}}
+
+defclass "bo1" Word {
+  dim ps {in: {"LH%"?}
+          out: {"L+H*"* na*}
+          on: {b}}
+  dim lex {word: Word@"_LH%"}}
+
+defclass "pa1_bo1" Word {
+  dim ps {in: {"L+H*_LH%"?}
+          out: {"L+H*"* na*}
+          on: {b}}
+  dim lex {word: Word@"_L+H*_LH%"}}
+
+%%
+
+defclass "pa2" Word {
+  dim ps {in: {"H*"?}
+          on: {nb}}
+  dim lex {word: Word@"_H*"}}
+
+defclass "bo2" Word {
+  dim ps {in: {"LL%"?}
+          out: {"H*"* na*}
+          on: {b}}
+  dim lex {word: Word@"_LL%"}}
+
+defclass "pa2_bo2" Word {
+  dim ps {in: {"H*_LL%"?}
+          out: {"H*"* na*}
+          on: {b}}
+  dim lex {word: Word@"_H*_LL%"}}
+
+%%
+
+defclass "na" Word {
+  dim ps {in: {na?}
+          on: {nb}}
+  dim lex {word: Word@""}}
+
+%%
+
+defclass "root_ps" {
+  dim ps {in: {}
+          out: {"LH%"* "LL%"* "L+H*_LH%"* "H*_LL%"*}
+          on: {nb}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% information structure
+
+defclass "tf" {
+  dim is {in: {theme?}
+          out: {backgr*}
+          on: {f}}}
+
+defclass "tnf" {
+  dim is {in: {backgr? umtheme?}
+          on: {nf}}}
+
+%%
+
+defclass "rf" {
+  dim is {in: {rheme?}
+          out: {backgr*}
+          on: {f}}}
+
+defclass "rnf" {
+  dim is {in: {backgr?}
+          on: {nf}}}
+
+%%
+
+defclass "root_is" {
+  dim is {in: {}
+          out: ({theme* rheme+}|{umtheme* rheme+})
+          on: {nf}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% prosodic and information structure
+
+
+defclass "theme_pa" Word {
+  "pa1" {Word: Word}
+  "tf"}
+
+defclass "theme_bo" Word {
+  "bo1" {Word: Word}
+  "tnf"}
+
+defclass "theme_pa_bo" Word {
+  "pa1_bo1" {Word: Word}
+  "tf"}
+
+%%
+
+defclass "rheme_pa" Word {
+  "pa2" {Word: Word}
+  "rf"}
+
+defclass "rheme_bo" Word {
+  "bo2" {Word: Word}
+  "rnf"}
+
+defclass "rheme_pa_bo" Word {
+  "pa2_bo2" {Word: Word}
+  "rf"}
+
+%%
+
+defclass "theme_na" Word {
+  "na" {Word: Word}
+  "tnf"}
+
+%%
+
+defclass "psis" Word {
+  "theme_pa" {Word: Word}|
+  "theme_bo" {Word: Word}|
+  "theme_pa_bo" {Word: Word}|
+  "rheme_pa" {Word: Word}|
+  "rheme_bo" {Word: Word}|
+  "rheme_pa_bo" {Word: Word}|
+  "theme_na" {Word: Word}}
+
+%%
+
+defclass "root_psis" {
+  "root_ps"
+  "root_is"}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% combined lexical classes
+
+%% proper names
+
+defclass "pname" Word {
+  "pname_idlp"
+  "psis" {Word: Word}}
+
+
+%% common nouns
+
+defclass "cnoun" Word {
+  "cnoun_idlp"
+  "psis" {Word: Word}}
+
+%% transitive verbs
+
+defclass "tv" Word {
+  "tv_idlp"
+  "psis" {Word: Word}}
+
+%% determiners
+
+defclass "det" Word {
+  "det_idlp"
+  "psis" {Word: Word}}
+
+%% adjectives
+
+defclass "adj" Word {
+  "adj_idlp"
+  "psis" {Word: Word}}
+
+%% roots
+
+defclass "root" Word {
+  "root_idlp"
+  "root_psis"
+  dim lex {word: Word}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% lexical entries
+
+defentry { "pname" {Word: "Annie"|"Manny"|"Marcel"|"completeness"} }
+
+defentry { "cnoun" {Word: "man"|"woman"} }
+
+defentry { "tv" {Word: "married"|"proved"} }
+
+defentry { "det" {Word: "the"|"a"} }
+
+defentry { "adj" {Word: "little"|"big"} }
+
+defentry { "root" {Word: "."} }
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

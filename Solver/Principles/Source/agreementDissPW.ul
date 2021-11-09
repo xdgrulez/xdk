@@ -1,0 +1,10 @@
+defprinciple "principle.agreementDissPW" {
+  dims {D}
+  constraints {
+
+forall V: forall V1:
+  ( edge(V V1 det D) => V.D.attrs.agr=V1.D.attrs.agr ) &
+  ( edge(V V1 subj D) => V.D.attrs.agr=V1.D.attrs.agr )
+
+  }
+}

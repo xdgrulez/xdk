@@ -1,0 +1,26 @@
+@section xdkpm
+This section is about the Principle Manager.
+
+@subsection Invocation
+These are the commandline arguments of @code{xdkpm}:
+
+@itemize @bullet
+@item @code{--help} or @code{--nohelp} (short version: @code{-h}): Display an
+overview of the commandline arguments. Default: @code{--nohelp}.
+@item @code{--grammar} (@code{-g}): Import filter for list of
+principles from a grammar file. Default: no grammar.
+@item @code{--builddeffile} or @code{--nobuilddeffile} (@code{-b}): Build principle definition or directly build principle definition functor and constraints.
+Default: @code{builddeffile}.
+@item @code{--ozeditor} (@code{-o}): Select the editor for @code{*.oz} files.
+Default: @code{"oz"}.
+@item @code{--uleditor} (@code{-u}): Select the editor for @code{*.ul} files.
+Default: @code{"emacs"}.
+@item @code{--xmleditor} (@code{-x}): Select the editor for @code{*.xml} files.
+Default: @code{"emacs"}.
+@item @code{--log inspector}, @code{--log browser} or
+@code{--log shell} (@code{-l inspector}, @code{-l browser} or @code{-l
+shell}: Show log in Inspector/Browser/Shell.  Default: @code{--log
+inspector}.
+@item @code{--debug} or @code{--nodebug} (@code{-d}): Switch on the debug mode. 
+Default: @code{nodebug}.
+@end itemize

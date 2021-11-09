@@ -1,0 +1,47 @@
+@section Node record
+The @emph{node record}
+@cindex node record
+is the internal representation of a node in the XDK solver. Each node
+corresponds to a word in the input.
+
+The node record is defined as follows:
+
+@example
+o(word: A
+  index: I
+  nodeSet: M
+  entryIndex: I
+  <dimension identifier 1>: o(attrs: SL
+                              entry: SL
+                              model: SL)
+  @dots{}
+  <dimension identifier n>: o(attrs: SL
+                              entry: SL
+                              model: SL))
+@end example
+
+The value of the @code{word} feature is an Oz atom representing the word.
+
+The value of the @code{index} feature is an Oz integer representing
+the unique @emph{node index}
+@cindex node index
+of the node.
+
+The value of the @code{nodeSet} feature is an Oz finite set of integers
+representing the set of node indices of all nodes.
+
+The value of the @code{entryIndex} feature is the an Oz integer
+representing the @emph{entry index}
+@cindex entry index
+of the node.  Notice that the entry index is different from the node
+index: Each word corresponds to a set of lexical entries, and each of
+these has an entry index. The entry index of the node is the index of
+the selected lexical entry for the node.
+
+The next features introduce sub records for the used dimensions
+@code{<dimension identifier i>} (@code{1<=i<=n}). Each of these sub
+records has the features @code{attrs}, @code{entry} and @code{model}.
+The value of the @code{attrs} feature is the attributes record of the
+node. The value of the @code{entry} feature is the entry record of the
+node. The value of the @code{model} feature is the model record of the
+node.

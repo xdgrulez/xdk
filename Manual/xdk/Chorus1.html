@@ -1,0 +1,125 @@
+<html lang="en">
+<head>
+<title>Chorus1 - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="CSD1.html#CSD1" title="CSD1">
+<link rel="next" href="Climbing.html#Climbing" title="Climbing">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Chorus1"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Climbing.html#Climbing">Climbing</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="CSD1.html#CSD1">CSD1</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.9 Chorus principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.chorus</code>
+<li>dimension variables: <code>D1</code>, <code>D2</code>, <code>D3</code>
+<li>argument variables:<br>
+<code>Chorus: set(label(D1))</code>
+<li>default values:<br>
+<code>Chorus: _.D3.entry.chorus</code>
+<li>model record: empty
+<li>constraints: <code>Chorus</code> (priority 130)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle assumes that the Graph principle (<a href="Graph.html#Graph">Graph</a>) is used
+on dimensions <code>D1</code> and <code>D2</code>.<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>
+
+   <p>It is fairly specialized, and is so far only used in the Chorus
+grammar (<a href="Chorus.html#Chorus">Chorus</a>) for optimization (hence its name).
+
+   <p>It creates for each node v the two sets S1 and
+S2.  S1 is the set of nodes below edges labeled by
+l' in <code>Chorus</code> which emanate from v on <code>D1</code>. 
+S2 is the set of nodes equal or below the mother of v on
+<code>D2</code>.
+
+   <p>It then stipulates for all nodes v that S1 must be
+subset of S2.
+
+   <p>Here is the definition of the <code>Chorus</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+   
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      D1DIDA = {DVA2DIDA 'D1'}
+      D2DIDA = {DVA2DIDA 'D2'}
+      DIDA2LabelLat = G.dIDA2LabelLat
+      D1LabelLat = {DIDA2LabelLat D1DIDA}
+      D1LAs = D1LabelLat.constants
+   in
+      %% check features
+      if {Helpers.checkModel 'Chorus.oz' Nodes
+	  [D2DIDA#eqdown
+	   D1DIDA#downL
+	   D2DIDA#mothers]} then
+	 D2EqdownMs = {Map Nodes
+		       fun {$ Node} Node.D2DIDA.model.eqdown end}
+      in
+	 for Node in Nodes do
+	    Dom1LM = {ArgRecProc 'Chorus' o('_': Node)}
+	    %%
+	    D1DownLMs = {Map D1LAs
+			 fun {$ LA} Node.D1DIDA.model.downL.LA end}
+	    D1DownLM = {Select.union D1DownLMs Dom1LM}
+	    %%
+	    D2MothersM = Node.D2DIDA.model.mothers
+	    D2EqdownM = {Select.union D2EqdownMs D2MothersM}
+	 in
+	    {FS.subset D1DownLM D2EqdownM}
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> This principle does
+not work in conjunction with the Graph1 principle (<a href="Graph1.html#Graph1">Graph1</a>) on
+<code>D1</code> as it accesses the model record feature <code>downL</code> only
+introduced by the Graph principle (<a href="Graph.html#Graph">Graph</a>).</p>
+
+   <hr></div>
+
+   </body></html>
+

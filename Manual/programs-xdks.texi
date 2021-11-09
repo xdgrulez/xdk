@@ -1,0 +1,39 @@
+@section xdks
+This section is about the standalone solver of the XDK
+(@code{xdks}). It outputs solving statistics in XML format (DTD:
+@code{Extras/statistics.dtd}).  Unix users can use the shell script
+@code{diffnotime} to compare two solving statistics without taking the
+solving time into account (e.g. to spot the differences with respect
+to solutions, choices and failures).
+
+@subsection Invocation
+These are the commandline arguments of @code{xdks}:
+
+@itemize @bullet
+@item @code{--help} or @code{--nohelp} (short version: @code{-h}): Display an
+overview of the commandline arguments. Default: @code{--nohelp}.
+@item @code{--grammars} (@code{-g}): Select the list of
+grammar files which shall be compiled (and then merged). Default: no files.
+@item @code{--examples} (@code{-e}): Select the examples
+file. Default: @code{""}.
+@item @code{--input} (@code{-i}): Supply a sentence
+(which is then appended to the examples). Default: @code{""}.
+@item @code{--search first}, @code{--search all},
+@code{--search print} or @code{--search flatzinc} (@code{-s first},
+@code{-s all}, @code{-s print} or @code{-s flatzinc}): Specify whether
+the solver shall search only for the first solution, enumerate all
+solutions or print the propagators to a file.  Default: @code{--search
+all}.
+@item @code{--solutions <Int>} (@code{-u}): Set maximum number of solutions to
+@code{<Int>}. Default: @code{1000}.
+@item @code{--failures <Int>} (@code{-u}): Set maximum number of failures to
+@code{<Int>}. Default: @code{1000}.
+@item @code{--reco <Int>} (@code{-c}): Set maximum recomputation distance to
+@code{<Int>}. Default: @code{5}.
+@item @code{--profile} or @code{--noprofile} (@code{-p}): Toggle profiling
+Default: @code{noprofile}.
+@item @code{--outputs} or @code{--nooutputs} (@code{-o}): Open all used outputs.
+Default: @code{nooutputs}.
+@item @code{--debug} or @code{--nodebug} (@code{-d}): Switch on the debug mode. 
+Default: @code{nodebug}.
+@end itemize

@@ -1,0 +1,11 @@
+defprinciple "principle.barriersPW" {
+  dims {D1 D2 D3}
+  constraints {
+
+forall V: forall V1: forall V2:
+  edge(V1 V D1) & dom(V1 V2 D2) & dom(V2 V D2) =>
+    forall V3: forall L:
+      edge(V3 V L D2) => L notin V2.D3.entry.blocks
+
+  }
+}

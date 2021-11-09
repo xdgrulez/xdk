@@ -1,0 +1,23 @@
+conj(value(coord:7#7 
+	   sem:dom(value(coord:7 
+			 sem:constant(token(coord:7 
+					    sem:'V2'))) 
+		   value(coord:7 
+			 sem:constant(token(coord:7 
+					    sem:'V'))) 
+		   value(coord:7 
+			 sem:constant(token(coord:7 
+					    sem:'D'))))) 
+     value(coord:7#7 
+	   sem:ledge(value(coord:7 
+			   sem:constant(token(coord:7 
+					      sem:'V2'))) 
+		     value(coord:7 
+			   sem:constant(token(coord:7 
+					      sem:'V3'))) 
+		     value(coord:7 
+			   sem:constant(token(coord:7 
+					      sem:n))) 
+		     value(coord:7 
+			   sem:constant(token(coord:7 
+					      sem:'D')))))) 

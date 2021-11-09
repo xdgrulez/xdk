@@ -1,0 +1,9 @@
+defprinciple "principle.climbingSubgraphsPW" {
+  dims {D1 D2}
+  constraints {
+
+forall V: forall V1: forall V2:
+  edge(V1 V D2) & dom(V2 V D1) => domeq(V2 V1 D1)
+
+  }
+}

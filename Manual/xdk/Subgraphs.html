@@ -1,0 +1,137 @@
+<html lang="en">
+<head>
+<title>Subgraphs - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="SameEdges.html#SameEdges" title="SameEdges">
+<link rel="next" href="TAG.html#TAG" title="TAG">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Subgraphs"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="TAG.html#TAG">TAG</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="SameEdges.html#SameEdges">SameEdges</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.64 Subgraphs principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.subgraphs</code>
+<li>dimension variables: <code>D1</code>, <code>D2</code>, <code>D3</code>
+<li>argument variables:<br>
+<code>Start: vec(label(D1) set(label(D2)))</code>
+<li>default values:<br>
+<code>Start: ^.D3.entry.start</code>
+<li>model record: empty
+<li>constraints: <code>Subgraphs</code> (priority 110)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle assumes that the Graph principle (<a href="Graph.html#Graph">Graph</a>) is used
+on dimensions <code>D1</code> and <code>D2</code>.<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>
+
+   <p>The principle creates two sets S1 and S2 for each node
+v, and each edge label l on <code>D1</code>: S1 is the
+set of nodes (i.e. the subgraph) below an edge labeled l
+emanating from v on <code>D1</code>. S2 is the set of nodes
+below all edges labeled by a label in <code>Start(l)</code> emanating from
+v on <code>D2</code>.
+
+   <p>The principle then stipulates for each node v, and each edge
+label l on <code>D1</code>:
+     <ul>
+<li>if <code>Start(l)</code> is not empty, then S1 must be
+a subset of S2
+</ul>
+
+   <p>Here is the definition of the <code>Subgraphs</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      D1DIDA = {DVA2DIDA 'D1'}
+      D2DIDA = {DVA2DIDA 'D2'}
+      DIDA2LabelLat = G.dIDA2LabelLat
+      D1LabelLat = {DIDA2LabelLat D1DIDA}
+      D1LAs = D1LabelLat.constants
+      D2LabelLat = {DIDA2LabelLat D2DIDA}
+      D2LAs = D2LabelLat.constants
+   in
+      %% check features
+      if {Helpers.checkModel 'Subgraphs.oz' Nodes
+	  [D1DIDA#downL
+	   D2DIDA#downL]} then
+	 %% Linking Subgraphs
+	 %%
+	 %% forall v in V: forall l in L_1:
+	 %%   Start(v)(l) neq emptyset => 
+	 %%     v -l->1+ D1 and v -(Start(v)(l))->2+ D2 and
+	 %%       D1 subseteq D2
+	 for Node in Nodes do
+	    StartLALMRec =
+	    {ArgRecProc 'Start' o('^': Node)}
+	    %%
+	    D2DownLMs = {Map D2LAs
+			 fun {$ LA} Node.D2DIDA.model.downL.LA end}
+	 in
+	    for D1LA in D1LAs do
+	       StartLM = StartLALMRec.D1LA
+	       %%
+	       D1M = Node.D1DIDA.model.downL.D1LA
+	       D2M = {Select.union D2DownLMs StartLM}
+	    in
+	       {FD.impl
+		{FD.nega {FS.reified.equal StartLM FS.value.empty}}
+		{FS.reified.subset D1M D2M} 1}
+	    end
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> This principle does
+not work in conjunction with the Graph1 principle (<a href="Graph1.html#Graph1">Graph1</a>) on
+<code>D1</code> and <code>D2</code> as it accesses the model record feature
+<code>downL</code> only introduced by the Graph principle (<a href="Graph.html#Graph">Graph</a>).</p>
+
+   <hr></div>
+
+   </body></html>
+

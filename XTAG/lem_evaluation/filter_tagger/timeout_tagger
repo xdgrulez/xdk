@@ -1,0 +1,20 @@
+#!/bin/bash
+
+$* &
+sleep 2
+pid=`ps -C nbest_parser.bi -o pid=`
+
+if [[ $pid != "" ]]
+then
+  i=0
+  while ps $pid >/dev/null
+  do
+    sleep 1
+    ((i++))
+    if [ $i -ge 1800 ]
+    then
+      kill $pid
+      break
+    fi
+  done
+fi

@@ -1,0 +1,5 @@
+defclass "verb" Word {
+  dim id {out: {n! v?}}
+  dim lp {out: {"1"* "2"?}
+          order: <"1" "^" "2">}
+  dim lex {word: Word}}

@@ -1,0 +1,2 @@
+<patient1> medico:patient <disease1> medico:disease <trialXXX> NS1:Trials <cond4532> NS1:Cond Hodgkin <Dis33> NS2:Diseases <Indi68883> 1 NS3:Indications Grammars/medico1.nodeset.ul
+<patient1> medico:patient <disease1> medico:disease <trialXXX> NS1:Trials <cond4532> NS1:Cond Hodgkin <Dis33> NS2:Diseases <Indi68883> 1 NS3:Indications Grammars/medico1.nodeset.xml

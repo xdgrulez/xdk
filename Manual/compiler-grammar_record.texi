@@ -1,0 +1,233 @@
+@section Grammar record
+The @emph{grammar record} is the result of compilation of a grammar
+file, and represents all the information contained in the grammar
+file. The XDK makes use of two different kinds of grammar records:
+@enumerate
+@item stateless grammar records
+@item stateful grammar records
+@end enumerate
+Stateless grammar records can be saved to disk. Before the XDK solver
+can actually use the grammar for solving, it has to be transformed
+into a stateful grammar record (an extension of the stateless grammar
+record).
+
+@subsection Stateless grammar record
+Below, we display the type definition of the stateless grammar record:
+
+@example
+grammar(
+   usedDIDAs: DIDAs
+   allDIDAs: DIDAs
+   dIDADimension1Rec: DIDASLERec
+   pnPrinciple1Rec: PnSLERec
+   usedPns: Pns
+   chosenPns: Pns
+   pnCAPriITups: PnCAITups
+   dIDAUsedOnsRec: DIDAOnsRec
+   onOutput1Rec: OnSLERec
+   chosenOns: Ons
+   usedOns: Ons
+   aEntriesRec: ASLERec
+   as: As
+   entriesI: I
+   entry1Tn: Tn
+   nodeTn: Tn
+   node1Tn: Tn
+   tnTypeRec: TnILTCoRec)
+@end example
+
+The value of the @code{usedDIDAs} feature is a list of dimension
+identifiers (@code{DIDAs}) which are the used dimensions.
+
+The value of the @code{allDIDAs} feature is a list of dimension
+identifiers (@code{DIDAs}) which are all the dimensions defined in the
+grammar.
+
+The value of the @code{dIDADimension1Rec} feature is a record mapping
+dimension identifiers (@code{DIDA}) to encoded dimension definitions
+(@code{SLE}).
+
+The value of the @code{pnPrinciple1Rec} feature is a record mapping
+@emph{principle names}
+@cindex principle name
+(@code{Pn}) to encoded principle uses (@code{SLE}). A principle name is
+a unique name for a principle chosen on a dimension.@footnote{Contrary to
+principle names, principle identifiers are not unique because the same
+principle can be used on several dimensions.}
+
+The value of the @code{usedPns} feature is a list of principle names
+(@code{Pns}) which are the used principles.
+
+The value of the @code{chosenPns} feature is a list of principle names
+(@code{Pns}) which are all the principles chosen in the
+grammar.@footnote{The distinction between chosen and used principles
+makes sense for the graphical user interface: here, the
+@code{Principles} pull-down menu displays all chosen principles, of which
+only the selected principles are actually used for solving.}
+
+The value of the @code{pnCAPriITups} feature is a list of tuples
+@code{Pn#CA#I} of a principle name (@code{Pn}), a principle constraint
+name @code{CA}, and a priority (@code{I}). These are all principle
+constraints.
+
+The value of the @code{dIDAUsedOnsRec} feature is a record mapping
+dimension identifiers (@code{DIDA}) to the @emph{output names}
+@cindex output name
+of the outputs used used on that dimension. An output name is a unique
+name for an output chosen on a dimension.@footnote{Like principles,
+contrary to output names, output identifiers are not unique because the
+same output can be chosen on several dimensions.}
+
+The value of the @code{onOutput1Rec} feature is a record mapping
+output names (@code{On}) to encoded output definitions (@code{SLE}).
+
+The value of the @code{chosenOns} feature is a list of the chosen output
+names.
+
+The value of the @code{usedOns} feature is a list of the used output
+names.
+
+The value of the @code{aEntriesRec} feature is a record mapping words
+(@code{A}) to their corresponding encoded lexical entries (@code{SLE}).
+This record is empty if the lexicon is stored into a database.
+
+The value of the @code{as} feature is the list of all words
+(@code{As}) in the lexicon.
+
+The value of the @code{entriesI} feature is an integer denoting the
+number of lexical entries of the grammar.
+
+The value of the @code{entry1Tn} feature is the type name (@code{Tn}) 
+corresponding to the type of a lexical entry.
+
+The value of the @code{nodeTn} feature is the type name (@code{Tn})
+corresponding to the type of a node record, including the features
+@code{word}, @code{index}, @code{nodeSet} and @code{entryIndex}, and
+excluding the subrecords corresponding to the dimensions.
+
+The value of the @code{node1Tn} feature is the type name (@code{Tn})
+corresponding to the type of a complete node record, including the
+features of the type @code{nodeTn} plus the @code{attrs}, @code{entry}
+and @code{model} features from the individual dimensions.
+
+The value of the @code{tnTypeRec} feature is a record mapping type names
+(@code{Tn}) to their corresponding types (@code{ILTCo}).
+
+Notice that @code{ILTCo} types are different form @code{IL} types in
+various respects:
+@itemize @bullet
+@item all type references are resolved
+@item all label type references are resolved
+@item in all domain types, all constants in the @code{args} of the type
+are converted from IL constants to Oz atoms
+@item in all record types, all a record type specification consisting
+of pairs @code{CIL_i#IL_i} (@code{1<=i<=n}) is converted to an Oz
+record containing features @code{A_i:IL_i} (where Oz atom @code{A_i}
+corresponds to IL constant @code{CIL_i}).
+@end itemize
+
+@subsection Stateful grammar record
+Below, we display the type definition of the features extending a
+stateless grammar record into a stateful grammar record:
+
+@example
+grammar(
+   dIDADimensionRec: DIDASLCRec
+   dIDA2AttrsLat: DIDA2Lat
+   dIDA2EntryLat: DIDA2Lat
+   dIDA2LabelLat: DIDA2Lat
+   pnPrincipleRec: PnSLCRec
+   pn2Principle: Pn2SLC
+   pn2ModelLat: Pn2Lat
+   pn2DIDA: Pn2DIDA
+   pnIsActive: PnIsActive
+   procProcPnCAPriITups: ProcProcPnCAITups
+   onOutputRec: OnSLCRec
+   onOutputTups: OnSLCTups
+   checkAsInEntries: As2U
+   as2ABRec: As2ABRec
+   as2AEntriesRec: As2AEntriesRec
+   entry1Lat: Lat
+   nodeLat: Lat
+   node1Lat: Lat)
+@end example
+
+The value of the @code{dIDADimensionRec} feature is a record mapping
+dimension identifiers (@code{DIDA}) to compiled dimension definitions
+(@code{SLC}).
+
+The value of the @code{dIDA2AttrsLat} feature is a function from
+dimension identifiers (@code{DIDA}) to the lattice corresponding to the
+attributes type on that dimension (@code{Lat}).
+
+The value of the @code{dIDA2EntryLat} feature is a function from
+dimension identifiers (@code{DIDA}) to the lattice corresponding to the
+entry type on that dimension (@code{Lat}).
+
+The value of the @code{dIDA2LabelLat} feature is a function from
+dimension identifiers (@code{DIDA}) to the lattice corresponding to the
+label type on that dimension (@code{Lat}).
+
+The value of the @code{pnPrincipleRec} feature is a record mapping
+principle names (@code{Pn}) to compiled principle uses
+(@code{SLC}).
+
+The value of the @code{pn2Principle} feature is a function from
+principle names (@code{Pn}) to compiled principle uses (@code{SLC}).
+
+The value of the @code{pn2ModelLat} feature is a function from
+principle names (@code{Pn}) to the lattice corresponding to the type
+of the model record introduced by that principle
+(@code{Lat}).
+
+The value of the @code{pn2DIDA} feature is a function from principle
+names (@code{Pn}) to dimension identifiers corresponding to the
+dimension on which the principle is used (@code{DIDA}).
+
+The value of the @code{pnIsActive} feature is the function
+@code{PnIsActive: Pn UsedDIDAs UsedPns -> B}, returning for principle
+@code{Pn}, whether it is active given used dimension IDs
+@code{UsedDIDAs} and used principle names @code{UsedPns}.
+
+The value of the @code{procProcPnCAPriITups} feature is a list of
+tuples @code{Proc#Proc1#Pn#CA#I} of a constraint procedure
+(@code{Proc}), a profile procedure (@code{Proc1}), a principle name
+(@code{Pn}), a principle constraint name (@code{CA}) and a priority
+(@code{I}). These are all principle constraints.
+
+The value of the @code{onOutputRec} feature is a record mapping output
+names (@code{On}) to compiled output uses (@code{SLC}).
+
+The value of the @code{onOutputTups} feature is a list of tuples
+@code{On#Output} of an output name (@code{On}) and an output
+(@code{Output}).  These tuples represent the mapping already contained
+in the value of the @code{onOutputRec} feature. The difference is that
+they are ordered alphabetically (by their name and their dimension
+name) to match the order of the outputs in the Outputs menu in the
+GUI.
+
+The value of the @code{checkAsInEntries} feature is a function from
+lists of words (@code{As}) to unit (@code{U}), raising an exception if
+any word @code{A} in @code{As} is not contained in the lexicon.
+
+The value of the @code{as2ABRec} feature is a function from lists of
+words (@code{As}) to records mapping words (@code{A}) to bool
+(@code{B}). For all @code{A} in @code{As}, @code{B} is true if
+@code{A} is contained in the lexicon, and false otherwise.
+
+The value of the @code{as2Entries} feature is a function from lists of
+words (@code{As}) to records mapping words (@code{A}) to lists of
+compiled lexical entries for that word (@code{Entries}).
+
+The value of the @code{entry1Lat} feature is the lattice (@code{Lat})
+corresponding to the type of a lexical entry.
+
+The value of the @code{nodeLat} feature is the lattice (@code{Lat})
+corresponding to the type of a node record, including the features
+@code{word}, @code{index}, @code{nodeSet} and @code{entryIndex}, and
+excluding the subrecords corresponding to the dimensions.
+
+The value of the @code{node1Lat} feature is the lattice (@code{Lat})
+corresponding to the type of a node record, including the features
+@code{word}, @code{index}, @code{nodeSet} and @code{entryIndex}, and
+the subrecords corresponding to the dimensions.

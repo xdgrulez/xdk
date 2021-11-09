@@ -1,0 +1,9 @@
+#!/bin/bash
+
+line=first
+until [[ $line = "" ]]
+do
+  ((t++))
+  line=`sed -n -e "$t"p $1`
+  timeout_tagger parse_tagger $line
+done

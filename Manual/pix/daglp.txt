@@ -1,0 +1,2 @@
+A dependency tree (Linear Precedence/LP dimension) obtained by the
+XDK dag output functor.

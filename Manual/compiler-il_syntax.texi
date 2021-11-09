@@ -1,0 +1,792 @@
+@section IL syntax
+In this section, we describe the syntax of @emph{Intermediate Language (IL)}
+@cindex Intermediate Language
+@cindex IL
+grammar files.  The IL is a record language in Mozart-Oz syntax. It is
+designed specifically to be dealt with easily in Mozart-Oz.
+
+We describe the syntax of the IL in a notation similar to the
+@emph{Extended Backus Naur Form (EBNF)}.
+@cindex Extended Backus Naur Form
+@cindex EBNF
+
+We use the record syntax of Mozart-Oz, where records look like this:
+@example
+<constant>(<constant_1>:<value_1>
+           @dots{}
+           <constant_n>:<value_n>)
+@end example
+where @code{<constant>} is the record name, and
+@code{<constant_i>:<value_i>} is a feature with field
+@code{<constant_i>} and value @code{<value_i>} (@code{1<=i<=n}).
+
+@subsection Descriptions
+
+We write down the syntax of the IL as a mapping from @emph{description
+identifiers}
+@cindex description identifier
+to @emph{descriptions}.
+@cindex description
+This mapping is written as a Mozart-Oz record as follows:
+
+@example
+o(<description id_1>:<description_1>
+  @dots{}
+  <description id_n>:<description_n>)
+@end example
+
+A description can be one of the following:
+@itemize @bullet
+@item tuple of @code{n} descriptions: @code{<description_1>#...#<description_n>}
+@item list of descriptions: @code{'*'(<description>)} (if such a description
+is not given, the empty list is assumed)
+@item optional description: @code{'?'(<description>)} (if such a description
+is not given, a default depending on the description is assumed)
+@item a reference to a description identifier: @code{<description_id>}
+@item a disjunction of @code{n} descriptions:
+@example
+disj(<description_1>
+     @dots{}
+     <description_n>)
+@end example
+@item a complex description (an element):
+@example
+elem(tag: <constant>
+     <constant_1>: <description_1>
+     @dots{}
+     <constant_n>: <description_n>)
+@end example
+@item a simple description, i.e. either:
+@itemize @bullet
+@item an atom defining a unique identifier: @code{'ID'}
+@item an atom referring to a unique identifier: @code{'IDREF'}
+@item character data: @code{'CDATA'}
+@item an atom: @code{'ATOM'}
+@item an integer: @code{'INT'}
+@end itemize
+@end itemize
+
+We use single quotes to escape Mozart-Oz keywords
+(e.g. @code{functor}), tokens starting with an upper case letter
+(Mozart-Oz variables), and tokens containing dots
+(e.g. @code{'principle.tree'}).
+
+@subsection Syntax checker
+The XDK includes the Mozart-Oz functor
+@code{Compiler/SyntaxChecker.ozf} whose exported procedure
+@code{Check} can be used to check whether an file fulfills its syntax
+specifications. The IL syntax specification is in the functor
+@code{Compiler/ILSyntax.ozf}. The file
+@code{Compiler/SyntaxCheckerTest.oz}, which can be fed in the @emph{Oz
+Programming Interface (OPI)},
+@cindex Oz Programming Interface
+@cindex OPI 
+demonstrates how to use the syntax checker to check whether the output
+of the UL and XML language frontends are syntactically correct.
+
+The syntax checker will be useful if you decide to design a new grammar file
+input language in addition to the UL and the XML language.
+
+@subsection Start symbol ('S')
+We continue with giving an overview of the syntax of the IL. The start
+symbol of the IL syntax is 'S':
+
+@example
+'S': 'GRAMMAR'
+@end example
+
+@subsection Grammar definition ('GRAMMAR')
+A grammar definition has tag @code{grammar}:
+
+@example
+'GRAMMAR': elem(tag: grammar
+                principles: '*'('PRINCIPLEDEF')
+                outputs: '*'('OUTPUTDEF')
+                usedimensions: '*'('CONSTANT')
+                dimensions: '*'('DIMENSION')
+                classes: '*'('CLASSDEF')
+                entries: '*'('ENTRY'))
+@end example
+
+The @code{principles} feature corresponds to a list of principle
+definitions (@code{'*'('PRINCIPLEDEF')}).
+
+The @code{outputs} feature corresponds to a list of output definitions
+(@code{'*'('OUTPUTDEF')}).
+
+The @code{usedimensions} feature corresponds to a list of constants
+which represent the identifiers of the used dimensions
+(@code{'*'('CONSTANT')}).
+
+The @code{dimensions} feature corresponds to a list of dimension
+definitions (@code{'*'('DIMENSION')}).
+
+The @code{classes} feature corresponds to a list of class definitions
+(@code{'*'('CLASSDEF')}).
+
+The @code{entries} feature corresponds to a list of lexical entries
+(@code{'*'('ENTRY')}).
+
+@subsection Principle definitions ('PRINCIPLEDEF')
+A principle definition has tag @code{principledef}. Notice that
+principle definitions can only be written in the IL since they are
+closed for the user. They cannot be written in the UL or the XML
+language:
+
+@example
+'PRINCIPLEDEF': elem(tag: principledef
+                     id: 'CONSTANT'
+                     dimensions: '*'('VARIABLE')
+                     args: '*'('VARIABLE'#'TYPE')
+                     defaults: '*'('VARIABLE'#'TERM')
+                     node: '?'('TYPE')
+                     constraints: '*'('CONSTANT'#'INTEGER'))
+@end example
+
+The @code{id} feature corresponds to the principle identifier
+(@code{'CONSTANT'}).
+
+The @code{dimensions} feature corresponds to a list of dimension
+variables (@code{'*'('VARIABLE')}), the dimension variables which are
+introduced by the principle.
+
+The @code{args} feature corresponds to a list of pairs of argument
+variables and their types (@code{'*'('VARIABLE'#'TYPE')}).
+
+The @code{defaults} feature corresponds to a list of pairs of argument
+variables and their default values (@code{'*'('VARIABLE'#'TERM')}).
+
+The @code{node} feature corresponds to an optional model
+record type @code{'?'('TYPE')}. If this feature is not given, the
+empty record is assumed.
+
+The @code{constraints} feature corresponds to a list of pairs of
+constraint names and their priorities
+(@code{'*'('CONSTANT'#'INTEGER')}).
+
+@subsection Output definitions
+An output definition has tag @code{outputdef}. Notice that output
+definitions can only be written in the IL since they are closed for
+the user. They cannot be written in the UL or the XML language.
+
+@example
+'OUTPUTDEF': elem(tag: outputdef
+                  id: 'CONSTANT'
+                  'functor': 'CONSTANT')
+@end example
+
+The @code{id} feature corresponds to the output identifier
+(@code{'CONSTANT'}).
+
+The @code{'functor'} feature corresponds to the functor name of 
+the output (@code{'CONSTANT'}).
+
+@subsection Dimension definitions ('DIMENSION')
+A dimension definition has tag @code{dimension}:
+
+@example
+'DIMENSION': elem(tag: dimension
+                  id: 'CONSTANT'
+                  attrs: '?'('TYPE')
+                  entry: '?'('TYPE')
+                  label: '?'('TYPE')
+                  types: '*'('TYPEDEF')
+                  principles: '*'('USEPRINCIPLE')
+                  outputs: '*'('OUTPUT')
+                  useoutputs: '*'('USEOUTPUT'))
+@end example
+
+The @code{id} feature corresponds to the dimension identifier
+(@code{'CONSTANT'}).
+
+The @code{attrs} feature corresponds to an optional attributes type
+(@code{'?'('TYPE')}). The default for this description is the empty
+record.
+
+The @code{entry} feature corresponds to an optional entry type
+(@code{'?'('TYPE')}). The default for this description is the empty
+record.
+
+The @code{label} feature corresponds to an optional label type
+(@code{'?'('TYPE')}). The default for this description is the empty
+domain.
+
+The @code{types} feature corresponds to a list of type definitions
+(@code{'*'('TYPEDEF')}).
+
+The @code{principles} feature corresponds to a list of principle uses
+(@code{'*'('USEPRINCIPLE')}).
+
+The @code{outputs} feature corresponds to a list of chosen outputs
+(@code{'*'('OUTPUT')}).
+
+The @code{useoutputs} feature corresponds to a list of used outputs
+(@code{'*'('USEOUTPUT')}).
+
+@subsection Output chooses ('OUTPUT')
+An output chooses has tag @code{output}:
+
+@example
+'OUTPUT': elem(tag: output
+               idref: 'CONSTANT')
+@end example
+
+The @code{idref} feature corresponds to the chosen output identifier
+(@code{'CONSTANT'}).
+
+@subsection Output uses ('USEOUTPUT')
+An output choosing has tag @code{useoutput}:
+
+@example
+'USEOUTPUT': elem(tag: useoutput
+                  idref: 'CONSTANT')
+@end example
+
+The @code{idref} feature corresponds to the used output identifier
+(@code{'CONSTANT'}).
+
+@subsection Type definitions ('TYPEDEF')
+A type definition has tag @code{typedef}:
+
+@example
+'TYPEDEF': elem(tag: typedef
+                id: 'CONSTANT'
+                type: 'TYPE')
+@end example
+
+The @code{id} feature corresponds to the type identifier
+(@code{'CONSTANT'}).
+
+The @code{type} feature corresponds to the type (@code{'TYPE'}).
+
+@subsection Types ('TYPE')
+The description identifier @code{'TYPE'} corresponds to
+the following:
+
+@example
+'TYPE': disj(elem(tag: 'type.domain'
+                  args: '*'('CONSTANT'))
+             elem(tag: 'type.set'
+                  arg: 'TYPE')
+             elem(tag: 'type.iset'
+                  arg: 'TYPE')
+             elem(tag: 'type.tuple'
+                  args: '*'('TYPE'))
+             elem(tag: 'type.list'
+                  arg: 'TYPE')
+             elem(tag: 'type.record'
+                  args: '*'('CONSTANT'#'TYPE'))
+             elem(tag: 'type.valency'
+                  arg: 'TYPE')
+             elem(tag: 'type.card')
+             elem(tag: 'type.vec'
+                  arg1: 'TYPE'
+                  arg2: 'TYPE')
+             elem(tag: 'type.int')
+             elem(tag: 'type.ints')
+             elem(tag: 'type.string')
+             elem(tag: 'type.bool')
+             elem(tag: 'type.ref'
+                  idref: 'CONSTANT')
+             elem(tag: 'type.labelref'
+                  arg: 'VARIABLE')
+             elem(tag: 'type.variable'
+                  data: 'ATOM'))
+@end example
+
+@subsubsection Domain types ('type.domain')
+A domain type has tag @code{'type.domain'}. The @code{args} feature
+corresponds to the set of constants in the domain
+(@code{'*'('CONSTANT')}).
+
+@subsubsection Accumulative set types ('type.set')
+An accumulative set type has tag @code{'type.set'}. The @code{arg}
+feature corresponds to the type of the domain of the set
+(@code{'TYPE'}).
+
+@subsubsection Intersective set types ('type.iset')
+An intersective set type has tag @code{'type.iset'}. The @code{arg}
+feature corresponds to the type of the domain of the set
+(@code{'TYPE'}).
+
+@subsubsection Tuple types ('type.tuple')
+A tuple type has tag @code{'type.tuple'}. The @code{args} feature
+corresponds to the types of the projections of the tuple
+(@code{'*'('TYPE')}).
+
+@subsubsection List types ('type.list')
+A list type has tag @code{'type.record'}. The @code{arg} feature
+corresponds to the type of the domain of the list (@code{'TYPE'}).
+
+@subsubsection Record types ('type.record')
+A record type has tag @code{'type.list'}. The @code{args} feature
+corresponds to a list of pairs of the record fields and their types
+(@code{'*'('CONSTANT'#'TYPE')}).
+
+@subsubsection Valency types ('type.valency')
+A valency type has tag @code{'type.valency'}. The @code{arg} feature
+corresponds to the type of the domain of the valency (@code{'TYPE'}).
+
+@subsubsection Vector types ('type.vec')
+A vector type has tag @code{'type.vec'}. The @code{arg1} feature
+corresponds to the domain of the fields of the vector (@code{'TYPE'}),
+and the @code{arg2} feature to the type of the values (@code{'TYPE'}).
+
+@subsubsection Integer types ('type.int')
+An integer type has tag @code{'type.int'}.
+
+@subsubsection Set of integers types ('type.ints')
+A set of integers type has tag @code{'type.ints'}.
+
+@subsubsection String types ('type.string')
+A string type has tag @code{'type.string'}.
+
+@subsubsection Bool types ('type.bool')
+A boolean type has tag @code{'type.bool'}.
+
+@subsubsection Type reference types ('type.ref')
+A type reference has tag @code{'type.ref'}. The @code{idref} feature
+corresponds to the identifier of the referenced type
+(@code{'CONSTANT'}).
+
+@subsubsection Label reference types ('type.labelref')
+A label reference has tag @code{'type.labelref'}. The @code{arg}
+feature corresponds to the dimension variable whose set of edge labels
+is referenced (@code{'VARIABLE'}).
+
+@subsubsection Type variable ('type.variable')
+A type variable has tag @code{'type.variable'}.
+
+@subsection Principle uses ('USEPRINCIPLE')
+A principle use has tag @code{useprinciple}:
+
+@example
+'USEPRINCIPLE': elem(tag: useprinciple
+                     idref: 'CONSTANT'
+                     dimensions: '*'('VARIABLE'#'CONSTANT')
+                     args: '*'('VARIABLE'#'TERM'))
+@end example
+
+The @code{idref} feature corresponds to the principle identifier of
+the used principle (@code{'CONSTANT'}).
+
+The @code{dimensions} feature corresponds to the dimension mapping, a
+list of pairs of dimension variables and dimension identifiers
+(@code{'*'('VARIABLE'#'CONSTANT')}).
+
+The @code{args} feature corresponds to the argument mapping, a list of
+pairs of argument variables and their values
+(@code{'*'('VARIABLE'#'TERM')}).
+
+@subsection Class definitions ('CLASSDEF')
+A class definition has tag @code{classdef}:
+
+@example     
+'CLASSDEF': elem(tag: classdef
+                 id: 'CONSTANT'
+                 vars: '*'('VARIABLE')
+                 body: 'CLASS')
+@end example
+
+The @code{id} feature corresponds to the class identifier
+(@code{'CONSTANT'}).
+
+The @code{vars} feature corresponds to the list of variables which are
+bound by the class (@code{'*'('VARIABLE')}).
+
+The @code{body} feature corresponds to the class body (@code{'CLASS'}).
+
+@subsection Class bodies ('CLASS')
+The description identifier @code{'CLASS'} corresponds to the following:
+
+@example
+'CLASS': disj(elem(tag: 'class.dimension'
+                   idref: 'CONSTANT'
+                   arg: 'TERM')
+               elem(tag: 'class.ref'
+                    idref: 'CONSTANT'
+                    args: '*'('VARIABLE'#'TERM'))
+               elem(tag: conj
+                    args: '*'('CLASS'))
+               elem(tag: disj
+                    args: '*'('CLASS')))
+@end example
+
+@subsubsection Entry dimension ('class.dimension')
+An entry dimension has tag @code{'class.dimension'}. The @code{idref}
+feature corresponds to the dimension identifier (@code{'CONSTANT'}), and
+the @code{arg} feature corresponds to the entry dimension itself
+(@code{'TERM'}).
+     
+@subsubsection Class reference ('class.ref')
+A class reference has tag @code{'class.ref'}. The @code{idref} feature
+corresponds to the class identifier of the referenced class.  The
+@code{args} feature corresponds to the list of pairs of variables and
+values that specify the variable binding of the class reference
+(@code{'*'('VARIABLE'#'TERM')}).
+
+@subsubsection Conjunction (conj)
+A conjunction of class bodies has tag @code{conj}. The @code{args}
+feature corresponds to the list of class bodies which are combined by
+conjunction (@code{'*'('CLASS')}).
+ 
+@subsubsection Disjunction (disj)
+A disjunction of class bodies has tag @code{disj}. The @code{args}
+feature corresponds to the list of class bodies which are combined by
+disjunction (@code{'*'('CLASS')}).
+
+@subsection Lexical entries ('ENTRY')
+A lexical entry has tag @code{entry}.
+
+@example
+'ENTRY': elem(tag: entry
+              body: 'CLASS')
+@end example
+
+The @code{body} feature corresponds to the class body which specifies
+the lexical entry (@code{'CLASS'}).
+
+@subsection Terms ('TERM')
+The description identifier @code{'TERM'} corresponds to the
+following:
+
+@example
+'TERM': disj('CONSTANT'
+             'VARIABLE'
+             'INTEGER'
+             'CARD'
+             'CONSTANT'#'CARD'
+             'VARIABLE'#'CARD'
+             elem(tag: top)
+             elem(tag: bot)
+             elem(tag: set
+                  args: '*'('TERM'))
+             elem(tag: list
+                  args: '*'('TERM'))
+             elem(tag: record
+                  args: '*'('RECSPEC'))
+             elem(tag: setgen
+                  arg: 'SETGEN')
+             elem(tag: featurepath
+                  root: 'ROOT'
+                  dimension: 'VARIABLE'
+                  aspect: 'ASPECT'
+                  fields: '*'('CONSTANT'))
+             elem(tag: annotation
+                  arg1: 'TERM'
+                  arg2: 'TYPE')
+             elem(tag: conj
+                  args: '*'('TERM'))
+             elem(tag: disj
+                  args: '*'('TERM'))
+             elem(tag: concat
+                  args: '*'('TERM'))
+             elem(tag: order
+                  args: '*'('TERM')))
+               
+'ROOT': disj('_' '^')
+'ASPECT': disj('entry' 'attrs')     
+@end example
+
+@subsubsection Constants ('CONSTANT')
+A constant has tag @code{constant}:
+
+@example
+'CONSTANT': elem(tag: constant
+                 data: 'ATOM')
+@end example
+
+The @code{data} feature corresponds to the constant itself.
+
+@subsubsection Variables ('VARIABLE')
+A variable has tag @code{variable}.
+
+@example
+'VARIABLE': elem(tag: variable
+                 data: 'ATOM')     
+@end example
+
+The @code{data} feature corresponds to the variable itself.
+
+@subsubsection Integers ('INTEGER')
+An integer has tag @code{integer}.
+
+@example
+'INTEGER': disj(elem(tag: integer
+                     data: 'INT')
+                elem(tag: integer
+                     data: 'infty'))
+@end example
+An integer is either an integer or infinity.
+
+The @code{data} feature of an integer corresponds to the integer
+itself or to the special constant @code{infty} (for ``infinity'').
+
+@subsubsection Cardinality sets ('CARD')
+The description identifier @code{CARD} corresponds to the following:
+
+@example
+'CARD': disj(elem(tag: 'card.wild'
+                  arg: 'WILD')
+             elem(tag: 'card.set'
+                  args: '*'('INTEGER'))
+             elem(tag: 'card.interval'
+                  arg1: 'INTEGER'
+                  arg2: 'INTEGER'))
+
+'WILD': disj('!' '?' '*' '+')
+@end example
+
+A wild card cardinality set has tag @code{'card.wild'}. The @code{arg}
+feature corresponds to one of the wild cards @code{'!'}, @code{'?'},
+@code{'*'}, or @code{'+'}.
+
+A cardinality set has tag @code{'card.set'}. The @code{args} feature
+corresponds to a list of integers which specify the set
+(@code{'*'('INTEGER')}).
+
+A cardinality interval has tag @code{'card.interval'}. The @code{arg1}
+feature corresponds to the left endpoint of the closed interval
+(@code{'INTEGER'}), and the @code{arg2} feature to the right endpoint
+(@code{'INTEGER'}).
+
+@subsubsection Cardinality specifications (@code{'CONSTANT'#'CARD'} or @code{'VARIABLE'#'CARD'})
+Cardinality specifications have the syntax @code{'CONSTANT'#'CARD'},
+or @code{'VARIABLE'#'CARD'}.
+
+@subsubsection Top values (@code{top})
+Top values have tag @code{top}.
+
+@subsubsection Bottom values (@code{bot})
+Bottom values have tag @code{bot}.
+
+@subsubsection Sets (@code{set})
+Sets have tag @code{set}. The @code{args} feature corresponds to the
+set elements (@code{'*'('TERM')}).
+
+@subsubsection Lists (@code{list})
+Lists have tag @code{list}. The @code{args} feature corresponds to the
+list elements (@code{'*'('TERM')}).
+
+@subsubsection Records (@code{record})
+Records have tag @code{record}. The @code{args} feature corresponds to
+the list of record specifications for this record
+@code{'*'('RECSPEC')}.
+
+A record specification (description identifier @code{'RECSPEC'}) has
+the following syntax:
+
+@example
+'RECSPEC': disj('CONSTANT'#'TERM'
+                'VARIABLE'#'TERM'
+                elem(tag: conj
+                     args: '*'('RECSPEC'))
+                elem(tag: disj 
+                     args: '*'('RECSPEC')))
+@end example
+
+I.e. a record specification is either a pair of a field and a value
+(@code{'CONSTANT'#'TERM'}), of a variable and a value
+(@code{'VARIABLE'#'TERM'}), or a conjunction of record specifications
+(tag: @code{conj}), or a disjunction of record specifications (tag:
+@code{disj}).
+
+@subsubsection Set generator expressions (@code{setgen})
+A set generator expression has tag @code{setgen}. The @code{arg}
+feature is the set generator expression body (description identifier
+@code{'SETGEN'}):
+
+@example
+'SETGEN': disj('CONSTANT'
+               elem(tag: conj
+                    args: '*'('SETGEN'))
+               elem(tag: disj
+                    args: '*'('SETGEN')))
+@end example
+
+I.e. a set generator expression body is either a constant, or a
+conjunction of set generator expression bodies (tag: @code{conj}), or
+a disjunction of set generator expression bodies (tag: @code{disj}).
+
+@subsubsection Feature paths (@code{featurepath})
+A feature path has tag @code{featurepath}.
+
+The @code{root} feature corresponds to the root variable of the
+feature path, either @code{'_'} or @code{'^'}.
+
+The @code{dimension} feature corresponds to the dimension variable
+of the feature path (@code{'VARIABLE'}).
+
+The @code{aspect} feature corresponds to the aspect of the feature path,
+either @code{'entry'} or @code{'attrs'}.
+
+The @code{fields} feature corresponds to the fields of the feature
+path (@code{'*'('CONSTANT')}).
+
+@subsubsection Type annotations (@code{annotation})
+A type annotation has tag @code{annotation}.
+
+The @code{arg1} feature corresponds to the term (@code{'TERM'}), and
+the @code{arg2} feature to the annotated type (@code{'TYPE'}).
+
+@subsubsection Conjunction (@code{conj})
+A conjunction has tag @code{conj}.
+
+The @code{args} feature corresponds to the list of terms which are
+combined by conjunction.
+
+@subsubsection Disjunction (@code{disj})
+A disjunction has tag @code{disj}.
+
+The @code{args} feature corresponds to the list of terms which are
+combined by disjunction.
+
+@subsubsection Concatenation (@code{concat})
+A concatenation has tag @code{concat}.
+
+The @code{args} feature corresponds to the list of terms which are
+to be @emph{concatenated}.
+@cindex concatenation
+Concatenation is restricted to strings.
+
+@subsubsection Order (@code{order})
+An @emph{order generator}
+@cindex order generator
+has tag @code{order}.
+
+The @code{args} feature corresponds to the list of terms from which
+a set of pairs representing an order relation is generated.
+
+@subsection Undetermined values
+The XDK solver can also yield @emph{partial solutions}
+@cindex partial solution
+in which not all values in the node record are determined; instead
+some of the values are still variables. In the following, we show how
+these variables are represented in the IL.
+
+@subsubsection Undetermined cardinality sets
+This is the IL syntax for undetermined cardinality sets (i.e.
+cardinality set variables) in valencies:
+
+@example
+elem(tag: '_'
+     args: [IL1 IL2])
+@end example
+
+@code{IL1} is the cardinality set representing the set of integers which
+are already known to be in the cardinality set variable.
+
+@code{IL2} is the cardinality set representing the set of integers which
+can still be bound to the cardinality set variable.
+
+@subsubsection Undetermined constants
+This is the IL syntax for undetermined constants (i.e. constant
+variables):
+
+@example
+elem(tag: '_'
+     args: [DSpec])
+@end example
+
+@code{DSpec} is a @emph{domain specification}@footnote{A domain
+specification can be a list of values (or pairs of values), or just a
+value (or a pair of values) describing the domain. Pairs of values
+denote closed intervals within the set.},
+@cindex domain specification
+representing the set of constants which can still be bound to the
+constant variable.
+
+@subsubsection Undetermined integers
+This is the IL syntax for undetermined integers (i.e. integer
+variables):
+
+@example
+elem(tag: '_'
+     args: [DSpec])
+@end example
+
+@code{DSpec} is a domain specification representing the set of integers
+which can still be bound to the integer variable.
+
+@subsubsection Undetermined lists
+This is the IL syntax for undetermined lists (i.e. list variables):
+
+@example
+elem(tag: '_'
+     args: nil)
+@end example
+
+@subsubsection Undetermined sets
+The IL syntax for undetermined sets (i.e. set variables) differs
+depending on the domain of the set:
+@enumerate
+@item a finite domain of constants or a tuple of which all
+projections are finite domains of constants
+@item any other type
+@end enumerate
+
+@enumerate
+@item The IL syntax for undetermined sets whose domain is either
+a finite domain of constants or a tuple of which all projections are
+finite domains of constants is given below:
+@example
+elem(tag: '_'
+     args: [MSpec1 MSpec2 DSpec])
+@end example
+
+@code{MSpec1} is a set specification representing the set of constants
+which are already known to be in the set variable.
+
+@code{MSpec2} is a set specification representing the set of constants
+which could still end up in the set variable.
+
+@code{DSpec} is a domain specification representing the set of
+integers which can still be bound to the integer variable representing
+the cardinality of the set variable.
+
+@item The IL syntax for undetermined sets over any other domain is given
+below:
+@example
+elem(tag: '_'
+     args: nil)
+@end example
+@end enumerate
+
+@subsubsection Undetermined strings
+This is the IL syntax for undetermined strings (i.e. string variables):
+
+@example
+elem(tag: '_'
+     args: nil)
+@end example
+
+@subsubsection Undetermined tuples
+The IL syntax for undetermined tuples (i.e. tuple variables) differs
+depending on the types of the projections of the tuple:
+@enumerate
+@item all projections are finite
+domains of constants
+@item any of the projections has a type other than finite domain of constants
+@end enumerate
+
+@enumerate
+@item This is the IL syntax for undetermined tuples of which all projections
+are finite domains of constants:
+
+@example
+elem(tag: '_'
+     args: [DSpec])
+@end example
+
+@code{DSpec} is a domain specification representing the set of tuples
+which can still be bound to the tuple variable.
+
+@item This is the IL syntax for undetermined tuples 
+of which any of the projections has a type other than finite domain of
+constants:
+
+@example
+elem(tag: '_'
+     args: nil)
+@end example
+@end enumerate

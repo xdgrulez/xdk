@@ -1,0 +1,167 @@
+<html lang="en">
+<head>
+<title>Outputs - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Oracles.html#Oracles" title="Oracles">
+<link rel="next" href="PrincipleWriter.html#PrincipleWriter" title="PrincipleWriter">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Outputs"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="PrincipleWriter.html#PrincipleWriter">PrincipleWriter</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Oracles.html#Oracles">Oracles</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">9 Outputs</h2>
+
+<p>This chapter is about the <em>output functors</em>
+<a name="index-output-functor-313"></a>or just <em>outputs</em>
+<a name="index-output-314"></a>of the XDK. The outputs visualize individual solutions.
+
+   <p>Outputs can also be used to post-process XDG analyses using external
+programs written in another language than Mozart/Oz
+(e.g. perl-scripts). This is the purpose of the XML output functors,
+which output analyses in XML.
+
+   <p>Each dimension specifies its own set of <em>chosen outputs</em>
+<a name="index-chosen-output-315"></a>and <em>used outputs</em>. 
+<a name="index-used-output-316"></a>We call the dimension on which the output is used the <em>output
+dimension</em>
+<a name="index-output-dimension-317"></a>Chosen outputs appear in the <code>Outputs</code> pull-down menu of the
+graphical user interface of the XDK. Used outputs are actually used to
+visualize the individual solutions.
+
+   <p>An output definition includes:
+
+     <ul>
+<li>the <em>output identifier</em>
+<a name="index-output-identifier-318"></a><li>the <em>output open method</em>
+<a name="index-output-open-method-319"></a><li>the <em>output close method</em>
+<a name="index-output-close-method-320"></a></ul>
+
+   <p>The output functors are taken from a predefined <em>output library</em>. 
+<a name="index-output-library-321"></a>Below, we present the definitions of all the output functors in the
+current output library.  Note that we leave out output functors which
+are currently in development and might vanish again in later releases.
+
+   <p>Most output functors <em>print</em> information. This printing can be
+redirected (e.g. to the Oz Inspector, the Oz Browser, stdout, or into
+a file).
+
+   <p>We explain the syntax of the <em>Output Language (OL)</em>
+<a name="index-Output-Language-322"></a><a name="index-OL-323"></a>used in the Pretty output functor (<a href="OL-syntax.html#OL-syntax">OL syntax</a>).
+
+   <p>Developers only: We describe the <em>output record</em>
+<a name="index-output-record-324"></a>in <a href="Output-record.html#Output-record">Output record</a>. The output record is the representation of a
+solution prepared to be used by the output functors.  In <a href="Writing-new-outputs.html#Writing-new-outputs">Writing new outputs</a>, we explain how to write new output functors.
+
+<ul class="menu">
+<li><a accesskey="1" href="AllDags.html#AllDags">AllDags</a>:                    AllDags display
+
+<li><a accesskey="2" href="AllDags1.html#AllDags1">AllDags1</a>:                   AllDags display 1
+
+<li><a accesskey="3" href="AllDags2.html#AllDags2">AllDags2</a>:                   AllDags display 2
+
+<li><a accesskey="4" href="AllDags3.html#AllDags3">AllDags3</a>:                   AllDags display 3
+
+<li><a accesskey="5" href="AllLatexs.html#AllLatexs">AllLatexs</a>:                  AllLatexs display
+
+<li><a accesskey="6" href="AllLatexs1.html#AllLatexs1">AllLatexs1</a>:                 AllLatexs display 1
+
+<li><a accesskey="7" href="AllLatexs2.html#AllLatexs2">AllLatexs2</a>:                 AllLatexs display 2
+
+<li><a accesskey="8" href="AllLatexs3.html#AllLatexs3">AllLatexs3</a>:                 AllLatexs display 3
+
+<li><a accesskey="9" href="CLLS.html#CLLS">CLLS</a>:                       CLLS output
+
+<li><a href="CLLS1.html#CLLS1">CLLS1</a>:                      CLLS output 1
+
+<li><a href="Decode.html#Decode">Decode</a>:                     Decode output
+
+<li><a href="Dag1.html#Dag1">Dag</a>:                    Dag display
+
+<li><a href="Dag11.html#Dag11">Dag1</a>:                  Dag display 1
+
+<li><a href="Dag12.html#Dag12">Dag2</a>:                  Dag display 2
+
+<li><a href="Dag13.html#Dag13">Dag3</a>:                  Dag display 3
+
+<li><a href="Dags.html#Dags">Dags</a>:                   Dags display
+
+<li><a href="Dags1.html#Dags1">Dags1</a>:                 Dags display 1
+
+<li><a href="Dags2.html#Dags2">Dags2</a>:                 Dags display 2
+
+<li><a href="Dags3.html#Dags3">Dags3</a>:                 Dags display 3
+
+<li><a href="Latex.html#Latex">Latex</a>:                      Latex output using <code>xdag.sty</code>
+
+<li><a href="Latex1.html#Latex1">Latex1</a>:                     Latex output using <code>xdag.sty</code> 1
+
+<li><a href="Latex2.html#Latex2">Latex2</a>:                     Latex output using <code>xdag.sty</code> 2
+
+<li><a href="Latex3.html#Latex3">Latex3</a>:                     Latex output using <code>xdag.sty</code> 3
+
+<li><a href="Latexs.html#Latexs">Latexs</a>:                     Latex outputs using <code>xdag.sty</code>
+
+<li><a href="Latexs1.html#Latexs1">Latexs1</a>:                    Latex outputs using <code>xdag.sty</code> 1
+
+<li><a href="Latexs2.html#Latexs2">Latexs2</a>:                    Latex outputs using <code>xdag.sty</code> 2
+
+<li><a href="Latexs3.html#Latexs3">Latexs3</a>:                    Latex outputs using <code>xdag.sty</code> 3
+
+<li><a href="Pretty.html#Pretty">Pretty</a>:                     Pretty output
+
+<li><a href="Pretty1.html#Pretty1">Pretty1</a>:                    Pretty1 output
+
+<li><a href="XML.html#XML">XML</a>:                        XML output
+
+<li><a href="XML1.html#XML1">XML1</a>:                       XML output 1
+
+<li><a href="XML2.html#XML2">XML2</a>:                       XML output 2
+
+<li><a href="XML3.html#XML3">XML3</a>:                       XML output 3
+
+<li><a href="XML4.html#XML4">XML4</a>:                       XML output 4
+
+<li><a href="XTAGDerivation.html#XTAGDerivation">XTAGDerivation</a>:             XTAG derivation tree output
+
+</li></ul>
+<p>--
+
+</p>
+<ul class="menu">
+<li><a href="OL-syntax.html#OL-syntax">OL syntax</a>:                  Output Language syntax
+
+</li></ul>
+<p>-- developers only --
+
+</p>
+<ul class="menu">
+<li><a href="Output-record.html#Output-record">Output record</a>:              Output record
+
+<li><a href="Writing-new-outputs.html#Writing-new-outputs">Writing new outputs</a>:        Writing new output functors
+</ul>
+
+<!-- ************************************************************ -->
+   </body></html>
+

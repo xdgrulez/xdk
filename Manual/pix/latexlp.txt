@@ -1,0 +1,2 @@
+A dependency tree (Linear Precedence/LP dimension) obtained from the XDK 
+latex output functor.

@@ -1,0 +1,8 @@
+defprinciple "principle.disjPW" {
+  dims {D}
+  constraints {
+    forall V::node: forall V1::node:
+       forall L::label(D): forall L1::label(D):
+          dom(V V1 L D) & dom(V V1 L1 D) => L=L1
+  }
+}

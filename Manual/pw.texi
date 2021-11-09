@@ -1,0 +1,68 @@
+@chapter PrincipleWriter
+
+The principle compiler @emph{PrincipleWriter} is thoroughly described in
+Jochen Setz' BSc.  Thesis (@ref{References}). Also be sure to check out
+the example principles in @code{PrincipleWriter/Examples}, and the
+grammars suffixed @code{PW} (@ref{Grammars}) which use them.
+
+Basically, PW makes writing principles much easier. You can write down
+your principles in a simple first-order logic, and PW compiles them into
+efficient principle implementations for the XDK.
+
+This is how it works, in a nutshell. An example is the climbing principle:
+
+@example
+defprinciple "principle.climbingPW" @{
+  dims @{D1 D2@}
+  constraints @{
+
+forall V: forall V1:
+  dom(V V1 D1) => dom(V V1 D2)
+  @}
+@}
+@end example
+
+What you do is to define the name of the principle
+(@code{principle.climbingPW}), the dimensions over which it should
+abstract (@code{D1} and @code{D2}), and then a set of constraints.
+
+Then you go into the directory @code{PrincipleWriter}, and call the
+compiler as follows:@footnote{Use @code{pw.exe --help} to get a full
+summary of the commandline options.}
+@example
+pw.exe -p Examples/climbingPW.ul
+@end example
+This compiles the principle, and puts the principle definition functor
+@code{ClimbingPW.oz} into @code{Solver/Principles} and the constraint
+functor also called @code{ClimbingPW.oz} into
+@code{Solver/Principles/Lib}.
+
+To use the principle, it has to be integrated into the XDK. You can do this
+using the perl script @code{addprinciple}:
+@example
+addprinciple ClimbingPW ClimbingPW
+@end example
+or by adding it manually as follows:
+@enumerate
+@item add the principle
+definition functor to the @code{ozmake} makefile@*
+@code{Solver/Principles/makefile.oz}
+@item add the principle definition functor to the imported functors of
+the functor@*
+@code{Solver/Principles/Principles.oz}, and also to the list
+@code{Principles} on top of@*
+@code{Solver/Principles/Principles.oz}.
+@item add the identifier of the new principle to the XML file@*
+@code{Solver/Principles/principles.xml}. Here, for each new principle,
+you add a line like the following for the graph principle:
+@item add the constraint functor to the @code{ozmake} makefile@*
+@code{Solver/Principles/Lib/makefile.oz}
+@item add the constraint
+functor to the top level @code{ozmake} makefile @code{makefile.oz} in
+order to include it in the @code{ozmake} package created for the XDK.
+@end enumerate
+
+To finalize the integration of the new principle, call @code{ozmake}
+from the XDK main directory (where e.g. @code{xdk.exe} resides in).
+
+...and off you go :)

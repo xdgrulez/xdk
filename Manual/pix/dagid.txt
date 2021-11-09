@@ -1,0 +1,2 @@
+A dependency tree (Immediate Dominance/ID dimension) obtained by the
+XDK dag output functor.

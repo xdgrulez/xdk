@@ -1,0 +1,11 @@
+25-29/4712.fzn1
+while Friday 's debacle involved mainly professional traders rather than investors , it left the market vulnerable to continued selling this morning , traders said .
+
+	runtime:       32880
+	solutions:     1000
+	propagators:   127390
+	propagations:  3651440
+	failures:      5
+	clones:        1012
+	commits:       4156
+	peak memory:   162902 KB

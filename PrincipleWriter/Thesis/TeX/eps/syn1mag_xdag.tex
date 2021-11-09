@@ -1,0 +1,102 @@
+\newenvironment{rec}{\left\{\begin{array}{r@{\hspace{6pt}}c@{\hspace{6pt}}l}}{\end{array}\right\}}
+\newcommand{\Str}[1]{\textit{#1}}
+\newcommand{\NA}[2]{({#2}\ #1)}
+\newcommand{\Dim}[1]{\textsc{#1}}
+\newcommand{\SYN}{\Dim{syn}}
+\newcommand{\SEM}{\Dim{sem}}
+\newcommand{\SYNSEM}{\Dim{synsem}}
+\newcommand{\Feat}[1]{\mathit{#1}}
+\newcommand{\Flex}{\Feat{lex}}
+\newcommand{\Fin}{\Feat{in}}
+\newcommand{\Set}[1]{{\{{#1}\}}}
+\newcommand{\La}[1]{\mathsf{#1}}
+\newcommand{\Fout}{\Feat{out}}
+\newcommand{\Fagr}{\Feat{agr}}
+\newcommand{\Fagree}{\Feat{agree}}
+\newcommand{\Fagrs}{\Feat{agrs}}
+\newcommand{\Forder}{\Feat{order}}
+\newcommand{\Const}[1]{\mathit{#1}}
+\newcommand{\Rec}[1]{\{#1\}}
+\newcommand{\Agr}{\mathit{Agr}}
+\newcommand{\Tup}[1]{(#1)}
+\newcommand{\Anc}{{\uparrow}}
+\begin{tabular}{c}
+  \begin{xdag}
+    \xdagColsep=20pt
+    \xdagBottomRowHeight=25pt
+    \node{1}{3}{\makebox[20pt]{$\begin{array}{c}1\\\\\textrm{Mary}\\\\
+          \scalebox{0.2}{%
+	  \begin{array}{c}
+            \begin{rec}%
+              \Fin&:&\Rec{\La{subj}{?},\La{obj}{?}}\\
+              \Fout&:&\Rec{}\\
+              \Forder&:&\Set{}\\
+              \Fagrs&:&\Set{\Tup{\Const{3},\Const{sg}}}\\
+              \Fagree&:&\Set{}\\
+              \Fagr&:&\Tup{\Const{3},\Const{sg}}
+            \end{rec}\\
+              \rnode{node99}{}
+	    \end{array}}
+        \end{array}$}}{}
+    \node{2}{2}{\makebox[20pt]{$\begin{array}{c}2\\\\\textrm{eats}\\\\
+          \scalebox{0.2}{%
+            \begin{array}{c}
+              \begin{rec}%
+                \Fin&:&\Rec{\La{root}{?}}\\
+                \Fout&:&\Rec{\La{subj}{!},\La{adv}{*}}\\
+                \Forder&:&\{\Tup{\La{subj},\Anc},\Tup{\La{subj},\La{adv}},\Tup{\Anc,\La{adv}}\}\\
+                \Fagrs&:&\Set{\Tup{\Const{3},\Const{sg}}}\\
+                \Fagree&:&\Set{\La{subj}}\\
+                \Fagr&:&\Tup{\Const{3},\Const{sg}}
+              \end{rec}\\
+              \rnode{node1}{}
+            \end{array}}
+        \end{array}$}}{}
+    \node{3}{3}{\makebox[20pt]{$\begin{array}{c}3\\\\\textrm{today}\\\\
+          \scalebox{0.2}{%
+	  \begin{array}{c}
+            \begin{rec}%
+              \Fin&:&\Rec{\La{adv}{?}}\\
+              \Fout&:&\Rec{}\\
+              \Forder&:&\Set{}\\
+              \Fagrs&:&\Agr\\
+              \Fagree&:&\Set{}\\
+              \Fagr&:&\Tup{\Const{1},\Const{sg}}
+            \end{rec}\\
+              \rnode{node98}{}
+	    \end{array}}%
+        \end{array}$}}{}
+    \node{4}{1}{\makebox[20pt]{$\begin{array}{c}4\\\\\textrm{.}\\\\
+          \scalebox{0.2}{%
+	  \begin{array}{c}
+            \begin{rec}%
+              \Fin&:&\Rec{}\\
+              \Fout&:&\Rec{\La{root}{!}}\\
+              \Forder&:&\{\Tup{\La{root},Anc}\}\\
+              \Fagrs&:&\Agr\\
+              \Fagree&:&\Set{}\\
+              \Fagr&:&\Tup{\Const{1},\Const{sg}}
+            \end{rec}\\
+              \rnode{node97}{}
+	    \end{array}}%
+        \end{array}$}}{}
+    \edge{4}{2}{root}
+    \edge{2}{1}{subj}
+    \edge{2}{3}{adv}
+  \end{xdag}\\\\\\
+  \scalebox{0.8}{
+    $
+    \begin{array}{c}
+      \rnode{node11}{}\\
+      \begin{rec}
+        \Fin&:&\Rec{\La{root}{?}}\\
+        \Fout&:&\Rec{\La{subj}{!},\La{adv}{*}}\\
+        \Forder&:&\{\Tup{\La{subj},\Anc},\Tup{\La{subj},\La{adv}},\Tup{\Anc,\La{adv}}\}\\
+        \Fagrs&:&\Set{\Tup{\Const{3},\Const{sg}}}\\
+        \Fagree&:&\Set{\La{subj}}\\
+        \Fagr&:&\Tup{\Const{3},\Const{sg}}
+      \end{rec}
+    \end{array}
+    $}
+  \ncarc[linestyle=dashed,arcangle=10]{->}{node1}{node11}
+\end{tabular}

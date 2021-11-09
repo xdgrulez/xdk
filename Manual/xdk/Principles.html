@@ -1,0 +1,497 @@
+<html lang="en">
+<head>
+<title>Principles - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Compiler.html#Compiler" title="Compiler">
+<link rel="prev" href="Types.html#Types" title="Types">
+<link rel="next" href="Outputs1.html#Outputs1" title="Outputs1">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Principles"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Outputs1.html#Outputs1">Outputs1</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Types.html#Types">Types</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Compiler.html#Compiler">Compiler</a>
+<hr>
+</div>
+
+<h3 class="section">4.4 Principles</h3>
+
+<p>Each dimension states which principles it uses, and their
+parameters. The principles are taken from the predefined <em>principle
+library</em>
+<a name="index-principle-library-89"></a>of the XDK. The principle library includes the definitions of the
+available principles. Developers can add new principles using the
+interface described in the developer sections.
+
+   <p>To use a principle, you need to specify two mappings:
+
+     <ol type=1 start=1>
+<li>the <em>dimension mapping</em>
+<a name="index-dimension-mapping-90"></a><li>the <em>argument mapping</em>
+<a name="index-argument-mapping-91"></a>
+        </ol>
+
+<h4 class="subsection">4.4.1 Dimension mapping</h4>
+
+<p>The dimension mapping
+binds <em>dimension variables</em>
+<a name="index-dimension-variable-92"></a>to dimension identifiers. Each principle definition introduces a set
+of dimension variables which must be bound upon principle use. 
+<code>Lex</code>
+<a name="index-Lex-dimension-variable-93"></a><a name="index-dimension-variable-Lex-94"></a>and <code>This</code>
+<a name="index-This-dimension-variable-95"></a><a name="index-dimension-variable-This-96"></a>are special dimension variables, always bound to dimensions <code>lex</code>
+and to the currently defined dimension, respectively.
+
+<h4 class="subsection">4.4.2 Argument mapping</h4>
+
+<p>The argument mapping binds <em>argument variables</em>
+<a name="index-argument-variable-97"></a>(or just <em>arguments</em>
+<a name="index-argument-98"></a>for short) to values. Each principle definition introduces a set of
+arguments, their types, and (optionally) their default values.  Each
+argument which is not provided upon principle use gets its default
+value. If it does not have a default value, the XDK grammar file
+compiler raises an exception.
+
+   <p>In the UL, the expression to use a principle is:
+<pre class="example">     useprinciple &lt;constant&gt; {dims { &lt;variable_1&gt;:&lt;constant_1&gt;
+                                     ...
+                                     &lt;variable_n&gt;:&lt;constant_n&gt; }
+                              args { &lt;variable_1&gt;:&lt;term_1&gt;
+                                     ...
+                                     &lt;variable_m&gt;:&lt;term_m&gt; }
+                              }
+</pre>
+   <p>Here, <code>&lt;constant&gt;</code> is the principle identifier. In the
+<code>dims</code> part, you specify the dimension mapping, and in the
+<code>args</code> part, you specify the argument mapping.
+
+   <p>In the following, we give a set of example of how principles are used
+in our example grammar <code>Grammars/Acl01.ul</code>. Note that this manual
+contains detailed descriptions of all principles in the predefined
+principle library in <a href="Principles-list.html#Principles-list">Principles list</a>.
+
+<h4 class="subsection">4.4.3 Example (principle.graph)</h4>
+
+<p>Here is how the principle <code>principle.graph</code> is used on the id
+dimension of our example grammar file:
+
+<pre class="example">       useprinciple "principle.graph" {
+         dims {D: id}}
+</pre>
+   <p>The identifier of the principle is <code>principle.graph</code>. The
+dimension mapping maps the dimension variable <code>D</code> to the
+dimension identifier <code>id</code>.  The argument mapping is empty.
+
+<h5 class="subsubsection">4.4.3.1 Graph principle</h5>
+
+<p>The <code>principle.graph</code> principle posits that the structure on the
+dimension bound to the dimension variable <code>D</code> is a
+graph<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>. It has no arguments.
+
+   <p>In the example, the principle posits that the id dimension is a graph.
+
+<h4 class="subsection">4.4.4 Example (principle.tree)</h4>
+
+<p>Here is how the principle <code>principle.tree</code> is used on the id
+dimension of our example grammar file:
+
+<pre class="example">       useprinciple "principle.tree" {
+         dims {D: id}}
+</pre>
+   <p>The identifier of the principle is <code>principle.tree</code>. The
+dimension mapping maps the dimension variable <code>D</code> to the
+dimension identifier <code>id</code>.  The argument mapping is empty.
+
+<h5 class="subsubsection">4.4.4.1 Tree principle</h5>
+
+<p>The <code>principle.tree</code> principle posits that the structure on
+dimension <code>D</code> is a tree. The principle does not have any
+arguments.
+
+   <p>In the example, the principle posits that the id dimension is a tree.
+
+<h4 class="subsection">4.4.5 Example (principle.valency)</h4>
+
+<p>Here is how the principle <code>principle.valency</code> is used on the id
+dimension of our example grammar file:
+
+<pre class="example">       useprinciple "principle.valency" {
+         dims {D: id}
+         args {In: _.D.entry.in
+               Out: _.D.entry.out}}
+</pre>
+   <p>The identifier of the principle is <code>principle.valency</code>. The
+dimension mapping maps the dimension variable <code>D</code> to the
+dimension identifier <code>id</code>. The argument mapping is empty.
+
+<h5 class="subsubsection">4.4.5.1 Valency principle</h5>
+
+<p>The <code>principle.valency</code> principle constrains the incoming and
+outgoing edges of each node on dimension <code>D</code>.  The <code>In</code> and
+<code>Out</code> arguments each specify a <em>valency</em>. 
+<a name="index-valency-99"></a>The default values of the <code>In</code> and <code>Out</code> arguments are the
+<em>feature paths</em>
+<a name="index-feature-path-100"></a><code>_.D.entry.in</code> and <code>_.D.entry.out</code>, respectively.
+
+   <p>In the example, the values of the <code>In</code> and <code>Out</code> arguments
+are not provided, thus the grammar file compiler uses the default
+values <code>_.D.entry.in</code> and <code>_.D.entry.out</code>, respectively. 
+That is, for each node v, <code>In</code> equals the the value of the
+field <code>in</code> of the entry of v on the id dimension, and
+<code>Out</code> equals the value of the field <code>out</code> of the entry of
+v.
+
+<h5 class="subsubsection">4.4.5.2 Feature paths</h5>
+
+<p>Before we proceed, here is a short introduction of
+<em>feature paths</em>. 
+<a name="index-feature-path-101"></a>Feature paths are used to access fields in the attributes or in the
+entry of a node. In the UL, the syntax for a feature path is:
+
+<pre class="example">     &lt;root var&gt;.&lt;dim var&gt;.(attrs|entry).&lt;field_1&gt;.....&lt;field_n&gt;
+</pre>
+   <p>Feature paths start with a <em>root variable</em>
+<a name="index-root-variable-102"></a>(<code>&lt;root var&gt;</code>) which states which node shall be accessed. The
+root variable is either &ldquo;up&rdquo; or &ldquo;down&rdquo; (in the UL, this
+corresponds to <code>^</code> or <code>_</code>). Each principle can bind &ldquo;up&rdquo;
+and &ldquo;down&rdquo; to arbitrary nodes. By convention, &ldquo;up&rdquo; means
+&ldquo;mother&rdquo;, and &ldquo;down&rdquo; means &ldquo;daughter&rdquo; (for constraints on
+edges), and &ldquo;down&rdquo; means &ldquo;myself&rdquo; (for constraints on nodes).  As
+the valency principle states a constraint on nodes, the root variable
+<code>_</code> in the example <code>_.D.entry.out</code> denotes &ldquo;myself&rdquo;.
+
+   <p>The second argument of a feature path is a dimension variable
+(<code>&lt;dim var&gt;</code>) specifying the dimension of the value which is
+eventually accessed. In the example <code>_.D.entry.out</code>, the
+dimension variable is <code>D</code>.
+
+   <p>The third argument of a feature path is one of the special constants
+<code>attrs</code> or <code>entry</code>. If you choose <code>attrs</code>, you access
+the attributes, and if you choose <code>entry</code>, you access the lexical
+entry. In the example <code>_.D.entry.out</code>, the lexical entry is
+accessed. Thus, the principle is lexicalized.
+
+   <p>The fourth argument of a feature path is a list (separated by dots) of
+fields describing the path to the accessed value. In the example
+<code>_.D.entry.out</code>, the list consists only of the field <code>out</code>.
+
+<h4 class="subsection">4.4.6 Example (principle.agr)</h4>
+
+<p>Here is how the principle <code>principle.agr</code> is used on the id
+dimension of our example grammar file:
+
+<pre class="example">       useprinciple "principle.agr" {
+         dims {D: id}
+         args {Agr: _.D.attrs.agr
+               Agrs: _.D.entry.agrs}}
+</pre>
+   <p>The identifier of the principle is <code>principle.agr</code>. The dimension
+mapping maps the dimension variable <code>D</code> to the dimension
+identifier <code>id</code>. The argument mapping maps the argument
+<code>Agr</code> to the feature path <code>_.D.attrs.agr</code>, and <code>Agrs</code>
+to <code>_.D.entry.agrs</code>.
+
+<h5 class="subsubsection">4.4.6.1 Agr principle</h5>
+
+<p>The <code>principle.agr</code> principle has the two arguments <code>Agr</code>
+and <code>Agrs</code>.  The agr principle posits the constraint that for all
+nodes <code>Agr</code> is an element of <code>Agrs</code>.
+
+   <p>The resulting constraint here is the following: for all nodes
+v, the value of the node attribute field <code>agr</code> is an
+element of the value of the lexical entry field <code>agrs</code>.
+
+<h4 class="subsection">4.4.7 Example (principle.agreement)</h4>
+
+<p>Here is how the principle <code>principle.agreement</code> is used on the id
+dimension of our example grammar file:
+
+<pre class="example">       useprinciple "principle.agreement" {
+         dims {D: id}
+         args {Agr1: ^.D.attrs.agr
+               Agr2: _.D.entry.agr
+               Agree: ^.D.entry.agree}}
+</pre>
+   <p>The identifier of the principle is <code>principle.agreement</code>. The
+dimension mapping maps the dimension variable <code>D</code> to the
+dimension identifier <code>id</code>. The argument mapping maps the argument
+<code>Agr1</code> to the feature path <code>^.D.attrs.agr</code>, <code>Agr2</code> to
+<code>_.D.attrs.agr</code>, and <code>Agree</code> to <code>^.D.entry.agree</code>.
+
+<h5 class="subsubsection">4.4.7.1 Agreement principle</h5>
+
+<p>The <code>principle.agreement</code> principle has the three arguments
+<code>Agr1</code>, <code>Agr2</code> and <code>Agree</code>. It posits the constraint
+that for all edges from mother v to daughter v' labeled
+by l, if l is in the set described by <code>Agree</code>,
+<code>Agr1</code> must equal <code>Agr2</code>.
+
+   <p>In the example, this constraint amounts to the stipulation that for
+all edges from mother v to daughter v' labeled by
+l, if l is in the set lexically specified by the
+<code>agree</code> feature of the mother on the id dimension (feature path
+<code>^.D.entry.agree</code>), then the node attribute <code>agr</code> must be
+equal for both the mother v (feature path <code>^.D.attrs.agr</code>
+and the daughter v' (feature path <code>_.D.attrs.agr</code>.
+
+<h4 class="subsection">4.4.8 Example (principle.government)</h4>
+
+<p>Here is how the principle <code>principle.government</code> is used on the id
+dimension of our example grammar file:
+
+<pre class="example">       useprinciple "principle.government" {
+         dims {D: id}
+         args {Agr2: _.D.attrs.agr
+               Govern: ^.D.entry.govern}}
+</pre>
+   <p>The identifier of the principle is <code>principle.agreement</code>. The
+dimension mapping maps the dimension variable <code>D</code> to the
+dimension identifier <code>id</code>. The argument mapping maps the argument
+<code>Agr2</code> to the feature path <code>_.D.attrs.agr</code>, and
+<code>Govern</code> to <code>^.D.entry.govern</code>.
+
+<h5 class="subsubsection">4.4.8.1 Government principle</h5>
+
+<p>The <code>principle.government</code> principle has the two arguments
+<code>Agr2</code> and <code>Government</code>. It posits the constraint that for
+all edges from mother v to daughter v' labeled by
+l, <code>Agr2</code> must be in the set prescribed by <code>Govern</code>
+for label l.
+
+   <p>In the example, this constraint amounts to the stipulation that for
+all edges from mother v to daughter v' labeled by
+l, the value of the <code>agr</code> field of the node attributes of
+the daughter v' (feature path <code>_.D.attrs.agr</code>) must be in
+the set of labels prescribed by the field <code>govern</code> of the lexical
+entry of the mother v (feature path <code>^.D.entry.govern</code>).
+
+<h4 class="subsection">4.4.9 Example (principle.order)</h4>
+
+<p>Here is how the principle <code>principle.order</code> is used on the lp
+dimension of our example grammar file:
+
+<pre class="example">       useprinciple "principle.order" {
+         dims {D: lp}
+         args {Order: [d df n mf vcf p pf v vxf]
+               On: _.D.entry.on
+               Yields: true}}
+</pre>
+   <p>Here, the principle identifier is <code>principle.order</code>. The
+dimension mapping maps dimension variable <code>D</code> to dimension
+identifier <code>lp</code>. The argument mapping maps the argument
+<code>Order</code> to the list <code>[d df n mf vcf p pf v vxf]</code>, <code>On</code>
+to the feature path <code>_.D.entry.on</code>, and <code>Yields</code> to
+<code>true</code>.
+
+<h5 class="subsubsection">4.4.9.1 Order principle</h5>
+
+<p>The <code>principle.order</code> principle constrains the linear order of
+the nodes. In particular, it orders the yields or daughters of each
+node according to their edge label. The <code>Order</code> argument
+specifies a total order on a subset of the set of edge labels (as a
+list). The <code>On</code> argument specifies the set of possible <em>node
+labels</em>
+<a name="index-node-label-103"></a>for each node used to position it with respect to its daughters. The
+domain of node labels is the same as the domain of edge labels.  The
+<code>Yields</code> argument can be either <code>true</code> or <code>false</code>,
+depending on whether for each node, its entire subgraphs shall be
+ordered (<code>true</code>), or just its daughters (<code>false</code>).  If the
+order principle is used in conjunction with the
+<code>principle.projectivity</code>, which is most frequently the case, then
+setting <code>Yields</code> to true is just an optimization for solving, but
+does not change the number of solutions.
+
+   <p>The default value of the <code>Order</code> argument is the empty list.  The
+default value of the <code>On</code> argument is the feature path
+<code>_.D.entry.on</code>.  The default value of the <code>Yields</code> argument
+is <code>false</code>.
+
+   <p>In the example, the total order on the set of edge labels is <code>[d
+df n mf vcf p pf v vxf]</code>, i.e. all daughters with edge label (or the
+mother with node label) <code>d</code> precede all those with edge label
+<code>df</code>, and so on.  The <code>On</code> argument is set to
+<code>_.D.entry.on</code>, i.e., for each node v, the set of possible
+node labels of v equals the value of the field <code>on</code> of the
+entry of v on the lp dimension.  The <code>Yields</code> argument is
+set to <code>true</code>.
+
+<h4 class="subsection">4.4.10 Example (principle.projectivity)</h4>
+
+<p>Here is how the principle <code>principle.projectivity</code> is used on the
+lp dimension of our example grammar file:
+
+<pre class="example">       useprinciple "principle.projectivity" {
+         dims {D: lp}}
+</pre>
+   <p>Here, the principle identifier is <code>principle.projectivity</code>. The
+dimension mapping maps dimension variable <code>D</code> to dimension
+identifier <code>lp</code>. The argument mapping is empty.
+
+<h5 class="subsubsection">4.4.10.1 Projectivity principle</h5>
+
+<p>The <code>principle.projectivity</code> principle constrains the analysis on
+the dimension <code>D</code> to be projective.
+
+   <p>In the example, the principle is used on the lp dimension.
+
+<h4 class="subsection">4.4.11 Example (principle.climbing)</h4>
+
+<p>Here is how the principle <code>principle.climbing</code> is used on the
+idlp dimension of our example grammar file:
+
+<pre class="example">       useprinciple "principle.climbing" {
+         dims {D1: lp
+               D2: id}}
+</pre>
+   <p>Here, the principle identifier is <code>principle.climbing</code>. The
+dimension mapping maps dimension variable <code>D1</code> to dimension
+identifier <code>lp</code>, and dimension variable <code>D2</code> to dimension
+<code>id</code>. The argument mapping is empty.
+
+<h5 class="subsubsection">4.4.11.1 Climbing principle</h5>
+
+<p>The <code>principle.climbing</code> principle posits that the graph on
+dimension <code>D1</code> must be flattening of the graph on dimension
+<code>D2</code>. It is called &ldquo;climbing&rdquo; since this flattening is the
+result of nodes &ldquo;climbing up&rdquo; metaphorically from the deep dimension
+<code>D2</code> to the flat dimension <code>D1</code>.  The principle introduces
+two arguments. The <code>Subgraphs</code> argument is either <code>true</code> or
+<code>false</code>, depending on whether each node is required to take its
+entire subgraph along when migrating upwards (<code>true</code>), or not
+(<code>false</code>). The <code>MotherCards</code> argument specifies whether for
+each node, the cardinalities of the sets of mothers on <code>D1</code> and
+<code>D2</code> must be equal (<code>true</code>), or not (<code>false</code>). This is
+an optimization for the case that both <code>D1</code> and <code>D2</code> are
+trees. If any of the two is not a tree, <code>MotherCards</code> should be
+set to <code>false</code>.
+
+   <p>The default value of <code>Subgraphs</code> and <code>MotherCards</code>
+is <code>true</code>.
+
+   <p>In the example, the principle posits that the graph on the lp
+dimension must be a flattening of the graph on the id dimension.  By
+default, <code>Subgraphs</code> and <code>MotherCards</code> are set to
+<code>true</code>, i.e. each node must take its entire subgraph along when
+climbing up, and the cardinalities of its sets of mothers on the id
+and lp dimensions are equal.
+
+<h4 class="subsection">4.4.12 Example (principle.barriers)</h4>
+
+<p>Here is how the principle <code>principle.barriers</code> is used on the
+idlp dimension of our example grammar file:
+
+<pre class="example">        useprinciple "principle.barriers" {
+         dims {D1: lp
+               D2: id
+               D3: idlp}}
+</pre>
+   <p>Here, the principle identifier is <code>principle.barriers</code>. The
+dimension mapping maps dimension variable <code>D1</code> to dimension
+identifier <code>lp</code>, <code>D2</code> to dimension <code>id</code> and <code>D3</code>
+to <code>idlp</code>. The argument mapping binds the argument variable
+<code>Blocks</code> to the feature path <code>_.D3.entry.blocks</code>.
+
+<h5 class="subsubsection">4.4.12.1 Barriers principle</h5>
+
+<p>The <code>principle.barriers</code> principle is a specialization of the
+climbing principle. Its purpose is to &ldquo;block&rdquo; nodes in the &ldquo;deep&rdquo;
+dimension <code>D2</code> from climbing up and appearing higher up in the
+&ldquo;flat&rdquo; dimension <code>D1</code>. The principle introduces an argument
+<code>Blocks</code> whose default value is <code>_.D3.entry.blocks</code>.  The
+value of <code>Blocks</code> is a set edge labels on the &ldquo;deep&rdquo; dimension
+<code>D2</code>. For each node v, all nodes below v which have
+one of these incoming edge labels on the &ldquo;deep&rdquo; dimension <code>D2</code>
+must stay below v on the &ldquo;flat&rdquo; dimension <code>D1</code>.
+
+   <p>In the example, the &ldquo;flat&rdquo; dimension is the lp dimension, and the
+&ldquo;deep&rdquo; dimension is the id dimension. The value of the <code>Blocks</code>
+argument is lexicalized: for each node v, it equals the value
+of the <code>blocks</code> field of the entry of v on the idlp
+dimension.
+
+<h4 class="subsection">4.4.13 Example (principle.linkingEnd)</h4>
+
+<p>Here is how the principle <code>principle.linkingEnd</code> is used on the
+idlp dimension of our example grammar file:
+
+<pre class="example">        useprinciple "principle.linkingEnd" {
+         dims {D1: lp
+               D2: id}}
+</pre>
+   <p>Here, the principle identifier is <code>principle.linkingEnd</code>. The
+dimension mapping maps dimension variable <code>D1</code> to dimension
+identifier <code>lp</code>, and dimension variable <code>D2</code> to dimension
+<code>id</code>. The argument mapping is empty.
+
+<h5 class="subsubsection">4.4.13.1 LinkingEnd principle</h5>
+
+<p>The <code>principle.linkingEnd</code> principle constrains all outgoing
+edges from node v1 to node v2 labeled l on
+dimension <code>D1</code> with respect to the incoming edge label l'
+of v2 on dimension <code>D2</code>. The principle introduces the
+argument <code>End</code> whose value is a function from the set of edge
+labels on <code>D1</code> to sets of edge labels on <code>D2</code>.  The default
+value of the <code>End</code> is <code>^.D3.entry.end</code>.
+
+   <p>An edge v1 to node v2 labeled l on dimension
+<code>D1</code> is only licensed if the incoming edge label l' of
+v2 on dimension <code>D2</code> is an element of the set specified by
+the applying the function in the <code>End</code> argument to label
+l.
+
+   <p>In the example, the <code>End</code> argument is not provided. By default,
+it is lexicalized and equals for each node v_1 the value of the
+<code>end</code> field of the entry of v_1 on the idlp dimension.
+
+<h4 class="subsection">4.4.14 Example (principle.entries)</h4>
+
+<p>Here is how the principle <code>principle.entries</code> is used on the lex
+dimension of our example grammar file:
+
+<pre class="example">       %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %% use principles
+       useprinciple "principle.entries" {}
+</pre>
+   <p>Here, the principle identifier is <code>principle.entries</code>. The
+dimension mapping is empty. The argument mapping is also empty.
+
+<h5 class="subsubsection">4.4.14.1 Entries principle</h5>
+
+<p>The purpose of the <code>principle.entries</code> principle is to ensure
+that for each node, precisely one lexical entry is selected.  If you
+do not use the entries principle, and there are two identical lexical
+entries for a word in the input, the XDK solver does not select one of
+the two. If you do use it, it does select one, i.e. it enumerates all
+possible lexical entries for a word in the input.
+
+<!-- ************************************************************ -->
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> Currently, the principle library includes two graph
+principles: <code>principle.graph</code> and <code>principle.graph1</code>. The
+latter leads to faster solving than the former, but it is cannot be
+used together with several principles of the principle library, and is
+thus quite obsolete.</p>
+
+   <hr></div>
+
+   </body></html>
+

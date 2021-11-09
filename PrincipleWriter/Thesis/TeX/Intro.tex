@@ -1,0 +1,78 @@
+\chapter{Einleitung}
+
+Extensible Dependency Grammar (XDG) ist ein constraint-basierter
+Meta-Gram\-matikfor\-malismus \cite{DebusmannEtal04SS},
+\cite{Debusmann06} f{\"u}r Dependenzgrammatik.  Die Modelle von XDG
+sind \emph{Dependenz-Multigraphen}, das sind Tupel von
+Dependenzgraphen, die dieselbe Knotenmenge teilen. Die einzelnen
+Komponenten eines Dependenz-Multigraph hei{\ss}en \emph{Dimensionen}.
+
+XDG-Grammatiken bestehen aus einem \emph{Multigraph-Typ}, der die
+Dimensionen, Kantenlabel, Knotenattribute etc. festlegt, einem
+\emph{Lexikon}, das die Eigenschaften von W{\"o}rtern beschreibt, und
+einer Menge von \emph{Prinzipien}, die die Wohlgeformtheitsbedingungen
+der Multigraphen charakterisieren. Die Prinzipien werden in der
+Formalisierung in \cite{Debusmann06} in h{\"o}herstufiger Logik, und
+in der neueren Formalisierung in \cite{Debusmann07MTS} in
+Pr{\"a}dikatenlogik erster Stufe ausgedr{\"u}ckt.
+
+Der Grundgedanke hinter XDG ist es, als Meta-Grammatikformalismus die
+Axiomatisierung von dependenzbasierten, konkreten Grammatikformalismen
+zu erm{\"o}glichen. Beispiele sind Lexicalized Context Free Grammar
+(LCFG), Lexicalized Tree Adjoining Grammar (LTAG) \cite{Joshi87} oder
+Topological Dependency Grammar (TDG) \cite{DuchierDebusmann01}, um die
+Syntax nat{\"u}rlicher Sprachen zu modellieren, und
+Dominanzconstraints (DC) \cite{EggEtal01} und Steedman's prosodischer
+Ansatz zur Informationsstruktur (IS) \cite{Steedman00}, um die
+Semantik zu modellieren. Einmal in XDG axiomatisiert k{\"o}nnen die
+Formalismen dann beliebig erweitert und kombiniert werden, mit dem
+Ziel, ihre ideale Kombination zu finden.  In \cite{Debusmann06} war
+die Eleganz und Ausdrucksm{\"a}chtigkeit der
+Syntax-Semantik-Schnittstelle das Hauptkriterium, was in eine
+Kombination von TDG, DC und IS m{\"u}ndete.
+
+F{\"u}r XDG gibt es eine Entwicklungsumgebung, das XDG Development Kit
+\cite{DebusmannEtal04MOZ}, die einen constraint-basierten Parser,
+Werkzeuge zur Fehlersuche und eine graphische Benutzeroberfl{\"a}che
+beinhaltet. Grammatiken k{\"o}nnen in einer ausdrucksstarken
+Beschreibungssprache geschrieben werden, die vor allem das Schreiben
+von strukturierten XDG-Lexika mit lexikalischen Klassen und Templates
+unterst{\"u}tzt.
+
+Die Implementierung der Wohlgeformtheitsbedingungen von
+XDG-Grammatiken, der Prinzipien, war jedoch bisher ein
+Schwachpunkt. Prinzipien-Implementationen mussten entweder aus der
+mitgelieferten Prinzipien-Bibliothek entnommen, oder von Hand als
+Constraint-Programm in Mozart/Oz implementiert werden. Das aber
+hie{\ss} bisher, dass nur Experten in
+Mozart/Oz-Constraintprogrammierung das XDK auch um neue Prinzipien
+erweitern konnten, f{\"u}r die Mehrheit der Nutzer blieben nur die
+vorimplementierten Prinzipien aus der Prinzipien-Bibliothek. Dieser
+Schwachpunkt schr{\"a}nkte die Attraktivit{\"a}t des XDK doch sehr
+ein. Gerade wenn es darum ging, neue Grammatikformalismen in XDG zu
+axiomatisieren, kam man um das Hinzuf{\"u}gen von neuen Prinzipien
+nicht herum, aber das konnten nur Experten, und auch die nur unter
+Einsatz von viel Zeit.
+
+In dieser Arbeit geht es darum, diesen Schwachpunkt des XDK zu
+beheben. Ich entwickle ein Programm namens \emph{PrincipleWriter}, das
+XDG-Prinzipien in Pr{\"a}dikatenlogik erster Stufe automatisch in
+Mozart/Oz Constraints umsetzt, ohne dass dazu Kenntnisse in Mozart/Oz
+oder in Constraintprogrammierung im Allgemeinen n{\"o}tig sind. Der
+Vorteil: mit dem PW kann jeder Nutzer mit Kenntnissen in
+Pr{\"a}dikatenlogik XDG-Prinzipien implementieren und im XDK
+ausprobieren. Auch Nutzer, die die Implementation von Prinzipien in
+Mozart/Oz beherrschen, profitieren vom PW, da sie ihre Ideen sehr viel
+schneller umsetzen k{\"o}nnen. Die Kompilation eines normalen Prinzips
+dauert weniger als eine Sekunde, verglichen mit mehreren Stunden, die
+das Implementieren von Hand leicht dauern kann.
+
+Nat{\"u}rlich bringt die automatische Kompilation von Prinzipien nicht
+nur Vorteile. Der Hauptnachteil ist der, dass manche automatisch
+kompilierte Prinzipien nicht so effizient sind wie die von Hand
+geschriebenen. Um die Effizienz der automatisch kompilierten
+Prinzipien zu steigern, habe ich in meiner Arbeit erste Ideen zur
+automatischen Optimierung entwickelt. In diesem {\"a}u{\ss}erst
+interessanten Bereich steckt jedoch noch viel mehr Potential, das wir
+im Laufe dieser Arbeit erst ganz leicht angeschnitten haben.
+

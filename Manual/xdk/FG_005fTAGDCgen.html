@@ -1,0 +1,398 @@
+<html lang="en">
+<head>
+<title>FG_TAGDCgen - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Grammars.html#Grammars" title="Grammars">
+<link rel="prev" href="FG_005fTAGDC.html#FG_005fTAGDC" title="FG_TAGDC">
+<link rel="next" href="MTS10.html#MTS10" title="MTS10">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="FG_TAGDCgen"></a>
+<a name="FG_005fTAGDCgen"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="MTS10.html#MTS10">MTS10</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="FG_005fTAGDC.html#FG_005fTAGDC">FG_TAGDC</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Grammars.html#Grammars">Grammars</a>
+<hr>
+</div>
+
+<h3 class="section">5.27 FG_TAGDCgen</h3>
+
+<p>This grammar combines TAG and Dominance Constraints. It was written by
+Ralph Debusmann.
+
+<pre class="verbatim">usedim id
+usedim lp
+usedim idlp
+usedim pa
+usedim sc
+usedim idsc
+usedim lppa
+usedim lex
+%%
+defdim id {
+  deftype "id.label" {"NP_s" "NP_a" "Det_s" "Det_a" "N_s" "N_a" "S_s" "S_a" "VP_s" "VP_a" "V_s" "V_a"}
+  deflabeltype "id.label"
+  defentrytype {in: iset("id.label")
+                out: valency("id.label")}
+  %%
+  useprinciple "principle.graph1Constraints" { dims {D: id} }
+  useprinciple "principle.graph1Dist" { dims {D: id} }
+  useprinciple "principle.tree" { dims {D: id} }
+  useprinciple "principle.in" { dims {D: id} }
+  useprinciple "principle.out" { dims {D: id} }
+%  useprinciple "principle.xTAGRoot" {dims {D: id}}
+  %%
+  output "output.latex1"
+  output "output.pretty1"
+}
+%%
+defdim lp {
+  deftype "lp.label" {"0" "1" "11" "111" "2" "21" "211" "22" "221" "2211" "23" "231" "2311" "3" "31" "311" "32"}
+  deflabeltype "lp.label"
+  defentrytype {in: iset("lp.label")
+                out: valency("lp.label")
+                anchor: "lp.label"
+                foot: set("lp.label")
+                word: string}
+  %%
+  useprinciple "principle.graph1Constraints" { dims {D: lp} }
+  useprinciple "principle.graph1Dist" { dims {D: lp} }
+  useprinciple "principle.tree" { dims {D: lp} }
+  useprinciple "principle.in" { dims {D: lp} }
+  useprinciple "principle.out" { dims {D: lp} }
+  useprinciple "principle.xTAG" { dims {D: lp} }
+  output "output.latex1"
+  output "output.pretty1"
+}
+%%
+defdim idlp {
+  defentrytype {link: vec("lp.label" set("id.label"))}
+  %%
+  useprinciple "principle.xTAGLinking" { dims {D1: id D2: lp D3: idlp} }
+  useprinciple "principle.xTAGRedundant" { dims {D1: id D2: lp} }
+  output "output.latex1"
+  output "output.pretty1"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+defdim pa {
+  deftype "pa.label" {ag pat}
+  deflabeltype "pa.label"
+  defentrytype {in: valency("pa.label")
+                out: valency("pa.label")
+                word: string}
+%%
+  useprinciple "principle.graphConstraints" { dims {D: pa} }
+  useprinciple "principle.graphDist" { dims {D: pa} }
+  useprinciple "principle.dag" {
+    dims {D: pa}
+    args {Connected: false
+          DisjointDaughters: true}}
+  useprinciple "principle.valency" {
+    dims {D: pa}
+    args {In: _.D.entry.in
+          Out: _.D.entry.out}}
+%%
+  output "output.latex1"
+  output "output.pretty1"
+}
+%%
+defdim sc {
+  deftype "sc.label" {r s}
+  deflabeltype "sc.label"
+  defentrytype {in: valency("sc.label")
+                out: valency("sc.label")}
+%%
+  useprinciple "principle.graphConstraints" { dims {D: sc} }
+  useprinciple "principle.graphDist" { dims {D: sc} }
+  useprinciple "principle.tree" {
+    dims {D: sc}}
+  useprinciple "principle.valency" {
+    dims {D: sc}
+    args {In: _.D.entry.in
+          Out: _.D.entry.out}}
+%%
+  output "output.latex1"
+  output "output.pretty1"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+defdim idsc {
+  defentrytype {daughterEnd: vec("id.label" set("sc.label"))
+                aboveStart: vec("id.label" set("sc.label"))}
+%%
+  useprinciple "principle.linkingDaughterEnd" {
+    dims {D1: id
+          D2: sc
+          D3: idsc}
+    args {End: ^.D3.entry.daughterEnd}}
+%%
+  useprinciple "principle.linkingAboveStart" {
+    dims {D1: id
+          D2: sc
+          D3: idsc}
+    args {Start: ^.D3.entry.aboveStart}}
+%%
+  output "output.latex1"
+  output "output.pretty1"
+}
+%%
+defdim lppa {
+  defentrytype {daughterEnd: vec("lp.label" set("pa.label"))}
+%%
+  useprinciple "principle.linkingDaughterEnd" {
+    dims {D1: lp
+          D2: pa
+          D3: lppa}
+    args {End: ^.D3.entry.daughterEnd}}
+%%
+  output "output.latex1"
+  output "output.pretty1"
+}
+%%
+defdim lex {
+  defentrytype {word: string
+                tree: string}
+  useprinciple "principle.entries" {}
+%%
+  output "output.allDags1"
+  output "output.xTAGDerivation"
+  output "output.allLatexs1"
+%%
+  useoutput "output.allDags1"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+defclass "TAG-det" W {
+  dim id {in: {"NP_s"}
+          out: {"N_s"! "NP_a"? "Det_a"?}}
+  dim lp {in: top
+          out: {"2"! "0"? "1"?}
+          anchor: "11"
+          foot: {}
+          word: W}
+  dim idlp {link: {"2": {"N_s"}
+                   "0": {"NP_a"}
+                   "1": {"Det_a"}}}
+  dim lex {tree: "det"}}
+
+defclass "TAG-n" W {
+  dim id {in: {"N_s"}
+          out: {"N_a"?}}
+  dim lp {in: top
+          out: {"0"?}
+          anchor: "1"
+          foot: {}
+          word: W}
+  dim idlp {link: {"0": {"N_a"}}}
+  dim lex {tree: "n"}}
+
+defclass "TAG-tv_fin" W {
+  dim id {in: {"S_s"}
+          out: {"NP_s"#{2} "S_a"? "VP_a"? "V_a"?}}
+  dim lp {in: top
+          out: {"1"! "22"! "0"? "2"? "21"?}
+          anchor: "211"
+          foot: {}
+          word: W}
+  dim idlp {link: {"1": {"NP_s"}
+                   "22": {"NP_s"}
+                   "0": {"S_a"}
+                   "2": {"VP_a"}
+                   "21": {"V_a"}}}
+  dim lex {tree: "tv_fin"}}
+
+defclass "TAG-tv_fin_top" W {
+  dim id {in: {"S_s"}
+          out: {"NP_s"#{2} "S_a"#[0 2] "VP_a"? "V_a"?}}
+  dim lp {in: top
+          out: {"1"! "21"! "0"? "2"? "22"? "221"?}
+          anchor: "2211"
+          foot: {}
+          word: W}
+  dim idlp {link: {"1": {"NP_s"}
+                   "21": {"NP_s"}
+                   "0": {"S_a"}
+                   "2": {"S_a"}
+                   "22": {"VP_a"}
+                   "221": {"V_a"}}}
+  dim lex {tree: "tv_fin_top"}}
+
+defclass "TAG-tv_nonfin" W {
+  dim id {in: {"S_a"}
+          out: {"NP_s"#{2} "S_a"? "VP_a"? "V_a"?}}
+  dim lp {in: top
+          out: {"1"! "32"! "0"? "3"? "31"?}
+          anchor: "311"
+          foot: {"2"}
+          word: W}
+  dim idlp {link: {"1": {"NP_s"}
+                   "32": {"NP_s"}
+                   "0": {"S_a"}
+                   "3": {"VP_a"}
+                   "31": {"V_a"}}}
+  dim lex {tree: "tv_nonfin"}}
+
+defclass "TAG-tv_nonfin_top" W {
+  dim id {in: {"S_a"}
+          out: {"NP_s"#{2} "S_a"#[0 2] "VP_a"? "V_a"?}}
+  dim lp {in: top
+          out: {"1"! "21"! "0"? "2"? "23"? "231"?}
+          anchor: "2311"
+          foot: {"22"}
+          word: W}
+  dim idlp {link: {"1": {"NP_s"}
+                   "21": {"NP_s"}
+                   "0": {"S_a"}
+                   "2": {"S_a"}
+                   "23": {"VP_a"}
+                   "231": {"V_a"}}}
+  dim lex {tree: "tv_nonfin_top"}}
+
+defclass "TAG-aux" W {
+  dim id {in: {"S_s"}
+          out: {"S_a" "VP_a"? "V_a"?}}
+  dim lp {in: top
+          out: {"0"? "1"? "11"?}
+          anchor: "111"
+          foot: {}
+          word: W}
+  dim idlp {link: {"0": {"S_a"}
+                   "1": {"VP_a"}
+                   "11": {"V_a"}}}
+  dim lex {tree: "aux"}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+defclass "DC-det" W {
+  dim pa {in: {ag? pat?}
+          out: {}
+          word: W}
+  dim sc {in: {r? s?}
+          out: {r! s!}}}
+
+defclass "DC-n" W {
+  dim pa {in: {}
+          out: {}
+          word: W}
+  dim sc {in: {r? s?}
+          out: {}}}
+
+defclass "DC-tv" W {
+  dim pa {in: {}
+          out: {ag! pat!}
+          word: W}
+  dim sc {in: {r? s?}
+          out: {}}}
+
+defclass "DC-aux" W {
+  dim pa {in: {}
+          out: {}
+          word: W}
+  dim sc {in: {r? s?}
+          out: {s!}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+defclass "TAGDC-det" {
+  dim idsc {daughterEnd: {"N_s": {r}}}}
+
+defclass "TAGDC-n" {}
+
+defclass "TAGDC-tv_fin" {
+  dim idsc {aboveStart: {"NP_s": {r s}}}
+  dim lppa {daughterEnd: {"1": {ag}
+                          "22": {pat}}}}
+
+defclass "TAGDC-tv_fin_top" {
+  dim idsc {aboveStart: {"NP_s": {s}}}
+  dim lppa {daughterEnd: {"21": {ag}
+                          "1": {pat}}}}
+
+defclass "TAGDC-tv_nonfin" {
+  dim idsc {aboveStart: {"NP_s": {r s}}}
+  dim lppa {daughterEnd: {"1": {ag}
+                          "32": {pat}}}}
+
+defclass "TAGDC-tv_nonfin_top" {
+  dim idsc {aboveStart: {"NP_s": {r s}}}
+  dim lppa {daughterEnd: {"21": {ag}
+                          "1": {pat}}}}
+
+defclass "TAGDC-aux" {
+  dim idsc {daughterEnd: {"S_a": {s}}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+defclass "det" TAGW DCW {
+  "TAG-det" {W: TAGW}
+  "DC-det" {W: DCW}
+  "TAGDC-det"
+  dim lex {word: DCW}}
+
+defclass "n" TAGW DCW {
+  "TAG-n" {W: TAGW}
+  "DC-n" {W: DCW}
+  "TAGDC-n"
+  dim lex {word: DCW}}
+
+defclass "tv_fin" TAGW DCW {
+  "TAG-tv_fin" {W: TAGW}
+  "DC-tv" {W: DCW}
+  "TAGDC-tv_fin"
+  dim lex {word: DCW}}
+
+defclass "tv_fin_top" TAGW DCW {
+  "TAG-tv_fin_top" {W: TAGW}
+  "DC-tv" {W: DCW}
+  "TAGDC-tv_fin_top"
+  dim lex {word: DCW}}
+
+defclass "tv_nonfin" TAGW DCW {
+  "TAG-tv_nonfin" {W: TAGW}
+  "DC-tv" {W: DCW}
+  "TAGDC-tv_nonfin"
+  dim lex {word: DCW}}
+
+defclass "tv_nonfin_top" TAGW DCW {
+  "TAG-tv_nonfin_top" {W: TAGW}
+  "DC-tv" {W: DCW}
+  "TAGDC-tv_nonfin_top"
+  dim lex {word: DCW}}
+
+defclass "aux" TAGW DCW {
+  "TAG-aux" {W: TAGW}
+  "DC-aux" {W: DCW}
+  "TAGDC-aux"
+  dim lex {word: DCW}}
+
+defentry { "det" {TAGW: "every" DCW: "*"} }
+defentry { "det" {TAGW: "a" DCW: "*"} }
+defentry { "n" {TAGW: "man" DCW: "man'"} }
+defentry { "n" {TAGW: "woman" DCW: "woman'"} }
+defentry { "tv_fin" {TAGW: "loves" DCW: "love'"} }
+defentry { "tv_fin_top" {TAGW: "loves" DCW: "love'"} }
+defentry { "tv_nonfin" {TAGW: "loved" DCW: "love'"} }
+defentry { "tv_nonfin_top" {TAGW: "loved" DCW: "love'"} }
+defentry { "aux" {TAGW: "has" DCW: "*"} }
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

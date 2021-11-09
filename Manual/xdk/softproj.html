@@ -1,0 +1,3565 @@
+<html lang="en">
+<head>
+<title>softproj - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Grammars.html#Grammars" title="Grammars">
+<link rel="prev" href="regdgPW.html#regdgPW" title="regdgPW">
+<link rel="next" href="ww.html#ww" title="ww">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="softproj"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="ww.html#ww">ww</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="regdgPW.html#regdgPW">regdgPW</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Grammars.html#Grammars">Grammars</a>
+<hr>
+</div>
+
+<h3 class="section">5.50 softproj</h3>
+
+<p>This grammar is an extension of the Diplom grammar (<a href="Diplom.html#Diplom">Diplom</a>), and
+was developed in a Softwareprojekt by Regine Bader, Christine
+Foeldesi, Ulrich Pfeiffer and Jochen Steigner. It is described in
+<cite>Modellierung grammatischer Phaenomene der deutschen Sprache mit
+Topologischer Dependenzgrammatik</cite> (<a href="References.html#References">References</a>).
+
+<pre class="verbatim">usedim id
+usedim lp
+usedim lex
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension id
+defdim id {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defattrstype ref("id.attrs")
+  defentrytype ref("id.entry")
+  deflabeltype ref("id.label")
+  deftype "id.person" {first second third}
+  deftype "id.gender" {masc fem neut}
+  deftype "id.number" {sg pl}
+  deftype "id.def" {def indef undef}
+  deftype "id.agr" tuple(ref("id.person") ref("id.gender") ref("id.number") ref("id.def"))
+  deftype "id.agrs" iset(ref("id.agr"))
+  deftype "id.case" {nom gen dat acc}
+  deftype "id.cases" iset(ref("id.case"))
+  deftype "id.pref" {pref_ein pref_vor pref_zu}
+  deftype "id.prefs" iset(ref("id.pref"))
+  deftype "id.adv" {adv_1 adv_2 adv_3 adv_4 adv_5}
+  deftype "id.aux" {aux_1 aux_2}
+  deftype "id.anim" {anim nonanim}
+  deftype "id.animated" iset(ref("id.anim"))
+  deftype "id.attrs" {agr: ref("id.agr")
+                      case: ref("id.case")
+ 		      anim: ref("id.anim")
+                      pref: ref("id.pref")}
+  deftype "id.entry" {agrs: ref("id.agrs")
+                      cases: ref("id.cases")
+                      outcases: vec(ref("id.label") ref("id.cases"))
+		      animated: ref("id.animated")
+                      outanimated: vec(ref("id.label") ref("id.animated"))
+                      prefs: ref("id.prefs")
+		      auxtype: iset(ref("id.aux"))
+		      auxtypeReq: iset(ref("id.aux"))
+                      advs: set(ref("id.adv"))
+                      advsReq: set(ref("id.adv"))
+                      in: iset(ref("id.label"))
+                      out: valency(ref("id.label"))}
+  deftype "id.label" {adj adj_cop  adv alsp aux  cadj cadv cc cgenmod cgenobj ciobj cobj  comp compcausal cp csent csubj det ep genmod genobj iobj iobjs kon obj objs ph pp pred_adj pred_noun  re rel res sub subj subjs vinf vpass1 vpass2 vpp vpref vzu wh_quest zu}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph1" {
+    dims {D: id}}
+  useprinciple "principle.agr" {
+    dims {D: id}
+    args {Agr: _.D.attrs.agr
+          Agrs: _.D.entry.agrs}}
+  useprinciple "principle.agr" {
+    dims {D: id}
+    args {Agr: _.D.attrs.case
+          Agrs: _.D.entry.cases}}
+  useprinciple "principle.agr" {
+    dims {D: id}
+    args {Agr: _.D.attrs.anim
+          Agrs: _.D.entry.animated}}
+  useprinciple "principle.agr" {
+    dims {D: id}
+    args {Agr: _.D.attrs.pref
+          Agrs: _.D.entry.prefs}}
+  useprinciple "principle.agreement" {
+    dims {D: id}
+    args {Agr1: ^.D.attrs.agr
+          Agr2: _.D.attrs.agr
+          Agree: {subj subjs det adj res}}}
+  useprinciple "principle.agreement" {
+    dims {D: id}
+    args {Agr1: ^.D.attrs.case
+          Agr2: _.D.attrs.case
+          Agree: {det adj alsp cc res}}}
+  useprinciple "principle.agreement" {
+    dims {D: id}
+    args {Agr1: ^.D.attrs.pref
+          Agr2: _.D.attrs.pref
+          Agree: {vpref}}}
+  useprinciple "principle.agreementSubset" {
+    dims {D: id}
+    args {Agr1: ^.D.entry.advs
+          Agr2: _.D.entry.advsReq
+          Agree: {adv}}}
+  useprinciple "principle.agreementSubset" {
+    dims {D: id}
+    args {Agr1: ^.D.entry.auxtype
+          Agr2: _.D.entry.auxtypeReq
+          Agree: {vpp}}}
+  useprinciple "principle.government" {
+    dims {D: id}
+    args {Agr2: _.D.attrs.case
+          Govern: ^.D.entry.outcases}}
+  useprinciple "principle.government" {
+    dims {D: id}
+    args {Agr2: _.D.attrs.anim
+          Govern: ^.D.entry.outanimated}}
+  useprinciple "principle.agreement1" {
+    dims {D: lp
+          D1: id}
+    args {Agr1: ^.D1.attrs.case
+          Agr2: _.D1.attrs.case
+          Agree: {frvf}}}
+  useprinciple "principle.tree" {
+    dims {D: id}}
+  useprinciple "principle.in" {
+    dims {D: id}}
+  useprinciple "principle.out" {
+    dims {D: id}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lp
+defdim lp {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype ref("lp.entry")
+  deflabeltype ref("lp.label")
+  deftype "lp.entry" {in: iset(ref("lp.label"))
+                      out: valency(ref("lp.label"))
+                      on: iset(ref("lp.label"))
+                      blocks: set(ref("id.label"))}
+  deftype "lp.label" {coord_sent1 coord_sent2 nvf cnmf nmf coord1 n coord2  nmxf nxf vvf vf v12 rvf frvf if mf vcf pf v vxf nf}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph1" {
+    dims {D: lp}}
+  useprinciple "principle.tree" {
+    dims {D: lp}}
+  useprinciple "principle.in" {
+    dims {D: lp}}
+  useprinciple "principle.out" {
+    dims {D: lp}}
+  useprinciple "principle.order" {
+    dims {D: lp}
+    args {Order: [nvf nmf cnmf coord_sent1 coord1 n coord2 coord_sent2 nmxf nxf vvf vf v12 rvf frvf if mf vcf pf v vxf nf]
+          Yields: true}}
+  useprinciple "principle.projectivity" {
+    dims {D: lp}}
+  useprinciple "principle.climbing" {
+    dims {D1: lp
+          D2: id}}
+   useprinciple "principle.barriers" {
+    dims {D1: lp
+          D2: id
+          D3: lp}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lex
+defdim lex {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype {word: string}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dags1"
+  output "output.latexs1"
+  useoutput "output.dags1"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% lexical types: id part
+defclass "intr_id" { dim id {out: {}} }
+
+defclass "tr_id" { dim id {out: {(obj|objs)}
+                           outcases: {obj: {acc}}} }
+
+defclass "genobjc_id" { dim id {out: {genobj}
+                                outcases: {genobj: {gen}}} }
+
+defclass "ditr_id" { dim id {out: {(obj|objs) (iobj|iobjs)}
+                             outcases: {obj: {acc}
+                                        iobj: {dat}}} }
+
+defclass "compc" { dim id {out: {comp?}} }
+
+defclass "compcausalc" {dim id {out: {compcausal?}} }
+
+defclass "vinfc" { dim id {out: {vinf}} }
+
+defclass "vzuc" { dim id {out: {vzu?}} }
+
+defclass "vppc" { dim id {out: {vpp}}}
+
+%%! class for passive verbs (verb past participle passive) 
+defclass "vppp1" { dim id {out: {vpass1}} }
+
+defclass "vppp2" { dim id {out: {vpass2}} }
+
+defclass "optobjc" { dim id {out: {(obj?|objs?)}
+                             outcases: {obj: {acc}}} }
+
+defclass "optiobjc" { dim id {out: {(iobj?|iobjs?)}
+                              outcases: {iobj: {dat}}} }
+
+defclass "ditranim" { dim id {outanimated: {subj: {anim}
+                                             obj: {nonanim}
+                                            iobj: {anim}}}}
+
+defclass "subjanim" { dim id {outanimated: {subj: {anim}}}}
+
+defclass "optquest" { dim id {out: {wh_quest?}} }
+
+
+%% finite verbs
+defclass "fin_id" {
+  dim id {in: {sub subjs rel objs iobjs csent}
+          out: {(subj|subjs) adv* pp?}
+          outcases: {subj: {nom}}}}
+
+%% Satzkonstruktion mit "Vorfeld-es" 
+defclass "fin_es_id"{
+useclass "fin_id"
+dim id   {	out: {ph}}}
+
+%% finite Verben mit "explikativem es"
+defclass "fin_expl_id" {
+  dim id {in: {sub rel csent}
+          out: {ep adv* pp?}}}
+
+%% Auxiliarverben mit "Korrelat-es" (ist, wird) (es waere eventuell sinnvoll, diese Klasse
+%% mit den copula-Verben zu vereinigen)
+defclass "aux_es_id" {
+  dim id {in: {csent}
+          out: {ph pred_adj adv*}}}
+
+%% ***copula verben
+defclass "verb_cop_id" {
+  dim id {in: {sub rel subjs objs iobjs csent}%###rel wieder reingenommen ####
+          out: {subj adj_cop? pred_noun?}
+          outcases: {subj: {nom}
+                     pred_noun: {nom}}}}
+
+%%! Imperativ
+defclass "vimp_id" {
+  dim id {out: {adv* pp?}}}
+
+%%! finite auxiliaries for passive constructions
+defclass "vafin_id" {
+  dim id {in: {sub rel subjs objs iobjs csent} %####
+	  out: {(subj|subjs) ph?}	       %####	
+	  outcases: {subj: {nom}}}}
+
+%% non-finite verbs
+defclass "nonfin_id" {
+  dim id {in: {vinf vzu vpp vpass1 vpass2 re}
+          out: {adv* pp?}}}
+
+defclass "vinf_id" {
+  useclass "nonfin_id"
+  dim id {in: {vinf}}}
+
+defclass "vzu_id" {
+  useclass "nonfin_id"
+  dim id {in: {vzu re}
+          out: {zu}}}
+
+defclass "vpp_id" {
+  useclass "nonfin_id"
+  dim id {in: {vpp}}}
+
+%%! ID-Eintrag fuer Partizipien in Passiv1-Konstruktionen
+defclass "vpass1_id" {
+  useclass "nonfin_id"
+  dim id {in: {vpass1}}}
+
+%%! ID-Eintrag fuer Partizipien in Passiv2-Konstruktionen
+defclass "vpass2_id" {
+  useclass "nonfin_id"
+  dim id {in: {vpass2}}}
+
+%% complementisers
+defclass "comp_id" {
+  dim id {in: {comp}
+          out: {sub}}}
+
+defclass "compcausal_id" {
+  dim id {in: {compcausal}
+          out: {sub}}}
+
+%% adverbs
+defclass "adv_id" {
+  dim id {in: {adv cadv}}}
+
+%% zu-particle
+defclass "zu_id" {
+  dim id {in: {zu}}}
+
+%%wh-questions
+
+defclass "quest_id" { dim id {in: {subj obj iobj genobj}} }
+defclass "quest_oa_id" { dim id {in: {wh_quest}} }
+
+%%! res (Resumptivpronomen) als eingehende Kante für Nomen definiert 
+
+defclass "noun_id" { dim id {in: {cc subj obj iobj genobj genmod res}} }
+
+%% Definition der Nomen wegen Koordinationkonstruktionen veraendert
+%%! Nomen im Singular: Determiner obligatorisch
+defclass "cnoun_sg_id" {
+  dim id { in:{cc subj obj iobj genobj genmod cgenmod csubj cobj ciobj cgenobj res}
+	out: {det adj* genmod? pp? rel?}
+          	outcases: {genmod: {gen}}}}
+
+%%! Nomen im Plural: Determiner optional
+defclass "cnoun_pl_id" {
+  dim id { in:{cc subj obj iobj genobj genmod cgenmod csubj cobj ciobj cgenobj res} 
+	out: {det? adj* genmod? pp? rel?}
+          	outcases: {genmod: {gen}}}}
+
+% nouns with verbal complements
+
+defclass "cnoun_vc_id" {
+  dim id {out: {vzu? comp?}}}
+
+defclass "pname_id" {
+  dim id {in: {subj obj iobj genobj genmod cgenmod csubj cobj ciobj cgenobj}}}
+
+defclass "relpro_id" {
+  useclass "noun_id"}
+
+defclass "perpro_id" {
+  dim id {in: {subj obj iobj genobj genmod cc cgenmod csubj cobj ciobj cgenobj}}}
+
+%%! ID-Eintrag für Resumptivpronomen
+defclass "respro_id" {
+  dim id {in: {subj obj iobj genobj}
+          out: {res}}}
+
+defclass "frelpro_id" {
+  useclass "noun_id"
+  dim id {in: {subj obj iobj}}}
+
+%% determiners
+defclass "det_id" {
+  dim id {in: {det}}}
+
+%% praedikative
+defclass "pred_noun_id" {
+  dim id {in: {pred_noun}
+          out: {genmod?}
+          outcases: {genmod: {gen}}}}
+
+%% adjectives
+defclass "adj_id" {
+  dim id {in: {adj cadj}}}
+
+defclass "adj_cop_id" {
+  dim id {in: {adj_cop}
+          out: {genobj? iobj? iobjs?}
+          outcases: {genobj: {gen}
+		     iobj: {dat}}}}
+
+%% Adjektive mit "Korrelat-es" (eventuell mit adj_cop_id vereinigen)
+ defclass "pred_adj_id" {
+  dim id {in: {pred_adj}
+               out:{}}}
+
+defclass "adj_comp_id" {
+  dim id {out: {alsp?}}}
+
+%% prepositions
+defclass "prep_id" {
+  dim id {in: {pp cp}}}
+
+defclass "prep_obj_id" {
+  useclass "prep_id"
+  dim id {out: {obj}}}
+
+defclass "prep_iobj_id" {
+  useclass "prep_id"
+  dim id {out: {iobj}
+	outcases: {iobj:{dat}}}}
+
+defclass "prep_genobj_id" {
+  useclass "prep_id"
+  dim id {out: {genobj}}}
+
+%% Platzhalter  "Vorfeld-es"
+defclass "ph_vf_id" {
+  dim id {in:{ph}
+          out: {}}}
+
+%% Platzhalter "Korrelat-es" (wenn "re?" optional ist dann gibt es beim Vorfeld-es Probleme)
+defclass "ph_korr_id" {
+  dim id {in:{ph}
+          out: {re?}}}
+
+%% explikatives es 
+defclass "expl_id" {
+  dim id {in:{ep}
+          out: {}}}
+
+%% repeated Element bei Korrelat-es Konstruktionen
+defclass "rep_element_id" {
+  dim id {in: {re}
+                out:{zu? sub?}}}
+
+%% conjunction for coordinated sentences 
+defclass "con_sent_id" { 
+ dim id	 {in: {}
+                 out: {csent #{2 3}}}}
+
+%% conjunction with subjects
+defclass "con_subj_id" {
+  dim id {in: {subj}
+               out: {csubj #{2 3}}
+	outcases:{csubj: {nom}}}}
+
+%% conjunction with acc-objects
+defclass "con_obj_id" {
+  dim id { in: {obj}
+                out: {cobj #{2 3}}
+	outcases: {cobj: {acc}}}}
+
+%% conjunction with dative objects
+defclass "con_iobj_id" {
+  dim id {in: { iobj}
+               out: {ciobj#{2 3}}
+	outcases: {ciobj: {dat}}}}
+
+%% conjunction with genitive objects 
+defclass "con_genobj_id" {
+  dim id {in: {genobj}
+               out: {cgenobj #{2 3}}
+	outcases: {cgenobj: {gen}}}}
+
+%% conjunction with PP KON PP
+defclass "con_prep_id" {
+  dim id {in: {pp}
+               out: {cp#{2 3}}}}
+
+%% conjunction with P NP KON NP
+defclass "con_prep_2obj_id" {
+  dim id {in: {iobj}
+               out: {ciobj #{2 3}}}}
+
+%% conjunction with genitive modifier
+defclass "con_genmod_id" {
+  dim id  {in: {genmod}
+                out: {cgenmod#{2 3}}
+	outcases: {cgenmod: {gen}}}}
+
+%% conjunction with adjectives
+defclass "con_adj_id" {
+  dim id { in: {adj}
+                 out: {cadj#{2 3}}}}
+
+%% conjunctions with adverbs
+defclass "con_adv_id" {
+  dim id {in: {adv}
+               out: {cadv#{2 3}}}}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% lexical types: lp part (and id/lp)
+
+%% finite verbs
+defclass "fin_lp" {
+  dim lp {on: {v v12}
+          out: {mf* nf*} %% ###
+          blocks: bot}}
+
+defclass "verb_cop_lp" {
+  dim lp {in: {nf coord_sent1 coord_sent2}
+          on: {v v12}
+          out: {rvf? frvf? vf? mf*}}} %###neu: rvf?
+
+%% auxiliaries with "es"
+defclass "aux_es_lp" {
+  dim lp {on: {v12}
+          in: {coord_sent1 coord_sent2}
+          out: {vf? mf? vcf? nf?}}}
+
+%%! Imperativ
+defclass "vimp_lp" {
+  dim lp {on: {v12 coord_sent1 coord_sent2}
+          out: {mf* nf?}
+          blocks: bot}}
+
+%% finite verbs with "explikatives es"
+defclass "fin_expl_lp" {
+  dim lp {on: {v v12}
+          in: {nf coord_sent1 coord_sent2}}}
+
+%%! Vor-Vorfeld-Besetzung
+defclass "vvf_lp" {
+  dim lp {on: {v12}
+          out: {vvf mf*}
+          blocks: bot}}
+
+%%! vvf_lp hinzugefügt
+
+defclass "v12_lp" {
+  (useclass "fin_lp"|useclass "vvf_lp")
+  dim id {in: {csent}}
+  dim lp {in: {coord_sent1 coord_sent2}
+          on: {v12}
+          out: {vf? nf*}}}  %%###
+
+defclass "sub_lp" {
+  useclass "fin_lp"
+  dim id {in: {sub}}
+  dim lp {in: {nf}
+          on: {v}}}
+
+defclass "rel_lp" {
+  useclass "fin_lp"
+  dim id {in: {rel}}
+  dim lp {in: {nf}
+          on: {v}
+          out: {rvf}}}
+
+defclass "subjs_lp" {
+  useclass "fin_lp"
+  dim id {in: {subjs}
+	  cases: {nom acc dat}
+	  agrs: ($ sg &amp; third)}
+  dim lp {in: {vf nf mf}
+          on: {v}
+	  out: {frvf}}}
+
+defclass "objs_lp" {
+  useclass "fin_lp"
+  dim id {in: {objs}
+	  cases: {acc dat}}
+  dim lp {in: {vf nf mf}
+          on: {v}
+	  out: {frvf}}}
+
+defclass "iobjs_lp" {
+  useclass "fin_lp"
+  dim id {in: {iobjs}
+	  cases: {dat}}
+  dim lp {in: {vf nf mf}
+          on: {v}
+	  out: {frvf}}}
+
+%% non-finite verbs
+defclass "can_lp" {
+  dim lp {in: {vcf}
+          on: {v}
+          out: {vcf?}
+          blocks: {}}}
+
+defclass "noncan_lp" {
+  dim lp {in: {vf rvf if vxf}
+          on: {v}
+          out: {mf* vcf? vxf? nf?}
+          blocks: {adv pp}}}
+
+defclass "vc_nouns_lp" {
+  dim lp {in: {nf}
+	  on: {v}
+	  out: {mf* nf?}}}
+
+defclass "vzu_lp" {
+  dim lp {out: {pf}
+          blocks: {zu}}}
+
+%% complementisers
+defclass "comp_lp" {
+  dim lp {in: {vf nf}
+          on: {v}
+          out: {nf}}}
+
+%% adverbs
+defclass "adv_lp" {
+  dim lp {in: {vf mf nf coord1 coord2}  %%###
+          on: {v}}}
+
+%% zu-particles
+defclass "zu_lp" {
+  dim lp {in: {pf}
+          on: {v}}}
+
+%%wh-questions
+defclass "quest_lp" {
+  dim lp {in: {vf}
+          on: {n}}}
+
+defclass "quest_oa_lp" {
+  dim lp {in: {vf}
+          on: {n}}}
+
+%% fuer Konjunktionen veraendert
+%% nouns
+defclass "noun_lp" {
+  dim id {in: {cc subj obj iobj genobj genmod csubj cobj ciobj cgenobj cgenmod}}
+  dim lp {in: {vf frvf rvf mf nvf nxf coord1 coord2}
+          on: {n}}}
+
+%%! Neue Klasse für Nomen, die im Vor-Vorfeld stehen
+defclass "noun_vvf_lp" {
+  dim id {in: {res}}
+  dim lp {in: {vvf}
+          on: {n}}}
+
+defclass "cnoun_lp" {
+  (useclass "noun_lp"|useclass "noun_vvf_lp")
+  dim lp {in: {vvf vf rvf mf nvf nxf coord1 coord2}
+          out: {nvf? nmf* nxf? nf? cnmf?}
+          blocks: {det adj genmod pp}}}
+
+%%! Eigennamen können auch im Vor-Vorfeld stehen!
+defclass "pname_lp" { 
+  (useclass "noun_lp"|useclass "noun_vvf_lp")
+  dim lp {in: {vvf vf mf nvf nxf coord1 coord2}}}
+
+defclass "relpro_lp" {
+  useclass "noun_lp"
+  dim lp {in: {rvf mf nvf nxf}}}
+
+defclass "perpro_lp" { 
+  useclass "noun_lp"
+  dim lp {in: {vf mf nvf nxf coord1 coord2}}}
+
+%%! LP-Eintrag für Resumptivpronomen
+defclass "respro_lp" { 
+  dim lp {in: {vf mf}
+          on: {n}
+	  out: {}}}
+
+defclass "frelpro_lp" {
+  useclass "noun_lp"
+  dim lp {in: {frvf}}}
+
+%% determiners
+defclass "det_lp" {
+  dim lp {in: {nvf}
+          on: {n}}}
+
+%% praedikative
+defclass "pred_noun_lp" {
+  dim lp {in: {mf}
+          on: {n}
+          out: {mf?}}}
+
+%% adjectives
+defclass "adj_lp" {
+  dim lp {in: {nmf nmxf}
+          on: {n}}}
+
+defclass "adj_cop_lp" {
+  dim lp {in: {mf}
+          on: {n}
+          out: {mf?}}}
+
+%% adjectives with "es"
+defclass "pred_adj_lp" {
+  dim lp {in: {vcf}
+               out: {}
+          on: {v}}}
+
+%% prepositions
+defclass "prep_lp" {
+  dim lp {in: {vf rvf mf nxf coord1 coord2}
+          on: {n}
+          out: {nxf}
+          blocks: {obj iobj}}}
+
+defclass "prep_genobj_lp" { %Unterschied
+  dim lp {in: {vf rvf nxf nf} %ist mf in der liste, funktionieren alle S.M. Saetze
+          on: {n}
+          out: {nxf}
+          blocks: {genobj}}}
+
+%% Platzhalter fuer "Vorfeld-es"
+defclass "ph_vf_lp" {
+  dim lp {in: {vf}
+          on: {n}
+          out: {}}}
+
+%% Platzhalter fuer "Korrelat-es"
+defclass "ph_korr_lp" {
+ dim lp {in: {vf mf}
+          on: {n}
+          out: {}}}
+
+%% Explikatives es
+defclass "expl_lp" {
+ dim lp {in: {vf mf}
+          on: {n}
+          out: {}}}
+
+%% repeated elements bei Korrelat-es
+defclass "rep_element_lp" {
+  dim lp {in: {nf}
+          on: {v}
+          out: {nf? mf? pf?}}}
+
+%% conjunction with coordinated sentences
+defclass "con_sent_lp" {
+  dim lp { in: {nf}
+	on: {n}
+	out: {coord_sent1#{1 2} coord_sent2}
+	blocks: {csent}}}
+
+%% conjunction with subjects
+ defclass "con_subj_lp" {
+  dim lp {in: {vf mf}
+          on: {n}
+          out: {coord1#{1 2} coord2}
+          blocks: {csubj}}}
+
+%% conjunctions with  acc-obj, dat-obj, gen-obj, adverbs &amp; PP KON PP constructions
+defclass "con_general_lp" {
+  dim lp {in: {vf mf}
+          on: {n}
+          out: {coord1#{1 2} coord2}
+          blocks: {cobj ciobj cp}}}
+
+%% conjunction with  P NP KON NP
+defclass "con_prep_2obj_lp" {
+    dim lp {in:{nxf}
+            on :{n}
+            out: {coord1#{1 2} coord2}}}
+
+%% conjunction with genitive modifiers
+defclass "con_genmod_lp" {
+  dim lp {in: {nxf}
+          on: {n}
+          out: {coord1#{1 2} coord2}}}
+
+%% conjunction with adjectives
+defclass "con_adj_lp" {
+  dim lp {in: {cnmf}
+          on: {n}
+          out: {nmf#{1 2} nmxf}
+          blocks: {cadj}}}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% lexical types: additional stuff
+
+%% Die Trennung von vvfin, vmfin, vafin, etc. habe ich aufgehoben, 
+%% da es keine Unterschiede gab. 
+
+%% fin
+defclass "vfin" Word {
+ ( useclass "fin_id"|useclass "fin_es_id")
+  dim lex {word: Word}}
+
+defclass "expl_verb" Word {
+  useclass "fin_expl_id"
+ ( useclass"fin_expl_lp"&amp; (useclass "v12_lp" | useclass"sub_lp"))
+  dim lex {word: Word}}
+
+defclass "aux_es" Word {
+  useclass "aux_es_id"
+  useclass "aux_es_lp"
+  dim lex {word: Word}}
+
+%%! Imperativ
+defclass "vimp" Word {
+  useclass "vimp_id"
+  dim lex {word: Word}}
+
+%%! vafin wieder eingeführt, da es für Passiv-Konstruktionen 
+%%! wichtig ist  
+defclass "vaf" Word {
+  useclass "vafin_id"
+  dim lex {word: Word}}
+
+%% inf
+defclass "vinf" Word {
+  useclass "vinf_id"
+  dim lex {word: Word}}
+
+%% zu
+defclass "vizu" Word {
+  useclass "vzu_id"
+  useclass "vzu_lp"
+  dim lex {word: Word}}
+
+%% pp
+defclass "vpp" Word {
+  useclass "vpp_id"
+  dim lex {word: Word}}
+
+%%! Passiv 1 (werden, sein)
+defclass "vpass1" Word {
+  useclass "vpass1_id"
+  dim lex {word: Word}}
+
+%%! Passiv 2 (bekommen, kriegen)
+defclass "vpass2" Word {
+  useclass "vpass2_id"
+  dim lex {word: Word}}
+
+%% noncan
+defclass "front_lp" {
+  useclass "noncan_lp"
+  dim lp {in: {vf}}}
+
+defclass "piped_lp" {
+  useclass "noncan_lp"
+  dim lp {in: {rvf}}}
+
+defclass "intra_lp" {
+  useclass "noncan_lp"
+  dim lp {in: {if}}}
+
+defclass "extra_lp" {
+  useclass "noncan_lp"
+  dim lp {in: {vxf}}}
+
+%% coherence and incoherence
+defclass "oblco_lp" {
+  dim lp {out: {vcf?}}}
+
+defclass "oblinco_lp" {
+  dim lp {out: {if? vxf?}}}
+
+defclass "optco_lp" {
+  dim lp {out: {if? vcf? vxf?}}}
+
+%% separable verb prefixes
+defclass "vpref" Word Prefs {
+  dim id {in: {vpref}}
+  dim lp {in: {vcf}
+          on: {v}}
+  dim lex {word: Word}
+  dim id {prefs: Prefs}}
+
+defclass "v12_vpref" {
+  useclass "v12_lp"
+  dim id {out: {vpref}}
+  dim lp {out: {vcf?}}}
+
+defclass "comp" Word {
+  useclass "comp_id"
+  useclass "comp_lp"
+  dim lex {word: Word}}
+
+defclass "compcausal" Word {
+  useclass "compcausal_id"
+  useclass "comp_lp"
+  dim lex {word: Word}}
+
+defclass "adv" Word {
+  useclass "adv_id"
+  useclass "adv_lp"
+  dim lex {word: Word}}
+
+defclass "zu" Word {
+  useclass "zu_id"
+  useclass "zu_lp"
+  dim lex {word: Word}}
+
+defclass "quest" Word Agrs Cases {
+  useclass "quest_id"
+  useclass "quest_lp"
+  dim lex {word: Word}
+  dim id {agrs: Agrs
+          cases: Cases}}
+         
+defclass "quest_oa" Word {
+  useclass "quest_oa_id"
+  useclass "quest_oa_lp"
+  dim lex {word: Word}}
+
+%%! Singular-Nomen
+defclass "cnoun_sg" Word Agrs Cases Animated {
+  useclass "cnoun_sg_id"
+  useclass "cnoun_lp"
+  dim lex {word: Word}
+  dim id {agrs: Agrs
+          cases: Cases
+	  animated: Animated}}
+
+%%! Plural-Nomen
+defclass "cnoun_pl" Word Agrs Cases Animated {
+  useclass "cnoun_pl_id"
+  useclass "cnoun_lp"
+  dim lex {word: Word}
+  dim id {agrs: Agrs
+          cases: Cases
+          animated: Animated}}
+
+defclass "pname" Word Agrs Cases Animated {
+  useclass "pname_id"
+  useclass "pname_lp"
+  dim lex {word: Word}
+  dim id {agrs: Agrs
+          cases: Cases
+          animated: Animated}}
+
+defclass "relpro" Word Agrs Cases {
+  useclass "relpro_id"
+  useclass "relpro_lp"
+  dim lex {word: Word}
+  dim id {agrs: Agrs
+          cases: Cases}}
+
+defclass "perpro" Word Agrs Cases {
+  useclass "perpro_id"
+  useclass "perpro_lp"
+  dim lex {word: Word}
+  dim id {agrs: Agrs
+          cases: Cases}}
+
+%%! ID/LP-Eintrag für Resumptivpronomen
+defclass "respro" Word Agrs Cases {
+  useclass "respro_id"
+  useclass "respro_lp"
+  dim lex {word: Word}
+  dim id {agrs: Agrs
+	  cases: Cases}}
+
+defclass "frelpro" Word Agrs Cases {
+  useclass "frelpro_id"
+  useclass "frelpro_lp"
+  dim lex {word: Word}
+  dim id {agrs: Agrs
+          cases: Cases}}
+
+defclass "det" Word Agrs Cases {
+  useclass "det_id"
+  useclass "det_lp"
+  dim lex {word: Word}
+  dim id {agrs: Agrs
+          cases: Cases}}
+
+defclass "adj" Word Agrs Cases {
+  useclass "adj_id"
+  useclass "adj_lp"
+  dim lex {word: Word}
+  dim id {agrs: Agrs
+          cases: Cases}}
+
+%% praedikative
+
+defclass "pred_noun" Word Agrs Cases Animated {
+  useclass "pred_noun_id"
+  useclass "pred_noun_lp"
+  dim lex {word: Word}
+  dim id {agrs: Agrs
+          cases: Cases
+          animated: Animated}}
+
+defclass "adj_cop" Word {
+  useclass "adj_cop_id"
+  useclass "adj_cop_lp"
+  dim lex {word: Word}}
+
+defclass "pred_adj" Word {
+  useclass "pred_adj_id"
+  useclass "pred_adj_lp"
+  dim lex {word: Word}}
+
+defclass "prep_obj" Word {
+  useclass "prep_obj_id"
+  useclass "prep_lp"
+  dim lex {word: Word}}
+
+defclass "prep_iobj" Word {
+  useclass "prep_iobj_id"
+  useclass "prep_lp"
+  dim lex {word: Word}}
+
+defclass "prep_genobj" Word { %Unterschied
+  useclass "prep_genobj_id"
+  useclass "prep_genobj_lp"
+  dim lex {word: Word}}
+
+defclass "placeholder_es" Word{
+  useclass "ph_vf_id"
+  useclass "ph_vf_lp"
+  dim lex {word: Word}}
+
+defclass "explikatives_es" Word{
+  useclass "expl_id"
+  useclass "expl_lp"
+  dim lex {word: Word}}
+
+defclass "korrelat_es" Word{
+  useclass "ph_korr_id"
+  useclass "ph_korr_lp"
+  dim lex {word: Word}}
+
+defclass "rep_element" Word {
+  useclass "rep_element_id"
+  useclass "rep_element_lp"
+  dim lex {word: Word}}
+
+defclass "con_sent" Word {
+  useclass "con_sent_id"
+  useclass "con_sent_lp"
+  dim lex {word: Word}}
+
+defclass "con_subj" Word {
+  useclass "con_subj_id"
+  useclass "con_subj_lp"
+  dim lex {word: Word}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defclass "con_obj" Word {
+  useclass "con_obj_id"
+  useclass "con_general_lp"
+  dim lex {word: Word}}
+
+defclass "con_genobj" Word {
+  useclass "con_genobj_id"
+  useclass "con_general_lp"
+  dim lex {word: Word}}
+
+defclass "con_iobj" Word {
+  useclass "con_iobj_id"
+  useclass "con_general_lp"
+  dim lex {word: Word}}
+
+defclass "con_prep" Word {
+  useclass "con_prep_id"
+  useclass "con_general_lp"
+  dim lex {word: Word}}
+
+%% conjunction for P NP KON NP
+defclass "con_prep_2obj" Word {
+  useclass "con_prep_2obj_id"
+  useclass "con_prep_2obj_lp"
+  dim lex {word: Word}}
+
+defclass "con_genmod" Word {
+  useclass "con_genmod_id"
+  useclass "con_genmod_lp"
+  dim lex {word: Word}}
+
+defclass "con_adj" Word {
+  useclass "con_adj_id"
+  useclass "con_adj_lp"
+  dim lex {word: Word}}
+
+defclass "con_adv" Word {
+  useclass "con_adv_id"
+  useclass "con_general_lp"
+  dim lex {word: Word}}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% lexical entries
+
+%% complementisers
+defentry { useclass "comp" {Word: "dass"} }
+defentry { useclass "compcausal" {Word: "weil"} }
+defentry { useclass "compcausal" {Word: "obwohl"} }
+
+%% adverbs
+%%defentry { useclass "adv" {Word: "sehr"} }
+%%defentry { useclass "adv" {Word: "oft"} }
+%%defentry { useclass "adv" {Word: "nicht"} }
+%%defentry { useclass "adv" {Word: "heute"} }
+defentry { useclass "adv" {Word: "morgen"} }
+
+
+defentry { useclass "adv" {Word: "sehr"} 
+           dim id {advs: {adv_1}}}
+defentry { useclass "adv" {Word: "oft"}
+           dim id {advs: {adv_2}}}
+defentry { useclass "adv" {Word: "gern"}
+	   dim id {advs: {adv_2}}}
+defentry { useclass "adv" {Word: "leider"}
+	   dim id {advs: {adv_2}}}
+defentry { useclass "adv" {Word: "heute"} 
+	   dim id {advs: {adv_2}}}
+defentry { useclass "adv" {Word: "dummerweise"}
+           dim id {advs: {adv_2}}}
+defentry { useclass "adv" {Word: "rasch"}
+           dim id {advs: {adv_2}}}
+defentry { useclass "adv" {Word: "nicht"}
+	   dim id {advs: {adv_3}}}
+defentry { useclass "adv" {Word: "wieder"}
+           dim id {advs: {adv_4}}}
+defentry { useclass "adv" {Word: "sorgfaeltig"}
+           dim id {advs: {adv_5}}}
+
+
+%% zu-particle
+defentry { useclass "zu" {Word: "zu"} }
+ 
+defentry {
+  useclass "quest" {Word: "wer"
+                    Agrs: ($ (masc|fem) &amp; third &amp; sg)
+                    Cases: {nom}}}
+
+defentry {
+  useclass "quest" {Word: "wem"
+                    Agrs: ($ (masc|fem) &amp; third &amp; sg)
+                    Cases: {dat}}}
+
+defentry {
+  useclass "quest" {Word: "wen"
+                    Agrs: ($ (masc|fem) &amp; third &amp; sg)
+                    Cases: {acc}}}
+
+defentry {
+  useclass "quest" {Word: "wessen"
+                    Agrs: ($ (masc|fem|neut) &amp; third &amp; sg)
+                    Cases: {gen}}}
+
+defentry {
+  useclass "quest" {Word: "was"
+                    Agrs: ($ neut &amp; third &amp; sg)
+                    Cases: {nom acc}}}
+
+defentry {
+  useclass "quest_oa" {Word: "warum"}}
+
+defentry {
+  useclass "quest_oa" {Word: "wo"}}
+
+defentry {
+  useclass "quest_oa" {Word: "wann"}}
+
+
+%% nouns
+
+defentry {
+  useclass "cnoun_sg" {Word: "mann"
+                       Agrs: ($ masc &amp; third &amp; sg)
+                       Cases: {nom dat acc}
+                       Animated: {anim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "manne"
+                       Agrs: ($ masc &amp; third &amp; sg)
+                       Cases: {dat}
+	               Animated: {anim}}}
+defentry {
+  useclass "cnoun_sg" {Word: "mannes"
+                       Agrs: ($ masc &amp; third &amp; sg)
+                       Cases: {gen}
+		       Animated: {anim}}}
+defentry {
+  useclass "cnoun_sg" {Word: "manns"
+                       Agrs: ($ masc &amp; third &amp; sg)
+                       Cases: {gen}
+		       Animated: {anim}}}
+defentry {
+  useclass "cnoun_pl" {Word: "maenner"
+                       Agrs: ($ masc &amp; third &amp; pl)
+                       Cases: {nom gen acc}
+                       Animated: {anim}}}
+defentry {
+  useclass "cnoun_pl" {Word: "maennern"
+                       Agrs: ($ masc &amp; third &amp; pl)
+                       Cases: {dat}
+		       Animated: {anim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "nazi"
+                       Agrs: ($ masc &amp; third &amp; sg)
+                       Cases: {nom dat acc}
+                       Animated: {anim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "nazis"
+                       Agrs: ($ masc &amp; third &amp; sg)
+                       Cases: {gen}
+		       Animated: {anim}}}
+
+defentry {
+  useclass "cnoun_pl" {Word: "nazis"
+                       Agrs: ($ masc &amp; third &amp; pl)
+                       Cases: {nom gen dat acc}
+                       Animated: {anim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "tadel"
+                       Agrs: ($ masc &amp; third &amp; sg)
+                       Cases: {nom dat acc}
+                       Animated: {nonanim}}}                    
+
+defentry {
+  useclass "cnoun_sg" {Word: "tadels"
+                       Agrs: ($ masc &amp; third &amp; sg)
+                       Cases: {gen}
+                       Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "roman"
+                       Agrs: ($ masc &amp; third &amp; sg)
+                       Cases: {nom dat acc}
+                       Animated: {nonanim}}}
+defentry {
+  useclass "cnoun_sg" {Word: "romans"
+                       Agrs: ($ masc &amp; third &amp; sg)
+                       Cases: {gen}
+		       Animated: {nonanim}}}
+defentry {
+  useclass "cnoun_pl" {Word: "romane"
+                       Agrs: ($ masc &amp; third &amp; pl)
+                       Cases: {nom gen acc}
+		       Animated: {nonanim}}}
+defentry {
+  useclass "cnoun_pl" {Word: "romanen"
+                       Agrs: ($ masc &amp; third &amp; pl)
+                       Cases: {dat}
+ 		       Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "korb"
+                       Agrs: ($ masc &amp; third &amp; sg)
+                       Cases: {nom dat acc}
+		       Animated: {nonanim}}}
+defentry {
+  useclass "cnoun_sg" {Word: "korbe"
+                       Agrs: ($ masc &amp; third &amp; sg)
+                       Cases: {dat}
+		       Animated: {nonanim}}}
+defentry {
+  useclass "cnoun_sg" {Word: "korbes"
+                       Agrs: ($ masc &amp; third &amp; sg)
+                       Cases: {gen}
+		       Animated: {nonanim}}}
+defentry {
+  useclass "cnoun_sg" {Word: "korbs"
+                       Agrs: ($ masc &amp; third &amp; sg)
+                       Cases: {gen}
+		       Animated: {nonanim}}}
+defentry {
+  useclass "cnoun_pl" {Word: "koerbe"
+                       Agrs: ($ masc &amp; third &amp; pl)
+                       Cases: {nom gen acc}
+		       Animated: {nonanim}}}
+defentry {
+  useclass "cnoun_pl" {Word: "koerben"
+                       Agrs: ($ masc &amp; third &amp; pl)
+                       Cases: {dat}
+		       Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "mord"
+                    Agrs: ($ masc &amp; third &amp; sg)
+                    Cases: {nom dat acc}
+                    Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "mordes"
+                    Agrs: ($ masc &amp; third &amp; sg)
+                    Cases: {gen}
+                    Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "richter"
+                       Agrs: ($ masc &amp; third &amp; sg)
+                       Cases: {nom dat acc}
+                       Animated: {anim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "richters"
+                       Agrs: ($ masc &amp; third &amp; sg)
+                       Cases: {gen}
+                       Animated: {anim}}}
+
+defentry {
+  useclass "cnoun_pl" {Word: "richter"
+                       Agrs: ($ masc &amp; third &amp; pl)
+                       Cases: {nom gen acc}
+                       Animated: {anim}}}
+
+defentry {
+  useclass "cnoun_pl" {Word: "richtern"
+                       Agrs: ($ masc &amp; third &amp; pl)
+                       Cases: {dat}
+                       Animated: {anim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "frau"
+                       Agrs: ($ fem &amp; third &amp; sg)
+                       Cases: top
+                       Animated: {anim}}}
+
+defentry {
+  useclass "cnoun_pl" {Word: "frauen"
+                       Agrs: ($ fem &amp; third &amp; pl)
+                       Cases: top
+                       Animated: {anim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "tat"
+                       Agrs: ($ fem &amp; third &amp; sg)
+                       Cases: top
+                       Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_pl" {Word: "taten"
+                       Agrs: ($ fem &amp; third &amp; pl)
+                       Cases: top
+                       Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "haus"
+                       Agrs: ($ neut &amp; third &amp; sg)
+                       Cases: {nom dat acc}
+                       Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "hause"
+                       Agrs: ($ neut &amp; third &amp; sg)
+                       Cases: {dat}
+                       Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "hauses"
+                       Agrs: ($ neut &amp; third &amp; sg)
+                       Cases: {gen}
+                       Animated: {nonanim}}}
+defentry {
+  useclass "cnoun_pl" {Word: "haeuser"
+                       Agrs: ($ neut &amp; third &amp; pl)
+                       Cases: {nom gen acc}
+                       Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_pl" {Word: "haeusern"
+                       Agrs: ($ neut &amp; third &amp; pl)
+                       Cases: {dat}
+                       Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "anstrich"
+                       Agrs: ($ neut &amp; third &amp; sg)
+                       Cases: {nom dat acc}
+                       Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "anstriche"
+                       Agrs: ($ neut &amp; third &amp; sg)
+                       Cases: {dat}
+                       Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "anstriches"
+                       Agrs: ($ neut &amp; third &amp; sg)
+                       Cases: {gen}
+                       Animated: {nonanim}}}
+defentry {
+  useclass "cnoun_sg" {Word: "anstrichs"
+                       Agrs: ($ neut &amp; third &amp; sg)
+                       Cases: {gen}
+                       Animated: {nonanim}}}
+defentry {
+  useclass "cnoun_pl" {Word: "anstriche"
+                       Agrs: ($ neut &amp; third &amp; pl)
+                       Cases: {nom gen acc}
+                       Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_pl" {Word: "anstrichen"
+                       Agrs: ($ neut &amp; third &amp; pl)
+                       Cases: {dat}
+                       Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "buch"
+                       Agrs: ($ neut &amp; third &amp; sg)
+                       Cases: {nom dat acc}
+                       Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "buche"
+                       Agrs: ($ neut &amp; third &amp; sg)
+                       Cases: {dat}
+                       Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "buches"
+                       Agrs: ($ neut &amp; third &amp; sg)
+                       Cases: {gen}
+                       Animated: {nonanim}}}
+defentry {
+  useclass "cnoun_sg" {Word: "buchs"
+                       Agrs: ($ neut &amp; third &amp; sg)
+                       Cases: {gen}
+                       Animated: {nonanim}}}
+defentry {
+  useclass "cnoun_pl" {Word: "buecher"
+                       Agrs: ($ neut &amp; third &amp; pl)
+                       Cases: {nom gen acc}
+                       Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_pl" {Word: "buechern"
+                       Agrs: ($ neut &amp; third &amp; pl)
+                       Cases: {dat}
+                       Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "teleskop"
+                       Agrs: ($ neut &amp; third &amp; sg)
+                       Cases: {nom dat acc}
+                       Animated: {nonanim}}}
+                       
+defentry {
+  useclass "cnoun_sg" {Word: "teleskops"
+                       Agrs: ($ neut &amp; third &amp; sg)
+                       Cases: {gen}
+                       Animated: {nonanim}}}
+defentry {
+  useclass "cnoun_pl" {Word: "teleskope"
+                       Agrs: ($ neut &amp; third &amp; pl)
+                       Cases: {nom gen acc}
+                       Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_pl" {Word: "teleskopen"
+                       Agrs: ($ neut &amp; third &amp; pl)
+                       Cases: {dat}
+                       Animated: {nonanim}}}
+
+defentry {
+  useclass "cnoun_sg" {Word: "versprechen"
+                       Agrs: ($ neut &amp; third &amp; sg)
+                       Cases: {nom dat acc}
+                       Animated: {nonanim}}
+  useclass "cnoun_vc_id"}
+
+defentry {
+  useclass "cnoun_sg" {Word: "versprechens"
+                       Agrs: ($ neut &amp; third &amp; sg)
+                       Cases: {gen}
+                       Animated: {nonanim}}
+  useclass "cnoun_vc_id"}
+
+defentry {
+  useclass "cnoun_pl" {Word: "versprechen"
+                       Agrs: ($ neut &amp; third &amp; pl)
+                       Cases: {nom gen dat acc}
+                       Animated: {nonanim}}
+  useclass "cnoun_vc_id"}
+
+defentry {
+  useclass "pname" {Word: "peter"
+                    Agrs: ($ masc &amp; sg &amp; third)
+                    Cases: {nom dat acc}
+		    Animated: {anim}}}
+
+defentry {
+  useclass "pname" {Word: "peters"
+                    Agrs: ($ masc &amp; sg &amp; third)
+                    Cases: {gen}
+		    Animated: {anim}}}
+
+defentry {
+  useclass "pname" {Word: "hans"
+                    Agrs: ($ masc &amp; sg &amp; third)
+                    Cases: {nom gen dat acc}
+		    Animated: {anim}}}
+
+defentry {
+  useclass "pname" {Word: "maria"
+                    Agrs: ($ fem &amp; sg &amp; third)
+                    Cases: {nom dat acc}
+		    Animated: {anim}}}
+
+defentry {
+  useclass "pname" {Word: "marias"
+                    Agrs: ($ fem &amp; sg &amp; third)
+                    Cases: {gen}
+		    Animated: {anim}}}
+
+defentry {
+  useclass "pname" {Word: "jemand"
+                    Agrs: ($ (masc|fem) &amp; sg &amp; third)
+                    Cases: {nom dat acc}
+		    Animated: {anim}}}
+
+%% relative pronouns
+defentry {
+  useclass "relpro" {Word: "der"
+                     Agrs: ($ masc &amp; sg)
+                     Cases: {nom}}}
+defentry {
+  useclass "relpro" {Word: "der"
+                     Agrs: ($ fem &amp; sg)
+                     Cases: {dat}}}
+defentry {
+  useclass "relpro" {Word: "dessen"
+                     Agrs: ($ (masc|neut) &amp; sg)
+                     Cases: {gen}}}
+defentry {
+  useclass "relpro" {Word: "dem"
+                     Agrs: ($ (masc|neut) &amp; sg)
+                     Cases: {dat}}}
+defentry {
+  useclass "relpro" {Word: "den"
+                     Agrs: ($ masc &amp; sg)
+                     Cases: {acc}}}
+defentry {
+  useclass "relpro" {Word: "den"
+                     Agrs: $ pl
+                     Cases: {dat}}}
+defentry {
+  useclass "relpro" {Word: "die"
+                     Agrs: ($ fem &amp; sg)
+                     Cases: {nom acc}}}
+defentry {
+  useclass "relpro" {Word: "die"
+                     Agrs: $ pl
+                     Cases: {nom acc}}}
+defentry {
+  useclass "relpro" {Word: "deren"
+                     Agrs: ($ fem &amp; sg)
+                     Cases: {gen}}}
+defentry {
+  useclass "relpro" {Word: "deren"
+                     Agrs: $ pl
+                     Cases: {gen}}}
+defentry {
+  useclass "relpro" {Word: "das"
+                     Agrs: ($ neut &amp; sg)
+                     Cases: {nom acc}}}
+
+%% free relative pronouns
+
+defentry {
+  useclass "frelpro" {Word: "wer"
+                      Agrs: ($ (masc|fem) &amp; sg)
+		      Cases: {nom}}}
+
+defentry {
+  useclass "frelpro" {Word: "was"
+                      Agrs: ($ neut &amp; sg)
+		      Cases: {nom acc}}}
+
+defentry {
+  useclass "frelpro" {Word: "wen"
+                      Agrs: ($ (masc|fem) &amp; sg)
+ 		      Cases: {acc}}}
+
+defentry {
+  useclass "frelpro" {Word: "wem"
+                      Agrs: ($ sg)
+		      Cases: {dat}}}
+
+%% personal pronouns
+defentry {
+  useclass "perpro" {Word: "er"
+                     Agrs: ($ masc &amp; third &amp; sg)
+                     Cases: {nom}}}
+defentry {
+  useclass "perpro" {Word: "sie"
+                     Agrs: ($ fem &amp; third &amp; sg)
+                     Cases: {nom}}}
+defentry {
+  useclass "perpro" {Word: "es"
+                     Agrs: ($ neut &amp; third &amp; sg)
+                     Cases: {nom}}}
+defentry {
+  useclass "perpro" {Word: "mir"
+                     Agrs: ($ first &amp; sg)
+                     Cases: {dat}}}
+defentry {
+  useclass "perpro" {Word: "mich"
+                     Agrs: ($ first &amp; sg)
+                     Cases: {acc}}}
+defentry {
+  useclass "perpro" {Word: "dir"
+                     Agrs: ($ second &amp; sg)
+                     Cases: {dat}}}
+defentry {
+  useclass "perpro" {Word: "dich"
+                     Agrs: ($ second &amp; sg)
+                     Cases: {acc}}}
+defentry {
+  useclass "perpro" {Word: "ihm"
+                     Agrs: ($ (masc|neut) &amp; third &amp; sg)
+                     Cases: {dat}}}
+defentry {
+  useclass "perpro" {Word: "ihn"
+                     Agrs: ($ masc &amp; third &amp; sg)
+                     Cases: {acc}}}
+defentry {
+  useclass "perpro" {Word: "ihr"
+                     Agrs: ($ fem &amp; third &amp; sg)
+                     Cases: {dat}}}
+defentry {
+  useclass "perpro" {Word: "sie"
+                     Agrs: ($ fem &amp; third &amp; sg)
+                     Cases: {acc}}}
+defentry {
+  useclass "perpro" {Word: "es"
+                     Agrs: ($ neut &amp; third &amp; sg)
+                     Cases: {acc}}}
+defentry {
+  useclass "perpro" {Word: "uns"
+                     Agrs: ($ first &amp; pl)
+                     Cases: {dat acc}}}
+defentry {
+  useclass "perpro" {Word: "euch"
+                     Agrs: ($ second &amp; pl)
+                     Cases: {dat acc}}}
+defentry {
+  useclass "perpro" {Word: "ihnen"
+                     Agrs: ($ third &amp; pl)
+                     Cases: {dat}}}
+
+%%! resumptive pronouns
+
+defentry {
+  useclass "respro" {Word: "der"
+                  Agrs: ($ masc &amp; sg)
+                  Cases: {nom}}}
+defentry {
+  useclass "respro" {Word: "der"
+                  Agrs: ($ fem &amp; sg)
+                  Cases: {dat}}}
+defentry {
+  useclass "respro" {Word: "derer"
+                  Agrs: ($ fem &amp; sg)
+                  Cases: {gen}}}
+defentry {
+  useclass "respro" {Word: "deren"
+                  Agrs: ($ pl)
+                  Cases: {gen}}}
+defentry {
+  useclass "respro" {Word: "den"
+                  Agrs: ($ masc &amp; sg)
+                  Cases: {acc}}}
+defentry {
+  useclass "respro" {Word: "denen"
+                  Agrs: ($ pl)
+                  Cases: {dat}}}
+defentry {
+  useclass "respro" {Word: "dem"
+                  Agrs: ($ (masc|neut) &amp; sg)
+                  Cases: {dat}}}
+defentry {
+  useclass "respro" {Word: "dessen"
+                  Agrs: ($ (masc|neut) &amp; sg)
+                  Cases: {gen}}}
+defentry {
+  useclass "respro" {Word: "das"
+                  Agrs: ($ neut &amp; sg)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "respro" {Word: "die"
+                  Agrs: ($ fem &amp; sg)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "respro" {Word: "die"
+                  Agrs: ($ pl)
+                  Cases: {nom acc}}}
+
+
+%% determiners
+defentry {
+  useclass "det" {Word: "ein"
+                  Agrs: ($ masc &amp; sg &amp; indef)
+                  Cases: {nom}}}
+defentry {
+  useclass "det" {Word: "ein"
+                  Agrs: ($ neut &amp; sg &amp; indef)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "det" {Word: "einen"
+                  Agrs: ($ masc &amp; sg &amp; indef)
+                  Cases: {acc}}}
+defentry {
+  useclass "det" {Word: "einem"
+                  Agrs: ($ (masc|neut) &amp; sg &amp; indef)
+                  Cases: {dat}}}
+defentry {
+  useclass "det" {Word: "eines"
+                  Agrs: ($ (masc|neut) &amp; sg &amp; indef)
+                  Cases: {gen}}}
+defentry {
+  useclass "det" {Word: "eine"
+                  Agrs: ($ fem &amp; sg &amp; indef)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "det" {Word: "einer"
+                  Agrs: ($ fem &amp; sg &amp; indef)
+                  Cases: {gen dat}}}
+
+defentry {
+  useclass "det" {Word: "kein"
+                  Agrs: ($ masc &amp; sg &amp; indef)
+                  Cases: {nom}}}
+defentry {
+  useclass "det" {Word: "kein"
+                  Agrs: ($ neut &amp; sg &amp; indef)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "det" {Word: "keinen"
+                  Agrs: ($ masc &amp; sg &amp; indef)
+                  Cases: {acc}}}
+defentry {
+  useclass "det" {Word: "keinem"
+                  Agrs: ($ (masc|neut) &amp; sg &amp; indef)
+                  Cases: {dat}}}
+defentry {
+  useclass "det" {Word: "keines"
+                  Agrs: ($ (masc|neut) &amp; sg &amp; indef)
+                  Cases: {gen}}}
+defentry {
+  useclass "det" {Word: "keine"
+                  Agrs: ($ fem &amp; sg &amp; indef)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "det" {Word: "keiner"
+                  Agrs: ($ fem &amp; sg &amp; indef)
+                  Cases: {dat gen}}}
+defentry {
+  useclass "det" {Word: "keine"
+                  Agrs: ($ pl &amp; indef)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "det" {Word: "keinen"
+                  Agrs: ($ pl &amp; indef)
+                  Cases: {dat}}}
+defentry {
+  useclass "det" {Word: "keiner"
+                  Agrs: ($ pl &amp; indef)
+                  Cases: {gen}}}
+
+defentry {
+  useclass "det" {Word: "der"
+                  Agrs: ($ masc &amp; sg &amp; def)
+                  Cases: {nom}}}
+defentry {
+  useclass "det" {Word: "der"
+                  Agrs: ($ fem &amp; sg &amp; def)
+                  Cases: {dat gen}}}
+defentry {
+  useclass "det" {Word: "der"
+                  Agrs: ($ pl &amp; def)
+                  Cases: {gen}}}
+defentry {
+  useclass "det" {Word: "den"
+                  Agrs: ($ masc &amp; sg &amp; def)
+                  Cases: {acc}}}
+defentry {
+  useclass "det" {Word: "den"
+                  Agrs: ($ pl &amp; def)
+                  Cases: {dat}}}
+defentry {
+  useclass "det" {Word: "dem"
+                  Agrs: ($ (masc|neut) &amp; sg &amp; def)
+                  Cases: {dat}}}
+defentry {
+  useclass "det" {Word: "des"
+                  Agrs: ($ (masc|neut) &amp; sg &amp; def)
+                  Cases: {gen}}}
+defentry {
+  useclass "det" {Word: "das"
+                  Agrs: ($ neut &amp; sg &amp; def)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "det" {Word: "die"
+                  Agrs: ($ fem &amp; sg &amp; def)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "det" {Word: "die"
+                  Agrs: ($ pl &amp; def)
+                  Cases: {nom acc}}}
+
+%% adjectives
+%% undef
+defentry {
+  useclass "adj" {Word: "kleiner"
+                  Agrs: ($ masc &amp; sg &amp; undef)
+                  Cases: {nom}}}
+defentry {
+  useclass "adj" {Word: "kleiner"
+                  Agrs: ($ fem &amp; sg &amp; undef)
+                  Cases: {gen dat}}}
+defentry {
+  useclass "adj" {Word: "kleines"
+                  Agrs: ($ neut &amp; sg &amp; undef)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "adj" {Word: "kleinen"
+                  Agrs: ($ masc &amp; sg &amp; undef)
+                  Cases: {gen acc}}}
+defentry {
+  useclass "adj" {Word: "kleinen"
+                  Agrs: ($ neut &amp; sg &amp; undef)
+                  Cases: {gen}}}
+defentry {
+  useclass "adj" {Word: "kleinen"
+                  Agrs: ($ pl &amp; undef)
+                  Cases: {dat}}}
+defentry {
+  useclass "adj" {Word: "kleinem"
+                  Agrs: ($ (masc|neut) &amp; sg &amp; undef)
+                  Cases: {dat}}}
+defentry {
+  useclass "adj" {Word: "kleine"
+                  Agrs: ($ fem &amp; sg &amp; undef)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "adj" {Word: "kleine"
+                  Agrs: ($ pl &amp; undef)
+                  Cases: {nom acc}}}
+
+%% undef comparativ
+defentry {
+  useclass "adj" {Word: "kleinerer"
+                  Agrs: ($ masc &amp; sg &amp; undef)
+                  Cases: {nom}}
+  useclass "adj_comp_id"}
+
+defentry {
+  useclass "adj" {Word: "kleinerer"
+                  Agrs: ($ fem &amp; sg &amp; undef)
+                  Cases: {gen dat}}
+  useclass "adj_comp_id"}
+
+defentry {
+  useclass "adj" {Word: "kleineres"
+                  Agrs: ($ neut &amp; sg &amp; undef)
+                  Cases: {nom acc}} 
+  useclass "adj_comp_id"}
+
+defentry {
+  useclass "adj" {Word: "kleineren"
+                  Agrs: ($ masc &amp; sg &amp; undef)
+                  Cases: {gen acc}}
+  useclass "adj_comp_id"}
+
+defentry {
+  useclass "adj" {Word: "kleineren"
+                  Agrs: ($ neut &amp; sg &amp; undef)
+                  Cases: {gen}}
+  useclass "adj_comp_id"}
+
+defentry {
+  useclass "adj" {Word: "kleineren"
+                  Agrs: ($ pl &amp; undef)
+                  Cases: {dat}}
+  useclass "adj_comp_id"}
+
+defentry {
+  useclass "adj" {Word: "kleinerem"
+                  Agrs: ($ (masc|neut) &amp; sg &amp; undef)
+                  Cases: {dat}}
+  useclass "adj_comp_id"}
+
+defentry {
+  useclass "adj" {Word: "kleinere"
+                  Agrs: ($ fem &amp; sg &amp; undef)
+                  Cases: {nom acc}}
+  useclass "adj_comp_id"}
+
+defentry {
+  useclass "adj" {Word: "kleinere"
+                  Agrs: ($ pl &amp; undef)
+                  Cases: {nom acc}}
+  useclass "adj_comp_id"}
+
+%% def
+defentry {
+  useclass "adj" {Word: "kleine"
+                  Agrs: ($ masc &amp; sg &amp; def)
+                  Cases: {nom}}}
+defentry {
+  useclass "adj" {Word: "kleine"
+                  Agrs: ($ (neut|fem) &amp; sg &amp; def)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "adj" {Word: "kleinen"
+                  Agrs: ($ (neut|fem) &amp; sg &amp; def)
+                  Cases: {gen dat}}}
+defentry {
+  useclass "adj" {Word: "kleinen"
+                  Agrs: ($ (neut|fem) &amp; sg &amp; def)
+                  Cases: {gen dat}}}
+defentry {
+  useclass "adj" {Word: "kleinen"
+                  Agrs: ($ pl &amp; def)
+                  Cases: top}}
+
+%% def comparativ
+defentry {
+  useclass "adj" {Word: "kleinere"
+                  Agrs: ($ masc &amp; sg &amp; def)
+                  Cases: {nom}}
+  useclass "adj_comp_id"}
+
+defentry {
+  useclass "adj" {Word: "kleinere"
+                  Agrs: ($ (neut|fem) &amp; sg &amp; def)
+                  Cases: {nom acc}}
+  useclass "adj_comp_id"}
+
+defentry {
+  useclass "adj" {Word: "kleineren"
+                  Agrs: ($ (neut|fem) &amp; sg &amp; def)
+                  Cases: {gen dat}}
+  useclass "adj_comp_id"}
+
+defentry {
+  useclass "adj" {Word: "kleineren"
+                  Agrs: ($ (neut|fem) &amp; sg &amp; def)
+                  Cases: {gen dat}}
+  useclass "adj_comp_id"}
+
+defentry {
+  useclass "adj" {Word: "kleineren"
+                  Agrs: ($ pl &amp; def)
+                  Cases: top}
+  useclass "adj_comp_id"}
+
+%% indef
+defentry {
+  useclass "adj" {Word: "kleiner"
+                  Agrs: ($ masc &amp; sg &amp; indef)
+                  Cases: {nom}}}
+defentry {
+  useclass "adj" {Word: "kleinen"
+                  Agrs: ($ masc &amp; sg &amp; indef)
+                  Cases: {gen dat acc}}}
+defentry {
+  useclass "adj" {Word: "kleinen"
+                  Agrs: ($ (neut|fem) &amp; sg &amp; indef)
+                  Cases: {gen dat}}}
+defentry {
+  useclass "adj" {Word: "kleinen"
+                  Agrs: ($ pl &amp; indef)
+                  Cases: top}}
+defentry {
+  useclass "adj" {Word: "kleines"
+                  Agrs: ($ neut &amp; sg &amp; indef)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "adj" {Word: "kleine"
+                  Agrs: ($ fem &amp; sg &amp; indef)
+                  Cases: {nom acc}}}
+
+%% indef comparativ
+defentry {
+  useclass "adj" {Word: "kleinerer"
+                  Agrs: ($ masc &amp; sg &amp; indef)
+                  Cases: {nom}}
+  useclass "adj_comp_id"}
+
+defentry {
+  useclass "adj" {Word: "kleineren"
+                  Agrs: ($ masc &amp; sg &amp; indef)
+                  Cases: {gen dat acc}}
+  useclass "adj_comp_id"}
+
+defentry {
+  useclass "adj" {Word: "kleineren"
+                  Agrs: ($ (neut|fem) &amp; sg &amp; indef)
+                  Cases: {gen dat}}
+  useclass "adj_comp_id"}
+
+defentry {
+  useclass "adj" {Word: "kleineren"
+                  Agrs: ($ pl &amp; indef)
+                  Cases: top}
+  useclass "adj_comp_id"}
+
+defentry {
+  useclass "adj" {Word: "kleineres"
+                  Agrs: ($ neut &amp; sg &amp; indef)
+                  Cases: {nom acc}}
+  useclass "adj_comp_id"}
+
+defentry {
+  useclass "adj" {Word: "kleinere"
+                  Agrs: ($ fem &amp; sg &amp; indef)
+                  Cases: {nom acc}}
+  useclass "adj_comp_id"}
+
+%% undef
+defentry {
+  useclass "adj" {Word: "huebscher"
+                  Agrs: ($ masc &amp; sg &amp; undef)
+                  Cases: {nom}}}
+defentry {
+  useclass "adj" {Word: "huebscher"
+                  Agrs: ($ fem &amp; sg &amp; undef)
+                  Cases: {gen dat}}}
+defentry {
+  useclass "adj" {Word: "huebsches"
+                  Agrs: ($ neut &amp; sg &amp; undef)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "adj" {Word: "huebschen"
+                  Agrs: ($ masc &amp; sg &amp; undef)
+                  Cases: {gen acc}}}
+defentry {
+  useclass "adj" {Word: "huebschen"
+                  Agrs: ($ neut &amp; sg &amp; undef)
+                  Cases: {gen}}}
+defentry {
+  useclass "adj" {Word: "huebschen"
+                  Agrs: ($ pl &amp; undef)
+                  Cases: {dat}}}
+defentry {
+  useclass "adj" {Word: "huebschem"
+                  Agrs: ($ (masc|neut) &amp; sg &amp; undef)
+                  Cases: {dat}}}
+defentry {
+  useclass "adj" {Word: "huebsche"
+                  Agrs: ($ fem &amp; sg &amp; undef)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "adj" {Word: "huebsche"
+                  Agrs: ($ pl &amp; undef)
+                  Cases: {nom acc}}}
+%% def
+defentry {
+  useclass "adj" {Word: "huebsche"
+                  Agrs: ($ masc &amp; sg &amp; def)
+                  Cases: {nom}}}
+defentry {
+  useclass "adj" {Word: "huebsche"
+                  Agrs: ($ (neut|fem) &amp; sg &amp; def)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "adj" {Word: "huebschen"
+                  Agrs: ($ masc &amp; sg &amp; def)
+                  Cases: {gen dat acc}}}
+defentry {
+  useclass "adj" {Word: "huebschen"
+                  Agrs: ($ (neut|fem) &amp; sg &amp; def)
+                  Cases: {gen dat}}}
+defentry {
+  useclass "adj" {Word: "huebschen"
+                  Agrs: ($ pl &amp; def)
+                  Cases: top}}
+%% indef
+defentry {
+  useclass "adj" {Word: "huebscher"
+                  Agrs: ($ masc &amp; sg &amp; indef)
+                  Cases: {nom}}}
+defentry {
+  useclass "adj" {Word: "huebschen"
+                  Agrs: ($ masc &amp; sg &amp; indef)
+                  Cases: {gen dat acc}}}
+defentry {
+  useclass "adj" {Word: "huebschen"
+                  Agrs: ($ (neut|fem) &amp; sg &amp; indef)
+                  Cases: {gen dat}}}
+defentry {
+  useclass "adj" {Word: "huebschen"
+                  Agrs: ($ pl &amp; indef)
+                  Cases: top}}
+defentry {
+  useclass "adj" {Word: "huebsches"
+                  Agrs: ($ neut &amp; sg &amp; indef)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "adj" {Word: "huebsche"
+                  Agrs: ($ fem &amp; sg &amp; indef)
+                  Cases: {nom acc}}}
+
+%% undef
+defentry {
+  useclass "adj" {Word: "reicher"
+                  Agrs: ($ masc &amp; sg &amp; undef)
+                  Cases: {nom}}}
+defentry {
+  useclass "adj" {Word: "reicher"
+                  Agrs: ($ fem &amp; sg &amp; undef)
+                  Cases: {gen dat}}}
+defentry {
+  useclass "adj" {Word: "reiches"
+                  Agrs: ($ neut &amp; sg &amp; undef)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "adj" {Word: "reichen"
+                  Agrs: ($ masc &amp; sg &amp; undef)
+                  Cases: {gen acc}}}
+defentry {
+  useclass "adj" {Word: "reichen"
+                  Agrs: ($ neut &amp; sg &amp; undef)
+                  Cases: {gen}}}
+defentry {
+  useclass "adj" {Word: "reichen"
+                  Agrs: ($ pl &amp; undef)
+                  Cases: {dat}}}
+defentry {
+  useclass "adj" {Word: "reichem"
+                  Agrs: ($ (masc|neut) &amp; sg &amp; undef)
+                  Cases: {dat}}}
+defentry {
+  useclass "adj" {Word: "reiche"
+                  Agrs: ($ fem &amp; sg &amp; undef)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "adj" {Word: "reiche"
+                  Agrs: ($ pl &amp; undef)
+                  Cases: {nom acc}}}
+%% def
+defentry {
+  useclass "adj" {Word: "reiche"
+                  Agrs: ($ masc &amp; sg &amp; def)
+                  Cases: {nom}}}
+defentry {
+  useclass "adj" {Word: "reiche"
+                  Agrs: ($ (neut|fem) &amp; sg &amp; def)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "adj" {Word: "reichen"
+                  Agrs: ($ masc &amp; sg &amp; def)
+                  Cases: {gen dat acc}}}
+defentry {
+  useclass "adj" {Word: "reichen"
+                  Agrs: ($ (neut|fem) &amp; sg &amp; def)
+                  Cases: {gen dat}}}
+defentry {
+  useclass "adj" {Word: "reichen"
+                  Agrs: ($ pl &amp; def)
+                  Cases: top}}
+%% indef
+defentry {
+  useclass "adj" {Word: "reicher"
+                  Agrs: ($ masc &amp; sg &amp; indef)
+                  Cases: {nom}}}
+defentry {
+  useclass "adj" {Word: "reichen"
+                  Agrs: ($ masc &amp; sg &amp; indef)
+                  Cases: {gen dat acc}}}
+defentry {
+  useclass "adj" {Word: "reichen"
+                  Agrs: ($ (neut|fem) &amp; sg &amp; indef)
+                  Cases: {gen dat}}}
+defentry {
+  useclass "adj" {Word: "reichen"
+                  Agrs: ($ pl &amp; indef)
+                  Cases: top}}
+defentry {
+  useclass "adj" {Word: "reiches"
+                  Agrs: ($ neut &amp; sg &amp; indef)
+                  Cases: {nom acc}}}
+defentry {
+  useclass "adj" {Word: "reiche"
+                  Agrs: ($ fem &amp; sg &amp; indef)
+                  Cases: {nom acc}}}
+
+%% copula adj
+defentry {
+  useclass "adj_cop" {Word: "schuldig"}}
+
+defentry {
+  useclass "adj_cop" {Word: "boese"}}
+
+defentry {
+  useclass "adj_cop" {Word: "treu"}}
+
+
+%% praedikative
+
+defentry {
+  useclass "pred_noun" {Word: "aerztin"
+                        Agrs: ($ fem &amp; third &amp; sg)
+                        Cases: top
+                        Animated: {anim}}}
+
+defentry {
+  useclass "pred_noun" {Word: "arzt"
+                        Agrs: ($ masc &amp; third &amp; sg)
+                        Cases: {nom dat acc}
+                        Animated: {anim}}}
+
+%% predicative adjective with "es"
+defentry { 
+  useclass "pred_adj" {Word: "notwendig"}
+  useclass "pred_adj_id"
+  useclass "pred_adj_lp"}
+
+
+%% prepositions
+defentry { useclass "prep_iobj" {Word: "auf"} }
+defentry { useclass "prep_iobj" {Word: "mit"} }
+defentry { useclass "prep_iobj" {Word: "von"} } %%!
+defentry { useclass "prep_genobj" {Word: "wegen"} } 
+
+defentry {dim lex {word: "als"}
+	  dim id {cases: {nom gen dat acc}   %####
+		  in: {alsp}
+		  out: {cc}}
+	  dim lp {in: {nxf}
+		  on: {n}
+		  out: {(nxf)}
+  		  blocks: {cc}}}
+  
+%% separable verb prefixes
+defentry {
+  useclass "vpref" {Word: "ein"
+                    Prefs: {pref_ein}}}
+defentry {
+  useclass "vpref" {Word: "vor"
+                    Prefs: {pref_vor}}}
+defentry {
+  useclass "vpref" {Word: "zu"
+                    Prefs: {pref_zu}}}
+
+%% verb classes
+
+%% Im Folgenden habe ich die Klassen auseinandergerupft. Teilweise
+%% jedoch habe ich sie, um das Lexikon nicht noch mehr aufzublaehen, 
+%% zusammengefasst gelassen.
+
+%% Vollverb-Infinitive (auch mit zu)
+%% Hier gibt es allerdings ein Problem, wenn wir den Infinitiv-mit-zu
+%% auch bei Praefixwoertern einfuehren wollen. Dann vielleicht doch 
+%% trennen ...
+
+%%defclass "vvinf|vvizu" Word {
+%%  ((useclass "vinf" {Word: Word} &amp; 
+%%  (useclass "can_lp"|useclass "front_lp"))|
+%%  (useclass "vizu" {Word: Word} &amp;
+%%  (useclass "can_lp"|useclass "noncan_lp"|useclass "vc_nouns_lp")))}
+
+%% ich habe repeated elements mit dazu reingenommen (siehe neue Definition)
+defclass "vvinf|vvizu" Word {
+  ((useclass "vinf" {Word: Word} &amp;  (useclass "can_lp"|useclass "front_lp"))
+|
+  (useclass "vizu" {Word: Word} &amp; (useclass "can_lp"|useclass "noncan_lp"|useclass "vc_nouns_lp"))
+|
+(useclass "rep_element"{Word:Word}&amp;  (useclass "vizu" {Word: Word}&amp;  (useclass "can_lp"|useclass "noncan_lp"|useclass "vc_nouns_lp"))))}
+
+
+%% Vollverb-Partizip-Perfekt
+
+defclass "vvpp" Word {
+  (useclass "vpp" {Word: Word} &amp;
+  (useclass "front_lp"|useclass "can_lp"))}
+
+%%! Vollverb-Partizip-Perfekt in Passiv-Konstruktion
+
+defclass "vvpass1" Word {
+  (useclass "vpass1" {Word: Word} &amp;
+  (useclass "front_lp"|useclass "can_lp"))}
+
+defclass "vvpass2" Word {
+  (useclass "vpass2" {Word: Word} &amp;
+  (useclass "front_lp"|useclass "can_lp"))}
+
+%% finite Vollverben
+
+defclass "vvfin" Word {
+  useclass "vfin" {Word: Word} &amp;
+  (useclass "v12_lp"|useclass "sub_lp"|useclass "rel_lp"|useclass "subjs_lp"|useclass "objs_lp"|useclass "iobjs_lp")}
+
+%%! Imperativ-Verben
+
+defclass "vfin_imp" Word {
+  useclass "vimp" {Word: Word} &amp;
+  useclass "v12_lp"}
+
+%% Praefixverben in Verb-erst/zweit-Stellung
+
+defclass "vvfin_v12_vpref" Word Prefs {
+  useclass "vfin" {Word: Word} &amp;
+  useclass "v12_vpref" &amp;
+  dim id {prefs: Prefs}}
+
+%% Praefixverben in Verb-letzt-Stellung
+
+defclass "vvfin_v_vpref" Word {
+  useclass "vfin" {Word: Word} &amp;
+  (useclass "sub_lp"|useclass "rel_lp"|
+   useclass "subjs_lp"|useclass "objs_lp"|useclass "iobjs_lp")}
+
+%% Modalverbinfinitive (auch mit zu)
+
+defclass "vminf|vmizu" Word {
+  useclass "vinfc" &amp;
+  ((useclass "vinf" {Word: Word} &amp; 
+  (useclass "can_lp"|useclass "front_lp"|useclass "extra_lp"))|
+  (useclass "vizu" {Word: Word} &amp;
+  (useclass "can_lp"|useclass "noncan_lp"|useclass "vc_nouns_lp")))}
+
+%% Modalverb-Partizip-Perfekt (Word1: gekonnt, Word2: koennnen)
+
+defclass "vmpp" Word1 Word2 {
+  useclass "vinfc" &amp;
+  ((useclass "vpp" {Word: Word1} &amp;
+  (useclass "front_lp"|useclass "can_lp"))|
+  ((useclass "vpp" {Word: Word2})&amp;
+  useclass "extra_lp"))}
+
+%% finite Modalverben
+
+defclass "vmfin" Word {
+  useclass "oblco_lp"
+  useclass "vinfc" &amp;
+  useclass "vfin" {Word: Word} &amp;
+  (useclass "v12_lp"|useclass "sub_lp"|useclass "rel_lp"|
+   useclass "subjs_lp"|useclass "objs_lp"|useclass "iobjs_lp")}
+
+%% Infinitive fuer Auxiliare mit Partizip Perfekt als Komplement (auch mit zu)
+
+defclass "vainf|vaizu_vppc" Word {
+  useclass "vppc" &amp;
+  ((useclass "vinf" {Word: Word} &amp;
+  (useclass "can_lp" | useclass "front_lp" | useclass "extra_lp"))|
+  (useclass "vizu" {Word: Word} &amp;
+  (useclass "noncan_lp"|useclass "vc_nouns_lp")))}
+
+%% Infinitve fuer Auxiliare mit Infinitv als Komplement (auch mit zu)
+
+defclass "vainf|vaizu_vinfc" Word {      %#### Umbenennung
+  (useclass "vinfc"|useclass "vppc") &amp;
+  ((useclass "vinf" {Word: Word} &amp;
+  (useclass "can_lp" | useclass "front_lp" | useclass "extra_lp"))|
+  (useclass "vizu" {Word: Word} &amp;
+  useclass "noncan_lp"))}
+
+%% finite Auxiliare mit Partizip Perfekt als Komplement
+
+defclass "vafin_vppc" Word {
+  useclass "vppc"
+  useclass "vfin" {Word: Word}
+  useclass "optco_lp"
+  (useclass "v12_lp" | useclass "sub_lp" | useclass "rel_lp"|
+   useclass "subjs_lp"|useclass "objs_lp"|useclass "iobjs_lp")}
+
+%%! finite Auxiliare mit Infinitiv oder Partizip Perfekt als Komplement
+%%! "Maria wird bald heimgehen"
+%%! Passiv: "Maria wird geliebt"
+
+defclass "vafin" Word {
+  (useclass "vinfc" | useclass "vppp1")
+  useclass "vaf" {Word: Word}
+  useclass "optco_lp"
+  (useclass "v12_lp" | useclass "sub_lp" | useclass "rel_lp"|
+   useclass "subjs_lp"| useclass "objs_lp"| useclass "iobjs_lp")} % ####
+
+%%! Passiv 2 "bekommen"
+defclass "pseudo_vafin" Word {
+  useclass "vppp2"
+  useclass "vaf" {Word: Word}
+  useclass "optco_lp"
+  (useclass "v12_lp" | useclass "sub_lp" | useclass "rel_lp"|
+   useclass "v12_lp" | useclass "sub_lp" | useclass "rel_lp")}   %####
+
+%% finite Auxiliare mit Infinitiv als Komplement
+
+defclass "vafin_vinfc" Word {
+  useclass "vinfc"
+  useclass "vfin" {Word: Word}
+  useclass "optco_lp"
+  (useclass "v12_lp" | useclass "sub_lp" | useclass "rel_lp"|
+   useclass "subjs_lp"|useclass "objs_lp"|useclass "iobjs_lp")}
+
+
+%% Agreement steckt jetzt im Lexikon
+%% verbs taking non-verbal complements
+
+defentry { 
+  useclass "vvinf|vvizu" {Word: "schlafen"}
+  useclass "intr_id"
+  useclass "compcausalc"
+  useclass "optquest" 
+  dim id {advsReq: {adv_2 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "schlaf"}
+  useclass "intr_id"}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "schlaft"}
+  useclass "intr_id"}
+
+defentry {
+  useclass "vvpp" {Word: "geschlafen"}
+  useclass "intr_id" 
+  useclass "compcausalc"
+  useclass "optquest" 
+  dim id {advsReq: {adv_2 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvfin" {Word: "schlaeft"}
+  useclass "intr_id"
+  useclass "compcausalc"
+  useclass "optquest" 
+  dim id {advsReq: {adv_2 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "vvfin" {Word: "schlafen"}
+  useclass "intr_id"
+  useclass "compcausalc"
+  useclass "optquest" 
+  dim id {advsReq: {adv_2 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry { 
+  useclass "vvinf|vvizu" {Word: "lachen"}
+  useclass "intr_id"
+  useclass "compcausalc"
+  dim id {advsReq: {adv_2 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "lach"}
+  useclass "intr_id"}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "lacht"}
+  useclass "intr_id"}
+
+defentry {
+  useclass "vvpp" {Word: "gelacht"}
+  useclass "intr_id" 
+  useclass "compcausalc"
+  dim id {advsReq: {adv_2 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvfin" {Word: "lacht"}
+  useclass "intr_id"
+  useclass "compcausalc"
+  dim id {advsReq: {adv_2 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+
+defentry {
+  useclass "vvfin" {Word: "lachen"}
+  useclass "intr_id"
+  useclass "compcausalc"
+  dim id {advsReq: {adv_2 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry { 
+  useclass "vvinf|vvizu" {Word: "lieben"}
+  useclass "tr_id"
+  useclass "compcausalc"
+  dim id {advsReq: {adv_1 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvpp" {Word: "geliebt"}
+  useclass "tr_id"
+  useclass "optquest"
+  dim id {advsReq: {adv_1 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Passiv1-Verb "geliebt" 
+defentry {
+  useclass "vvpass1" {Word: "geliebt"}
+  useclass "intr_id" 
+  useclass "optquest"
+  dim id {advsReq: {adv_1 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}}
+  
+defentry {
+  useclass "vvfin" {Word: "liebt"}
+  useclass "tr_id"
+  useclass "optquest"
+  dim id {advsReq: {adv_1 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "vvfin" {Word: "lieben"}
+  useclass "tr_id"
+  useclass "optquest"
+  dim id {advsReq: {adv_1 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry { 
+  useclass "vvinf|vvizu" {Word: "harren"}
+  useclass "genobjc_id"
+  dim id {auxtype: {aux_1}}}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "harre"}
+  useclass "genobjc_id"}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "harrt"}
+  useclass "genobjc_id"}
+
+defentry {
+  useclass "vvpp" {Word: "geharrt"}
+  useclass "genobjc_id" 
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvfin" {Word: "harrt"}
+  useclass "genobjc_id"
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "vvfin" {Word: "harren"}
+  useclass "genobjc_id"
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry { 
+  useclass "vvinf|vvizu" {Word: "geben"}
+  useclass "ditr_id"
+  useclass "optquest"
+  dim id {advsReq: {adv_2 adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "gib"}
+  useclass "ditr_id"}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "gebt"}
+  useclass "ditr_id"}
+
+defentry {
+  useclass "vvpp" {Word: "gegeben"}
+  useclass "ditr_id"
+  useclass "optiobjc"
+  useclass "optquest"
+  dim id {advsReq: {adv_2 adv_3}}
+  dim id {auxtype: {aux_1}} }
+
+%%! Passiv1-Verb "gegeben" 
+defentry {
+  useclass "vvpass1" {Word: "gegeben"}
+  useclass "intr_id"
+  useclass "optiobjc"
+  useclass "optquest"
+  dim id {advsReq: {adv_2 adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Passiv2-Verb "gegeben"
+defentry {
+  useclass "vvpass2" {Word: "gegeben"}
+  useclass "intr_id"
+  useclass "optobjc" 
+  useclass "optquest"
+  dim id {advsReq: {adv_2 adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvfin" {Word: "gibt"}
+  useclass "ditr_id"
+  useclass "ditranim"
+  dim id {agrs: ($ third &amp; sg)}
+  useclass "optquest"
+  dim id {advsReq: {adv_2 adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvfin" {Word: "geben"}
+  useclass "ditr_id"
+  dim id {agrs: ($ third &amp; pl)}
+  useclass "optquest"
+  dim id {advsReq: {adv_2 adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+defentry { 
+  useclass "vvinf|vvizu" {Word: "begehen"}
+  useclass "tr_id"  
+  dim id {advsReq: {adv_4}}
+  dim id {auxtype: {aux_1}}}
+
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "begehe"}
+  useclass "tr_id"}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "begeht"}
+  useclass "tr_id"}
+
+defentry {
+  useclass "vvpp" {Word: "begangen"}
+  useclass "tr_id"
+  dim id {advsReq: {adv_4}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvfin" {Word: "begeht"}
+  useclass "tr_id"
+  dim id {agrs: ($ third &amp; sg)}
+  dim id {advsReq: {adv_4}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvfin" {Word: "begehen"}
+  useclass "tr_id"
+  dim id {agrs: ($ third &amp; pl)}
+  dim id {advsReq: {adv_4}}
+  dim id {auxtype: {aux_1}}}
+
+
+defentry { 
+  useclass "vvinf|vvizu" {Word: "kaufen"}
+  useclass "tr_id"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "kauf"}
+  useclass "tr_id"
+  useclass "optiobjc"}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "kauft"}
+  useclass "tr_id"
+  useclass "optiobjc"}
+  
+
+defentry {
+  useclass "vvpp" {Word: "gekauft"}
+  useclass "tr_id"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Passiv1-Verb "gekauft"
+defentry {
+  useclass "vvpass1" {Word: "gekauft"}
+  useclass "intr_id"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Passiv2-Verb "gekauft"
+defentry {
+  useclass "vvpass2" {Word: "gekauft"}
+  useclass "intr_id"
+  useclass "optobjc"
+  dim id {advsReq: {adv_2 adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {  
+  useclass "vvfin" {Word: "kauft"}
+  useclass "tr_id"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "vvfin" {Word: "kaufen"}
+  useclass "tr_id"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry { 
+  useclass "vvinf|vvizu" {Word: "schreiben"}
+  useclass "optobjc"
+  useclass "compc"
+  dim id {advsReq: {adv_2 adv_3 adv_5}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "schreib"}
+  useclass "optobjc"}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "schreibt"}
+  useclass "optobjc"}
+
+defentry {
+  useclass "vvpp" {Word: "geschrieben"}
+  useclass "optobjc"
+  useclass "compc"
+  dim id {advsReq: {adv_2 adv_3 adv_5}}
+  dim id {auxtype: {aux_1}}}  
+
+%%! Passiv1-Verb "geschrieben"
+defentry {
+  useclass "vvpass1" {Word: "geschrieben"}
+  useclass "intr_id"
+  useclass "optiobjc"
+  useclass "compc"
+  dim id {advsReq: {adv_2 adv_3 adv_5}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Passiv1-Verb "geschrieben"
+defentry {
+  useclass "vvpass2" {Word: "geschrieben"}
+  useclass "intr_id"
+  useclass "optobjc"
+  useclass "compc"
+  dim id {advsReq: {adv_2 adv_3 adv_5}}
+  dim id {auxtype: {aux_1}}}
+
+
+defentry {
+  useclass "vvfin" {Word: "schreibt"}
+  useclass "optobjc"
+  dim id {agrs: ($ third &amp; sg)}
+  useclass "compc"
+  dim id {advsReq: {adv_2 adv_3 adv_5}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvfin" {Word: "schreiben"}
+  useclass "optobjc"
+  useclass "compc"
+  dim id {advsReq: {adv_2 adv_3 adv_5}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry { 
+  useclass "vvinf|vvizu" {Word: "lesen"}
+  useclass "optobjc"
+  useclass "compcausalc"
+  useclass "compc"
+  useclass "optquest"
+  dim id {advsReq: {adv_2 adv_3 adv_5}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "lies"}
+  useclass "optobjc"}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "lest"}
+  useclass "optobjc"}
+
+defentry {
+  useclass "vvpp" {Word: "gelesen"}
+    useclass "optobjc"}
+
+%%! Passiv1-Verb "gelesen"
+defentry {
+  useclass "vvpass1" {Word: "gelesen"}
+  useclass "intr_id"
+  useclass "compcausalc"
+  useclass "compc"
+  useclass "optquest"
+  dim id {advsReq: {adv_2 adv_3 adv_5}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvfin" {Word: "liest"}
+  useclass "optobjc"
+  useclass "compcausalc"
+  useclass "compc"
+  useclass "optquest"
+  dim id {advsReq: {adv_2 adv_3 adv_5}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "vvfin" {Word: "lesen"}
+  useclass "optobjc"
+  useclass "compcausalc"
+  useclass "compc"
+  useclass "optquest"
+  dim id {advsReq: {adv_2 adv_3 adv_5}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry { 
+  useclass "vvinf|vvizu" {Word: "glauben"}
+  useclass "compc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}}
+  
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "glaub"}
+  useclass "optiobjc"}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "glaubt"}
+  useclass "optiobjc"}
+
+defentry {
+  useclass "vvpp" {Word: "geglaubt"}
+  useclass "compc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Passiv1-Verb "geglaubt"
+defentry {
+  useclass "vvpass1" {Word: "geglaubt"}
+  useclass "intr_id"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvfin" {Word: "glaubt"}
+  useclass "compc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}  
+
+defentry {
+  useclass "vvfin" {Word: "glauben"}
+  useclass "compc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry { 
+  useclass "vvfin_v12_vpref" {Word: "kauft"
+    		              Prefs: {pref_ein}}
+  useclass "intr_id"
+  useclass "optobjc"
+  dim id {advsReq: {adv_2 adv_3 adv_4 adv_5}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry { 
+  useclass "vvfin_v12_vpref" {Word: "kaufen"
+    			      Prefs: {pref_ein}}
+  useclass "intr_id"
+  useclass "optobjc"
+  dim id {advsReq: {adv_2 adv_3 adv_4 adv_5}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry {
+  useclass "vvinf|vvizu" {Word: "einkaufen"}
+  useclass "intr_id"
+  useclass "optobjc" 
+  dim id {advsReq: {adv_2 adv_3 adv_4 adv_5}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvpp" {Word: "eingekauft"}
+  useclass "intr_id"
+  useclass "optobjc"
+  dim id {advsReq: {adv_2 adv_3 adv_4 adv_5}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvfin_v_vpref" {Word: "einkauft"}                                  
+  useclass "intr_id"
+  useclass "optobjc"
+  dim id {advsReq: {adv_2 adv_3 adv_4 adv_5}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}} 
+
+defentry {
+  useclass "vvfin_v_vpref" {Word: "einkaufen"}                                  
+  useclass "intr_id"
+  useclass "optobjc"
+  dim id {advsReq: {adv_2 adv_3 adv_4 adv_5}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}} 
+
+defentry { 
+  useclass "vvfin_v12_vpref" {Word: "liest"
+    				     Prefs: {pref_vor}}
+  useclass "optobjc"
+  useclass "optiobjc" 
+  dim id {advsReq: {adv_2 adv_3 adv_4 adv_5}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry { 
+  useclass "vvfin_v12_vpref" {Word: "lesen"
+    				     Prefs: {pref_vor}}
+  useclass "optobjc"
+  useclass "optiobjc" 
+  dim id {advsReq: {adv_2 adv_3 adv_4 adv_5}}
+  dim id {auxtype: {aux_1}} 
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry {
+  useclass "vvinf|vvizu" {Word: "vorlesen"}
+  useclass "optobjc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3 adv_4 adv_5}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvpp" {Word: "vorgelesen"}
+  useclass "optobjc" 
+  useclass "optiobjc"  
+  dim id {advsReq: {adv_2 adv_3 adv_4 adv_5}}
+  dim id {auxtype: {aux_1}}}
+
+
+%%! Passiv1-Verb "vorgelesen"
+defentry {
+  useclass "vvpass1" {Word: "vorgelesen"}
+  useclass "intr_id"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3 adv_4 adv_5}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Passiv2-Verb "vorgelesen"
+defentry {
+  useclass "vvpass2" {Word: "vorgelesen"}
+  useclass "intr_id"
+  useclass "optobjc"
+  dim id {advsReq: {adv_2 adv_3 adv_4 adv_5}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvfin_v_vpref" {Word: "vorliest"}
+  useclass "optobjc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3 adv_4 adv_5}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "vvfin_v_vpref" {Word: "vorlesen"}
+  useclass "optobjc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3 adv_4 adv_5}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+
+%% verbs taking verbal complements
+defentry { 
+  useclass "vvinf|vvizu" {Word: "versuchen"}
+  useclass "vzuc"
+  dim id {advsReq: {adv_2 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "versuch"}
+  useclass "optco_lp"
+  useclass "vzuc"
+  dim id {advsReq: {adv_2 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "versucht"}
+  useclass "optco_lp"
+  useclass "vzuc"}
+
+defentry {
+  useclass "vvpp" {Word: "versucht"}
+  useclass "vzuc"
+  dim id {advsReq: {adv_2 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}}                        
+
+defentry {
+  useclass "vvfin" {Word: "versucht"}
+  useclass "optco_lp"
+  useclass "vzuc" 
+  dim id {advsReq: {adv_2 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "vvfin" {Word: "versuchen"}
+  useclass "optco_lp"
+  useclass "vzuc" 
+  dim id {advsReq: {adv_2 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry { 
+  useclass "vvinf|vvizu" {Word: "versprechen"}
+  useclass "vzuc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3 adv_4}} 
+  dim id {auxtype: {aux_1}}}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "versprich"}
+  useclass "optco_lp"
+  useclass "vzuc"}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "versprecht"}
+  useclass "optco_lp"
+  useclass "vzuc"}
+
+defentry {
+  useclass "vvpp" {Word: "versprochen"}
+  useclass "vzuc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3 adv_4}} 
+  dim id {auxtype: {aux_1}}}
+
+%%! Passiv1-Verb "versprochen"
+defentry {
+  useclass "vvpass1" {Word: "versprochen"}
+  useclass "intr_id"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3 adv_4}} 
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvpass2" {Word: "versprochen"}
+  useclass "intr_id"
+  useclass "optobjc"
+  dim id {advsReq: {adv_2 adv_3 adv_4}} 
+  dim id {auxtype: {aux_1}}}                    
+
+defentry {
+  useclass "vvfin" {Word: "verspricht"}
+  useclass "optco_lp"
+  useclass "vzuc"
+  useclass "optiobjc" 
+  dim id {advsReq: {adv_2 adv_3 adv_4}} 
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "vvfin" {Word: "versprechen"}
+  useclass "optco_lp"
+  useclass "vzuc"
+  useclass "optiobjc" 
+  dim id {advsReq: {adv_2 adv_3 adv_4}} 
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry { 
+  useclass "vvinf|vvizu" {Word: "ueberreden"}
+  useclass "vzuc"
+  useclass "tr_id"
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "ueberrede"}
+  useclass "optco_lp"
+  useclass "tr_id"
+  useclass "vzuc"}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "ueberredet"}
+  useclass "optco_lp"
+  useclass "tr_id"
+  useclass "vzuc"}
+
+defentry {
+  useclass "vvpp" {Word: "ueberredet"}
+  useclass "vzuc"
+  useclass "tr_id"
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}}                        
+
+%%! Passiv1-Verb "ueberredet"
+defentry {
+  useclass "vvpass1" {Word: "ueberredet"}
+  useclass "intr_id"
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}}
+  
+defentry {
+  useclass "vvfin" {Word: "ueberredet"}
+  useclass "optco_lp"
+  useclass "vzuc"
+  useclass "tr_id"
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "vvpp" {Word: "ueberreden"}
+  useclass "vzuc"
+  useclass "tr_id"
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry { 
+  useclass "vvinf|vvizu" {Word: "gestehen"}
+  useclass "vzuc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "gestehe"}
+  useclass "oblinco_lp"
+  useclass "vzuc"
+  useclass "optiobjc"}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "gesteht"}
+  useclass "oblinco_lp"
+  useclass "vzuc"
+  useclass "optiobjc"}
+
+defentry {
+  useclass "vvpp" {Word: "gestanden"}
+  useclass "oblinco_lp"
+  useclass "vzuc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Passiv1-Verb "gestanden"
+defentry {
+  useclass "vvpass1" {Word: "gestanden"}
+  useclass "intr_id"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}}
+                        
+defentry {
+  useclass "vvfin" {Word: "gesteht"}
+  useclass "oblinco_lp"
+  useclass "vzuc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "vvfin" {Word: "gestehen"}
+  useclass "oblinco_lp"
+  useclass "vzuc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry { 
+  useclass "vvinf|vvizu" {Word: "erlauben"}
+  useclass "vzuc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "erlaub"}
+  useclass "oblinco_lp"
+  useclass "vzuc"
+  useclass "optiobjc"}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "erlaubt"}
+  useclass "oblinco_lp"
+  useclass "vzuc"
+  useclass "optiobjc"}
+
+defentry {
+  useclass "vvpp" {Word: "erlaubt"}
+  useclass "vzuc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}}                        
+
+%%! Passiv1-Verb "erlaubt"
+defentry {
+  useclass "vvpass1" {Word: "erlaubt"}
+  useclass "intr_id"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvfin" {Word: "erlaubt"}
+  useclass "oblinco_lp"
+  useclass "vzuc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "vvfin" {Word: "erlauben"}
+  useclass "oblinco_lp"
+  useclass "vzuc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3 adv_4}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry { 
+  useclass "vvinf|vvizu" {Word: "empfehlen"}
+  useclass "vzuc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "empfiehl"}
+  useclass "oblinco_lp"
+  useclass "vzuc"
+  useclass "optiobjc"}
+
+%%! Imperativ
+defentry {
+  useclass "vfin_imp" {Word: "empfehlt"}
+  useclass "oblinco_lp"
+  useclass "vzuc"
+  useclass "optiobjc"}
+
+defentry {
+  useclass "vvpp" {Word: "empfohlen"}
+  useclass "vzuc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3}}
+  dim id {auxtype: {aux_1}}}                        
+
+%%! Passiv1-Verb "empfohlen"
+defentry {
+  useclass "vvpass1" {Word: "empfohlen"}
+  useclass "intr_id"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+%%! Passiv2-Verb "empfohlen"
+defentry {
+  useclass "vvpass2" {Word: "empfohlen"}
+  useclass "intr_id"
+  useclass "optobjc"
+  dim id {advsReq: {adv_2 adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvfin" {Word: "empfiehlt"}
+  useclass "oblinco_lp"
+  useclass "vzuc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "vvfin" {Word: "empfehlen"}
+  useclass "oblinco_lp"
+  useclass "vzuc"
+  useclass "optiobjc"
+  dim id {advsReq: {adv_2 adv_3}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry { 
+  useclass "vvinf|vvizu" {Word: "scheinen"}
+  useclass "vzuc"
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvpp" {Word: "geschienen"}
+  useclass "vzuc"
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}}                        
+
+defentry {
+  useclass "vvfin" {Word: "scheint"}
+  useclass "oblco_lp"
+  useclass "vzuc"
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "vvfin" {Word: "scheinen"}
+  useclass "oblco_lp"
+  useclass "vzuc"
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry {
+  useclass "vvfin_v12_vpref" {Word: "hat"
+			      Prefs: {pref_vor}}
+  useclass "oblinco_lp"
+  useclass "vzuc"
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "vvfin_v12_vpref" {Word: "haben"
+			      Prefs: {pref_vor}}
+  useclass "oblinco_lp"
+  useclass "vzuc"
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry {
+  useclass "vvinf|vvizu" {Word: "vorhaben"}
+  useclass "vzuc"
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vvpp" {Word: "vorgehabt"}
+  useclass "vzuc"
+  dim id {auxtype: {aux_1}} }
+
+defentry {
+  useclass "vvfin_v_vpref" {Word: "vorhat"}
+  (useclass "sub_lp"|useclass "rel_lp")
+  useclass "oblinco_lp"
+  useclass "vzuc" 
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "vvfin_v_vpref" {Word: "vorhaben"}
+  (useclass "sub_lp"|useclass "rel_lp")
+  useclass "oblinco_lp"
+  useclass "vzuc" 
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+%% modal verbs
+defentry { 
+  useclass "vmfin" {Word: "kann"}
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry { 
+  useclass "vmfin" {Word: "koennen"}
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry {
+  useclass "vmpp" {Word1: "gekonnt"
+	           Word2: "koennen"}
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vminf|vmizu" {Word: "koennen"}
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+defentry { 
+  useclass "vmfin" {Word: "will"}
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry { 
+  useclass "vmfin" {Word: "wollen"}
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+defentry {
+  useclass "vmpp" {Word1: "gewollt"
+	           Word2: "wollen"}
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+defentry {
+  useclass "vminf|vmizu" {Word: "wollen"}
+  dim id {advsReq: {adv_3}}
+  dim id {auxtype: {aux_1}}}
+
+%% auxiliaries
+%% "haben"
+defentry { 
+  useclass "vainf|vaizu_vppc" {Word: "haben"}
+  dim id {auxtypeReq: {aux_1}}}
+
+defentry {
+  useclass "vafin_vppc" {Word: "hat"}
+  dim id {auxtypeReq: {aux_1}} 
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "vafin_vppc" {Word: "haben"}
+  dim id {auxtypeReq: {aux_1}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+%%! "werden"
+defentry { 
+  useclass "vainf|vaizu_vinfc" {Word: "werden"}}
+
+
+%%! Vorgangspassiv
+defentry {
+  useclass "vafin" {Word: "wird"}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "vafin" {Word: "werden"}
+  dim id {agrs: ($ third &amp; pl)}}
+
+%%! "sein"
+defentry { 
+  useclass "vainf|vaizu_vinfc" {Word: "sein"}
+  dim id {auxtypeReq: {aux_2}}}
+
+%%! Zustandspassiv
+defentry {
+  useclass "vafin" {Word: "ist"}
+  dim id {auxtypeReq: {aux_2}}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "vafin" {Word: "sind"}
+  dim id {auxtypeReq: {aux_2}}
+  dim id {agrs: ($ third &amp; pl)}}
+
+%%! Passivbildung mit "bekommen"
+defentry {
+  useclass "pseudo_vafin" {Word: "bekommt"}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "pseudo_vafin" {Word: "bekommen"}
+  dim id {agrs: ($ third &amp; pl)}}
+
+%%! Infinitiv
+defentry { 
+  useclass "vvinf|vvizu" {Word: "bekommen"}
+  useclass "tr_id"
+  useclass "optiobjc"}
+
+%%! Passivbildung mit "kriegen"
+defentry {
+  useclass "pseudo_vafin" {Word: "kriegt"}
+  dim id {agrs: ($ third &amp; sg)}}
+
+defentry {
+  useclass "pseudo_vafin" {Word: "kriegen"}
+  dim id {agrs: ($ third &amp; pl)}}
+
+%%! Infinitiv
+defentry { 
+  useclass "vvinf|vvizu" {Word: "kriegen"}
+  useclass "tr_id"
+  useclass "optiobjc"}
+
+%% copula class
+defclass "verb_cop" Word {
+  useclass "verb_cop_id"
+  useclass "verb_cop_lp"
+  dim lex {word: Word}}
+
+%%copula
+defentry {
+  useclass "verb_cop" {Word: "ist"}}
+
+defentry {
+  useclass "verb_cop" {Word: "wird"}}  
+
+%% auxiliars for Korrelat-es constructions
+defentry { 
+useclass "aux_es" {Word: "ist"}
+useclass "aux_es_id"
+useclass "aux_es_lp"}
+
+defentry { 
+useclass "aux_es" {Word: "wird"}
+useclass "aux_es_id"
+useclass "aux_es_lp"}
+
+%% finite verbs with explikatives es
+defentry { 
+  useclass "expl_verb" {Word: "regnet"}
+  useclass "fin_expl_id"
+  useclass "fin_expl_lp"
+  dim id {advsReq: {adv_1 adv_2 adv_3 adv_4}}}
+
+defentry { 
+  useclass "expl_verb" {Word: "schneit"}
+  useclass "fin_expl_id"
+  useclass "fin_expl_lp"
+  dim id {advsReq: {adv_1 adv_2 adv_3 adv_4}}}
+
+%% Eintraege fuer "es"
+defentry { 
+  useclass "placeholder_es" {Word: "es"}
+useclass "ph_vf_id" &amp; useclass "ph_vf_lp"}
+
+defentry { 
+  useclass "korrelat_es" {Word: "es"}
+useclass "ph_korr_id" &amp; useclass "ph_korr_lp"}
+
+defentry { 
+  useclass "explikatives_es" {Word: "es"}
+  useclass "expl_id"
+  useclass "expl_lp"}
+
+defentry { useclass "rep_element" {Word: "dass"} }
+
+%% Eintrage fuer conjunctions
+defentry { useclass "con_adj" {Word: "und"} }
+defentry { useclass "con_obj" {Word: "und"} }
+defentry { useclass "con_genobj" {Word: "und"} }
+defentry { useclass "con_subj" {Word: "und"} }
+defentry { useclass "con_iobj" {Word: "und"} }
+defentry { useclass "con_prep_2obj" {Word: "und"} }
+defentry { useclass "con_prep" {Word: "und"} }
+defentry { useclass "con_adv" {Word: "und"} }
+defentry { useclass "con_sent" {Word: "und"} }
+defentry { useclass "con_genmod" {Word: "und"} }
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

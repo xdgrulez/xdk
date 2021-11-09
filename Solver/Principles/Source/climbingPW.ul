@@ -1,0 +1,8 @@
+defprinciple "principle.climbingPW" {
+  dims {D1 D2}
+  constraints {
+
+forall V: forall V1:
+  dom(V V1 D1) => dom(V V1 D2)
+  }
+}

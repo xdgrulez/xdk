@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+<title>SameEdges - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="Relative.html#Relative" title="Relative">
+<link rel="next" href="Subgraphs.html#Subgraphs" title="Subgraphs">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="SameEdges"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Subgraphs.html#Subgraphs">Subgraphs</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Relative.html#Relative">Relative</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.63 SameEdges principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.relative</code>
+<li>dimension variables: <code>D1</code>, <code>D2</code>
+<li>argument variables: none
+<li>default values: none
+<li>model record: empty
+<li>constraints: <code>SameEdges</code> (priority 130)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle assumes that the Graph principle (<a href="Graph.html#Graph">Graph</a>) is used
+on dimensions <code>D1</code> and <code>D2</code>.
+
+   <p>It states that the graph on dimension <code>D1</code> must have the same
+edges as the graph on dimension <code>D2</code>.
+
+   <p>Here is the definition of the <code>SameEdges</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      D1DIDA = {DVA2DIDA 'D1'}
+      D2DIDA = {DVA2DIDA 'D2'}
+   in
+      for Node in Nodes do
+	 {FS.equal Node.D1DIDA.model.daughters Node.D2DIDA.model.daughters}
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

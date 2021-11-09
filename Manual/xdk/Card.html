@@ -1,0 +1,84 @@
+<html lang="en">
+<head>
+<title>Card - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Types-reference.html#Types-reference" title="Types reference">
+<link rel="prev" href="Bool.html#Bool" title="Bool">
+<link rel="next" href="Domain.html#Domain" title="Domain">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Card"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Domain.html#Domain">Domain</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Bool.html#Bool">Bool</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Types-reference.html#Types-reference">Types reference</a>
+<hr>
+</div>
+
+<h4 class="subsection">4.9.2 Card</h4>
+
+<p>Card is a specialized set of integers used for cardinality
+sets. Usually, such types do not show up explicitly but are introduced
+via the type synonym
+<a name="index-type-synonym-154"></a><a href="Valency.html#Valency">Valency</a>.
+
+   <p>A cardinality set can be specified in various ways:
+     <ul>
+<li>set specification: <code>&lt;constant&gt;#{&lt;integer_1&gt; ... &lt;integer_n&gt;}</code>
+specifies a set of integers
+<li>interval specification: <code>&lt;constant&gt;#[&lt;integer_1&gt; &lt;integer_2&gt;]</code> specifies
+the closed interval between the integers <code>&lt;integer_1&gt;</code> and
+<code>&lt;integer_2&gt;</code>
+<li><code>&lt;constant&gt;</code> is equivalent to <code>&lt;constant&gt;#{1}</code>
+<li><code>&lt;constant&gt;!</code> is equivalent to <code>&lt;constant&gt;#{1}</code>
+<li><code>&lt;constant&gt;?</code> is equivalent to <code>&lt;constant&gt;#{0 1}</code>
+<li><code>&lt;constant&gt;*</code> is equivalent to <code>&lt;constant&gt;#[0 infty]}</code> (where <code>infty</code>
+corresponds to &ldquo;infinity&rdquo;)
+<li><code>&lt;constant&gt;+</code> is equivalent to <code>&lt;constant&gt;#[1 infty]}</code>
+</ul>
+
+<h5 class="subsubsection">4.9.2.1 Top value</h5>
+
+<p>The set <code>{0}</code>.
+
+<h5 class="subsubsection">4.9.2.2 Bottom value</h5>
+
+<p>See domain type (<a href="Domain.html#Domain">Domain</a>).
+
+<h5 class="subsubsection">4.9.2.3 Greatest lower bound operation</h5>
+
+<p>The greatest lower bound of two cardinality sets S_1 and S_2 is defined
+as follows:
+     <ul>
+<li>S_2 if S_1 is top
+<li>S_1 if S_2 is top
+<li>S_1 if S_1 and S_2 are equal
+<li>the intersection of S_1 and S_2 otherwise
+</ul>
+
+<h5 class="subsubsection">4.9.2.4 Example</h5>
+
+<p>Here is an example card type definition:
+
+<pre class="example">     deftype "card" card
+</pre>
+   <!-- ************************************************************ -->
+   </body></html>
+

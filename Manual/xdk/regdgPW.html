@@ -1,0 +1,162 @@
+<html lang="en">
+<head>
+<title>regdgPW - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Grammars.html#Grammars" title="Grammars">
+<link rel="prev" href="nutPW.html#nutPW" title="nutPW">
+<link rel="next" href="softproj.html#softproj" title="softproj">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="regdgPW"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="softproj.html#softproj">softproj</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="nutPW.html#nutPW">nutPW</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Grammars.html#Grammars">Grammars</a>
+<hr>
+</div>
+
+<h3 class="section">5.49 regdgPW</h3>
+
+<p>This grammar models a regular dependency grammar as introduced in the
+ACL 2007 paper by Marco Kuhlmann and Mathias Moehl.
+
+<pre class="verbatim">usedim id
+usedim lp
+usedim idlp
+usedim lex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define id dimension
+defdim id {
+  deftype "id.label" {s a b "^"}
+  deflabeltype "id.label"
+  defentrytype {in: set(tuple("id.label" {"!" "?" "+" "*"}))
+                out: set(tuple("id.label" {"!" "?" "+" "*"}))}
+%%
+  useprinciple "principle.graphPW" {
+    dims {D: id}}
+  useprinciple "principle.treePW" {
+    dims {D: id}}
+  useprinciple "principle.valencyPW" {
+    dims {D: id}}
+%%
+  output "output.pretty"
+  output "output.pretty1"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lp dimension
+defdim lp {
+  deftype "lp.label" {b1 b2}
+  deflabeltype "lp.label"
+  defentrytype {in: set(tuple("lp.label" {"!" "?" "+" "*"}))
+                out: set(tuple("lp.label" {"!" "?" "+" "*"}))
+                order: set(tuple("lp.label" "lp.label"))}
+%%
+  useprinciple "principle.graphPW" {
+    dims {D: lp}}
+  useprinciple "principle.valencyPW" {
+    dims {D: lp}}
+  useprinciple "principle.orderDepsPW" {
+    dims {D: lp}}
+%%
+  output "output.pretty"
+  output "output.pretty1"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define idlp dimension
+defdim idlp {
+  defentrytype {order: set(tuple("id.label" "lp.label" "id.label" "lp.label"))
+                commas: set(tuple("id.label" "lp.label" "id.label" "lp.label"))}
+%%
+  useprinciple "principle.blockPW" {
+    dims {D1: lp D2: id}}
+  useprinciple "principle.orderBlocksPW" {
+    dims {D1: id D2: lp D3: idlp}}
+  useprinciple "principle.commasPW" {
+    dims {D1: lp D2: id D3: idlp}}
+%%
+  output "output.pretty"
+  output "output.pretty1"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lex dimension
+defdim lex {
+  defentrytype {word: string}
+%%
+  output "output.allDags1"
+  output "output.allLatexs1"
+  useoutput "output.allDags1"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lexicon
+
+%% S -> &lt;a,&lt;01>>(B)
+defentry {
+  dim id {in: {s?}
+          out: {b!}}
+  dim lp {in: {b1* b2*}
+          out: {b1+}}
+  dim idlp {order: {["^" b1 b b1]}
+            commas: {}}
+  dim lex {word: "a"}}
+%% S -> &lt;a,&lt;0121>>(A,B)
+defentry {
+  dim id {in: {s?}
+          out: {a! b!}}
+  dim lp {in: {b1* b2*}
+          out: {b1+}}
+  dim idlp {order: {["^" b1 a b1] ["^" b1 b b1] ["^" b1 a b2]
+                    [a b1 b b1] [a b1 a b2] [b b1 a b2]}
+            commas: {}}
+  dim lex {word: "a"}}
+
+%% A -> &lt;a,&lt;0,1>>(B)
+defentry {
+  dim id {in: {a!}
+          out: {b!}}
+  dim lp {in: {b1* b2*}
+          out: {b1+ b2+}
+          order: &lt;b1 b2>}
+  dim idlp {order: {["^" b1 b b1]}
+            commas: {["^" b1 b b1]}}
+  dim lex {word: "a"}}
+%% A -> &lt;a,&lt;01,21>>(A,B)
+defentry {
+  dim id {in: {a!}
+          out: {a! b!}}
+  dim lp {in: {b1* b2*}
+          out: {b1+ b2+}
+          order: &lt;b1 b2>}
+  dim idlp {order: {["^" b1 a b1] ["^" b1 b b1] ["^" b1 a b2]
+                    [a b1 b b1] [a b1 a b2] [b b1 a b2]}
+            commas: {[a b1 b b1]}}
+  dim lex {word: "a"}}
+
+%% B -> &lt;b,&lt;0>>
+defentry {
+  dim id {in: {b!}}
+  dim lp {in: {b1* b2*}
+          out: {b1+}}
+  dim idlp {commas: {}}
+  dim lex {word: "b"}}
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

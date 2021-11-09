@@ -1,0 +1,304 @@
+%% Copyright 2001-2011
+%% by Denys Duchier <duchier@ps.uni-sb.de> (LORIA, Nancy) and
+%%    Ralph Debusmann <rade@ps.uni-sb.de> (Saarland University) and
+\RequirePackage{pstricks}
+\RequirePackage{pst-node}
+\RequirePackage{pst-tree}
+\RequirePackage{pst-coil}
+
+\newcommand{\xdag@nodes}{}
+\newcommand{\xdag@edges}{}
+\newcommand{\xdag@doms}{}
+\newcommand{\xdag@colseps}{}
+
+\newcommand{\xdag@mappend}[2]{%
+  \expandafter\def\expandafter#1\expandafter{#1#2}}
+
+%% \xdagNode{COL}{ROW}{WORD}{BOX}{LABEL}
+\newcommand{\xdagNode}[5]{%
+  \xdag@mappend{\xdag@nodes}{\xdag@lookup{#1}{#2}{#3}{#4}{#5}}\ignorespaces}
+
+%% \xdagEdge{COL1}{COL2}{LABEL}{PARAMS}
+\newcommand{\xdagEdge}[4]{%
+  \ifnum#1>#2\relax
+    \xdag@mappend{\xdag@edges}{\xdag@lookup{#2}{#1}{#3}{#1}{#2}{#4}}%
+  \else
+    \xdag@mappend{\xdag@edges}{\xdag@lookup{#1}{#2}{#3}{#1}{#2}{#4}}%
+  \fi\ignorespaces}
+
+%% \xdagDom{COL1}{COL2}{LABEL}{PARAMS}
+\newcommand{\xdagDom}[4]{%
+  \ifnum#1>#2\relax
+    \xdag@mappend{\xdag@doms}{\xdag@lookup{#2}{#1}{#3}{#1}{#2}{#4}}%
+  \else
+    \xdag@mappend{\xdag@doms}{\xdag@lookup{#1}{#2}{#3}{#1}{#2}{#4}}%
+  \fi\ignorespaces}
+
+%% \xdagColsep{COL}{LEN}
+%% \xdagExtraColsep{COL}{LEN}
+\newcommand{\xdagColsep}[2]{%
+  \@tempcnta=#1\relax
+  \@tempdimb=#2\relax
+  \edef\@temp{\noexpand\xdag@mappend{\noexpand
+    \xdag@colseps}{\noexpand\xdag@lookup
+      {\the\@tempcnta}{\the\@tempdimb}}}%
+  \@temp\ignorespaces}
+\newcommand{\xdagExtraColsep}[2]{%
+  \@tempcnta=#1\relax
+  \@tempdimb=#2\relax
+  \advance\@tempdimb\xdagColsep
+  \edef\@temp{\noexpand\xdag@mappend{\noexpand
+    \xdag@colseps}{\noexpand\xdag@lookup
+      {\the\@tempcnta}{\the\@tempdimb}}}%
+  \@temp\ignorespaces}
+
+\newcount\xdag@nrows \newcount\xdag@row
+\newcount\xdag@ncols \newcount\xdag@col
+\newcount\xdag@count \xdag@count=\z@
+
+\newtoks\xdag@toks
+\newcommand{\xdag@save}[1]{%
+  \expandafter\xdag@toks\expandafter{%
+  \the\xdag@toks#1}}
+
+\newif\ifxdagframed \xdagframedfalse
+
+\newenvironment{xdagsub}{%
+  \def\xdag@nodes{}%
+  \def\xdag@edges{}%
+  \def\xdag@doms{}%
+}{%
+  %% determine the number of rows and columns
+  \xdag@nrows\z@
+  \xdag@ncols\z@
+  \let\xdag@lookup\xdag@countRowsAndCols
+  \xdag@nodes
+  %% the xdag prefix is for unique pstricks labels
+  \global\advance\xdag@count\@ne
+  \edef\xdag@prefix{XDAG\the\xdag@count}%
+  %% construct the tabular preamble
+  \def\xdag@sep{@{}}%
+  \xdag@toks{}\ifxdagframed\xdag@save{|@{\hspace{\arraycolsep}}}\fi
+  \xdag@col\z@
+  \@whilenum\xdag@col<\xdag@ncols\do{%
+    \advance\xdag@col\@ne
+    \expandafter\xdag@save\expandafter{\xdag@sep c}%
+    %% compute the next \xdag@sep
+    \def\xdag@sep{@{\hskip\xdagColsep}}%
+    \let\xdag@lookup\xdag@getColsep
+    \xdag@colseps
+  }%
+  \ifxdagframed\xdag@save{@{\hspace{\arraycolsep}}|}\fi
+  \xdag@save{@{}}%
+  %% start the tabular env
+  \edef\@temp{\noexpand\begin{tabular}{\the\xdag@toks}%
+    \ifxdagframed\noexpand\hline\fi}%
+  \@temp
+  %% for each row insert the appropriate boxes
+  \global\xdag@row\z@
+  \@whilenum\xdag@row<\xdag@nrows\do{%
+    %% the user numbers rows from 1 (not 0)
+    \global\advance\xdag@row\@ne
+    %% for each col, check if we need to insert a box
+    \global\xdag@col\z@
+    \@whilenum\xdag@col<\xdag@ncols\do{%
+      %% cols also numbered from 1
+      \global\advance\xdag@col\@ne
+      %% find the entry for this (col,row)
+      \def\xdag@gotWord{}%
+      \def\xdag@gotBox{}%
+      \@xdag@foundfalse
+      \let\xdag@lookup\xdag@getBox
+      \xdag@nodes
+      \if@xdag@found
+        \ifx\xdag@gotBox\@empty
+          \edef\@temp{\noexpand\@xdagEmptyBox
+            {\xdag@prefix}{\the\xdag@col}}%
+        \else
+          \expandafter\@temptokena\expandafter{\xdag@gotBox}%
+          \edef\@temp{\noexpand\@xdagBox
+            {\xdag@prefix}{\the\xdag@col}{\the\@temptokena}}%
+        \fi
+      \else
+        \def\@temp{\xdag@maybeamp{\xdag@col}}%
+      \fi
+      \@temp
+    }%
+    \vrule height\xdagRowHeight width0pt\relax\\% end of row
+  }%
+  %% add the last row of words
+  \global\xdag@col\z@
+  \@whilenum\xdag@col<\xdag@ncols\do{%
+    \global\advance\xdag@col\@ne
+    \@xdag@foundfalse
+    \def\xdag@gotWord{}%
+    \def\xdag@gotBox{}%
+    \let\xdag@lookup\xdag@getCol
+    \xdag@nodes
+    \expandafter\@temptokena\expandafter{\xdag@gotWord}%
+    \edef\@temp{\noexpand\@xdagWord
+      {\xdag@prefix}{\the\xdag@col}{\the\@temptokena}}%
+    \@temp
+  }%
+  %% end the tabular environment
+  \vrule height\xdagBottomRowHeight width0pt\relax
+  \ifxdagframed\def\@temp{\\\hline}\expandafter\@temp\fi
+  \end{tabular}%
+  %% draw vertical edges
+  \global\xdag@col\z@
+  \@whilenum\xdag@col<\xdag@ncols\do{%
+    \global\advance\xdag@col\@ne
+    \@xdag@foundfalse
+    \def\xdag@gotRow{}%
+    \def\xdag@gotLabel{}%
+    \let\xdag@lookup\xdag@getCol
+    \xdag@nodes
+    \ifx\xdag@gotRow\@empty\else
+      \expandafter\@temptokena\expandafter{\xdag@gotLabel}%
+      \edef\@temp{\noexpand\xdagDrawVedge
+        {\xdag@prefix B\the\xdag@col}%
+        {\xdag@prefix W\the\xdag@col}%
+        {\the\@temptokena}}%
+      \@temp
+    \fi
+  }%
+  %% draw other edges
+  \let\xdag@lookup\xdag@draw@edge
+  \xdag@edges
+  \ignorespaces
+  %% draw doms
+  \let\xdag@lookup\xdag@draw@dom
+  \xdag@doms
+  \ignorespaces
+  %%
+}
+
+\newdimen\xdagRowHeight \xdagRowHeight=14pt\relax
+\newdimen\xdagBottomRowHeight \xdagBottomRowHeight=20pt\relax
+\newdimen\xdagColsep \xdagColsep=20pt\relax
+
+\newcommand{\xdag@countRowsAndCols}[5]{%
+  \ifnum0#1>\xdag@ncols \xdag@ncols=#1\relax\fi
+  \ifnum0#2>\xdag@nrows \xdag@nrows=#2\relax\fi}
+
+\newif\if@xdag@found
+
+\newcommand{\xdag@getBox}[5]{%
+  \ifnum#1=\xdag@col
+    \ifnum0#2=\xdag@row
+      \@xdag@foundtrue
+      \def\xdag@gotWord{#3}%
+      \def\xdag@gotBox{#4}%
+    \fi
+  \fi}
+
+\newcommand{\xdag@getCol}[5]{%
+  \ifnum#1=\xdag@col
+    \@xdag@foundtrue
+    \def\xdag@gotRow{#2}%
+    \def\xdag@gotWord{#3}%
+    \def\xdag@gotBox{#4}%
+    \def\xdag@gotLabel{#5}%
+  \fi}
+
+\newcommand{\xdag@getColsep}[2]{
+  \ifnum#1=\xdag@col
+    \def\xdag@sep{@{\hskip#2}}%
+  \fi}
+
+\def\xdag@amp{&}
+\newcommand{\xdag@maybeamp}[1]{%
+  \ifnum#1>\@ne\expandafter\xdag@amp\fi}
+
+%% \@xdagEmptyBox{PREFIX}{COL}
+\newcommand{\@xdagEmptyBox}[3]{%
+  \xdag@maybeamp{#2}%
+  \xdagEmptyBox{#1B#2}{#2}}
+
+%% \xdagEmptyBox{NAME}{COL}
+%\newcommand{\xdagEmptyBox}[2]{\fnode[framesize=7pt]{#1}}
+\newcommand{\xdagEmptyBox}[2]{\cnode{.12}{#1}}
+
+%% \@xdagBox{PREFIX}{COL}{TEXT}
+\newcommand{\@xdagBox}[3]{%
+  \xdag@maybeamp{#2}%
+  \xdagBox{#1B#2}{#2}{#3}
+}
+
+%% \xdagBox{NAME}{COL}{TEXT}
+\newcommand{\xdagBox}[3]{%
+  \rnode{#1}{\psframebox{\xdagBoxFormat{#3}}}}
+
+\newcommand{\xdagBoxFormat}[1]{#1}
+
+%% \@xdagWord{PREFIX}{COL}{TEXT}
+\newcommand{\@xdagWord}[3]{%
+  \xdag@maybeamp{#2}%
+  \xdagWord{#1W#2}{#2}{#3}}
+
+%% \@xdagNodeIndex{TREEINDEX}{NODEINDEX}
+\newcommand{\@xdagNodeIndex}[2]{%
+  \xdag@maybeamp{#2}%
+  \small{#1B#2}}
+
+%% \xdagWord{NAME}{COL}{TEXT}
+\newcommand{\xdagWord}[3]{%
+  \Rnode{#1}{\xdagWordFormat{#3}}}
+
+\newcommand{\xdagWordFormat}[1]{\textit{#1}}
+
+%% \xdagDrawVedge{NAME1}{NAME2}{TEXT}
+\newcommand{\xdagDrawVedge}[3]{%
+  \xdagDrawVedgeLine{#1}{#2}%
+  \def\@temp{#3}%
+  \ifx\@temp\@empty\else\xdagDrawVedgeLabel{\xdagDrawVedgeLabelFormat{#3}}\fi
+}
+
+\newcommand{\xdagDrawVedgeLine}{\ncline[linestyle=dotted]}
+\newcommand{\xdagDrawVedgeLabel}{\ncput*[framesep=1pt]}
+\newcommand{\xdagDrawVedgeLabelFormat}[1]{\textsf{#1}}
+
+%% \xdag@draw@edge{COL1}{COL2}{LABEL}{COL1'}{COL2'}{PARAMS}
+\newcommand{\xdag@draw@edge}[6]{%
+  \edef\@temp{\noexpand\xdag@draw@edge@
+    {\xdag@prefix B#1}{\xdag@prefix B#2}}
+  \@temp{#3}{#4}{#5}{#6}}
+
+\newcommand{\xdag@draw@edge@}[6]{%
+  \xdagDrawEdgeLine{#1}{#2}{#4}{#5}{#6}%
+  \def\@temp{#3}%
+  \ifx\@temp\@empty\else\xdagDrawEdgeLabel{\xdagDrawEdgeLabelFormat{#3}}{#6}\fi}
+
+\newcommand{\xdagDrawEdgeLine}[5]{%
+  \psset{#5}\ifnum#3<#4\ncline{->}{#1}{#2}\else\ncline{<-}{#1}{#2}\fi}
+\newcommand{\xdagDrawEdgeLabel}[2]{\psset{#2}\ncput*[nrot=:U,framesep=1pt]{#1}}
+\newcommand{\xdagDrawEdgeLabelFormat}[1]{\textsf{#1}}
+
+%% \xdag@draw@dom{COL1}{COL2}{LABEL}{COL1'}{COL2'}{PARAMS}
+\newcommand{\xdag@draw@dom}[6]{%
+  \edef\@temp{\noexpand\xdag@draw@dom@
+    {\xdag@prefix B#1}{\xdag@prefix B#2}}
+  \@temp{#3}{#4}{#5}{#6}}
+
+\newcommand{\xdag@draw@dom@}[6]{%
+  \xdagDrawDomLine{#1}{#2}{#4}{#5}{#6}%
+  \def\@temp{#3}%
+  \ifx\@temp\@empty\else\xdagDrawDomLabel{\xdagDrawDomLabelFormat{#3}}{#6}\fi}
+
+\newcommand{\xdagDrawDomLine}[5]{%
+  \psset{#5}\ifnum#3<#4\ncarc[arcangle=30,linestyle=dotted]{->}{#1}{#2}\else\ncarc[arcangle=30,linestyle=dotted]{<-}{#1}{#2}\fi}
+\newcommand{\xdagDrawDomLabel}[2]{\psset{#2}\ncput*[nrot=:U,framesep=1pt]{#1}}
+\newcommand{\xdagDrawDomLabelFormat}[1]{\textsf{#1}}
+
+%% xdag
+
+\newenvironment{xdag}{%
+  \fontsize{7pt}{7pt}\selectfont
+  \def\node##1##2##3##4{\xdagNode{##1}{##2}{##3}{}{##4}}%
+  \def\edge##1##2##3{\xdagEdge{##1}{##2}{##3}{linecolor=black}}%
+  \def\pedge##1##2##3##4{\xdagEdge{##1}{##2}{##3}{##4}}%
+  \def\rededge##1##2##3{\xdagEdge{##1}{##2}{\red{##3}}{linecolor=red}}%
+  \def\dom##1##2##3{\xdagDom{##1}{##2}{##3}{linecolor=black}}%
+  \def\pdom##1##2##3##4{\xdagDom{##1}{##2}{##3}{##4}}%
+  \def\reddom##1##2##3{\xdagDom{##1}{##2}{\red{##3}}{linecolor=red}}%
+  \begin{xdagsub}}{\end{xdagsub}}

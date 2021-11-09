@@ -1,0 +1,106 @@
+<html lang="en">
+<head>
+<title>Lat-Overview - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Lattice-functors.html#Lattice-functors" title="Lattice functors">
+<link rel="next" href="Lat_002dCard.html#Lat_002dCard" title="Lat-Card">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Lat-Overview"></a>
+<a name="Lat_002dOverview"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Lat_002dCard.html#Lat_002dCard">Lat-Card</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Lattice-functors.html#Lattice-functors">Lattice functors</a>
+<hr>
+</div>
+
+<h4 class="subsection">4.15.1 Overview</h4>
+
+<p>The lattice functors are located in <code>Compiler/Lattices</code>.  Each
+lattice functor is a record with at least the following features
+making up its interface:
+
+<pre class="example">     elem(tag: A
+          top: SL
+          bot: SL
+          glb: SLSL2SL
+          select: SLsD2SL
+          makeVar: U2SL
+          encode: ILOpti2SL
+          decode: SL2IL
+          pretty: SLAbbrB2OL)
+          count: U2Co
+</pre>
+   <p>The <code>tag</code> feature corresponds to an atom (A)<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a> denoting the name of
+the lattice.
+
+   <p>The <code>top</code> feature corresponds to the top value of the lattice in
+the solver language (SL).
+
+   <p>The <code>bot</code> feature corresponds to the bottom value of the lattice
+in the solver language (SL).
+
+   <p>The <code>glb</code> feature corresponds to the greatest lower bound
+function of the lattice. Its type is <code>SL SL -&gt; SL</code>, i.e. it takes
+two SL values and yields their greatest lower bound (as a SL value). 
+All greatest lower bound functions are commutative, thereby
+maintaining monotonicity.
+
+   <p>The <code>select</code> feature corresponds to the selection function of the
+lattice which is used by the XDK solver to select one lexical entry
+from the set of lexical entries for a word. Its type is <code>SLs D -&gt;
+SL</code>, i.e.  it takes a list of SL values and a selector (an Oz finite
+domain variable), and yields a SL value.
+
+   <p>The <code>makeVar</code> feature corresponds to the make variable function
+of the lattice which is used by the XDK solver to create variables of
+values. Its type is <code>U -&gt; SL</code>, i.e.  it takes no argument (as
+indicated by the type <code>U</code> for &ldquo;unit&rdquo;) and yields an
+undetermined SL value.
+
+   <p>The <code>encode</code> feature corresponds to the encoding function of the
+lattice. Its type is <code>IL Opti -&gt; SL</code>, i.e. it takes an IL value
+and an optimization record <code>Opti</code> (introduced for efficiency
+reasons), and yields a SL value.
+
+   <p>The <code>decode</code> feature corresponds to the decoding function of the
+lattice. Its type is <code>SL -&gt; IL</code>, i.e. it takes a SL value and
+yields an IL value.
+
+   <p>The <code>pretty</code> feature corresponds to the pretty function of the
+lattice. Its type is <code>SL AbbrB -&gt; OL</code>, i.e. it takes a SL value
+and a boolean (<code>AbbrB</code>), and yields an OL value. <code>AbbrB</code>
+specifies whether the yielded OL value shall be abbreviated
+(<code>AbbrB==true</code>) or not (<code>AbbrB==false</code>).
+
+   <p>The <code>count</code> feature corresponds to the counting function of the
+lattice. Its type is <code>U -&gt; Co</code>, i.e. it takes no argument and
+yields a fd/fs variable count. This is used for profiling.
+
+<!-- ************************************************************ -->
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> We use the
+type abbreviations defined in <a href="Variable-names.html#Variable-names">Variable names</a>.</p>
+
+   <hr></div>
+
+   </body></html>
+

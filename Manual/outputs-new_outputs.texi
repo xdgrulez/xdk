@@ -1,0 +1,94 @@
+@section Writing new outputs
+In this section, we explain how you can write new outputs in
+Mozart/Oz. You may also choose to do post-processing using another
+programming language, building on one of the XML output functors.
+
+In order to write an output in Mozart/Oz, you need to provide two
+things:
+@enumerate
+@item the @emph{output definition}
+@cindex output definition
+@item the @emph{output functor}
+@cindex output functor
+@end enumerate
+
+@subsection Output definition
+You write the output definition in the IL, and add it to the list of
+output definitions bound to the Oz variable @code{Outputs} at the top of
+the functor @code{Outputs/Outputs.oz}.
+
+@subsubsection Example (dag output)
+
+Here is an example output definition of the output @code{output.dag}:
+@example
+elem(tag: outputdef
+     id: elem(tag: constant
+              data: 'output.dag')
+     'functor': elem(tag: constant
+                     data: 'Dag'))
+@end example
+
+The value of the @code{id} feature is an IL constant denoting the unique
+output identifier. The value of the @code{'functor'} feature is an IL constant
+denoting the filename of the Oz functor implementing the output (modulo
+the suffix @code{.ozf}).
+
+@subsubsection Integrate the output definition
+In order to integrate the output definition into the XDK, you need to
+add the identifier of the new output to the XML file
+@code{Outputs/outputs.xml}. Here, for each new output, you add a line
+like the following for the Dag output:
+
+@example
+<outputDef id="output.Dag"/>
+@end example
+
+This step is necessary because XML language grammar files contain only
+output chooses and uses, but not output definitions. Therefore, the
+output identifiers of the chosen/used outputs are only referred to
+but not defined in XML language grammar files, which leads to errors
+running an XML validator on them.
+
+@subsection Output functor
+You write the output functor as an Oz functor exporting two procedures:
+@itemize @bullet
+@item @code{Open: DIDA I OutputRec -> U} (open the output for dimension @code{DIDA})
+@item @code{Close: DIDA -> U} (close all windows opened by this output for dimension @code{DIDA})
+@end itemize
+
+@code{Open} has three arguments:
+@enumerate
+@item @code{DIDA} is a dimension identifier
+denoting the output dimension
+@item @code{I} is an Oz integer denoting the number of the
+solution
+@item @code{OutputRec} is the output record providing the
+decoded information contained in the solution
+@end enumerate
+
+@code{Close} has one argument:
+@enumerate
+@item @code{DIDA} is a dimension identifier
+denoting the output dimension
+@end enumerate
+
+The output functor has to reside in @code{Outputs/Lib}. Its file name must
+match the value of the @code{'functor'} feature in the output definition,
+i.e. for @code{Dag}, it must be @code{Dag.oz}.
+
+@subsubsection Integrate the output functor
+In order to integrate the output definition into the XDK, you need to
+add the output functor to the @code{ozmake} makefile in
+@code{Outputs/Lib} (@code{Outputs/Lib/makefile.oz}).
+
+@subsubsection Check cycles helper procedure
+The functor @code{Outputs/Lib/Helpers.oz} exports the procedure
+@code{CheckCycles: DIDA NodeOLs -> U}. @code{CheckCycles} checks
+whether a graph has a cycle. It has two arguments:
+@itemize @bullet
+@item @code{DIDA}: a dimension identifier of the dimension which shall be checked
+@item @code{NodeOLs}: a list of node records in the OL, denoting a solution.
+@end itemize
+
+The procedure assumes that the graph principle (or the graph1
+principle) is used on dimension @code{DIDA}.

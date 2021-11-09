@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+<title>xdkconv - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Programs.html#Programs" title="Programs">
+<link rel="prev" href="xdkc.html#xdkc" title="xdkc">
+<link rel="next" href="xdks.html#xdks" title="xdks">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="xdkconv"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="xdks.html#xdks">xdks</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="xdkc.html#xdkc">xdkc</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Programs.html#Programs">Programs</a>
+<hr>
+</div>
+
+<h3 class="section">11.4 xdkconv</h3>
+
+<p>This section is about the standalone grammar file converter of the XDK
+(<code>xdkconv</code>). The grammar file converter takes a source grammar
+file and converts it into a destination grammar file.  The grammar
+file language into which the destination grammar file is converted
+depends on its suffix.
+
+   <p>The source grammar file can be one of the following:
+     <ul>
+<li>UL file (suffix: <code>ul</code>)
+<li>XML file (suffix: <code>xml</code>)
+<li>IL pickle (suffix: <code>ilp</code>)
+<li>IL functor<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a> (suffix: <code>ozf</code>)
+</ul>
+
+   <p>And the destination grammar file can be one of the following:
+     <ul>
+<li>UL file (suffix: <code>ul</code>)
+<li>XML file (suffix: <code>xml</code>)
+<li>IL pickle (suffix: <code>ilp</code>)
+</ul>
+
+<h4 class="subsection">11.4.1 Invocation</h4>
+
+<p>These are the commandline arguments of <code>xdkconv</code>:
+
+     <ul>
+<li><code>--help</code> or <code>--nohelp</code> (short version: <code>-h</code>): Display an
+overview of the commandline arguments. Default: <code>--nohelp</code>. 
+<li><code>--grammar</code> (<code>-g</code>): Select the source grammar file. 
+Default: "". 
+<li><code>--output</code> (<code>-o</code>): Select the destination grammar file. 
+Default: "". 
+<li><code>--debug</code> or <code>--nodebug</code> (<code>-d</code>): Switch on the debug mode. 
+Default: <code>nodebug</code>. 
+</ul>
+
+<h4 class="subsection">11.4.2 Example</h4>
+
+<p>Here is an example. Assume you would like to convert the source grammar
+file <code>Grammars/Diplom.ul</code>, which is written in the <em>User
+Language (UL)</em>
+<a name="index-User-Language-347"></a><a name="index-UL-348"></a>into the destination grammar file <code>Grammars/Diplom.xml</code> in the
+<em>XML language</em>. Here is how you do this with <code>xdkconv</code>:
+
+<pre class="example">     xdkconv.exe -g Grammars/Diplom.ul -o Grammars/Diplom.xml
+</pre>
+   <p><code>xdkconv</code> reads the UL grammar <code>Grammars/Diplom.ul</code>, and saves
+the corresponding XML language grammar <code>Grammars/Diplom.xml</code>.
+
+<!-- ************************************************************ -->
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> The functor must export the IL grammar under the
+key <code>grammar</code>.</p>
+
+   <hr></div>
+
+   </body></html>
+

@@ -1,0 +1,9 @@
+defprinciple "principle.linkingDaughterEndDissPW" {
+  dims {D1 D2}
+  constraints {
+
+forall V: forall V1:
+  edge(V V1 vf D1) => edge(V V1 subj D2)
+
+  }
+}

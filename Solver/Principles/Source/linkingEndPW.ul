@@ -1,0 +1,10 @@
+defprinciple "principle.linkingEndPW" {
+  dims {D1 D2 D3}
+  constraints {
+
+forall V: forall V1: forall L: forall L1:
+  edge(V V1 L D1) & [L L1] in V.D3.entry.linkEnd =>
+    exists V2: edge(V2 V1 L1 D2)
+
+  }
+}

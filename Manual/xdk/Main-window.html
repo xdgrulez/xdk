@@ -1,0 +1,305 @@
+<html lang="en">
+<head>
+<title>Main window - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="xdk.html#xdk" title="xdk">
+<link rel="next" href="Explorer-window.html#Explorer-window" title="Explorer window">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Main-window"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Explorer-window.html#Explorer-window">Explorer window</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="xdk.html#xdk">xdk</a>
+<hr>
+</div>
+
+<h4 class="subsection">11.1.1 Main window</h4>
+
+<p>We show a screenshot of the main window of the GUI below:
+
+   <pre class="sp">
+
+</pre>
+<img src="pix/main.jpg" alt="pix/main.jpg">
+
+   <p>The main window consists of five parts, from top to bottom:
+
+     <ol type=1 start=1>
+<li>the menu bar comprising the pull-down menus
+<li>the status display comprising information about the currently loaded grammar
+and example files
+<li>the inspect lexical entries button and text field
+<li>the examples list view and scroll bar
+<li>the solve button and text field
+        </ol>
+
+<h5 class="subsubsection">11.1.1.1 Menu bar</h5>
+
+<p>The menu bar consists of the following pull-down menus, from left to
+right:
+
+     <ul>
+<li>Project
+<li>Search
+<li>Dimensions
+<li>Principles
+<li>Outputs
+<li>Extras
+</ul>
+
+   <p>The <code>Project</code> menu consists of the following menu entries:
+
+     <ul>
+<li><code>About...</code>: Opens a dialog to display some information
+about the XDK. 
+<li><code>Open grammar file...</code>: Opens a file dialog in which you
+can select a grammar file which is then compiled. The GUI also tries
+to find the corresponding example file with suffix <code>txt</code>. 
+<li><code>Open grammar file/socket...</code>: Opens a string dialog in which you
+can select a grammar file or grammar socket
+(e.g. <code>4712.xmlsocket</code>). The GUI also tries to find the
+corresponding example file with suffix <code>txt</code>. 
+<li><code>Open multiple grammar files...</code>: Opens a sequence
+of file dialogs in which you can select multiple grammar files which
+are then compiled and merged. Click on the <code>Cancel</code> button of the
+file dialog after the last grammar file to break the sequence.  The
+GUI also tries to find the corresponding example file with suffix
+<code>txt</code> (for the first grammar file in the sequence). 
+<li><code>Reload grammar files</code>: Recompiles the currently opened grammar
+file(s) and reloads the corresponding examples file. 
+<li><code>Save compiled grammar file...</code>: Opens a file dialog in which
+you can select a path and filename and then saves the compiled grammar
+there. 
+<li><code>Convert grammar file...</code>: Opens two file dialogs in which you
+can select the paths and filenames of the source and destination files
+for grammar conversion. The grammar file language into which the
+destination grammar file is converted depends on its suffix.  The source
+grammar file can be one of the following:
+          <ul>
+<li>UL file (suffix: <code>ul</code>)
+<li>XML file (suffix: <code>xml</code>)
+<li>IL pickle (suffix: <code>ilp</code>)
+<li>IL functor<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a> (suffix: <code>ozf</code>)
+</ul>
+     And the destination grammar file can be one of the following:
+          <ul>
+<li>UL file (suffix: <code>ul</code>)
+<li>XML file (suffix: <code>xml</code>)
+<li>IL pickle (suffix: <code>ilp</code>)
+</ul>
+
+          <ul>
+</ul>
+     <li><code>Open examples file...</code>: Opens an examples file which is then
+displayed in the examples list view. 
+<li><code>Reload examples file</code>: Reloads the currently opened examples
+file. 
+<li><code>Close output windows</code>: Calls the close method of all currently
+used outputs
+<li><code>Quit</code>: Quits the GUI. 
+</ul>
+
+   <p>The <code>Search</code> menu consists of the following menu entries:
+
+     <ul>
+<li><code>First solution</code>/<code>All solutions</code>/<code>Print CSP</code>/<code>Print FlatZinc</code>:
+When solving, either search for the first solution only, enumerate all
+solutions, print the CSP into a file, or print the CSP into a file
+using FlatZinc syntax. 
+<li><code>Explorer</code>/<code>IOzSeF</code>/<code>Oracle</code>: Choose the search
+exploration tool, either the Oz Explorer, IOzSeF or Oracle (also using
+IOzSeF). 
+<li><code>Set oracle port...</code>: Set oracle socket port for communication
+with the oracle server. Must be the same as set for the oracle server. 
+</ul>
+
+   <p>The <code>Dimensions</code>, <code>Principles</code> and <code>Outputs</code> menus are
+different depending on the currently opened grammar. Here, you can
+decide whether you wish to use or to switch off individual
+dimensions<a rel="footnote" href="#fn-2" name="fnd-2"><sup>2</sup></a>, principles and outputs.
+
+   <p>The <code>Extras</code> menu consists of the following menu entries:
+
+     <ul>
+<li><code>Print</code>:
+Here, you can specify how the output functors <em>print</em>
+information:
+          <ul>
+<li><code>inspect</code> uses the Oz Inspector. 
+<li><code>browse</code> uses the
+Oz Browser (useful for copying text to the clipboard, which the
+Inspector cannot do). 
+<li><code>stdout</code> prints to stdout. 
+<li><code>file</code> prints into a file. 
+</ul>
+     <li><code>Compare lem solutions</code>
+Compares the derivation trees obtained from the generated XDG grammar
+(by the XTAG grammar generator) with the derivation trees obtained
+from the original XTAG lem parser. Counts the number of solutions and
+then prints out those solutions unique to the lem parser and the XDK. 
+For this function to work, the executables of the lem parser
+(<a href="ftp://ftp.cis.upenn.edu/pub/xtag/lem/lem-0.14.0.tgz">ftp://ftp.cis.upenn.edu/pub/xtag/lem/lem-0.14.0.tgz</a>) must be
+installed in the search path. The executables <code>runparser</code> and
+<code>print_deriv</code> are called. There are a couple of variants:
+          <ul>
+<li><code>No filter</code> does not use any tree filtering. 
+<li><code>Simple filter</code> uses a reimplementation of <code>simple_filter.pl</code>
+from the lem parser from the lem parser distribution. 
+<li><code>Tagger filter</code> uses a reimplementation of <code>tagger_filter.pl</code>
+to do tree filtering. For this, the <code>mxpost</code> tagger by Adwait
+Ratnaparkhi must be installed in the directory denoted by the
+environment variable <code>MXPOST</code>.  In addition, for <code>Tagger
+filter</code>, the <code>LEM</code> environment variable must point to the
+location of the lem parser. 
+</ul>
+     <li><code>Generate orderings...</code>: Uses the solver to search
+for the possible orderings of a sentence. 
+<li><code>Solve examples</code>: Going downwards from the highlighted
+example, solves each sentence from the list of examples. Can come in
+handy for debugging grammars (answering the question whether all the
+examples still work). 
+<li><code>Solving Statistics</code>:
+          <ul>
+<li><code>Save solving statistics...</code>: Opens a file dialog in which
+you can select a path and a filename.  Then obtains the solving
+statistics for the current grammar and examples. The statistics are in
+XML format (DTD: <code>Extras/statistics.dtd</code>). Unix users can use the
+shell script <code>diffnotime</code> to compare two solving statistics
+without taking the solving time into account (e.g. to spot the
+differences with respect to solutions, choices and failures). 
+<li><code>Set number of solutions...</code>: Opens a dialog in which you can
+set the maximum number of solutions for solving statistics. 0 means no
+solving (can be used e.g. to do profiling only)
+<li><code>Set number of failures...</code>: Opens a dialog in which you can
+set the maximum number of failures for solving statistics. 
+<li><code>Set recomputation distance...</code>: Opens a dialog in which
+you can set the maximum recomputation distance for solving statistics. 
+<li><code>Open outputs</code>: If checked, the used outputs are opened
+for each solution in solving statistics. 
+</ul>
+     <li><code>Debug mode</code>: If checked, the XDK is in
+debug mode, giving out more information to ease (system, not grammar)
+debugging. 
+</ul>
+
+   <p>Below, we display an example output of the <code>Generate all
+orderings...</code> function:
+
+   <pre class="sp">
+
+</pre>
+<img src="pix/orderings.jpg" alt="pix/orderings.jpg">
+
+   <p><code>'number of orderings'</code> states the number of possible
+orderings. <code>'number of solutions'</code> states the number of solutions
+(this can be higher than the number of possible orderings for
+e.g. different analyses on a dimension other than lp). 
+<code>'ordering -&gt; solutions'</code> states a mapping from sentences to
+lists of indices of their corresponding solutions. By clicking on this
+list with the right mouse button, and then selecting <code>Actions</code>
+and then <code>Outputs</code>, you can invoke all used output functors for
+the solutions contained in the list.
+
+   <p>The <code>Save solving statistics file...</code> function omits empty
+examples, examples starting with <code>/</code>, <code>*</code> or <code>%</code>.
+
+<h5 class="subsubsection">11.1.1.2 Status display</h5>
+
+<p>The status display shows two things:
+
+     <ul>
+<li><code>Grammar</code>: the name of the currently
+opened grammar file(s)
+<li><code>Examples</code>: the name of the currently opened examples
+file. 
+</ul>
+
+   <p>If the selected grammar file(s) could not be successfully compiled,
+the <code>Grammar</code> status includes the note <code>(not successfully
+compiled)</code>.
+
+<h5 class="subsubsection">11.1.1.3 Inspect lexical entries button and text field</h5>
+
+<p>In the <code>inspect lexical entries</code> text field you can enter a list
+of words. After pressing the return key or after clicking on the
+<code>Inspect lexical entries</code> button the GUI opens the Oz Inspector
+to display all possible lexical entries for that word for the used
+dimensions. The lexical entries are displayed in the <code>Output
+Language (OL)</code>. 
+<a name="index-Output-Language-345"></a><a name="index-OL-346"></a>If a lexical entry in the list equals another, e.g. the third is equal
+to the first, then this is signified as follows: <code>entry#3#'=1'</code>.
+
+   <p>Below, we show an example output of this function:
+   <pre class="sp">
+
+</pre>
+<img src="pix/entries.jpg" alt="pix/entries.jpg">
+
+   <p>Here, the first number (3) corresponds to the number of lexical
+entries for the word (<code>lieben</code>), and the numbers before each of
+these lexical entries is the index of that entry.
+
+<h5 class="subsubsection">11.1.1.4 Examples list view and scroll bar</h5>
+
+<p>The examples list view displays the list of currently opened
+examples. Use the scroll bar on the right hand side of the list view
+to scroll through it.  If you click on one of the examples, the GUI
+copies this example to the solve text field.  If you double click on
+one of the examples, the GUI first copies the example to the solve
+text field and then solves the example.
+
+<h5 class="subsubsection">11.1.1.5 Solve button and text field</h5>
+
+<p>In the <code>solve</code> text field you can enter a list of words.  After
+pressing the return key or after clicking on the <code>solve</code> button
+the GUI opens the Oz Explorer to display all possible solutions for
+that list of words (under the currently opened grammar and selections
+in the <code>Dimensions</code> and <code>Principles</code> menus).
+
+<h5 class="subsubsection">11.1.1.6 Tips and tricks</h5>
+
+<p>When looking for example files which correspond to grammar files, the
+GUI simply removes the suffix from the grammar file and adds the new
+suffix <code>txt</code>. E.g. for the grammar file <code>Grammars/Acl01.ul</code>,
+it looks for the examples file <code>Grammars/Acl01.txt</code>.
+
+   <p>You can &ldquo;tear-off&rdquo; the pull-down menus such that they become
+independent windows (depends on the version of Tcl/Tk and your
+operating system, e.g. seems to work under Unix and Windows, but not
+MacOS X).
+
+   <p>Some of the menu entries have keyboard shortcuts, displayed to their
+right. E.g. by pressing the keys <code>control</code> and <code>o</code>
+simultaneously, you can invoke the menu entry <code>Open grammar
+file...</code> of the <code>Project</code> menu.
+
+<!-- ************************************************************ -->
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> The functor must export the IL grammar under the
+key <code>grammar</code>.</p>
+
+   <p class="footnote"><small>[<a name="fn-2" href="#fnd-2">2</a>]</small> Toggling the lex dimension has no effect on the
+XDK solver - the lexicon is always used.</p>
+
+   <hr></div>
+
+   </body></html>
+

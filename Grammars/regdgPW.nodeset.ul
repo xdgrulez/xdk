@@ -1,0 +1,10 @@
+{
+{index: 1
+ id: {model: {daughtersL: {a: {2}
+                           b: {4}}}}}
+{index: 2
+ id: {model: {daughtersL: {a: {3}
+                           b: {5}}}}}
+{index: 3
+ id: {model: {daughtersL: {b: {6}}}}}
+}

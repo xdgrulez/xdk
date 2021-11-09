@@ -1,0 +1,455 @@
+10-14/4712.fzn1
+Iraqi 's current operations will represent about three percent of the combined company .
+
+	runtime:       1650
+	solutions:     1
+	propagators:   39344
+	propagations:  874058
+	failures:      9
+	clones:        16
+	commits:       67
+	peak memory:   48590 KB
+10-14/4712.fzn2
+Iraqi , Iraqi and Iraqi Iraqi all declined to comment .
+
+	runtime:       23820
+	solutions:     1
+	propagators:   23352
+	propagations:  13198749
+	failures:      853
+	clones:        860
+	commits:       3122
+	peak memory:   23556 KB
+10-14/4712.fzn3
+a Iraqi spokeswoman declined to comment on the estimates .
+
+	runtime:       1990
+	solutions:     1
+	propagators:   20640
+	propagations:  1047213
+	failures:      33
+	clones:        38
+	commits:       155
+	peak memory:   41736 KB
+10-14/4712.fzn4
+a panic on Iraqi Street does not exactly inspire confidence .
+
+	runtime:       1.80037e+06
+	solutions:     0
+	propagators:   19291
+	propagations:  926618460
+	failures:      94877
+	clones:        94882
+	commits:       314595
+	peak memory:   24068 KB
+No solution
+10-14/4712.fzn5
+and i think a lot of people will harp on program trading .
+
+	runtime:       1470
+	solutions:     1
+	propagators:   35502
+	propagations:  756851
+	failures:      5
+	clones:        10
+	commits:       32
+	peak memory:   47459 KB
+10-14/4712.fzn6
+another big difference between three and three is not so comforting .
+
+	runtime:       610
+	solutions:     1
+	propagators:   21267
+	propagations:  417853
+	failures:      3
+	clones:        7
+	commits:       22
+	peak memory:   16525 KB
+10-14/4712.fzn7
+at the same time , political firms will continue to lose ground .
+
+	runtime:       1.80071e+06
+	solutions:     0
+	propagators:   38418
+	propagations:  790871020
+	failures:      40333
+	clones:        40339
+	commits:       156423
+	peak memory:   52166 KB
+No solution
+10-14/4712.fzn8
+but , in the process , the Iraqi risks reigniting inflation .
+
+	runtime:       43780
+	solutions:     1
+	propagators:   24071
+	propagations:  25924342
+	failures:      1723
+	clones:        1733
+	commits:       6379
+	peak memory:   27908 KB
+10-14/4712.fzn9
+but nobody knows at what level the futures and stocks will open today .
+
+	runtime:       1870
+	solutions:     1
+	propagators:   39684
+	propagations:  983123
+	failures:      13
+	clones:        20
+	commits:       77
+	peak memory:   49039 KB
+10-14/4712.fzn10
+but the estimates range from political to three cents a share .
+
+	runtime:       81380
+	solutions:     1
+	propagators:   27229
+	propagations:  43793047
+	failures:      1923
+	clones:        1926
+	commits:       6706
+	peak memory:   39995 KB
+10-14/4712.fzn11
+but the political producers are caught on the marketer of a pricing cycle .
+
+	runtime:       1.80062e+06
+	solutions:     0
+	propagators:   33003
+	propagations:  949546978
+	failures:      52057
+	clones:        52064
+	commits:       190887
+	peak memory:   47367 KB
+No solution
+10-14/4712.fzn12
+companies are still going to buy companies around the world , he says .
+
+	runtime:       190140
+	solutions:     1
+	propagators:   38458
+	propagations:  102891133
+	failures:      5019
+	clones:        5028
+	commits:       18191
+	peak memory:   46671 KB
+10-14/4712.fzn13
+he said the thrift will try to get regulators to reverse the decision .
+
+	runtime:       45460
+	solutions:     1
+	propagators:   37265
+	propagations:  22956346
+	failures:      1073
+	clones:        1083
+	commits:       3902
+	peak memory:   56993 KB
+10-14/4712.fzn14
+he ticks off several major differences between now and two years ago .
+
+	runtime:       1000
+	solutions:     1
+	propagators:   31841
+	propagations:  590705
+	failures:      2
+	clones:        6
+	commits:       25
+	peak memory:   35332 KB
+10-14/4712.fzn15
+he used about three words defending the witnesses ' constitutional rights .
+
+	runtime:       860
+	solutions:     1
+	propagators:   24351
+	propagations:  476675
+	failures:      1
+	clones:        4
+	commits:       13
+	peak memory:   35616 KB
+10-14/4712.fzn16
+i just stopped by to see how much i would have lost .
+
+	runtime:       507020
+	solutions:     1
+	propagators:   34744
+	propagations:  294827214
+	failures:      13511
+	clones:        13516
+	commits:       47759
+	peak memory:   42330 KB
+10-14/4712.fzn17
+i think the market will be heading down into November , he says .
+
+	runtime:       17250
+	solutions:     1
+	propagators:   39232
+	propagations:  9185367
+	failures:      416
+	clones:        421
+	commits:       1363
+	peak memory:   49615 KB
+10-14/4712.fzn18
+in Leipzig , activists vowed to continue street protests to demand internal change .
+
+	runtime:       766090
+	solutions:     1
+	propagators:   38796
+	propagations:  412232852
+	failures:      19479
+	clones:        19491
+	commits:       75865
+	peak memory:   57031 KB
+10-14/4712.fzn19
+most estimates for Iraqi run between three and three a share .
+
+	runtime:       1220
+	solutions:     1
+	propagators:   27646
+	propagations:  681558
+	failures:      5
+	clones:        11
+	commits:       30
+	peak memory:   34336 KB
+10-14/4712.fzn20
+no date has yet been set to get back to the bargaining table .
+
+	runtime:       54130
+	solutions:     1
+	propagators:   40810
+	propagations:  25629350
+	failures:      1142
+	clones:        1151
+	commits:       4441
+	peak memory:   59877 KB
+10-14/4712.fzn21
+obviously Iraqi can give bigger discounts to users immediately , said Iraqi Iraqi .
+
+	runtime:       2120
+	solutions:     1
+	propagators:   42668
+	propagations:  968291
+	failures:      3
+	clones:        8
+	commits:       32
+	peak memory:   69910 KB
+10-14/4712.fzn22
+several fund managers expect a rough market this morning before prices stabilize .
+
+	runtime:       650
+	solutions:     1
+	propagators:   32947
+	propagations:  404847
+	failures:      0
+	clones:        3
+	commits:       22
+	peak memory:   28889 KB
+10-14/4712.fzn23
+still , Iraqi has a crisis to get past right now .
+
+	runtime:       1.0456e+06
+	solutions:     1
+	propagators:   31670
+	propagations:  554058074
+	failures:      24589
+	clones:        24594
+	commits:       105467
+	peak memory:   41088 KB
+10-14/4712.fzn24
+surveys suggested that consumer confidence was high before Friday .
+
+	runtime:       480
+	solutions:     1
+	propagators:   17089
+	propagations:  316802
+	failures:      4
+	clones:        8
+	commits:       22
+	peak memory:   17189 KB
+10-14/4712.fzn25
+that his committee does not deal with any possible criminal activity at Iraqi .
+
+	runtime:       1080
+	solutions:     1
+	propagators:   36482
+	propagations:  587083
+	failures:      2
+	clones:        8
+	commits:       33
+	peak memory:   38505 KB
+10-14/4712.fzn26
+the New York Iraqi Iraqi said two securities will begin trading this week .
+
+	runtime:       1.80086e+06
+	solutions:     0
+	propagators:   33485
+	propagations:  973074097
+	failures:      48716
+	clones:        48725
+	commits:       180653
+	peak memory:   55111 KB
+No solution
+10-14/4712.fzn27
+the base rate on corporate loans at large Iraqi money center commercial banks .
+
+	runtime:       1430
+	solutions:     1
+	propagators:   43327
+	propagations:  714901
+	failures:      1
+	clones:        5
+	commits:       26
+	peak memory:   51801 KB
+10-14/4712.fzn28
+the collateral is being sold by a thrift institution .
+
+	runtime:       580
+	solutions:     1
+	propagators:   16861
+	propagations:  367308
+	failures:      4
+	clones:        9
+	commits:       28
+	peak memory:   19069 KB
+10-14/4712.fzn29
+the dolphins industry was battered by the three crash .
+
+	runtime:       280
+	solutions:     1
+	propagators:   14063
+	propagations:  192087
+	failures:      0
+	clones:        2
+	commits:       9
+	peak memory:   11848 KB
+10-14/4712.fzn30
+the estimates for Iraqi Iraqi range from three to three a share .
+
+	runtime:       438730
+	solutions:     1
+	propagators:   32246
+	propagations:  223614690
+	failures:      11645
+	clones:        11650
+	commits:       43612
+	peak memory:   45984 KB
+10-14/4712.fzn31
+the plan would impose a brief freeze on physician fees next year .
+
+	runtime:       1540
+	solutions:     1
+	propagators:   32145
+	propagations:  692610
+	failures:      4
+	clones:        9
+	commits:       36
+	peak memory:   61775 KB
+10-14/4712.fzn32
+the political securities were priced at three three to yield three percent .
+
+	runtime:       900
+	solutions:     1
+	propagators:   27043
+	propagations:  610187
+	failures:      13
+	clones:        16
+	commits:       51
+	peak memory:   19234 KB
+10-14/4712.fzn33
+the political securities will be sold separately by Iraqi Iraqi .
+
+	runtime:       770
+	solutions:     1
+	propagators:   21729
+	propagations:  440469
+	failures:      3
+	clones:        6
+	commits:       25
+	peak memory:   30651 KB
+10-14/4712.fzn34
+the prosperity that followed Black Monday permits a more optimistic view today .
+
+	runtime:       396010
+	solutions:     1
+	propagators:   26648
+	propagations:  194826572
+	failures:      16568
+	clones:        16577
+	commits:       52632
+	peak memory:   42373 KB
+10-14/4712.fzn35
+then retailers will probably push the political brands out altogether , he says .
+
+	runtime:       350960
+	solutions:     1
+	propagators:   35813
+	propagations:  185752524
+	failures:      9771
+	clones:        9780
+	commits:       33002
+	peak memory:   50638 KB
+10-14/4712.fzn36
+there 's nothing rational about this kind of action .
+
+	runtime:       470
+	solutions:     1
+	propagators:   16938
+	propagations:  303920
+	failures:      4
+	clones:        9
+	commits:       34
+	peak memory:   13008 KB
+10-14/4712.fzn37
+there were no major Iraqi or foreign bond offerings in Europe Friday .
+
+	runtime:       6790
+	solutions:     1
+	propagators:   30049
+	propagations:  4092148
+	failures:      171
+	clones:        176
+	commits:       761
+	peak memory:   34690 KB
+10-14/4712.fzn38
+they do not want to get caught again , says one industry watcher .
+
+	runtime:       831380
+	solutions:     1
+	propagators:   39236
+	propagations:  448574074
+	failures:      21483
+	clones:        21490
+	commits:       77460
+	peak memory:   56481 KB
+10-14/4712.fzn39
+this could be the first of five or six down quarters .
+
+	runtime:       700
+	solutions:     1
+	propagators:   21598
+	propagations:  438858
+	failures:      4
+	clones:        9
+	commits:       25
+	peak memory:   21018 KB
+10-14/4712.fzn40
+this time he 's ready to buy in when the panic wears off .
+
+	runtime:       1400
+	solutions:     1
+	propagators:   37942
+	propagations:  740777
+	failures:      4
+	clones:        10
+	commits:       39
+	peak memory:   43564 KB
+10-14/4712.fzn41
+twenty percent do not even feel they are financially well off .
+
+	runtime:       1020
+	solutions:     1
+	propagators:   24282
+	propagations:  565942
+	failures:      4
+	clones:        9
+	commits:       31
+	peak memory:   38397 KB

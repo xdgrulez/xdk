@@ -1,0 +1,97 @@
+#!/usr/bin/perl
+$file = @ARGV[0];
+open(fh,$file);
+@lines = <fh>;
+close(fh);
+
+$lines = "";
+foreach $line (@lines) {
+    $lines = "$lines$line";
+}
+
+$_ = $lines;
+
+s/\x7b/\\textttAAA\\textcolorAAAMyDarkPurpleBBBAAA\\AAABBBBBB/g;
+s/\x7d/\\textttAAA\\textcolorAAAMyDarkPurpleBBBAAA\\BBBBBBBBB/g;
+s/AAA/{/g;
+s/BBB/}/g;
+s/::/\\textcolor{MyDarkPurple}{::}/g;
+s/([^:]):([^:])/\1\\textcolor{MyDarkPurple}{:}\2/g;
+s/</\\textcolor{MyDarkPurple}{<}/g;
+s/=>/\\textcolor{MyDarkPurple}{=>}/g;
+s/=([^>])/\\textcolor{MyDarkPurple}{=}\1/g;
+s/&/\\textcolor{MyDarkPurple}{\&}/g;
+s/([^=])>/\\textcolor{MyDarkPurple}{\1>}/g;
+s/%$/\\textcolor{BrickRed}{%}/g;
+s/%([^"].*)/\\textcolor{BrickRed}{%\1}/g;
+s/"([^"]*)"/\\textcolor{MyDarkOrange}{"\1"}/g;
+s/forall/\\textcolor{MyDarkPurple}{forall}/g;
+s/node/\\textcolor{MyDarkPurple}{node}/g;
+s/edge\(/\\textcolor{MyDarkPurple}{edge(}/g;
+s/dom\(/\\textcolor{MyDarkPurple}{dom(}/g;
+s/defgrammar/\\textcolor{MyDarkPurple}{defgrammar}/g;
+s/defprinciple /\\textcolor{MyDarkPurple}{defprinciple} /g;
+s/model /\\textcolor{MyDarkPurple}{model} /g;
+s/defaults /\\textcolor{MyDarkPurple}{defaults} /g;
+s/ constraints / \\textcolor{MyDarkPurple}{constraints} /g;
+s/edgeconstraints /\\textcolor{MyDarkPurple}{edgeconstraints} /g;
+s/defdim/\\textcolor{MyDarkPurple}{defdim}/g;
+s/dims/\\textcolor{MyDarkPurple}{dims}/g;
+s/args/\\textcolor{MyDarkPurple}{args}/g;
+s/tv\(/\\textcolor{MyDarkPurple}{tv}(/g;
+s/defattrstype/\\textcolor{MyDarkPurple}{defattrstype}/g;
+s/defentrytype/\\textcolor{MyDarkPurple}{defentrytype}/g;
+s/deflabeltype/\\textcolor{MyDarkPurple}{deflabeltype}/g;
+s/deftype/\\textcolor{MyDarkPurple}{deftype}/g;
+s/useprinciple/\\textcolor{MyDarkPurple}{useprinciple}/g;
+s/usedim/\\textcolor{MyDarkPurple}{usedim}/g;
+s/ output\([^s]\)/ \\textcolor{MyDarkPurple}{output}\1/g;
+s/useoutput/\\textcolor{MyDarkPurple}{useoutput}/g;
+s/defclass/\\textcolor{MyDarkPurple}{defclass}/g;
+s/ dim / \\textcolor{MyDarkPurple}{dim} /g;
+s/useclass/\\textcolor{MyDarkPurple}{useclass}/g;
+s/defentry([^t])/\\textcolor{MyDarkPurple}{defentry}\1/g;
+s/([^i])set/\\textcolor{MyDarkPurple}{\1set}/g;
+s/iset/\\textcolor{MyDarkPurple}{iset}/g;
+s/tuple/\\textcolor{MyDarkPurple}{tuple}/g;
+s/list/\\textcolor{MyDarkPurple}{list}/g;
+s/([^\.])valency/\1\\textcolor{MyDarkPurple}{valency}/g;
+s/vec\(/\\textcolor{MyDarkPurple}{vec}\(/g;
+s/any/\\textcolor{MyDarkPurple}{any}/g;
+s/constraint/\\textcolor{MyDarkPurple}{constraint}/g;
+s/([^"])int\n/\1\\textcolor{MyDarkPurple}{int}\n/g;
+s/([^"])int([^s^e^r^"])/\1\\textcolor{MyDarkPurple}{int}\2/g;
+s/ints\n/\1\\textcolor{MyDarkPurple}{ints}\n/g;
+s/string/\\textcolor{MyDarkPurple}{string}/g;
+s/bool/\\textcolor{MyDarkPurple}{bool}/g;
+s/any/\\textcolor{MyDarkPurple}{any}/g;
+s/ref\(/\\textcolor{MyDarkPurple}{ref}(/g;
+s/label\(/\\textcolor{MyDarkPurple}{label}(/g;
+s/([^n][^o][^t])equal/\1\\textcolor{MyDarkPurple}{equal}/g;
+s/notequal/\\textcolor{MyDarkPurple}{notequal}/g;
+s/include/\\textcolor{MyDarkPurple}{include}/g;
+s/exclude/\\textcolor{MyDarkPurple}{exclude}/g;
+s/subseteq/\\textcolor{MyDarkPurple}{subseteq}/g;
+s/([^n][^o][^t])disjoint/\1\\textcolor{MyDarkPurple}{disjoint}/g;
+s/notdisjoint/\\textcolor{MyDarkPurple}{notdisjoint}/g;
+s/([^d][^e][^f])attrs([^"])/\1\\textcolor{MyDarkPurple}{attrs}\2/g;
+s/([^d][^e][^f])entry([^"])/\1\\textcolor{MyDarkPurple}{entry}\2/g;
+s/top/\\textcolor{MyDarkPurple}{top}/g;
+s/bot/\\textcolor{MyDarkPurple}{bot}/g;
+s/infty/\\textcolor{MyDarkPurple}{infty}/g;
+s/dom\(/\\textcolor{MyDarkPurple}{dom}\(/g;
+s/lambda\(/\\textcolor{MyDarkPurple}{lambda}\(/g;
+s/\(/\\textcolor{MyDarkPurple}{CCC}/g;
+s/\)/\\textcolor{MyDarkPurple}{DDD}/g;
+s/CCC/(/g;
+s/DDD/)/g;
+s/([^"])\*/\1\\textcolor{MyDarkPurple}{\*}/g;
+s/([^"])\?/\1\\textcolor{MyDarkPurple}{\?}/g;
+s/([^"])!/\1\\textcolor{MyDarkPurple}{!}/g;
+s/([^"])\+/\1\\textcolor{MyDarkPurple}{\+}/g;
+
+$lines = $_;
+
+open(fh,">$file.tex");
+print fh $lines;
+close(fh);

@@ -1,0 +1,33 @@
+@chapter Contributors
+
+Here is the long list of contributors to XDG and the XDK so far, in addition
+to the main developers Ralph Debusmann, Denys Duchier, Jorge Marques
+Pelizzoni and Jochen Setz:
+
+@itemize @bullet
+@item Regine Bader
+@item Ondrej Bojar
+@item Vineet Chaitanya
+@item Benoit Crabbe
+@item Simone Debusmann
+@item Christine Foeldesi
+@item Ciprian Gerstenberger
+@item Robert Grabowski
+@item Alexander Koller
+@item Christian Korthals
+@item Geert-Jan Kruijff
+@item Vladislav Kubon
+@item Marco Kuhlmann
+@item Pierre Lison
+@item Mathias Moehl
+@item Joachim Niehren
+@item Marwan Odeh
+@item Mark Pedersen
+@item Ulrich Pfeiffer
+@item Martin Platek
+@item Oana Postolache
+@item Jochen Steigner
+@item Guido Tack
+@item Stefan Thater
+@item Maarika Traat
+@end itemize

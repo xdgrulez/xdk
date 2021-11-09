@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+<title>Dag11 - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Outputs.html#Outputs" title="Outputs">
+<link rel="prev" href="Dag1.html#Dag1" title="Dag1">
+<link rel="next" href="Dag12.html#Dag12" title="Dag12">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Dag11"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Dag12.html#Dag12">Dag12</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Dag1.html#Dag1">Dag1</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Outputs.html#Outputs">Outputs</a>
+<hr>
+</div>
+
+<h3 class="section">9.12 Dag1</h3>
+
+<p>This section explains the Dag1 output functor.  The Dag1 output
+functor assumes that the graph principle is used on the output
+dimension.
+
+     <ul>
+<li>identifier: <code>output.dag1</code>
+<li>open method: opens a window displaying all known edges (and all
+known edge labels and all known node labels) of the directed acyclic
+graph on the output dimension, and all known dominance edges.  Ghosts
+a node (in gray) if either a) it corresponds to word <code>.</code> or b)
+its set of incoming edge labels is non-empty and a subset of
+<code>{dummy, del}</code>. Ghosts edges and dominance edges labeled with a
+label in <code>{root, root1, root2, dummy, del}</code>.  Compares the
+previous analysis with the current one: edges which are new from the
+previous Dag1 output on the output dimension are red. New dominance
+edges are pink. 
+<li>close method: closes all of these windows opened on the
+output dimension and resets the comparison (i.e. the next output does
+not compare). 
+</ul>
+
+   <p>Notice that the Dag1 output functor is able to display labeled
+dominance edges only if the graph principle is used on the output
+dimension (showing labeled dominance edges requires the <code>downL</code>
+feature). Otherwise, it can only to display unlabeled dominance edges.
+
+   <p>Dominance edges are light blue.
+
+   <p>Compared with the Dag output functor (<a href="Dag1.html#Dag1">Dag1</a>), Dag1 adds the
+following features:
+     <ul>
+<li>it includes dominance edges
+<li>it ghosts nodes
+<li>it ghosts edges
+<li>it compares analyses
+</ul>
+
+<!-- ************************************************************ -->
+   </body></html>
+

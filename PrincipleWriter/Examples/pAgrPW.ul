@@ -1,0 +1,9 @@
+defprinciple "principle.pAgrPW" {
+  dims {D}
+  constraints {
+
+forall V:
+  V.D.entry.pagrs ~= {} => V.D.attrs.pagr in V.D.entry.pagrs
+
+  }
+}

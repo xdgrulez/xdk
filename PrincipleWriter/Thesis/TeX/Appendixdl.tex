@@ -1,0 +1,61 @@
+\chapter{XDK Description Language}
+\section{Interpretation der Typen}\label{dltypesdef}
+  Gegeben eine Menge $\Ulb{A}$ aus Atomen und eine Menge $\Ulb{D}$ von
+  Dimensionen, Typen werden wie folgt interpretiert:
+  \begin{itemize}
+  \item $\Ulp{\{}\Ulb{a_1\ldots a_n}\Ulp{\}}$ als die Menge
+    $\{\Ulb{a_1},\ldots,\Ulb{a_n}\}\uplus\{\Top,\Bot\}$, wobei $\Top$
+    und $\Bot$ hinzugef\"ugt werden in der Funktion als top und bottom
+    des lattice des entsprechenden Types.
+  \item $\Ulp{string}$ als die Menge aller Atome plus  $\Top$ und $\Bot$:
+    $\Ulb{A}\uplus\{\Top,\Bot\}$, z.B., die Interpretation von Strings
+    kann unendlich sein (wenn $\Ulb{A}$ unendlich ist), im Gegensatz
+    zu der interpretation einer endlichen Dom\"ane.
+  \item $\Ulp{int}$ als die Menge aller nat\"urlichen Zahlen plus $\Top$ und $\Bot$
+  \item $\Ulp{list(}\Ulb{T}\Ulp{)}$ f\"ur alle $n>0$ als die Menge von
+    allen $n$-Tupel deren Projektionen Elemente der Interpretation von
+    $\Ulb{T}$, plus $\Top$ und $\Bot$ sind.
+  \item $\Ulp{set(}\Ulb{T}\Ulp{)}$ und $\Ulp{iset(}\Ulb{T}\Ulp{)}$ als
+    die Potenzmenge der Interpretation von $\Ulb{T}$
+  \item $\Ulp{card}$ als die Potenzmenge der Menge der nat\"urlichen Zahlen.
+  \item $\Ulp{tuple(}\Ulb{T_1\ldots T_n}\Ulp{)}$ als die Menge von
+    allen $\Ulb{n}$-Tupeln deren $\Ulb{i}$te Projektion ein Element
+    der Interpretation von $\Ulb{T_i}$ (f\"ur $\Ulb{1\leq i\leq n}$)
+  \item $\Ulp{\{}\Ulb{a_1:T_1\ldots a_n:T_n}\Ulp{\}}$ als die Menge
+    aller Funktionen  $f$ mit:
+    \begin{enumerate}
+    \item $\mathit{Dom}\ f=\{\Ulb{a_1},\ldots,\Ulb{a_n}\}$
+    \item f\"ur alle $1\leq\Ulb{i}\leq\Ulb{n}$, $f\ \Ulb{a_i}$ ist ein
+      element der Interpretation von $\Ulb{T_i}$
+    \end{enumerate}
+  \item Gegeben eine Dimensionsvarable $\Ulb{D}$ an Dimension $d$$,
+    \Ulp{label(}\Ulb{D}\Ulp{)}$ wird interpretiert als der Typ von
+    Kantenbeschriftungen von  $d$.
+  \item Gegeben eine Typvariable $\Ulb{X}$ vom Typ $\Ulb{T},
+    $$\Ulp{tv(}\Ulb{X}\Ulp{)}$ wird interpretiert als $\Ulb{T}$.
+  \end{itemize}
+  wobei die Typen $\Ulp{label(}\Ulb{D}\Ulp{)}$ und $\Ulp{tv(}\Ulb{X}\Ulp{)}$
+  nur bei Prinzipientypdefinitionen und nicht bei
+  Metagrammartypdefinitionen verwendet werden d\"urfen.
+
+
+\section{Constraint Parser}\label{cpmengen}
+\begin{itemize}
+\item $\Ozb{mothers}$: die Menge der Mutterknoten von $v$. 
+\item $\Ozb{daughters}$: die Menge der T\"ochter von $v$.
+\item $\Ozb{up}$: die Menge der Knoten \"uber $v$.
+\item $\Ozb{down}$: die Menge der Knoten unter $v$.
+\item $\Ozb{eq}$: die Menge die nur den eigenen Knoten $v$ enth\"alt.
+\item $\Ozb{equp}$: die Menge der Knoten \"uber oder gleich $v$.
+\item $\Ozb{eqdown}$: die Menge der Knoten unterhalb oder gleich $v$.
+\item $\Ozb{labels}$: die Menge der Kantenlabel der eingehenden Kanten
+  von $v$.
+\item $\Ozb{mothersL}$: die Menge der M\"utter von $v$ nach
+  Kantenlabel sortiert.
+\item $\Ozb{daughtersL}$: die Menge der T\"ochter von $v$ nach
+  Kantenlabel sortiert.
+\item $\Ozb{upL}$: die Menge der Knoten \"uber $v$ sortiert nach den
+  labeln der eingehenden Kanten.
+\item $\Ozb{downL}$ die Menge der Knoten unter $v$ sortiert nach den
+  Kantenlabeln der ausgehenden Kanten.
+\end{itemize}

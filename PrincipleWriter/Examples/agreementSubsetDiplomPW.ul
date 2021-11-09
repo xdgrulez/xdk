@@ -1,0 +1,9 @@
+defprinciple "principle.agreementSubsetDiplomPW" {
+  dims {D}
+  constraints {
+
+forall V: forall V1:
+  edge(V V1 vpref D) => V.D.entry.prefsReq subseteq V1.D.entry.prefs
+
+  }
+}

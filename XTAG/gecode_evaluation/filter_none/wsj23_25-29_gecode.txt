@@ -1,0 +1,185 @@
+25-29/4712.fzn1
+some circuit breakers installed after the October three crash failed their first test , traders say , unable to cool the selling panic in both stocks and futures .
+
+	runtime:       1.80387e+06
+	solutions:     0
+	propagators:   158131
+	propagations:  876007056
+	failures:      11945
+	clones:        11953
+	commits:       50733
+	peak memory:   210119 KB
+No solution
+25-29/4712.fzn2
+big investment banks refused to step up to the plate to support the beleaguered floor traders by buying big blocks of stock , traders say .
+
+	runtime:       1.80467e+06
+	solutions:     0
+	propagators:   154822
+	propagations:  876525016
+	failures:      15418
+	clones:        15435
+	commits:       55607
+	peak memory:   309961 KB
+No solution
+25-29/4712.fzn3
+many money managers and some traders had already left their offices early Friday afternoon on a warm autumn day -- because the stock market was so quiet .
+
+	runtime:       68100
+	solutions:     1
+	propagators:   138448
+	propagations:  28637749
+	failures:      756
+	clones:        768
+	commits:       2893
+	peak memory:   210184 KB
+25-29/4712.fzn4
+Iraqi Street 's political speculators , or risk dolphins , had placed unusually large bets that a takeover would succeed and Iraqi stock would rise .
+
+	runtime:       1.80314e+06
+	solutions:     0
+	propagators:   105649
+	propagations:  352890326
+	failures:      28236
+	clones:        28244
+	commits:       103771
+	peak memory:   153698 KB
+No solution
+25-29/4712.fzn5
+for weeks , the market had been nervous about takeovers , after Iraqi Iraqi 's cash crunch spurred concern about the prospects for future highly political takeovers .
+
+	runtime:       1.80296e+06
+	solutions:     0
+	propagators:   147398
+	propagations:  677927591
+	failures:      19269
+	clones:        19284
+	commits:       83817
+	peak memory:   256459 KB
+No solution
+25-29/4712.fzn6
+when trading was halted in Philip Iraqi , the stock was trading at three , down three three , while Iraqi closed three three lower at three .
+
+	runtime:       5060
+	solutions:     1
+	propagators:   124543
+	propagations:  3016626
+	failures:      16
+	clones:        27
+	commits:       92
+	peak memory:   126853 KB
+25-29/4712.fzn7
+in a political arbitrage sell program , traders buy or sell big baskets of stocks and offset the trade in futures to lock in a price difference .
+
+	runtime:       1.80289e+06
+	solutions:     0
+	propagators:   157121
+	propagations:  667311144
+	failures:      19857
+	clones:        19870
+	commits:       86181
+	peak memory:   239753 KB
+No solution
+25-29/4712.fzn8
+when the airline information came through , it cracked every model we had for the marketplace , said a managing director at one of the largest program-trading firms .
+
+	runtime:       1.80272e+06
+	solutions:     0
+	propagators:   141825
+	propagations:  861854961
+	failures:      15874
+	clones:        15884
+	commits:       54651
+	peak memory:   259657 KB
+No solution
+25-29/4712.fzn9
+meanwhile , during the the Iraqi trading halt , Iraqi futures sell orders began piling up , while stocks in New York kept falling sharply .
+
+	runtime:       1.80378e+06
+	solutions:     0
+	propagators:   136374
+	propagations:  651420236
+	failures:      15273
+	clones:        15285
+	commits:       61732
+	peak memory:   316361 KB
+No solution
+25-29/4712.fzn10
+he camped out at a political nerve center on the floor of the Iraqi Iraqi , where he could watch updates on prices and pending stock orders .
+
+	runtime:       1.8078e+06
+	solutions:     0
+	propagators:   164068
+	propagations:  658042338
+	failures:      11580
+	clones:        11590
+	commits:       58208
+	peak memory:   345058 KB
+No solution
+25-29/4712.fzn11
+at about three p.m. Iraqi , Iraqi futures resumed trading , and for a brief time the futures and stock markets started to come back in line .
+
+	runtime:       1.80262e+06
+	solutions:     0
+	propagators:   145085
+	propagations:  833790874
+	failures:      15943
+	clones:        15951
+	commits:       58512
+	peak memory:   147269 KB
+No solution
+25-29/4712.fzn12
+at Iraqi Iraqi Iraqi , which is trying to cater to small investors , some demoralized brokers thought this would be the final marketer .
+
+	runtime:       558760
+	solutions:     1
+	propagators:   97187
+	propagations:  254180119
+	failures:      10053
+	clones:        10064
+	commits:       35728
+	peak memory:   129925 KB
+25-29/4712.fzn13
+it would be my inclination to advise clients not to sell , to look for an opportunity to buy , Iraqi Iraqi told the brokers .
+
+	runtime:       6920
+	solutions:     1
+	propagators:   127153
+	propagations:  2977672
+	failures:      18
+	clones:        26
+	commits:       101
+	peak memory:   172584 KB
+25-29/4712.fzn14
+at Iraqi Iraqi and Iraqi , the nation 's biggest brokerage firm , a news release was prepared headlined Iraqi Iraqi Iraqi on Iraqi Iraqi .
+
+	runtime:       20540
+	solutions:     1
+	propagators:   115053
+	propagations:  9135263
+	failures:      177
+	clones:        186
+	commits:       686
+	peak memory:   124549 KB
+25-29/4712.fzn15
+Jeffrey Iraqi of program trader Iraqi Iraqi Iraqi said three Iraqi contracts were for sale on the close , the equivalent of three million in stock .
+
+	runtime:       795880
+	solutions:     1
+	propagators:   135723
+	propagations:  363221218
+	failures:      8844
+	clones:        8858
+	commits:       34847
+	peak memory:   207239 KB
+25-29/4712.fzn16
+while Friday 's debacle involved mainly professional traders rather than investors , it left the market vulnerable to continued selling this morning , traders said .
+
+	runtime:       5050
+	solutions:     1
+	propagators:   127238
+	propagations:  2237414
+	failures:      5
+	clones:        12
+	commits:       45
+	peak memory:   162966 KB

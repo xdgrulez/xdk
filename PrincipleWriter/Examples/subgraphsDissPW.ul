@@ -1,0 +1,10 @@
+defprinciple "principle.subgraphsDissPW" {
+  dims {D1 D2}
+  constraints {
+
+forall V: forall V1:
+  ( dom(V V1 th D1) => dom(V V1 bt1 D2) | dom(V V1 pa1bt1 D2) ) &
+  ( dom(V V1 rh D1) => dom(V V1 bt2 D2) | dom(V V1 pa2bt2 D2) )
+
+  }
+}

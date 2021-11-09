@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+<title>Merge - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Compiler.html#Compiler" title="Compiler">
+<link rel="prev" href="Lattices.html#Lattices" title="Lattices">
+<link rel="next" href="Types-reference.html#Types-reference" title="Types reference">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Merge"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Types-reference.html#Types-reference">Types reference</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Lattices.html#Lattices">Lattices</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Compiler.html#Compiler">Compiler</a>
+<hr>
+</div>
+
+<h3 class="section">4.8 Merge</h3>
+
+<p>The XDK grammar file compiler allows to <em>merge</em>
+<a name="index-merge-151"></a>an arbitrary number of grammars into one. Two grammars g_1 and
+g_2 can be merged into g_3 if they have the same type
+definitions.
+
+   <p>The merge operation is defined as follows:
+     <ul>
+<li>the lexicon of g_3 includes all the lexical entries of
+g_1 and g_2 (i.e. g_3 maps each word to the union
+of the set of lexical entries for this word in g_1 and
+g_2)
+<li>the dimension definitions of g_3 are taken from
+g_2
+</ul>
+
+   <p>If more than two grammars g_i (1&lt;=i&lt;=n, and n&gt;2)
+are merged, the last grammar in the sequence determines the dimension
+definitions of the merged grammar.
+
+<!-- ************************************************************ -->
+   </body></html>
+

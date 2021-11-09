@@ -1,0 +1,149 @@
+<html lang="en">
+<head>
+<title>Tree1 - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="Tree.html#Tree" title="Tree">
+<link rel="next" href="Valency1.html#Valency1" title="Valency1">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Tree1"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Valency1.html#Valency1">Valency1</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Tree.html#Tree">Tree</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.68 Tree1 principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.tree1</code>
+<li>dimension variables: <code>D</code>
+<li>argument variables: none
+<li>default values: none
+<li>model record: empty
+<li>constraints: <code>TreeMakeNodes</code> (priority 130)
+and <code>TreeConditions1</code> (120)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle is equivalent to the Tree principle (<a href="Tree.html#Tree">Tree</a>). The
+only difference is that it uses the constraint functor
+<code>TreeConditions1</code> instead of <code>TreeConditions</code>, which
+includes a native treeness constraint that can lead to better
+propagation.
+
+   <p>Here is the definition of the <code>TreeConditions1</code> constraint
+functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+   
+   NatUtils(treenessClause) at 'NatUtils.so{native}'
+
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      %%
+      DIDA = {DVA2DIDA 'D'}
+   in
+      %% check features
+      if {Helpers.checkModel 'TreeConditions1.oz' Nodes
+	  [DIDA#daughters
+	   DIDA#mothers
+	   DIDA#eq
+	   DIDA#eqdown]} then
+	 %% get node set NodeSetM
+	 NodeSetM = Nodes.1.nodeSet
+	 %%
+	 RootsM = {FS.subset $ NodeSetM}
+	 %% precisely one root
+	 {FD.equal {FS.card RootsM} 1}
+	 %% 
+	 Models = {Map Nodes fun {$ Node} Node.DIDA.model end}
+	 %%
+	 DaughtersMs = {Map Models
+			fun {$ Model} Model.daughters end}
+      in
+	 {FS.partition RootsM|DaughtersMs NodeSetM}
+	 %%
+	 for Model in Models I in 1..{Length Models} do
+	    %% |labels(v)|=|mothers(v)|
+	    {FD.equal
+	     {FS.card Model.labels}
+	     {FS.card Model.mothers}}
+	    %% a node is root iff it has no mother
+	    {FD.equi
+	     {FS.reified.include I RootsM}
+	     {FD.reified.equal {FS.card Model.mothers} 0} 1}
+	    %% a node is root iff its eqdown-set contains all nodes
+	    {FD.equi
+	     {FS.reified.include I RootsM}
+	     {FS.reified.equal Model.eqdown NodeSetM} 1}
+	 end
+	 %%
+	 {ForAllTail Models
+	  proc {$ Model1|Models2}
+	     for Model2 in Models2 do
+		M1 = Model1.eqdown
+		M2 = Model2.eqdown
+		D
+		if {Value.status M1}==kinded(fset) andthen
+		   {Value.status M2}==kinded(fset) then
+		   {NatUtils.treenessClause M1 M2 D 12}
+		   {NatUtils.treenessClause M1 M2 D 3}
+		   {NatUtils.treenessClause M1 M2 D 4}
+		end
+	     in
+		%% post ordered treeness clause if the tree is ordered
+		%% (= if the yield-field exists)
+		if {HasFeature Model1 yield} then
+		   M1 = Model1.yield
+		   M2 = Model2.yield
+		   D
+		in
+		   if {Value.status M1}==kinded(fset) andthen
+		      {Value.status M2}==kinded(fset) then
+		      {NatUtils.treenessClause M1 M2 D 1}
+		      {NatUtils.treenessClause M1 M2 D 2}
+		      {NatUtils.treenessClause M1 M2 D 3}
+		      {NatUtils.treenessClause M1 M2 D 4}
+		   end
+		end
+	     end
+	  end}
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

@@ -1,0 +1,8 @@
+defprinciple "principle.csdPW" {
+  dims {D}
+  constraints {
+    
+    [ ... ]
+
+  }
+}

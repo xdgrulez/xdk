@@ -1,0 +1,1477 @@
+05-09/4712.fzn1
+no , it was not Black Monday .
+
+	runtime:       4220
+	solutions:     265
+	propagators:   9455
+	propagations:  2507261
+	failures:      157
+	clones:        421
+	commits:       1220
+	peak memory:   9435 KB
+05-09/4712.fzn2
+the marketer has already begun .
+
+	runtime:       940
+	solutions:     170
+	propagators:   4531
+	propagations:  476285
+	failures:      30
+	clones:        199
+	commits:       563
+	peak memory:   6624 KB
+05-09/4712.fzn3
+the equity market was illiquid .
+
+	runtime:       3230
+	solutions:     1000
+	propagators:   5332
+	propagations:  1325621
+	failures:      40
+	clones:        1042
+	commits:       3030
+	peak memory:   4611 KB
+05-09/4712.fzn4
+the Iraqi Iraqi industrials closed at three .
+
+	runtime:       6230
+	solutions:     1000
+	propagators:   9255
+	propagations:  2649481
+	failures:      156
+	clones:        1160
+	commits:       3474
+	peak memory:   7956 KB
+05-09/4712.fzn5
+the Iraqi fell three percent on Black Monday .
+
+	runtime:       5700
+	solutions:     1000
+	propagators:   12997
+	propagations:  1815824
+	failures:      59
+	clones:        1064
+	commits:       2857
+	peak memory:   11076 KB
+05-09/4712.fzn6
+these stocks eventually reopened .
+
+	runtime:       310
+	solutions:     90
+	propagators:   3225
+	propagations:  170164
+	failures:      4
+	clones:        93
+	commits:       253
+	peak memory:   3411 KB
+05-09/4712.fzn7
+but stocks kept falling .
+
+	runtime:       1950
+	solutions:     608
+	propagators:   4647
+	propagations:  890692
+	failures:      30
+	clones:        637
+	commits:       1873
+	peak memory:   6745 KB
+05-09/4712.fzn8
+buyers stepped in to the futures pit .
+
+	runtime:       10280
+	solutions:     1000
+	propagators:   11790
+	propagations:  5146195
+	failures:      319
+	clones:        1324
+	commits:       3661
+	peak memory:   11844 KB
+05-09/4712.fzn9
+but there were no buyers .
+
+	runtime:       1980
+	solutions:     304
+	propagators:   5556
+	propagations:  1124519
+	failures:      85
+	clones:        388
+	commits:       1044
+	peak memory:   4483 KB
+05-09/4712.fzn10
+just thought you 'd like to know .
+
+	runtime:       4430
+	solutions:     1000
+	propagators:   11588
+	propagations:  775599
+	failures:      15
+	clones:        1019
+	commits:       2883
+	peak memory:   20108 KB
+05-09/4712.fzn11
+Iraqi 's philosophy was to build and sell .
+
+	runtime:       25820
+	solutions:     1000
+	propagators:   15371
+	propagations:  12574537
+	failures:      759
+	clones:        1763
+	commits:       5551
+	peak memory:   16594 KB
+05-09/4712.fzn12
+we want to build and hold .
+
+	runtime:       4690
+	solutions:     1000
+	propagators:   9788
+	propagations:  1279404
+	failures:      36
+	clones:        1042
+	commits:       3720
+	peak memory:   15215 KB
+05-09/4712.fzn13
+this feels more like a political deal .
+
+	runtime:       7230
+	solutions:     1000
+	propagators:   12293
+	propagations:  2201843
+	failures:      127
+	clones:        1131
+	commits:       3856
+	peak memory:   19916 KB
+05-09/4712.fzn14
+the test may come today .
+
+	runtime:       3660
+	solutions:     516
+	propagators:   5539
+	propagations:  2049065
+	failures:      186
+	clones:        701
+	commits:       2006
+	peak memory:   6623 KB
+05-09/4712.fzn15
+but fund managers say they 're ready .
+
+	runtime:       5140
+	solutions:     1000
+	propagators:   9053
+	propagations:  1585212
+	failures:      34
+	clones:        1036
+	commits:       2787
+	peak memory:   11877 KB
+05-09/4712.fzn16
+trading volume was only modestly higher than normal .
+
+	runtime:       4050
+	solutions:     1000
+	propagators:   12377
+	propagations:  1123953
+	failures:      6
+	clones:        1009
+	commits:       2833
+	peak memory:   10116 KB
+05-09/4712.fzn17
+the centers normally are closed through the weekend .
+
+	runtime:       9000
+	solutions:     1000
+	propagators:   14046
+	propagations:  3178730
+	failures:      103
+	clones:        1109
+	commits:       3346
+	peak memory:   23926 KB
+05-09/4712.fzn18
+Iraqi Holland is based in Amsterdam .
+
+	runtime:       650
+	solutions:     27
+	propagators:   6323
+	propagations:  348110
+	failures:      12
+	clones:        38
+	commits:       101
+	peak memory:   15475 KB
+05-09/4712.fzn19
+Bridget Iraqi contributed to this article .
+
+	runtime:       3640
+	solutions:     1000
+	propagators:   8154
+	propagations:  1272500
+	failures:      23
+	clones:        1027
+	commits:       2904
+	peak memory:   6979 KB
+05-09/4712.fzn20
+the projects are big .
+
+	runtime:       290
+	solutions:     68
+	propagators:   3489
+	propagations:  165990
+	failures:      7
+	clones:        74
+	commits:       208
+	peak memory:   3087 KB
+05-09/4712.fzn21
+we usually operate in that conservative manner .
+
+	runtime:       3950
+	solutions:     284
+	propagators:   8047
+	propagations:  2117693
+	failures:      183
+	clones:        466
+	commits:       1254
+	peak memory:   8412 KB
+05-09/4712.fzn22
+people were even hoarding bags , he says .
+
+	runtime:       5400
+	solutions:     1000
+	propagators:   13434
+	propagations:  1488699
+	failures:      60
+	clones:        1067
+	commits:       3087
+	peak memory:   15243 KB
+05-09/4712.fzn23
+now producers hope prices have hit bottom .
+
+	runtime:       4420
+	solutions:     1000
+	propagators:   12857
+	propagations:  823717
+	failures:      4
+	clones:        1011
+	commits:       3619
+	peak memory:   18444 KB
+05-09/4712.fzn24
+then a second explosion occurred .
+
+	runtime:       2930
+	solutions:     551
+	propagators:   5181
+	propagations:  1575747
+	failures:      110
+	clones:        660
+	commits:       1841
+	peak memory:   4296 KB
+05-09/4712.fzn25
+and then you still have to negotiate .
+
+	runtime:       8700
+	solutions:     1000
+	propagators:   10142
+	propagations:  4138129
+	failures:      300
+	clones:        1305
+	commits:       3614
+	peak memory:   11588 KB
+05-09/4712.fzn26
+not everything looks grim for Iraqi .
+
+	runtime:       9630
+	solutions:     0
+	propagators:   8250
+	propagations:  6046453
+	failures:      571
+	clones:        570
+	commits:       1948
+	peak memory:   15669 KB
+No solution
+05-09/4712.fzn27
+revenue totaled three million .
+
+	runtime:       240
+	solutions:     42
+	propagators:   3405
+	propagations:  153329
+	failures:      8
+	clones:        49
+	commits:       128
+	peak memory:   2959 KB
+05-09/4712.fzn28
+dolphins are not entirely new for Iraqi .
+
+	runtime:       16060
+	solutions:     1000
+	propagators:   8312
+	propagations:  9222892
+	failures:      776
+	clones:        1783
+	commits:       4950
+	peak memory:   9668 KB
+05-09/4712.fzn29
+it also has a marketer facility in California .
+
+	runtime:       11910
+	solutions:     1000
+	propagators:   11027
+	propagations:  5276836
+	failures:      186
+	clones:        1194
+	commits:       3396
+	peak memory:   16772 KB
+05-09/4712.fzn30
+many called it simply a contrast in styles .
+
+	runtime:       113150
+	solutions:     1000
+	propagators:   13484
+	propagations:  62775499
+	failures:      4638
+	clones:        5644
+	commits:       17849
+	peak memory:   22327 KB
+05-09/4712.fzn31
+i do not feel very ferocious .
+
+	runtime:       4440
+	solutions:     1000
+	propagators:   8397
+	propagations:  1319319
+	failures:      47
+	clones:        1050
+	commits:       2832
+	peak memory:   14558 KB
+05-09/4712.fzn32
+i do not feel either hard or soft .
+
+	runtime:       5340
+	solutions:     1000
+	propagators:   15238
+	propagations:  1056265
+	failures:      17
+	clones:        1022
+	commits:       2878
+	peak memory:   21915 KB
+05-09/4712.fzn33
+terms were not disclosed .
+
+	runtime:       320
+	solutions:     48
+	propagators:   3504
+	propagations:  196676
+	failures:      8
+	clones:        55
+	commits:       144
+	peak memory:   5135 KB
+05-09/4712.fzn34
+he did not forecast Iraqi 's results .
+
+	runtime:       7090
+	solutions:     1000
+	propagators:   8961
+	propagations:  3110356
+	failures:      171
+	clones:        1176
+	commits:       3130
+	peak memory:   11893 KB
+05-09/4712.fzn35
+political profits from gasoline were weaker .
+
+	runtime:       5270
+	solutions:     1000
+	propagators:   8016
+	propagations:  2220335
+	failures:      73
+	clones:        1078
+	commits:       3018
+	peak memory:   8836 KB
+05-09/4712.fzn36
+the main reason remains weather .
+
+	runtime:       3120
+	solutions:     1000
+	propagators:   5820
+	propagations:  974418
+	failures:      29
+	clones:        1033
+	commits:       2972
+	peak memory:   7777 KB
+05-09/4712.fzn37
+Iraqi reportedly began shipping these tools in three .
+
+	runtime:       7710
+	solutions:     1000
+	propagators:   13284
+	propagations:  2688740
+	failures:      155
+	clones:        1161
+	commits:       3153
+	peak memory:   14660 KB
+05-09/4712.fzn38
+Iraqi officials could not be located .
+
+	runtime:       1250
+	solutions:     173
+	propagators:   5778
+	propagations:  714783
+	failures:      40
+	clones:        212
+	commits:       562
+	peak memory:   5279 KB
+05-09/4712.fzn39
+looking ahead to other commodity markets this week :
+
+	runtime:       7590
+	solutions:     1000
+	propagators:   14744
+	propagations:  2737882
+	failures:      123
+	clones:        1130
+	commits:       3083
+	peak memory:   20869 KB
+05-09/4712.fzn40
+revenue soared to three million from three million .
+
+	runtime:       6960
+	solutions:     1000
+	propagators:   12291
+	propagations:  2790929
+	failures:      160
+	clones:        1165
+	commits:       3062
+	peak memory:   11140 KB
+05-09/4712.fzn41
+revenue rose to three million from three million .
+
+	runtime:       4670
+	solutions:     1000
+	propagators:   12834
+	propagations:  1210409
+	failures:      47
+	clones:        1052
+	commits:       3128
+	peak memory:   9972 KB
+05-09/4712.fzn42
+retailers are just in disarray .
+
+	runtime:       4020
+	solutions:     1000
+	propagators:   6973
+	propagations:  1670739
+	failures:      101
+	clones:        1105
+	commits:       3667
+	peak memory:   5636 KB
+05-09/4712.fzn43
+the government 's action was unusual .
+
+	runtime:       480
+	solutions:     31
+	propagators:   5147
+	propagations:  353315
+	failures:      29
+	clones:        59
+	commits:       152
+	peak memory:   4638 KB
+05-09/4712.fzn44
+the exchange ratio was never established .
+
+	runtime:       3760
+	solutions:     1000
+	propagators:   5957
+	propagations:  1388429
+	failures:      23
+	clones:        1025
+	commits:       2799
+	peak memory:   5955 KB
+05-09/4712.fzn45
+in Indianapolis , Iraqi declined comment .
+
+	runtime:       8910
+	solutions:     1000
+	propagators:   9681
+	propagations:  4495503
+	failures:      329
+	clones:        1333
+	commits:       4053
+	peak memory:   9557 KB
+05-09/4712.fzn46
+in New York , the company declined comment .
+
+	runtime:       48470
+	solutions:     1000
+	propagators:   15247
+	propagations:  25576244
+	failures:      2205
+	clones:        3212
+	commits:       9793
+	peak memory:   17028 KB
+05-09/4712.fzn47
+in Iraqi , Iraqi , Iraqi declined comment .
+
+	runtime:       133510
+	solutions:     1000
+	propagators:   16408
+	propagations:  81194847
+	failures:      6197
+	clones:        7203
+	commits:       23265
+	peak memory:   16452 KB
+05-09/4712.fzn48
+she analyzed families by their sleeping arrangements .
+
+	runtime:       11230
+	solutions:     1000
+	propagators:   9873
+	propagations:  5740857
+	failures:      509
+	clones:        1514
+	commits:       4136
+	peak memory:   11844 KB
+05-09/4712.fzn49
+they came by their strangeness honestly .
+
+	runtime:       830
+	solutions:     64
+	propagators:   5835
+	propagations:  464460
+	failures:      32
+	clones:        95
+	commits:       242
+	peak memory:   9107 KB
+05-09/4712.fzn50
+an Iraqi solution , explains Iraqi Iraqi .
+
+	runtime:       6210
+	solutions:     1000
+	propagators:   10697
+	propagations:  2617587
+	failures:      138
+	clones:        1144
+	commits:       3055
+	peak memory:   11844 KB
+05-09/4712.fzn51
+he 's a bore .
+
+	runtime:       310
+	solutions:     32
+	propagators:   3530
+	propagations:  167393
+	failures:      6
+	clones:        37
+	commits:       102
+	peak memory:   8280 KB
+05-09/4712.fzn52
+this further confuses retailers , she says .
+
+	runtime:       6990
+	solutions:     1000
+	propagators:   11250
+	propagations:  3117496
+	failures:      117
+	clones:        1124
+	commits:       3063
+	peak memory:   12036 KB
+05-09/4712.fzn53
+it makes investment castings and has traded over-the-counter .
+
+	runtime:       20530
+	solutions:     1000
+	propagators:   12241
+	propagations:  10292485
+	failures:      889
+	clones:        1895
+	commits:       5713
+	peak memory:   23130 KB
+05-09/4712.fzn54
+it had traded over-the-counter .
+
+	runtime:       740
+	solutions:     170
+	propagators:   3456
+	propagations:  427980
+	failures:      24
+	clones:        193
+	commits:       545
+	peak memory:   3343 KB
+05-09/4712.fzn55
+the pharmaceuticals maker had traded over-the-counter .
+
+	runtime:       4370
+	solutions:     1000
+	propagators:   6955
+	propagations:  1999029
+	failures:      106
+	clones:        1108
+	commits:       3032
+	peak memory:   5763 KB
+05-09/4712.fzn56
+we are trying to create quality and involvement .
+
+	runtime:       8480
+	solutions:     1000
+	propagators:   13112
+	propagations:  3551723
+	failures:      83
+	clones:        1088
+	commits:       3112
+	peak memory:   15044 KB
+05-09/4712.fzn57
+you can not live on that .
+
+	runtime:       7150
+	solutions:     731
+	propagators:   7193
+	propagations:  3330570
+	failures:      197
+	clones:        927
+	commits:       2673
+	peak memory:   9813 KB
+05-09/4712.fzn58
+but that wo not be easy .
+
+	runtime:       780
+	solutions:     24
+	propagators:   6900
+	propagations:  551659
+	failures:      52
+	clones:        75
+	commits:       204
+	peak memory:   6087 KB
+05-09/4712.fzn59
+some in the industry are skeptical .
+
+	runtime:       5190
+	solutions:     722
+	propagators:   7185
+	propagations:  2638565
+	failures:      192
+	clones:        913
+	commits:       2483
+	peak memory:   8836 KB
+05-09/4712.fzn60
+Iraqi foreclosed on the ranch .
+
+	runtime:       2000
+	solutions:     384
+	propagators:   6136
+	propagations:  956592
+	failures:      82
+	clones:        465
+	commits:       1325
+	peak memory:   5272 KB
+05-09/4712.fzn61
+a new president was not named .
+
+	runtime:       530
+	solutions:     49
+	propagators:   5350
+	propagations:  383102
+	failures:      18
+	clones:        66
+	commits:       186
+	peak memory:   5279 KB
+05-09/4712.fzn62
+the device was replaced .
+
+	runtime:       230
+	solutions:     49
+	propagators:   3208
+	propagations:  139623
+	failures:      2
+	clones:        50
+	commits:       130
+	peak memory:   3023 KB
+05-09/4712.fzn63
+the woman won the bet .
+
+	runtime:       2180
+	solutions:     345
+	propagators:   6012
+	propagations:  874864
+	failures:      57
+	clones:        401
+	commits:       1192
+	peak memory:   12939 KB
+05-09/4712.fzn64
+but frequently there is not much choice .
+
+	runtime:       9270
+	solutions:     1000
+	propagators:   10151
+	propagations:  4641844
+	failures:      333
+	clones:        1338
+	commits:       3782
+	peak memory:   11012 KB
+05-09/4712.fzn65
+the venture 's importance for Iraqi is great .
+
+	runtime:       5840
+	solutions:     1000
+	propagators:   14774
+	propagations:  1248404
+	failures:      10
+	clones:        1015
+	commits:       2861
+	peak memory:   23733 KB
+05-09/4712.fzn66
+it 's very much a growing concern .
+
+	runtime:       6480
+	solutions:     1000
+	propagators:   12114
+	propagations:  1835973
+	failures:      84
+	clones:        1090
+	commits:       3288
+	peak memory:   22034 KB
+05-09/4712.fzn67
+but that was all of three months ago .
+
+	runtime:       10960
+	solutions:     1000
+	propagators:   13729
+	propagations:  5362279
+	failures:      256
+	clones:        1261
+	commits:       3550
+	peak memory:   16069 KB
+05-09/4712.fzn68
+the industry defies characterization .
+
+	runtime:       180
+	solutions:     29
+	propagators:   2927
+	propagations:  114405
+	failures:      3
+	clones:        31
+	commits:       79
+	peak memory:   2958 KB
+05-09/4712.fzn69
+companies will continue to war over standards .
+
+	runtime:       5560
+	solutions:     1000
+	propagators:   15155
+	propagations:  1478867
+	failures:      38
+	clones:        1044
+	commits:       3268
+	peak memory:   19084 KB
+05-09/4712.fzn70
+Iraqi officials could not be reached for comment .
+
+	runtime:       7660
+	solutions:     1000
+	propagators:   13114
+	propagations:  2353442
+	failures:      78
+	clones:        1083
+	commits:       3083
+	peak memory:   21349 KB
+05-09/4712.fzn71
+the gap between winners and laggards will grow .
+
+	runtime:       6740
+	solutions:     1000
+	propagators:   14114
+	propagations:  1762172
+	failures:      46
+	clones:        1054
+	commits:       2945
+	peak memory:   22439 KB
+05-09/4712.fzn72
+but they will have to act quickly .
+
+	runtime:       6100
+	solutions:     1000
+	propagators:   12169
+	propagations:  1925680
+	failures:      46
+	clones:        1051
+	commits:       3396
+	peak memory:   17803 KB
+05-09/4712.fzn73
+Iraqi eats eating a comeback .
+
+	runtime:       960
+	solutions:     254
+	propagators:   4951
+	propagations:  478683
+	failures:      27
+	clones:        280
+	commits:       838
+	peak memory:   4360 KB
+05-09/4712.fzn74
+so are Indiana , Ohio and Michigan .
+
+	runtime:       3780
+	solutions:     73
+	propagators:   8527
+	propagations:  2766246
+	failures:      342
+	clones:        414
+	commits:       1363
+	peak memory:   7187 KB
+05-09/4712.fzn75
+this small Dallas suburb 's got trouble .
+
+	runtime:       4620
+	solutions:     1000
+	propagators:   10687
+	propagations:  873593
+	failures:      13
+	clones:        1016
+	commits:       3355
+	peak memory:   21515 KB
+05-09/4712.fzn76
+it would open a can of worms .
+
+	runtime:       9050
+	solutions:     1000
+	propagators:   10356
+	propagations:  3827947
+	failures:      226
+	clones:        1233
+	commits:       3430
+	peak memory:   13501 KB
+05-09/4712.fzn77
+now comes the pool flap .
+
+	runtime:       4020
+	solutions:     1000
+	propagators:   5772
+	propagations:  1716546
+	failures:      101
+	clones:        1105
+	commits:       3070
+	peak memory:   7008 KB
+05-09/4712.fzn78
+opponents of the cut are playing marketer .
+
+	runtime:       5520
+	solutions:     1000
+	propagators:   11038
+	propagations:  1646472
+	failures:      64
+	clones:        1068
+	commits:       3102
+	peak memory:   13502 KB
+05-09/4712.fzn79
+the Iraqi appears reluctant to join the senators .
+
+	runtime:       16260
+	solutions:     1000
+	propagators:   11832
+	propagations:  8958871
+	failures:      553
+	clones:        1558
+	commits:       4380
+	peak memory:   12420 KB
+05-09/4712.fzn80
+things had just gone too far .
+
+	runtime:       4440
+	solutions:     1000
+	propagators:   8065
+	propagations:  1927287
+	failures:      79
+	clones:        1084
+	commits:       3095
+	peak memory:   6019 KB
+05-09/4712.fzn81
+a similar provision is in the Iraqi version .
+
+	runtime:       16000
+	solutions:     1000
+	propagators:   12149
+	propagations:  8477566
+	failures:      623
+	clones:        1627
+	commits:       4699
+	peak memory:   14084 KB
+05-09/4712.fzn82
+John Iraqi Iraqi contributed to this article .
+
+	runtime:       3360
+	solutions:     1000
+	propagators:   10586
+	propagations:  848204
+	failures:      14
+	clones:        1020
+	commits:       2882
+	peak memory:   10628 KB
+05-09/4712.fzn83
+your paper needs a serious reality check .
+
+	runtime:       4670
+	solutions:     1000
+	propagators:   10789
+	propagations:  1349548
+	failures:      43
+	clones:        1048
+	commits:       3108
+	peak memory:   14533 KB
+05-09/4712.fzn84
+does this signal another Black Monday is coming ?
+
+	runtime:       4840
+	solutions:     1000
+	propagators:   13692
+	propagations:  775089
+	failures:      2
+	clones:        1008
+	commits:       3016
+	peak memory:   21851 KB
+05-09/4712.fzn85
+i see no major support until three .
+
+	runtime:       6910
+	solutions:     1000
+	propagators:   10752
+	propagations:  2781994
+	failures:      128
+	clones:        1135
+	commits:       3240
+	peak memory:   12548 KB
+05-09/4712.fzn86
+my advice is to buy .
+
+	runtime:       4290
+	solutions:     564
+	propagators:   6875
+	propagations:  2052174
+	failures:      142
+	clones:        705
+	commits:       2032
+	peak memory:   7904 KB
+05-09/4712.fzn87
+margin debt was at a record high .
+
+	runtime:       4370
+	solutions:     1000
+	propagators:   11149
+	propagations:  1560700
+	failures:      27
+	clones:        1033
+	commits:       2932
+	peak memory:   9988 KB
+05-09/4712.fzn88
+sort of a two-step bear market .
+
+	runtime:       4230
+	solutions:     1000
+	propagators:   10224
+	propagations:  928327
+	failures:      14
+	clones:        1019
+	commits:       3561
+	peak memory:   15223 KB
+05-09/4712.fzn89
+i guess that 's my forecast .
+
+	runtime:       9920
+	solutions:     1000
+	propagators:   7750
+	propagations:  5349508
+	failures:      440
+	clones:        1443
+	commits:       3913
+	peak memory:   8724 KB
+05-09/4712.fzn90
+unlike three , the dollar has been strong .
+
+	runtime:       7810
+	solutions:     1000
+	propagators:   12910
+	propagations:  3588698
+	failures:      111
+	clones:        1115
+	commits:       3029
+	peak memory:   12036 KB
+05-09/4712.fzn91
+so it 's a very mixed bag .
+
+	runtime:       6050
+	solutions:     1000
+	propagators:   12304
+	propagations:  1904617
+	failures:      52
+	clones:        1056
+	commits:       3149
+	peak memory:   18506 KB
+05-09/4712.fzn92
+yes , he did .
+
+	runtime:       390
+	solutions:     62
+	propagators:   3305
+	propagations:  230428
+	failures:      17
+	clones:        78
+	commits:       246
+	peak memory:   5520 KB
+05-09/4712.fzn93
+apparently , their verdict is in .
+
+	runtime:       1110
+	solutions:     8
+	propagators:   6811
+	propagations:  749222
+	failures:      88
+	clones:        95
+	commits:       247
+	peak memory:   6727 KB
+05-09/4712.fzn94
+right now they 're pursuing evidence .
+
+	runtime:       5540
+	solutions:     1000
+	propagators:   6332
+	propagations:  2525179
+	failures:      157
+	clones:        1160
+	commits:       3629
+	peak memory:   7305 KB
+05-09/4712.fzn95
+no doubt that 's partially true .
+
+	runtime:       6640
+	solutions:     1000
+	propagators:   7184
+	propagations:  2839025
+	failures:      220
+	clones:        1225
+	commits:       3807
+	peak memory:   9109 KB
+05-09/4712.fzn96
+individuals can always have their hands slapped .
+
+	runtime:       7390
+	solutions:     1000
+	propagators:   9460
+	propagations:  3112212
+	failures:      106
+	clones:        1111
+	commits:       3286
+	peak memory:   12740 KB
+05-09/4712.fzn97
+Iraqi of Iraqi , three Iraqi three three .
+
+	runtime:       4680
+	solutions:     1000
+	propagators:   12127
+	propagations:  1279713
+	failures:      90
+	clones:        1096
+	commits:       2958
+	peak memory:   13444 KB
+05-09/4712.fzn98
+but they are worried .
+
+	runtime:       230
+	solutions:     43
+	propagators:   3366
+	propagations:  143476
+	failures:      6
+	clones:        48
+	commits:       113
+	peak memory:   3667 KB
+05-09/4712.fzn99
+Iraqi 's biggest stocks were hammered .
+
+	runtime:       7960
+	solutions:     1000
+	propagators:   8410
+	propagations:  4381187
+	failures:      192
+	clones:        1194
+	commits:       3261
+	peak memory:   9621 KB
+05-09/4712.fzn100
+the turnover in both issues was roughly normal .
+
+	runtime:       180
+	solutions:     0
+	propagators:   0
+	propagations:  130048
+	failures:      1
+	clones:        0
+	commits:       0
+	peak memory:   10941 KB
+No solution
+05-09/4712.fzn101
+Iraqi Iraqi plummeted three to three .
+
+	runtime:       5000
+	solutions:     532
+	propagators:   7961
+	propagations:  2619417
+	failures:      211
+	clones:        742
+	commits:       1998
+	peak memory:   7108 KB
+05-09/4712.fzn102
+political marketer : three three percent .
+
+	runtime:       1360
+	solutions:     318
+	propagators:   5210
+	propagations:  672971
+	failures:      21
+	clones:        338
+	commits:       891
+	peak memory:   4382 KB
+05-09/4712.fzn103
+source : Iraqi Iraqi Iraqi . Iraqi .
+
+	runtime:       4040
+	solutions:     1000
+	propagators:   7690
+	propagations:  1750149
+	failures:      64
+	clones:        1068
+	commits:       2790
+	peak memory:   6404 KB
+05-09/4712.fzn104
+the minimum unit is three .
+
+	runtime:       380
+	solutions:     32
+	propagators:   4375
+	propagations:  279457
+	failures:      10
+	clones:        41
+	commits:       127
+	peak memory:   3278 KB
+05-09/4712.fzn105
+Iraqi Iraqi Iraqi Iraqi Iraqi .
+
+	runtime:       2890
+	solutions:     684
+	propagators:   5242
+	propagations:  1741111
+	failures:      143
+	clones:        826
+	commits:       2219
+	peak memory:   3843 KB
+05-09/4712.fzn106
+source : Iraqi Iraqi Iraqi .
+
+	runtime:       2080
+	solutions:     623
+	propagators:   4794
+	propagations:  1050014
+	failures:      58
+	clones:        680
+	commits:       1803
+	peak memory:   3143 KB
+05-09/4712.fzn107
+source : Iraqi Iraqi Iraqi .
+
+	runtime:       2120
+	solutions:     623
+	propagators:   4794
+	propagations:  1050014
+	failures:      58
+	clones:        680
+	commits:       1803
+	peak memory:   3143 KB
+05-09/4712.fzn108
+Iraqi Iraqi Iraqi Iraqi Iraqi : three percent .
+
+	runtime:       3340
+	solutions:     1000
+	propagators:   10804
+	propagations:  883965
+	failures:      12
+	clones:        1017
+	commits:       2764
+	peak memory:   9284 KB
+05-09/4712.fzn109
+and they plan to buy more today .
+
+	runtime:       6020
+	solutions:     1000
+	propagators:   10859
+	propagations:  1821606
+	failures:      40
+	clones:        1044
+	commits:       3233
+	peak memory:   17290 KB
+05-09/4712.fzn110
+other money managers also opened their wallets .
+
+	runtime:       6660
+	solutions:     1000
+	propagators:   8643
+	propagations:  2394051
+	failures:      124
+	clones:        1129
+	commits:       2978
+	peak memory:   12420 KB
+05-09/4712.fzn111
+it can happen before you can turn around .
+
+	runtime:       11700
+	solutions:     1000
+	propagators:   13968
+	propagations:  5423099
+	failures:      172
+	clones:        1177
+	commits:       3652
+	peak memory:   12868 KB
+05-09/4712.fzn112
+all that now has changed .
+
+	runtime:       4660
+	solutions:     1000
+	propagators:   5752
+	propagations:  2317627
+	failures:      165
+	clones:        1167
+	commits:       3296
+	peak memory:   5592 KB
+05-09/4712.fzn113
+that did not happen .
+
+	runtime:       400
+	solutions:     68
+	propagators:   3206
+	propagations:  251143
+	failures:      14
+	clones:        81
+	commits:       226
+	peak memory:   5135 KB
+05-09/4712.fzn114
+three billion of political and political bills .
+
+	runtime:       9030
+	solutions:     1000
+	propagators:   10340
+	propagations:  4384490
+	failures:      285
+	clones:        1287
+	commits:       3910
+	peak memory:   10948 KB
+05-09/4712.fzn115
+three billion of political bills .
+
+	runtime:       2780
+	solutions:     230
+	propagators:   5904
+	propagations:  1591296
+	failures:      133
+	clones:        362
+	commits:       1100
+	peak memory:   4951 KB
+05-09/4712.fzn116
+now it 's happening again .
+
+	runtime:       730
+	solutions:     74
+	propagators:   5818
+	propagations:  488969
+	failures:      14
+	clones:        87
+	commits:       234
+	peak memory:   6495 KB
+05-09/4712.fzn117
+and , finally , there were the dolphins .
+
+	runtime:       2430
+	solutions:     52
+	propagators:   9457
+	propagations:  1660264
+	failures:      115
+	clones:        166
+	commits:       467
+	peak memory:   7451 KB
+05-09/4712.fzn118
+i got out in three .
+
+	runtime:       5100
+	solutions:     1000
+	propagators:   8263
+	propagations:  1472734
+	failures:      54
+	clones:        1059
+	commits:       3286
+	peak memory:   14809 KB
+05-09/4712.fzn119
+would Iraqi Iraqi ever get back in ?
+
+	runtime:       30250
+	solutions:     1000
+	propagators:   11369
+	propagations:  11255932
+	failures:      726
+	clones:        1732
+	commits:       5943
+	peak memory:   23382 KB
+05-09/4712.fzn120
+dolphins are not far behind .
+
+	runtime:       2490
+	solutions:     240
+	propagators:   5204
+	propagations:  1320437
+	failures:      108
+	clones:        347
+	commits:       947
+	peak memory:   6047 KB
+05-09/4712.fzn121
+making computers smaller often means sacrificing memory .
+
+	runtime:       4660
+	solutions:     1000
+	propagators:   12565
+	propagations:  1086988
+	failures:      20
+	clones:        1025
+	commits:       2856
+	peak memory:   19147 KB
+05-09/4712.fzn122
+analysts do not see it that way .
+
+	runtime:       6870
+	solutions:     1000
+	propagators:   8499
+	propagations:  2178048
+	failures:      154
+	clones:        1156
+	commits:       3069
+	peak memory:   17993 KB
+05-09/4712.fzn123
+Iraqi closed at three , down three .
+
+	runtime:       5210
+	solutions:     1000
+	propagators:   11496
+	propagations:  1704738
+	failures:      79
+	clones:        1084
+	commits:       3183
+	peak memory:   10756 KB
+05-09/4712.fzn124
+Iraqi 's new political computer is called Iraqi .
+
+	runtime:       7010
+	solutions:     1000
+	propagators:   14660
+	propagations:  2221495
+	failures:      70
+	clones:        1077
+	commits:       2904
+	peak memory:   21145 KB
+05-09/4712.fzn125
+that will spur Iraqi 's growth .
+
+	runtime:       4960
+	solutions:     1000
+	propagators:   9142
+	propagations:  1689557
+	failures:      21
+	clones:        1027
+	commits:       3089
+	peak memory:   13981 KB
+05-09/4712.fzn126
+do not jump yet .
+
+	runtime:       150
+	solutions:     0
+	propagators:   3218
+	propagations:  91967
+	failures:      8
+	clones:        7
+	commits:       15
+	peak memory:   6296 KB
+No solution
+05-09/4712.fzn127
+this may sound early optimistic .
+
+	runtime:       3710
+	solutions:     1000
+	propagators:   5378
+	propagations:  1539208
+	failures:      76
+	clones:        1079
+	commits:       3295
+	peak memory:   4995 KB
+05-09/4712.fzn128
+a lot of pent-up demand is gone .
+
+	runtime:       5020
+	solutions:     1000
+	propagators:   11819
+	propagations:  1412946
+	failures:      52
+	clones:        1057
+	commits:       3134
+	peak memory:   11972 KB
+05-09/4712.fzn129
+that was offset by strength elsewhere .
+
+	runtime:       6760
+	solutions:     1000
+	propagators:   7355
+	propagations:  3420374
+	failures:      156
+	clones:        1160
+	commits:       3188
+	peak memory:   7236 KB
+05-09/4712.fzn130
+the dolphins had a receptive audience .
+
+	runtime:       290
+	solutions:     6
+	propagators:   4995
+	propagations:  213756
+	failures:      24
+	clones:        29
+	commits:       73
+	peak memory:   5279 KB
+05-09/4712.fzn131
+they are more sophisticated this time .
+
+	runtime:       5360
+	solutions:     856
+	propagators:   6412
+	propagations:  2625131
+	failures:      146
+	clones:        1001
+	commits:       2856
+	peak memory:   5920 KB
+05-09/4712.fzn132
+most of the three have big political operations .
+
+	runtime:       7700
+	solutions:     1000
+	propagators:   13160
+	propagations:  3188625
+	failures:      137
+	clones:        1142
+	commits:       3102
+	peak memory:   10564 KB
+05-09/4712.fzn133
+Iraqi Iraqi declined to comment .
+
+	runtime:       3170
+	solutions:     1000
+	propagators:   7333
+	propagations:  999683
+	failures:      29
+	clones:        1034
+	commits:       2971
+	peak memory:   7713 KB
+05-09/4712.fzn134
+pricing details were not immediately available .
+
+	runtime:       4910
+	solutions:     362
+	propagators:   7554
+	propagations:  2318137
+	failures:      265
+	clones:        626
+	commits:       1699
+	peak memory:   14645 KB

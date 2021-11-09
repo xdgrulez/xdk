@@ -1,0 +1,19 @@
+* the BIG bug
+* manual -> wiki, ezpublish?
+* add underspecified nodeset input
+* handle xdks error when word not in lexicon
+
+* XDK2
+* global pos feature (analogously to index), two solver modes: parse,
+  generate, remove parse and sameOrder principles, adapt generate orderings
+* remove node constraints/edge constraints, constraint type/lattice
+* remove unnecessary types/lattices (e.g. lists, sets over lists etc.)
+* remove valency/card lattices
+* add valency pair syntax for tuples over Constants times Operators
+* adapt pretty output to deal with various tuple types
+* remove deep guards
+* adapt SAT.ul and XTAG principles/grammar generation (remove
+attributes of type node/set(node), use additional dimensions instead)
+* check and update manual
+
+* Gecode: wait for Guido, then test Gecode-FlatZinc-output

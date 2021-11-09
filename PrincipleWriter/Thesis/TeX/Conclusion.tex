@@ -1,0 +1,210 @@
+\chapter{Zusammenfassung und Zuk\"unftige Arbeiten}\label{ch:conc}
+
+\section{Zusammenfassung}
+
+In dieser Arbeit habe ich in den ersten Kapiteln den Extensible
+Dependency Grammar Formalismus \cite{DebusmannEtal04SS} erkl\"art, und
+wie Grammatiken damit formal entwickelt werden k\"onnen. Grammatiken
+bestehen in XDG aus drei Teilen: Einem Multigraphtyp, einem Lexikon
+und einer Menge von Prinzipien, die die Wohlgeformtheitsbedingungen
+der Multigraph-Modelle der Grammatik regeln. In der neuesten
+Formalisierung von XDG \cite{Debusmann07MTS} werden die Prinzipien in
+Pr\"adikatenlogik erster Stufe ausgedr\"uckt.  Als Beispiel habe ich
+die CSD-Grammatik vorgestellt, die Gebrauch von einem speziell f\"ur
+diese Grammatik entwickelten Prinzip macht
+(CSD-Prinzip). %Die Erweiterbarkeit der Prinzipienbibliothek ist álso notwendig.
+Als n\"achstes habe ich das XDG Development Kit (XDK)
+\cite{DebusmannEtal04MOZ} vorgestellt und beschrieben, wie damit
+XDG-Grammatiken implementiert werden k\"onnen. Mit Hilfe der XDK
+Description Language, die Bestandteil des XDK ist, k\"onnen der
+Multigraphtyp und das Lexikon einer Grammatik analog zur
+Formalisierung in XDG aufgeschrieben werden. Die dann noch fehlende
+Komponenten einer Grammatik, die Prinzipien, k\"onnen nicht mit der
+XDK Description Language beschrieben werden, sondern nur aus einer
+Bibliothek von vordefinierten Prinzipien ausgew\"ahlt, oder m\"uhsam
+von Hand implementiert werden.
+
+Ich habe gezeigt, wie die im ersten Kapitel vorgestellte CSD-Grammatik
+in XDK implementiert wird. Dabei wurde deutlich, wie schwierig es ist,
+das XDK um weitere Prinzipien zu erweitern, da diese als Mozart/Oz
+Constraints implementiert werden mussten, was nur von Experten der
+Mozart/Oz Constraintprogrammierung gemacht werden kann, da auch auf
+die Effizienz der Constraints zu achten ist. Das bedeutet, die
+Constraints mussten von Hand optimiert werden. Die gro{\ss}e L\"ucke
+zwischen der Formalisierung und der Implementierung wurde deutlich.
+Die L\"ucke war f\"ur typische Grammatikschreiber, wie z.B.\
+Linguisten, die keine Experten in der Mozart/Oz Constraint
+Programmierung sind, praktisch un\"uberbr\"uckbar gro{\ss}, so dass
+die Erweiterbarkeit des XDK in Punkto Prinzipien praktisch nicht
+gegeben war.
+
+Um diese L\"ucke zu schliesen habe ich den PrincipleWriter entwickelt.
+Der PrincipleWriter ist ein Werkzeug mit dem Prinzipien analog zur
+XDG-Formalisierung als pr\"adikatenlogische Formeln erster Stufe
+aufgeschrieben werden k\"onnen. Die Mozart/Oz-Constraints werden dann
+vom PrincipleWriter erzeugt, so dass neue Prinzipien leicht
+geschrieben werden k\"onnen. Die generierten Mozart/Oz-Constraints
+k\"onnen dann einfach ins XDK eingegliedert werden. Damit ist die
+Erweiterbarkeit von XDG jetzt auch in der Implementierung, dem XDK,
+gegeben.
+
+Um die Prinzipien als logische Formeln aufschreiben zu k\"onnen, habe
+ich eine Syntax entwickelt, die PrincipleWriter User Language (PWUL),
+mit der Prinzipien analog zur Formalisierung aufgeschrieben werden
+k\"onnen. Um das Aufschreiben weiter zu vereinfachen hat der
+PrincipleWriter einen Typchecker mit Typinferenz, so dass Typfehler
+fr\"uhzeitig aufgedeckt werden k\"onnen und Typannotationen fast nicht
+mehr n\"otig sind, was die Prinzipien in PWUL noch dichter an die XDG
+Formalisierung bringt.
+
+Wie die Semantik der PrincipleWriter User Language definiert ist, und
+wie mit Hilfe der Semantik die in Logik geschriebenen Prinzipien in
+Mozart/Oz-Constraints \"ubersetzt werden, habe ich dann gezeigt. Da
+die eigentliche Evaluierung die Operatoren der Logik fast direkt in
+Mozart/Oz-Constraints \"ubersetzt, wurde deutlich, dass die
+generierten Constraints noch optimiert werden m\"ussen, da z.B.\ durch
+verschachtelte Quantoren die generierten Prinzipien kaum effizient
+genug sind f\"ur den praktischen Einsatz.
+
+Ob es m\"oglich ist, die Prinzipien automatisch so zu optimieren, dass
+sie effizient genug f\"ur den Praxiseinsatz sind, war die
+Herausforderung. In dem Kapitel \"uber die Optimierung habe ich
+gezeigt, wie diese funktioniert, und dass es m\"oglich ist, die
+Prinzipien ausreichend gut zu optimieren. Die Optimierung funktioniert
+durch Pattern-Matching auf der Mozart/Oz-Darstellung der abstrakten
+Syntax und geschieht damit noch vor der Evaluierung. Die Pattern, auf
+die gematcht wird, haben versierte Grammatikschreiber bisher auch
+schon genutzt, um die Prinzipien zu optimieren. Von deren Erfahrungen
+konnte ich profitieren.
+
+Durch den PrincipleWriter habe ich die L\"ucke zwischen der XDG
+Formalisierung und der Implementierung (XDK) geschlossen, so dass
+jetzt jeder einfach neue Prinzipien entwickeln kann und damit neue
+Grammatken schreiben kann, ohne Kenntnisse der Mozart/Oz
+Constraintprogrammierung zu haben, und ohne sich Gedanken um die
+Optimierung zu machen. Aber auch die Experten profitieren vom
+PrincipleWriter, da f\"ur sie das Implementieren von Prinzipien eine
+sehr zeitaufw\"andige Arbeit war.
+
+%Einen ersten Praxistest hat der PrincipleWriter auch schon bestanden,
+%da Ralph Debusmann mit Hilfe des PrincipleWriters eine Grammatik
+%schreiben konnte, deren Implementierung von Hand zu zeitaufw\"andig
+%war. Die generierten Prinzipien funktionierten, und waren effizient genug. 
+
+\section{Zuk\"unftige Arbeiten}
+
+Auch wenn die bisher in Praxistests generierten Prinzipien effizient
+genug sind f\"ur den Einsatz in der Praxis, bleibt die
+Herausforderung, die automatische Optimierung so zu verbessern, dass
+die generierten Prinzipien so gut wie die Prinzipien der Mozart/Oz
+Experten werden, oder vielleicht sogar noch besser. Dieses Feld bietet
+viel Raum f\"ur weitere Forschungen.  Auch die Frage ob es eine
+optimale Optimierung gibt, und falls ja, ob diese dann automatisiert
+werden kann ist eine interessante Frage.
+
+Bisher ist die Optimierung noch sehr rudiment\"ar durch einfaches
+Pattern-Matching realisiert. Die Muster entspringen dem
+Erfahrungsschatz von Experten. Um die Optimierung weiter zu
+verbessern, k\"onnten weitere Muster gesucht werden und damit das
+Pattern-Matching erweitert werden.
+
+Ein Problem beim Optimieren durch reines Pattern-Matching habe ich im
+Optimierungskapitel bereits erw\"ahnt. Da verschiedene Formeln
+\"aquivalent sein k\"onnen, werden manche Optimierungen nicht
+vorgenommen, da kein Muster passt. Beim Optimieren von Hand kann man
+solche \"Aquivalenzen erkennen und die Optimierung vornehmen. Um
+dieses Problem beim automatisierten Optimieren in den Griff zu
+bekommen, m\"usste untersucht werden, ob eine Art Normalform f\"ur die
+logischen Formeln gefunden werden kann, in die die Formeln automatisch
+\"uberf\"uhrt werden k\"onnen und die \"Aquivalenzen damit aufgel\"ost
+werden w\"urden.
+
+Eine andere Idee die Optimierung zu verbessern wird motiviert durch
+die Feststellung, dass die urspr\"ungliche Implementierung des
+Barierenprinzips exzessiven Gebrauch von Selection-Union-Constraints
+macht. Damit ist das Prinzip deutlich schneller, als die automatisch
+generierte Variante des PrincipleWriters.
+
+Die eigentliche Idee f\"ur die weitere Optimierung ist folgende:
+Praktisch jedes Prinzip verwendet Pfade in irgendeiner Weise. Alle
+Pfade starten mit einem Knoten, den wir den Ankerknoten des Prinzips
+nennen, und gehen von diesem Knoten weiter. Dadurch sollte es nicht
+n\"otig sein \"uber mehr Knoten als \"uber den Ankerknoten zu
+quantifizieren. Dies w\"urde bedeuten, dass alle Prinzipien so
+implementiert werden k\"onnten, dass ihre Laufzeit linear zur
+Knotenmenge w\"are.
+
+Ein kleines Beispiel soll die Idee verdeutlichen. Beim
+Climbing-Prinzip:
+\begin{verbatim}
+forall V::node: forall V1::node:
+   dom(V V1 D1) => dom(V V1 D2)
+\end{verbatim}
+ist der Ankerknoten {\tt V}. Das Prinzip besagt, dass wenn {\tt V1}
+von {\tt V} dominiert wird auf der Dimension {\tt D1}, dann muss {\tt
+  V1} auch auf der Dimension {\tt D2} von {\tt V} dominiert werden.
+Das bedeutet aber nichts anders, als dass die Knoten, die in der
+Dimension {\tt D1} von {\tt V} dominiert werden, eine Teilmenge der
+Knoten sein m\"ussen, die in der Dimension {\tt D2} von {\tt V}
+dominiert werden. Damit kann die zweite Quantifizierung entfernt
+werden und Gebrauch des Teilmengen-Constraints gemacht werden:
+\begin{verbatim}
+forall V::node:
+   down_D1(V) subseteq down_D2(V)
+\end{verbatim}
+Damit hat man eine lineare Implementierung des Prinzips, da nur noch
+\"uber einen Knoten quantifiziert wird, w\"ahrend die urspr\"ungliche
+Implementierung quadratisch war.
+
+Alle Prinzipien der Prinzipienbibliothek k\"onnten so umgeschrieben
+werden, dass sie nur noch \"uber einen Knoten quantifizieren, und
+somit linear zur Knotenmenge sind. Ob diese Optimierung automatisiert
+werden kann, ist eine interessante Frage und Herausforderung.
+
+%Auch zu kl\"aren w\"are, ob die Quantifzierungen \"uber Kanten
+%\"ahnlich eliminiert werden k\"onnen. 
+
+
+
+%% I've been thinking about further optimizing the output of PW. The main
+%% motivation was the Barriers principle, which in its original version makes
+%% heavy use of sets and Select.union to obtain a much more efficient
+%% principle as the one I currently get with PW.
+
+%% The basic idea goes like this: every practical principle somehow talks
+%% about "paths" in the multigraph. All paths start with one node, which I
+%% will call the "anchor node" of the principle, and go on further from it.
+%% As a result, it should *not* be necessary to quantify over more than the
+%% anchor node, which means that all principles can actually be implemented
+%% in a linear fashion!
+
+%% How does this work? Here is a simple example, the climbing principle
+%% ("PrincipleWriter/Examples/climbingPW.ul"):
+
+%% forall V::node: forall V1::node:
+%%    dom(V V1 D1) =dom(V V1 D2)
+
+%% The anchor is V. It states that if V1 is dominated by V on D1, then it
+%% must also be dominated by V on D2. But this means nothing else but that
+%% the nodes dominated by V on D1 must be a subset of the nodes dominated by
+%% V on D2. That is, we can remove the second node quantification, and make
+%% use of the underlying sets:
+
+%% forall V::node:
+%%    down_D1(V) subseteq down_D2(V)
+
+%% And voila: we have obtained a linear principle implementation (quantifying
+%% only over one node) as opposed to the quadratic one before.
+
+%% I have tried to "play" the optimizer, and have hand-optimized some of the
+%% principles in "Solver/Principles/Lib" in this way. Apart from having to
+%% quantify over the edge labels (which could be changed as well, I don't
+%% know), all these principles are now linear with respect to the nodes.
+
+%% Actually, this optimization is not new - Denys and me have used it
+%% intuitively since the beginning. The challenge now is however to equip PW
+%% with a means to optimize the output accordingly. So more precisely, the
+%% challenge will be to find out how to do this optimization in a
+%% compositional fashion.
+
+%% Cheers, Ralph

@@ -1,0 +1,15 @@
+defprinciple "principle.sameAsPW" {
+  dims {D}
+  constraints {
+
+(
+forall V: forall V1:
+  edge(V V1 "sameAs" D) <=> edge(V1 V "sameAs" D)
+)
+&
+( 
+forall V: forall V1: forall V2:
+  edge(V V1 D) & edge(V1 V2 D) => edge(V V2 D)
+)
+
+}}

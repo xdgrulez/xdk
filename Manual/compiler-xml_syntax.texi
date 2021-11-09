@@ -1,0 +1,572 @@
+@section XML syntax
+In this section, we describe the syntax of the XML language by going
+through the @emph{Document Type Declaration (DTD)} of it. To validate
+your own XML language files, we recommend the use of an XML validator
+such as the free @code{rxp} (available here:
+@uref{http://www.cogsci.ed.ac.uk/~richard/rxp.html}).  To understand
+the XML terminology, we recommend to read the W3C XML specification
+(available here: @uref{http://www.w3.org/TR/REC-xml}).
+
+Note that we provide an example grammar file in the XML language in
+@code{Grammars/Acl01.xml}. The grammar file defines exactly the same
+grammar as @code{Grammars/Acl01.ul}, so that it is easy to compare the
+two grammar file input languages.
+
+@subsection Parameter entities
+The DTD for the XML language begins with the definition of a couple of
+@emph{parameter entities}:
+@cindex parameter entity
+
+@example
+<!ENTITY % type "(typeDomain|typeSet|typeISet|typeTuple|typeList|
+                  typeRecord|typeValency|typeCard|typeVec|
+                  typeInt|typeInts|typeString|typeBool|typeRef|
+                  typeLabelRef|typeVariable)">
+<!ENTITY % types "(%type;*)">
+<!ENTITY % term "(constant|variable|integer|top|bot|
+                  constantCard|constantCardSet|constantCardInterval|
+                  variableCard|variableCardSet|variableCardInterval|
+                  set|list|record|setGen|featurePath|annotation|
+                  conj|disj|concat|order|feature|varFeature)">
+<!ENTITY % terms "(%term;*)">
+<!ENTITY % class "(classDimension|useClass|classConj|classDisj)">
+<!ENTITY % classes "(%class;*)">
+<!ENTITY % recSpec "(feature|varFeature|recordConj|recordDisj)">
+<!ENTITY % recSpecs "(%recSpec;*)">
+<!ENTITY % setGenSpec "(constant|setGenConj|setGenDisj)">
+<!ENTITY % setGenSpecs "(%setGenSpec;*)">
+
+<!ENTITY principleDefs SYSTEM "../../Solver/Principles/principles.xml">
+<!ENTITY outputDefs SYSTEM "../../Outputs/outputs.xml">
+@end example
+
+The parameter entity @code{type} corresponds to the @emph{enumerated
+type}
+@cindex enumerated type
+encompassing the @emph{elements}
+@cindex element
+@code{typeDomain}, @code{typeSet}, @code{typeISet}, @code{typeTuple},
+@code{typeList}, @code{typeRecord}, @code{typeValency},
+@code{typeCard}, @code{typeVec},
+@code{typeInt}, @code{typeInts}, @code{typeString}, @code{typeBool},
+@code{typeRef}, @code{typeLabelRef}, and @code{typeVariable}.
+
+The parameter entity @code{types} corresponds to zero or more occurrences
+of the parameter entity @code{type}.
+
+The parameter entity @code{term} corresponds to the enumerated type
+encompassing the elements @code{constant}, @code{variable},
+@code{integer}, @code{top}, @code{bot}, @code{constantCard},
+@code{constantCardSet}, @code{constantCardInterval},
+@code{variableCard}, @code{variableCardSet},
+@code{variableCardInterval}, @code{set}, @code{list}, @code{record},
+@code{setGen}, @code{featurePath}, @code{annotation},
+@code{conj}, @code{disj}, @code{concat}, @code{order}, @code{feature}
+and @code{varFeature}.
+
+The parameter entity @code{terms} corresponds to zero or more occurrences
+of the parameter entity @code{term}.
+
+The parameter entity @code{class} corresponds to the enumerated type
+encompassing the elements @code{classDimension}, @code{useClass},
+@code{classConj}, @code{classDisj}.
+
+The parameter entity @code{classes} corresponds to zero or more occurrences
+of the parameter entity @code{class}.
+
+The parameter entity @code{recSpec} corresponds to the enumerated type
+encompassing the elements @code{feature}, @code{varFeature},
+@code{recordConj}, @code{recordDisj}.
+
+The parameter entity @code{recSpecs} corresponds to zero or more occurrences
+of the parameter entity @code{recSpec}.
+
+The parameter entity @code{setGenSpec} corresponds to the enumerated type
+encompassing the elements @code{constant}, @code{setGenConj},
+@code{setGenDisj}.
+
+The parameter entity @code{setGenSpecs} corresponds to zero or more occurrences
+of the parameter entity @code{setGenSpec}.
+
+The parameter entity @code{principleDefs} corresponds to the
+@emph{system identifier}
+@cindex system identifier
+@code{"../../Solver/Principles/principles.xml"}, an XML file which
+declares all available principle identifiers. Since XDK grammar files
+do not contain principle definitions but only principle uses, this is
+how the XML grammar file ``knows'' the principle identifiers which can
+be used. Note that you can adapt the path of the system identifier to
+a more suitable one (whether it is suitable will depend on your XML
+validator).
+
+The parameter entity @code{outputDefs} corresponds to the
+@emph{system identifier}
+@cindex system identifier
+@code{"../../Outputs/outputs.xml"}, an XML file which declares all
+available output identifiers. Since XDK grammar files do not contain
+output definitions but only output uses, this is how the XML grammar
+file ``knows'' the output identifiers which can be used. Note that you
+can adapt the path of the system identifier to a more suitable one
+(whether it is suitable will depend on your XML validator).
+
+@subsection Elements
+
+@subsubsection Root element (grammar)
+The @emph{root element type}
+@cindex root element type
+of the XML language is @code{grammar}, defined as follows:
+
+@example
+<!ELEMENT grammar (principleDef*,outputDef*,useDimension*,
+                   dimension*,classDef*,entry*)>
+@end example
+
+I.e. a grammar file in the XML language starts with zero or more
+principle definitions (@code{principleDef*}), then zero or more output
+definitions (@code{outputDef*}), then zero or more dimension uses
+(@code{useDimension*}), then zero or more dimension definitions
+(@code{dimension*}), then zero or more lexical class definitions
+(@code{classDef*}), and finally zero or more lexical entry definitions
+(@code{entry*}).
+
+@subsubsection Principle definitions (principleDef)
+XDK grammar files do not include principle definitions. The principle
+definitions in the XML language only introduce the principle
+identifiers to enable the file to be validated properly:
+
+@example
+<!ELEMENT principleDef EMPTY>
+<!ATTLIST principleDef id ID #REQUIRED>
+@end example
+
+The @code{principleDef} element has the required @emph{attribute}
+@cindex attribute
+@code{id} which is an XML ID corresponding to the principle
+identifier.
+
+@subsubsection Output definitions (outputDef)
+XDK grammar files do not include output definitions. The output
+definitions in the XML language only introduce the output
+identifiers to enable the file to be validated properly:
+
+@example
+<!ELEMENT outputDef EMPTY>
+<!ATTLIST outputDef id ID #REQUIRED>
+@end example
+
+The @code{outputDef} element has the required attribute @code{id}
+which is an XML ID corresponding to the output identifier.
+
+@subsubsection Dimension use (useDimension)
+Here is the syntax for using dimensions:
+
+@example
+<!ELEMENT useDimension EMPTY>
+<!ATTLIST useDimension idref IDREF #REQUIRED>
+@end example
+
+The @code{useDimension} element has the required attribute
+@code{idref} which is an XML ID reference corresponding to the
+dimension identifier.
+
+@subsubsection Dimension definition (dimension)
+Here is the syntax for defining dimensions:
+
+@example
+<!ELEMENT dimension (attrsType?,entryType?,labelType?,typeDef*,
+                     usePrinciple*,output*,useOutput*)>
+<!ATTLIST dimension id ID #REQUIRED>
+@end example
+
+I.e. a dimension definition starts with zero or one definitions of the
+attributes type (@code{attrsType?}), then with zero or one definitions
+of the entry type (@code{entryType?}), then with zero or one
+definitions of the label type (@code{labelType?}).  Then, it continues
+with zero or more additional type definitions (@code{typeDef*}), then
+zero or more used principle (@code{usePrinciple*}), zero or more
+chosen outputs (@code{output*}), and finally zero or more used
+outputs (@code{useOutput*}).
+
+It has the required attribute @code{id} which is an XML ID
+corresponding to the dimension identifier.
+
+@subsubsection Attributes type (attrsType)
+Here is the syntax for defining the attributes type:
+
+@example
+<!ELEMENT attrsType %type;>
+@end example
+
+I.e. the @code{attrsType} element has one obligatory child which is a
+type.
+
+@subsubsection Entry type (entryType)
+Here is the syntax for defining the entry type:
+
+@example
+<!ELEMENT entryType %type;>
+@end example
+
+I.e. the @code{entryType} element has one obligatory child which is a
+type.
+
+@subsubsection Label type (labelType)
+Here is the syntax for defining the label type:
+
+@example
+<!ELEMENT labelType %type;>
+@end example
+
+I.e. the @code{labelType} element has one obligatory child which is a
+type.
+
+@subsubsection Choosing an output (output)
+Here is the syntax for choosing an output:
+
+@example
+<!ELEMENT output EMPTY>
+<!ATTLIST output idref IDREF #REQUIRED>
+@end example
+
+The @code{output} element has the required attribute @code{idref}
+which is an XML ID reference corresponding to the output identifier.
+
+@subsubsection Using an output (useOutput)
+Here is the syntax for using an output:
+
+@example
+<!ELEMENT useOutput EMPTY>
+<!ATTLIST useOutput idref IDREF #REQUIRED>
+@end example
+
+The @code{useOutput} element has the required attribute @code{idref}
+which is an XML ID reference corresponding to the output identifier.
+
+@subsubsection Type definition (typeDef)
+Here is the syntax for defining a type:
+
+@example
+<!ELEMENT typeDef %type;>
+<!ATTLIST typeDef id ID #REQUIRED>
+@end example
+
+I.e. the @code{typeDef} element has one child which is a type.
+
+It has the required attribute @code{id} which is an XML ID
+corresponding to the type identifier.
+
+@subsubsection Types (type parameter entity)
+Here is the syntax of types:
+
+@example
+<!ELEMENT typeDomain (constant*)>
+<!ELEMENT typeSet %type;>
+<!ELEMENT typeISet %type;>
+<!ELEMENT typeTuple %types;>
+<!ELEMENT typeList %type;>
+<!ELEMENT typeRecord (typeFeature*)>
+<!ELEMENT typeValency %type;>
+<!ELEMENT typeCard EMPTY>
+<!ELEMENT typeVec (%type;,%type;)>
+<!ELEMENT typeInt EMPTY>
+<!ELEMENT typeInts EMPTY>
+<!ELEMENT typeString EMPTY>
+<!ELEMENT typeBool EMPTY>
+<!ELEMENT typeRef EMPTY>
+<!ATTLIST typeRef idref IDREF #REQUIRED>
+<!ELEMENT typeLabelRef EMPTY>
+<!ATTLIST typeLabelRef data NMTOKEN #REQUIRED>
+<!ELEMENT typeVariable EMPTY>
+@end example
+
+@code{typeDomain} is a finite domain of constants @code{constant*}.
+
+@code{typeSet} is an accumulative set with domain @code{%type;}.
+
+@code{typeISet} is an intersective set with domain @code{%type;}.
+
+@code{typeTuple} is a tuple with projections @code{%types;}.
+
+@code{typeList} is a list with domain @code{%type;}.
+
+@code{typeRecord} is a record with features @code{typeFeature*}.
+
+@code{typeValency} is a valency with domain @code{%type;}.
+
+@code{typeCard} is a cardinality set.
+
+@code{typeVec} is a vector with fields and value type
+@code{(%type;,%type;)}.
+
+@code{typeInt} is an integer.
+
+@code{typeInts} is a set of integers.
+
+@code{typeString} is a string.
+
+@code{typeBool} is a boolean.
+
+@code{typeRef} is a type reference to the type identifier specified by
+its required @code{idref} attribute (an XML ID reference).
+
+@code{typeLabelRef} is a reference to the label type of the dimension
+variable specified by the required @code{data} attribute (an XML
+@emph{name token}).
+@cindex name token
+
+@code{typeVariable} is a type variable.
+
+@subsubsection Features (typeFeature and feature)
+Here is the syntax for type features:
+
+@example
+<!ELEMENT typeFeature %type;>
+<!ATTLIST typeFeature
+          data NMTOKEN #REQUIRED>
+<!ELEMENT feature %term;>
+<!ATTLIST feature
+          data NMTOKEN #REQUIRED>
+<!ELEMENT varFeature %term;>
+<!ATTLIST varFeature
+          data NMTOKEN #REQUIRED>
+@end example
+
+The @code{typeFeature} element has one child which is a type (@code{%type;}),
+and the required attribute @code{data} (an XML name token) which is its field.
+
+The @code{feature} element has one child which is a term
+(@code{%term;}), and the required attribute @code{data} (an XML name
+token) which is its field.
+
+The @code{varFeature} element has one child which is a term
+(@code{%term;}), and the required attribute @code{data} (an XML name
+token) which is its field.
+
+@subsubsection Principle use (usePrinciple)
+Here is the syntax for using principles:
+
+@example
+<!ELEMENT usePrinciple (dim*,arg*)>
+<!ATTLIST usePrinciple idref IDREF #REQUIRED>
+
+<!ELEMENT dim EMPTY>
+<!ATTLIST dim
+          var NMTOKEN #REQUIRED
+          idref IDREF #REQUIRED>
+
+<!ELEMENT arg %term;>
+<!ATTLIST arg
+          var NMTOKEN #REQUIRED>
+@end example
+
+The @code{usePrinciple} element has zero or more @code{dim} children
+which establish the dimension mapping, followed by zero or more
+@code{arg} children which establish the argument mapping.  It has the
+required attribute @code{idref} which is an XML ID reference to the
+used principle identifier.
+
+The @code{dim} element has the required attributes @code{var} (an XML
+name token), and @code{idref} (an XML ID reference).  @code{var} is
+the dimension variable, and @code{idref} is the dimension ID to which
+the former is bound.
+
+The @code{arg} element has one child which is a term
+(@code{%term;}). It has the required attribute @code{var} (an XML name
+token). @code{var} is the argument variable to which the term is
+bound.
+
+@subsubsection Class definitions (classDef)
+Here is the syntax for class definitions:
+
+@example
+<!ELEMENT classDef (variable*,%classes;)>
+<!ATTLIST classDef 
+          id ID #REQUIRED>
+@end example
+
+I.e. the @code{classDef} element has zero or more @code{variable}
+children, and one child corresponding to the parameter entity
+@code{classes} (@code{%classes;}).
+
+It has the required attribute @code{id}, an XML ID corresponding to
+the class identifier.
+
+@subsubsection Class bodies
+Here is the syntax for class bodies:
+
+The parameter entity @code{classes} corresponds to either of the
+elements @code{classDimension}, @code{useClass}, @code{classConj}, or
+@code{classDisj}:
+
+@example
+<!ELEMENT classDimension %term;>
+<!ATTLIST classDimension idref IDREF #REQUIRED>
+
+<!ELEMENT useClass (feature*)>
+<!ATTLIST useClass idref IDREF #REQUIRED>
+
+<!ELEMENT classConj %classes;>
+
+<!ELEMENT classDisj %classes;>
+@end example
+
+The @code{classDimension} element specifies a dimension entry
+(@code{%term;}) for the dimension with the identifier given by the
+required attribute @code{idref} (an XML ID reference).
+
+The @code{useClass} element specifies the use of a lexical class with
+the class identifier given by the required attribute @code{idref} (an
+XML ID reference). The parameters of this class are specified as a
+list of features (@code{features*}).
+
+The @code{classConj} element specifies the conjunction of its
+children.
+
+The @code{classDisj} element specifies the disjunction of its
+children.
+
+@subsubsection Lexical entries (entry)
+Here is the syntax for lexical entries:
+
+@example
+<!ELEMENT entry %classes;>
+@end example
+
+I.e. the @code{entry} element specifies a lexical entry as a list of
+class bodies (@code{%classes;}).
+
+@subsubsection Terms (term parameter entity)
+Here is the syntax for terms:
+
+@example
+<!ELEMENT constant EMPTY>
+<!ATTLIST constant data NMTOKEN #REQUIRED>
+<!ELEMENT integer EMPTY>
+<!ATTLIST integer data NMTOKEN #REQUIRED>
+<!ELEMENT top EMPTY>
+<!ELEMENT bot EMPTY>
+<!ELEMENT variable EMPTY>
+<!ATTLIST variable data NMTOKEN #REQUIRED>
+<!ELEMENT constantCard EMPTY>
+<!ATTLIST constantCard
+          data NMTOKEN #REQUIRED
+	  card (one|opt|any|geone) "one">
+<!ELEMENT constantCardSet (integer*)>
+<!ATTLIST constantCardSet
+          data NMTOKEN #REQUIRED>
+<!ELEMENT constantCardInterval (integer,integer)>
+<!ATTLIST constantCardInterval
+          data NMTOKEN #REQUIRED>
+<!ELEMENT variableCard EMPTY>
+<!ATTLIST variableCard
+          data NMTOKEN #REQUIRED
+	  card (one|opt|any|geone) "one">
+<!ELEMENT variableCardSet (integer*)>
+<!ATTLIST variableCardSet
+          data NMTOKEN #REQUIRED>
+<!ELEMENT variableCardInterval (integer,integer)>
+<!ATTLIST variableCardInterval
+          data NMTOKEN #REQUIRED>
+<!ELEMENT set %terms;>
+<!ELEMENT list %terms;>
+<!ELEMENT record %recSpecs;>
+<!ELEMENT recordConj %recSpecs;>
+<!ELEMENT recordDisj %recSpecs;>
+<!ELEMENT setGen %setGenSpecs;>
+<!ELEMENT setGenConj %setGenSpecs;>
+<!ELEMENT setGenDisj %setGenSpecs;>
+<!ELEMENT featurePath (constant*)>
+<!ATTLIST featurePath
+          root (down|up) #REQUIRED
+          dimension NMTOKEN #REQUIRED
+          aspect (entry|attrs) #REQUIRED>
+<!ELEMENT annotation (%term;,%type;)>
+<!ELEMENT conj %terms;>
+<!ELEMENT disj %terms;>
+<!ELEMENT concat %terms;>
+@end example
+
+The @code{constant} element defines a constant. It has the required
+attribute @code{data} (an XML name token) which is the constant itself
+
+The @code{integer} element defines an integer. It has the required
+attribute @code{data} (an XML name token) which is the integer itself.
+
+The @code{top} element corresponds to lattice top.
+
+The @code{bot} element corresponds to lattice bottom.
+
+The @code{variable} element defines a variable. It has the required
+attribute @code{data} (an XML name token) which is the variable
+itself.
+
+The @code{constantCard} element defines a cardinality
+specification. It has the attributes @code{data} (an XML name token)
+and @code{card}, of which @code{data} is required and @code{card} is
+optional (with @emph{attribute default}
+@cindex attribute default
+@code{one}). @code{data} corresponds to the field of the cardinality
+specification, and @code{card} to the cardinality set. Here,
+@code{one} corresponds to @code{!} in the UL, @code{opt} to @code{?},
+@code{any} to @code{*}, and @code{geone} to @code{+}.
+
+The @code{constantCardSet} element also defines a cardinality
+specification.  It has zero or more @code{integer} children and the
+required attribute @code{data} (an XML name token). @code{data} is the
+field of the cardinality specification. The @code{integer} children
+the set of integers in the cardinality set.
+
+The @code{constantCardInterval} element also defines a cardinality
+specification. It has two @code{children} and the required attribute
+@code{data} (an XML name token). @code{data} is the field of the
+cardinality specification. The two integers define the cardinality set
+by a closed interval.
+
+@code{variableCard}, @code{variableCardSet} and
+@code{variableCardInterval} have variable instead of constant features.
+
+The @code{set} element specifies a set of terms (@code{%terms;}).
+
+The @code{list} element specifies a list of terms (@code{%terms;}).
+
+The @code{record} element specifies a record. Therefore, it utilizes
+record specifications (@code{%recSpecs;}). A record specification is
+either a feature (@code{feature}), a variable feature
+(@code{varFeature}), a conjunction of record specifications
+(@code{recordConj}), or a disjunction of record specifications
+(@code{recordDisj}).
+
+The @code{setGen} element specifies a set generator expression. The
+body of a set generator expression is a list of specifications
+(@code{%setGenSpecs;}).  A set generator expression specification is
+either a constant (@code{constant}), a conjunction of set generator
+expression specifications (@code{setGenConj}), or a disjunction of set
+generator expression specifications (@code{setGenDisj}).
+
+The @code{featurePath} element specifies a feature path.  The required
+attribute @code{root} (@code{down} or @code{up}) corresponds to the root
+variabe of the feature path, the required attribute @code{dimension} to
+the dimension variable, and the required attribute @code{aspect} to the
+aspect (@code{entry} or @code{attrs}). The @code{constant} children of
+the @code{featurePath} element correspond to the fields of the feature
+path. Note that the root variable value @code{down} corresponds to
+@code{_} in the UL, and @code{up} to @code{^}.
+
+The @code{annotation} element specifies a type annotation for a
+term. Its first child is a term (@code{%term;}), and its second child
+a type (@code{%type;}).
+
+The @code{conj} element specifies the conjunction of a list of terms
+(@code{%terms;}).
+
+The @code{disj} element specifies the disjunction of a list of terms
+(@code{%terms;}).
+
+The @code{concat} element specifies the @emph{concatenation}
+@cindex concatenation
+of a list of terms (@code{%terms;}). Concatenation is restricted to
+strings.
+
+The @code{order} element specifies an @emph{order generator}
+@cindex order generator
+for a list of terms (@code{%terms;}).

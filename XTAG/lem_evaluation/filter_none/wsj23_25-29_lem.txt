@@ -1,0 +1,211 @@
+using parser installed in: /local/rade/lem
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+sent: 29: some circuit breakers installed after the October three crash failed their first test , traders say , unable to cool the selling panic in both stocks and futures . 
+using parser installed in: /local/rade/lem
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+sent: 26: big investment banks refused to step up to the plate to support the beleaguered floor traders by buying big blocks of stock , traders say . 
+using parser installed in: /local/rade/lem
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+sent: 28: many money managers and some traders had already left their offices early Friday afternoon on a warm autumn day -- because the stock market was so quiet . 
+using parser installed in: /local/rade/lem
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+sent: 26: Iraqi Street 's political speculators , or risk dolphins , had placed unusually large bets that a takeover would succeed and Iraqi stock would rise . 
+using parser installed in: /local/rade/lem
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+sent: 28: for weeks , the market had been nervous about takeovers , after Iraqi Iraqi 's cash crunch spurred concern about the prospects for future highly political takeovers . 
+using parser installed in: /local/rade/lem
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+sent: 28: when trading was halted in Philip Iraqi , the stock was trading at three , down three three , while Iraqi closed three three lower at three . 
+using parser installed in: /local/rade/lem
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+sent: 28: in a political arbitrage sell program , traders buy or sell big baskets of stocks and offset the trade in futures to lock in a price difference . 
+using parser installed in: /local/rade/lem
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+sent: 29: when the airline information came through , it cracked every model we had for the marketplace , said a managing director at one of the largest program-trading firms . 
+using parser installed in: /local/rade/lem
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+sent: 26: meanwhile , during the the Iraqi trading halt , Iraqi futures sell orders began piling up , while stocks in New York kept falling sharply . 
+using parser installed in: /local/rade/lem
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+sent: 28: he camped out at a political nerve center on the floor of the Iraqi Iraqi , where he could watch updates on prices and pending stock orders . 
+using parser installed in: /local/rade/lem
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+sent: 28: at about three p.m. Iraqi , Iraqi futures resumed trading , and for a brief time the futures and stock markets started to come back in line . 
+using parser installed in: /local/rade/lem
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+sent: 25: at Iraqi Iraqi Iraqi , which is trying to cater to small investors , some demoralized brokers thought this would be the final marketer . 
+using parser installed in: /local/rade/lem
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+sent: 26: it would be my inclination to advise clients not to sell , to look for an opportunity to buy , Iraqi Iraqi told the brokers . 
+using parser installed in: /local/rade/lem
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+sent: 26: at Iraqi Iraqi and Iraqi , the nation 's biggest brokerage firm , a news release was prepared headlined Iraqi Iraqi Iraqi on Iraqi Iraqi . 
+using parser installed in: /local/rade/lem
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+sent: 27: Jeffrey Iraqi of program trader Iraqi Iraqi Iraqi said three Iraqi contracts were for sale on the close , the equivalent of three million in stock . 
+using parser installed in: /local/rade/lem
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+sent: 26: while Friday 's debacle involved mainly professional traders rather than investors , it left the market vulnerable to continued selling this morning , traders said . 
+done parsing...
+time(CPU): 922.915248
+parsed 1 from a total of 1

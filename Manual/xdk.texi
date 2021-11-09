@@ -1,0 +1,222 @@
+\input texinfo
+@c %**start of header
+@setfilename xdk.info
+@settitle Manual of the XDG Development Kit (XDK)
+@c %**end of header
+@setchapternewpage odd
+
+@ifinfo
+This is the manual of the XDG Development Kit (XDK)
+
+Copyright 2003-2011 Ralph Debusmann and Denys Duchier and Jorge Marques
+Pelizzoni and Jochen Setz
+
+Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+@ignore
+Permission is granted to process this file through TeX and print the
+results, provided the printed document carries a copying permission
+notice identical to this one except for the removal of this paragraph
+(this paragraph not being relevant to the printed manual).
+@end ignore
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided also that the
+sections entitled ``Copying'' and ``CeCILL FREE SOFTWARE LICENSE
+AGREEMENT'' are included exactly as in the original, and provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be stated in a translation
+approved by the Free Software Foundation.
+@end ifinfo
+
+@titlepage
+@sp 10
+@center @titlefont{Manual of the XDG Development Kit}
+@sp 2
+@center Ralph Debusmann and Denys Duchier and Jorge Marques Pelizzoni and Jochen Setz
+@sp 2
+@center @today
+@c The following two commands start the copyright page.
+@page
+@vskip 0pt plus 1filll
+Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided also that the
+sections entitled ``Copying'' and ``CeCILL FREE SOFTWARE LICENSE
+AGREEMENT'' are included exactly as in the original, and provided that
+the entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be stated in a translation
+approved by the Free Software Foundation.
+@end titlepage
+
+@node Top, Table of contents, , (dir)
+
+@image{pix/xdk}
+
+The XDG Development Kit (XDK) is a grammar development environment for
+the grammar formalism Extensible Dependency Grammar (XDG). It was
+written by Ralph Debusmann (@uref{rade@@ps.uni-sb.de}), Denys Duchier
+(@uref{duchier@@ps.uni-sb.de}), Jorge Marques Pelizzoni
+(@uref{jpeliz@@icmc.usp.br}) and Jochen Setz
+(@uref{info@@jochensetz.de}). The long list of other contributors to the
+XDK can be found here (@ref{Contributors}).
+
+@menu
+* Table of contents::  Table of contents
+
+* License::            The GNU GPL-compatible license of the XDK
+
+* Overview::           Overview of this manual
+
+* Installation::       How to install the XDK
+
+* Compiler::           How to write grammars for the XDK
+   
+* Grammars::           Descriptions of the example grammars included in the XDK distribution
+
+* XTAG::               How to use the XDK version of the large-scale English XTAG grammar
+
+* Solver::             How the XDK solver implements parsing and generation, and how to use and define new XDK principles
+
+* Oracles::            How to use and define new XDK oracles
+
+* Outputs::            How to use and define new XDK output functors
+
+* PrincipleWriter::    How to define new XDK principles with the XDK principle compiler
+
+* Programs::           How to use the executable programs exposing the functionality of the XDK
+
+* Debug::              How to debug grammars
+
+-- developers only --
+
+* Directories::        The directory structure of the XDK distribution
+
+* Exceptions::         Conventions for exceptions in the XDK code
+
+* Variable names::     Conventions for variable names in the XDK code
+
+-- appendix --
+
+* Changes::            List of all changes to the XDK
+
+* Contributors::       The long list of contributors to the XDK
+
+* References::         Pointers to relevant papers around the XDK
+
+* Concept index::      The concept index
+@end menu
+
+@node Table of contents, License, Top, Top
+@contents
+
+@c ************************************************************
+
+@node License, Overview, Table of contents, Top
+@include license.texi
+
+@c ************************************************************
+
+@node Overview, Installation, License, Top
+@include overview.texi
+
+@c ************************************************************
+
+@node Installation, Compiler, Overview, Top
+@include installation.texi
+
+@c ************************************************************
+
+@node Compiler, Grammars, Installation, Top
+@include compiler.texi
+
+@c ************************************************************
+
+@node Grammars, XTAG, Compiler, Top
+@include grammars.texi
+
+@c ************************************************************
+
+@node XTAG, Solver, Grammars, Top
+@include XTAG.texi
+
+@c ************************************************************
+
+@node Solver, Oracles, XTAG, Top
+@include solver.texi
+
+@c ************************************************************
+
+@node Oracles, Outputs, Solver, Top
+@include oracles.texi
+
+@c ************************************************************
+
+@node Outputs, PrincipleWriter, Oracles, Top
+@include outputs.texi
+
+@c ************************************************************
+
+@node PrincipleWriter, Programs, Outputs, Top
+@include pw.texi
+
+@c ************************************************************
+
+@node Programs, Debug, PrincipleWriter, Top
+@include programs.texi
+
+@c ************************************************************
+
+@node Debug, Directories, Programs, Top
+@include debug.texi
+
+@c ************************************************************
+
+@node Directories, Exceptions, Debug, Top
+@include directories.texi
+
+@c ************************************************************
+
+@node Exceptions, Variable names, Directories, Top
+@include exceptions.texi
+
+@c ************************************************************
+
+@node Variable names, Changes, Exceptions, Top
+@include variable_names.texi
+
+@c ************************************************************
+
+@node Changes, Contributors, Variable names, Top
+@include changes.texi
+
+@c ************************************************************
+
+@node Contributors, References, Changes, Top
+@include contributors.texi
+
+@c ************************************************************
+
+@node References, Concept index, Contributors, Top
+@include references.texi
+
+@c ************************************************************
+
+@node Concept index, , References, Top
+@unnumbered Concept index
+@printindex cp
+
+@bye

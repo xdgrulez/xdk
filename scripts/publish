@@ -1,0 +1,70 @@
+#!/bin/bash
+
+# configure ozmake
+ozmake --config=put --moguldir=~/public_html/mogul/publish/
+ozmake --config=put --mogulurl=http://www.ps.uni-sb.de/~rade/mogul/publish/
+
+PUB=/home/rade/public_html/mogul/publish/
+PKG=$PUB/pkg
+
+# copy release version from makefile.oz to About window (in xdk.oz),
+# and to index.html
+grep "version:" makefile.oz >version
+sed "s/   version: '\([0-9]*\.[0-9]*\.[0-9]*\)'.*/\1/" version >version1
+sed "s/Version [0-9]*\.[0-9]*\.[0-9]*/Version `cat version1`/" xdk.oz >xdk.oz1
+mv xdk.oz1 xdk.oz
+sed "s/The current version is [0-9]*\.[0-9]*\.[0-9]*\./The current version is `cat version1`./" index.html >index.html1
+mv index.html1 index.html
+rm -v version1
+rm -v version
+
+# make ozmake package
+ozmake --publish
+
+# make Windows binary
+ozmake --extract -p $PKG/debusmann-xdk.pkg
+cd debusmann-xdk
+ozmake
+rm -v xdk.exe
+rm -v xdkc.exe
+rm -v xdks.exe
+rm -v xdkconv.exe
+ozl -x xdk.ozf -o xdk.exe --target=windows
+ozl -x xdkc.ozf -o xdkc.exe --target=windows
+ozl -x xdks.ozf -o xdks.exe --target=windows
+ozl -x xdkconv.ozf -o xdkconv.exe --target=windows
+# copy Windows over Linux Select
+rm -v Solver/Principles/Lib/Select/*.o Solver/Principles/Lib/Select/*.so-*
+cp -v ../Windows/Select/*.o ../Windows/Select/*.so-* Solver/Principles/Lib/Select
+# copy Windows over Linux NatUtils
+rm -v Solver/Principles/Lib/*.o Solver/Principles/Lib/*.so-*
+cp -v ../Windows/*.o ../Windows/*.so-* Solver/Principles/Lib/
+#
+cd ..
+zip -r9 debusmann-xdk.zip debusmann-xdk
+mv debusmann-xdk.zip $PKG
+rm -rfv debusmann-xdk
+
+# make manual
+cd Manual
+make xdkhtml
+mv xdk debusmann-xdk-manual_html
+cp -rv debusmann-xdk-manual_html $PKG
+tar cvzf debusmann-xdk-manual_html.tgz debusmann-xdk-manual_html
+mv debusmann-xdk-manual_html.tgz $PKG
+mv debusmann-xdk-manual_html xdk
+make xdk.info
+mkdir -p debusmann-xdk-manual_info
+mv xdk.info* debusmann-xdk-manual_info
+tar cvzf debusmann-xdk-manual_info.tgz debusmann-xdk-manual_info
+mv debusmann-xdk-manual_info.tgz $PKG
+rm -rfv debusmann-xdk-manual_info
+make xdk.ps
+make xdk.pdf
+mv xdk.pdf $PKG/debusmann-xdk-manual.pdf
+gzip xdk.ps
+mv xdk.ps.gz $PKG/debusmann-xdk-manual.ps.gz
+cd ..
+
+# make everything public
+chmod -R o+rX $PUB

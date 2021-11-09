@@ -1,0 +1,9 @@
+defprinciple "principle.orderParsePW" {
+  dims {D}
+  constraints {
+
+forall V::node: forall V1::node:
+  edge(V V1 D) <=> V < V1
+  
+  }
+}

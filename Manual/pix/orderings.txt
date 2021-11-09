@@ -1,0 +1,2 @@
+The Oz Explorer displaying the output of the "Generate orderings"
+function of the XDK GUI.

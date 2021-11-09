@@ -1,0 +1,85 @@
+<html lang="en">
+<head>
+<title>Lat-Domain - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Lattice-functors.html#Lattice-functors" title="Lattice functors">
+<link rel="prev" href="Lat_002dCard.html#Lat_002dCard" title="Lat-Card">
+<link rel="next" href="Lat_002dFlat.html#Lat_002dFlat" title="Lat-Flat">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Lat-Domain"></a>
+<a name="Lat_002dDomain"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Lat_002dFlat.html#Lat_002dFlat">Lat-Flat</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Lat_002dCard.html#Lat_002dCard">Lat-Card</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Lattice-functors.html#Lattice-functors">Lattice functors</a>
+<hr>
+</div>
+
+<h4 class="subsection">4.15.3 Domain functor</h4>
+
+<p>The domain lattice encodes constants from a finite domain as integers. 
+Before encoding, the list of atoms is sorted lexically using
+<code>Value.'&lt;'</code>.
+
+<h5 class="subsubsection">4.15.3.1 Select function</h5>
+
+<p>The select function uses the selection constraint for Oz finite domain
+variables to select one value from the list of values.
+
+<h5 class="subsubsection">4.15.3.2 Make variable function</h5>
+
+<p>The make variable function creates an Oz finite domain variable
+ranging over the domain of the lattice.
+
+<h5 class="subsubsection">4.15.3.3 Count function</h5>
+
+<p>The count function returns:
+<pre class="example">     o(fd: 1
+       fs: 0)
+</pre>
+   <h5 class="subsubsection">4.15.3.4 Additional interface features</h5>
+
+<p>Below, we show the additional interface features of this lattice:
+
+<pre class="example">     constants: As
+     card: CardI
+     dSpec: DSpec
+     a2I: A2I
+     i2A: I2A
+</pre>
+   <p>The <code>constants</code> feature corresponds to the list of atoms which
+constitute the finite domain, sorted lexically.
+
+   <p>The <code>card</code> feature corresponds to an integer denoting the
+cardinality of the finite domain.
+
+   <p>The <code>dSpec</code> feature corresponds to the finite domain specification
+of the finite domain.
+
+   <p>The <code>a2I</code> feature corresponds to a function from Oz atoms in the
+finite domain to their corresponding Oz integers.
+
+   <p>The <code>i2A</code> feature corresponds to a function from Oz integers in the
+finite domain to their corresponding Oz atoms.
+
+<!-- ************************************************************ -->
+   </body></html>
+

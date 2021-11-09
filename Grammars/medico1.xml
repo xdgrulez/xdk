@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<grammar>
+  <useDimension idref="anno"/>
+  <useDimension idref="owl"/>
+  <useDimension idref="rdf"/>
+  <useDimension idref="lex"/>
+  <dimension id="anno">
+    <attrsType>
+      <typeRecord/>
+    </attrsType>
+    <entryType>
+      <typeRecord/>
+    </entryType>
+    <labelType>
+      <typeRef idref="anno.label"/>
+    </labelType>
+    <typeDef id="anno.label">
+      <typeDomain>
+        <constant data="type"/>
+        <constant data="disease"/>
+        <constant data="trial"/>
+        <constant data="diseaseName"/>
+        <constant data="sameAs"/>
+        <constant data="degree"/>
+      </typeDomain>
+    </typeDef>
+    <usePrinciple idref="principle.graphPW">
+      <dim var="D" idref="anno"/>
+    </usePrinciple>
+    <output idref="output.dag"/>
+    <output idref="output.latex"/>
+    <output idref="output.pretty"/>
+    <output idref="output.xml"/>
+  </dimension>
+  <dimension id="owl">
+    <attrsType>
+      <typeRecord/>
+    </attrsType>
+    <entryType>
+      <typeRecord/>
+    </entryType>
+    <labelType>
+      <typeRef idref="owl.label"/>
+    </labelType>
+    <typeDef id="owl.label">
+      <typeDomain>
+        <constant data="sameAs"/>
+      </typeDomain>
+    </typeDef>
+    <usePrinciple idref="principle.graphPW">
+      <dim var="D" idref="owl"/>
+    </usePrinciple>
+    <usePrinciple idref="principle.sameAsPW">
+      <dim var="D" idref="owl"/>
+    </usePrinciple>
+    <output idref="output.dag"/>
+    <output idref="output.latex"/>
+    <output idref="output.pretty"/>
+    <output idref="output.xml"/>
+  </dimension>
+  <dimension id="rdf">
+    <attrsType>
+      <typeRecord/>
+    </attrsType>
+    <entryType>
+      <typeRecord/>
+    </entryType>
+    <labelType>
+      <typeRef idref="rdf.label"/>
+    </labelType>
+    <typeDef id="rdf.label">
+      <typeDomain>
+        <constant data="type"/>
+        <constant data="cond"/>
+        <constant data="related"/>
+        <constant data="trial"/>
+        <constant data="label"/>
+        <constant data="degree"/>
+      </typeDomain>
+    </typeDef>
+    <usePrinciple idref="principle.graphPW">
+      <dim var="D" idref="rdf"/>
+    </usePrinciple>
+    <output idref="output.dag"/>
+    <output idref="output.latex"/>
+    <output idref="output.pretty"/>
+    <output idref="output.xml"/>
+  </dimension>
+  <dimension id="lex">
+    <attrsType>
+      <typeRecord/>
+    </attrsType>
+    <entryType>
+      <typeRecord>
+        <typeFeature data="word">
+          <typeString/>
+        </typeFeature>
+      </typeRecord>
+    </entryType>
+    <labelType>
+      <typeDomain>
+
+</typeDomain>
+    </labelType>
+    <output idref="output.dags1"/>
+    <output idref="output.latexs1"/>
+    <useOutput idref="output.dags1"/>
+  </dimension>
+  <entry>
+    <classConj>
+      <classDimension idref="lex">
+        <record>
+          <feature data="word">
+            <constant data="&lt;patient1&gt;"/>
+          </feature>
+        </record>
+      </classDimension>
+    </classConj>
+  </entry>
+  <entry>
+    <classConj>
+      <classDimension idref="lex">
+        <record>
+          <feature data="word">
+            <constant data="medico:patient"/>
+          </feature>
+        </record>
+      </classDimension>
+    </classConj>
+  </entry>
+  <entry>
+    <classConj>
+      <classDimension idref="lex">
+        <record>
+          <feature data="word">
+            <constant data="&lt;disease1&gt;"/>
+          </feature>
+        </record>
+      </classDimension>
+    </classConj>
+  </entry>
+  <entry>
+    <classConj>
+      <classDimension idref="lex">
+        <record>
+          <feature data="word">
+            <constant data="medico:disease"/>
+          </feature>
+        </record>
+      </classDimension>
+    </classConj>
+  </entry>
+  <entry>
+    <classConj>
+      <classDimension idref="lex">
+        <record>
+          <feature data="word">
+            <constant data="&lt;trialXXX&gt;"/>
+          </feature>
+        </record>
+      </classDimension>
+    </classConj>
+  </entry>
+  <entry>
+    <classConj>
+      <classDimension idref="lex">
+        <record>
+          <feature data="word">
+            <constant data="NS1:Trials"/>
+          </feature>
+        </record>
+      </classDimension>
+    </classConj>
+  </entry>
+  <entry>
+    <classConj>
+      <classDimension idref="lex">
+        <record>
+          <feature data="word">
+            <constant data="&lt;cond4532&gt;"/>
+          </feature>
+        </record>
+      </classDimension>
+    </classConj>
+  </entry>
+  <entry>
+    <classConj>
+      <classDimension idref="lex">
+        <record>
+          <feature data="word">
+            <constant data="NS1:Cond"/>
+          </feature>
+        </record>
+      </classDimension>
+    </classConj>
+  </entry>
+  <entry>
+    <classConj>
+      <classDimension idref="lex">
+        <record>
+          <feature data="word">
+            <constant data="Hodgkin"/>
+          </feature>
+        </record>
+      </classDimension>
+    </classConj>
+  </entry>
+  <entry>
+    <classConj>
+      <classDimension idref="lex">
+        <record>
+          <feature data="word">
+            <constant data="&lt;Dis33&gt;"/>
+          </feature>
+        </record>
+      </classDimension>
+    </classConj>
+  </entry>
+  <entry>
+    <classConj>
+      <classDimension idref="lex">
+        <record>
+          <feature data="word">
+            <constant data="NS2:Diseases"/>
+          </feature>
+        </record>
+      </classDimension>
+    </classConj>
+  </entry>
+  <entry>
+    <classConj>
+      <classDimension idref="lex">
+        <record>
+          <feature data="word">
+            <constant data="&lt;Indi68883&gt;"/>
+          </feature>
+        </record>
+      </classDimension>
+    </classConj>
+  </entry>
+  <entry>
+    <classConj>
+      <classDimension idref="lex">
+        <record>
+          <feature data="word">
+            <constant data="1"/>
+          </feature>
+        </record>
+      </classDimension>
+    </classConj>
+  </entry>
+  <entry>
+    <classConj>
+      <classDimension idref="lex">
+        <record>
+          <feature data="word">
+            <constant data="NS3:Indications"/>
+          </feature>
+        </record>
+      </classDimension>
+    </classConj>
+  </entry>
+</grammar>

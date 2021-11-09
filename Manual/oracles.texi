@@ -1,0 +1,45 @@
+@chapter Oracles
+Oracles can be used to guide the search for solutions of the XDK
+solver.  They are stand-alone programs acting as a server to be asked
+by a client (= the XDK solver) to choose one among a number of
+possibilities for further search.
+
+Oracles and the XDK solver communicate over a socket. The socket port
+to be used can be set upon start of the oracle, and must be the same
+as set for the XDK solver.
+
+This is work in progress. At the moment, we have only one oracle viz.
+the @emph{manual oracle} which allows the user to determine the path
+through the search tree.
+
+@menu
+* ManualOracle::       Manual Oracle
+@end menu
+
+@c ************************************************************
+
+@node ManualOracle, , , Oracles
+@section Manual Oracle
+The manual oracle co-operates with the IOzSeF search visualization
+tool. Upon solving an input sentence, the IOzSeF Tree Viewer pops up,
+but does not yet enumerate any solution. Instead, it shows only a grey
+triangle. With @code{Search->Next Solution} (or by simply pressing
+@code{n}), the next solution is explored. If there is a choice point,
+then the manual oracle displays a window showing the partially solved
+multigraph up until the choicepoint. By clicking the buttons
+@code{choice 1} and @code{choice 2} with the right mouse button, the
+manual oracle displays the edges which would be added if the left or
+the right alternative would be chosen. The choices can then be taken
+by clicking the corresponding buttons with the left mouse button.
+
+The manual oracle can be started using the executable 
+@code{ManualOracleServer.exe}
+in @code{Oracles/ManualOracle}. The @code{--port}-option makes the 
+oracle use a port other than the default port 4711. E.g.:
+@example
+ManualOracleServer.exe --port=42
+@end example
+makes the oracle use port 42. This can be also be shortened to:
+@example
+ManualOracleServer.exe -p 42
+@end example

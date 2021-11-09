@@ -1,0 +1,195 @@
+<!ELEMENT statistics (grammar,examples,mode,date,solutions,failures,timeout,reco,dimensions,principles,string*,counts,profilecounts?)>
+
+<!ELEMENT grammar EMPTY>
+<!ATTLIST grammar
+          data CDATA #REQUIRED>
+
+<!ELEMENT examples EMPTY>
+<!ATTLIST examples
+          data CDATA #REQUIRED
+          count CDATA #REQUIRED>
+
+<!ELEMENT mode EMPTY>
+<!ATTLIST mode
+          data CDATA #REQUIRED>
+
+<!ELEMENT date EMPTY>
+<!ATTLIST date
+          data CDATA #REQUIRED>
+
+<!ELEMENT solutions EMPTY>
+<!ATTLIST solutions
+          data CDATA #REQUIRED>
+
+<!ELEMENT failures EMPTY>
+<!ATTLIST failures
+          data CDATA #REQUIRED>
+
+<!ELEMENT timeout EMPTY>
+<!ATTLIST timeout
+          data CDATA #REQUIRED>
+
+<!ELEMENT reco EMPTY>
+<!ATTLIST reco
+          data CDATA #REQUIRED>
+
+<!ELEMENT dimensions (dimension*)>
+<!ELEMENT dimension EMPTY>
+<!ATTLIST dimension
+          data CDATA #REQUIRED>
+
+<!ELEMENT principles (principle*)>
+<!ELEMENT principle EMPTY>
+<!ATTLIST principle
+          data CDATA #REQUIRED>
+
+<!ELEMENT string (words,outputs,choices,depth,failed,succeeded,time,sprofile?)>
+<!ATTLIST string
+          id ID #REQUIRED>
+
+<!ELEMENT words (#PCDATA)>
+
+<!ELEMENT outputs (graph*)>
+
+<!ELEMENT choices EMPTY>
+<!ATTLIST choices
+          data CDATA #REQUIRED>
+
+<!ELEMENT depth EMPTY>
+<!ATTLIST depth
+          data CDATA #REQUIRED>
+
+<!ELEMENT failed EMPTY>
+<!ATTLIST failed
+          data CDATA #REQUIRED>
+
+<!ELEMENT succeeded EMPTY>
+<!ATTLIST succeeded
+          data CDATA #REQUIRED>
+
+<!ELEMENT time EMPTY>
+<!ATTLIST time
+          data CDATA #REQUIRED>
+
+<!ELEMENT sprofile (spnode*)>
+<!ATTLIST sprofile
+          varfdbool CDATA #REQUIRED
+          varfdint CDATA #REQUIRED
+          varfdtotal CDATA #REQUIRED
+          varfs CDATA #REQUIRED
+          vartotal CDATA #REQUIRED
+          propcost CDATA #REQUIRED
+          propcount CDATA #REQUIRED
+          words CDATA #REQUIRED
+	  entries CDATA #REQUIRED>
+<!ELEMENT spnode EMPTY>
+<!ATTLIST spnode
+          index CDATA #REQUIRED
+          word CDATA #REQUIRED
+          entries CDATA #REQUIRED>
+
+<!ELEMENT counts (cchoices,cdepth,cfailed,csucceeded,ctime)>
+
+<!ELEMENT cchoices EMPTY>
+<!ATTLIST cchoices
+          min CDATA #REQUIRED
+          max CDATA #REQUIRED
+          average CDATA #REQUIRED>
+
+<!ELEMENT cdepth EMPTY>
+<!ATTLIST cdepth
+          min CDATA #REQUIRED
+          max CDATA #REQUIRED
+          average CDATA #REQUIRED>
+
+<!ELEMENT cfailed EMPTY>
+<!ATTLIST cfailed
+          min CDATA #REQUIRED
+          max CDATA #REQUIRED
+          average CDATA #REQUIRED>
+
+<!ELEMENT csucceeded EMPTY>
+<!ATTLIST csucceeded
+          min CDATA #REQUIRED
+          max CDATA #REQUIRED
+          average CDATA #REQUIRED>
+
+<!ELEMENT ctime EMPTY>
+<!ATTLIST ctime
+          min CDATA #REQUIRED
+          max CDATA #REQUIRED
+          average CDATA #REQUIRED>
+
+<!ELEMENT profilecounts (cvarfdbool,cvarfdint,cvarfdtotal,cvarfs,cvartotal,cpropcost,cpropcount,cwords,centries)>
+
+<!ELEMENT cvarfdbool EMPTY>
+<!ATTLIST cvarfdbool
+          min CDATA #REQUIRED
+          max CDATA #REQUIRED
+          average CDATA #REQUIRED>
+
+<!ELEMENT cvarfdint EMPTY>
+<!ATTLIST cvarfdint
+          min CDATA #REQUIRED
+          max CDATA #REQUIRED
+          average CDATA #REQUIRED>
+
+<!ELEMENT cvarfdtotal EMPTY>
+<!ATTLIST cvarfdtotal
+          min CDATA #REQUIRED
+          max CDATA #REQUIRED
+          average CDATA #REQUIRED>
+
+<!ELEMENT cvarfs EMPTY>
+<!ATTLIST cvarfs
+          min CDATA #REQUIRED
+          max CDATA #REQUIRED
+          average CDATA #REQUIRED>
+
+<!ELEMENT cvartotal EMPTY>
+<!ATTLIST cvartotal
+          min CDATA #REQUIRED
+          max CDATA #REQUIRED
+          average CDATA #REQUIRED>
+
+<!ELEMENT cpropcost EMPTY>
+<!ATTLIST cpropcost
+          min CDATA #REQUIRED
+          max CDATA #REQUIRED
+          average CDATA #REQUIRED>
+
+<!ELEMENT cpropcount EMPTY>
+<!ATTLIST cpropcount
+          min CDATA #REQUIRED
+          max CDATA #REQUIRED
+          average CDATA #REQUIRED>
+
+<!ELEMENT cwords EMPTY>
+<!ATTLIST cwords
+          min CDATA #REQUIRED
+          max CDATA #REQUIRED
+          average CDATA #REQUIRED>
+
+<!ELEMENT centries EMPTY>
+<!ATTLIST centries
+          min CDATA #REQUIRED
+          max CDATA #REQUIRED
+          average CDATA #REQUIRED>
+
+<!-- XML output DTD -->
+<!ELEMENT graph (node*,edge*)>
+<!ATTLIST graph
+          dimension CDATA #REQUIRED>
+<!ELEMENT node (attrs?,entry?,model?)>
+<!ATTLIST node
+          index CDATA #REQUIRED
+	  word CDATA #REQUIRED
+          label CDATA #IMPLIED>
+<!ELEMENT edge EMPTY>
+<!ATTLIST edge
+          index1 CDATA #REQUIRED
+          index2 CDATA #REQUIRED
+          label CDATA #IMPLIED>
+<!ELEMENT attrs (#PCDATA)>
+<!ELEMENT entry (#PCDATA)>
+<!ELEMENT model (#PCDATA)>

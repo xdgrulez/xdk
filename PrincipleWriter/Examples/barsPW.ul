@@ -1,0 +1,7 @@
+defprinciple "principle.barsPW" {
+  dims {D}
+  constraints {
+
+forall V: existsone V1: edge(V V1 D)
+  }
+}

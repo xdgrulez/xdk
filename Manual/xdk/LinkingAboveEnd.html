@@ -1,0 +1,139 @@
+<html lang="en">
+<head>
+<title>LinkingAboveEnd - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="LinkingAboveBelow1or2Start.html#LinkingAboveBelow1or2Start" title="LinkingAboveBelow1or2Start">
+<link rel="next" href="LinkingAboveStart.html#LinkingAboveStart" title="LinkingAboveStart">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="LinkingAboveEnd"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="LinkingAboveStart.html#LinkingAboveStart">LinkingAboveStart</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="LinkingAboveBelow1or2Start.html#LinkingAboveBelow1or2Start">LinkingAboveBelow1or2Start</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.30 LinkingAboveEnd principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.linkingAboveEnd</code>
+<li>dimension variables: <code>D1</code>, <code>D2</code>, <code>D3</code>
+<li>argument variables:<br>
+<code>End: vec(label(D1) set(label(D2)))</code>
+<li>default values:<br>
+<code>End: ^.D3.entry.end</code>
+<li>model record: empty
+<li>constraints: <code>LinkingAboveEnd</code> (priority 100)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle assumes that the Graph principle (<a href="Graph.html#Graph">Graph</a>) is used
+on dimensions <code>D1</code> and <code>D2</code>.<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>
+
+   <p>This principle is from the family of <em>linking principles</em>. 
+<a name="index-linking-264"></a><a name="index-linking-principles-265"></a>
+For all edges from v to v' labeled l on <code>D1</code>,
+it stipulates the constraint:
+     <ul>
+<li>if <code>End</code>(l) is not empty, then on <code>D2</code>,
+v' must be above v, and the outgoing edge of v'
+must be in <code>End</code>(l)
+</ul>
+   That is, <code>End</code>(l) specifies the direction and endpoint of the
+path from v to v' on <code>D2</code>.
+
+   <p>Here is the definition of the <code>LinkingAboveEnd</code> edge
+constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+
+   Helpers(checkModel) at 'Helpers.ozf'
+   Opti(isIn) at 'Opti.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      D1DIDA = {DVA2DIDA 'D1'}
+      D2DIDA = {DVA2DIDA 'D2'}
+      DIDA2LabelLat = G.dIDA2LabelLat
+      D1LabelLat = {DIDA2LabelLat D1DIDA}
+      D2LabelLat = {DIDA2LabelLat D2DIDA}
+      D1LAs = D1LabelLat.constants
+      D2LAs = D2LabelLat.constants
+   in
+      if {Helpers.checkModel 'LinkingAboveEnd.oz' Nodes
+	  [D1DIDA#daughtersL
+	   D2DIDA#downL]} then
+	 for Node1 in Nodes do
+	    for Node2 in Nodes do
+	       for LA in D1LAs do
+		  if {Not {Opti.isIn Node2.index Node1.D1DIDA.model.daughtersL.LA}=='out'} then
+		     %% Linking Above and Endpoint
+		     %% m -l->1 d =>
+		     %%   End(l) neq emptyset =>
+		     %%     d -End(l)->2 ->*2 m
+		     EndLALMRec =
+		     {ArgRecProc 'End' o('^': Node1)}
+		     EndLM = EndLALMRec.LA
+		     %%
+		     Node2D2DownLMs =
+		     {Map D2LAs
+		      fun {$ LA} Node2.D2DIDA.model.downL.LA end}
+		     Node2D2DownLM =
+		     {Select.union Node2D2DownLMs EndLM}
+		  in
+		     {FD.impl
+		      {FS.reified.include Node2.index Node1.D1DIDA.model.daughtersL.LA}
+		      {FD.impl
+		       {FD.nega {FS.reified.equal EndLM FS.value.empty}}
+		       {FS.reified.include Node1.index Node2D2DownLM}} 1}
+		  end
+	       end
+	    end
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> This principle does
+not work in conjunction with the Graph1 principle (<a href="Graph1.html#Graph1">Graph1</a>) on
+<code>D2</code> as it accesses the model record feature <code>downL</code> only
+introduced by the Graph principle (<a href="Graph.html#Graph">Graph</a>).</p>
+
+   <hr></div>
+
+   </body></html>
+

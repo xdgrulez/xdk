@@ -1,0 +1,130 @@
+\documentclass[halfparskip]{scrartcl}
+
+\usepackage[latin9]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[british]{babel}
+
+\newcommand*{\ID}{%
+  \textsc{id}}
+\newcommand*{\MESSAGE}[1]{%
+  \bigskip\par\fbox{#1}}
+\newcommand*{\META}[1]{%
+  $\langle$\emph{#1}$\rangle$}
+\let\NOTE=\footnote
+\newcommand*{\XML}{%
+  \textsc{xml}}
+\newcommand*{\XMLTAG}[1]{%
+  \texttt{<#1 />}}
+\newcommand*{\XMLTAGOPEN}[1]{%
+  \texttt{<#1>}}
+\newcommand*{\XMLTAGCLOSE}[1]{%
+  \texttt{</#1>}}
+
+\begin{document}
+
+This document specifies the current draft of the Oracle Protocol.  It
+was last modified on 2004-09-28.  Note that the draft is subject to
+change.
+
+The Oracle Protocol regulates the communication between the search
+engine (the client) and the oracle (the server).  Communication
+happens through the sending and receiving of \emph{messages}.  Each
+message is a string that can be interpreted as a (possibly nested)
+\XML\ element.  Below, boxed messages are messages that the client
+sends to the server.  For each message, the potential response
+messages (from the server to the client) are listed.
+
+\MESSAGE{\XMLTAG{init}}
+
+This is the message that starts a new communication between the client
+and the server.  In later versions of the protocol, it may be used to
+negotiate details of the communication, such as the version of the
+Oracle Protocol to use, and the domain-specific description language
+that the oracle understands.  To implement the Oracle Protocal
+according to the current draft, this message should always be
+confirmed.
+
+Possible answers:
+\begin{itemize}
+\item \XMLTAG{confirm} -- The server understands the version of the
+  Oracle Protocol and the domain-specific description language that
+  the client wants to use.
+\item \XMLTAG{reject} -- The client should either re-send the
+  \texttt{init} message (using different parameters), or close the
+  connection.  [To implement the Oracle Protocol according to the
+  current draft, the oracle should not send this message.]
+\end{itemize}
+
+\MESSAGE{\XMLTAGOPEN{new id='$i$' parentid='$p$'}\META{description}\XMLTAGCLOSE{new}}
+
+This message tells the oracle that a new search node has been created
+as child of the search node with \ID~$p$, and that this new node has
+been assigned the \ID~$i$.  By convention, if~$i$ is the root node of
+the search tree, the client will make sure that $i=p$.
+
+A \emph{description} is an \XML\ container element of the form
+\XMLTAGOPEN{description mode='$t$'}, where~$t$ either is
+\texttt{complete} (the description is a complete description of the
+current node) or \texttt{diff} (the description is a list of
+information that should be added to the description of the parent of
+the current node to get a complete description).  It can only be
+\texttt{diff} if~$i$ is not the \ID\ of the root of the search tree.
+The \XML\ children of the \texttt{description} tag should be
+interpreted by the oracle according to the domain-specific
+externalisation language negotiated in the \texttt{init} dialogue.
+
+Possible answers:
+\begin{itemize}
+\item \XMLTAG{confirm} -- The oracle has successfully internalised the
+  information about the new search node.
+\item \XMLTAG{reject} -- Internalising the new information was either
+  not successful or not possible.  The client may choose to resend the
+  message, reset the search, or close the connection.
+\end{itemize}
+
+\MESSAGE{\XMLTAG{reset}}
+
+This message tells the server to completely forget every information
+it inferred from any intermediate \texttt{new} messages, and reset its
+internal state such that search can start anew.
+
+Possible answers:
+\begin{itemize}
+\item \XMLTAG{confirm} -- The server has successfully reset its
+  internal state.
+\item \XMLTAG{reject} -- Resetting the internal state was either not
+  successful or not possible.  The client may choose to resend the
+  message, reset the search, or close the connection.
+\end{itemize}
+
+\MESSAGE{\XMLTAG{chooseLocal refid='$i$'}}
+
+The client asks for the \ID\ of the search node in which to proceed
+search, given that the current node has \ID~$i$.  For example, if~$i$
+is a parent node, then the client might expect the oracle to return
+the \ID\ of one of $i$'s children as a response to this question.
+
+\begin{itemize}
+\item \XMLTAG{next id='$i$'} -- The client should continue search with
+  node~$i$.
+\item \XMLTAG{noUnexpandedState} -- The server does not know about any
+  node at which search could continue.  This can happen, for example.
+  if the client asks the \texttt{new} message with a \texttt{refid}
+  that denotes a leaf in the search tree.  The client may choose to
+  send additional messages, reset the search, or close the connection.
+\end{itemize}
+
+\MESSAGE{\XMLTAG{chooseGlobal}}
+
+This message is like the previous one, except that the \ID\ of the
+parent node is not taken into account.  This is the message that the
+client would usually use if the server implements a global search, in
+which the node at which search should be continued does not depend on
+the current focus of search be at some particular node.
+
+\begin{itemize}
+\item \XMLTAG{next id='$i$'} -- see above
+\item \XMLTAG{noUnexpandedState} -- see above
+\end{itemize}
+
+\end{document}

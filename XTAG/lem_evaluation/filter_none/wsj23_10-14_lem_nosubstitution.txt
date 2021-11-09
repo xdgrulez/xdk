@@ -1,0 +1,607 @@
+sent: 13: several traders could be seen shaking their heads when the news flashed . 
+done parsing...
+time(CPU): 338.800000
+parsed 1 from a total of 1
+
+sent: 10: it screwed things up , said one major specialist . 
+done parsing...
+time(CPU): 66.730000
+parsed 1 from a total of 1
+
+sent: 13: and i think a lot of people will harp on program trading . 
+
+sent: 13: it 's going to bring the debate right back to the forefront . 
+done parsing...
+time(CPU): 1502.820000
+parsed 1 from a total of 1
+
+sent: 14: but nobody knows at what level the futures and stocks will open today . 
+
+sent: 11: not all funds have raised cash levels , of course . 
+done parsing...
+time(CPU): 211.040000
+parsed 1 from a total of 1
+
+sent: 12: many fund managers argue that now 's the time to buy . 
+done parsing...
+time(CPU): 197.130000
+parsed 1 from a total of 1
+
+sent: 11: but most investors were seeking share prices and other information . 
+done parsing...
+time(CPU): 49.370000
+parsed 1 from a total of 1
+
+sent: 10: still , fund groups are not taking any chances . 
+done parsing...
+time(CPU): 33.170000
+parsed 1 from a total of 1
+
+sent: 13: several fund managers expect a rough market this morning before prices stabilize . 
+
+sent: 10: this is not a major crash , she said . 
+done parsing...
+time(CPU): 2.930000
+parsed 1 from a total of 1
+
+sent: 14: this time , i do not think we 'll get a panic reaction . 
+done parsing...
+time(CPU): 1522.930000
+parsed 1 from a total of 1
+
+sent: 12: now , those routes are not expected to begin until Jan . 
+done parsing...
+time(CPU): 33.910000
+parsed 1 from a total of 1
+
+sent: 11: those , too , are almost certain to arrive late . 
+done parsing...
+time(CPU): 1.970000
+parsed 0 from a total of 1
+
+sent: 12: i do not think their customers would like it very much . 
+done parsing...
+time(CPU): 474.580000
+parsed 1 from a total of 1
+
+sent: 14: no date has yet been set to get back to the bargaining table . 
+
+sent: 14: the investment community , for one , has been anticipating a speedy resolution . 
+done parsing...
+time(CPU): 154.880000
+parsed 1 from a total of 1
+
+sent: 10: i would not expect an immediate resolution to anything . 
+done parsing...
+time(CPU): 8.380000
+parsed 1 from a total of 1
+
+sent: 13: the union is continuing to work through its expired contract , however . 
+done parsing...
+time(CPU): 360.110000
+parsed 1 from a total of 1
+
+sent: 14: pricing cycles , to be sure , are nothing new for plastics producers . 
+done parsing...
+time(CPU): 268.480000
+parsed 1 from a total of 1
+
+sent: 10: now we 're at the bottom of the heap . 
+done parsing...
+time(CPU): 0.720000
+parsed 1 from a total of 1
+
+sent: 14: some analysts saw the payment as an effort also to dispel takeover speculation . 
+done parsing...
+time(CPU): 115.380000
+parsed 1 from a total of 1
+
+sent: 10: two workers died and six remain in the hospital . 
+done parsing...
+time(CPU): 3.050000
+parsed 1 from a total of 1
+
+sent: 12: some analysts speculate the weakening stock may yet attract a suitor . 
+done parsing...
+time(CPU): 3.620000
+parsed 1 from a total of 1
+
+sent: 14: they do not want to get caught again , says one industry watcher . 
+
+sent: 13: how such remarks translate into policy wo not become clear for months . 
+done parsing...
+time(CPU): 662.110000
+parsed 1 from a total of 1
+
+sent: 10: but some saw it as a classic negotiating tactic . 
+done parsing...
+time(CPU): 1.440000
+parsed 1 from a total of 1
+
+sent: 13: i feel committed to the program of opening markets and expanding trade . 
+done parsing...
+time(CPU): 1204.910000
+parsed 1 from a total of 1
+
+sent: 10: but she stressed , i am against managed trade . 
+done parsing...
+time(CPU): 11.140000
+parsed 1 from a total of 1
+
+sent: 11: the excess supply pushed gasoline prices down in that period . 
+done parsing...
+time(CPU): 151.620000
+parsed 1 from a total of 1
+
+sent: 14: this summer , on the other hand , had milder weather than usual . 
+done parsing...
+time(CPU): 520.820000
+parsed 1 from a total of 1
+
+sent: 13: but otherwise it would undoubtedly come back with an offer by management . 
+done parsing...
+time(CPU): 588.390000
+parsed 1 from a total of 1
+
+sent: 10: he was brought in to turn around the company . 
+done parsing...
+time(CPU): 22.550000
+parsed 1 from a total of 1
+
+sent: 14: we are not going to change agencies because of a change in London . 
+done parsing...
+time(CPU): 680.100000
+parsed 1 from a total of 1
+
+sent: 11: union officials have taken a beating politically as a result . 
+done parsing...
+time(CPU): 78.120000
+parsed 1 from a total of 1
+
+sent: 11: the university is considering a settlement proposal made by Connaught . 
+done parsing...
+time(CPU): 71.880000
+parsed 1 from a total of 1
+
+sent: 11: proceeds will be used to eliminate and restructure bank debt . 
+done parsing...
+time(CPU): 76.090000
+parsed 1 from a total of 1
+
+sent: 13: it said analysts had been expecting a small profit for the period . 
+done parsing...
+time(CPU): 254.470000
+parsed 1 from a total of 1
+
+sent: 13: but it does not take too many lines to figure Harry out . 
+done parsing...
+time(CPU): 694.930000
+parsed 1 from a total of 1
+
+sent: 12: where 's the guy who can say : enough is enough ? 
+done parsing...
+time(CPU): 13.430000
+parsed 0 from a total of 1
+
+sent: 14: they wonder should they sign a lease if prices are still coming down ? 
+done parsing...
+time(CPU): 927.180000
+parsed 1 from a total of 1
+
+sent: 10: is this the wrong time to open a store ? 
+done parsing...
+time(CPU): 118.560000
+parsed 1 from a total of 1
+
+sent: 11: who is going to be in the space next door ? 
+done parsing...
+time(CPU): 16.170000
+parsed 1 from a total of 1
+
+sent: 13: and , in some neighborhoods , rents have merely hit a plateau . 
+done parsing...
+time(CPU): 52.590000
+parsed 1 from a total of 1
+
+sent: 12: the same factors limiting demand for office space have affected retailing . 
+done parsing...
+time(CPU): 752.630000
+parsed 1 from a total of 1
+
+sent: 14: hardest hit are what he calls secondary sites that primarily serve neighborhood residents . 
+done parsing...
+time(CPU): 705.960000
+parsed 1 from a total of 1
+
+sent: 11: and his outlook improved after successful cataract surgery in August . 
+done parsing...
+time(CPU): 34.940000
+parsed 1 from a total of 1
+
+sent: 12: but it 's uncertain whether these institutions will take those steps . 
+done parsing...
+time(CPU): 123.980000
+parsed 1 from a total of 1
+
+sent: 10: a few drops in circulation are of no consequence . 
+done parsing...
+time(CPU): 23.770000
+parsed 1 from a total of 1
+
+sent: 11: admittedly , the principle in the cases is the same . 
+done parsing...
+time(CPU): 1.020000
+parsed 1 from a total of 1
+
+sent: 14: but the outcome of a legal dispute almost always turns on the facts . 
+done parsing...
+time(CPU): 226.390000
+parsed 1 from a total of 1
+
+sent: 11: call it the we 're too broke to fight defense . 
+done parsing...
+time(CPU): 45.600000
+parsed 1 from a total of 1
+
+sent: 14: in Leipzig , activists vowed to continue street protests to demand internal change . 
+
+sent: 10: the core rate is not really out of line . 
+done parsing...
+time(CPU): 6.130000
+parsed 1 from a total of 1
+
+sent: 14: he said the thrift will try to get regulators to reverse the decision . 
+
+sent: 11: the most popular such shows focus on narrow national concerns . 
+done parsing...
+time(CPU): 258.080000
+parsed 1 from a total of 1
+
+sent: 11: the result is a new and huge appetite for programming . 
+done parsing...
+time(CPU): 4.270000
+parsed 1 from a total of 1
+
+sent: 14: predicting the financial results of computer firms has been a tough job lately . 
+done parsing...
+time(CPU): 586.870000
+parsed 1 from a total of 1
+
+sent: 12: the program is aimed at improving the quality of printed material . 
+done parsing...
+time(CPU): 134.240000
+parsed 1 from a total of 1
+
+sent: 12: some lagging competitors even may leave the personal computer business altogether . 
+done parsing...
+time(CPU): 43.430000
+parsed 1 from a total of 1
+
+sent: 13: a raft of new computer companies also has targeted this server market . 
+done parsing...
+time(CPU): 352.840000
+parsed 1 from a total of 1
+
+sent: 11: the gains , to be sure , are rather small . 
+done parsing...
+time(CPU): 13.670000
+parsed 1 from a total of 1
+
+sent: 14: this does not mean they 're less likely to live alone , however . 
+done parsing...
+time(CPU): 501.430000
+parsed 1 from a total of 1
+
+sent: 10: as people get even older , many become widowed . 
+done parsing...
+time(CPU): 91.350000
+parsed 1 from a total of 1
+
+sent: 12: twenty percent do not even feel they are financially well off . 
+
+sent: 12: many of the affluent are not comfortable with themselves , either . 
+done parsing...
+time(CPU): 5.690000
+parsed 1 from a total of 1
+
+sent: 13: i thought this was all taken care of in the music man . 
+done parsing...
+time(CPU): 705.040000
+parsed 1 from a total of 1
+
+sent: 11: people are fast leaving the place where he is stuck . 
+done parsing...
+time(CPU): 31.620000
+parsed 1 from a total of 1
+
+sent: 10: but these are not the differences that make headlines . 
+done parsing...
+time(CPU): 16.570000
+parsed 1 from a total of 1
+
+sent: 11: it 's worth noting that both disapproving relatives are immigrants . 
+done parsing...
+time(CPU): 9.680000
+parsed 1 from a total of 1
+
+sent: 12: so far , the bubbles have been few and far between . 
+done parsing...
+time(CPU): 16.460000
+parsed 1 from a total of 1
+
+sent: 12: such legislation must be enacted by the end of the month . 
+done parsing...
+time(CPU): 42.950000
+parsed 1 from a total of 1
+
+sent: 12: the measure also includes spending cuts and increases in federal fees . 
+done parsing...
+time(CPU): 109.830000
+parsed 1 from a total of 1
+
+sent: 13: the plan would impose a brief freeze on physician fees next year . 
+
+sent: 11: i am in the communications field , above entry level . 
+done parsing...
+time(CPU): 244.030000
+parsed 1 from a total of 1
+
+sent: 13: in Friday 's edition , the name of the unit was misstated . 
+done parsing...
+time(CPU): 12.070000
+parsed 1 from a total of 1
+
+sent: 11: i think it was a little premature on their part . 
+done parsing...
+time(CPU): 113.590000
+parsed 1 from a total of 1
+
+sent: 11: if you 're a technician , you obey the signals . 
+done parsing...
+time(CPU): 0.590000
+parsed 0 from a total of 1
+
+sent: 13: Friday 's big drop , she says , was not a crash . 
+done parsing...
+time(CPU): 59.710000
+parsed 1 from a total of 1
+
+sent: 11: so she thinks the damage will be short-lived and contained . 
+done parsing...
+time(CPU): 53.470000
+parsed 1 from a total of 1
+
+sent: 14: this is exactly the same thing , as far as i 'm concerned . 
+done parsing...
+time(CPU): 23.760000
+parsed 1 from a total of 1
+
+sent: 10: there was tremendous public enthusiasm for stock mutual funds . 
+done parsing...
+time(CPU): 16.030000
+parsed 1 from a total of 1
+
+sent: 11: a hundred billion dollars in stock was subject to it . 
+done parsing...
+time(CPU): 31.330000
+parsed 1 from a total of 1
+
+sent: 14: over the next several months , though , he says things look bad . 
+done parsing...
+time(CPU): 313.860000
+parsed 1 from a total of 1
+
+sent: 14: i think the market will be heading down into November , he says . 
+
+sent: 11: that would be a normal bear market , he says . 
+done parsing...
+time(CPU): 144.260000
+parsed 1 from a total of 1
+
+sent: 13: he ticks off several major differences between now and two years ago . 
+
+sent: 12: this has both made investors uneasy and the corporations more vulnerable . 
+done parsing...
+time(CPU): 22.960000
+parsed 1 from a total of 1
+
+sent: 11: nevertheless , he says a depression does not appear likely . 
+done parsing...
+time(CPU): 11.330000
+parsed 1 from a total of 1
+
+sent: 14: companies are still going to buy companies around the world , he says . 
+
+sent: 10: Friday you could not sell dollars , he says . 
+done parsing...
+time(CPU): 6.220000
+parsed 1 from a total of 1
+
+sent: 14: he sandwiched his praise of constitutional meat between large loaves of bilious commentary . 
+done parsing...
+time(CPU): 284.580000
+parsed 1 from a total of 1
+
+sent: 12: how was that practice referred to when i was in school ? 
+done parsing...
+time(CPU): 268.390000
+parsed 1 from a total of 1
+
+sent: 14: it 's when such slapping does not occur that we 've got trouble . 
+done parsing...
+time(CPU): 580.900000
+parsed 1 from a total of 1
+
+sent: 12: it was like the Friday before Black Monday two years ago . 
+done parsing...
+time(CPU): 629.510000
+parsed 1 from a total of 1
+
+sent: 10: it was not intentional , we were all busy . 
+done parsing...
+time(CPU): 0.760000
+parsed 1 from a total of 1
+
+sent: 13: everybody was trying to do the same thing at the same time . 
+done parsing...
+time(CPU): 494.650000
+parsed 1 from a total of 1
+
+sent: 12: when selling is so frenzied , prices fall steeply and fast . 
+done parsing...
+time(CPU): 246.620000
+parsed 1 from a total of 1
+
+sent: 13: on Friday , some market makers were selling again , traders said . 
+done parsing...
+time(CPU): 415.470000
+parsed 1 from a total of 1
+
+sent: 11: everyone was hitting everyone else 's bid , he said . 
+done parsing...
+time(CPU): 11.290000
+parsed 0 from a total of 1
+
+sent: 10: the pace of trading was orderly , he said . 
+done parsing...
+time(CPU): 8.260000
+parsed 1 from a total of 1
+
+sent: 11: the charge on loans to brokers on stock exchange collateral . 
+done parsing...
+time(CPU): 835.660000
+parsed 1 from a total of 1
+
+sent: 11: they could still panic and bail out of the market . 
+done parsing...
+time(CPU): 59.350000
+parsed 1 from a total of 1
+
+sent: 12: he expects to invest the rest if the market weakens further . 
+done parsing...
+time(CPU): 61.970000
+parsed 1 from a total of 1
+
+sent: 12: there is no justification on the fundamental level for this crash . 
+done parsing...
+time(CPU): 176.660000
+parsed 1 from a total of 1
+
+sent: 14: we 're not making a killing , but we had a good day . 
+done parsing...
+time(CPU): 1175.610000
+parsed 1 from a total of 1
+
+sent: 13: i 'd like to see that initiative , and i have not . 
+done parsing...
+time(CPU): 406.010000
+parsed 0 from a total of 1
+
+sent: 10: there is not a big shot , an agenda . 
+done parsing...
+time(CPU): 3.130000
+parsed 1 from a total of 1
+
+sent: 14: in that case , there will be plenty of blame to go around . 
+done parsing...
+time(CPU): 1332.380000
+parsed 1 from a total of 1
+
+sent: 10: but some players were quick to seize the moment . 
+done parsing...
+time(CPU): 1.020000
+parsed 1 from a total of 1
+
+sent: 10: but he 's not so sure about everyone else . 
+done parsing...
+time(CPU): 2.940000
+parsed 0 from a total of 1
+
+sent: 12: if i sell now , i 'll take a big loss . 
+done parsing...
+time(CPU): 36.950000
+parsed 1 from a total of 1
+
+sent: 14: others wonder how many more of these shocks the small investor can stand . 
+done parsing...
+time(CPU): 307.820000
+parsed 1 from a total of 1
+
+sent: 14: this time he 's ready to buy in when the panic wears off . 
+
+sent: 13: when the little guy gets frightened , the big guys hurt badly . 
+done parsing...
+time(CPU): 1634.140000
+parsed 1 from a total of 1
+
+sent: 13: i just stopped by to see how much i would have lost . 
+
+sent: 10: size and weight considerations also have limited screen displays . 
+done parsing...
+time(CPU): 13.250000
+parsed 1 from a total of 1
+
+sent: 10: the competitive sniping can get pretty petty at times . 
+done parsing...
+time(CPU): 315.700000
+parsed 1 from a total of 1
+
+sent: 13: the monthly increase is the highest recorded in the past four years . 
+done parsing...
+time(CPU): 38.880000
+parsed 1 from a total of 1
+
+sent: 13: analysts and competitors , however , doubt the numbers were that high . 
+done parsing...
+time(CPU): 7.760000
+parsed 1 from a total of 1
+
+sent: 10: this will raise the energy level of the show . 
+done parsing...
+time(CPU): 62.490000
+parsed 1 from a total of 1
+
+sent: 14: the answer is not price reductions , but new systems , he said . 
+done parsing...
+time(CPU): 366.150000
+parsed 1 from a total of 1
+
+sent: 11: we 're after a little bigger niche , he said . 
+done parsing...
+time(CPU): 3.100000
+parsed 1 from a total of 1
+
+sent: 13: when it went down , by all tradition , the economy followed . 
+done parsing...
+time(CPU): 469.890000
+parsed 1 from a total of 1
+
+sent: 12: the market seems increasingly disconnected from the rest of the nation . 
+done parsing...
+time(CPU): 2.780000
+parsed 1 from a total of 1
+
+sent: 10: there 's nothing rational about this kind of action . 
+done parsing...
+time(CPU): 14.180000
+parsed 1 from a total of 1
+
+sent: 10: surveys suggested that consumer confidence was high before Friday . 
+done parsing...
+time(CPU): 30.290000
+parsed 1 from a total of 1
+
+sent: 13: the prosperity that followed Black Monday permits a more optimistic view today . 
+done parsing...
+time(CPU): 221.300000
+parsed 1 from a total of 1
+
+sent: 12: this could be the first of five or six down quarters . 
+done parsing...
+time(CPU): 85.350000
+parsed 1 from a total of 1
+
+sent: 10: the collateral is being sold by a thrift institution . 
+done parsing...
+time(CPU): 55.960000
+parsed 1 from a total of 1

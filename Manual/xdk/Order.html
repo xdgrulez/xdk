@@ -1,0 +1,291 @@
+<html lang="en">
+<head>
+<title>Order - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="LookRight.html#LookRight" title="LookRight">
+<link rel="next" href="Order1.html#Order1" title="Order1">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Order"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Order1.html#Order1">Order1</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="LookRight.html#LookRight">LookRight</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.48 Order principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.order</code>
+<li>dimension variables: <code>D</code>
+<li>argument variables:<br>
+<code>On: iset(label(D))</code><br>
+<code>Order: list(label(D))</code><br>
+<code>Yields: bool</code>
+<li>default values:<br>
+<code>On: _.D.entry.on</code><br>
+<code>Order: []</code><br>
+<code>Yields: false</code>
+<li>model record:
+     <pre class="example">          { selfSet:  vec(label(D) ints)
+            self:     label(D)
+            pos:      ints
+            yield:    ints
+            yieldS:   ints
+            yieldL:   vec(label(D) ints) }
+</pre>
+     <li>constraints: <code>OrderMakeNodes</code> (priority 130),
+<code>OrderConditions</code> (120), and <code>OrderDist</code> (90)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle assumes that the Graph principle (<a href="Graph.html#Graph">Graph</a>) is used
+on dimension <code>D</code>.
+
+   <p>The argument variable <code>On</code> specifies the set of <em>node labels</em>
+<a name="index-node-label-296"></a>for each node to position it with respect to its daughters. The
+default value is lexicalized by the lexical entry feature <code>on</code> on
+<code>D</code>.
+
+   <p>The argument variable <code>Order</code> specifies a total order on a subset
+of the edge labels on <code>D</code>. Its default value is the empty list (i.e. 
+nothing is ordered).
+
+   <p>The argument variable <code>Yields</code> specifies whether the yields
+(<code>true</code>) or the daughters (<code>false</code>) of each node on <code>D</code>
+shall be ordered. Its default value is <code>false</code> (i.e. the yields
+are not ordered).
+
+   <p>The order principle constrains the linear order of the nodes. In
+particular, it orders the daughters of each node according to their
+edge label, and positions the head with respect to the daughters using
+their node label.  The <code>On</code> argument specifies the set of
+possible node labels for a node.  The <code>Order</code> argument variable
+specifies a total order on a subset of the set of labels.
+
+   <p>Notice that there is also the more general Order1 principle
+(<a href="Order1.html#Order1">Order1</a>) where the <code>Order</code> argument variable specifies a
+total order on sets of labels.
+
+   <p>The order principle is most efficient if the following is satisfied:
+     <ol type=1 start=1>
+<li><code>Order</code> is an exhaustive total order on <em>all</em> edge labels of dimension <code>D</code>
+<li><code>Yields</code> is <code>true</code>
+        </ol>
+Otherwise, the order principle uses a weaker constraint
+(<code>FS.int.seq</code> of the Mozart FS library instead of Denys Duchier's
+<code>Select.seqUnion</code> of his selection constraint package).
+
+   <p>Here is the definition of the <code>OrderMakeNodes</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+prepare
+   RecordForAll = Record.forAll
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      DIDA = {DVA2DIDA 'D'}
+   in
+      %% check features
+      if {Helpers.checkModel 'OrderMakeNodes.oz' Nodes
+	  [DIDA#eqdown]} then
+	 %% get label lattice LabelLat
+	 DIDA2LabelLat = G.dIDA2LabelLat
+	 LabelLat = {DIDA2LabelLat DIDA}
+	 %% get node set NodeSetM
+	 NodeSetM = Nodes.1.nodeSet
+      in
+	 for Node in Nodes do
+	    Model = Node.DIDA.model
+	    %%
+	    {RecordForAll Model.selfSet proc {$ M} {FS.subset M NodeSetM} end}
+	    {FS.subset Model.yield NodeSetM}
+	    {FS.subset Model.yieldS NodeSetM}
+	    {RecordForAll Model.yieldL proc {$ M} {FS.subset M NodeSetM} end}
+	    %% get args
+	    OnM = {ArgRecProc 'On' o('_': Node)}
+	 in
+   	    %% self(v) in on(v)
+	    {FS.include Model.'self' OnM}
+	    %% pos(v) = uplus{ self_s(v) | s in selfs }
+  	    {FS.partition Model.selfSet Node.pos}
+  	    %% |self_l(v)| = 1 iff self(v) == l
+ 	    for LA in LabelLat.constants do
+ 	       LD = {LabelLat.aI2I LA}
+ 	    in
+	       {FD.equi
+		{FD.reified.equal {FS.card Model.selfSet.LA} 1}
+		{FD.reified.equal Model.'self' LD} 1}
+  	    end
+	 end
+      end
+   end
+end
+</pre>
+Here is the definition of the <code>OrderConditions</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      DIDA = {DVA2DIDA 'D'}
+   in
+      %% check features
+      if {Helpers.checkModel 'OrderConditions.oz' Nodes
+	  [DIDA#daughters
+	   DIDA#daughtersL]} then
+	 %% get label lattice LabelLat
+	 DIDA2LabelLat = G.dIDA2LabelLat
+	 LabelLat = {DIDA2LabelLat DIDA}
+	 LCardI = LabelLat.card
+	 %%
+	 Models = {Map Nodes fun {$ Node} Node.DIDA.model end}
+	 %%
+	 YieldMs = {Map Models
+		    fun {$ Model} Model.yield end}
+	 %%
+	 PosMs = {Map Nodes
+		  fun {$ Node} Node.pos end}
+      in
+	 for Node in Nodes do
+	    Model = Node.DIDA.model
+	    %% yield(v) = union{ pos(v') | v' in eqdown(v) }
+	    Model.yield = {Select.union PosMs Model.eqdown}
+	    %% yieldS(v) = union{ pos(v') | v' in down(v) }
+	    Model.yieldS = {Select.union PosMs Model.down}
+	    %% yieldS(v) = union{ yield(v') | v' in daughters(v) }
+	    Model.yieldS = {Select.union YieldMs Model.daughters}	 
+	    for LA in LabelLat.constants do
+	       %% yield_l(v) = union{ yield(v') | v' in daughtersL_l(v) }
+	       Model.yieldL.LA = {Select.union YieldMs Model.daughtersL.LA}
+	       %% |daughtersL_l(v)| =&lt; |yieldL_l(v)|
+	       {FD.lesseq
+		{FS.card Model.daughtersL.LA}
+		{FS.card Model.yieldL.LA}}
+	    end
+	    %% yieldS(v) = union{ yield_l(v) | l in labels }
+	    %% i.e. the union of the l-yields of v are its strict yield
+	    Model.yieldS = {FS.unionN Model.yieldL}
+	    %% yield(v) = pos(v) union yieldS(v)
+	    Model.yield = {FS.unionN [Node.pos Model.yieldS]}
+	    %% get ordered list of projections:
+	    %% ProjLMs describes
+	    %% proj: V -> (L -> 2^Pos) (Pos is the set of positions), where:
+	    %% 1) if YieldsB==true then
+	    %%   proj(v)(l) = yieldL(v)(l) union selfSet(v)(l)
+	    %% 2) if YieldsB==false then
+	    %%   proj(v)(l) = union{ pos(v') | v' in daughters(v)(l) } union
+	    %%                selfSet(v)(l)
+	    OrderLIs = {ArgRecProc 'Order' o('_': Node)}
+	    OrderLCardI = {Length OrderLIs}
+	    OrderLAs = {Map OrderLIs LabelLat.i2AI}
+	    YieldsB = {ArgRecProc 'Yields' o('_': Node)}==2
+	    OrderProjLMs =
+	    {Map OrderLAs
+	     fun {$ LA}
+		M =
+		if YieldsB then
+		   Model.yieldL.LA
+		else
+		   DaughtersLM = Model.daughtersL.LA
+		   PosDaughtersLM = {Select.union PosMs DaughtersLM}
+		in
+		   %% opti
+		   {FD.equal
+		    {FS.card PosDaughtersLM}
+		    {FS.card DaughtersLM}}
+		   PosDaughtersLM
+		end
+	     in
+		{FS.union M Model.selfSet.LA}
+	     end}
+	 in
+	    %% order the projections list
+	    if YieldsB andthen OrderLCardI==LCardI then
+	       {Select.seqUnion OrderProjLMs Model.yield}
+	    else
+	       {FS.int.seq OrderProjLMs}
+	    end
+	 end
+      end
+   end
+end
+</pre>
+Here is the definition of the <code>OrderDist</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+
+   Distributor(distributeDs distributeMs) at 'Distributor.ozf'
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      %%
+      DIDA = {DVA2DIDA 'D'}
+   in
+      %% check features
+      if {Helpers.checkModel 'OrderDist.oz' Nodes
+	  [DIDA#'self']} then
+	 %% distribute self
+	 SelfDs = {Map Nodes
+		   fun {$ Node} Node.DIDA.model.'self' end}
+      in
+	 {Distributor.distributeDs SelfDs FD}
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

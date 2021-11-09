@@ -1,0 +1,476 @@
+<html lang="en">
+<head>
+<title>Writing new principles - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Solver.html#Solver" title="Solver">
+<link rel="prev" href="Node-record.html#Node-record" title="Node record">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Writing-new-principles"></a>
+<p>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Node-record.html#Node-record">Node record</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Solver.html#Solver">Solver</a>
+<hr>
+</div>
+
+<h3 class="section">7.4 Writing new principles</h3>
+
+<p>In this section, we explain how you can write new
+principles. Principles must be written in Mozart/Oz. In order to write
+an principle, you need to provide two things:
+     <ol type=1 start=1>
+<li>the <em>principle definition functor</em>
+<a name="index-principle-definition-functor-311"></a><li>the <em>constraint functors</em>
+<a name="index-constraint-functor-312"></a>
+        </ol>
+
+<h4 class="subsection">7.4.1 Principle definition functor</h4>
+
+<p>You write the principle definition in the IL, and embed it into a
+functor. The functor has to export the principle definition as
+<code>Principle</code>, and has to reside in <code>Solver/Principles</code>.
+
+<h5 class="subsubsection">7.4.1.1 Example (graph principle)</h5>
+
+<p>We display an example principle definition functor of the graph
+principle (<code>Solver/Principles/Graph.oz</code>) below:
+
+<pre class="example">     %% Copyright 2001-2011
+     %% by Ralph Debusmann &lt;rade@ps.uni-sb.de&gt; (Saarland University) and
+     %%    Denys Duchier &lt;duchier@ps.uni-sb.de&gt; (LIFO, Orleans) and
+     %%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br&gt; (ICMC, Sao Paulo) and
+     %%    Jochen Setz &lt;info@jochensetz.de&gt; (Saarland University)
+     %%
+     functor
+     export
+        Principle
+     define
+        Principle =
+        elem(tag: principledef
+     	id: elem(tag: constant
+     		 data: 'principle.graph')
+     	dimensions: [elem(tag: variable
+     			  data: 'D')]
+     	model:
+     	   elem(tag: 'type.record'
+     		args:
+     		   [elem(tag: constant
+     			 data: 'mothers')#
+     		    elem(tag: 'type.ints')
+     		    %%
+     		    elem(tag: constant
+     			 data: 'daughters')#
+     		    elem(tag: 'type.ints')
+     		    %%
+     		    elem(tag: constant
+     			 data: 'up')#
+     		    elem(tag: 'type.ints')
+     		    %%
+     		    elem(tag: constant
+     			 data: 'down')#
+     		    elem(tag: 'type.ints')
+     		    %%
+     		    elem(tag: constant
+     			 data: 'eq')#
+     		    elem(tag: 'type.ints')
+     		    %%
+     		    elem(tag: constant
+     			 data: 'equp')#
+     		    elem(tag: 'type.ints')
+     		    %%
+     		    elem(tag: constant
+     			 data: 'eqdown')#
+     		    elem(tag: 'type.ints')
+     		    %%
+     		    elem(tag: constant
+     			 data: 'labels')#
+     		    elem(tag: 'type.set'
+     			 arg: elem(tag: 'type.labelref'
+     				   arg: elem(tag: variable
+     					     data: 'D')))
+     		    %%
+     		    elem(tag: constant
+     			 data: 'mothersL')#
+     		    elem(tag: 'type.vec'
+     			 arg1: elem(tag: 'type.labelref'
+     				    arg: elem(tag: variable
+     					      data: 'D'))
+     			 arg2: elem(tag: 'type.ints'))
+     		    %%
+     		    elem(tag: constant
+     			 data: 'daughtersL')#
+     		    elem(tag: 'type.vec'
+     			 arg1: elem(tag: 'type.labelref'
+     				    arg: elem(tag: variable
+     					      data: 'D'))
+     			 arg2: elem(tag: 'type.ints'))
+     		    %%
+     		    elem(tag: constant
+     			 data: 'upL')#
+     		    elem(tag: 'type.vec'
+     			 arg1: elem(tag: 'type.labelref'
+     				    arg: elem(tag: variable
+     					      data: 'D'))
+     			 arg2: elem(tag: 'type.ints'))
+     		    %%
+     		    elem(tag: constant
+     			 data: 'downL')#
+     		    elem(tag: 'type.vec'
+     			 arg1: elem(tag: 'type.labelref'
+     				    arg: elem(tag: variable
+     					      data: 'D'))
+     			 arg2: elem(tag: 'type.ints'))
+     		   ])
+     	constraints: [elem(tag: constant
+     			   data: 'GraphMakeNodes')#
+     		      elem(tag: integer
+     			   data: 130)
+     		      %%
+     		      elem(tag: constant
+     			   data: 'GraphConditions')#
+     		      elem(tag: integer
+     			   data: 120)
+     		      %%
+     		      elem(tag: constant
+     			   data: 'GraphMakeEdges')#
+     		      elem(tag: integer
+     			   data: 100)
+     		      %%
+     		      elem(tag: constant
+     			   data: 'GraphDist')#
+     		      elem(tag: integer
+     			   data: 90)
+     		     ]
+            )
+     end
+</pre>
+   <p>The value of the <code>id</code> feature is an IL constant representing the
+unique principle identifier (here: <code>'principle.graph'</code>).
+
+   <p>The value of the <code>dimensions</code> feature is a list of IL variables
+representing the dimension variables introduced by the principle (here:
+<code>'D'</code>).
+
+   <p>The value of the <code>model</code> feature is a list of IL pairs
+representing the type of the model record introduced by the principle. 
+Here, the graph principle introduces the following features:
+     <ul>
+<li><code>mothers</code> (a set of integers)
+<li><code>daughters</code> (a set of integers)
+<li><code>up</code> (a set of integers)
+<li><code>down</code> (a set of integers)
+<li><code>eq</code> (a set of integers)
+<li><code>equp</code> (a set of integers)
+<li><code>eqdown</code> (a set of integers)
+<li><code>labels</code> (a set of edge labels on dimension <code>D</code>)
+<li><code>mothersL</code> (a mapping from edge labels on dimension <code>D</code>
+to sets of integers)
+<li><code>daughtersL</code> (a mapping from edge labels on dimension <code>D</code>
+to sets of integers)
+<li><code>upL</code> (a mapping from edge labels on dimension <code>D</code>
+to sets of integers)
+<li><code>downL</code> (a mapping from edge labels on dimension <code>D</code>
+to sets of integers)
+</ul>
+
+   <p>The value of the <code>constraints</code> feature is a list of pairs of an
+IL constant and an IL integer, representing a mapping from constraint
+functor file names (modulo the suffix <code>.ozf</code>) to their
+priorities.  Here, the constraint functor <code>GraphMakeNodes</code> has
+priority 130, <code>GraphConditions</code> 120, <code>GraphMakeEdges</code> 100,
+and <code>GraphDist</code> 90. The XDK solver invokes constraint functors
+with higher priority first. Changing the priority of the constraint
+functors can lead to less/more efficient solving.
+
+<h5 class="subsubsection">7.4.1.2 Example (out principle)</h5>
+
+<p>The graph principle does not have any arguments. Therefore, we display
+another example principle definition functor of the out principle
+(<code>Solver/Principles/Out.oz</code>), since it does have an argument:
+
+<pre class="example">     %% Copyright 2001-2011
+     %% by Ralph Debusmann &lt;rade@ps.uni-sb.de&gt; (Saarland University) and
+     %%    Denys Duchier &lt;duchier@ps.uni-sb.de&gt; (LIFO, Orleans) and
+     %%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br&gt; (ICMC, Sao Paulo) and
+     %%    Jochen Setz &lt;info@jochensetz.de&gt; (Saarland University)
+     %%
+     functor
+     export
+        Principle
+     define
+        Principle =
+        elem(tag: principledef
+     	id: elem(tag: constant
+     		 data: 'principle.out')
+     	dimensions: [elem(tag: variable
+     			  data: 'D')]
+     	args: [elem(tag: variable
+     		    data: 'Out')#
+     	       elem(tag: 'type.valency'
+     		    arg: elem(tag: 'type.labelref'
+     			      arg: elem(tag: variable
+     					data: 'D')))]
+     	defaults: [elem(tag: variable
+     			data: 'Out')#
+     		   elem(tag: featurepath
+     			root: '_'
+     			dimension: elem(tag: variable
+     					data: 'D')
+     			aspect: 'entry'
+     			fields: [elem(tag: constant
+     				      data: 'out')])]
+     	constraints: [elem(tag: constant
+     			   data: 'Out')#
+     		      elem(tag: integer
+     			   data: 130)])
+     end
+</pre>
+   <p>Here, the principle identifier is <code>'principle.out'</code>, the dimension
+variable is <code>D</code>, and the principle makes use of the constraint
+functor <code>Out</code> with priority <code>130</code>.
+
+   <p>The value of the <code>args</code> feature is a list of IL pairs representing
+the argument variables introduced by the principle and their types. 
+Here, the out principle introduces the argument <code>Out</code> (a valency of
+edge labels on dimension <code>D</code>).
+
+   <p>The value of the <code>default</code> feature is a list of IL pairs
+representing the default values of a subset of the argument variables
+introduced by the principle. Here, the default value of the <code>Out</code>
+argument is a feature path.
+
+<h5 class="subsubsection">7.4.1.3 Integrate the principle definition</h5>
+
+<p>To integrate the principle definition into the XDK, you can either
+trust the perl-script <code>scripts/addprinciple</code>, or, by hand do the
+following:
+     <ul>
+<li>add the principle
+definition functor to the <code>ozmake</code> makefile<br>
+<code>Solver/Principles/makefile.oz</code>
+<li>add the principle definition functor to the imported functors of
+the functor<br>
+<code>Solver/Principles/Principles.oz</code>, and also to the list
+<code>Principles</code> on top of<br>
+<code>Solver/Principles/Principles.oz</code>. 
+<li>add the identifier of the new principle to the XML file<br>
+<code>Solver/Principles/principles.xml</code>. Here, for each new principle,
+you add a line like the following for the graph principle:
+
+     <pre class="example">          &lt;principleDef id="principle.graph"/&gt;
+</pre>
+     <p>This step is necessary because XML language grammar files contain only
+principle uses, but not principle definitions. Therefore, the
+principle identifiers of the used principles are only referred to but
+not defined in XML language grammar files, which leads to errors
+running an XML validator on them. 
+<li>optionally (but highly encouraged): add the principle definition
+to the manual, files <code>solver-principles_overview.texi</code> and
+<code>solver-principles_list.texi</code>
+</ul>
+
+<h4 class="subsection">7.4.2 Constraint functors</h4>
+
+<p>You write a constraint functor as an Oz functor exporting the
+procedure <code>Constraint: Nodes G Principle FD FS Select -&gt; U</code>.
+
+   <p><code>Constraint</code> has six arguments:
+     <ul>
+<li><code>Nodes</code> is a list of node records representing the solution
+<li><code>G</code> is the current grammar
+<li><code>Principle</code> is the current principle instantiation
+<li><code>FD</code> is the FD functor (finite domain constraints)
+<li><code>FS</code> is the FS functor (finite set constraints)
+<li><code>Select</code> is the Select functor (selection constraints)
+</ul>
+   where <code>Principle</code> is a record of the following type:
+
+<pre class="example">     principle(pIDA: PIDA
+               modelLat: ModelLat
+               dVA2DIDA: DVA2DIDA
+               dIDAs: DIDAs
+               argRecProc: ArgRecProc
+               argsLat: ArgsLat
+               dIDA: DIDA
+               ...)
+</pre>
+   <p>where we omit the features <code>modelTn</code>, <code>constraints</code>,
+<code>edgeconstraints</code>, <code>dVA2DIDARec</code>, <code>argRec</code> and
+<code>argsTn</code>, which are irrelevant for writing constraint functors.
+
+   <p>where the value of <code>pIDA</code> is the principle identifier (e.g. 
+<code>principle.valency</code>.
+
+   <p>The value of <code>modelLat</code> is the lattice for the model record.
+
+   <p>The value of <code>dVA2DIDA</code> is a function mapping dimension variables
+to dimension identifiers.
+
+   <p>The value of <code>argRecProc</code> is a function of type <code>ArgRecProc:
+A AXRec -&gt; SL</code> from a principle argument variable (<code>A</code>) and a
+record (<code>AXRec</code>) to the argument value bound to the argument
+variable.
+
+   <p>The value of <code>argsLat</code> is the lattice for the argument record of
+the principle.
+
+   <p>The value of <code>DIDA</code> is the dimension identifier of the dimension
+on which the principle is instantiated.
+
+   <p>By convention, you should only access the argument values of a
+principle use through the <code>ArgRecProc</code> function. The record
+<code>AXRec</code> is a mapping from either Oz atom '_', '^', or 'ql' to
+either a node record ('_' and '^') or an Oz atom representing an edge
+label ('ql').  I.e., the record <code>AXRec</code> includes two mappings in
+one record:
+     <ul>
+<li>By mapping the root variables '_' and '^' to a node record, we bind
+bind the root variables of feature paths. 
+<li>By mapping 'ql' to an Oz atom representing an edge label, we
+bind the edge label variable to an edge label. 
+</ul>
+
+   <p>In a constraint functor, you usually posit constraints over all nodes. 
+In order to get a principle argument, you usually call
+<code>ArgRecProc</code> providing only the mapping of root variable
+<code>'_'</code> to the current node.
+
+<h5 class="subsubsection">7.4.2.1 Example (binding root variables)</h5>
+
+<p>Here is an example of using <code>ArgRecProc</code> to get the value of the
+<code>Out</code> argument of the out principle, taken from the constraint
+functor implementing the out principle
+(<code>Solver/Principles/Lib/Out.oz</code>):
+
+<pre class="example">              for Node in Nodes do
+                 LAOutMRec = {ArgRecProc 'Out' o('_': Node)}
+              in
+                 ...
+              end
+</pre>
+   <p>Here, in a <code>for</code> loop, the constraint functor posits a constraint
+over each node <code>Node</code> (in <code>Nodes</code>). The root variable '_' is
+bound to <code>Node</code> in the call of the <code>ArgRecProc</code> function to
+get the value of the argument variable <code>Out</code> for node
+<code>Node</code>.
+
+<h5 class="subsubsection">7.4.2.2 Check model helper procedure</h5>
+
+<p>The functor <code>Solver/Principles/Lib/Helpers.oz</code> exports the
+procedure <code>CheckModel: V Nodes DIDAATups -&gt; B</code>. By convention,
+<code>CheckModel</code> should be used to check whether all model record
+features accessed in the constraint functor are actually present (in
+order to prevent crashes of the XDK solver).
+
+   <p>The <code>CheckModel</code> procedure has three arguments:
+
+     <ul>
+<li><code>V</code>: an Oz virtual string representing the file name of the
+constraint functor invoking the <code>CheckModel</code> procedure. This way
+the procedure knows in which constraint functor an error has occurred if
+there is one. 
+<li><code>Nodes</code>: a list of node records representing the solution. 
+<li><code>DIDAATups</code>: a list of pairs <code>DIDA#A</code> of a dimension
+identifier (<code>DIDA</code>) and an Oz atom (<code>A</code>). 
+</ul>
+
+   <p>The procedure returns <code>true</code> if for a node <code>Node</code> (in
+<code>Nodes</code>), it is the case that for all pairs <code>DIDA#A</code> in
+<code>DIDAATups</code>, the model record of the node (<code>Node.DIDA.model</code>)
+has field <code>A</code>. If the model record lacks a
+feature, it returns <code>false</code> and the procedure prints out a warning
+to stderr.
+
+   <p>By convention, you should call <code>CheckModel</code> before the constraint
+functor actually posits constraints, and the constraint functor should
+not posit any constraints if <code>CheckModel</code> returns <code>false</code>.
+
+   <p>Here is an example of a use of the <code>CheckModel</code> procedure in the
+constraint functor implementing the barriers principle
+(<code>Solver/Principles/Lib/Barriers.oz</code>):
+
+<pre class="example">        proc {Constraint Nodes G Principle}
+           DVA2DIDA = Principle.dVA2DIDA
+           ArgRecProc = Principle.argRecProc
+           %%
+           D1DIDA = {DVA2DIDA 'D1'}
+           D2DIDA = {DVA2DIDA 'D2'}
+        in
+           %% check features
+           if {Helpers.checkModel 'Barriers.oz' Nodes
+               [D2DIDA#down
+                D1DIDA#mothers
+                D2DIDA#up
+                D2DIDA#labels]} then
+              D2DownMs = {Map Nodes
+                            fun {$ Node} Node.D2DIDA.model.down end}
+              %%
+              BlocksMs = {Map Nodes
+                          fun {$ Node}
+                             BlocksM = {ArgRecProc 'Blocks' o('_':Node)}
+                          in
+                             BlocksM
+                          end}
+           in
+              for Node in Nodes do
+                 %% get all nodes below my D1 mother on D2
+                 %% down_D2_mothers_D1(v) =
+                 %% union { down_D2(v') | v' in mothers_D1(v) }
+                 D2DownD1MothersM =
+                 {Select.union D2DownMs Node.D1DIDA.model.mothers}
+                 %% from this set, keep only those nodes which are above me
+                 %% these are then between my D1 mother and myself on D2
+                 %% between(v) = down_D2_mothers_D1(v) intersect up_D2(v)
+                 BetweenM =
+                 {FS.intersect D2DownD1MothersM Node.D2DIDA.model.up}
+                 %% get all edge labels which are blocked by the nodes in
+                 %% between(v)
+                 %% blocked(v) = union { blocks(v') | v' in between(v) }
+                 BlockedLM = {Select.union BlocksMs BetweenM}
+              in
+                 %% my incoming edge labels set must be disjoint from the
+                 %% set of blocked labels.
+                 %% labels_D2(v) disjoint blocked(v)
+                 {FS.disjoint Node.D2DIDA.model.labels BlockedLM}
+              end
+           end
+        end
+</pre>
+   <p>This constraint functor accesses the model record fields
+<code>mothers</code> on dimension <code>D1</code>, and <code>down</code>, <code>up</code> and
+<code>labels</code> on dimension <code>D2</code>.  It makes use of the
+<code>CheckModel</code> procedure to check this.
+
+<h5 class="subsubsection">7.4.2.3 Integrate the constraint functor</h5>
+
+<p>To integrate the constraint functor into the XDK, you can again either
+trust the perl-script <code>scripts/addprinciple</code>, or by hand do the
+following:
+     <ul>
+<li>add the constraint functor to the <code>ozmake</code> makefile<br>
+<code>Solver/Principles/Lib/makefile.oz</code>
+<li>add the constraint
+functor to the top level <code>ozmake</code> makefile <code>makefile.oz</code> in
+order to include it in the <code>ozmake</code> package created for the XDK. 
+</ul>
+
+<!-- ************************************************************ -->
+   </body></html>
+

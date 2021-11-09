@@ -1,0 +1,156 @@
+%1) Word order (lp)
+
+%1.1) sentential (verbal fields)
+jean aime marie
+marie aime jean
+jean aime la France
+il aime marie
+le enfant aime la fille
+jean parle à marie
+jean parle à la fille timide
+le enfant aime vraiment marie
+le enfant aime marie vraiment
+maintenant jean aime vraiment marie
+maintenant jean donne un cadeau gentiment à marie
+maintenant jean donne gentiment un cadeau à marie
+maintenant jean donne un cadeau à marie gentiment
+jean parle à marie à Paris 
+jean parle à marie sur la place
+sur la place jean parle à marie
+le enfant a aimé marie
+le enfant a vraiment aimé marie
+le enfant la aime vraiment
+le enfant lui parle
+le enfant le lui donne
+le enfant lui a parlé
+le enfant le lui a donné
+il le lui a vraiment donné
+jean va bien
+jean en parle
+jean lui en parle
+jean me le donne
+jean le donne à moi
+le petit enfant y va
+jean parle à moi
+jean parle de moi
+
+%Counter examples
+aime marie jean
+jean marie aime
+jean à parle marie
+à marie jean parle
+jean vraiment aime marie
+jean maintenant aime marie
+jean a sur la place parlé à marie
+jean a à Paris parlé à marie
+il vraiment aime marie
+il vraiment lui a parlé
+il lui vraiment a parlé
+il lui le a donné
+il a le lui donné
+il en lui parle
+bien jean va
+
+%1.2) nominal
+le enfant
+le petit enfant
+le enfant timide
+le petit enfant timide
+
+%Counter examples
+enfant le
+le enfant petit
+petit le enfant
+le timide enfant
+
+%1.3) attributive adjectives
+le enfant est grand
+le enfant est grand maintenant
+jean est vraiment attentif à un projet
+jean est toujours grand
+%jean a vraiment été toujours attentif à un projet
+
+%counter examples
+le enfant est maintenant grand
+
+%1.4) adjectives as nominal modifiers
+%le enfant gentil
+%le gentil enfant
+%le très gentil enfant
+
+%counter example
+%le enfant très gentil
+
+%2) Syntactic dependencies (sf) 
+%2.1. Verbal dependants (verbal complementation ? + agreement no handled)
+jean dort
+il dort
+le enfant aime marie
+marie aime jean
+le enfant la aime
+la petite fille timide le aime
+il le lui donne
+il le donne à marie
+il donne le cadeau à marie
+il donne à marie le cadeau
+jean va à Paris
+jean va là-bas
+jean y va
+jean va chez marie
+jean parle de la fille
+jean en parle
+jean parle à pierre de la fille
+jean lui en parle
+jean va mal
+jean va mieux
+jean va bien
+
+%Counter examples
+jean dort marie
+il dort marie
+le dort marie
+la fille aime
+il parle marie
+il donne à marie
+il donne un cadeau
+il lui donne
+il le donne
+jean va
+il va
+
+
+
+%2.2 Nominal dependants
+le enfant
+le petit enfant timide
+la France
+
+%counter examples
+enfant
+le marie
+France
+la marie timide
+
+
+%2.3 Adjectival dependants
+
+jean est grand
+jean est attentif à un projet
+un enfant attentif à un projet
+jean y est attentif
+un enfant content de la situation
+un enfant est content de la situation
+un enfant en est content
+
+%3) Locality issues (--> Projection principle in sf)
+le petit enfant aime marie
+le petit enfant timide aime la fille
+le petit enfant timide parle à la fille
+
+%4) Misc. negation
+jean ne dort pas
+la fille ne le lui donne pas
+le enfant ne aime pas marie
+le enfant ne a pas aimé marie
+
+

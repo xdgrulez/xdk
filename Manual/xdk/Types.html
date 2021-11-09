@@ -1,0 +1,313 @@
+<html lang="en">
+<head>
+<title>Types - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Compiler.html#Compiler" title="Compiler">
+<link rel="prev" href="Dimensions.html#Dimensions" title="Dimensions">
+<link rel="next" href="Principles.html#Principles" title="Principles">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Types"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Principles.html#Principles">Principles</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Dimensions.html#Dimensions">Dimensions</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Compiler.html#Compiler">Compiler</a>
+<hr>
+</div>
+
+<h3 class="section">4.3 Types</h3>
+
+<p>The types used throughout a grammar file are defined inside dimension
+definitions. Each dimension defines at least three types:
+
+     <ol type=1 start=1>
+<li>its <em>attributes type</em>
+<a name="index-attributes-type-73"></a><li>its <em>entry type</em>
+<a name="index-entry-type-74"></a><li>its <em>label type</em>
+<a name="index-label-type-75"></a>
+        </ol>
+
+   <p>You can define an arbitrary number of additional types.
+
+   <p>We give a list of all types in <a href="Types-reference.html#Types-reference">Types reference</a>.
+
+<h4 class="subsection">4.3.1 Attributes type</h4>
+
+<p>The attributes type is a record specifying the type of
+the <em>attributes record</em>
+<a name="index-attributes-record-76"></a>of the currently defined dimension. The attributes record includes a
+set of additional features for each node on the defined dimension. If
+you do not provide an attribute type, the grammar file compiler
+assumes it to be the empty record.
+
+   <p>In the UL, the attributes type is defined as follows:
+
+<pre class="example">     defattrstype &lt;type&gt;
+</pre>
+   <h4 class="subsection">4.3.2 Entry type</h4>
+
+<p>The entry type is a record specifying the type of the <em>entry
+record</em>
+<a name="index-entry-record-77"></a>on the currently defined dimension. The entry record includes all
+features of a lexical entry on the defined dimension.  If you do not
+provide an entry type, the grammar file compiler assumes it to be the
+empty record.
+
+   <p>In the UL, the entry type is defined as follows:
+
+<pre class="example">     defentrytype &lt;type&gt;
+</pre>
+   <h4 class="subsection">4.3.3 Label type</h4>
+
+<p>The label type is a domain specifying the type of labels on the
+currently defined dimension. The labels correspond to the edge labels
+on the defined dimension. If you do not provide a label type, the
+grammar file compiler assumes it to be the empty domain.
+
+   <p>In the UL, the label type is defined as follows:
+
+<pre class="example">     deflabeltype &lt;type&gt;
+</pre>
+   <h4 class="subsection">4.3.4 Additional types</h4>
+
+<p>You can define an arbitrary number of additional types, e.g. to ease
+the construction of more complex types.
+
+   <p>In the UL, you define additional types as follows:
+
+<pre class="example">     deftype &lt;constant&gt; &lt;type&gt;
+</pre>
+   <p>where the constant corresponds to the type identifier<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a> of the type.
+
+<h4 class="subsection">4.3.5 Example (id dimension)</h4>
+
+<p>Here are the type definitions on the id dimension of our example
+grammar file <code>Grammars/Acl01.ul</code>:
+
+<pre class="example">     %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     %% define dimension id
+     defdim id {
+       %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %% define types
+       deftype "id.label" {det subj obj vbse vprt vinf prt}
+       deftype "id.person" {first second third}
+       deftype "id.number" {sg pl}
+       deftype "id.gender" {masc fem neut}
+       deftype "id.case" {nom gen dat acc}
+       deftype "id.def" {def indef undef}
+       deftype "id.agr" tuple("id.person" "id.number" "id.gender" "id.case" "id.def")
+       deftype "id.agrs" iset("id.agr")
+     
+       deflabeltype "id.label"
+       defattrstype {agr: "id.agr"}
+       defentrytype {in: valency("id.label")
+                     out: valency("id.label")
+                     agrs: "id.agrs"
+                     agree: set("id.label")
+                     govern: vec("id.label" "id.agrs")}
+       %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %% use principles
+       ...
+       %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %% use and choose outputs
+       ...
+     }
+</pre>
+   <p><code>defdim id</code> indicates the definition of a dimension with
+identifier <code>id</code>.
+
+   <p><code>deftype "id.label" {det subj obj vbse vprt vinf prt}</code> defines
+a type with identifier <code>id.label</code>, a domain with consisting of
+the constants <code>det</code>, <code>subj</code>, <code>obj</code>, <code>vbse</code>,
+<code>vprt</code>, <code>vinf</code> and <code>prt</code>.
+
+   <p><code>deftype "id.person" {first second third}</code> defines a type with
+identifier <code>id.person</code>, a <em>domain</em>
+<a name="index-domain-78"></a>consisting of the constants <code>first</code>, <code>second</code> and
+<code>third</code>.
+
+   <p><code>deftype "id.number" {sg pl}</code> defines a type with identifier
+<code>id.number</code>, a domain consisting of the constants <code>sg</code> and
+<code>pl</code>.
+
+   <p><code>deftype "id.gender" {masc fem neut}</code> defines a type with
+identifier <code>id.gender</code>, a domain consisting of the constants
+<code>masc</code>, <code>fem</code> and <code>neut</code>.
+
+   <p><code>deftype "id.case" {nom gen dat acc}</code> defines a type with
+identifier <code>id.case</code>, a domain consisting of the constants
+<code>nom</code>, <code>gen</code>, <code>dat</code> and <code>acc</code>.
+
+   <p><code>deftype "id.def" {def indef undef}</code> defines a type with
+identifier <code>id.def</code>, a domain consisting of the constants
+<code>def</code>, <code>indef</code> and <code>undef</code>.
+
+   <p><code>deftype "id.agr" tuple("id.person" "id.number" "id.gender"
+"id.case" "id.def")</code> defines a type with identifier <code>id.agr</code>, a
+<em>tuple</em>
+<a name="index-tuple-79"></a>with the projections <code>"id.person"</code>, <code>"id.number"</code>,
+<code>"id.gender"</code>, <code>"id.case"</code>, and <code>"id.def"</code>.
+
+   <p><code>deftype "id.agrs" iset("id.agr")</code> defines a type with identifier
+<code>id.agrs</code>, an <em>intersective set</em>
+<a name="index-intersective-set-80"></a>with domain <code>id.agr</code>.
+
+   <p><code>deflabeltype "id.label"</code> states that the label type is
+<em>type reference</em>
+<a name="index-type-reference-81"></a><a name="index-reference-82"></a>to the type with identifier <code>id.label</code>.
+
+   <p><code>defattrstype {agr: "id.agr"}</code> states that the attributes type
+is a <em>record</em>
+<a name="index-record-83"></a>with field <code>agr</code> of type <code>id.agr</code>.
+
+   <p>The lines starting with <code>defentrytype</code> define the entry type, a
+record with fields <code>in</code>, <code>out</code>, <code>agrs</code>, <code>agree</code>
+and <code>govern</code>. <code>in</code> has type <code>valency("id.label")</code>, a
+<em>valency</em>
+<a name="index-valency-84"></a>with domain <code>"id.label"</code>. <code>out</code> has type
+<code>valency("id.label")</code>, a valency with domain
+<code>"id.label"</code>. <code>agrs</code> has type <code>"id.agrs"</code>. <code>agree</code>
+is an <em>accumulative set</em>
+<a name="index-accumulative-set-85"></a>with domain <code>"id.label"</code>. <code>govern</code> has type
+<code>vec("id.label" "id.agrs")</code>, a <em>map</em>
+<a name="index-map-86"></a>with domain <code>"id.label"</code> and co-domain <code>"id.agrs"</code>.
+
+<h4 class="subsection">4.3.6 Example (lp dimension)</h4>
+
+<p>Here are the type definitions on the lp dimension of our example
+grammar file <code>Grammars/Acl01.ul</code>:
+
+<pre class="example">     %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     %% define dimension lp
+     defdim lp {
+       %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %% define types
+       deftype "lp.label" {d df n mf vcf p pf v vxf}
+       deflabeltype "lp.label"
+       defentrytype {in: valency("lp.label")
+                     out: valency("lp.label")
+                     on: iset("lp.label")}
+       %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %% use principles
+       ...
+       %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %% use and choose outputs
+       ...
+     }
+</pre>
+   <p><code>defdim lp</code> indicates the definition of a dimension named
+<code>lp</code>.
+
+   <p><code>deftype "lp.label" {d df n mf vcf p pf v vxf}</code> defines a type
+with identifier <code>lp.label</code>, a domain with consisting of the
+constants <code>d</code>, <code>df</code>, <code>n</code>, <code>mf</code>, <code>vcf</code>,
+<code>p</code>, <code>pf</code>, <code>v</code> and <code>vxf</code>.
+
+   <p><code>deflabeltype "lp.label"</code> states that the label type is a
+reference to <code>lp.label</code>.
+
+   <p>We omit the definition of the attributes type on the lp dimension,
+thus the grammar file compiler assumes it to be the empty record.
+
+   <p>The lines starting with <code>defentrytype</code> define the entry type, a
+record with fields <code>in</code>, <code>out</code> and <code>on</code>.  <code>in</code> has
+type <code>valency("lp.label")</code>, a valency with domain
+<code>"lp.label"</code>. <code>out</code> has type <code>valency("lp.label")</code>, a
+valency with domain <code>"lp.label"</code>. <code>on</code> has type
+<code>iset("lp.label")</code>, an intersective set with domain
+<code>"lp.label"</code>.
+
+<h4 class="subsection">4.3.7 Example (idlp dimension)</h4>
+
+<p>Here are the type definitions on the idlp dimension of our example
+grammar file <code>Grammars/Acl01.ul</code>:
+
+<pre class="example">     %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     %% define dimension idlp
+     defdim idlp {
+       defentrytype {blocks: set("id.label")
+                     end: vec("lp.label" set("id.label"))}
+       %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %% use principles
+       ...
+       %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %% use and choose outputs
+       ...
+     }
+</pre>
+   <p><code>defdim idlp</code> indicates the definition of a dimension named
+<code>idlp</code>.
+
+   <p>The lines starting with <code>defentrytype</code> define the entry type,
+a record with fields
+<code>blocks</code> and <code>link</code>.  <code>blocks</code> has type
+<code>set("id.label")</code>, an <em>accumulative set</em>
+<a name="index-accumulative-set-87"></a>with domain <code>id.label</code>.<a rel="footnote" href="#fn-2" name="fnd-2"><sup>2</sup></a>
+<code>link</code> has type <code>vec("lp.label" set("id.label")</code>, a map with
+domain <code>lp.label</code> and co-domain <code>set("id.label")</code>.
+
+<h4 class="subsection">4.3.8 Example (lex dimension)</h4>
+
+<p>Here are the type definitions on the <em>lex dimension</em>
+<a name="index-lex-dimension-88"></a>of our example grammar file <code>Grammars/Acl01.ul</code>:
+
+<pre class="example">     %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     %% define dimension lex
+     defdim lex {
+       %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %% define types
+       defentrytype {word: string}
+       %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %% use principles
+       ...
+     }
+</pre>
+   <p><code>defentrytype {word: string}</code> states that the entry type is a
+record with only the field <code>word</code> of type <code>string</code>.
+
+   <p>The lex dimension must be defined in each grammar file, and its entry
+type must at least include the field <code>word</code> of type
+<code>string</code>. The XDK compiler collects all lexical entries with
+identical <code>word</code> values on the lex dimension in sets of lexical
+entries, assigned to this <code>word</code> value.
+
+   <p>Notice that the lex dimension is very different from the
+&ldquo;full-blown&rdquo; id and lp dimensions: it serves only to add lexical
+information such as the word form (and optionally further information)
+to each lexical entry.
+
+<!-- ************************************************************ -->
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> The
+grammar file compiler considers all identifiers, and therefore also
+type identifiers, to be global to the grammar file.  For instance, you
+cannot define two types with the same identifier, even if the
+definitions are contained in different dimension definitions. On the
+other hand, you can freely access types defined on a different
+dimension than the currently defined one.</p>
+
+   <p class="footnote"><small>[<a name="fn-2" href="#fnd-2">2</a>]</small> Note that we refer here to a
+type which is defined on another dimension (viz. the id dimension).</p>
+
+   <hr></div>
+
+   </body></html>
+

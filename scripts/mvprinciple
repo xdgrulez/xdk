@@ -1,0 +1,209 @@
+#!/usr/bin/perl
+# usage:
+# mvprinciple <old principle name> <new principle name> <old constraint name_1> <new constraint name_1> ... <old constraint name_N> <new constraint name_N>
+
+############################################################
+
+# 'makefile.oz'
+sub subst1
+{
+    local(@lines);
+
+    # read file into array @lines
+    open(fh,'makefile.oz');
+    @lines = <fh>;
+    close(fh);
+    
+    # convert array @lines into scalar $lines
+    $lines = "";
+    foreach $line (@lines) {
+	$lines = "$lines$line";
+    }
+
+    for ($i = 2; $i <= $#ARGV; $i = $i+2) {
+	# move old principle name to new principle name in file
+	$_ = $lines;
+	s/(.*Solver\/Principles\/Lib\/)$ARGV[$i](.*\n)/\1$ARGV[$i+1]\2/;
+	print "Moved 'Solver/Principles/Lib/$ARGV[$i].ozf' to 'Solver/Principles/Lib/$ARGV[$i+1].ozf' in file 'makefile.oz'.\n";
+	$lines = $_;
+    }
+    
+    # write back file
+    open(fh,'>makefile.oz');
+    print fh $lines;
+    close(fh);
+}
+
+############################################################
+
+# 'Solver/Principles/Principles.oz'
+sub subst2
+{
+    local($oldc);
+    $oldc = $_[0];
+    local($newc);
+    $newc = $_[1];
+
+    local(@lines);
+
+    # read file into array @lines
+    open(fh,'Solver/Principles/Principles.oz');
+    @lines = <fh>;
+    close(fh);
+    
+    # convert array @lines into scalar $lines
+    $lines = "";
+    foreach $line (@lines) {
+	$lines = "$lines$line";
+    }
+
+    # move old principle name to new principle name in file (1)
+    $_ = $lines;
+    s/(.*)$oldc(\(principle\)\n)/\1$newc\2/;
+    $lines = $_;
+    print "Moved '$oldc(principle)' to '$newc(principle)' in file 'Solver/Principles/Principles.oz'.\n";
+
+    # move old principle name to new principle name in file (2)
+    $_ = $lines;
+    s/(.*)$oldc(\.principle\n)/\1$newc\2/;
+    $lines = $_;
+    print "Moved '$oldc.principle' to '$newc.principle' in file 'Solver/Principles/Principles.oz'.\n";
+
+    # write back file
+    open(fh,'>Solver/Principles/Principles.oz');
+    print fh $lines;
+    close(fh);
+}
+
+############################################################
+
+# 'Solver/Principles/makefile.oz'
+sub subst3
+{
+    local($oldc);
+    $oldc = $_[0];
+    local($newc);
+    $newc = $_[1];
+
+    local(@lines);
+
+    # read file into array @lines
+    open(fh,'Solver/Principles/makefile.oz');
+    @lines = <fh>;
+    close(fh);
+    
+    # convert array @lines into scalar $lines
+    $lines = "";
+    foreach $line (@lines) {
+	$lines = "$lines$line";
+    }
+
+    # move old principle name to new principle name in file
+    $_ = $lines;
+    s/(.*\')$oldc(\.ozf\'\n)/\1$newc\2/;
+    $lines = $_;
+    print "Moved '$oldc.ozf' to '$newc.ozf' in file 'Solver/Principles/makefile.oz'.\n";
+
+    # write back file
+    open(fh,'>Solver/Principles/makefile.oz');
+    print fh $lines;
+    close(fh);
+}
+
+############################################################
+
+# 'Solver/Principles/principles.xml'
+sub subst4
+{
+    local($oldc);
+    $oldc = $_[0];
+    local($newc);
+    $newc = $_[1];
+
+    local(@lines);
+
+    # read file into array @lines
+    open(fh,'Solver/Principles/principles.xml');
+    @lines = <fh>;
+    close(fh);
+    
+    # convert array @lines into scalar $lines
+    $lines = "";
+    foreach $line (@lines) {
+	$lines = "$lines$line";
+    }
+
+    # move old principle name to new principle name in file
+    $_ = $lines;
+    s/(.*<principleDef id=\"principle\.)$oldc(\"\/>\n)/\1$newc\2/;
+    $lines = $_;
+    print "Moved '<principleDef id=\"principle.$oldc\"/>' to '<principleDef id=\"principle.$newc\"/>' in file 'Solver/Principles/principles.xml'.\n";
+
+    # write back file
+    open(fh,'>Solver/Principles/principles.xml');
+    print fh $lines;
+    close(fh);
+}
+
+############################################################
+
+# 'Solver/Principles/Lib/makefile.oz'
+sub subst5 {
+    local(@lines);
+
+    # read file into array @lines
+    open(fh,'Solver/Principles/Lib/makefile.oz');
+    @lines = <fh>;
+    close(fh);
+    
+    # convert array @lines into scalar $lines
+    $lines = "";
+    foreach $line (@lines) {
+	$lines = "$lines$line";
+    }
+    
+    for ($i = 2; $i <= $#ARGV; $i = $i+2) {
+	# move old principle name to new principle name in file
+	$_ = $lines;
+	s/(.*\')$ARGV[$i](\.ozf\'\n)/\1$ARGV[$i+1]\2/;
+	print "Moved '$ARGV[$i].ozf' to '$ARGV[$i+1].ozf' in file 'Solver/Principles/Lib/makefile.oz'.\n";
+	$lines = $_;
+    }
+
+    # write back file
+    open(fh,'>Solver/Principles/Lib/makefile.oz');
+    print fh $lines;
+    close(fh);
+}
+
+############################################################
+############################################################
+############################################################
+
+# $oldlc: old principle name starting with a lowercase letter
+$_ = @ARGV[0];
+s/^([a-zA-Z])(.*)$/\l\1\2/g;
+$oldlc = $_;
+
+# $olduc: principle name starting with an uppercase letter
+$_ = @ARGV[0];
+s/^([a-zA-Z])(.*)$/\u\1\2/g;
+$olduc = $_;
+
+# $newlc: new principle name starting with a lowercase letter
+$_ = @ARGV[1];
+s/^([a-zA-Z])(.*)$/\l\1\2/g;
+$newlc = $_;
+
+# $newuc: principle name starting with an uppercase letter
+$_ = @ARGV[1];
+s/^([a-zA-Z])(.*)$/\u\1\2/g;
+$newuc = $_;
+
+&subst1;
+
+&subst2($olduc,$newuc);
+&subst3($olduc,$newuc);
+&subst4($oldlc,$newlc);
+
+&subst5;

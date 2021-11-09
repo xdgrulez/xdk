@@ -1,0 +1,10 @@
+defprinciple "principle.linkingAboveEndPW" {
+  dims {D1 D2 D3}
+  constraints {
+
+forall V: forall V1: forall L:
+  edge(V V1 L D1) & (exists L1: [L L1] in V.D3.entry.linkAboveEnd) => 
+    exists L1: [L L1] in V.D3.entry.linkAboveEnd & dom(V1 V L1 D2)
+
+  }
+}

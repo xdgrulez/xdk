@@ -1,0 +1,91 @@
+<html lang="en">
+<head>
+<title>Agr - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="next" href="Agreement.html#Agreement" title="Agreement">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Agr"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Agreement.html#Agreement">Agreement</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.1 Agr principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.agr</code>
+<li>dimension variables: <code>D</code>
+<li>argument variables:<br>
+<code>Agr: tv(T)</code><br>
+<code>Agrs: iset(tv(T))</code>
+<li>default values:<br>
+<code>Agr: _.D.attrs.agr</code><br>
+<code>Agrs: _.D.entry.agrs</code>
+<li>model record: empty
+<li>constraints: <code>Agr</code> (priority 130)
+<li>edge constraints: none
+</ul>
+
+   <p>The Agr principle picks out one agreement value from a set of possible
+agreement values.
+
+   <p>The type variable <code>tv(T)</code> is typically a tuple of e.g. person,
+number, gender etc.
+
+   <p>The principle stipulates that:
+     <ul>
+<li>for all nodes, <code>Agr</code> is an element of <code>Agrs</code>
+</ul>
+
+   <p>Here is the definition of the <code>Agr</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      ArgRecProc = Principle.argRecProc
+   in
+      %% check features
+      if {Helpers.checkModel 'Agr.oz' Nodes nil} then
+	 for Node in Nodes do
+	    AgrD = {ArgRecProc 'Agr' o('_': Node)}
+	    AgrsM = {ArgRecProc 'Agrs' o('_': Node)}
+	 in
+	    {FS.include AgrD AgrsM}
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

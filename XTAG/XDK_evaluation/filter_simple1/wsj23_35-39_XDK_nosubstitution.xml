@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE statistics SYSTEM "Extras/statistics.dtd">
+<statistics>
+  <grammar data="4712.ulsocket"/>
+  <examples data="XTAG/XDK_evaluation/wsj23_35-39.txt" count="185"/>
+  <date data="Jun 29, 2007 15:24:14"/>
+  <solutions data="1"/>
+  <failures data="9999"/>
+  <timeout data="300"/>
+  <reco data="5"/>
+  <dimensions>
+    <dimension data="id"/>
+    <dimension data="idlp"/>
+    <dimension data="lex"/>
+    <dimension data="lp"/>
+  </dimensions>
+  <principles>
+    <principle data="id principle.graph1Constraints (id)"/>
+    <principle data="id principle.graph1Dist (id)"/>
+    <principle data="id principle.tree (id)"/>
+    <principle data="id principle.in (id)"/>
+    <principle data="id principle.out (id)"/>
+    <principle data="id principle.xTAGRoot (id)"/>
+    <principle data="lp principle.graph1Constraints (lp)"/>
+    <principle data="lp principle.graph1Dist (lp)"/>
+    <principle data="lp principle.tree (lp)"/>
+    <principle data="lp principle.in (lp)"/>
+    <principle data="lp principle.out (lp)"/>
+    <principle data="lp principle.government (lp)"/>
+    <principle data="lp principle.xTAG (lp)"/>
+    <principle data="lp principle.parse (lp)"/>
+    <principle data="idlp principle.xTAGLinking (id,lp,idlp)"/>
+    <principle data="idlp principle.xTAGRedundant (id,lp)"/>
+    <principle data="lex principle.entries ()"/>
+  </principles>
+  <gprofile fd="6" fs="257" fdfs="263" entries="398">
+    <gpnode fd="2" fs="1" fdfs="3"/>
+    <gpattrs fd="0" fs="0" fdfs="0">
+      <gpdimension data="id" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="idlp" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="0" fs="0" fdfs="0"/>
+    </gpattrs>
+    <gpentry fd="2" fs="137" fdfs="139">
+      <gpdimension data="id" fd="0" fs="33" fdfs="33"/>
+      <gpdimension data="idlp" fd="0" fs="34" fdfs="34"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="2" fs="70" fdfs="72"/>
+    </gpentry>
+    <gpmodel fd="2" fs="119" fdfs="121">
+      <gpdimension data="id" fd="1" fs="40" fdfs="41"/>
+      <gpdimension data="idlp" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="1" fs="79" fdfs="80"/>
+    </gpmodel>
+    <gplabel>
+      <gpdimension data="id" label="32"/>
+      <gpdimension data="idlp" label="0"/>
+      <gpdimension data="lex" label="0"/>
+      <gpdimension data="lp" label="34"/>
+    </gplabel>
+  </gprofile>
+  <string id="string4">
+    <words>
+    this confusion effectively halted one form of program trading , stock index arbitrage , that closely links the futures and stock markets , and has been blamed by some for the market 's big swings .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="547"/>
+    <depth data="46"/>
+    <failed data="533"/>
+    <succeeded data="0"/>
+    <time data="300020"/>
+    <sprofile fd="345852" fs="103785" fdfs="449637" pr="593458" entries="13.222" words="36">
+      <spnode index="1" word="this" entries="5" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="2" word="confusion" entries="3" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="3" word="effectively" entries="4" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="4" word="halted" entries="23" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="5" word="one" entries="6" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="6" word="form" entries="23" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="7" word="of" entries="12" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="8" word="program" entries="18" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="9" word="trading" entries="20" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="10" word="," entries="23" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="11" word="stock" entries="21" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="12" word="index" entries="18" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="13" word="arbitrage" entries="3" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="14" word="," entries="23" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="15" word="that" entries="6" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="16" word="closely" entries="2" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="17" word="links" entries="23" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="18" word="the" entries="2" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="19" word="futures" entries="3" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="20" word="and" entries="11" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="21" word="stock" entries="21" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="22" word="markets" entries="23" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="23" word="," entries="23" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="24" word="and" entries="11" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="25" word="has" entries="26" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="26" word="been" entries="4" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="27" word="blamed" entries="18" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="28" word="by" entries="18" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="29" word="some" entries="6" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="30" word="for" entries="14" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="31" word="the" entries="2" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="32" word="market" entries="23" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="33" word="'s" entries="7" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="34" word="big" entries="3" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="35" word="swings" entries="26" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="36" word="." entries="2" fd="6" fs="234" fdfs="240" pr="367"/>
+    </sprofile>
+  </string>
+  <string id="string33">
+    <words>
+    major oil companies in the next few days are expected to report much less robust earnings than they did for the third quarter a year ago , largely reflecting deteriorating chemical prices and gasoline profitability .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="799"/>
+    <depth data="81"/>
+    <failed data="777"/>
+    <succeeded data="0"/>
+    <time data="300100"/>
+    <sprofile fd="489384" fs="149596" fdfs="638980" pr="848792" entries="14.278" words="36">
+      <spnode index="1" word="major" entries="22" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="2" word="oil" entries="18" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="3" word="companies" entries="24" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="4" word="in" entries="17" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="5" word="the" entries="2" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="6" word="next" entries="8" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="7" word="few" entries="9" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="8" word="days" entries="8" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="9" word="are" entries="7" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="10" word="expected" entries="39" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="11" word="to" entries="22" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="12" word="report" entries="54" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="13" word="much" entries="11" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="14" word="less" entries="7" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="15" word="robust" entries="3" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="16" word="earnings" entries="3" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="17" word="than" entries="4" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="18" word="they" entries="1" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="19" word="did" entries="56" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="20" word="for" entries="14" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="21" word="the" entries="2" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="22" word="third" entries="6" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="23" word="quarter" entries="26" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="24" word="a" entries="6" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="25" word="year" entries="8" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="26" word="ago" entries="11" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="27" word="," entries="23" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="28" word="largely" entries="4" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="29" word="reflecting" entries="32" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="30" word="deteriorating" entries="26" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="31" word="chemical" entries="4" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="32" word="prices" entries="18" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="33" word="and" entries="11" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="34" word="gasoline" entries="3" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="35" word="profitability" entries="3" fd="6" fs="317" fdfs="323" pr="499"/>
+      <spnode index="36" word="." entries="2" fd="6" fs="317" fdfs="323" pr="499"/>
+    </sprofile>
+  </string>
+  <string id="string76">
+    <words>
+    she was raised , for the first eight years , by her mother , Rosie , whom she remembers as a loving liar , who realigned history to explain why Lily 's father did not live with them .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="364"/>
+    <depth data="59"/>
+    <failed data="355"/>
+    <succeeded data="0"/>
+    <time data="300020"/>
+    <sprofile fd="605046" fs="183465" fdfs="788511" pr="1046770" entries="15.718" words="39">
+      <spnode index="1" word="she" entries="2" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="2" word="was" entries="4" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="3" word="raised" entries="15" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="4" word="," entries="22" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="5" word="for" entries="14" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="6" word="the" entries="2" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="7" word="first" entries="12" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="8" word="eight" entries="5" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="9" word="years" entries="8" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="10" word="," entries="22" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="11" word="by" entries="18" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="12" word="her" entries="4" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="13" word="mother" entries="18" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="14" word="," entries="22" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="15" word="Rosie" entries="3" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="16" word="," entries="22" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="17" word="whom" entries="1" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="18" word="she" entries="2" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="19" word="remembers" entries="34" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="20" word="as" entries="19" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="21" word="a" entries="5" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="22" word="loving" entries="62" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="23" word="liar" entries="3" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="24" word="," entries="22" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="25" word="who" entries="1" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="26" word="realigned" entries="20" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="27" word="history" entries="3" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="28" word="to" entries="24" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="29" word="explain" entries="40" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="30" word="why" entries="6" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="31" word="Lily" entries="3" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="32" word="'s" entries="7" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="33" word="father" entries="23" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="34" word="did" entries="53" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="35" word="not" entries="3" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="36" word="live" entries="69" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="37" word="with" entries="17" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="38" word="them" entries="1" fd="6" fs="324" fdfs="330" pr="511"/>
+      <spnode index="39" word="." entries="2" fd="6" fs="324" fdfs="330" pr="511"/>
+    </sprofile>
+  </string>
+  <string id="string81">
+    <words>
+    retail real estate brokers say tenants are reluctant to sign leases because of uncertainty about the local economy , turmoil in their own industries and a belief that rents have not yet hit bottom .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="391"/>
+    <depth data="33"/>
+    <failed data="380"/>
+    <succeeded data="0"/>
+    <time data="300780"/>
+    <sprofile fd="481110" fs="147578" fdfs="628688" pr="835768" entries="15.257" words="35">
+      <spnode index="1" word="retail" entries="21" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="2" word="real" entries="6" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="3" word="estate" entries="3" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="4" word="brokers" entries="3" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="5" word="say" entries="33" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="6" word="tenants" entries="23" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="7" word="are" entries="7" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="8" word="reluctant" entries="3" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="9" word="to" entries="22" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="10" word="sign" entries="40" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="11" word="leases" entries="35" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="12" word="because" entries="14" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="13" word="of" entries="12" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="14" word="uncertainty" entries="3" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="15" word="about" entries="20" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="16" word="the" entries="2" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="17" word="local" entries="6" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="18" word="economy" entries="3" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="19" word="," entries="23" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="20" word="turmoil" entries="23" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="21" word="in" entries="17" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="22" word="their" entries="3" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="23" word="own" entries="15" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="24" word="industries" entries="3" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="25" word="and" entries="18" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="26" word="a" entries="5" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="27" word="belief" entries="4" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="28" word="that" entries="6" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="29" word="rents" entries="40" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="30" word="have" entries="43" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="31" word="not" entries="3" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="32" word="yet" entries="7" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="33" word="hit" entries="40" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="34" word="bottom" entries="26" fd="6" fs="323" fdfs="329" pr="509"/>
+      <spnode index="35" word="." entries="2" fd="6" fs="323" fdfs="329" pr="509"/>
+    </sprofile>
+  </string>
+  <string id="string83">
+    <words>
+    but always , in years past , they have bucked the trend and have been able to pick up a fifth vote to eke out a number of major victories in civil rights and liberties cases .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="382"/>
+    <depth data="26"/>
+    <failed data="378"/>
+    <succeeded data="0"/>
+    <time data="300720"/>
+    <sprofile fd="576164" fs="175988" fdfs="752152" pr="999932" entries="21.081" words="37">
+      <spnode index="1" word="but" entries="18" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="2" word="always" entries="4" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="3" word="," entries="23" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="4" word="in" entries="21" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="5" word="years" entries="8" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="6" word="past" entries="26" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="7" word="," entries="23" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="8" word="they" entries="1" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="9" word="have" entries="60" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="10" word="bucked" entries="42" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="11" word="the" entries="2" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="12" word="trend" entries="21" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="13" word="and" entries="11" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="14" word="have" entries="60" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="15" word="been" entries="4" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="16" word="able" entries="3" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="17" word="to" entries="22" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="18" word="pick" entries="74" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="19" word="up" entries="56" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="20" word="a" entries="5" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="21" word="fifth" entries="7" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="22" word="vote" entries="53" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="23" word="to" entries="22" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="24" word="eke" entries="15" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="25" word="out" entries="53" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="26" word="a" entries="5" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="27" word="number" entries="22" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="28" word="of" entries="12" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="29" word="major" entries="22" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="30" word="victories" entries="3" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="31" word="in" entries="21" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="32" word="civil" entries="3" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="33" word="rights" entries="18" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="34" word="and" entries="11" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="35" word="liberties" entries="3" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="36" word="cases" entries="24" fd="6" fs="339" fdfs="345" pr="535"/>
+      <spnode index="37" word="." entries="2" fd="6" fs="339" fdfs="345" pr="535"/>
+    </sprofile>
+  </string>
+  <string id="string92">
+    <words>
+    the new show is perhaps the boldest in a number of steps the network is taking to build audience loyalty by shifting away from its current format toward more full-length signature programming with recognizable stars .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="297"/>
+    <depth data="37"/>
+    <failed data="289"/>
+    <succeeded data="0"/>
+    <time data="300040"/>
+    <sprofile fd="545544" fs="166656" fdfs="712200" pr="946738" entries="15.389" words="36">
+      <spnode index="1" word="the" entries="2" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="2" word="new" entries="7" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="3" word="show" entries="87" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="4" word="is" entries="4" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="5" word="perhaps" entries="6" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="6" word="the" entries="2" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="7" word="boldest" entries="3" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="8" word="in" entries="17" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="9" word="a" entries="5" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="10" word="number" entries="22" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="11" word="of" entries="12" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="12" word="steps" entries="18" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="13" word="the" entries="2" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="14" word="network" entries="18" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="15" word="is" entries="4" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="16" word="taking" entries="100" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="17" word="to" entries="22" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="18" word="build" entries="35" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="19" word="audience" entries="3" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="20" word="loyalty" entries="3" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="21" word="by" entries="18" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="22" word="shifting" entries="20" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="23" word="away" entries="14" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="24" word="from" entries="12" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="25" word="its" entries="2" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="26" word="current" entries="6" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="27" word="format" entries="26" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="28" word="toward" entries="4" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="29" word="more" entries="5" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="30" word="full-length" entries="3" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="31" word="signature" entries="3" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="32" word="programming" entries="15" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="33" word="with" entries="15" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="34" word="recognizable" entries="3" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="35" word="stars" entries="34" fd="6" fs="327" fdfs="333" pr="517"/>
+      <spnode index="36" word="." entries="2" fd="6" fs="327" fdfs="333" pr="517"/>
+    </sprofile>
+  </string>
+  <string id="string98">
+    <words>
+    still , one federal appeals court has signaled it 's willing to entertain the notion , and the lawyers have renewed their arguments in Texas and eight other states where the defense is permitted under state law .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="200"/>
+    <depth data="55"/>
+    <failed data="189"/>
+    <succeeded data="0"/>
+    <time data="311680"/>
+    <sprofile fd="574902" fs="174619" fdfs="749521" pr="995198" entries="15.816" words="38">
+      <spnode index="1" word="still" entries="26" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="2" word="," entries="23" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="3" word="one" entries="6" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="4" word="federal" entries="6" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="5" word="appeals" entries="23" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="6" word="court" entries="23" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="7" word="has" entries="43" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="8" word="signaled" entries="32" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="9" word="it" entries="15" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="10" word="'s" entries="7" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="11" word="willing" entries="54" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="12" word="to" entries="22" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="13" word="entertain" entries="20" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="14" word="the" entries="2" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="15" word="notion" entries="3" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="16" word="," entries="23" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="17" word="and" entries="11" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="18" word="the" entries="2" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="19" word="lawyers" entries="3" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="20" word="have" entries="43" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="21" word="renewed" entries="15" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="22" word="their" entries="3" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="23" word="arguments" entries="4" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="24" word="in" entries="17" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="25" word="Texas" entries="3" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="26" word="and" entries="11" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="27" word="eight" entries="5" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="28" word="other" entries="5" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="29" word="states" entries="30" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="30" word="where" entries="10" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="31" word="the" entries="2" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="32" word="defense" entries="3" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="33" word="is" entries="4" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="34" word="permitted" entries="45" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="35" word="under" entries="15" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="36" word="state" entries="37" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="37" word="law" entries="3" fd="6" fs="320" fdfs="326" pr="505"/>
+      <spnode index="38" word="." entries="2" fd="6" fs="320" fdfs="326" pr="505"/>
+    </sprofile>
+  </string>
+      <spnode index="30" word="head" entries="19" fd="6" fs="308" fdfs="314" pr="485"/>
+      <spnode index="31" word="of" entries="12" fd="6" fs="308" fdfs="314" pr="485"/>
+      <spnode index="32" word="Britain" entries="3" fd="6" fs="308" fdfs="314" pr="485"/>
+      <spnode index="33" word="'s" entries="7" fd="6" fs="308" fdfs="314" pr="485"/>
+      <spnode index="34" word="Iraqi" entries="6" fd="6" fs="308" fdfs="314" pr="485"/>
+      <spnode index="35" word="Iraqi" entries="6" fd="6" fs="308" fdfs="314" pr="485"/>
+      <spnode index="36" word="Iraqi" entries="6" fd="6" fs="308" fdfs="314" pr="485"/>
+      <spnode index="37" word="Iraqi" entries="6" fd="6" fs="308" fdfs="314" pr="485"/>
+      <spnode index="38" word="." entries="2" fd="6" fs="308" fdfs="314" pr="485"/>
+    </sprofile>
+  </string>
+  <string id="string116">
+    <words>
+    the political joint venture , which may be dubbed Iraqis , would have combined annual sales of at least  three billion three billion and would be of the world 's largest missile makers .
+    </words>
+    <outputs>

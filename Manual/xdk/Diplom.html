@@ -1,0 +1,1334 @@
+<html lang="en">
+<head>
+<title>Diplom - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Grammars.html#Grammars" title="Grammars">
+<link rel="prev" href="Chorus.html#Chorus" title="Chorus">
+<link rel="next" href="Dutch1.html#Dutch1" title="Dutch1">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Diplom"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Dutch1.html#Dutch1">Dutch1</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Chorus.html#Chorus">Chorus</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Grammars.html#Grammars">Grammars</a>
+<hr>
+</div>
+
+<h3 class="section">5.12 Diplom</h3>
+
+<p>This grammar covers many interesting German word order phenomena.  It
+uses the two TDG graph dimensions ID and LP, and was written by Ralph
+Debusmann, for his Diplomarbeit <cite>A Declarative Grammar Formalism
+For Dependency Grammar</cite> (<a href="References.html#References">References</a>), and it described
+therein. An extended version can be found here (<a href="softproj.html#softproj">softproj</a>).
+
+<pre class="verbatim">usedim id
+usedim lp
+usedim lex
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension id
+defdim id {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defattrstype "id.attrs"
+  defentrytype "id.entry"
+  deflabeltype "id.label"
+  deftype "id.cat" {adja adva appr art kous ne nn pper prels prf ptkvz ptkzu vafin vainf vaizu vapp vmfin vminf vmizu vmpp vvfin vvinf vvizu vvpp}
+  deftype "id.person" {first second third}
+  deftype "id.gender" {masc fem neut}
+  deftype "id.number" {sg pl}
+  deftype "id.def" {def indef undef}
+  deftype "id.case" {nom gen dat acc}
+  deftype "id.agr" tuple("id.person" "id.gender" "id.number" "id.def" "id.case")
+  deftype "id.pref" {pref_ein pref_vor pref_zu}
+  deftype "id.cats" iset("id.cat")
+  deftype "id.agrs" iset("id.agr")
+  deftype "id.attrs" {cat: "id.cat"
+                      agr: "id.agr"}
+  deftype "id.entry" {cats: "id.cats"
+                      agrs: "id.agrs"
+                      prefs: set("id.pref")
+                      prefsReq: set("id.pref")
+                      in: iset("id.label")
+                      out: valency("id.label")}
+  deftype "id.label" {adj adv comp det genmod genobj iobj obj pp rel vpref sub subj vinf vpp vzu zu}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph1Constraints" {
+    dims {D: id}}
+  useprinciple "principle.graph1Dist" {
+    dims {D: id}}
+  useprinciple "principle.agr" {
+    dims {D: id}
+    args {Agr: _.D.attrs.cat
+          Agrs: _.D.entry.cats}}
+  useprinciple "principle.agr" {
+    dims {D: id}
+    args {Agr: _.D.attrs.agr
+          Agrs: _.D.entry.agrs}}
+  useprinciple "principle.agreement" {
+    dims {D: id}
+    args {Agr1: ^.D.attrs.agr
+          Agr2: _.D.attrs.agr
+          Agree: {det adj subj}}}
+  useprinciple "principle.government" {
+    dims {D: id}
+    args {Agr2: _.D.attrs.agr
+          Govern: {subj: ($ nom)
+                   obj: ($ acc)
+                   iobj: ($ dat)
+                   genobj: ($ gen)
+                   genmod: ($ gen)}}}
+  useprinciple "principle.agreementSubset" {
+    dims {D: id}
+    args {Agr1: ^.D.entry.prefsReq
+          Agr2: _.D.entry.prefs
+          Agree: {vpref}}}
+  useprinciple "principle.tree" {
+    dims {D: id}}
+  useprinciple "principle.in" {
+    dims {D: id}}
+  useprinciple "principle.out" {
+    dims {D: id}}
+  useprinciple "principle.relative" {
+    dims {D1: id
+          D2: lp}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.latex"
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lp
+defdim lp {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype "lp.entry"
+  deflabeltype "lp.label"
+  deftype "lp.entry" {in: iset("lp.label")
+                      out: valency("lp.label")
+                      on: iset("lp.label")
+                      blocks: set("id.label")}
+  deftype "lp.label" {nvf nmf n nxf vf v12 rvf if mf vcf pf v vxf nf}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph1Constraints" {
+    dims {D: lp}}
+  useprinciple "principle.graph1Dist" {
+    dims {D: lp}}
+  useprinciple "principle.tree" {
+    dims {D: lp}}
+  useprinciple "principle.in" {
+    dims {D: lp}}
+  useprinciple "principle.out" {
+    dims {D: lp}}
+  useprinciple "principle.order" {
+    dims {D: lp}
+    args {Order: [nvf nmf n nxf vf v12 rvf if mf vcf pf v vxf nf]
+          Yields: true}}
+  useprinciple "principle.projectivity" {
+    dims {D: lp}}
+  useprinciple "principle.climbing" {
+    dims {D1: lp
+          D2: id}}
+  useprinciple "principle.barriers" {
+    dims {D1: lp
+          D2: id
+          D3: lp}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.latex"
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lex
+defdim lex {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype {word: string}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dags1"
+  %%
+  useoutput "output.dags1"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% lexical types: id part
+defclass "intr_id" { dim id {out: {}} }
+
+defclass "tr_id" { dim id {out: {obj}} }
+
+defclass "genobjc_id" { dim id {out: {genobj}} }
+
+defclass "ditr_id" { dim id {out: {obj iobj}} }
+
+defclass "compc" { dim id {out: {comp}} }
+
+defclass "vinfc" { dim id {out: {vinf}} }
+
+defclass "vzuc" { dim id {out: {vzu}} }
+
+defclass "vppc" { dim id {out: {vpp}} }
+
+defclass "optobjc" { dim id {out: {obj?}} }
+
+defclass "optiobjc" { dim id {out: {iobj?}} }
+
+%% finite verbs
+defclass "fin_id" {
+  dim id {in: {sub rel}
+          out: {subj adv* pp?}}}
+
+%% non-finite verbs
+defclass "nonfin_id" {
+  dim id {in: {vinf vzu vpp}
+          out: {adv* pp?}}}
+
+defclass "vinf_id" {
+  "nonfin_id"
+  dim id {in: {vinf}}}
+
+defclass "vzu_id" {
+  "nonfin_id"
+  dim id {in: {vzu}
+          out: {zu}}}
+
+defclass "vpp_id" {
+  "nonfin_id"
+  dim id {in: {vpp}}}
+
+%% complementisers
+defclass "comp_id" {
+  dim id {cats: {kous}
+          in: {comp}
+          out: {sub}}}
+
+%% adverbs
+defclass "adv_id" {
+  dim id {cats: {adva}
+          in: {adv}}}
+
+%% zu-particle
+defclass "zu_id" {
+  dim id {cats: {ptkzu}
+          in: {zu}}}
+
+%% nouns
+defclass "noun_id" { dim id {in: {subj obj iobj genobj genmod}} }
+
+defclass "cnoun_id" {
+  "noun_id"
+  dim id {cats: {nn}
+          out: {det? adj* genmod? pp? rel?}}}
+
+defclass "pname_id" {
+  "noun_id"
+  dim id {cats: {ne}}}
+
+defclass "relpro_id" {
+  "noun_id"
+  dim id {cats: {prels}}}
+
+defclass "perpro_id" {
+  "noun_id"
+  dim id {cats: {pper}}}
+
+%% determiners
+defclass "det_id" {
+  dim id {cats: {art}
+          in: {det}}}
+
+%% adjectives
+defclass "adj_id" {
+  dim id {cats: {adja}
+          in: {adj}}}
+
+%% prepositions
+defclass "prep_id" {
+  dim id {cats: {appr}
+          in: {pp}}}
+
+defclass "prep_obj_id" {
+  "prep_id"
+  dim id {out: {obj}}}
+
+defclass "prep_iobj_id" {
+  "prep_id"
+  dim id {out: {iobj}}}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% lexical types: lp part (and id/lp)
+
+%% finite verbs
+defclass "fin_lp" {
+  dim lp {on: {v v12}
+          out: {mf* nf?}
+          blocks: bot}}
+
+defclass "v12_lp" {
+  "fin_lp"
+  dim id {in: {}}
+  dim lp {in: {}
+          on: {v12}
+          out: {vf?}}}
+
+defclass "sub_lp" {
+  "fin_lp"
+  dim id {in: {sub}}
+  dim lp {in: {nf}
+          on: {v}}}
+
+defclass "rel_lp" {
+  "fin_lp"
+  dim id {in: {rel}}
+  dim lp {in: {nf}
+          on: {v}
+          out: {rvf}}}
+
+%% non-finite verbs
+defclass "can_lp" {
+  dim lp {in: {vcf}
+          on: {v}
+          out: {vcf?}
+          blocks: {}}}
+
+defclass "noncan_lp" {
+  dim lp {in: {vf rvf if vxf}
+          on: {v}
+          out: {mf* vcf? vxf? nf?}
+          blocks: {adv pp}}}
+
+defclass "vzu_lp" {
+  dim lp {out: {pf}
+          blocks: {zu}}}
+
+%% complementisers
+defclass "comp_lp" {
+  dim lp {in: {vf nf}
+          on: {v}
+          out: {nf}}}
+
+%% adverbs
+defclass "adv_lp" {
+  dim lp {in: {vf mf}
+          on: {v}}}
+
+%% zu-particles
+defclass "zu_lp" {
+  dim lp {in: {pf}
+          on: {v}}}
+
+%% nouns
+defclass "noun_lp" {
+  dim lp {in: {vf rvf mf nvf nxf}
+          on: {n}}}
+
+defclass "cnoun_lp" {
+  "noun_lp"
+  dim lp {out: {nvf? nmf* nxf? nf?}
+          blocks: {det adj genmod}}}
+
+defclass "pname_lp" { "noun_lp" }
+
+defclass "relpro_lp" {
+  "noun_lp"
+  dim lp {in: {rvf mf nvf nxf}}}
+
+defclass "perpro_lp" { "noun_lp" }
+
+%% determiners
+defclass "det_lp" {
+  dim lp {in: {nvf}
+          on: {n}}}
+
+%% adjectives
+defclass "adj_lp" {
+  dim lp {in: {nmf}
+          on: {n}}}
+  
+%% prepositions
+defclass "prep_lp" {
+  dim lp {in: {vf rvf mf nxf}
+          on: {n}
+          out: {nxf}
+          blocks: {obj iobj}}}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% lexical types: additional stuff
+
+%% fin
+defclass "vafin" Word {
+  "fin_id"
+  dim id {cats: {vafin}}
+  dim lex {word: Word}}
+
+defclass "vmfin" Word {
+  "fin_id"
+  dim id {cats: {vmfin}}
+  dim lex {word: Word}}
+
+defclass "vvfin" Word {
+  "fin_id"
+  dim id {cats: {vvfin}}
+  dim lex {word: Word}}
+
+%% inf
+defclass "vainf" Word {
+  "vinf_id"
+  dim id {cats: {vainf}}
+  dim lex {word: Word}}
+
+defclass "vminf" Word {
+  "vinf_id"
+  dim id {cats: {vminf}}
+  dim lex {word: Word}}
+
+defclass "vvinf" Word {
+  "vinf_id"
+  dim id {cats: {vvinf}}
+  dim lex {word: Word}}
+
+%% zu
+defclass "vaizu" Word {
+  "vzu_id"
+  "vzu_lp"
+  dim id {cats: {vaizu}}
+  dim lex {word: Word}}
+
+defclass "vmizu" Word {
+  "vzu_id"
+  "vzu_lp"
+  dim id {cats: {vmizu}}
+  dim lex {word: Word}}
+
+defclass "vvizu" Word {
+  "vzu_id"
+  "vzu_lp"
+  dim id {cats: {vvizu}}
+  dim lex {word: Word}}
+
+%% pp
+defclass "vapp" Word {
+  "vpp_id"
+  dim id {cats: {vapp}}
+  dim lex {word: Word}}
+
+defclass "vmpp" Word {
+  "vpp_id"
+  dim id {cats: {vmpp}}
+  dim lex {word: Word}}
+
+defclass "vvpp" Word {
+  "vpp_id"
+  dim id {cats: {vvpp}}
+  dim lex {word: Word}}
+
+%% noncan
+defclass "front_lp" {
+  "noncan_lp"
+  dim lp {in: {vf}}}
+
+defclass "piped_lp" {
+  "noncan_lp"
+  dim lp {in: {rvf}}}
+
+defclass "intra_lp" {
+  "noncan_lp"
+  dim lp {in: {if}}}
+
+defclass "extra_lp" {
+  "noncan_lp"
+  dim lp {in: {vxf}}}
+
+%% coherence and incoherence
+defclass "oblco_lp" {
+  dim lp {out: {vcf?}}}
+
+defclass "oblinco_lp" {
+  dim lp {out: {if? vxf?}}}
+
+defclass "optco_lp" {
+  dim lp {out: {if? vcf? vxf?}}}
+
+%% separable verb prefixes
+defclass "vpref" Word Prefs {
+  dim id {cats: {ptkvz}
+          in: {vpref}}
+  dim lp {in: {vcf}
+          on: {v}}
+  dim lex {word: Word}
+  dim id {prefs: Prefs}}
+
+defclass "v12_vpref" {
+  "v12_lp"
+  dim id {out: {vpref}}
+  dim lp {out: {vcf?}}}
+
+defclass "comp" Word {
+  "comp_id"
+  "comp_lp"
+  dim lex {word: Word}}
+
+defclass "adv" Word {
+  "adv_id"
+  "adv_lp"
+  dim lex {word: Word}}
+
+defclass "zu" Word {
+  "zu_id"
+  "zu_lp"
+  dim lex {word: Word}}
+
+defclass "cnoun" Word Agrs {
+  "cnoun_id"
+  "cnoun_lp"
+  dim lex {word: Word}
+  dim id {agrs: Agrs}}
+
+defclass "pname" Word Agrs {
+  "pname_id"
+  "pname_lp"
+  dim lex {word: Word}
+  dim id {agrs: Agrs}}
+
+defclass "relpro" Word Agrs {
+  "relpro_id"
+  "relpro_lp"
+  dim lex {word: Word}
+  dim id {agrs: Agrs}}
+
+defclass "perpro" Word Agrs {
+  "perpro_id"
+  "perpro_lp"
+  dim lex {word: Word}
+  dim id {agrs: Agrs}}
+
+defclass "det" Word Agrs {
+  "det_id"
+  "det_lp"
+  dim lex {word: Word}
+  dim id {agrs: Agrs}}
+
+defclass "adj" Word Agrs {
+  "adj_id"
+  "adj_lp"
+  dim lex {word: Word}
+  dim id {agrs: Agrs}}
+
+defclass "prep_obj" Word {
+  "prep_obj_id"
+  "prep_lp"
+  dim lex {word: Word}}
+
+defclass "prep_iobj" Word {
+  "prep_iobj_id"
+  "prep_lp"
+  dim lex {word: Word}}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% lexical entries
+
+%% complementisers
+defentry { "comp" {Word: "dass"} }
+defentry { "comp" {Word: "weil"} }
+defentry { "comp" {Word: "obwohl"} }
+
+%% adverbs
+defentry { "adv" {Word: "sehr"} }
+defentry { "adv" {Word: "oft"} }
+defentry { "adv" {Word: "nicht"} }
+defentry { "adv" {Word: "heute"} }
+
+%% zu-particle
+defentry { "zu" {Word: "zu"} }
+ 
+%% nouns
+
+%% common nouns
+defentry {
+  "cnoun" {Word: "mann"
+           Agrs: ($ masc &amp; third &amp; sg &amp; (nom|dat|acc))}}
+defentry {
+  "cnoun" {Word: "manne"
+           Agrs: ($ masc &amp; third &amp; sg &amp; dat)}}
+defentry {
+  "cnoun" {Word: "mannes"
+           Agrs: ($ masc &amp; third &amp; sg &amp; gen)}}
+defentry {
+  "cnoun" {Word: "manns"
+           Agrs: ($ masc &amp; third &amp; sg &amp; gen)}}
+defentry {
+  "cnoun" {Word: "maenner"
+           Agrs: ($ masc &amp; third &amp; pl &amp; (nom|gen|acc))}}
+defentry {
+  "cnoun" {Word: "maennern"
+           Agrs: ($ masc &amp; third &amp; pl &amp; dat)}}
+
+defentry {
+  "cnoun" {Word: "roman"
+           Agrs: ($ masc &amp; third &amp; sg &amp; (nom|dat|acc))}}
+defentry {
+  "cnoun" {Word: "romans"
+           Agrs: ($ masc &amp; third &amp; sg &amp; gen)}}
+defentry {
+  "cnoun" {Word: "romane"
+           Agrs: ($ masc &amp; third &amp; pl &amp; (nom|gen|acc))}}
+defentry {
+  "cnoun" {Word: "romanen"
+           Agrs: ($ masc &amp; third &amp; pl &amp; dat)}}
+
+defentry {
+  "cnoun" {Word: "korb"
+           Agrs: ($ masc &amp; third &amp; sg &amp; (nom|dat|acc))}}
+defentry {
+  "cnoun" {Word: "korbe"
+           Agrs: ($ masc &amp; third &amp; sg &amp; dat)}}
+defentry {
+  "cnoun" {Word: "korbes"
+           Agrs: ($ masc &amp; third &amp; sg &amp; gen)}}
+defentry {
+  "cnoun" {Word: "korbs"
+           Agrs: ($ masc &amp; third &amp; sg &amp; gen)}}
+defentry {
+  "cnoun" {Word: "koerbe"
+           Agrs: ($ masc &amp; third &amp; pl &amp; (nom|gen|acc))}}
+defentry {
+  "cnoun" {Word: "koerben"
+           Agrs: ($ masc &amp; third &amp; pl &amp; dat)}}
+
+defentry {
+  "cnoun" {Word: "richter"
+           Agrs: ($ masc &amp; third &amp; sg &amp; (nom|dat|acc))}}
+defentry {
+  "cnoun" {Word: "richters"
+           Agrs: ($ masc &amp; third &amp; sg &amp; gen)}}
+defentry {
+  "cnoun" {Word: "richter"
+           Agrs: ($ masc &amp; third &amp; pl &amp; (nom|gen|acc))}}
+defentry {
+  "cnoun" {Word: "richtern"
+           Agrs: ($ masc &amp; third &amp; pl &amp; dat)}}
+
+defentry {
+  "cnoun" {Word: "frau"
+           Agrs: ($ fem &amp; third &amp; sg)}}
+defentry {
+  "cnoun" {Word: "frauen"
+           Agrs: ($ fem &amp; third &amp; pl)}}
+
+defentry {
+  "cnoun" {Word: "tat"
+           Agrs: ($ fem &amp; third &amp; sg)}}
+defentry {
+  "cnoun" {Word: "taten"
+           Agrs: ($ fem &amp; third &amp; pl)}}
+
+defentry {
+  "cnoun" {Word: "buch"
+           Agrs: ($ neut &amp; third &amp; sg &amp; (nom|dat|acc))}}
+defentry {
+  "cnoun" {Word: "buche"
+           Agrs: ($ neut &amp; third &amp; sg &amp; dat)}}
+defentry {
+  "cnoun" {Word: "buches"
+           Agrs: ($ neut &amp; third &amp; sg &amp; gen)}}
+defentry {
+  "cnoun" {Word: "buchs"
+           Agrs: ($ neut &amp; third &amp; sg &amp; gen)}}
+defentry {
+  "cnoun" {Word: "buecher"
+           Agrs: ($ neut &amp; third &amp; pl &amp; (nom|gen|acc))}}
+defentry {
+  "cnoun" {Word: "buechern"
+           Agrs: ($ neut &amp; third &amp; pl &amp; dat)}}
+
+defentry {
+  "cnoun" {Word: "teleskop"
+           Agrs: ($ neut &amp; third &amp; sg &amp; (nom|dat|acc))}}
+defentry {
+  "cnoun" {Word: "teleskops"
+           Agrs: ($ neut &amp; third &amp; sg &amp; gen)}}
+defentry {
+  "cnoun" {Word: "teleskope"
+           Agrs: ($ neut &amp; third &amp; pl &amp; (nom|gen|acc))}}
+defentry {
+  "cnoun" {Word: "teleskopen"
+           Agrs: ($ neut &amp; third &amp; pl &amp; dat)}}
+
+defentry {
+  "pname" {Word: "peter"
+           Agrs: ($ masc &amp; sg &amp; third &amp; (nom|dat|acc))}}
+defentry {
+  "pname" {Word: "peters"
+           Agrs: ($ masc &amp; sg &amp; third &amp; gen)}}
+
+defentry {
+  "pname" {Word: "hans"
+           Agrs: ($ masc &amp; sg &amp; third &amp; (nom|dat|acc))}}
+defentry {
+  "pname" {Word: "hans"
+           Agrs: ($ masc &amp; sg &amp; third &amp; gen)}}
+
+defentry {
+  "pname" {Word: "maria"
+           Agrs: ($ fem &amp; sg &amp; third &amp; (nom|dat|acc))}}
+defentry {
+  "pname" {Word: "marias"
+           Agrs: ($ fem &amp; sg &amp; third &amp; gen)}}
+
+defentry {
+  "pname" {Word: "jemand"
+           Agrs: ($ (masc|fem) &amp; sg &amp; third &amp; (nom|dat|acc))}}
+%% relative pronouns
+defentry {
+  "relpro" {Word: "der"
+            Agrs: ($ masc &amp; sg &amp; nom)}}
+defentry {
+  "relpro" {Word: "der"
+            Agrs: ($ fem &amp; sg &amp; dat)}}
+defentry {
+  "relpro" {Word: "dessen"
+            Agrs: ($ (masc|neut) &amp; sg &amp; gen)}}
+defentry {
+  "relpro" {Word: "dem"
+            Agrs: ($ (masc|neut) &amp; sg &amp; dat)}}
+defentry {
+  "relpro" {Word: "den"
+            Agrs: ($ masc &amp; sg &amp; acc)}}
+defentry {
+  "relpro" {Word: "den"
+            Agrs: ($ pl &amp; dat)}}
+defentry {
+  "relpro" {Word: "die"
+            Agrs: ($ fem &amp; sg &amp; (nom|acc))}}
+defentry {
+  "relpro" {Word: "die"
+            Agrs: ($ pl &amp; (nom|acc))}}
+defentry {
+  "relpro" {Word: "deren"
+            Agrs: ($ fem &amp; sg &amp; gen)}}
+defentry {
+  "relpro" {Word: "deren"
+            Agrs: ($ pl &amp; gen)}}
+defentry {
+  "relpro" {Word: "das"
+            Agrs: ($ neut &amp; sg &amp; (nom|acc))}}
+
+%% personal pronouns
+defentry {
+  "perpro" {Word: "er"
+            Agrs: ($ masc &amp; third &amp; sg &amp; nom)}}
+defentry {
+  "perpro" {Word: "sie"
+            Agrs: ($ fem &amp; third &amp; sg &amp; nom)}}
+defentry {
+  "perpro" {Word: "es"
+            Agrs: ($ neut &amp; third &amp; sg &amp; nom)}}
+defentry {
+  "perpro" {Word: "mir"
+            Agrs: ($ first &amp; sg &amp; dat)}}
+defentry {
+  "perpro" {Word: "mich"
+            Agrs: ($ first &amp; sg &amp; acc)}}
+defentry {
+  "perpro" {Word: "dir"
+            Agrs: ($ second &amp; sg &amp; dat)}}
+defentry {
+  "perpro" {Word: "dich"
+            Agrs: ($ second &amp; sg &amp; acc)}}
+defentry {
+  "perpro" {Word: "ihm"
+            Agrs: ($ (masc|neut) &amp; third &amp; sg &amp; dat)}}
+defentry {
+  "perpro" {Word: "ihn"
+            Agrs: ($ masc &amp; third &amp; sg &amp; acc)}}
+defentry {
+  "perpro" {Word: "ihr"
+            Agrs: ($ fem &amp; third &amp; sg &amp; dat)}}
+defentry {
+  "perpro" {Word: "sie"
+            Agrs: ($ fem &amp; third &amp; sg &amp; acc)}}
+defentry {
+  "perpro" {Word: "es"
+            Agrs: ($ neut &amp; third &amp; sg &amp; acc)}}
+defentry {
+  "perpro" {Word: "uns"
+            Agrs: ($ first &amp; pl &amp; (dat|acc))}}
+defentry {
+  "perpro" {Word: "euch"
+            Agrs: ($ second &amp; pl &amp; (dat|acc))}}
+defentry {
+  "perpro" {Word: "ihnen"
+            Agrs: ($ third &amp; pl &amp; dat)}}
+
+%% determiners
+defentry {
+  "det" {Word: "ein"
+         Agrs: ($ masc &amp; nom &amp; sg &amp; indef)}}
+defentry {
+  "det" {Word: "ein"
+         Agrs: ($ neut &amp; (nom|acc) &amp; sg &amp; indef)}}
+defentry {
+  "det" {Word: "einen"
+         Agrs: ($ masc &amp; acc &amp; sg &amp; indef)}}
+defentry {
+  "det" {Word: "einem"
+         Agrs: ($ (masc|neut) &amp; dat &amp; sg &amp; indef)}}
+defentry {
+  "det" {Word: "eines"
+         Agrs: ($ (masc|neut) &amp; gen &amp; sg &amp; indef)}}
+defentry {
+  "det" {Word: "eine"
+         Agrs: ($ fem &amp; (nom|acc) &amp; sg &amp; indef)}}
+defentry {
+  "det" {Word: "einer"
+         Agrs: ($ fem &amp; (dat|gen) &amp; sg &amp; indef)}}
+
+defentry {
+  "det" {Word: "kein"
+         Agrs: ($ masc &amp; nom &amp; sg &amp; indef)}}
+defentry {
+  "det" {Word: "kein"
+         Agrs: ($ neut &amp; (nom|acc) &amp; sg &amp; indef)}}
+defentry {
+  "det" {Word: "keinen"
+         Agrs: ($ masc &amp; acc &amp; sg &amp; indef)}}
+defentry {
+  "det" {Word: "keinem"
+         Agrs: ($ (masc|neut) &amp; dat &amp; sg &amp; indef)}}
+defentry {
+  "det" {Word: "keines"
+         Agrs: ($ (masc|neut) &amp; gen &amp; sg &amp; indef)}}
+defentry {
+  "det" {Word: "keine"
+         Agrs: ($ fem &amp; (nom|acc) &amp; sg &amp; indef)}}
+defentry {
+  "det" {Word: "keiner"
+         Agrs: ($ fem &amp; (dat|gen) &amp; sg &amp; indef)}}
+defentry {
+  "det" {Word: "keine"
+         Agrs: ($ (nom|acc) &amp; pl &amp; indef)}}
+defentry {
+  "det" {Word: "keinen"
+         Agrs: ($ dat &amp; pl &amp; indef)}}
+defentry {
+  "det" {Word: "keiner"
+         Agrs: ($ gen &amp; pl &amp; indef)}}
+
+defentry {
+  "det" {Word: "der"
+         Agrs: ($ masc &amp; nom &amp; sg &amp; def)}}
+defentry {
+  "det" {Word: "der"
+         Agrs: ($ fem &amp; (dat|gen) &amp; sg &amp; def)}}
+defentry {
+  "det" {Word: "der"
+         Agrs: ($ gen &amp; pl &amp; def)}}
+defentry {
+  "det" {Word: "den"
+         Agrs: ($ masc &amp; acc &amp; sg &amp; def)}}
+defentry {
+  "det" {Word: "den"
+         Agrs: ($ dat &amp; pl &amp; def)}}
+defentry {
+  "det" {Word: "dem"
+         Agrs: ($ (masc|neut) &amp; dat &amp; sg &amp; def)}}
+defentry {
+  "det" {Word: "des"
+         Agrs: ($ (masc|neut) &amp; gen &amp; sg &amp; def)}}
+defentry {
+  "det" {Word: "das"
+         Agrs: ($ neut &amp; (nom|acc) &amp; sg &amp; def)}}
+defentry {
+  "det" {Word: "die"
+         Agrs: ($ fem &amp; (nom|acc) &amp; sg &amp; def)}}
+defentry {
+  "det" {Word: "die"
+         Agrs: ($ (nom|acc) &amp; pl &amp; def)}}
+
+%% adjectives
+%% undef
+defentry {
+  "adj" {Word: "kleiner"
+         Agrs: ($ masc &amp; nom &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "kleiner"
+         Agrs: ($ fem &amp; (dat|gen) &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "kleines"
+         Agrs: ($ neut &amp; (nom|acc) &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "kleinen"
+         Agrs: ($ masc &amp; (acc|gen) &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "kleinen"
+         Agrs: ($ neut &amp; gen &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "kleinen"
+         Agrs: ($ dat &amp; pl &amp; undef)}}
+defentry {
+  "adj" {Word: "kleinem"
+         Agrs: ($ (masc|neut) &amp; dat &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "kleine"
+         Agrs: ($ fem &amp; (nom|acc) &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "kleine"
+         Agrs: ($ (nom|acc) &amp; pl &amp; undef)}}
+%% def
+defentry {
+  "adj" {Word: "kleine"
+         Agrs: ($ masc &amp; nom &amp; sg &amp; def)}}
+defentry {
+  "adj" {Word: "kleine"
+         Agrs: ($ (neut|fem) &amp; (nom|acc) &amp; sg &amp; def)}}
+defentry {
+  "adj" {Word: "kleinen"
+         Agrs: ($ (neut|fem) &amp; (dat|gen) &amp; sg &amp; def)}}
+defentry {
+  "adj" {Word: "kleinen"
+         Agrs: ($ (neut|fem) &amp; (dat|gen) &amp; sg &amp; def)}}
+defentry {
+  "adj" {Word: "kleinen"
+         Agrs: ($ pl &amp; def)}}
+%% indef
+defentry {
+  "adj" {Word: "kleiner"
+         Agrs: ($ masc &amp; nom &amp; sg &amp; indef)}}
+defentry {
+  "adj" {Word: "kleinen"
+         Agrs: ($ masc &amp; (acc|dat|gen) &amp; sg &amp; indef)}}
+defentry {
+  "adj" {Word: "kleinen"
+         Agrs: ($ (neut|fem) &amp; (dat|gen) &amp; sg &amp; indef)}}
+defentry {
+  "adj" {Word: "kleinen"
+         Agrs: ($ pl &amp; indef)}}
+defentry {
+  "adj" {Word: "kleines"
+         Agrs: ($ neut &amp; (nom|acc) &amp; sg &amp; indef)}}
+defentry {
+  "adj" {Word: "kleine"
+         Agrs: ($ fem &amp; (nom|acc) &amp; sg &amp; indef)}}
+
+%% undef
+defentry {
+  "adj" {Word: "huebscher"
+         Agrs: ($ masc &amp; nom &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "huebscher"
+         Agrs: ($ fem &amp; (dat|gen) &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "huebsches"
+         Agrs: ($ neut &amp; (nom|acc) &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "huebschen"
+         Agrs: ($ masc &amp; (acc|gen) &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "huebschen"
+         Agrs: ($ neut &amp; gen &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "huebschen"
+         Agrs: ($ dat &amp; pl &amp; undef)}}
+defentry {
+  "adj" {Word: "huebschem"
+         Agrs: ($ (masc|neut) &amp; dat &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "huebsche"
+         Agrs: ($ fem &amp; (nom|acc) &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "huebsche"
+         Agrs: ($ (nom|acc) &amp; pl &amp; undef)}}
+%% def
+defentry {
+  "adj" {Word: "huebsche"
+         Agrs: ($ masc &amp; nom &amp; sg &amp; def)}}
+defentry {
+  "adj" {Word: "huebsche"
+         Agrs: ($ (neut|fem) &amp; (nom|acc) &amp; sg &amp; def)}}
+defentry {
+  "adj" {Word: "huebschen"
+         Agrs: ($ masc &amp; (acc|dat|gen) &amp; sg &amp; def)}}
+defentry {
+  "adj" {Word: "huebschen"
+         Agrs: ($ (neut|fem) &amp; (dat|gen) &amp; sg &amp; def)}}
+defentry {
+  "adj" {Word: "huebschen"
+         Agrs: ($ pl &amp; def)}}
+%% indef
+defentry {
+  "adj" {Word: "huebscher"
+         Agrs: ($ masc &amp; nom &amp; sg &amp; indef)}}
+defentry {
+  "adj" {Word: "huebschen"
+         Agrs: ($ masc &amp; (acc|dat|gen) &amp; sg &amp; indef)}}
+defentry {
+  "adj" {Word: "huebschen"
+         Agrs: ($ (neut|fem) &amp; (dat|gen) &amp; sg &amp; indef)}}
+defentry {
+  "adj" {Word: "huebschen"
+         Agrs: ($ pl &amp; indef)}}
+defentry {
+  "adj" {Word: "huebsches"
+         Agrs: ($ neut &amp; (nom|acc) &amp; sg &amp; indef)}}
+defentry {
+  "adj" {Word: "huebsche"
+         Agrs: ($ fem &amp; (nom|acc) &amp; sg &amp; indef)}}
+
+%% undef
+defentry {
+  "adj" {Word: "reicher"
+         Agrs: ($ masc &amp; nom &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "reicher"
+         Agrs: ($ fem &amp; (dat|gen) &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "reiches"
+         Agrs: ($ neut &amp; (nom|acc) &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "reichen"
+         Agrs: ($ masc &amp; (acc|gen) &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "reichen"
+         Agrs: ($ neut &amp; gen &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "reichen"
+         Agrs: ($ dat &amp; pl &amp; undef)}}
+defentry {
+  "adj" {Word: "reichem"
+         Agrs: ($ (masc|neut) &amp; dat &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "reiche"
+         Agrs: ($ fem &amp; (nom|acc) &amp; sg &amp; undef)}}
+defentry {
+  "adj" {Word: "reiche"
+         Agrs: ($ (nom|acc) &amp; pl &amp; undef)}}
+%% def
+defentry {
+  "adj" {Word: "reiche"
+         Agrs: ($ masc &amp; nom &amp; sg &amp; def)}}
+defentry {
+  "adj" {Word: "reiche"
+         Agrs: ($ (neut|fem) &amp; (nom|acc) &amp; sg &amp; def)}}
+defentry {
+  "adj" {Word: "reichen"
+         Agrs: ($ masc &amp; (acc|dat|gen) &amp; sg &amp; def)}}
+defentry {
+  "adj" {Word: "reichen"
+         Agrs: ($ (neut|fem) &amp; (dat|gen) &amp; sg &amp; def)}}
+defentry {
+  "adj" {Word: "reichen"
+         Agrs: ($ pl &amp; def)}}
+%% indef
+defentry {
+  "adj" {Word: "reicher"
+         Agrs: ($ masc &amp; nom &amp; sg &amp; indef)}}
+defentry {
+  "adj" {Word: "reichen"
+         Agrs: ($ masc &amp; (acc|dat|gen) &amp; sg &amp; indef)}}
+defentry {
+  "adj" {Word: "reichen"
+         Agrs: ($ (neut|fem) &amp; (dat|gen) &amp; sg &amp; indef)}}
+defentry {
+  "adj" {Word: "reichen"
+         Agrs: ($ pl &amp; indef)}}
+defentry {
+  "adj" {Word: "reiches"
+         Agrs: ($ neut &amp; (nom|acc) &amp; sg &amp; indef)}}
+defentry {
+  "adj" {Word: "reiche"
+         Agrs: ($ fem &amp; (nom|acc) &amp; sg &amp; indef)}}
+
+%% prepositions
+defentry { "prep_iobj" {Word: "auf"} }
+defentry { "prep_iobj" {Word: "mit"} }
+  
+%% separable verb prefixes
+defentry {
+  "vpref" {Word: "ein"
+           Prefs: {pref_ein}}}
+defentry {
+  "vpref" {Word: "vor"
+           Prefs: {pref_vor}}}
+defentry {
+  "vpref" {Word: "zu"
+           Prefs: {pref_zu}}}
+
+%% verb classes
+defclass "verb_nonfin" Word1 Word2 {
+  ("vvinf" {Word: Word1} &amp;
+   ("can_lp" | "front_lp")) |
+  ("vvpp" {Word: Word2} &amp;
+   ("can_lp" | "front_lp")) |
+  ("vvizu" {Word: Word1} &amp;
+   ("can_lp" | "noncan_lp"))}
+
+defclass "verb_nvc_fin" Word {
+  "vvfin" {Word: Word} &amp;
+  dim id {agrs: ($ third &amp; sg &amp; nom)} &amp;
+  ("v12_lp" | "sub_lp" | "rel_lp")}
+
+defclass "verb_nvc_fin_vpref" Word1 Word2 PrefsReq {
+  dim id {agrs: ($ third &amp; sg &amp; nom)} &amp;
+  ("vvfin" {Word: Word1} &amp;
+   "v12_vpref" &amp;
+   dim id {prefsReq: PrefsReq}) |
+  ("vvfin" {Word: Word2} &amp;
+   ("sub_lp" | "rel_lp"))}
+
+defclass "verb_nvc" Word1 Word2 Word3 {
+  "verb_nonfin" {Word1: Word1
+                 Word2: Word2} |
+  "verb_nvc_fin" {Word: Word3}}
+
+defclass "verb_vc_optco" Word1 Word2 Word3 {
+  "verb_nonfin" {Word1: Word1
+                 Word2: Word2} |
+  ("verb_nvc_fin" {Word: Word3} &amp;
+   "optco_lp")}
+
+defclass "verb_vc_oblinco" Word1 Word2 Word3 {
+  "verb_nonfin" {Word1: Word1
+                 Word2: Word2} |
+  ("verb_nvc_fin" {Word: Word3} &amp;
+   "oblinco_lp")}
+
+defclass "verb_vc_oblco" Word1 Word2 Word3 {
+  "verb_nonfin" {Word1: Word1
+                 Word2: Word2} |
+  ("verb_nvc_fin" {Word: Word3} &amp;
+   "oblco_lp")}
+
+defclass "verb_nvc_vpref" Word1 Word2 Word3 Word4 PrefsReq {
+  "verb_nonfin" {Word1: Word1
+                 Word2: Word2} |
+  "verb_nvc_fin_vpref" {Word1: Word3
+                        Word2: Word4
+                        PrefsReq: PrefsReq}}
+
+defclass "verb_vc_vpref_oblinco" Word1 Word2 Word3 Word4 PrefsReq {
+  "verb_nonfin" {Word1: Word1
+                 Word2: Word2} |
+  ("verb_nvc_fin_vpref" {Word1: Word3
+                         Word2: Word4
+                         PrefsReq: PrefsReq} &amp;
+   "oblinco_lp")}
+
+defclass "verb_modal_nonfin" Word1 Word2 {
+  ("vminf" {Word: Word1} &amp;
+   ("can_lp" | "front_lp" | "extra_lp")) |
+  ("vmpp" {Word: Word2} &amp;
+   ("can_lp" | "front_lp")) |
+  ("vmizu" {Word: Word1} &amp;
+   ("can_lp" | "noncan_lp")) |
+  ("vmpp" {Word: Word1} &amp;
+   "extra_lp")}
+
+defclass "verb_modal_fin" Word {
+  "vmfin" {Word: Word}
+  dim id {agrs: ($ (first|third) &amp; sg &amp; nom)}
+  "oblco_lp"
+  ("v12_lp" | "sub_lp" | "rel_lp")}
+
+ defclass "verb_modal" Word1 Word2 Word3 {
+ "vinfc"
+ ("verb_modal_nonfin" {Word1: Word1
+                       Word2: Word2} |
+  "verb_modal_fin" {Word: Word3})}
+
+defclass "verb_aux_nonfin" Word {
+  ("vainf" {Word: Word} &amp;
+   ("can_lp" | "front_lp" | "extra_lp")) |
+  ("vaizu" {Word: Word} &amp;
+   "noncan_lp")}
+
+defclass "verb_aux_fin" Word {
+  "vafin" {Word: Word}
+  dim id {agrs: ($ third &amp; sg &amp; nom)}
+  "optco_lp"
+  ("v12_lp" | "sub_lp" | "rel_lp")}
+
+ defclass "verb_aux_vppc" Word1 Word2 {
+ "vppc"
+ ("verb_aux_nonfin" {Word: Word1} |
+  "verb_aux_fin" {Word: Word2})}
+
+ defclass "verb_aux_vinfc" Word1 Word2 {
+ "vinfc"
+ ("verb_aux_nonfin" {Word: Word1} |
+  "verb_aux_fin" {Word: Word2})}
+
+%% verbs taking non-verbal complements
+defentry { 
+  "verb_nvc" {Word1: "schlafen"
+              Word2: "geschlafen"
+              Word3: "schlaeft"}
+  "intr_id"}
+
+defentry { 
+  "verb_nvc" {Word1: "lachen"
+              Word2: "gelacht"
+              Word3: "lacht"}
+  "intr_id"}
+
+defentry { 
+  "verb_nvc" {Word1: "lieben"
+              Word2: "geliebt"
+              Word3: "liebt"}
+  "tr_id"}
+
+defentry { 
+  "verb_nvc" {Word1: "harren"
+              Word2: "geharrt"
+              Word3: "harrt"}
+  "genobjc_id"}
+
+defentry { 
+  "verb_nvc" {Word1: "geben"
+              Word2: "gegeben"
+              Word3: "gibt"}
+  "ditr_id"}
+
+defentry { 
+  "verb_nvc" {Word1: "begehen"
+              Word2: "begangen"
+              Word3: "begeht"}
+  "tr_id"}
+
+defentry { 
+  "verb_nvc" {Word1: "kaufen"
+              Word2: "gekauft"
+              Word3: "kauft"}
+  "tr_id"
+  "optiobjc"}
+
+defentry { 
+  "verb_nvc" {Word1: "schreiben"
+              Word2: "geschrieben"
+              Word3: "schreibt"}
+  "optobjc"}
+
+defentry { 
+  "verb_nvc" {Word1: "lesen"
+              Word2: "gelesen"
+              Word3: "liest"}
+  "optobjc"}
+
+defentry { 
+  "verb_nvc" {Word1: "glauben"
+              Word2: "geglaubt"
+              Word3: "glaubt"}
+  "compc"
+  "optiobjc"}
+
+defentry { 
+  "verb_nvc_vpref" {Word1: "einkaufen"
+                    Word2: "eingekauft"
+                    Word3: "kauft"
+                    Word4: "einkauft"
+                    PrefsReq: {pref_ein}}
+  "intr_id"
+  "optobjc"}
+
+defentry { 
+  "verb_nvc_vpref" {Word1: "vorlesen"
+                    Word2: "vorgelesen"
+                    Word3: "liest"
+                    Word4: "vorliest"
+                    PrefsReq: {pref_vor}}
+  "optobjc"
+  "optiobjc"}
+
+%% verbs taking verbal complements
+defentry { 
+  "verb_vc_optco" {Word1: "versuchen"
+                   Word2: "versucht"
+                   Word3: "versucht"}
+  "vzuc"}
+
+defentry { 
+  "verb_vc_optco" {Word1: "versprechen"
+                   Word2: "versprochen"
+                   Word3: "verspricht"}
+  "vzuc"
+  "optiobjc"}
+
+defentry { 
+  "verb_vc_optco" {Word1: "ueberreden"
+                   Word2: "ueberredet"
+                   Word3: "ueberredet"}
+  "vzuc"
+  "tr_id"}
+
+defentry { 
+  "verb_vc_oblinco" {Word1: "gestehen"
+                     Word2: "gestanden"
+                     Word3: "gesteht"}
+  "vzuc"
+  "optiobjc"}
+
+defentry { 
+  "verb_vc_oblinco" {Word1: "erlauben"
+                     Word2: "erlaubt"
+                     Word3: "erlaubt"}
+  "vzuc"
+  "optiobjc"}
+
+defentry { 
+  "verb_vc_oblinco" {Word1: "empfehlen"
+                     Word2: "empfohlen"
+                     Word3: "empfiehlt"}
+  "vzuc"
+  "optiobjc"}
+
+defentry { 
+  "verb_vc_oblco" {Word1: "scheinen"
+                   Word2: "geschienen"
+                   Word3: "scheint"}
+  "vzuc"}
+
+defentry { 
+  "verb_vc_vpref_oblinco" {Word1: "vorhaben"
+                           Word2: "vorgehabt"
+                           Word3: "hat"
+                           Word4: "vorhat"
+                           PrefsReq: {pref_vor}}
+  "vzuc"}
+
+%% modal verbs
+defentry { 
+  "verb_modal" {Word1: "koennen"
+                Word2: "gekonnt"
+                Word3: "kann"}}
+
+%% auxiliaries
+defentry { 
+  "verb_aux_vppc" {Word1: "haben"
+                   Word2: "hat"}}
+
+defentry { 
+  "verb_aux_vinfc" {Word1: "werden"
+                    Word2: "wird"}}
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

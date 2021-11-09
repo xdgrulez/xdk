@@ -1,0 +1,17 @@
+deftype "id.person" {first second third}
+deftype "id.number" {sg pl}
+deftype "id.gender" {masc fem neut}
+deftype "id.case" {nom acc}
+deftype "id.agr" tuple("id.person" "id.number" "id.gender" "id.case")
+
+defprinciple "principle.governmentDissPW" {
+  dims {D}
+  constraints {
+
+forall V: forall V1:
+  ( edge(V V1 subj D) => V1.D.attrs.agr in ($ nom) ) &
+  ( edge(V V1 obj D) => V1.D.attrs.agr in ($ acc) ) &
+  ( edge(V V1 prepc D) => V1.D.attrs.agr in ($ acc) )
+
+  }
+}

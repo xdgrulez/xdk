@@ -1,0 +1,39 @@
+usedim id
+usedim lex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define id dimension
+defdim id {
+  deftype "id.label" {a b}
+  deflabeltype "id.label"
+  defentrytype {in: valency("id.label")
+                out: valency("id.label")}
+%%
+  useprinciple "principle.graph" {
+    dims {D: id}}
+  useprinciple "principle.tree" {
+    dims {D: id}}
+  useprinciple "principle.valency" {
+    dims {D: id}}
+%%
+  output "output.pretty"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lex dimension
+defdim lex {
+  defentrytype {word: string}
+%%
+  output "output.dags1"
+  output "output.latexs1"
+  useoutput "output.dags1"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lexicon
+
+defentry {
+  dim id {in: {a?}
+          out: {a? b!}}
+  dim lex {word: "a"}}
+
+defentry {
+  dim id {in: {b!}}
+  dim lex {word: "b"}}

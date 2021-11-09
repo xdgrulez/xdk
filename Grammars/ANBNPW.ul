@@ -1,0 +1,41 @@
+usedim lp
+usedim lex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lp dimension
+defdim lp {
+  deftype "lp.label" {a b "^"}
+  deflabeltype "lp.label"
+  defentrytype {in: set(tuple("lp.label" {"!" "?" "+" "*"}))
+                out: set(tuple("lp.label" {"!" "?" "+" "*"}))
+                order: set(tuple("lp.label" "lp.label"))}
+%%
+  useprinciple "principle.graphPW" { dims {D: lp} }
+  useprinciple "principle.treePW" { dims {D: lp} }
+  useprinciple "principle.valencyPW" { dims {D: lp} }
+  useprinciple "principle.orderPW" { dims {D: lp} }
+  useprinciple "principle.projectivityPW" { dims {D: lp} }
+%%
+  output "output.pretty"
+  output "output.pretty1"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lex dimension
+defdim lex {
+  defentrytype {word: string}
+%%
+  output "output.dags1"
+  output "output.latexs1"
+  useoutput "output.dags1"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lexicon
+
+defentry {
+  dim lp {in: {a?}
+          out: {a? b!}
+          order: <"^" a b>}
+  dim lex {word: "a"}}
+
+defentry {
+  dim lp {in: {b!}}
+  dim lex {word: "b"}}

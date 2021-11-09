@@ -1,0 +1,786 @@
+<html lang="en">
+<head>
+<title>Table of contents - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="index.html#Top" title="Top">
+<link rel="next" href="License.html#License" title="License">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Table-of-contents"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="License.html#License">License</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="index.html#Top">Top</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<div class="contents">
+<h2>Table of Contents</h2>
+<ul>
+<li><a name="toc_License" href="License.html#License">1 License</a>
+<li><a name="toc_Overview" href="Overview.html#Overview">2 Overview</a>
+<ul>
+<li><a href="Overview.html#Overview">2.1 XDG</a>
+<li><a href="Overview.html#Overview">2.2 XDK</a>
+<li><a href="Overview.html#Overview">2.3 Literature</a>
+<li><a href="Overview.html#Overview">2.4 Structure of this Manual</a>
+</li></ul>
+<li><a name="toc_Installation" href="Installation.html#Installation">3 Installation</a>
+<ul>
+<li><a href="Installation.html#Installation">3.1 XDK</a>
+<li><a href="Installation.html#Installation">3.2 Supplementary Software</a>
+<ul>
+<li><a href="Installation.html#Installation">3.2.1 Emacs mode for User Language files</a>
+<li><a href="Installation.html#Installation">3.2.2 XTAG grammar generator</a>
+<li><a href="Installation.html#Installation">3.2.3 IOzSeF</a>
+<li><a href="Installation.html#Installation">3.2.4 CLLS output functor</a>
+</li></ul>
+</li></ul>
+<li><a name="toc_Compiler" href="Compiler.html#Compiler">4 Compiler</a>
+<ul>
+<li><a href="Overview1.html#Overview1">4.1 Overview</a>
+<ul>
+<li><a href="Overview1.html#Overview1">4.1.1 Grammar files</a>
+<li><a href="Overview1.html#Overview1">4.1.2 Grammar file languages</a>
+<li><a href="Overview1.html#Overview1">4.1.3 Type checking</a>
+<li><a href="Overview1.html#Overview1">4.1.4 Compilation</a>
+<li><a href="Overview1.html#Overview1">4.1.5 Summary</a>
+<li><a href="Overview1.html#Overview1">4.1.6 Developers only</a>
+</li></ul>
+<li><a href="Dimensions.html#Dimensions">4.2 Dimensions</a>
+<ul>
+<li><a href="Dimensions.html#Dimensions">4.2.1 Defining dimensions</a>
+<li><a href="Dimensions.html#Dimensions">4.2.2 Using dimensions</a>
+</li></ul>
+<li><a href="Types.html#Types">4.3 Types</a>
+<ul>
+<li><a href="Types.html#Types">4.3.1 Attributes type</a>
+<li><a href="Types.html#Types">4.3.2 Entry type</a>
+<li><a href="Types.html#Types">4.3.3 Label type</a>
+<li><a href="Types.html#Types">4.3.4 Additional types</a>
+<li><a href="Types.html#Types">4.3.5 Example (id dimension)</a>
+<li><a href="Types.html#Types">4.3.6 Example (lp dimension)</a>
+<li><a href="Types.html#Types">4.3.7 Example (idlp dimension)</a>
+<li><a href="Types.html#Types">4.3.8 Example (lex dimension)</a>
+</li></ul>
+<li><a href="Principles.html#Principles">4.4 Principles</a>
+<ul>
+<li><a href="Principles.html#Principles">4.4.1 Dimension mapping</a>
+<li><a href="Principles.html#Principles">4.4.2 Argument mapping</a>
+<li><a href="Principles.html#Principles">4.4.3 Example (principle.graph)</a>
+<ul>
+<li><a href="Principles.html#Principles">4.4.3.1 Graph principle</a>
+</li></ul>
+<li><a href="Principles.html#Principles">4.4.4 Example (principle.tree)</a>
+<ul>
+<li><a href="Principles.html#Principles">4.4.4.1 Tree principle</a>
+</li></ul>
+<li><a href="Principles.html#Principles">4.4.5 Example (principle.valency)</a>
+<ul>
+<li><a href="Principles.html#Principles">4.4.5.1 Valency principle</a>
+<li><a href="Principles.html#Principles">4.4.5.2 Feature paths</a>
+</li></ul>
+<li><a href="Principles.html#Principles">4.4.6 Example (principle.agr)</a>
+<ul>
+<li><a href="Principles.html#Principles">4.4.6.1 Agr principle</a>
+</li></ul>
+<li><a href="Principles.html#Principles">4.4.7 Example (principle.agreement)</a>
+<ul>
+<li><a href="Principles.html#Principles">4.4.7.1 Agreement principle</a>
+</li></ul>
+<li><a href="Principles.html#Principles">4.4.8 Example (principle.government)</a>
+<ul>
+<li><a href="Principles.html#Principles">4.4.8.1 Government principle</a>
+</li></ul>
+<li><a href="Principles.html#Principles">4.4.9 Example (principle.order)</a>
+<ul>
+<li><a href="Principles.html#Principles">4.4.9.1 Order principle</a>
+</li></ul>
+<li><a href="Principles.html#Principles">4.4.10 Example (principle.projectivity)</a>
+<ul>
+<li><a href="Principles.html#Principles">4.4.10.1 Projectivity principle</a>
+</li></ul>
+<li><a href="Principles.html#Principles">4.4.11 Example (principle.climbing)</a>
+<ul>
+<li><a href="Principles.html#Principles">4.4.11.1 Climbing principle</a>
+</li></ul>
+<li><a href="Principles.html#Principles">4.4.12 Example (principle.barriers)</a>
+<ul>
+<li><a href="Principles.html#Principles">4.4.12.1 Barriers principle</a>
+</li></ul>
+<li><a href="Principles.html#Principles">4.4.13 Example (principle.linkingEnd)</a>
+<ul>
+<li><a href="Principles.html#Principles">4.4.13.1 LinkingEnd principle</a>
+</li></ul>
+<li><a href="Principles.html#Principles">4.4.14 Example (principle.entries)</a>
+<ul>
+<li><a href="Principles.html#Principles">4.4.14.1 Entries principle</a>
+</li></ul>
+</li></ul>
+<li><a href="Outputs1.html#Outputs1">4.5 Outputs</a>
+<ul>
+<li><a href="Outputs1.html#Outputs1">4.5.1 Choosing outputs</a>
+<li><a href="Outputs1.html#Outputs1">4.5.2 Using outputs</a>
+<li><a href="Outputs1.html#Outputs1">4.5.3 Example</a>
+</li></ul>
+<li><a href="Lexicon.html#Lexicon">4.6 Lexicon</a>
+<ul>
+<li><a href="Lexicon.html#Lexicon">4.6.1 Disjunction</a>
+<li><a href="Lexicon.html#Lexicon">4.6.2 Defining lexical entries</a>
+<ul>
+<li><a href="Lexicon.html#Lexicon">4.6.2.1 Example (lexical entry)</a>
+</li></ul>
+<li><a href="Lexicon.html#Lexicon">4.6.3 Defining lexical classes</a>
+<ul>
+<li><a href="Lexicon.html#Lexicon">4.6.3.1 Example (lexical class)</a>
+<li><a href="Lexicon.html#Lexicon">4.6.3.2 Class parameters</a>
+<li><a href="Lexicon.html#Lexicon">4.6.3.3 Example (lexical class with parameters)</a>
+</li></ul>
+<li><a href="Lexicon.html#Lexicon">4.6.4 Using lexical classes</a>
+<ul>
+<li><a href="Lexicon.html#Lexicon">4.6.4.1 Example (class use)</a>
+</li></ul>
+<li><a href="Lexicon.html#Lexicon">4.6.5 Disjunction</a>
+<ul>
+<li><a href="Lexicon.html#Lexicon">4.6.5.1 Example (disjunction of set generator expressions)</a>
+</li></ul>
+</li></ul>
+<li><a href="Lattices.html#Lattices">4.7 Lattices</a>
+<ul>
+<li><a href="Lattices.html#Lattices">4.7.1 Top values</a>
+<ul>
+<li><a href="Lattices.html#Lattices">4.7.1.1 Example (top values)</a>
+</li></ul>
+<li><a href="Lattices.html#Lattices">4.7.2 Bottom values</a>
+<ul>
+<li><a href="Lattices.html#Lattices">4.7.2.1 Example (bottom values)</a>
+</li></ul>
+<li><a href="Lattices.html#Lattices">4.7.3 Greatest lower bound operation</a>
+<ul>
+<li><a href="Lattices.html#Lattices">4.7.3.1 Example (greatest lower bound operation; accumulative sets)</a>
+<li><a href="Lattices.html#Lattices">4.7.3.2 Example (combining conjunction and disjunction)</a>
+</li></ul>
+</li></ul>
+<li><a href="Merge.html#Merge">4.8 Merge</a>
+<li><a href="Types-reference.html#Types-reference">4.9 Types reference</a>
+<ul>
+<li><a href="Bool.html#Bool">4.9.1 Bool</a>
+<ul>
+<li><a href="Bool.html#Bool">4.9.1.1 Example</a>
+</li></ul>
+<li><a href="Card.html#Card">4.9.2 Card</a>
+<ul>
+<li><a href="Card.html#Card">4.9.2.1 Top value</a>
+<li><a href="Card.html#Card">4.9.2.2 Bottom value</a>
+<li><a href="Card.html#Card">4.9.2.3 Greatest lower bound operation</a>
+<li><a href="Card.html#Card">4.9.2.4 Example</a>
+</li></ul>
+<li><a href="Domain.html#Domain">4.9.3 Domain</a>
+<ul>
+<li><a href="Domain.html#Domain">4.9.3.1 Description</a>
+<li><a href="Domain.html#Domain">4.9.3.2 Top value</a>
+<li><a href="Domain.html#Domain">4.9.3.3 Bottom value</a>
+<li><a href="Domain.html#Domain">4.9.3.4 Greatest lower bound operation</a>
+<li><a href="Domain.html#Domain">4.9.3.5 Example</a>
+</li></ul>
+<li><a href="Integer.html#Integer">4.9.4 Integer</a>
+<ul>
+<li><a href="Integer.html#Integer">4.9.4.1 Top value</a>
+<li><a href="Integer.html#Integer">4.9.4.2 Bottom value</a>
+<li><a href="Integer.html#Integer">4.9.4.3 Greatest lower bound operation</a>
+<li><a href="Integer.html#Integer">4.9.4.4 Example</a>
+</li></ul>
+<li><a href="Integers.html#Integers">4.9.5 Integers</a>
+<ul>
+<li><a href="Integers.html#Integers">4.9.5.1 Example</a>
+</li></ul>
+<li><a href="List.html#List">4.9.6 List</a>
+<ul>
+<li><a href="List.html#List">4.9.6.1 Top value</a>
+<li><a href="List.html#List">4.9.6.2 Bottom value</a>
+<li><a href="List.html#List">4.9.6.3 Greatest lower bound operation</a>
+<li><a href="List.html#List">4.9.6.4 Example</a>
+</li></ul>
+<li><a href="Map.html#Map">4.9.7 Map</a>
+<ul>
+<li><a href="Map.html#Map">4.9.7.1 Example</a>
+</li></ul>
+<li><a href="Record.html#Record">4.9.8 Record</a>
+<ul>
+<li><a href="Record.html#Record">4.9.8.1 Top value</a>
+<li><a href="Record.html#Record">4.9.8.2 Bottom value</a>
+<li><a href="Record.html#Record">4.9.8.3 Greatest lower bound operation</a>
+<li><a href="Record.html#Record">4.9.8.4 Example</a>
+</li></ul>
+<li><a href="Set-_0028accumulative_0029.html#Set-_0028accumulative_0029">4.9.9 Set (accumulative)</a>
+<ul>
+<li><a href="Set-_0028accumulative_0029.html#Set-_0028accumulative_0029">4.9.9.1 Set generator expressions</a>
+<li><a href="Set-_0028accumulative_0029.html#Set-_0028accumulative_0029">4.9.9.2 Top value</a>
+<li><a href="Set-_0028accumulative_0029.html#Set-_0028accumulative_0029">4.9.9.3 Bottom value</a>
+<li><a href="Set-_0028accumulative_0029.html#Set-_0028accumulative_0029">4.9.9.4 Greatest lower bound operation</a>
+<li><a href="Set-_0028accumulative_0029.html#Set-_0028accumulative_0029">4.9.9.5 Example</a>
+</li></ul>
+<li><a href="Set-_0028intersective_0029.html#Set-_0028intersective_0029">4.9.10 Intersective set</a>
+<ul>
+<li><a href="Set-_0028intersective_0029.html#Set-_0028intersective_0029">4.9.10.1 Set generator expressions</a>
+<li><a href="Set-_0028intersective_0029.html#Set-_0028intersective_0029">4.9.10.2 Example (set generator expressions)</a>
+<li><a href="Set-_0028intersective_0029.html#Set-_0028intersective_0029">4.9.10.3 Top value</a>
+<li><a href="Set-_0028intersective_0029.html#Set-_0028intersective_0029">4.9.10.4 Bottom value</a>
+<li><a href="Set-_0028intersective_0029.html#Set-_0028intersective_0029">4.9.10.5 Greatest lower bound operation</a>
+<li><a href="Set-_0028intersective_0029.html#Set-_0028intersective_0029">4.9.10.6 Example</a>
+</li></ul>
+<li><a href="String.html#String">4.9.11 String</a>
+<ul>
+<li><a href="String.html#String">4.9.11.1 Top value</a>
+<li><a href="String.html#String">4.9.11.2 Bottom value</a>
+<li><a href="String.html#String">4.9.11.3 Greatest lower bound operation</a>
+<li><a href="String.html#String">4.9.11.4 Example</a>
+</li></ul>
+<li><a href="Tuple.html#Tuple">4.9.12 Tuple</a>
+<ul>
+<li><a href="Tuple.html#Tuple">4.9.12.1 Top value</a>
+<li><a href="Tuple.html#Tuple">4.9.12.2 Bottom value</a>
+<li><a href="Tuple.html#Tuple">4.9.12.3 Greatest lower bound operation</a>
+<li><a href="Tuple.html#Tuple">4.9.12.4 Example</a>
+</li></ul>
+<li><a href="Valency.html#Valency">4.9.13 Valency</a>
+<ul>
+<li><a href="Valency.html#Valency">4.9.13.1 Example</a>
+</li></ul>
+</li></ul>
+<li><a href="UL-syntax.html#UL-syntax">4.10 UL syntax</a>
+<ul>
+<li><a href="UL-syntax.html#UL-syntax">4.10.1 UL lexical syntax</a>
+<ul>
+<li><a href="UL-syntax.html#UL-syntax">4.10.1.1 Keywords</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.1.2 Operators</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.1.3 Identifiers</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.1.4 Integers</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.1.5 Strings</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.1.6 End of line comments</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.1.7 Balanced comments</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.1.8 Includes</a>
+</li></ul>
+<li><a href="UL-syntax.html#UL-syntax">4.10.2 UL context-free syntax</a>
+<ul>
+<li><a href="UL-syntax.html#UL-syntax">4.10.2.1 Start symbol (S)</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.2.2 Grammar definitions (Defgrammar)</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.2.3 Dimension definitions (Defdim)</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.2.4 Principle use instructions (Useprinciple)</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.2.5 Types (Type)</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.2.6 Class bodies (Class)</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.2.7 Terms (Term)</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.2.8 Feature paths (Featurepath)</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.2.9 Record specifications (Recspec)</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.2.10 Set generator expression bodies (Setgen)</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.2.11 Constants (Constant)</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.2.12 Integers (Integer)</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.2.13 Features (ConstantFeat, TermFeat, VarTermFeat, and CardFeat)</a>
+<li><a href="UL-syntax.html#UL-syntax">4.10.2.14 Cardinality sets (Card)</a>
+</li></ul>
+</li></ul>
+<li><a href="XML-syntax.html#XML-syntax">4.11 XML syntax</a>
+<ul>
+<li><a href="XML-syntax.html#XML-syntax">4.11.1 Parameter entities</a>
+<li><a href="XML-syntax.html#XML-syntax">4.11.2 Elements</a>
+<ul>
+<li><a href="XML-syntax.html#XML-syntax">4.11.2.1 Root element (grammar)</a>
+<li><a href="XML-syntax.html#XML-syntax">4.11.2.2 Principle definitions (principleDef)</a>
+<li><a href="XML-syntax.html#XML-syntax">4.11.2.3 Output definitions (outputDef)</a>
+<li><a href="XML-syntax.html#XML-syntax">4.11.2.4 Dimension use (useDimension)</a>
+<li><a href="XML-syntax.html#XML-syntax">4.11.2.5 Dimension definition (dimension)</a>
+<li><a href="XML-syntax.html#XML-syntax">4.11.2.6 Attributes type (attrsType)</a>
+<li><a href="XML-syntax.html#XML-syntax">4.11.2.7 Entry type (entryType)</a>
+<li><a href="XML-syntax.html#XML-syntax">4.11.2.8 Label type (labelType)</a>
+<li><a href="XML-syntax.html#XML-syntax">4.11.2.9 Choosing an output (output)</a>
+<li><a href="XML-syntax.html#XML-syntax">4.11.2.10 Using an output (useOutput)</a>
+<li><a href="XML-syntax.html#XML-syntax">4.11.2.11 Type definition (typeDef)</a>
+<li><a href="XML-syntax.html#XML-syntax">4.11.2.12 Types (type parameter entity)</a>
+<li><a href="XML-syntax.html#XML-syntax">4.11.2.13 Features (typeFeature and feature)</a>
+<li><a href="XML-syntax.html#XML-syntax">4.11.2.14 Principle use (usePrinciple)</a>
+<li><a href="XML-syntax.html#XML-syntax">4.11.2.15 Class definitions (classDef)</a>
+<li><a href="XML-syntax.html#XML-syntax">4.11.2.16 Class bodies</a>
+<li><a href="XML-syntax.html#XML-syntax">4.11.2.17 Lexical entries (entry)</a>
+<li><a href="XML-syntax.html#XML-syntax">4.11.2.18 Terms (term parameter entity)</a>
+</li></ul>
+</li></ul>
+<li><a href="IL-syntax.html#IL-syntax">4.12 IL syntax</a>
+<ul>
+<li><a href="IL-syntax.html#IL-syntax">4.12.1 Descriptions</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.2 Syntax checker</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.3 Start symbol ('S')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.4 Grammar definition ('GRAMMAR')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.5 Principle definitions ('PRINCIPLEDEF')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.6 Output definitions</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.7 Dimension definitions ('DIMENSION')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.8 Output chooses ('OUTPUT')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.9 Output uses ('USEOUTPUT')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.10 Type definitions ('TYPEDEF')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.11 Types ('TYPE')</a>
+<ul>
+<li><a href="IL-syntax.html#IL-syntax">4.12.11.1 Domain types ('type.domain')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.11.2 Accumulative set types ('type.set')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.11.3 Intersective set types ('type.iset')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.11.4 Tuple types ('type.tuple')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.11.5 List types ('type.list')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.11.6 Record types ('type.record')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.11.7 Valency types ('type.valency')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.11.8 Vector types ('type.vec')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.11.9 Integer types ('type.int')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.11.10 Set of integers types ('type.ints')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.11.11 String types ('type.string')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.11.12 Bool types ('type.bool')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.11.13 Type reference types ('type.ref')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.11.14 Label reference types ('type.labelref')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.11.15 Type variable ('type.variable')</a>
+</li></ul>
+<li><a href="IL-syntax.html#IL-syntax">4.12.12 Principle uses ('USEPRINCIPLE')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.13 Class definitions ('CLASSDEF')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.14 Class bodies ('CLASS')</a>
+<ul>
+<li><a href="IL-syntax.html#IL-syntax">4.12.14.1 Entry dimension ('class.dimension')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.14.2 Class reference ('class.ref')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.14.3 Conjunction (conj)</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.14.4 Disjunction (disj)</a>
+</li></ul>
+<li><a href="IL-syntax.html#IL-syntax">4.12.15 Lexical entries ('ENTRY')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.16 Terms ('TERM')</a>
+<ul>
+<li><a href="IL-syntax.html#IL-syntax">4.12.16.1 Constants ('CONSTANT')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.16.2 Variables ('VARIABLE')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.16.3 Integers ('INTEGER')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.16.4 Cardinality sets ('CARD')</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.16.5 Cardinality specifications (<code>'CONSTANT'#'CARD'</code> or <code>'VARIABLE'#'CARD'</code>)</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.16.6 Top values (<code>top</code>)</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.16.7 Bottom values (<code>bot</code>)</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.16.8 Sets (<code>set</code>)</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.16.9 Lists (<code>list</code>)</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.16.10 Records (<code>record</code>)</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.16.11 Set generator expressions (<code>setgen</code>)</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.16.12 Feature paths (<code>featurepath</code>)</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.16.13 Type annotations (<code>annotation</code>)</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.16.14 Conjunction (<code>conj</code>)</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.16.15 Disjunction (<code>disj</code>)</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.16.16 Concatenation (<code>concat</code>)</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.16.17 Order (<code>order</code>)</a>
+</li></ul>
+<li><a href="IL-syntax.html#IL-syntax">4.12.17 Undetermined values</a>
+<ul>
+<li><a href="IL-syntax.html#IL-syntax">4.12.17.1 Undetermined cardinality sets</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.17.2 Undetermined constants</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.17.3 Undetermined integers</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.17.4 Undetermined lists</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.17.5 Undetermined sets</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.17.6 Undetermined strings</a>
+<li><a href="IL-syntax.html#IL-syntax">4.12.17.7 Undetermined tuples</a>
+</li></ul>
+</li></ul>
+<li><a href="SL-syntax.html#SL-syntax">4.13 SL syntax</a>
+<ul>
+<li><a href="SL-syntax.html#SL-syntax">4.13.1 Feature path</a>
+<li><a href="SL-syntax.html#SL-syntax">4.13.2 Cardinality set</a>
+<li><a href="SL-syntax.html#SL-syntax">4.13.3 Domain</a>
+<li><a href="SL-syntax.html#SL-syntax">4.13.4 Integer</a>
+<li><a href="SL-syntax.html#SL-syntax">4.13.5 List</a>
+<li><a href="SL-syntax.html#SL-syntax">4.13.6 Record</a>
+<li><a href="SL-syntax.html#SL-syntax">4.13.7 Set</a>
+<li><a href="SL-syntax.html#SL-syntax">4.13.8 Order</a>
+<li><a href="SL-syntax.html#SL-syntax">4.13.9 String</a>
+<li><a href="SL-syntax.html#SL-syntax">4.13.10 Concat</a>
+<li><a href="SL-syntax.html#SL-syntax">4.13.11 Tuple</a>
+<li><a href="SL-syntax.html#SL-syntax">4.13.12 Undetermined values</a>
+<ul>
+<li><a href="SL-syntax.html#SL-syntax">4.13.12.1 Undetermined cardinality sets</a>
+<li><a href="SL-syntax.html#SL-syntax">4.13.12.2 Undetermined constants</a>
+<li><a href="SL-syntax.html#SL-syntax">4.13.12.3 Undetermined integers</a>
+<li><a href="SL-syntax.html#SL-syntax">4.13.12.4 Undetermined lists</a>
+<li><a href="SL-syntax.html#SL-syntax">4.13.12.5 Undetermined sets</a>
+<li><a href="SL-syntax.html#SL-syntax">4.13.12.6 Undetermined strings</a>
+<li><a href="SL-syntax.html#SL-syntax">4.13.12.7 Undetermined tuples</a>
+</li></ul>
+</li></ul>
+<li><a href="Grammar-record.html#Grammar-record">4.14 Grammar record</a>
+<ul>
+<li><a href="Grammar-record.html#Grammar-record">4.14.1 Stateless grammar record</a>
+<li><a href="Grammar-record.html#Grammar-record">4.14.2 Stateful grammar record</a>
+</li></ul>
+<li><a href="Lattice-functors.html#Lattice-functors">4.15 Lattice functors</a>
+<ul>
+<li><a href="Lat_002dOverview.html#Lat_002dOverview">4.15.1 Overview</a>
+<li><a href="Lat_002dCard.html#Lat_002dCard">4.15.2 Card functor</a>
+<ul>
+<li><a href="Lat_002dCard.html#Lat_002dCard">4.15.2.1 Select function</a>
+<li><a href="Lat_002dCard.html#Lat_002dCard">4.15.2.2 Make variable function</a>
+<li><a href="Lat_002dCard.html#Lat_002dCard">4.15.2.3 Count function</a>
+<li><a href="Lat_002dCard.html#Lat_002dCard">4.15.2.4 Additional interface features</a>
+</li></ul>
+<li><a href="Lat_002dDomain.html#Lat_002dDomain">4.15.3 Domain functor</a>
+<ul>
+<li><a href="Lat_002dDomain.html#Lat_002dDomain">4.15.3.1 Select function</a>
+<li><a href="Lat_002dDomain.html#Lat_002dDomain">4.15.3.2 Make variable function</a>
+<li><a href="Lat_002dDomain.html#Lat_002dDomain">4.15.3.3 Count function</a>
+<li><a href="Lat_002dDomain.html#Lat_002dDomain">4.15.3.4 Additional interface features</a>
+</li></ul>
+<li><a href="Lat_002dFlat.html#Lat_002dFlat">4.15.4 Flat lattice functor</a>
+<ul>
+<li><a href="Lat_002dFlat.html#Lat_002dFlat">4.15.4.1 Select function</a>
+<li><a href="Lat_002dFlat.html#Lat_002dFlat">4.15.4.2 Make variable function</a>
+<li><a href="Lat_002dFlat.html#Lat_002dFlat">4.15.4.3 Count function</a>
+<li><a href="Lat_002dFlat.html#Lat_002dFlat">4.15.4.4 Additional interface features</a>
+</li></ul>
+<li><a href="Lat_002dInt.html#Lat_002dInt">4.15.5 Integer functor</a>
+<ul>
+<li><a href="Lat_002dInt.html#Lat_002dInt">4.15.5.1 Select function</a>
+<li><a href="Lat_002dInt.html#Lat_002dInt">4.15.5.2 Make variable function</a>
+<li><a href="Lat_002dInt.html#Lat_002dInt">4.15.5.3 Count function</a>
+<li><a href="Lat_002dInt.html#Lat_002dInt">4.15.5.4 Additional interface features</a>
+</li></ul>
+<li><a href="Lat_002dList.html#Lat_002dList">4.15.6 List functor</a>
+<ul>
+<li><a href="Lat_002dList.html#Lat_002dList">4.15.6.1 Select function</a>
+<li><a href="Lat_002dList.html#Lat_002dList">4.15.6.2 Make variable function</a>
+<li><a href="Lat_002dList.html#Lat_002dList">4.15.6.3 Count function</a>
+<li><a href="Lat_002dList.html#Lat_002dList">4.15.6.4 Additional interface features</a>
+</li></ul>
+<li><a href="Lat_002dRecord.html#Lat_002dRecord">4.15.7 Record functor</a>
+<ul>
+<li><a href="Lat_002dRecord.html#Lat_002dRecord">4.15.7.1 Select function</a>
+<li><a href="Lat_002dRecord.html#Lat_002dRecord">4.15.7.2 Make variable function</a>
+<li><a href="Lat_002dRecord.html#Lat_002dRecord">4.15.7.3 Count function</a>
+<li><a href="Lat_002dRecord.html#Lat_002dRecord">4.15.7.4 Additional interface features</a>
+</li></ul>
+<li><a href="Lat_002dSet.html#Lat_002dSet">4.15.8 Set functor</a>
+<ul>
+<li><a href="Lat_002dSet.html#Lat_002dSet">4.15.8.1 Select function</a>
+<li><a href="Lat_002dSet.html#Lat_002dSet">4.15.8.2 Make variable function</a>
+<li><a href="Lat_002dSet.html#Lat_002dSet">4.15.8.3 Count function</a>
+<li><a href="Lat_002dSet.html#Lat_002dSet">4.15.8.4 Additional interface features</a>
+</li></ul>
+<li><a href="Lat_002dString.html#Lat_002dString">4.15.9 String functor</a>
+<ul>
+<li><a href="Lat_002dString.html#Lat_002dString">4.15.9.1 Select function</a>
+<li><a href="Lat_002dString.html#Lat_002dString">4.15.9.2 Make variable function</a>
+<li><a href="Lat_002dString.html#Lat_002dString">4.15.9.3 Count function</a>
+<li><a href="Lat_002dString.html#Lat_002dString">4.15.9.4 Additional interface features</a>
+</li></ul>
+<li><a href="Lat_002dTuple.html#Lat_002dTuple">4.15.10 Tuple functor</a>
+<ul>
+<li><a href="Lat_002dTuple.html#Lat_002dTuple">4.15.10.1 Select function</a>
+<li><a href="Lat_002dTuple.html#Lat_002dTuple">4.15.10.2 Make variable function</a>
+<li><a href="Lat_002dTuple.html#Lat_002dTuple">4.15.10.3 Count function</a>
+<li><a href="Lat_002dTuple.html#Lat_002dTuple">4.15.10.4 Additional interface features</a>
+</li></ul>
+</li></ul>
+</li></ul>
+<li><a name="toc_Grammars" href="Grammars.html#Grammars">5 Grammars</a>
+<ul>
+<li><a href="ANBN.html#ANBN">5.1 ANBN</a>
+<li><a href="ANBNCN.html#ANBNCN">5.2 ANBNCN</a>
+<li><a href="ANBNCNPW.html#ANBNCNPW">5.3 ANBNCNPW</a>
+<li><a href="ANBNPW.html#ANBNPW">5.4 ANBNPW</a>
+<li><a href="Acl01.html#Acl01">5.5 Acl01</a>
+<li><a href="Acl01PW.html#Acl01PW">5.6 Acl01PW</a>
+<li><a href="Arabic.html#Arabic">5.7 Arabic</a>
+<li><a href="Benoit.html#Benoit">5.8 Benoit</a>
+<li><a href="CSD.html#CSD">5.9 CSD</a>
+<li><a href="CSDPW.html#CSDPW">5.10 CSDPW</a>
+<li><a href="Chorus.html#Chorus">5.11 Chorus</a>
+<li><a href="Diplom.html#Diplom">5.12 Diplom</a>
+<li><a href="Dutch1.html#Dutch1">5.13 Dutch</a>
+<li><a href="EQAB.html#EQAB">5.14 EQAB</a>
+<li><a href="EQABPW.html#EQABPW">5.15 EQABPW</a>
+<li><a href="ESSLLI04_005fid.html#ESSLLI04_005fid">5.16 ESSLLI04_id</a>
+<li><a href="ESSLLI04_005fidPW.html#ESSLLI04_005fidPW">5.17 ESSLLI04_idPW</a>
+<li><a href="ESSLLI04_005fidlp.html#ESSLLI04_005fidlp">5.18 ESSLLI04_idlp</a>
+<li><a href="ESSLLI04_005fidlpPW.html#ESSLLI04_005fidlpPW">5.19 ESSLLI04_idlpPW</a>
+<li><a href="ESSLLI04_005fidlpds.html#ESSLLI04_005fidlpds">5.20 ESSLLI04_idlpds</a>
+<li><a href="ESSLLI04_005fidlpdsPW.html#ESSLLI04_005fidlpdsPW">5.21 ESSLLI04_idlpdsPW</a>
+<li><a href="ESSLLI04_005fidlpdspa.html#ESSLLI04_005fidlpdspa">5.22 ESSLLI04_idlpdspa</a>
+<li><a href="ESSLLI04_005fidlpdspaPW.html#ESSLLI04_005fidlpdspaPW">5.23 ESSLLI04_idlpdspaPW</a>
+<li><a href="ESSLLI04_005fidlpdspasc.html#ESSLLI04_005fidlpdspasc">5.24 ESSLLI04_idlpdspasc</a>
+<li><a href="ESSLLI04_005fidlpdspascPW.html#ESSLLI04_005fidlpdspascPW">5.25 ESSLLI04_idlpdspascPW</a>
+<li><a href="FG_005fTAGDC.html#FG_005fTAGDC">5.26 FG_TAGDC</a>
+<li><a href="FG_005fTAGDCgen.html#FG_005fTAGDCgen">5.27 FG_TAGDCgen</a>
+<li><a href="MTS10.html#MTS10">5.28 MTS10</a>
+<li><a href="MWE.html#MWE">5.29 MWE</a>
+<li><a href="MWEgen.html#MWEgen">5.30 MWEgen</a>
+<li><a href="Negation.html#Negation">5.31 Negation</a>
+<li><a href="SAT.html#SAT">5.32 SAT</a>
+<li><a href="SATPW.html#SATPW">5.33 SATPW</a>
+<li><a href="SCR.html#SCR">5.34 SCR</a>
+<li><a href="SCRPW.html#SCRPW">5.35 SCRPW</a>
+<li><a href="TAG1.html#TAG1">5.36 TAG</a>
+<li><a href="adjunction.html#adjunction">5.37 adjunction</a>
+<li><a href="coindex.html#coindex">5.38 coindex</a>
+<li><a href="diss.html#diss">5.39 diss</a>
+<li><a href="dissPW_002e2dorder.html#dissPW_002e2dorder">5.40 dissPW.2dorder</a>
+<li><a href="dissPW.html#dissPW">5.41 dissPW</a>
+<li><a href="ema.html#ema">5.42 ema</a>
+<li><a href="ema_005fth.html#ema_005fth">5.43 ema_th</a>
+<li><a href="igk.html#igk">5.44 igk</a>
+<li><a href="nut.html#nut">5.45 nut</a>
+<li><a href="nut1.html#nut1">5.46 nut</a>
+<li><a href="nut1PW.html#nut1PW">5.47 nut1PW</a>
+<li><a href="nutPW.html#nutPW">5.48 nutPW</a>
+<li><a href="regdgPW.html#regdgPW">5.49 regdgPW</a>
+<li><a href="softproj.html#softproj">5.50 softproj</a>
+<li><a href="ww.html#ww">5.51 ww</a>
+</li></ul>
+<li><a name="toc_XTAG" href="XTAG.html#XTAG">6 XTAG</a>
+<li><a name="toc_Solver" href="Solver.html#Solver">7 Solver</a>
+<ul>
+<li><a href="Principles-overview.html#Principles-overview">7.1 Principles overview</a>
+<ul>
+<li><a href="Principles-overview.html#Principles-overview">7.1.1 Graph</a>
+<li><a href="Principles-overview.html#Principles-overview">7.1.2 Valency</a>
+<li><a href="Principles-overview.html#Principles-overview">7.1.3 Agreement</a>
+<li><a href="Principles-overview.html#Principles-overview">7.1.4 Order</a>
+<li><a href="Principles-overview.html#Principles-overview">7.1.5 Climbing</a>
+<li><a href="Principles-overview.html#Principles-overview">7.1.6 Linking</a>
+<li><a href="Principles-overview.html#Principles-overview">7.1.7 TAG encoding</a>
+<li><a href="Principles-overview.html#Principles-overview">7.1.8 Test</a>
+<li><a href="Principles-overview.html#Principles-overview">7.1.9 Miscellaneous</a>
+</li></ul>
+<li><a href="Principles-list.html#Principles-list">7.2 Principles list</a>
+<ul>
+<li><a href="Agr.html#Agr">7.2.1 Agr principle</a>
+<li><a href="Agreement.html#Agreement">7.2.2 Agreement principle</a>
+<li><a href="Agreement1.html#Agreement1">7.2.3 Agreement1 principle</a>
+<li><a href="AgreementSubset.html#AgreementSubset">7.2.4 AgreementSubset principle</a>
+<li><a href="Barriers.html#Barriers">7.2.5 Barriers principle</a>
+<li><a href="BarriersAttrib.html#BarriersAttrib">7.2.6 BarriersAttrib principle</a>
+<li><a href="BarriersLabels.html#BarriersLabels">7.2.7 BarriersLabels principle</a>
+<li><a href="CSD1.html#CSD1">7.2.8 CSD principle</a>
+<li><a href="Chorus1.html#Chorus1">7.2.9 Chorus principle</a>
+<li><a href="Climbing.html#Climbing">7.2.10 Climbing principle</a>
+<li><a href="Coindex.html#Coindex">7.2.11 Coindex principle</a>
+<li><a href="Customs.html#Customs">7.2.12 Customs principle</a>
+<li><a href="Dag.html#Dag">7.2.13 Dag principle</a>
+<li><a href="Dutch.html#Dutch">7.2.14 Dutch principle</a>
+<li><a href="Entries.html#Entries">7.2.15 Entries principle</a>
+<li><a href="Government.html#Government">7.2.16 Government principle</a>
+<li><a href="Government1.html#Government1">7.2.17 Government1 principle</a>
+<li><a href="Graph.html#Graph">7.2.18 Graph principle</a>
+<li><a href="GraphConstraints.html#GraphConstraints">7.2.19 Graph principle (no distribution)</a>
+<li><a href="GraphDist.html#GraphDist">7.2.20 Graph principle (only distribution)</a>
+<li><a href="Graph1.html#Graph1">7.2.21 Graph1 principle</a>
+<li><a href="Graph1Constraints.html#Graph1Constraints">7.2.22 Graph1 principle (no distribution)</a>
+<li><a href="Graph1Dist.html#Graph1Dist">7.2.23 Graph1 principle (only distribution)</a>
+<li><a href="In.html#In">7.2.24 In principle</a>
+<li><a href="In1.html#In1">7.2.25 In1 principle</a>
+<li><a href="In2.html#In2">7.2.26 In2 principle</a>
+<li><a href="Linking12BelowStartEnd.html#Linking12BelowStartEnd">7.2.27 Linking12BelowStartEnd principle</a>
+<li><a href="LinkingAbove.html#LinkingAbove">7.2.28 LinkingAbove principle</a>
+<li><a href="LinkingAboveBelow1or2Start.html#LinkingAboveBelow1or2Start">7.2.29 LinkingAboveBelow1or2Start principle</a>
+<li><a href="LinkingAboveEnd.html#LinkingAboveEnd">7.2.30 LinkingAboveEnd principle</a>
+<li><a href="LinkingAboveStart.html#LinkingAboveStart">7.2.31 LinkingAboveStart principle</a>
+<li><a href="LinkingAboveStartEnd.html#LinkingAboveStartEnd">7.2.32 LinkingAboveStartEnd principle</a>
+<li><a href="LinkingBelow.html#LinkingBelow">7.2.33 LinkingBelow principle</a>
+<li><a href="LinkingBelow1or2Start.html#LinkingBelow1or2Start">7.2.34 LinkingBelow1or2Start principle</a>
+<li><a href="LinkingBelowEnd.html#LinkingBelowEnd">7.2.35 LinkingBelowEnd principle</a>
+<li><a href="LinkingBelowStart.html#LinkingBelowStart">7.2.36 LinkingBelowStart principle</a>
+<li><a href="LinkingBelowStartEnd.html#LinkingBelowStartEnd">7.2.37 LinkingBelowStartEnd principle</a>
+<li><a href="LinkingDaughter.html#LinkingDaughter">7.2.38 LinkingDaughter principle</a>
+<li><a href="LinkingDaughterEnd.html#LinkingDaughterEnd">7.2.39 LinkingDaughterEnd principle</a>
+<li><a href="LinkingEnd.html#LinkingEnd">7.2.40 LinkingEnd principle</a>
+<li><a href="LinkingMother.html#LinkingMother">7.2.41 LinkingMother principle</a>
+<li><a href="LinkingMotherEnd.html#LinkingMotherEnd">7.2.42 LinkingMotherEnd principle</a>
+<li><a href="LinkingNotDaughter.html#LinkingNotDaughter">7.2.43 LinkingNotDaughter principle</a>
+<li><a href="LinkingNotMother.html#LinkingNotMother">7.2.44 LinkingNotMother principle</a>
+<li><a href="LinkingSisters.html#LinkingSisters">7.2.45 LinkingSisters principle</a>
+<li><a href="LockingDaughters.html#LockingDaughters">7.2.46 LockingDaughters principle</a>
+<li><a href="LookRight.html#LookRight">7.2.47 LookRight principle</a>
+<li><a href="Order.html#Order">7.2.48 Order principle</a>
+<li><a href="Order1.html#Order1">7.2.49 Order1 principle</a>
+<li><a href="Order1Constraints.html#Order1Constraints">7.2.50 Order1 principle (no distribution)</a>
+<li><a href="Order1Dist.html#Order1Dist">7.2.51 Order1 principle (no distribution)</a>
+<li><a href="Order2.html#Order2">7.2.52 Order2 principle</a>
+<li><a href="Order2Constraints.html#Order2Constraints">7.2.53 Order2 principle (no distribution)</a>
+<li><a href="Order2Dist.html#Order2Dist">7.2.54 Order2 principle (no distribution)</a>
+<li><a href="OrderConstraints.html#OrderConstraints">7.2.55 Order principle (no distribution)</a>
+<li><a href="OrderDist.html#OrderDist">7.2.56 Order principle (no distribution)</a>
+<li><a href="OrderWithCuts.html#OrderWithCuts">7.2.57 OrderWithCuts principle</a>
+<li><a href="Out.html#Out">7.2.58 Out principle</a>
+<li><a href="PL.html#PL">7.2.59 PL principle</a>
+<li><a href="PartialAgreement.html#PartialAgreement">7.2.60 PartialAgreement principle</a>
+<li><a href="Projectivity.html#Projectivity">7.2.61 Projectivity principle</a>
+<li><a href="Relative.html#Relative">7.2.62 Relative principle</a>
+<li><a href="SameEdges.html#SameEdges">7.2.63 SameEdges principle</a>
+<li><a href="Subgraphs.html#Subgraphs">7.2.64 Subgraphs principle</a>
+<li><a href="TAG.html#TAG">7.2.65 TAG principle</a>
+<li><a href="Test.html#Test">7.2.66 Test principle</a>
+<li><a href="Tree.html#Tree">7.2.67 Tree principle</a>
+<li><a href="Tree1.html#Tree1">7.2.68 Tree1 principle</a>
+<li><a href="Valency1.html#Valency1">7.2.69 Valency principle</a>
+<li><a href="XTAG1.html#XTAG1">7.2.70 XTAG principle</a>
+<li><a href="XTAGLinking.html#XTAGLinking">7.2.71 XTAGLinking principle</a>
+<li><a href="XTAGRedundant.html#XTAGRedundant">7.2.72 XTAGRedundant principle</a>
+<li><a href="XTAGRoot.html#XTAGRoot">7.2.73 XTAGRoot principle</a>
+</li></ul>
+<li><a href="Node-record.html#Node-record">7.3 Node record</a>
+<li><a href="Writing-new-principles.html#Writing-new-principles">7.4 Writing new principles</a>
+<ul>
+<li><a href="Writing-new-principles.html#Writing-new-principles">7.4.1 Principle definition functor</a>
+<ul>
+<li><a href="Writing-new-principles.html#Writing-new-principles">7.4.1.1 Example (graph principle)</a>
+<li><a href="Writing-new-principles.html#Writing-new-principles">7.4.1.2 Example (out principle)</a>
+<li><a href="Writing-new-principles.html#Writing-new-principles">7.4.1.3 Integrate the principle definition</a>
+</li></ul>
+<li><a href="Writing-new-principles.html#Writing-new-principles">7.4.2 Constraint functors</a>
+<ul>
+<li><a href="Writing-new-principles.html#Writing-new-principles">7.4.2.1 Example (binding root variables)</a>
+<li><a href="Writing-new-principles.html#Writing-new-principles">7.4.2.2 Check model helper procedure</a>
+<li><a href="Writing-new-principles.html#Writing-new-principles">7.4.2.3 Integrate the constraint functor</a>
+</li></ul>
+</li></ul>
+</li></ul>
+<li><a name="toc_Oracles" href="Oracles.html#Oracles">8 Oracles</a>
+<ul>
+<li><a href="ManualOracle.html#ManualOracle">8.1 Manual Oracle</a>
+</li></ul>
+<li><a name="toc_Outputs" href="Outputs.html#Outputs">9 Outputs</a>
+<ul>
+<li><a href="AllDags.html#AllDags">9.1 AllDags</a>
+<li><a href="AllDags1.html#AllDags1">9.2 AllDags1</a>
+<li><a href="AllDags2.html#AllDags2">9.3 AllDags2</a>
+<li><a href="AllDags3.html#AllDags3">9.4 AllDags3</a>
+<li><a href="AllLatexs.html#AllLatexs">9.5 AllLatexs</a>
+<li><a href="AllLatexs1.html#AllLatexs1">9.6 AllLatexs1</a>
+<li><a href="AllLatexs2.html#AllLatexs2">9.7 AllLatexs2</a>
+<li><a href="AllLatexs3.html#AllLatexs3">9.8 AllLatexs3</a>
+<li><a href="CLLS.html#CLLS">9.9 CLLS</a>
+<li><a href="CLLS1.html#CLLS1">9.10 CLLS</a>
+<li><a href="Dag1.html#Dag1">9.11 Dag</a>
+<li><a href="Dag11.html#Dag11">9.12 Dag1</a>
+<li><a href="Dag12.html#Dag12">9.13 Dag2</a>
+<li><a href="Dag13.html#Dag13">9.14 Dag3</a>
+<li><a href="Dags.html#Dags">9.15 Dags</a>
+<li><a href="Dags1.html#Dags1">9.16 Dags1</a>
+<li><a href="Dags2.html#Dags2">9.17 Dags2</a>
+<li><a href="Dags3.html#Dags3">9.18 Dags3</a>
+<li><a href="Decode.html#Decode">9.19 Decode</a>
+<li><a href="Latex.html#Latex">9.20 Latex</a>
+<li><a href="Latex1.html#Latex1">9.21 Latex1</a>
+<li><a href="Latex2.html#Latex2">9.22 Latex2</a>
+<li><a href="Latex3.html#Latex3">9.23 Latex3</a>
+<li><a href="Latexs.html#Latexs">9.24 Latexs</a>
+<li><a href="Latexs1.html#Latexs1">9.25 Latexs1</a>
+<li><a href="Latexs2.html#Latexs2">9.26 Latexs2</a>
+<li><a href="Latexs3.html#Latexs3">9.27 Latexs3</a>
+<li><a href="Pretty.html#Pretty">9.28 Pretty</a>
+<li><a href="Pretty1.html#Pretty1">9.29 Pretty1</a>
+<li><a href="XML.html#XML">9.30 XML</a>
+<li><a href="XML1.html#XML1">9.31 XML1</a>
+<li><a href="XML2.html#XML2">9.32 XML2</a>
+<li><a href="XML3.html#XML3">9.33 XML3</a>
+<li><a href="XML4.html#XML4">9.34 XML4</a>
+<li><a href="XTAGDerivation.html#XTAGDerivation">9.35 XTAGDerivation</a>
+<li><a href="OL-syntax.html#OL-syntax">9.36 Output Language</a>
+<ul>
+<li><a href="OL-syntax.html#OL-syntax">9.36.1 Feature path</a>
+<li><a href="OL-syntax.html#OL-syntax">9.36.2 Cardinality set</a>
+<li><a href="OL-syntax.html#OL-syntax">9.36.3 Constraint</a>
+<li><a href="OL-syntax.html#OL-syntax">9.36.4 Domain</a>
+<li><a href="OL-syntax.html#OL-syntax">9.36.5 Integer</a>
+<li><a href="OL-syntax.html#OL-syntax">9.36.6 List</a>
+<li><a href="OL-syntax.html#OL-syntax">9.36.7 Map</a>
+<li><a href="OL-syntax.html#OL-syntax">9.36.8 Record</a>
+<li><a href="OL-syntax.html#OL-syntax">9.36.9 Set</a>
+<li><a href="OL-syntax.html#OL-syntax">9.36.10 String</a>
+<li><a href="OL-syntax.html#OL-syntax">9.36.11 Tuple</a>
+<li><a href="OL-syntax.html#OL-syntax">9.36.12 Undetermined values</a>
+<ul>
+<li><a href="OL-syntax.html#OL-syntax">9.36.12.1 Undetermined constants</a>
+<li><a href="OL-syntax.html#OL-syntax">9.36.12.2 Undetermined integers</a>
+<li><a href="OL-syntax.html#OL-syntax">9.36.12.3 Undetermined lists</a>
+<li><a href="OL-syntax.html#OL-syntax">9.36.12.4 Undetermined sets</a>
+<li><a href="OL-syntax.html#OL-syntax">9.36.12.5 Undetermined strings</a>
+<li><a href="OL-syntax.html#OL-syntax">9.36.12.6 Undetermined tuples</a>
+<li><a href="OL-syntax.html#OL-syntax">9.36.12.7 Undetermined cardinality sets in valencies</a>
+</li></ul>
+</li></ul>
+<li><a href="Output-record.html#Output-record">9.37 Output record</a>
+<li><a href="Writing-new-outputs.html#Writing-new-outputs">9.38 Writing new outputs</a>
+<ul>
+<li><a href="Writing-new-outputs.html#Writing-new-outputs">9.38.1 Output definition</a>
+<ul>
+<li><a href="Writing-new-outputs.html#Writing-new-outputs">9.38.1.1 Example (dag output)</a>
+<li><a href="Writing-new-outputs.html#Writing-new-outputs">9.38.1.2 Integrate the output definition</a>
+</li></ul>
+<li><a href="Writing-new-outputs.html#Writing-new-outputs">9.38.2 Output functor</a>
+<ul>
+<li><a href="Writing-new-outputs.html#Writing-new-outputs">9.38.2.1 Integrate the output functor</a>
+<li><a href="Writing-new-outputs.html#Writing-new-outputs">9.38.2.2 Check cycles helper procedure</a>
+</li></ul>
+</li></ul>
+</li></ul>
+<li><a name="toc_PrincipleWriter" href="PrincipleWriter.html#PrincipleWriter">10 PrincipleWriter</a>
+<li><a name="toc_Programs" href="Programs.html#Programs">11 Programs</a>
+<ul>
+<li><a href="xdk.html#xdk">11.1 xdk</a>
+<ul>
+<li><a href="Main-window.html#Main-window">11.1.1 Main window</a>
+<ul>
+<li><a href="Main-window.html#Main-window">11.1.1.1 Menu bar</a>
+<li><a href="Main-window.html#Main-window">11.1.1.2 Status display</a>
+<li><a href="Main-window.html#Main-window">11.1.1.3 Inspect lexical entries button and text field</a>
+<li><a href="Main-window.html#Main-window">11.1.1.4 Examples list view and scroll bar</a>
+<li><a href="Main-window.html#Main-window">11.1.1.5 Solve button and text field</a>
+<li><a href="Main-window.html#Main-window">11.1.1.6 Tips and tricks</a>
+</li></ul>
+<li><a href="Explorer-window.html#Explorer-window">11.1.2 Explorer window</a>
+<li><a href="Commandline.html#Commandline">11.1.3 Commandline</a>
+</li></ul>
+<li><a href="xdkpm.html#xdkpm">11.2 xdkpm</a>
+<ul>
+<li><a href="xdkpm.html#xdkpm">11.2.1 Invocation</a>
+</li></ul>
+<li><a href="xdkc.html#xdkc">11.3 xdkc</a>
+<ul>
+<li><a href="xdkc.html#xdkc">11.3.1 Invocation</a>
+</li></ul>
+<li><a href="xdkconv.html#xdkconv">11.4 xdkconv</a>
+<ul>
+<li><a href="xdkconv.html#xdkconv">11.4.1 Invocation</a>
+<li><a href="xdkconv.html#xdkconv">11.4.2 Example</a>
+</li></ul>
+<li><a href="xdks.html#xdks">11.5 xdks</a>
+<ul>
+<li><a href="xdks.html#xdks">11.5.1 Invocation</a>
+</li></ul>
+</li></ul>
+<li><a name="toc_Debug" href="Debug.html#Debug">12 Debug</a>
+<ul>
+<li><a href="Debug.html#Debug">12.1 Too few solutions</a>
+<li><a href="Debug.html#Debug">12.2 Too many (structurally equivalent) solutions</a>
+</li></ul>
+<li><a name="toc_Directories" href="Directories.html#Directories">13 Directories</a>
+<li><a name="toc_Exceptions" href="Exceptions.html#Exceptions">14 Exceptions</a>
+<li><a name="toc_Variable-names" href="Variable-names.html#Variable-names">15 Variable names</a>
+<li><a name="toc_Changes" href="Changes.html#Changes">16 Changes</a>
+<li><a name="toc_Contributors" href="Contributors.html#Contributors">17 Contributors</a>
+<li><a name="toc_References" href="References.html#References">References</a>
+<li><a name="toc_Concept-index" href="Concept-index.html#Concept-index">Concept index</a>
+</li></ul>
+</div>
+
+<!-- ************************************************************ -->
+   </body></html>
+

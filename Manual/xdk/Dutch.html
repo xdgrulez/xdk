@@ -1,0 +1,140 @@
+<html lang="en">
+<head>
+<title>Dutch - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="Dag.html#Dag" title="Dag">
+<link rel="next" href="Entries.html#Entries" title="Entries">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Dutch"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Entries.html#Entries">Entries</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Dag.html#Dag">Dag</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.14 Dutch principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.dutch</code>
+<li>dimension variables: <code>D1</code>, <code>D2</code>
+<li>argument variables: none
+<li>default values: none
+<li>model record: empty
+<li>constraints: <code>Dutch</code> (priority 110)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle assumes that the Graph principle (<a href="Graph.html#Graph">Graph</a>) is used on
+dimensions <code>D1</code> and <code>D2</code>. It also assumes that an order
+principle is used on <code>D1</code>, and that the set of edge labels on
+<code>D2</code> contains <code>subj</code>, <code>iobj</code> and <code>obj</code>.
+
+   <p>The dutch principle is fairly specialized, and so far only used in the
+Dutch grammar (<a href="Dutch.html#Dutch">Dutch</a>). It posits the conjunction of the
+following two constraints:
+     <ul>
+<li>for each node v, the subject (<code>subj</code>) daughter of v
+precedes the indirect object (<code>iobj</code>) daughter, which in turn
+precedes the direct object daughter (<code>obj</code>). 
+<li>for each node v, the set of noun daughters above v
+(i.e. those daughters of nodes above which have incoming edge label
+<code>subj</code>, <code>iobj</code> or <code>obj</code>) precede the set of noun
+daughters of v
+</ul>
+
+   <p>Here is the definition of the <code>Dutch</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   NounLAs = [subj iobj obj]
+   %%
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      %%
+      D2DIDA = {DVA2DIDA 'D2'} %% id
+   in
+      %% MfOrder3 principle (xdg/parser/dg/Plugins-nl.oz)
+      %% subj &lt; iobj &lt; obj
+      if {Helpers.checkModel 'Dutch.oz' Nodes
+	  [D2DIDA#daughtersL]} then
+	 PosMs = {Map Nodes
+		  fun {$ Node} Node.pos end}
+      in
+	 for Node in Nodes do
+	    PosNounsDaughterMs =
+	    {Map NounLAs
+	     fun {$ LA}
+		M = Node.D2DIDA.model.daughtersL.LA
+	     in
+		{Select.union PosMs M}
+	     end}
+	 in
+	    {FS.int.seq PosNounsDaughterMs}
+	 end
+      end
+      %% MfOrder4 principle (xdg/parser/dg/Plugins-nl.oz)
+      if {Helpers.checkModel 'Dutch.oz' Nodes
+	  [D2DIDA#daughtersL
+	   D2DIDA#up]} then
+	 PosMs = {Map Nodes
+		  fun {$ Node} Node.pos end}
+	 %%
+	 NounDaughtersMs =
+	 {Map Nodes
+	  fun {$ Node}
+	     Ms = {Map NounLAs
+		   fun {$ LA} Node.D2DIDA.model.daughtersL.LA end}
+	     M = {FS.unionN Ms}
+	  in
+	     M
+	  end}
+      in
+	 for Node in Nodes I in 1..{Length Nodes} do
+	    NounDaughtersUpM =
+	    {Select.union NounDaughtersMs Node.D2DIDA.model.up}
+	    PosNounDaughtersUpM = {Select.union PosMs NounDaughtersUpM}
+	    %%
+	    NounDaughtersM = {Nth NounDaughtersMs I}
+	    PosNounDaughtersM = {Select.union PosMs NounDaughtersM}
+	 in
+	    {FS.int.seq [PosNounDaughtersUpM PosNounDaughtersM]}
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

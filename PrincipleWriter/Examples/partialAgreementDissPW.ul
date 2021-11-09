@@ -1,0 +1,14 @@
+defprinciple "principle.partialAgreementDissPW" {
+  dims {D1 D2 D3}
+  constraints {
+
+forall V: forall V1: forall L:
+  edge(V V1 L D1) & L in V.D3.entry.partialAgree =>
+    forall T3:
+      exists T1: exists T2: exists T4:
+        [T1 T2 T3 T4]=V.D2.attrs.agr <=>
+      exists T1: exists T2: exists T4:
+        [T1 T2 T3 T4]=V1.D2.attrs.agr
+
+  }
+}

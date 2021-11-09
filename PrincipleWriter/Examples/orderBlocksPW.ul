@@ -1,0 +1,23 @@
+defprinciple "principle.orderBlocksPW" {
+  dims {D1 D2 D3}
+  constraints {
+
+forall V:
+  forall L: forall L1:
+    forall L2: forall L3:
+      [L L1 L2 L3] in V.D3.entry.order =>
+    (L="^" =>
+       forall V1:
+         (exists V3:
+           edge(V V3 L2 D1) & edge(V3 V1 L3 D2)) => V<V1) &
+    (L2="^" =>
+       forall V1:
+         (exists V3:
+           edge(V V3 L D1) & edge(V3 V1 L1 D2)) => V1<V) &
+    (forall V1: forall V2:
+       (exists V3:
+         edge(V V3 L D1) & edge(V3 V1 L1 D2)) &
+       (exists V3:
+         edge(V V3 L2 D1) & edge(V3 V2 L3 D2)) => V1<V2)
+  }
+}

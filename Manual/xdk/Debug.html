@@ -1,0 +1,128 @@
+<html lang="en">
+<head>
+<title>Debug - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Programs.html#Programs" title="Programs">
+<link rel="next" href="Directories.html#Directories" title="Directories">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Debug"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Directories.html#Directories">Directories</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Programs.html#Programs">Programs</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">12 Debug</h2>
+
+<p>In this chapter, we explain how grammars can be debugged.  Due to the
+concurrent constraint-based implementation of the XDK solver, it
+cannot tell you spot-on what went wrong e.g. if you do not get the
+desired analysis.  Rather, debugging XDG grammars proceeds in an
+indirect fashion, by individually turning off dimensions and
+principles.
+
+<h3 class="section">12.1 Too few solutions</h3>
+
+<p>Debugging is easiest with the GUI (<code>xdk.exe</code>). Here, the menu
+<code>Dimensions</code> allows you to individually turn off the dimensions,
+and the menu <code>Principles</code> to individually turn off the principles
+of the grammar. Of course, this can also be done without the GUI by
+changing the grammar itself (turn off dimensions or principles by not
+using them).
+
+   <p>Here is the basic recipe for debugging, e.g. in the case when a
+sentence which should yield a solution does not.  For instance,
+assuming that your grammar has two dimensions, first try the two
+dimensions individually. If you do not get a failure then, but if you
+do get a failure when using both of the dimensions, then something
+about the interaction of the two dimensions must be wrong. That means
+typically either that:
+     <ul>
+<li>a word is lexically ambiguous, and one of the entries
+works only for one dimension, and the other only for the other
+dimension, or
+<li>you are using a multi-dimensional principle which causes the
+failure
+</ul>
+   If you also get a failure when only using one dimension at a time, you
+can trace the failure by selectively turning off the principles on the
+respective dimension. E.g. you can switch off the in and out
+principles to see whether your valency specifications are causing the
+failure etc..<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>
+
+<h3 class="section">12.2 Too many (structurally equivalent) solutions</h3>
+
+<p>If you get too many solutions, and each of the solutions is
+structurally equivalent, a common cause is the combination of two
+things: 1) that your grammar generates too many lexical entries, and
+2) you use the principle <code>principle.entries</code>
+(<a href="Entries.html#Entries">Entries</a>). This principle enumerates all different lexical
+entries, even if they make no structural difference.
+
+   <p>The solution to this problem is twofold: 1) deactivate
+"principle.entries", 2) reduce the number of disjunctions.  The reason
+for 2) is that even though your grammar does not show it and the
+solver can cope quite well with lexical ambiguity, it is always wise
+to keep the number of lexical entries as low as possible for
+efficiency.  The key to doing that is to encode the disjunction into
+sets. For example,
+
+<pre class="example">     ...
+     dim idlp {end: {iobj: {ff | iosf | piosf} } } }
+     ...
+</pre>
+   <p>generates three lexical entries, whereas:
+<pre class="example">     ...
+     dim idlp {end: {iobj: {ff iosf piosf} } } }
+     ...
+</pre>
+   <p>only generates one and has the same effect: the indirect object
+(<code>iobj</code>) can either go into the <code>ff</code>, the <code>iosf</code>, or
+the <code>piosf</code>.
+
+   <p>This encoding of disjunctions into sets also works for in valencies: you
+could encode:
+<pre class="example">     ...
+     dim id {obj? | iobj?}
+     ...
+</pre>
+   <p>into
+<pre class="example">     ...
+     dim id {obj? iobj?}
+     ...
+</pre>
+   <p>given that the models on the id dimension are always trees, which
+means each node can have at most one incoming edge, which in turn
+means that the incoming edge in the example can only be obj or iobj,
+but not both.
+
+<!-- ************************************************************ -->
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> If you switch off principles, the number of
+solutions can increase wildly. In the Oz Explorer, you can press
+<code>Ctrl-C</code> to immediately stop the search.</p>
+
+   <hr></div>
+
+   </body></html>
+

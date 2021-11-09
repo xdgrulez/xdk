@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+<title>ManualOracle - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Oracles.html#Oracles" title="Oracles">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="ManualOracle"></a>
+<p>
+Up:&nbsp;<a rel="up" accesskey="u" href="Oracles.html#Oracles">Oracles</a>
+<hr>
+</div>
+
+<h3 class="section">8.1 Manual Oracle</h3>
+
+<p>The manual oracle co-operates with the IOzSeF search visualization
+tool. Upon solving an input sentence, the IOzSeF Tree Viewer pops up,
+but does not yet enumerate any solution. Instead, it shows only a grey
+triangle. With <code>Search-&gt;Next Solution</code> (or by simply pressing
+<code>n</code>), the next solution is explored. If there is a choice point,
+then the manual oracle displays a window showing the partially solved
+multigraph up until the choicepoint. By clicking the buttons
+<code>choice 1</code> and <code>choice 2</code> with the right mouse button, the
+manual oracle displays the edges which would be added if the left or
+the right alternative would be chosen. The choices can then be taken
+by clicking the corresponding buttons with the left mouse button.
+
+   <p>The manual oracle can be started using the executable
+<code>ManualOracleServer.exe</code>
+in <code>Oracles/ManualOracle</code>. The <code>--port</code>-option makes the
+oracle use a port other than the default port 4711. E.g.:
+<pre class="example">     ManualOracleServer.exe --port=42
+</pre>
+   <p>makes the oracle use port 42. This can be also be shortened to:
+<pre class="example">     ManualOracleServer.exe -p 42
+</pre>
+   <!-- ************************************************************ -->
+   </body></html>
+

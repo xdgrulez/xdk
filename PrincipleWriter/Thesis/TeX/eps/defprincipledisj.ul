@@ -1,0 +1,3 @@
+defprinciple "principle.disjPW" {
+  dims {D}
+  constraints {"DisjPW": 140}}

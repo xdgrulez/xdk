@@ -1,0 +1,191 @@
+<html lang="en">
+<head>
+<title>Variable names - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Exceptions.html#Exceptions" title="Exceptions">
+<link rel="next" href="Changes.html#Changes" title="Changes">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Variable-names"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Changes.html#Changes">Changes</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Exceptions.html#Exceptions">Exceptions</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">15 Variable names</h2>
+
+<p>Variables names have the format <code>&lt;description&gt;&lt;type&gt;</code> where
+<code>&lt;description&gt;</code> is an arbitrary description of the variable, and
+<code>&lt;type&gt;</code> its type. This is similar to the <em>Hungarian notation</em>
+<a name="index-Hungarian-349"></a><a name="index-notation-350"></a>used by Microsoft. Many people do not like it, but I think it is a
+good way to save time debugging type errors in Mozart (not being
+statically typed).
+
+   <p>Types can be combined to yield new types. This is especially useful for
+records, tuples and functions:
+
+     <ul>
+<li>records: A record mapping elements from type X to elements of type Y has
+type XY. 
+<li>tuples: A tuple X#Y where the first projection is of type X and the second of
+type Y has type XYTup. 
+<li>functions: A function from values of type X to values of type Y has type
+X2Y. 
+</ul>
+
+   <p>In addition, we write XY for a &ldquo;type disjunction&rdquo;, i.e., a variable
+which can either be of type X or of type Y.
+
+   <p>We display the Oz type hierarchy taken from<br>
+<a href="http://www.mozart-oz.org/documentation/base/node2.html#chapter.typestruct">http://www.mozart-oz.org/documentation/base/node2.html#chapter.typestruct</a>
+below:
+
+<pre class="example">     X Y Z - Value
+       FI - Number (Float or Int)
+         I - Int
+           D - FDInt
+           Ch - Char
+         F - Float
+     
+       Rec - Record (R)
+         Tup - Tuple (T)
+         L - Literal
+           A - Atom
+           N - Name
+             B - Bool
+             U - Unit
+     
+       Proc - Procedure (P)
+       PO - unary Procedure or Object
+     
+       Ce - Cell
+     
+       C - Chunk
+         Arr - Array
+         Dict - Dictionary
+         BitArr - BitArray
+         K - Class
+         O - Object
+         Lock - Lock
+         Port - Port
+</pre>
+   <p>The types used in the XDK are based on the type hierarchy above. Here
+they are:
+
+<pre class="example">     Attribute - XML attribute
+     A - atom
+     Arr - array
+     B - bool
+     ByteS - byte string
+     BitS - bit string
+     BitArr - bit array
+     Bot - (SL) lattice bottom value
+     C - chunk
+     Ce - cell
+     Ch - char
+     CIDA - class ID (atom)
+     CIDCIL - class ID (IL constant)
+     CIL - IL constant
+     CA - (A) principle constraint name
+     Co - lattice fd/fs variable count
+     Coord - coordinate
+     D - finite domain
+     Desc - expression description
+     Dict - dictionary
+     DIDA - dimension ID (atom)
+     DIDCIL - dimension ID (IL constant)
+     Dimension - (SL) a dimension
+     DVA - (A) dimension variable
+     DSpec - specification of a finite domain
+     Element - XML element
+     Entry - (SL) an entry
+     Entries - (SLs) a list of entries
+     E - exception
+     F - float
+     FI - number (float or integer)
+     File - file
+     Functor - functor
+     Handler - resolve handler
+     I - integer
+     IDA - any ID (atom)
+     IDCIL - any ID (IL constant)
+     IL - intermediate language (IL) expression
+     ILDist - IL expression after Distributor.oz
+     ILEnc - IL expression after Encoder.oz
+     ILCh - IL expression after TypeChecker.oz
+     ILTCo - IL expression after TypeCollector.oz
+     IIL - IL integer
+     K - class
+     Lock - lock
+     L - literal
+     Lat - Lattice abstract data type
+     LI - feature (literal or integer)
+     M - finite set
+     MSpec - specification of a finite set
+     N - name
+     O - object
+     OIDA - output ID
+     OL - output language (OL) expression
+     On - (N) output name
+     PIDA - principle ID (atom)
+     PIDCIL - principle ID (IL constant)
+     SL - solver language (SL) expression
+     SLC - SL after Compiler.oz
+     SLE - SL after Encoder.oz (stateless)
+     Pn - (N) principle name
+     Port - port
+     Principle - (SL) principle
+     Proc - procedure
+     Prof - profile
+     PO - unary procedure or object
+     Rec - record
+     S - string
+     Sem - sem feature value
+     Spc - space
+     Str - Stream
+     Sym - sym feature value
+     Term - expression
+     TIDA - type ID (atom)
+     TIDCIL - type ID (IL constant)
+     TkDEdges - edges
+     TkDOptions - options
+     TkDNodes - nodes
+     Tkvar - Tk-variable
+     Tn - (N) type name
+     Token - token
+     Top - (SL) lattice top value
+     Tup - tuple
+     U - unit
+     UL - user language expression
+     Url - URL record
+     UrlV - virtual string representing a URL
+     V - virtual string
+     W - Tk-widget
+     Win - Tk-toplevel widget (= window)
+     X - any type
+     Xs - list of X elements
+     Y - any type
+     Z - any type
+</pre>
+   <!-- ************************************************************ -->
+   </body></html>
+

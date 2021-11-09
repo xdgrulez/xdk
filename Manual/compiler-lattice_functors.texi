@@ -1,0 +1,414 @@
+@section Lattice functors
+Lattices are implemented as @emph{abstract data types (ADTs)}.
+@cindex abstract data types
+@cindex ADT
+Each abstract data type is implemented as an Oz @emph{functor}.
+@cindex functor
+
+In this section, we start with an overview of the lattice functors in
+@ref{Lat-Overview}, before we explain the individual lattice
+functors.@footnote{In the explanation of the individual lattice
+functors, we omit the @code{top}, @code{bot}, @code{glb},
+@code{encode}, @code{decode} and @code{pretty} features because their
+function explained elsewhere in this manual: @code{top}, @code{bot}
+and @code{glb} are explained @ref{Types reference}. @code{encode},
+@code{decode} and @code{pretty} are explained in @ref{IL syntax},
+@ref{SL syntax}, and @ref{OL syntax} --- they convert back and forth
+between these languages.}
+
+@menu
+* Overview:Lat-Overview.      Overview
+
+* Card:Lat-Card.              Cardinality lattice functor
+
+* Domain:Lat-Domain.          Domain lattice functor
+
+* Flat:Lat-Flat.              Flat lattice functor
+
+* Int:Lat-Int.                Integer lattice functor
+
+* List:Lat-List.              List lattice functor
+
+* Record:Lat-Record.          Record lattice functor
+
+* Set:Lat-Set.                Set lattice functor
+
+* String:Lat-String.          String lattice functor
+
+* Tuple:Lat-Tuple.            Tuple lattice functor
+@end menu
+
+@c ************************************************************
+
+@node Lat-Overview, Lat-Card, , Lattice functors
+@subsection Overview
+The lattice functors are located in @code{Compiler/Lattices}.  Each
+lattice functor is a record with at least the following features
+making up its interface:
+
+@example
+elem(tag: A
+     top: SL
+     bot: SL
+     glb: SLSL2SL
+     select: SLsD2SL
+     makeVar: U2SL
+     encode: ILOpti2SL
+     decode: SL2IL
+     pretty: SLAbbrB2OL)
+     count: U2Co
+@end example
+
+The @code{tag} feature corresponds to an atom (A)@footnote{We use the
+type abbreviations defined in @ref{Variable names}.} denoting the name of
+the lattice.
+
+The @code{top} feature corresponds to the top value of the lattice in
+the solver language (SL).
+
+The @code{bot} feature corresponds to the bottom value of the lattice
+in the solver language (SL).
+
+The @code{glb} feature corresponds to the greatest lower bound
+function of the lattice. Its type is @code{SL SL -> SL}, i.e. it takes
+two SL values and yields their greatest lower bound (as a SL value).
+All greatest lower bound functions are commutative, thereby
+maintaining monotonicity.
+
+The @code{select} feature corresponds to the selection function of the
+lattice which is used by the XDK solver to select one lexical entry
+from the set of lexical entries for a word. Its type is @code{SLs D ->
+SL}, i.e.  it takes a list of SL values and a selector (an Oz finite
+domain variable), and yields a SL value.
+
+The @code{makeVar} feature corresponds to the make variable function
+of the lattice which is used by the XDK solver to create variables of
+values. Its type is @code{U -> SL}, i.e.  it takes no argument (as
+indicated by the type @code{U} for ``unit'') and yields an
+undetermined SL value.
+
+The @code{encode} feature corresponds to the encoding function of the
+lattice. Its type is @code{IL Opti -> SL}, i.e. it takes an IL value
+and an optimization record @code{Opti} (introduced for efficiency
+reasons), and yields a SL value.
+
+The @code{decode} feature corresponds to the decoding function of the
+lattice. Its type is @code{SL -> IL}, i.e. it takes a SL value and
+yields an IL value.
+
+The @code{pretty} feature corresponds to the pretty function of the
+lattice. Its type is @code{SL AbbrB -> OL}, i.e. it takes a SL value
+and a boolean (@code{AbbrB}), and yields an OL value. @code{AbbrB}
+specifies whether the yielded OL value shall be abbreviated
+(@code{AbbrB==true}) or not (@code{AbbrB==false}).
+
+The @code{count} feature corresponds to the counting function of the
+lattice. Its type is @code{U -> Co}, i.e. it takes no argument and
+yields a fd/fs variable count. This is used for profiling.
+
+@c ************************************************************
+
+@node Lat-Card, Lat-Domain, Lat-Overview, Lattice functors
+@subsection Card functor
+
+@subsubsection Select function
+The select function uses the selection constraint for Oz finite set
+variables to select one set of integers from the list of sets of
+integers.
+
+@subsubsection Make variable function
+The make variable function creates an undetermined Oz finite set
+variable.
+
+@subsubsection Count function
+The count function returns:
+@example
+o(fd: 0
+  fs: 1)
+@end example
+
+@subsubsection Additional interface features
+None.
+
+@c ************************************************************
+
+@node Lat-Domain, Lat-Flat, Lat-Card, Lattice functors
+@subsection Domain functor
+The domain lattice encodes constants from a finite domain as integers.
+Before encoding, the list of atoms is sorted lexically using
+@code{Value.'<'}.
+
+@subsubsection Select function
+The select function uses the selection constraint for Oz finite domain
+variables to select one value from the list of values.
+
+@subsubsection Make variable function
+The make variable function creates an Oz finite domain variable
+ranging over the domain of the lattice.
+
+@subsubsection Count function
+The count function returns:
+@example
+o(fd: 1
+  fs: 0)
+@end example
+
+@subsubsection Additional interface features
+Below, we show the additional interface features of this lattice:
+
+@example
+constants: As
+card: CardI
+dSpec: DSpec
+a2I: A2I
+i2A: I2A
+@end example
+
+The @code{constants} feature corresponds to the list of atoms which
+constitute the finite domain, sorted lexically.
+
+The @code{card} feature corresponds to an integer denoting the
+cardinality of the finite domain.
+
+The @code{dSpec} feature corresponds to the finite domain specification
+of the finite domain.
+
+The @code{a2I} feature corresponds to a function from Oz atoms in the
+finite domain to their corresponding Oz integers.
+
+The @code{i2A} feature corresponds to a function from Oz integers in the
+finite domain to their corresponding Oz atoms.
+
+@c ************************************************************
+
+@node Lat-Flat, Lat-Int, Lat-Domain, Lattice functors
+@subsection Flat lattice functor
+The @emph{flat lattice functor}
+@cindex flat lattice functor
+@cindex flat lattice
+defines basic functionality inherited by some of the other lattice
+functors.
+
+@subsubsection Select function
+The select function uses the selection constraint for Oz finite domain
+variables to select one value from the list of values.
+
+@subsubsection Make variable function
+The make variable function of this lattice creates an undetermined Oz
+variable.
+
+@subsubsection Count function
+The count function returns:
+@example
+o(fd: 0
+  fs: 0)
+@end example
+
+@subsubsection Additional interface features
+None.
+
+@c ************************************************************
+
+@node Lat-Int, Lat-List, Lat-Flat, Lattice functors
+@subsection Integer functor
+
+@subsubsection Select function
+The select function uses the selection constraint for Oz finite domain
+variables to select one integer from the list of integers.
+
+@subsubsection Make variable function
+The make variable function creates an Oz finite domain variable
+ranging over all possible integers.
+
+@subsubsection Count function
+The count function returns:
+@example
+o(fd: 1
+  fs: 0)
+@end example
+
+@subsubsection Additional interface features
+None.
+
+@c ************************************************************
+
+@node Lat-List, Lat-Record, Lat-Int, Lattice functors
+@subsection List functor
+
+@subsubsection Select function
+See flat lattice (@ref{Lat-Flat}).
+
+@subsubsection Make variable function
+See flat lattice (@ref{Lat-Flat}).
+
+@subsubsection Count function
+See flat lattice (@ref{Lat-Flat}).
+
+@subsubsection Additional interface features
+Below, we show the additional interface features of this lattice:
+
+@example
+domain: Lat
+@end example
+
+The @code{domain} feature corresponds to the lattice of the list
+domain.
+
+@c ************************************************************
+
+@node Lat-Record, Lat-Set, Lat-List, Lattice functors
+@subsection Record functor
+
+@subsubsection Select function
+The select function of the record lattice functor recursively calls
+the select functions of the lattices corresponding to its features.
+
+@subsubsection Make variable function
+The make variable function of the record lattice functor recursively
+calls the make variable functions of the lattices corresponding to its
+features.
+
+@subsubsection Count function
+The count function returns:
+@example
+o(fd: FDI
+  fs: FSI)
+@end example
+where @code{FDI} is the sum of the finite domain variables counted for
+the co-domains of the record, and @code{FSI} the sum of the finite set
+variables.
+
+@subsubsection Additional interface features
+Below, we show the additional interface features of this lattice:
+
+@example
+record: ALatRec
+@end example
+
+The @code{record} feature is a record representing mapping the fields
+in the arity of the record (A) to the lattices corresponding to their
+types (Lat).
+
+@c ************************************************************
+
+@node Lat-Set, Lat-String, Lat-Record, Lattice functors
+@subsection Set functor
+The set lattice functor is defined differently depending on its
+domain, which can be:
+@enumerate
+@item a finite domain of constants or a tuple of which all projections
+are finite domains of constants
+@item integer
+@end enumerate
+
+@subsubsection Select function
+@enumerate
+@item The select function uses the selection constraint for Oz finite set
+variables to select one set of integers from the list of sets of
+integers.
+@item See 1.
+@end enumerate
+
+@subsubsection Make variable function
+@enumerate
+@item The make variable function creates an Oz finite set variable
+ranging over all possible sets of integers over the domain of the set.
+@item See 1.
+@end enumerate
+
+@subsubsection Count function
+@enumerate
+@item Returns:
+@example
+o(fd: 0
+  fs: 1)
+@end example
+@item See 1.
+@end enumerate
+
+@subsubsection Additional interface features
+@enumerate
+@item
+@example
+domain: Lat
+card: I
+setTypeA: A
+@end example
+
+The @code{domain} feature is the lattice corresponding to the domain
+of the set.
+
+The @code{card} feature is the cardinality of the power set of the
+set.
+
+The @code{setTypeA} feature is either the atom @code{a} (accumulative
+set), or @code{i} (intersective set).
+
+@item
+@example
+domain: Lat
+setTypeA: A
+@end example
+@end enumerate
+
+@c ************************************************************
+
+@node Lat-String, Lat-Tuple, Lat-Set, Lattice functors
+@subsection String functor
+
+@subsubsection Select function
+See flat lattice (@ref{Lat-Flat}).
+
+@subsubsection Make variable function
+See flat lattice (@ref{Lat-Flat}).
+
+@subsubsection Count function
+See flat lattice (@ref{Lat-Flat}).
+
+@subsubsection Additional interface features
+None.
+
+@c ************************************************************
+
+@node Lat-Tuple, , Lat-String, Lattice functors
+@subsection Tuple functor
+For the tuple lattice functor, all projections must be finite domains of
+constants.
+
+@subsubsection Select function
+The select function uses the selection constraint for Oz finite domain
+variables to select one integer (encoding the tuple) from the list of
+integers (encoding the list of tuples).
+
+@subsubsection Make variable function
+The make variable function creates an Oz finite domain variable ranging
+over the domain of the lattice, a finite domain of integers encoding the
+tuples.
+
+@subsubsection Count function
+Returns:
+@example
+o(fd: 1
+  fs: 0)
+@end example
+
+@subsubsection Additional interface features
+@example
+domains: Lats
+card: I
+dSpec: DSpec
+i2As: I2As
+@end example
+
+The @code{domains} feature corresponds to a list of lattices which
+correspond to the projections of the tuple.
+
+The @code{card} feature corresponds to the cardinality of the domain
+encoding the tuple.
+
+The @code{dSpec} feature corresponds to the finite domain
+specification of the finite domain used to encode the tuple.
+
+The @code{i2As} feature corresponds to a function from integers
+(encoding tuples) to lists of atoms representing the tuple
+corresponding to the integer.

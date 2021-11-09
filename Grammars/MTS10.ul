@@ -1,0 +1,215 @@
+usedim id
+usedim lp
+usedim inter
+usedim lex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define id dimension
+defdim id {
+  deftype "id.label" {s np vp "^"}
+  deflabeltype "id.label"
+  defentrytype {in: valency("id.label")
+                out: valency("id.label")
+                order: set(tuple("id.label" "id.label"))}
+%%
+  useprinciple "principle.graph" {
+    dims {D: id}}
+  useprinciple "principle.tree" {
+    dims {D: id}}
+  useprinciple "principle.valency" {
+    dims {D: id}}
+%  useprinciple "principle.order2" {
+%    dims {D: id}}
+%  useprinciple "principle.projectivity" {
+%    dims {D: id}}
+%%
+  output "output.pretty"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lp dimension
+defdim lp {
+  deftype "lp.label" {s mf vc "^"}
+  deflabeltype "lp.label"
+  defentrytype {in: valency("lp.label")
+                out: valency("lp.label")
+                order: set(tuple("lp.label" "lp.label"))}
+%%
+  useprinciple "principle.graph" {
+    dims {D: lp}}
+  useprinciple "principle.tree" {
+    dims {D: lp}}
+  useprinciple "principle.valency" {
+    dims {D: lp}}
+  useprinciple "principle.order2" {
+    dims {D: lp}}
+  useprinciple "principle.projectivity" {
+    dims {D: lp}}
+%%
+  output "output.pretty"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define inter dimension
+defdim inter {
+  defentrytype {linkDaughterEnd: vec("id.label" set("lp.label"))}
+  useprinciple "principle.linkingDaughterEnd" {
+    dims {D1: id D2: lp D3: inter}
+    args {End: ^.D3.entry.linkDaughterEnd}}
+%%
+  output "output.pretty"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lex dimension
+defdim lex {
+  defentrytype {word: string}
+%%
+  output "output.dags1"
+  output "output.latexs1"
+  useoutput "output.dags1"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lexicon
+
+defclass "id_saw1" {
+  dim id {in: {s?}
+          out: {np#{2} vp!}
+          order: <np vp "^">}
+  dim lex {word: "saw"}}
+
+defclass "lp_saw1" {
+  dim lp {in: {s?}
+          out: {mf! vc!}
+          order: <mf vc "^">}
+  dim lex {word: "saw"}}
+
+defentry {
+  "id_saw1"
+  "lp_saw1"}
+
+defclass "id_help1" {
+  dim id {in: {vp?}
+          out: {np! vp!}
+          order: <np vp "^">}
+  dim lex {word: "help"}}
+defclass "id_help2" {
+  dim id {in: {vp?}
+          out: {np!}
+          order: <np "^">}
+  dim lex {word: "help"}}
+
+defclass "lp_help1" {
+  dim lp {in: {vc?}
+          out: {vc!}
+          order: <vc "^">}
+  dim lex {word: "help"}}
+defclass "lp_help2" {
+  dim lp {in: {vc?}
+          out: {}
+          order: <vc "^">}
+  dim lex {word: "help"}}
+
+defclass "inter_help1" {
+  dim inter {linkDaughterEnd: {vp: {vc}}}}
+
+defentry {
+  ("id_help1" | "id_help2")
+  ("lp_help1" | "lp_help2")
+  "inter_help1"}
+
+defclass "id_feed1" {
+  dim id {in: {vp?}
+          out: {np!} 
+          order: <np "^">}
+  dim lex {word: "feed"}}
+
+defclass "lp_feed1" {
+  dim lp {in: {vc?}
+          out: {}
+          order: <>}
+  dim lex {word: "feed"}}
+
+defentry {
+  "id_feed1"
+  "lp_feed1"}
+
+defclass "id_john1" {
+  dim id {in: {np?}
+          out: {}
+          order: <>}
+  dim lex {word: "john"}}
+
+defclass "lp_john1" {
+  dim lp {in: {mf?}
+          out: {mf!}
+          order: <"^" mf>}
+  dim lex {word: "john"}}
+defclass "lp_john2" {
+  dim lp {in: {mf?}
+          out: {}
+          order: <>}
+  dim lex {word: "john"}}
+
+defentry {
+  "id_john1"
+  ("lp_john1" | "lp_john2")}
+
+defclass "id_mary1" {
+  dim id {in: {np?}
+          out: {}
+          order: <>}
+  dim lex {word: "mary"}}
+
+defclass "lp_mary1" {
+  dim lp {in: {mf?}
+          out: {mf!}
+          order: <"^" mf>}
+  dim lex {word: "mary"}}
+defclass "lp_mary2" {
+  dim lp {in: {mf?}
+          out: {}
+          order: <>}
+  dim lex {word: "mary"}}
+
+defentry {
+  "id_mary1"
+  ("lp_mary1" | "lp_mary2")}
+
+defclass "id_peter1" {
+  dim id {in: {np?}
+          out: {}
+          order: <>}
+  dim lex {word: "peter"}}
+
+defclass "lp_peter1" {
+  dim lp {in: {mf?}
+          out: {mf!}
+          order: <"^" mf>}
+  dim lex {word: "peter"}}
+defclass "lp_peter2" {
+  dim lp {in: {mf?}
+          out: {}
+          order: <>}
+  dim lex {word: "peter"}}
+
+defentry {
+  "id_peter1"
+  ("lp_peter1" | "lp_peter2")}
+
+defclass "id_animals1" {
+  dim id {in: {np?}
+          out: {}
+          order: <>}
+  dim lex {word: "animals"}}
+
+defclass "lp_animals1" {
+  dim lp {in: {mf?}
+          out: {mf!}
+          order: <"^" mf>}
+  dim lex {word: "animals"}}
+defclass "lp_animals2" {
+  dim lp {in: {mf?}
+          out: {}
+          order: <>}
+  dim lex {word: "animals"}}
+
+defentry {
+  "id_animals1"
+  ("lp_animals1" | "lp_animals2")}

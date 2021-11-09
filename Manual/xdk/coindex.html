@@ -1,0 +1,324 @@
+<html lang="en">
+<head>
+<title>coindex - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Grammars.html#Grammars" title="Grammars">
+<link rel="prev" href="adjunction.html#adjunction" title="adjunction">
+<link rel="next" href="diss.html#diss" title="diss">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="coindex"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="diss.html#diss">diss</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="adjunction.html#adjunction">adjunction</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Grammars.html#Grammars">Grammars</a>
+<hr>
+</div>
+
+<h3 class="section">5.38 coindex</h3>
+
+<p>This is a grammar demoing <code>principle.coindex</code> (<a href="Coindex.html#Coindex">Coindex</a>) for
+coindexing, which will probably be crucial for encoding FB-TAG in XDG. 
+It was written by Ralph Debusmann.
+
+<pre class="verbatim">usedim id
+usedim lex
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension id
+defdim id {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "id.label" {subj pred}
+  deftype "id.number" {sg pl}
+  deftype "id.gender" {masc fem}
+  deftype "id.coindex" tuple({root subj pred} {"top" "bot"} {gender number}
+                             {root subj pred} {"top" "bot"} {gender number})
+
+  deflabeltype "id.label"
+  defattrstype {
+                root: {"top": {number: "id.number"
+                               gender: "id.gender"}
+                       "bot": {number: "id.number"
+                               gender: "id.gender"}}
+                subj: {"top": {number: "id.number"
+                               gender: "id.gender"}
+                       "bot": {number: "id.number"
+                               gender: "id.gender"}}
+                pred: {"top": {number: "id.number"
+                               gender: "id.gender"}
+                       "bot": {number: "id.number"
+                               gender: "id.gender"}}}
+
+  defentrytype {in: valency("id.label")
+                out: valency("id.label")
+                %%
+                root: {"top": {number: iset("id.number")
+                               gender: iset("id.gender")}
+                       "bot": {number: iset("id.number")
+                               gender: iset("id.gender")}}
+                subj: {"top": {number: iset("id.number")
+                               gender: iset("id.gender")}
+                       "bot": {number: iset("id.number")
+                               gender: iset("id.gender")}}
+                pred: {"top": {number: iset("id.number")
+                               gender: iset("id.gender")}
+                       "bot": {number: iset("id.number")
+                               gender: iset("id.gender")}}
+                %%
+                coindex: set("id.coindex")}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph" {
+    dims {D: id}}
+  useprinciple "principle.tree" {
+    dims {D: id}}
+  useprinciple "principle.valency" {
+    dims {D: id}}
+  useprinciple "principle.coindex" {
+    dims {D: id}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lex
+defdim lex {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype {word: string}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.entries" {}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dags1"
+  output "output.latexs1"
+  useoutput "output.dags1"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define classes
+defentry {
+  dim id {in: {subj?}
+          %%
+          root: {"top": {number: {sg}
+                         gender: {masc}}}}
+                         
+  dim lex {word: "johan"}}
+
+defentry {
+  dim id {in: {subj?}
+          %%
+          root: {"top": {number: {sg}
+                         gender: {fem}}}}
+                         
+  dim lex {word: "marie"}}
+
+defentry {
+  dim id {in: {}
+          out: {subj! pred!}
+          %%
+          coindex: {[subj "top" number pred "top" number]
+                    [subj "top" gender pred "top" gender]}}
+  dim lex {word: "est"}}
+
+defentry {
+  dim id {in: {pred?}
+          %%
+          root: {"top": {number: {sg}
+                         gender: {masc}}}}
+  dim lex {word: "naif"}}
+
+defentry {
+  dim id {in: {pred?}
+          %%
+          root: {"top": {number: {pl}
+                         gender: {masc}}}}
+  dim lex {word: "naifs"}}
+
+defentry {
+  dim id {in: {pred?}
+          %%
+          root: {"top": {number: {sg}
+                         gender: {fem}}}}
+  dim lex {word: "naive"}}
+
+defentry {
+  dim id {in: {pred?}
+          %%
+          root: {"top": {number: {pl}
+                         gender: {fem}}}}
+  dim lex {word: "naives"}}
+</pre>
+<!-- ************************************************************ -->
+
+   <div class="node">
+<a name="Coindex"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Customs.html#Customs">Customs</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Climbing.html#Climbing">Climbing</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.11 Coindex principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.coindex</code>
+<li>dimension variables: <code>D</code>
+<li>argument variables: none
+<li>default values: none
+<li>model record: empty
+<li>constraints: <code>Coindex</code> (priority 120)<br>
+<code>CoindexEdge</code> (priority 100)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle supports the grammar <code>Grammars/coindex.ul</code>
+(<a href="coindex.html#coindex">coindex</a>).
+
+   <p>Here is the definition of the <code>Coindex</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+export
+   Constraint
+prepare
+   ListTakeDrop = List.takeDrop
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      DIDA = {DVA2DIDA 'D'}
+      for Node in Nodes do
+	 Attrs = Node.DIDA.attrs
+	 Entry = Node.DIDA.entry
+      in
+	 {FS.include Attrs.root.top.number Entry.root.top.number}
+	 {FS.include Attrs.root.top.gender Entry.root.top.gender}
+	 {FS.include Attrs.root.bot.number Entry.root.bot.number}
+	 {FS.include Attrs.root.bot.gender Entry.root.bot.gender}
+	 %%
+	 {FS.include Attrs.subj.top.number Entry.subj.top.number}
+	 {FS.include Attrs.subj.top.gender Entry.subj.top.gender}
+	 {FS.include Attrs.subj.bot.number Entry.subj.bot.number}
+	 {FS.include Attrs.subj.bot.gender Entry.subj.bot.gender}
+	 %%
+	 {FS.include Attrs.pred.top.number Entry.pred.top.number}
+	 {FS.include Attrs.pred.top.gender Entry.pred.top.gender}
+	 {FS.include Attrs.pred.bot.number Entry.pred.bot.number}
+	 {FS.include Attrs.pred.bot.gender Entry.pred.bot.gender}
+      end
+      %%
+      DIDA2EntryLat = G.dIDA2EntryLat
+      EntryLat = {DIDA2EntryLat DIDA}
+      ALatRec = EntryLat.record
+      Lat = ALatRec.coindex
+      TupLat = Lat.domain
+      TupCardI = TupLat.card
+      TupI2As = TupLat.i2AIs
+   in
+      for Node in Nodes do
+	 Attrs = Node.DIDA.attrs
+	 CoindexM = Node.DIDA.entry.coindex
+      in
+	 for I in 1..TupCardI do
+	    As = {TupI2As I}
+	    As1 As2
+	    {ListTakeDrop As ({Length As} div 2) As1 As2}
+	    D1 =
+	    {FoldL As1
+	     fun {$ AccX A1} AccX.A1 end Attrs}
+	    D2 =
+	    {FoldL As2
+	     fun {$ AccX A2} AccX.A2 end Attrs}
+	 in
+	     {FD.impl
+	      {FS.reified.include I CoindexM}
+	      {FD.reified.equal D1 D2} 1}
+	 end
+      end
+   end
+end
+</pre>
+And here is the definition of the <code>CoindexEdge</code> constraint
+functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+   Helpers(checkModel reifiedADRecEqual) at 'Helpers.ozf'
+   Opti(isIn) at 'Opti.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      %%
+      DIDA = {DVA2DIDA 'D'}
+      DIDA2LabelLat = G.dIDA2LabelLat
+      LabelLat = {DIDA2LabelLat DIDA}
+      LAs = LabelLat.constants
+   in
+      %% check features
+      if {Helpers.checkModel 'CoindexEdge.oz' Nodes
+	  [DIDA#daughtersL]} then
+	 for Node1 in Nodes do
+	    for Node2 in Nodes do
+	       for LA in LAs do
+		  if {Not {Opti.isIn Node2.index Node1.DIDA.model.daughtersL.LA}=='out'} then
+		     
+		     {FD.impl
+		      {FS.reified.include Node2.index Node1.DIDA.model.daughtersL.LA}
+		      {FD.conj
+		       {FD.reified.equal Node1.id.attrs.subj.top.number Node2.id.attrs.root.top.number}
+		       {FD.conj
+			{FD.reified.equal Node1.id.attrs.subj.top.gender Node2.id.attrs.root.top.gender}
+			{FD.conj
+			 {FD.reified.equal Node1.id.attrs.subj.bot.number Node2.id.attrs.root.bot.number}
+			 {FD.conj
+			  {FD.reified.equal Node1.id.attrs.subj.bot.gender Node2.id.attrs.root.bot.gender}
+			  {FD.conj
+			   {FD.reified.equal Node1.id.attrs.pred.top.number Node2.id.attrs.root.top.number}
+			   {FD.conj
+			    {FD.reified.equal Node1.id.attrs.pred.top.gender Node2.id.attrs.root.top.gender}
+			    {FD.conj
+			     {FD.reified.equal Node1.id.attrs.pred.bot.number Node2.id.attrs.root.bot.number}
+			     {FD.reified.equal Node1.id.attrs.pred.bot.gender Node2.id.attrs.root.bot.gender}}}}}}}} 1}
+		  end
+	       end
+	    end
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

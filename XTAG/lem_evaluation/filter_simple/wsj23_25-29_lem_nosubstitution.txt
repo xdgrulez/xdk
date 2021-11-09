@@ -1,0 +1,43 @@
+sent: 26: big investment banks refused to step up to the plate to support the beleaguered floor traders by buying big blocks of stock , traders say . 
+done parsing...
+time(CPU): 576.980000
+parsed 0 from a total of 1
+
+sent: 28: many money managers and some traders had already left their offices early Friday afternoon on a warm autumn day -- because the stock market was so quiet . 
+
+sent: 29: when the airline information came through , it cracked every model we had for the marketplace , said a managing director at one of the largest program-trading firms . 
+
+sent: 26: while Friday 's debacle involved mainly professional traders rather than investors , it left the market vulnerable to continued selling this morning , traders said . 
+done parsing...
+time(CPU): 465.660000
+parsed 0 from a total of 1
+
+sent: 25: the agreements bring to a total of nine the number of planes the travel company has sold this year as part of a restructuring . 
+
+sent: 25: some shareholders have held off until today because any fund exchanges made after Friday 's close would take place at today 's closing prices . 
+
+sent: 26: one reason is that after two years of monthly net redemptions , the fund posted net inflows of money from investors in August and September . 
+
+sent: 25: half of them are really scared and want to sell , she said , but i 'm trying to talk them out of it . 
+
+sent: 26: two years ago , unlike today , the dollar was weak , interest rates were rising and the market was very overvalued , they say . 
+done parsing...
+time(CPU): 40.770000
+parsed 0 from a total of 1
+
+sent: 29: America West , though , is a smaller airline and therefore more affected by the delayed delivery of a single plane than many of its competitors would be . 
+done parsing...
+time(CPU): 169.810000
+parsed 0 from a total of 1
+
+sent: 25: indeed , a random check Friday did not seem to indicate that the strike was having much of an effect on other airline operations . 
+done parsing...
+time(CPU): 664.490000
+parsed 1 from a total of 1
+
+sent: 25: the seller of photographic products and services said it is considering a number of financing alternatives , including seeking increases in its credit lines . 
+done parsing...
+time(CPU): 315.470000
+parsed 0 from a total of 1
+
+sent: 25: but the full effect on prices of the winter wheat now being planted wo not be felt until the second half of next year . 

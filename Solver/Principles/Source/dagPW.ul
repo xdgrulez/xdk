@@ -1,0 +1,8 @@
+defprinciple "principle.dagPW" {
+  dims {D}
+  constraints {
+
+forall V: ~dom(V V D)
+
+  }
+}

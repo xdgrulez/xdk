@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE statistics SYSTEM "Extras/statistics.dtd">
+<statistics>
+  <grammar data="4712.ulsocket"/>
+  <examples data="XTAG/XDK_evaluation/wsj23_25-29_new1_1000.txt" count="4"/>
+  <mode data="parse"/>
+  <date data="Nov 14, 2007 14:49:46"/>
+  <solutions data="1000"/>
+  <failures data="99999"/>
+  <timeout data="1800"/>
+  <reco data="5"/>
+  <dimensions>
+    <dimension data="id"/>
+    <dimension data="idlp"/>
+    <dimension data="lex"/>
+    <dimension data="lp"/>
+  </dimensions>
+  <principles>
+    <principle data="id principle.graph1Constraints (id)"/>
+    <principle data="id principle.graph1Dist (id)"/>
+    <principle data="id principle.tree (id)"/>
+    <principle data="id principle.in (id)"/>
+    <principle data="id principle.out (id)"/>
+    <principle data="id principle.xTAGRoot (id)"/>
+    <principle data="lp principle.graph1Constraints (lp)"/>
+    <principle data="lp principle.graph1Dist (lp)"/>
+    <principle data="lp principle.tree (lp)"/>
+    <principle data="lp principle.in (lp)"/>
+    <principle data="lp principle.out (lp)"/>
+    <principle data="lp principle.government (lp)"/>
+    <principle data="lp principle.xTAG (lp)"/>
+    <principle data="idlp principle.xTAGLinking (id,lp,idlp)"/>
+    <principle data="idlp principle.xTAGRedundant (id,lp)"/>
+    <principle data="lex principle.entries ()"/>
+  </principles>
+  <gprofile fd="4" fs="270" fdfs="274" entries="460">
+    <gpnode fd="2" fs="2" fdfs="4"/>
+    <gpattrs fd="0" fs="0" fdfs="0">
+      <gpdimension data="id" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="idlp" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="0" fs="0" fdfs="0"/>
+    </gpattrs>
+    <gpentry fd="2" fs="144" fdfs="146">
+      <gpdimension data="id" fd="0" fs="37" fdfs="37"/>
+      <gpdimension data="idlp" fd="0" fs="35" fdfs="35"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="2" fs="72" fdfs="74"/>
+    </gpentry>
+    <gpmodel fd="0" fs="124" fdfs="124">
+      <gpdimension data="id" fd="0" fs="44" fdfs="44"/>
+      <gpdimension data="idlp" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="0" fs="80" fdfs="80"/>
+    </gpmodel>
+    <gplabel>
+      <gpdimension data="id" label="36"/>
+      <gpdimension data="idlp" label="0"/>
+      <gpdimension data="lex" label="0"/>
+      <gpdimension data="lp" label="35"/>
+    </gplabel>
+  </gprofile>
+  <string id="string1">
+    <words>
+    at Iraqi Iraqi and Iraqi , the nation 's biggest brokerage firm , a news release was prepared headlined Iraqi Iraqi Iraqi on Iraqi Iraqi .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="1131"/>
+    <depth data="42"/>
+    <failed data="110"/>
+    <succeeded data="1000"/>
+    <time data="75870"/>
+    <sprofile fd="224354" fs="68871" fdfs="293225" pr="391195" entries="23.154" words="26">
+      <spnode index="1" word="at" entries="31" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="2" word="Iraqi" entries="17" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="3" word="Iraqi" entries="17" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="4" word="and" entries="11" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="5" word="Iraqi" entries="17" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="6" word="," entries="23" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="7" word="the" entries="2" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="8" word="nation" entries="3" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="9" word="'s" entries="8" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="10" word="biggest" entries="18" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="11" word="brokerage" entries="19" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="12" word="firm" entries="88" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="13" word="," entries="23" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="14" word="a" entries="5" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="15" word="news" entries="4" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="16" word="release" entries="42" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="17" word="was" entries="5" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="18" word="prepared" entries="85" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="19" word="headlined" entries="51" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="20" word="Iraqi" entries="17" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="21" word="Iraqi" entries="17" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="22" word="Iraqi" entries="17" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="23" word="on" entries="46" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="24" word="Iraqi" entries="17" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="25" word="Iraqi" entries="17" fd="4" fs="270" fdfs="274" pr="424"/>
+      <spnode index="26" word="." entries="2" fd="4" fs="270" fdfs="274" pr="424"/>
+    </sprofile>
+  </string>
+  <string id="string2">
+    <words>
+    it would be my inclination to advise clients not to sell , to look for an opportunity to buy , Iraqi Iraqi told the brokers .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="1041"/>
+    <depth data="42"/>
+    <failed data="16"/>
+    <succeeded data="1000"/>
+    <time data="39500"/>
+    <sprofile fd="269828" fs="83516" fdfs="353344" pr="472445" entries="33.615" words="26">
+      <spnode index="1" word="it" entries="19" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="2" word="would" entries="2" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="3" word="be" entries="5" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="4" word="my" entries="3" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="5" word="inclination" entries="30" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="6" word="to" entries="38" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="7" word="advise" entries="39" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="8" word="clients" entries="3" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="9" word="not" entries="3" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="10" word="to" entries="38" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="11" word="sell" entries="100" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="12" word="," entries="22" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="13" word="to" entries="38" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="14" word="look" entries="124" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="15" word="for" entries="30" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="16" word="an" entries="2" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="17" word="opportunity" entries="19" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="18" word="to" entries="38" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="19" word="buy" entries="100" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="20" word="," entries="22" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="21" word="Iraqi" entries="17" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="22" word="Iraqi" entries="17" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="23" word="told" entries="158" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="24" word="the" entries="2" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="25" word="brokers" entries="3" fd="4" fs="311" fdfs="315" pr="490"/>
+      <spnode index="26" word="." entries="2" fd="4" fs="311" fdfs="315" pr="490"/>
+    </sprofile>
+  </string>
+  <string id="string3">
+    <words>
+    many money managers and some traders had already left their offices early Friday afternoon on a warm autumn day -- because the stock market was so quiet .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="2608"/>
+    <depth data="95"/>
+    <failed data="1584"/>
+    <succeeded data="1000"/>
+    <time data="814560"/>
+    <sprofile fd="264768" fs="80688" fdfs="345456" pr="460333" entries="29.643" words="28">
+      <spnode index="1" word="many" entries="7" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="2" word="money" entries="19" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="3" word="managers" entries="19" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="4" word="and" entries="11" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="5" word="some" entries="6" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="6" word="traders" entries="19" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="7" word="had" entries="96" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="8" word="already" entries="6" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="9" word="left" entries="118" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="10" word="their" entries="3" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="11" word="offices" entries="19" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="12" word="early" entries="23" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="13" word="Friday" entries="7" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="14" word="afternoon" entries="23" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="15" word="on" entries="46" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="16" word="a" entries="5" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="17" word="warm" entries="82" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="18" word="autumn" entries="23" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="19" word="day" entries="24" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="20" word="--" entries="10" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="21" word="because" entries="4" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="22" word="the" entries="2" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="23" word="stock" entries="72" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="24" word="market" entries="70" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="25" word="was" entries="5" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="26" word="so" entries="25" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="27" word="quiet" entries="84" fd="4" fs="275" fdfs="279" pr="432"/>
+      <spnode index="28" word="." entries="2" fd="4" fs="275" fdfs="279" pr="432"/>
+    </sprofile>
+  </string>
+  <string id="string4">
+    <words>
+    when trading was halted in Philip Iraqi , the stock was trading at three , down three three , while Iraqi closed three three lower at three .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="3281"/>
+    <depth data="45"/>
+    <failed data="2256"/>
+    <succeeded data="1000"/>
+    <time data="497230"/>
+    <sprofile fd="211932" fs="63681" fdfs="275613" pr="365777" entries="26.25" words="28">
+      <spnode index="1" word="when" entries="24" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="2" word="trading" entries="51" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="3" word="was" entries="5" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="4" word="halted" entries="51" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="5" word="in" entries="33" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="6" word="Philip" entries="3" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="7" word="Iraqi" entries="17" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="8" word="," entries="22" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="9" word="the" entries="2" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="10" word="stock" entries="72" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="11" word="was" entries="5" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="12" word="trading" entries="51" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="13" word="at" entries="31" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="14" word="three" entries="5" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="15" word="," entries="22" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="16" word="down" entries="100" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="17" word="three" entries="5" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="18" word="three" entries="5" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="19" word="," entries="22" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="20" word="while" entries="7" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="21" word="Iraqi" entries="17" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="22" word="closed" entries="65" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="23" word="three" entries="5" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="24" word="three" entries="5" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="25" word="lower" entries="72" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="26" word="at" entries="31" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="27" word="three" entries="5" fd="4" fs="226" fdfs="230" pr="354"/>
+      <spnode index="28" word="." entries="2" fd="4" fs="226" fdfs="230" pr="354"/>
+    </sprofile>
+  </string>
+  <counts>
+    <cchoices min="1041" max="3281" average="2015.2"/>
+    <cdepth min="42" max="95" average="56.0"/>
+    <cfailed min="16" max="2256" average="991.5"/>
+    <csucceeded min="1000" max="1000" average="1000.0"/>
+    <ctime min="39500" max="814560" average="3.5679e05"/>
+  </counts>
+  <profilecounts>
+    <cfd min="211932" max="269828" average="2.4272e05"/>
+    <cfs min="63681" max="83516" average="74189.0"/>
+    <cfdfs min="275613" max="353344" average="3.1691e05"/>
+    <cpr min="365777" max="472445" average="4.2244e05"/>
+    <cwords min="26" max="28" average="27.0"/>
+    <centries min="2" max="158" average="28.157"/>
+  </profilecounts>
+</statistics>

@@ -1,0 +1,9 @@
+defprinciple "principle.orderDepsPW" {
+  dims {D}
+  constraints {
+
+forall V: forall L: forall L1:
+  [L L1] in V.D.entry.order =>
+    ( forall V1: forall V2: edge(V V1 L D) & edge(V V2 L1 D) => V1<V2 )
+  }
+}

@@ -1,0 +1,473 @@
+@section UL syntax
+In this section, we describe the syntax of @emph{User Language (UL)}
+@cindex User Language
+@cindex UL
+grammar files, using the @emph{Extended Backus Naur Form (EBNF)}
+@cindex Extended Backus Naur Form
+@cindex EBNF
+as defined in the XML specification of the W3C (see
+@uref{http://www.w3.org/TR/REC-xml#sec-notation}).
+
+@subsection UL lexical syntax
+In this section, we lay out the lexical syntax of the UL.
+
+@subsubsection Keywords
+Here are the keywords of the UL:
+
+@example
+<keyword> ::= args | attrs |
+              bool | bot |
+              card |
+              defattrstype | defclass | defdim | defentry |
+              defentrytype | defgrammar | deflabeltype | deftype |
+              dim | dims |
+              entry |
+              infty | int | ints | iset | 
+              label | list |
+              vec |
+              output |
+              ref |
+              set | string |
+              top | tuple | tv |
+              useclass | usedim | useoutput | useprinciple |
+              valency
+@end example
+
+@subsubsection Operators
+Here are the operators of the UL:
+
+@example
+<operator> ::= @{ | @} | ( | ) | * | & | '| | '@@ | [ | ] | < | > |
+               $ | . | :: | _ | ^ | ! | ? | + | # | :
+@end example
+
+@subsubsection Identifiers
+Identifiers consist of letters and the underscore:
+
+@example
+<id> ::= [a-zA-Z_]+
+@end example
+
+@subsubsection Integers
+Integers consist of numbers:
+
+@example
+<int> ::= [0-9]+
+@end example
+
+@subsubsection Strings
+Strings can be quoted using single quotes (@code{<sstring>}), double
+quotes (@code{<dstring>}), or guillemet quotes (@code{<gstring>}). You
+can freely choose between the different kinds of quotes. Inside the
+quotes, you can write strings using any characters from the ISO 8859-1
+character set. We write @code{.} for ``any character from the ISO
+8859-1 character set'':
+
+@example
+<sstring> ::= '.+'
+
+<dstring> ::= ".+"
+
+<gstring> ::= «.+»
+@end example
+
+@subsubsection End of line comments
+End of line comments are written using the percent symbol @code{%}.
+
+@subsubsection Balanced comments
+Balanced comments start with @code{/*} and end with @code{*/}.
+
+@subsubsection Includes
+Files can be included using the @code{\input} directive.  For example
+to include the file @code{Chorus_header.ul}, you write:
+
+@example
+\include "Chorus_header.ul"
+@end example
+
+@subsection UL context-free syntax
+In this section, we lay out the context-free syntax of the UL.  We
+write all keywords in lower case, and all non-terminals in upper case
+letters. We use single quotes to escape the meta characters @code{(},
+@code{)}, @code{[}, @code{]}, @code{?}, @code{*}, @code{+}, @code{#},
+@code{|}, and @code{.}.
+
+@subsubsection Start symbol (S)
+The start symbol of our context-free grammar is @code{S}:
+
+@example
+S ::= Defgrammar*
+@end example
+
+@subsubsection Grammar definitions (Defgrammar)
+Here is the UL Syntax for grammar definitions:
+
+@example
+Defgrammar ::= defdim Constant @{ Defdim* @}    
+           |   defclass Constant Constant* @{ Class @}
+           |   defentry @{ Class* @}
+           |   usedim Constant
+@end example
+
+@code{defdim Constant @{ Defdim* @}} defines a dimension with
+identifier @code{Constant}, and dimension definitions @code{Defdim*}.
+
+@code{defclass Constant Constant* @{ Class @}} defines a lexical class
+with identifier @code{Constant}, class variables @code{Constant*}, and
+class body @code{Class}.
+
+@code{defentry @{ Class* @}} defines a lexical entry defined by
+class bodies @code{Class*}.
+
+@code{usedim Constant} uses the dimension with identifier
+@code{Constant}.
+
+@subsubsection Dimension definitions (Defdim)
+Here is the UL syntax for dimension definitions:
+
+@example
+Defdim ::= defattrstype Type
+       |   defentrytype Type
+       |   deflabeltype Type
+       |   deftype Constant Type
+       |   useprinciple Constant @{ Useprinciple* @}
+       |   output Constant
+       |   useoutput Constant
+@end example
+
+@code{defattrstype Type} defines the attributes type @code{Type}.
+
+@code{defentrytype Type} defines the entry type @code{Type}.
+
+@code{deflabeltype Type} defines the label type @code{Type}.
+
+@code{deftype Constant Type} defines the type @code{Type} with
+identifier @code{Constant}.
+
+@code{useprinciple Constant @{ Useprinciple* @}} uses the principle
+with identifier @code{Constant} and dimension and argument mappings
+@code{Useprinciple*}.
+
+@code{output Constant} chooses output @code{Constant}.
+
+@code{useoutput Constant} uses output @code{Constant}.
+
+@subsubsection Principle use instructions (Useprinciple)
+Here is the UL syntax for principle use instructions:
+
+@example
+Useprinciple ::= dims @{ VarTermFeat* @}
+             |   args @{ VarTermFeat* @}
+@end example
+
+@code{dims @{ VarTermFeat* @}} is the dimension mapping
+@code{VarTermFeat*}.
+
+@code{args @{ VarTermFeat* @}} is the argument mapping
+@code{VarTermFeat*}.
+
+@subsubsection Types (Type)
+This is the UL syntax of types:
+
+@example
+Type ::= @{ Constant* @}
+     |   set '(' Type ')'
+     |   iset '(' Type ')'
+     |   tuple '(' Type* ')'
+     |   list '(' Type ')'
+     |   valency '(' Type ')'
+     |   @{ TypeFeat+ @}
+     |   @{ : @}
+     |   vec '(' Type_1 Type_2 ')'
+     |   card
+     |   int
+     |   ints
+     |   string
+     |   bool
+     |   ref '(' Constant ')'
+     |   Constant
+     |   label '(' Constant ')'
+     |   tv '(' Constant ')'
+     |   '(' Type ')'
+@end example
+
+@code{@{ Constant* @}} is a finite domain consisting of the
+constants @code{Constant*}.
+
+@code{set '(' Type ')'} is a accumulative set with domain @code{Type}.
+
+@code{iset '(' Type ')'} is a intersective set with domain @code{Type}.
+
+@code{tuple '(' Type* ')'} is a tuple with projections @code{Type*}.
+
+@code{list '(' Type ')'} is a list with domain @code{Type}.
+
+@code{valency '(' Type ')'} is a valency with domain @code{Type}.
+
+@code{@{ TypeFeat+ @}} is a record with features @code{TypeFeat+}.
+
+@code{@{ : @}} is the empty record.
+
+@code{vec '(' Type_1 Type_2 ')'} is a vector with fields @code{Type_1}
+and values of type @code{Type_2}.
+
+@code{card} is a cardinality set.
+
+@code{int} is an integer.
+
+@code{ints} is a set of integers.
+
+@code{string} is a string.
+
+@code{bool} is a boolean.
+
+@code{ref '(' Constant ')'} is a type reference to the type with
+identifier @code{Constant}.
+
+@code{Constant} is a shortcut for @code{ref '(' Constant ')'}.
+
+@code{label '(' Constant ')'} is an label reference to the label type
+on the dimension referred to by dimension variable @code{Constant}.
+
+@code{tv '(' Constant ')'} is a type variable.
+
+@code{'(' Type ')'} encapsulates type @code{Type}.
+
+@subsubsection Class bodies (Class)
+Here is the UL syntax of a lexical class body:
+
+@example
+Class ::= dim Constant Term
+      |   useclass Constant
+      |   useclass Constant @{ VarTermFeat* @}
+      |   Constant
+      |   Constant @{ VarTermFeat* @}
+      |   Class_1 & Class_2
+      |   Class_1 '|' Class_2
+      |   '(' Class ')'
+@end example
+
+@code{dim Constant Term} defines the entry @code{Term} for the
+dimension with identifier @code{Constant}.
+
+@code{useclass Constant} uses the lexical class with identifier
+@code{Constant}.
+
+@code{Constant} is a shortcut for @code{useclass Constant}.
+
+@code{useclass Constant @{ VarTermFeat* @}} uses the lexical class
+with identifier @code{Constant} and class parameters
+@code{VarTermFeat*}. 
+
+@code{Constant @{ VarTermFeat* @}} is a shortcut for @code{useclass
+Constant @{ VarTermFeat* @}}.
+
+@code{Class & Class} is the conjunction of @code{Class_1} and
+@code{Class_2}.
+
+@code{Class '|' Class} is the disjunction of @code{Class_1} and
+@code{Class_2}.
+
+@code{'(' Class ')'} brackets class @code{Class}.
+
+@subsubsection Terms (Term)
+Here is the UL syntax of terms:
+
+@example
+Term ::= Constant
+     |   Integer
+     |   top
+     |   bot
+     |   Featurepath
+     |   CardFeat
+     |   @{ Term* @}
+     |   '[' Term* ']'
+     |   @{ Recspec+ @}
+     |   @{ : @}
+     |   $ Setgen
+     |   $ '(' ')'
+     |   Term :: Type
+     |   Term_1 & Term_2
+     |   Term_1 '|' Term_2
+     |   Term_1 @@ Term_2
+     |   '<' Term* '>'
+     |   '(' Term ')'
+@end example
+
+@code{Constant} is a constant.
+
+@code{Integer} is an integer.
+
+@code{top} is lattice top.
+
+@code{bot} is lattice bottom.
+
+@code{Featurepath} is a feature path.
+
+@code{CardFeat} is a cardinality specification.
+
+@code{@{ Term* @}} is a set of the elements @code{Term*}.
+
+@code{'[' Term* ']'} is a list of the elements @code{Term*} (in this
+order).
+
+@code{@{ Recspec+ @}} is a record with specification @code{Recspec+}.
+
+@code{@{ : @}} is the empty record.
+
+@code{$ Setgen} introduces set generator expression with set
+generator expression body @code{Setgen}.
+
+@code{$ '(' ')'} is the empty set generator expression.
+
+@code{Term :: Type} is a type annotation of term @code{Term} with type
+@code{Type}.
+
+@code{Term_1 & Term_2} is the conjunction of @code{Term_1} and
+@code{Term_2}.
+
+@code{Term_1 '|' Term_2} is the disjunction of @code{Term_1} and
+@code{Term_2}.
+
+@code{Term_1 @@ Term_2} is the @emph{concatenation}
+@cindex concatenation
+of @code{Term_1} and @code{Term_2}. Concatenation is restricted to
+strings.
+
+@code{'<' Term* '>'} is an order generator specification of a list of
+elements @code{Term*}.
+
+@code{'(' Term ')'} brackets term @code{Term}.
+
+@subsubsection Feature paths (Featurepath)
+Here is the UL syntax of feature paths:
+
+@example
+Featurepath ::= Root '.' Constant '.' Aspect ('.' Constant)+
+
+Root ::= _|^
+
+Aspect ::= attrs|entry
+@end example
+
+@code{Root '.' Constant '.' Aspect ('.' Constant)+} is a feature path
+with root variable @code{Root}, dimension variable @code{Constant},
+aspect @code{Aspect}, and the list fields @code{('.'Constant)+}.
+
+@subsubsection Record specifications (Recspec)
+Here is the UL syntax of record specifications:
+
+@example
+Recspec ::= TermFeat
+        |   Recspec_1 & Recspec_2
+        |   Recspec_1 '|' Recspec_2
+        |   '(' Recspec ')'
+@end example
+
+@code{TermFeat} is a feature.
+
+@code{Recspec_1 & Recspec_2} is the conjunction of @code{Recspec_1}
+and @code{Recspec_2}.
+
+@code{Recspec_1 '|' Recspec_2} is the disjunction of @code{Recspec_1}
+and @code{Recspec_2}.
+
+@code{'(' Recspec ')'} brackets record specification
+@code{Recspec}.
+
+@subsubsection Set generator expression bodies (Setgen)
+Here is the UL syntax of set generator expression bodies:
+
+@example
+Setgen ::= Constant
+       |   Setgen_1 & Setgen_2
+       |   Setgen_1 '|' Setgen_2
+       |   '(' Setgen ')'
+@end example
+
+@code{Constant} is a constant.
+
+@code{Setgen_1 & Setgen_2} is the conjunction of @code{Setgen_1}
+and @code{Setgen_2}.
+
+@code{Setgen_1 '|' Setgen_2} is the disjunction of @code{Setgen_1}
+and @code{Setgen_2}.
+
+@code{'(' Setgen ')'} brackets set generator expression body
+@code{Setgen}.
+
+@subsubsection Constants (Constant)
+Here is the UL syntax of constants:
+
+@example
+Constant ::= <id> | <sstring> | <dstring> | <gstring>
+@end example
+
+I.e. a constant is either an identifier (@code{<id>}), a single quoted
+string (@code{<sstring>}), a double quoted string (@code{<dstring>}),
+or a guillemot quoted string (@code{<gstring>}).
+
+@subsubsection Integers (Integer)
+Here is the UL syntax of constants:
+
+@example
+Integer ::= <int> | infty
+@end example
+
+I.e. an integer is either an integer (@code{<int>}) or the keyword for
+``infinity'' (@code{infty}).
+
+@subsubsection Features (ConstantFeat, TermFeat, VarTermFeat, and CardFeat)
+Here is the UL syntax of features:
+
+@example
+ConstantFeat ::= Constant_1 : Constant_2
+
+TermFeat ::= Constant : Term
+
+VarTermFeat ::= Constant : Term
+
+TypeFeat ::= Constant : Type
+
+CardFeat ::= Constant Card
+@end example
+
+@code{ConstantFeat} is a feature with field @code{Constant_1} and
+value @code{Constant_2}.
+
+@code{TermFeat} and @code{VarTermFeat} are features with field
+@code{Constant} and value @code{Term}.
+
+@code{TypeFeat} is a feature with field @code{Constant} and value
+@code{Type}.
+
+@code{CardFeat} is a cardinality specification with field
+@code{Constant} and cardinality set @code{Card}.
+
+@subsubsection Cardinality sets (Card)
+Here is the UL syntax of cardinality sets:
+
+@example
+Card ::= !
+     |   '?'
+     |   '*'
+     |   '+'
+     |   '#' @{ Integer* @}
+     |   '#' '[' Integer_1 Integer_2 ']'
+@end example
+
+@code{!} is cardinality set @math{@{0@}}.
+
+@code{'?'} is the cardinality set @math{@{0,1@}}.
+
+@code{'*'} is the cardinality set @math{@{0,@dots{},infty@}} where
+@math{infty} means ``infinity''.
+
+@code{'+'} is the cardinality set @math{@{1,@dots{},infty@}}.
+
+@code{'#' @{ Integer* @}} is the cardinality set including the
+integers @code{Integer*}.
+
+@code{'#' '[' Integer_1 Integer_2 ']'} is the cardinality set
+including the closed interval between @code{Integer_1} and
+@code{Integer_2}.

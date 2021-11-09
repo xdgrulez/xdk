@@ -1,0 +1,277 @@
+<html lang="en">
+<head>
+<title>adjunction - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Grammars.html#Grammars" title="Grammars">
+<link rel="prev" href="TAG1.html#TAG1" title="TAG1">
+<link rel="next" href="coindex.html#coindex" title="coindex">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="adjunction"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="coindex.html#coindex">coindex</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="TAG1.html#TAG1">TAG1</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Grammars.html#Grammars">Grammars</a>
+<hr>
+</div>
+
+<h3 class="section">5.37 adjunction</h3>
+
+<p>This grammar showcases the old <em>Tree Adjoining Grammar (TAG)</em>
+<a name="index-Tree-Adjoining-Grammar-211"></a><a name="index-TAG-212"></a>encoding developed by Marco Kuhlmann, and was also written by him.
+
+<pre class="verbatim">%%
+%% Sample grammar for TAG adjunction
+%% Marco Kuhlmann &lt;kuhlmann@ps.uni-sb.de>
+%%
+
+%% This grammar encodes TAG-like trees into lexical entries in
+%% XDG.  Note that I say TAG-like, because the trees that you
+%% get when you decode these lexical entries are probably not
+%% the trees that you would usually draw when modelling problems
+%% like the ones in this sample grammar in TAG.
+
+usedim ds
+usedim lex
+
+defdim ds {
+  defentrytype "ds.entry"
+  deflabeltype "ds.label"
+  deftype "ds.label" {s1 s11 s11b s121 s122 s13 a12l a12r}
+  deftype "ds.entry" {
+    in    : iset("ds.label")
+    on    : iset("ds.label")
+    out   : valency("ds.label")
+    cut   : vec("ds.label" set("ds.label"))
+    paste : set("ds.label")
+  }
+  useprinciple "principle.graph" {
+    dims {D: ds}}
+  useprinciple "principle.tree" {
+    dims {D: ds}}
+  useprinciple "principle.in" {
+    dims {D: ds}}
+  useprinciple "principle.out" {
+    dims {D: ds}}
+  useprinciple "principle.orderWithCuts" {
+    dims {D: ds}
+    args {Order: [s1 s11 s11b a12l s121 s122 a12r s13]}}
+  output "output.dag"
+  output "output.pretty"
+  useoutput "output.dag"
+  useoutput "output.pretty"
+}
+
+defdim lex {
+  defentrytype {word: string}
+}
+
+%% alpha with head in A
+
+defentry {
+  dim ds {
+    in    : {s1 s11 s121 s122 s13}
+    on    : {s11}
+    out   : {s121 s13 a12l? a12r?}
+    cut   : {a12l: {s121} a12r: {s121}}
+  }
+  dim lex {
+    word  : "alpha_A"
+  }
+}
+
+%% alpha with head in C
+
+defentry {
+  dim ds {
+    in    : {s1 s11 s121 s122 s13}
+    on    : {s121}
+    out   : {s11 s13 a12l? a12r?}
+    cut   : {a12l: {s121} a12r: {s121}}
+  }
+  dim lex {
+    word  : "alpha_C"
+  }
+}
+
+%% alpha with head in E
+
+defentry {
+  dim ds {
+    in    : {s1 s11 s121 s122 s13}
+    on    : {s13}
+    out   : {s11 s121 a12l? a12r?}
+    cut   : {a12l: {s121} a12r: {s121}}
+  }
+  dim lex {
+    word  : "alpha_E"
+  }
+}
+
+%% beta with head in B
+
+defentry {
+  dim ds {
+    in    : {a12l}
+    on    : {s11}
+    out   : {s122 a12l? a12r?}
+    cut   : {a12l: {s121 s122} a12r: {s121 s122}}
+    paste : {s121}
+  }
+  dim lex {
+    word  : "beta_B"
+  }
+}
+
+defentry {
+  dim ds {
+    in    : {a12r}
+    on    : {s13}
+    out   : {s121 a12l? a12r?}
+    cut   : {a12l: {s121 s122} a12r: {s121 s122}}
+    paste : {s122}
+  }
+  dim lex {
+    word  : "beta_D"
+  }
+}
+
+%% dummy entry for substitution sites
+
+defentry {
+  dim ds {
+    in    : {s1 s11 s121 s122 s13}
+    on    : {s1}
+  }
+  dim lex {
+    word  : "x"
+  }
+}
+
+%% --------------------------------------------------------------
+%% Hippo sentences
+%% --------------------------------------------------------------
+
+defentry {
+  dim ds {
+    in    : {s1 s11 s11b s121 s122 s13}
+    on    : {s1}
+  }
+  dim lex {
+    word  : "ik"
+  }
+}
+
+defentry {
+  dim ds {
+    in    : {s1 s11 s11b s121 s122 s13}
+    on    : {s1}
+  }
+  dim lex {
+    word  : "Henk"
+  }
+}
+
+defentry {
+  dim ds {
+    in    : {s1 s11 s11b s121 s122 s13}
+    on    : {s1}
+  }
+  dim lex {
+    word  : "Cecilia"
+  }
+}
+
+defentry {
+  dim ds {
+    in    : {s1 s11 s121 s122 s13}
+    on    : {s1}
+  }
+  dim lex {
+    word  : "de"
+  }
+}
+
+defentry {
+  dim ds {
+    in    : {s1 s11 s11b s121 s122 s13}
+    on    : {s13}
+    out   : {s11}
+  }
+  dim lex {
+    word  : "nijlpaarden"
+  }
+}
+
+defentry {
+  dim ds {
+    in    : {s1 s11 s11b s121 s122 s13}
+    on    : {s122}
+    out   : {s11 a12l? a12r?}
+    cut   : {a12l: {s122} a12r: {s122}}
+  }
+  dim lex {
+    word  : "zag"
+  }
+}
+
+defentry {
+  dim ds {
+    in    : {a12l a12r}
+    on    : {s122}
+    out   : {s11 a12l? a12r?}
+    paste : {s121}
+    cut   : {a12l: {s121 s122} a12r: {s121 s122}}
+  }
+  dim lex {
+    word  : "helpen"
+  }
+}
+
+defentry {
+  dim ds {
+    in    : {a12l a12r}
+    on    : {s122}
+    out   : {s11 a12l? a12r?}
+    paste : {s121}
+    cut   : {a12l: {s121 s122} a12r: {s121 s122}}
+  }
+  dim lex {
+    word  : "zwemmen"
+  }
+}
+
+defentry {
+  dim ds {
+    in    : {a12l a12r}
+    on    : {s122}
+    out   : {s11 s11b a12l? a12r?}
+    paste : {s121}
+    cut   : {a12l: {s121 s122} a12r: {s121 s122}}
+  }
+  dim lex {
+    word  : "voeren"
+  }
+}
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

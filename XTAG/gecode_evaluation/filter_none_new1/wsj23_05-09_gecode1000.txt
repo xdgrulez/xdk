@@ -1,0 +1,167 @@
+05-09/4712.fzn1
+Friday , October three , three
+
+	runtime:       130
+	solutions:     0
+	propagators:   4507
+	propagations:  124853
+	failures:      20
+	clones:        19
+	commits:       74
+	peak memory:   1999 KB
+No solution
+05-09/4712.fzn2
+Iraqi Iraqi , Iraqi .
+
+	runtime:       820
+	solutions:     230
+	propagators:   3952
+	propagations:  491476
+	failures:      28
+	clones:        257
+	commits:       704
+	peak memory:   2639 KB
+05-09/4712.fzn3
+Iraqi Iraqi Iraqi Iraqi .
+
+	runtime:       560
+	solutions:     144
+	propagators:   3669
+	propagations:  353097
+	failures:      24
+	clones:        167
+	commits:       450
+	peak memory:   2319 KB
+05-09/4712.fzn4
+Iraqi declined to comment .
+
+	runtime:       3140
+	solutions:     851
+	propagators:   5300
+	propagations:  1318048
+	failures:      83
+	clones:        933
+	commits:       2719
+	peak memory:   6105 KB
+05-09/4712.fzn5
+Iraqi wants to change its viewers ' habits .
+
+	runtime:       14530
+	solutions:     20
+	propagators:   12849
+	propagations:  7458143
+	failures:      646
+	clones:        665
+	commits:       2032
+	peak memory:   13962 KB
+05-09/4712.fzn6
+Philips of the Iraqis .
+
+	runtime:       60
+	solutions:     5
+	propagators:   348
+	propagations:  49072
+	failures:      0
+	clones:        4
+	commits:       11
+	peak memory:   3346 KB
+05-09/4712.fzn7
+but they fell sharply .
+
+	runtime:       90
+	solutions:     0
+	propagators:   3061
+	propagations:  64854
+	failures:      5
+	clones:        4
+	commits:       8
+	peak memory:   4115 KB
+No solution
+05-09/4712.fzn8
+companies added capacity furiously .
+
+	runtime:       1890
+	solutions:     504
+	propagators:   4087
+	propagations:  837352
+	failures:      47
+	clones:        550
+	commits:       1611
+	peak memory:   5648 KB
+05-09/4712.fzn9
+debt burdens are heavier .
+
+	runtime:       2670
+	solutions:     851
+	propagators:   4280
+	propagations:  1236124
+	failures:      52
+	clones:        902
+	commits:       2419
+	peak memory:   3523 KB
+05-09/4712.fzn10
+marketer marketer : three percent .
+
+	runtime:       70
+	solutions:     5
+	propagators:   1457
+	propagations:  60275
+	failures:      2
+	clones:        6
+	commits:       15
+	peak memory:   3278 KB
+05-09/4712.fzn11
+people are not panicking .
+
+	runtime:       410
+	solutions:     84
+	propagators:   3303
+	propagations:  234759
+	failures:      8
+	clones:        91
+	commits:       266
+	peak memory:   3279 KB
+05-09/4712.fzn12
+that perception takes the focus off the magazine .
+
+	runtime:       6530
+	solutions:     1000
+	propagators:   14745
+	propagations:  1746441
+	failures:      50
+	clones:        1057
+	commits:       3025
+	peak memory:   19739 KB
+05-09/4712.fzn13
+the accord expired yesterday .
+
+	runtime:       1980
+	solutions:     634
+	propagators:   4299
+	propagations:  874759
+	failures:      43
+	clones:        676
+	commits:       1869
+	peak memory:   5392 KB
+05-09/4712.fzn14
+what about Iraqi Iraqi ?
+
+	runtime:       770
+	solutions:     117
+	propagators:   4011
+	propagations:  474235
+	failures:      27
+	clones:        143
+	commits:       385
+	peak memory:   3731 KB
+05-09/4712.fzn15
+where 's the leadership ?
+
+	runtime:       80
+	solutions:     3
+	propagators:   2376
+	propagations:  60725
+	failures:      2
+	clones:        4
+	commits:       9
+	peak memory:   3346 KB

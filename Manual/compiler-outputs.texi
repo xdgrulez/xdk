@@ -1,0 +1,68 @@
+@section Outputs
+In a dimension definition, you can specify a set of outputs to
+visualize the solutions on that dimension. The outputs must be taken from
+the predefined @emph{output library},
+@cindex output library.
+of the XDK. Using outputs proceeds in two steps:
+@enumerate
+@item choose outputs
+@item use outputs 
+@end enumerate
+
+@subsection Choosing outputs
+First, you @emph{choose}
+@cindex choose outputs
+the subset of @emph{chosen outputs}
+@cindex chosen outputs
+from the outputs available in the output library. All of these outputs
+must be able to visualize the solution on the currently defined
+dimension.
+
+In the UL, you choose an output as follows:
+@example
+output <constant>
+@end example
+where the @code{<constant>} is an output identifier.
+
+@subsection Using outputs
+Then, you @emph{use}
+@cindex use
+@cindex use outputs
+a subset of the chosen outputs (the @emph{used outputs})
+@cindex used outputs
+which are actually utilized by the XDK to visualize the individual
+solutions of a solution for that dimension.
+
+In the UL, you use an output as follows:
+@example
+useoutput <constant>
+@end example
+where the @code{<constant>} is an output identifier.
+
+This rather artificial difference between choosing and using outputs
+has its roots in the GUI of the XDK. Here, all the chosen outputs are
+available in the @code{Outputs} menu (so that you can still use them
+on demand), but only the used outputs are actually used for
+visualizing solutions.
+
+@subsection Example
+In our example grammar file, only the output @code{output.pretty} is
+chosen on both the id and the lp dimension (but not used):
+
+@example
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.pretty"
+@end example
+
+The multi-dimensional outputs @code{output.dags1} and
+@code{output.latexs1} are used on the lex dimension, but only the
+former is chosen:
+
+@example
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dags1"
+  output "output.latexs1"
+  useoutput "output.dags1"
+@end example

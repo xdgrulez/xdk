@@ -1,0 +1,9 @@
+defprinciple "principle.blockPW" {
+  dims {D1 D2}
+  constraints {
+
+forall V: forall V1:
+  edge(V V1 D1) <=> domeq(V V1 D2)
+
+  }
+}

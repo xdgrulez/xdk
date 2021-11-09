@@ -1,0 +1,9 @@
+UL
+   \ conversion     type checking     compilation
+    \----------> IL -------------> IL -----------> SL
+    /----------> ^  ------------->    ----------->
+   /             |
+XML              |
+                 |
+                 |
+       Principles, Outputs

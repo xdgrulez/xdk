@@ -1,0 +1,134 @@
+<html lang="en">
+<head>
+<title>LinkingBelow1or2Start - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="LinkingBelow.html#LinkingBelow" title="LinkingBelow">
+<link rel="next" href="LinkingBelowEnd.html#LinkingBelowEnd" title="LinkingBelowEnd">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="LinkingBelow1or2Start"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="LinkingBelowEnd.html#LinkingBelowEnd">LinkingBelowEnd</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="LinkingBelow.html#LinkingBelow">LinkingBelow</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.34 LinkingBelow1or2Start principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.linkingBelow1or2Start</code>
+<li>dimension variables: <code>D1</code>, <code>D2</code>, <code>D3</code>
+<li>argument variables:<br>
+<code>Start: vec(label(D1) set(label(D2)))</code>
+<li>default values:<br>
+<code>Start: ^.D3.entry.start</code>
+<li>model record: empty
+<li>constraints: <code>LinkingBelow1or2Start</code> (priority 100)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle is from the family of <em>linking principles</em>. 
+<a name="index-linking-272"></a><a name="index-linking-principles-273"></a>
+For all edges from v to v' labeled l on <code>D1</code>,
+it stipulates the constraint:
+     <ul>
+<li>if <code>Start</code>(l) is not empty, then on <code>D2</code>,
+v' must be either the daughter or the daughter of the daughter
+of v, and the first edge on the path from v to v'
+must be labeled by a label in <code>Start</code>(l)
+</ul>
+   That is, <code>Start</code>(l) specifies the direction and
+startpoint of the path from v to v' on <code>D2</code>.
+
+   <p>Here is the definition of the <code>LinkingBelow1or2Start</code>
+constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+
+   Helpers(checkModel) at 'Helpers.ozf'
+   Opti(isIn) at 'Opti.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      D1DIDA = {DVA2DIDA 'D1'}
+      D2DIDA = {DVA2DIDA 'D2'}
+      DIDA2LabelLat = G.dIDA2LabelLat
+      D1LabelLat = {DIDA2LabelLat D1DIDA}
+      D2LabelLat = {DIDA2LabelLat D2DIDA}
+      D1LAs = D1LabelLat.constants
+      D2LAs = D2LabelLat.constants
+   in
+      if {Helpers.checkModel 'LinkingBelow1or2Start.oz' Nodes
+	  [D1DIDA#daughtersL
+	   D2DIDA#daughters
+	   D2DIDA#daughtersL]} then
+	 D2DaughtersMs = {Map Nodes
+			  fun {$ Node} Node.D2DIDA.model.daughters end}
+      in
+	 for Node1 in Nodes do
+	    for Node2 in Nodes do
+	       for LA in D1LAs do
+		  if {Not {Opti.isIn Node2.index Node1.D1DIDA.model.daughtersL.LA}=='out'} then
+		     StartLALMRec =
+		     {ArgRecProc 'Start' o('^': Node1)}
+		     StartLM = StartLALMRec.LA
+		     %%
+		     D2Below1or2Ms =
+		     {Map D2LAs
+		      fun {$ LA}
+			 D2Below1M = Node1.D2DIDA.model.daughtersL.LA
+			 D2Below2M =
+			 {Select.union D2DaughtersMs D2Below1M}
+		      in
+			 {FS.union D2Below1M D2Below2M}
+		      end}
+		     D2Below1or2M =
+		     {Select.union D2Below1or2Ms StartLM}
+		  in
+		     {FD.impl
+		      {FS.reified.include Node2.index Node1.D1DIDA.model.daughtersL.LA}
+		      {FD.impl
+		       {FD.nega {FS.reified.equal StartLM FS.value.empty}}
+		       {FS.reified.include Node2.index D2Below1or2M}} 1}
+		  end
+	       end
+	    end
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

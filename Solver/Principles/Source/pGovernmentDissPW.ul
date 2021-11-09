@@ -1,0 +1,10 @@
+defprinciple "principle.pGovernmentDissPW" {
+  dims {D}
+  constraints {
+
+forall V: forall V1:
+  ( edge(V V1 pobj1 D) => V1.D.attrs.pagr in V.D.entry.pobj1) &
+  ( edge(V V1 pobj2 D) => V1.D.attrs.pagr in V.D.entry.pobj2)
+
+  }
+}

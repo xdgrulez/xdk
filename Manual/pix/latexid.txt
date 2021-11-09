@@ -1,0 +1,2 @@
+A dependency tree (Immediate Dominance/ID dimension) obtained from the XDK 
+latex output functor.

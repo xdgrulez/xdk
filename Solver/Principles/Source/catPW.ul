@@ -1,0 +1,9 @@
+defprinciple "principle.catPW" {
+  dims {D}
+  constraints {
+
+forall V:
+  V.D.entry.cats ~= {} => V.D.attrs.cat in V.D.entry.cats
+
+  }
+}

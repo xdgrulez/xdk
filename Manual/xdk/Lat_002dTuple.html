@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+<title>Lat-Tuple - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Lattice-functors.html#Lattice-functors" title="Lattice functors">
+<link rel="prev" href="Lat_002dString.html#Lat_002dString" title="Lat-String">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Lat-Tuple"></a>
+<a name="Lat_002dTuple"></a>
+<p>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Lat_002dString.html#Lat_002dString">Lat-String</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Lattice-functors.html#Lattice-functors">Lattice functors</a>
+<hr>
+</div>
+
+<h4 class="subsection">4.15.10 Tuple functor</h4>
+
+<p>For the tuple lattice functor, all projections must be finite domains of
+constants.
+
+<h5 class="subsubsection">4.15.10.1 Select function</h5>
+
+<p>The select function uses the selection constraint for Oz finite domain
+variables to select one integer (encoding the tuple) from the list of
+integers (encoding the list of tuples).
+
+<h5 class="subsubsection">4.15.10.2 Make variable function</h5>
+
+<p>The make variable function creates an Oz finite domain variable ranging
+over the domain of the lattice, a finite domain of integers encoding the
+tuples.
+
+<h5 class="subsubsection">4.15.10.3 Count function</h5>
+
+<p>Returns:
+<pre class="example">     o(fd: 1
+       fs: 0)
+</pre>
+   <h5 class="subsubsection">4.15.10.4 Additional interface features</h5>
+
+<pre class="example">     domains: Lats
+     card: I
+     dSpec: DSpec
+     i2As: I2As
+</pre>
+   <p>The <code>domains</code> feature corresponds to a list of lattices which
+correspond to the projections of the tuple.
+
+   <p>The <code>card</code> feature corresponds to the cardinality of the domain
+encoding the tuple.
+
+   <p>The <code>dSpec</code> feature corresponds to the finite domain
+specification of the finite domain used to encode the tuple.
+
+   <p>The <code>i2As</code> feature corresponds to a function from integers
+(encoding tuples) to lists of atoms representing the tuple
+corresponding to the integer.
+
+<!-- ************************************************************ -->
+   </body></html>
+

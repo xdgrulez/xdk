@@ -1,0 +1,95 @@
+usedim pl
+usedim bars
+usedim plbars
+usedim lex
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension pl
+defdim pl {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "pl.label" {arg1 arg2 bar "^"}
+  deflabeltype "pl.label"
+  defentrytype {in: set(tuple("pl.label" {"!" "?" "+" "*"}))
+                out: set(tuple("pl.label" {"!" "?" "+" "*"}))
+                order: set(tuple("pl.label" "pl.label"))}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graphPW" { dims {D: pl} }
+  useprinciple "principle.treePW" { dims {D: pl} }
+  useprinciple "principle.valencyPW" { dims {D: pl} }
+  useprinciple "principle.orderPW" { dims {D: pl} }
+  useprinciple "principle.projectivityPW" { dims {D: pl} }
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension bars
+defdim bars {
+  deftype "bars.label" {bars}
+  deflabeltype "bars.label"
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graphPW" { dims {D: bars} }
+  useprinciple "principle.barsPW" { dims {D: bars} }
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension plbars
+defdim plbars {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defattrstype {truth: {true false}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.plPW" { dims {D1: pl D2: bars D3: plbars} }
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lex
+defdim lex {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype {word: string}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.entries" {}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.allDags1"
+  output "output.latexs1"
+  useoutput "output.allDags1"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lexicon
+%% i.e., the ordered fragments
+
+%% implications
+defentry {
+  dim pl {in: {arg1? arg2?}
+          out: {arg1! arg2!}
+          order: <"^" arg1 arg2>}
+  dim lex {word: "impl"}}
+
+%% zeros
+defentry {
+  dim pl {in: {arg1? arg2?}}
+  dim lex {word: "0"}}
+
+%% variables
+defentry {
+  dim pl {in: {arg1? arg2?}
+          out: {bar!}
+          order: <"^" bar>} 
+  dim lex {word: "var"}}
+
+%% bars
+defentry {
+  dim pl {in: {bar!}
+          out: {bar?}
+          order: <"^" bar>}
+  dim lex {word: "I"}}

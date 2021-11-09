@@ -1,0 +1,20 @@
+@section xdkc
+This section is about the standalone grammar file compiler of the XDK
+(@code{xdkc}).
+
+@subsection Invocation
+These are the commandline arguments of @code{xdkc}:
+
+@itemize @bullet
+@item @code{--help} or @code{--nohelp} (short version: @code{-h}): Display an
+overview of the commandline arguments. Default: @code{--nohelp}.
+@item @code{--grammars} (@code{-g}): Select the list of
+grammar files which shall be compiled (and then merged). Default: no files.
+@item @code{--input} (@code{-i}): Supply a sentence
+(for dynamic grammar generation). Default: @code{""}.
+@item @code{--output} (@code{-o}): Specify the filename for the compiled grammar.
+Default: the name of the first grammar file with its suffix changed to
+@code{slp}/@code{slp_db}.
+@item @code{--debug} or @code{--nodebug} (@code{-d}): Switch on the debug mode. 
+Default: @code{nodebug}.
+@end itemize

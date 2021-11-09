@@ -1,0 +1,980 @@
+@chapter Outputs
+This chapter is about the @emph{output functors}
+@cindex output functor
+or just @emph{outputs}
+@cindex output
+of the XDK. The outputs visualize individual solutions.
+
+Outputs can also be used to post-process XDG analyses using external
+programs written in another language than Mozart/Oz
+(e.g. perl-scripts). This is the purpose of the XML output functors,
+which output analyses in XML.
+
+Each dimension specifies its own set of @emph{chosen outputs}
+@cindex chosen output
+and @emph{used outputs}.
+@cindex used output
+We call the dimension on which the output is used the @emph{output
+dimension}
+@cindex output dimension
+Chosen outputs appear in the @code{Outputs} pull-down menu of the
+graphical user interface of the XDK. Used outputs are actually used to
+visualize the individual solutions.
+
+An output definition includes:
+
+@itemize @bullet
+@item the @emph{output identifier}
+@cindex output identifier
+@item the @emph{output open method}
+@cindex output open method
+@item the @emph{output close method}
+@cindex output close method
+@end itemize
+
+The output functors are taken from a predefined @emph{output library}.
+@cindex output library
+Below, we present the definitions of all the output functors in the
+current output library.  Note that we leave out output functors which
+are currently in development and might vanish again in later releases.
+
+Most output functors @emph{print} information. This printing can be
+redirected (e.g. to the Oz Inspector, the Oz Browser, stdout, or into
+a file).
+
+We explain the syntax of the @emph{Output Language (OL)}
+@cindex Output Language
+@cindex OL
+used in the Pretty output functor (@ref{OL syntax}).
+
+Developers only: We describe the @emph{output record}
+@cindex output record
+in @ref{Output record}. The output record is the representation of a
+solution prepared to be used by the output functors.  In @ref{Writing
+new outputs}, we explain how to write new output functors.
+
+@menu
+* AllDags::                   AllDags display
+
+* AllDags1::                  AllDags display 1
+
+* AllDags2::                  AllDags display 2
+
+* AllDags3::                  AllDags display 3
+
+* AllLatexs::                 AllLatexs display
+
+* AllLatexs1::                AllLatexs display 1
+
+* AllLatexs2::                AllLatexs display 2
+
+* AllLatexs3::                AllLatexs display 3
+
+* CLLS::                      CLLS output
+
+* CLLS1::                     CLLS output 1
+
+* Decode::                    Decode output
+
+* Dag:Dag1.                   Dag display
+
+* Dag1:Dag11.                 Dag display 1
+
+* Dag2:Dag12.                 Dag display 2
+
+* Dag3:Dag13.                 Dag display 3
+
+* Dags:Dags.                  Dags display
+
+* Dags1:Dags1.                Dags display 1
+
+* Dags2:Dags2.                Dags display 2
+
+* Dags3:Dags3.                Dags display 3
+
+* Latex::                     Latex output using @code{xdag.sty}
+
+* Latex1::                    Latex output using @code{xdag.sty} 1
+
+* Latex2::                    Latex output using @code{xdag.sty} 2
+
+* Latex3::                    Latex output using @code{xdag.sty} 3
+
+* Latexs::                    Latex outputs using @code{xdag.sty}
+
+* Latexs1::                   Latex outputs using @code{xdag.sty} 1
+
+* Latexs2::                   Latex outputs using @code{xdag.sty} 2
+
+* Latexs3::                   Latex outputs using @code{xdag.sty} 3
+
+* Pretty::                    Pretty output
+
+* Pretty1::                   Pretty1 output
+
+* XML::                       XML output
+
+* XML1::                      XML output 1
+
+* XML2::                      XML output 2
+
+* XML3::                      XML output 3
+
+* XML4::                      XML output 4
+
+* XTAGDerivation::            XTAG derivation tree output
+
+--
+
+* OL syntax::                 Output Language syntax
+
+-- developers only --
+
+* Output record::             Output record
+
+* Writing new outputs::       Writing new output functors
+@end menu
+
+@c ************************************************************
+
+@node AllDags, AllDags1, , Outputs
+@section AllDags
+This section explains the AllDags output functor.
+
+@itemize @bullet
+@item identifier: @code{output.allDags}
+@item open method: opens a window displaying the dags
+corresponding to all dimensions (including e.g. the @code{lex}
+dimension), not only the dimensions using the graph principle (see
+@ref{Dags}). The individual dags are drawn as by the Dag output
+functor (@ref{Dag1})
+@item close method: closes all of these windows.
+@end itemize
+
+@c ************************************************************
+
+@node AllDags1, AllDags2, AllDags, Outputs
+@section AllDags1
+This section explains the AllDags1 output functor.
+
+@itemize @bullet
+@item identifier: @code{output.allDags1}
+@item open method: opens a window displaying the dags
+corresponding to all dimensions (including e.g. the @code{lex}
+dimension), not only the dimensions using the graph principle (see
+@ref{Dags1}). The individual dags are drawn as by the Dag1 output
+functor (@ref{Dag11})
+@item close method: closes all of these windows.
+@end itemize
+
+@c ************************************************************
+
+@node AllDags2, AllDags3, AllDags1, Outputs
+@section AllDags2
+This section explains the AllDags2 output functor.
+
+@itemize @bullet
+@item identifier: @code{output.allDags2}
+@item open method: opens a window displaying the dags
+corresponding to all dimensions (including e.g. the @code{lex}
+dimension), not only the dimensions using the graph principle (see
+@ref{Dags2}). The individual dags are drawn as by the Dag1 output
+functor (@ref{Dag12})
+@item close method: closes all of these windows.
+@end itemize
+
+@c ************************************************************
+
+@node AllDags3, AllLatexs, AllDags2, Outputs
+@section AllDags3
+This section explains the AllDags3 output functor.
+
+@itemize @bullet
+@item identifier: @code{output.allDags3}
+@item open method: opens a window displaying the dags
+corresponding to all dimensions (including e.g. the @code{lex}
+dimension), not only the dimensions using the graph principle (see
+@ref{Dags3}). The individual dags are drawn as by the Dag1 output
+functor (@ref{Dag13})
+@item close method: closes all of these windows.
+@end itemize
+
+@c ************************************************************
+
+@node AllLatexs, AllLatexs1, AllDags3, Outputs
+@section AllLatexs
+This section explains the AllLatexs output functor.
+
+@itemize @bullet
+@item identifier: @code{output.allLatexs}
+@item open method: prints the dags
+corresponding to all dimensions (including e.g. the @code{lex}
+dimension), not only the dimensions using the graph principle (see
+@ref{Latexs}). The individual dags are printed as by the Latex output
+functor (@ref{Latex}).
+@item close method: does nothing
+@end itemize
+
+@c ************************************************************
+
+@node AllLatexs1, AllLatexs2, AllLatexs, Outputs
+@section AllLatexs1
+This section explains the AllLatexs1 output functor.
+
+@itemize @bullet
+@item identifier: @code{output.allLatexs1}
+@item open method: prints the dags
+corresponding to all dimensions (including e.g. the @code{lex}
+dimension), not only the dimensions using the graph principle (see
+@ref{Latexs1}). The individual dags are printed as by the Latex output
+functor (@ref{Latex1}).
+@item close method: does nothing
+@end itemize
+
+@c ************************************************************
+
+@node AllLatexs2, AllLatexs3, AllLatexs1, Outputs
+@section AllLatexs2
+This section explains the AllLatexs2 output functor.
+
+@itemize @bullet
+@item identifier: @code{output.allLatexs2}
+@item open method: prints the dags
+corresponding to all dimensions (including e.g. the @code{lex}
+dimension), not only the dimensions using the graph principle (see
+@ref{Latexs2}). The individual dags are printed as by the Latex output
+functor (@ref{Latex2}).
+@item close method: does nothing
+@end itemize
+
+@c ************************************************************
+
+@node AllLatexs3, CLLS, AllLatexs2, Outputs
+@section AllLatexs3
+This section explains the AllLatexs3 output functor.
+
+@itemize @bullet
+@item identifier: @code{output.allLatexs3}
+@item open method: prints the dags
+corresponding to all dimensions (including e.g. the @code{lex}
+dimension), not only the dimensions using the graph principle (see
+@ref{Latexs3}). The individual dags are printed as by the Latex output
+functor (@ref{Latex3}).
+@item close method: does nothing
+@end itemize
+
+@c ************************************************************
+
+@node CLLS, CLLS1, AllLatexs3, Outputs
+@section CLLS
+This section explains the CLLS output functor.
+
+@itemize @bullet
+@item identifier: @code{output.clls}
+@item open method: opens a daVinci window showing the CLLS constraint
+read off from dimensions pa and sc.
+@item close method: closes the daVinci window
+@end itemize
+
+@c ************************************************************
+
+@node CLLS1, Dag1, CLLS, Outputs
+@section CLLS
+This section explains the CLLS1 output functor.
+
+@itemize @bullet
+@item identifier: @code{output.clls1}
+@item open method: prints out the CLLS constraint
+read off from dimensions pa and sc.
+@item close method: none
+@end itemize
+
+@c ************************************************************
+
+@node Dag1, Dag11, CLLS1, Outputs
+@section Dag
+This section explains the Dag output functor.  The Dag output functor
+assumes that the graph principle is used on the output dimension.
+
+@itemize @bullet
+@item identifier: @code{output.dag}
+@item open method: opens a window displaying all
+known edges (and all known edge labels and all known node labels) of
+the directed acyclic graph on the output dimension
+@item close method: closes all of these windows opened on the
+output dimension
+@end itemize
+
+Below, we display an example Dag output:
+
+@sp 1
+@image{pix/dagid,10cm}
+
+The blue edges correspond to edges in the dag, and the orange edges
+called @emph{projection edges}
+@cindex projection edge
+connect each node in the dag with the corresponding index and word.
+
+Below, we display an example Dag output including node labels. Node
+labels appear on the projection edges:
+
+@sp 1
+@image{pix/daglp,10cm}
+
+If you click on one of the gray nodes with the left mouse button, the
+XDK prints the abbreviated OL representation of the node on the output
+dimension. The middle mouse button prints the abbreviated OL
+representation of the node on all dimensions.  The right mouse button
+prints the abbreviated OL representation of all nodes in the analysis,
+and on all dimensions.
+
+@c ************************************************************
+
+@node Dag11, Dag12, Dag1, Outputs
+@section Dag1
+This section explains the Dag1 output functor.  The Dag1 output
+functor assumes that the graph principle is used on the output
+dimension.
+
+@itemize @bullet
+@item identifier: @code{output.dag1}
+@item open method: opens a window displaying all known edges (and all
+known edge labels and all known node labels) of the directed acyclic
+graph on the output dimension, and all known dominance edges.  Ghosts
+a node (in gray) if either a) it corresponds to word @code{.} or b)
+its set of incoming edge labels is non-empty and a subset of
+@code{@{dummy, del@}}. Ghosts edges and dominance edges labeled with a
+label in @code{@{root, root1, root2, dummy, del@}}.  Compares the
+previous analysis with the current one: edges which are new from the
+previous Dag1 output on the output dimension are red. New dominance
+edges are pink.
+@item close method: closes all of these windows opened on the
+output dimension and resets the comparison (i.e. the next output does
+not compare).
+@end itemize
+
+Notice that the Dag1 output functor is able to display labeled
+dominance edges only if the graph principle is used on the output
+dimension (showing labeled dominance edges requires the @code{downL}
+feature). Otherwise, it can only to display unlabeled dominance edges.
+
+Dominance edges are light blue.
+
+Compared with the Dag output functor (@ref{Dag1}), Dag1 adds the
+following features:
+@itemize @bullet
+@item it includes dominance edges
+@item it ghosts nodes
+@item it ghosts edges
+@item it compares analyses
+@end itemize
+
+@c ************************************************************
+
+@node Dag12, Dag13, Dag11, Outputs
+@section Dag2
+This section explains the Dag2 output functor.  The Dag2 output
+functor assumes that the graph principle is used on the output
+dimension.
+
+@itemize @bullet
+@item identifier: @code{output.dag2}
+@item open method: opens a window displaying all known edges (and all
+known edge labels and all known node labels) of the directed acyclic
+graph on the output dimension, and all known dominance edges.
+Compares the previous analysis with the current one.
+@item close method: closes all of these windows opened on the
+output dimension and resets the comparison (i.e. the next output does
+not compare).
+@end itemize
+
+Compared with the Dag output functor (@ref{Dag1}), the Dag2 functor
+adds the following features:
+@itemize @bullet
+@item it includes dominance edges
+@item it compares analyses
+@end itemize
+
+Compared with the Dag1 output functor (@ref{Dag11}), the Dag2 functor
+@itemize @bullet
+@item does not ghost nodes, and
+@item does not ghost edges
+@end itemize
+
+@c ************************************************************
+
+@node Dag13, Dags, Dag12, Outputs
+@section Dag3
+This section explains the Dag3 output functor.  The Dag3 output
+functor assumes that the graph principle is used on the output
+dimension.
+
+@itemize @bullet
+@item identifier: @code{output.dag3}
+@item open method: opens a window displaying all known edges (and all
+known edge labels and all known node labels) of the directed acyclic
+graph on the output dimension. Ghosts a node (in gray) if either a) it
+corresponds to word @code{.} or b) its set of incoming edge labels is
+non-empty and a subset of @code{@{dummy, del@}}. Ghosts edges and
+dominance edges labeled with a label in @code{@{root, root1, root2,
+dummy, del@}}.  Compares the previous analysis with the current one.
+@item close method: closes all of these windows opened on the
+output dimension and resets the comparison (i.e. the next output does
+not compare).
+@end itemize
+
+Compared with the Dag output functor (@ref{Dag1}), the Dag3 functor
+adds the following features:
+@itemize @bullet
+@item it ghosts nodes
+@item it ghosts edges
+@item it compares analyses
+@end itemize
+
+Compared with the Dag1 and Dag2 output functors (@ref{Dag11},
+@ref{Dag12}), the Dag3 functor
+@itemize @bullet
+@item does not include dominance edges
+@end itemize
+
+@c ************************************************************
+
+@node Dags, Dags1, Dag13, Outputs
+@section Dags
+This section explains the Dags output functor.
+
+@itemize @bullet
+@item identifier: @code{output.dags}
+@item open method: opens a window displaying the dags
+corresponding to all dimensions using a graph principle (excluding
+e.g. the @code{lex} dimension). The individual dags are drawn as by
+the Dag output functor (@ref{Dag1})
+@item close method: closes all of these windows.
+@end itemize
+
+@c ************************************************************
+
+@node Dags1, Dags2, Dags, Outputs
+@section Dags1
+This section explains the Dags1 output functor.
+
+@itemize @bullet
+@item identifier: @code{output.dags1}
+@item open method: opens a window displaying the dags
+corresponding to all dimensions using a graph principle (excluding
+e.g.\ the @code{lex} dimension).  The individual dags are drawn as by
+the Dag1 output functor (@ref{Dag11}).
+@item close method: closes all of these windows
+and resets the comparisons (i.e. the next output does not compare).
+@end itemize
+
+@c ************************************************************
+
+@node Dags2, Dags3, Dags1, Outputs
+@section Dags2
+This section explains the Dags2 output functor.
+
+@itemize @bullet
+@item identifier: @code{output.dags2}
+@item open method: opens a window displaying the dags
+corresponding to all dimensions using a graph principle (excluding
+e.g. the @code{lex} dimension).  The individual dags are drawn as by
+the Dag2 output functor (@ref{Dag12}).
+@item close method: closes all of these windows 
+and resets the comparisons (i.e. the next output does not compare).
+@end itemize
+
+@c ************************************************************
+
+@node Dags3, Decode, Dags2, Outputs
+@section Dags3
+This section explains the Dags3 output functor.
+
+@itemize @bullet
+@item identifier: @code{output.dags3}
+@item open method: opens a window displaying the dags
+corresponding to all dimensions using the graph principle (excluding
+e.g. the @code{lex} dimension). The individual dags are drawn as by
+the Dag3 output functor (@ref{Dag13}).
+@item close method: closes all of these windows 
+and resets the comparisons (i.e. the next output does not compare).
+@end itemize
+
+@c ************************************************************
+
+@node Decode, Latex, Dags3, Outputs
+@section Decode
+This section explains the Decode output functor.
+
+@itemize @bullet
+@item identifier: @code{output.decode}
+@item open method: prints the solution on the output dimension in
+the intermediate language (IL)
+@item close method: does nothing
+@end itemize
+
+This output functor prints the solution on the output dimension in a
+very detailed way, including the model record, using the intermediate
+language (IL). An equally detailed but more readable output can be
+obtained using the Pretty output functor (@ref{Pretty}).
+
+Below, we display an example Decode output printed in the Inspector:
+
+@sp 1
+@image{pix/decode,10cm}
+
+@c ************************************************************
+
+@node Latex, Latex1, Decode, Outputs
+@section Latex
+This section explains the Latex output functor.
+
+@itemize @bullet
+@item identifier: @code{output.latex}
+@item open method: prints a LaTeX file containing all known
+edges (and known edge labels and node labels) of the directed acyclic
+graph on the output dimension
+@item close method: does nothing
+@end itemize
+
+The Latex output functor assumes that the graph principle is
+used on the output dimension.
+
+The resulting LaTeX output makes use of the style file
+@code{xdag.sty}, which is based on the original style file
+@code{dtree.sty} by Denys Duchier.
+
+Unix users can use the shell script @code{xdag2eps} to convert the
+latex output into encapsulated postscript (EPS), @code{xdag2pdf} into
+PDF, or @code{xdag2jpg} to JPG.  @code{xdag2eps}, @code{xdag2pdf} and
+@code{xdag2jpg} require the style file @code{xdag.sty} to be in the
+current directory. The latex file to convert is also required to be in
+the current directory.
+
+Below, we display an example Latex output after having been compiled
+into pdf:
+
+@sp 1
+@image{pix/latexid,10cm}
+
+And below, we display an example Dag output including node labels
+(written on the vertical @emph{projection edges}):
+@cindex projection edge
+
+@sp 1
+@image{pix/latexlp,10cm}
+
+To get the LaTeX output into a file, just tick @code{file} in the
+@code{Extras} pull-down menu instead of the default
+@code{inspect}. This effects that all output normally printed using
+the Oz Inspector is redirected into a file. Whenever this happens, you
+are asked where to create this file. Having the file in your hands,
+you can then convert it into EPS, PDF or JPG using the scripts
+@code{xdag2eps}, @code{xdag2pdf} and @code{xdag2jpg}, respectively.
+
+Here is the LaTeX code for the latter Dag:
+@example
+\begin@{xdag@}
+\node@{1@}@{2@}@{$\begin@{array@}@{c@}1\\\\\textrm@{maria@}\end@{array@}$@}@{n@}
+\node@{2@}@{1@}@{$\begin@{array@}@{c@}2\\\\\textrm@{versucht@}\end@{array@}$@}@{v@}
+\node@{3@}@{4@}@{$\begin@{array@}@{c@}3\\\\\textrm@{einen@}\end@{array@}$@}@{d@}
+\node@{4@}@{3@}@{$\begin@{array@}@{c@}4\\\\\textrm@{mann@}\end@{array@}$@}@{n@}
+\node@{5@}@{3@}@{$\begin@{array@}@{c@}5\\\\\textrm@{zu@}\end@{array@}$@}@{p@}
+\node@{6@}@{2@}@{$\begin@{array@}@{c@}6\\\\\textrm@{lieben@}\end@{array@}$@}@{v@}
+\edge@{6@}@{5@}@{pf@}
+\edge@{6@}@{4@}@{mf@}
+\edge@{4@}@{3@}@{df@}
+\edge@{2@}@{6@}@{vxf@}
+\edge@{2@}@{1@}@{mf@}
+\end@{xdag@}
+@end example
+The Latex output functor paints dags using the @code{xdag} environment
+from the @code{xdag.sty} style file. @code{xdag} provides two basic
+commands: @code{\node} and @code{\edge}.
+
+@code{\node} has four arguments:
+@enumerate
+@item a unique index of the node
+@item the depth of the node (1 corresponds to the top of the dag,
+and >1 to a lower position)
+@item the word corresponding to the node (here: augmented with the index of the node using an array)
+@item the node label of the node (usually empty for all dimensions other than lp)
+@end enumerate
+
+@code{\edge} has three arguments:
+@enumerate
+@item a node index denoting the startpoint of the edge
+@item a node index denoting the endpoint of the edge
+@item the edge label
+@end enumerate
+
+Notice that you can increase the horizontal distance between nodes
+using the @code{\xdagExtraColSep} command:
+@example 
+\begin@{xdag@}
+\xdagExtraColsep@{1@}@{20pt@}
+\node@{1@}@{2@}@{$\begin@{array@}@{c@}1\\\\\textrm@{maria@}\end@{array@}$@}@{n@}
+\node@{2@}@{1@}@{$\begin@{array@}@{c@}2\\\\\textrm@{versucht@}\end@{array@}$@}@{v@}
+\node@{3@}@{4@}@{$\begin@{array@}@{c@}3\\\\\textrm@{einen@}\end@{array@}$@}@{d@}
+\node@{4@}@{3@}@{$\begin@{array@}@{c@}4\\\\\textrm@{mann@}\end@{array@}$@}@{n@}
+\node@{5@}@{3@}@{$\begin@{array@}@{c@}5\\\\\textrm@{zu@}\end@{array@}$@}@{p@}
+\node@{6@}@{2@}@{$\begin@{array@}@{c@}6\\\\\textrm@{lieben@}\end@{array@}$@}@{v@}
+\edge@{6@}@{5@}@{pf@}
+\edge@{6@}@{4@}@{mf@}
+\edge@{4@}@{3@}@{df@}
+\edge@{2@}@{6@}@{vxf@}
+\edge@{2@}@{1@}@{mf@}
+\end@{xdag@}
+@end example
+Here, the horizontal distance between the first and the second node is
+increased by @code{20pt}. You can also set this distance all nodes
+using @code{\xdagColsep}, as in the following example:
+@example 
+\begin@{xdag@}
+\xdagColsep=20pt
+\node@{1@}@{2@}@{$\begin@{array@}@{c@}1\\\\\textrm@{maria@}\end@{array@}$@}@{n@}
+\node@{2@}@{1@}@{$\begin@{array@}@{c@}2\\\\\textrm@{versucht@}\end@{array@}$@}@{v@}
+\node@{3@}@{4@}@{$\begin@{array@}@{c@}3\\\\\textrm@{einen@}\end@{array@}$@}@{d@}
+\node@{4@}@{3@}@{$\begin@{array@}@{c@}4\\\\\textrm@{mann@}\end@{array@}$@}@{n@}
+\node@{5@}@{3@}@{$\begin@{array@}@{c@}5\\\\\textrm@{zu@}\end@{array@}$@}@{p@}
+\node@{6@}@{2@}@{$\begin@{array@}@{c@}6\\\\\textrm@{lieben@}\end@{array@}$@}@{v@}
+\edge@{6@}@{5@}@{pf@}
+\edge@{6@}@{4@}@{mf@}
+\edge@{4@}@{3@}@{df@}
+\edge@{2@}@{6@}@{vxf@}
+\edge@{2@}@{1@}@{mf@}
+\end@{xdag@}
+@end example
+
+@c ************************************************************
+
+@node Latex1, Latex2, Latex, Outputs
+@section Latex1
+This section explains the Latex1 output functor.  The Latex1 output
+functor assumes that the graph principle is used on the output
+dimension.
+
+@itemize @bullet
+@item identifier: @code{output.latex1}
+@item open method: prints a LaTeX file containing all known
+edges (and known edge labels and node labels) of the directed acyclic
+graph on the output dimension, and all known dominance edges.  Ghosts
+a node if either a) it corresponds to word @code{.} or b) its set of
+incoming edge labels is non-empty and a subset of @code{@{dummy,
+del@}}. Ghosts edges and dominance edges labeled with a label in
+@code{@{root, root1, root2, dummy, del@}}.
+@item close method: does nothing
+@end itemize
+
+Notice that the Latex1 output functor is able to print labeled
+dominance edges only if the graph principle is used on the output
+dimension (accessing labeled dominance edges requires the @code{downL}
+feature). Otherwise, it can only to print unlabeled dominance edges.
+
+Compared with the Latex output functor (@ref{Latex}), Latex1 adds the
+following features:
+@itemize @bullet
+@item it includes dominance edges
+@item it ghosts nodes
+@item it ghosts edges
+@end itemize
+
+@c ************************************************************
+
+@node Latex2, Latex3, Latex1, Outputs
+@section Latex2
+This section explains the Latex2 output functor.  The Latex2 output
+functor assumes that the graph principle is used on the output
+dimension.
+
+@itemize @bullet
+@item identifier: @code{output.latex2}
+@item open method: prints a LaTeX file containing all known edges (and all
+known edge labels and all known node labels) of the directed acyclic
+graph on the output dimension, and all known dominance edges.
+@item close method: does nothing
+@end itemize
+
+Compared with the Latex output functor (@ref{Latex}), the Latex2
+functor adds the following feature:
+@itemize @bullet
+@item it includes dominance edges
+@end itemize
+
+Compared with the Latex1 output functor (@ref{Latex1}), the Latex2
+functor
+@itemize @bullet
+@item does not ghost nodes, and
+@item does not ghost edges
+@end itemize
+
+@c ************************************************************
+
+@node Latex3, Latexs, Latex2, Outputs
+@section Latex3
+This section explains the Latex3 output functor.  The Latex3 output
+functor assumes that the graph principle is used on the output
+dimension.
+
+@itemize @bullet
+@item identifier: @code{output.latex3}
+@item open method: prints a LaTeX file containing all known edges (and all
+known edge labels and all known node labels) of the directed acyclic
+graph on the output dimension. Ghosts a node if either a) it
+corresponds to word @code{.} or b) its set of incoming edge labels is
+non-empty and a subset of @code{@{dummy, del@}}. Ghosts edges and
+dominance edges labeled with a label in @code{@{root, root1, root2,
+dummy, del@}}.
+@item close method: does nothing
+@end itemize
+
+Compared with the Latex output functor (@ref{Latex}), the Latex3
+functor adds the following features:
+@itemize @bullet
+@item it ghosts nodes
+@item it ghosts edges
+@end itemize
+
+Compared with the Latex1 and Latex2 output functors (@ref{Latex1},
+@ref{Latex2}), the Latex3 functor
+@itemize @bullet
+@item does not include dominance edges
+@end itemize
+
+@c ************************************************************
+
+@node Latexs, Latexs1, Latex3, Outputs
+@section Latexs
+This section explains the Latexs output functor.
+
+@itemize @bullet
+@item identifier: @code{output.latexs}
+@item open method: prints the dags
+corresponding to all dimensions using a graph principle (excluding
+e.g. the @code{lex} dimension). The individual dags are printed as by
+the Latex output functor (@ref{Latex}).
+@item close method: does nothing
+@end itemize
+
+@c ************************************************************
+
+@node Latexs1, Latexs2, Latexs, Outputs
+@section Latexs1
+This section explains the Latexs1 output functor.
+
+@itemize @bullet
+@item identifier: @code{output.latexs1}
+@item open method: prints the dags
+corresponding to all dimensions using a graph principle (excluding
+e.g. the @code{lex} dimension).  The individual dags are printed as by
+the Latex1 output functor (@ref{Latex1}).
+@item close method: does nothing
+@end itemize
+
+@c ************************************************************
+
+@node Latexs2, Latexs3, Latexs1, Outputs
+@section Latexs2
+This section explains the Latexs2 output functor.
+
+@itemize @bullet
+@item identifier: @code{output.latexs2}
+@item open method: prints the dags
+corresponding to all dimensions using a graph principle (excluding
+e.g. the @code{lex} dimension).  The individual dags are printed as by
+the Latex2 output functor (@ref{Latex2}).
+@item close method: does nothing
+@end itemize
+
+@c ************************************************************
+
+@node Latexs3, Pretty, Latexs2, Outputs
+@section Latexs3
+This section explains the Latexs3 output functor.
+
+@itemize @bullet
+@item identifier: @code{output.latexs3}
+@item open method: prints the dags
+corresponding to all dimensions using a graph principle (excluding
+e.g. the @code{lex} dimension).  The individual dags are printed as by
+the Latex3 output functor (@ref{Latex3}).
+@item close method: does nothing
+@end itemize
+
+@c ************************************************************
+
+@node Pretty, Pretty1, Latexs3, Outputs
+@section Pretty
+This section explains the Pretty output functor.
+
+@itemize @bullet
+@item identifier: @code{output.pretty}
+@item open method: prints the solution on the output dimension in a
+detailed but ``pretty'' fashion (language: abbreviated output language
+(OL))
+@item close method: does nothing
+@end itemize
+
+This output functor prints the solution on the output dimension in a
+very detailed way, including the model record, using the abbreviated
+output language (OL).
+
+Below, we display an example Pretty output printed in the Inspector:
+
+@sp 1
+@image{pix/pretty,10cm}
+
+@c ************************************************************
+
+@node Pretty1, XML, Pretty, Outputs
+@section Pretty1
+This section explains the Pretty1 output functor.
+
+@itemize @bullet
+@item identifier: @code{output.pretty1}
+@item open method: prints the solution on the output dimension in a
+detailed but ``pretty'' fashion (language: abbreviated output language
+(OL)). Difference to @ref{Pretty}: if a solution has already been
+printed, the next solution is compared with it and only the
+new/differing parts are printed. This is useful to find out ``leaks''
+in the propagation.
+@item close method: ``Resets'' the functor, i.e., it behaves as if
+no solution has previously been printed.
+@end itemize
+
+@c ************************************************************
+
+@node XML, XML1, Pretty1, Outputs
+@section XML
+This section explains the XML output functor.
+
+@itemize @bullet
+@item identifier: @code{output.xml}
+@item open method: prints an XML file containing all known
+edges (and known edge labels and node labels) of the directed acyclic
+graph on the output dimension to stdout. The corresponding DTD can be
+found in @code{Extras/statistics.dtd} (starting from the tag
+@code{graph}). Does not print the lexical entries corresponding to the
+nodes (@code{output.xml1} does this).
+@item close method: does nothing
+@end itemize
+
+@c ************************************************************
+
+@node XML1, XML2, XML, Outputs
+@section XML1
+This section explains the XML1 output functor.
+
+@itemize @bullet
+@item identifier: @code{output.xml1}
+@item open method: prints an XML file containing all known edges (and
+known edge labels and node labels) of the directed acyclic graph on
+the output dimension to stdout. The corresponding DTD can be found in
+@code{Extras/statistics.dtd} (starting from the tag
+@code{graph}). (difference to the ordinary XML output functor
+(@ref{XML}): also prints the attribute records corresponding to the
+nodes.)
+@item close method: does nothing
+@end itemize
+
+@c ************************************************************
+
+@node XML2, XML3, XML1, Outputs
+@section XML2
+This section explains the XML2 output functor.
+
+@itemize @bullet
+@item identifier: @code{output.xml2}
+@item open method: prints an XML file containing all known edges (and
+known edge labels and node labels) of the directed acyclic graph on
+the output dimension to stdout. The corresponding DTD can be found in
+@code{Extras/statistics.dtd} (starting from the tag
+@code{graph}). (difference to the ordinary XML output functor
+(@ref{XML}): also prints the lexical entries corresponding to the
+nodes.)
+@item close method: does nothing
+@end itemize
+
+@c ************************************************************
+
+@node XML3, XML4, XML2, Outputs
+@section XML3
+This section explains the XML3 output functor.
+
+@itemize @bullet
+@item identifier: @code{output.xml3}
+@item open method: prints an XML file containing all known edges (and
+known edge labels and node labels) of the directed acyclic graph on
+the output dimension to stdout. The corresponding DTD can be found in
+@code{Extras/statistics.dtd} (starting from the tag @code{graph}).
+(difference to the ordinary XML output functor (@ref{XML}): also
+prints the model records corresponding to the nodes.)
+@item close method: does nothing
+@end itemize
+
+@c ************************************************************
+
+@node XML4, XTAGDerivation, XML3, Outputs
+@section XML4
+This section explains the XML4 output functor.
+
+@itemize @bullet
+@item identifier: @code{output.xml4}
+@item open method: prints an XML file containing all known edges (and
+known edge labels and node labels) of the directed acyclic graph on
+the output dimension to stdout. The corresponding DTD can be found in
+@code{Extras/statistics.dtd} (starting from the tag
+@code{graph}). (difference to the ordinary XML output functor
+(@ref{XML}): also prints the attributes records, lexical entries and
+model records corresponding to the nodes.)
+@item close method: does nothing
+@end itemize
+
+@c ************************************************************
+
+@node XTAGDerivation, OL syntax, XML4, Outputs
+@section XTAGDerivation
+This section explains the XTAGDerivation output functor.
+
+@itemize @bullet
+@item identifier: @code{output.xTAGDerivation}
+@item open method: runs the tree viewer from
+the XTAG lem parser package to show the derivation tree corresponding
+to the solution. Currently used only for grammars generated by the
+XTAG module of the XDK. Arbitrary many tree viewers can be run
+simultaneously.  For this function to work, the executables of the lem
+parser (@uref{ftp://ftp.cis.upenn.edu/pub/xtag/lem/lem-0.14.0.tgz})
+must be installed in the search path. The executable @code{showtrees}
+is called.
+@item close method: Closes all run tree viewers.
+@end itemize
+
+Please note: at the moment, Windows users have to endure some
+restrictions using this output functor:
+@itemize @bullet
+@item You need to manually adapt the absolute path to the
+lem parser tree viewer @code{showtrees} in the output functor source
+code @code{Outputs/Lib/XTAGDerivation.oz}.
+@item The tree viewer windows are not automatically brought to front.
+@item The output functor cannot fork the lem parser tree viewer under
+Windows. Please close each tree viewer window manually before
+continuing.
+@end itemize
+
+@sp 1
+@image{pix/XTAGDerivation,10cm}
+
+@c ************************************************************
+
+@node OL syntax, Output record, XTAGDerivation, Outputs
+@include outputs-ol_syntax.texi
+
+@c ************************************************************
+
+@node Output record, Writing new outputs, OL syntax, Outputs
+@include outputs-output_record.texi
+
+@c ************************************************************
+
+@node Writing new outputs, , Output record, Outputs
+@include outputs-new_outputs.texi

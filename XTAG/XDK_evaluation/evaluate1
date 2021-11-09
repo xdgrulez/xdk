@@ -1,0 +1,179 @@
+#!/bin/bash
+olddir=`pwd`
+############################################################
+# 05-09
+# cd $XDK/XTAG
+# xtagserver.exe -p 4712 -f none&
+# pid=$!
+# sleep 1
+# cd $XDK
+# xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_05-09.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_none1/wsj23_05-09_XDK.xml
+# kill -9 $!
+# #
+# cd $XDK/XTAG
+# xtagserver.exe -p 4712 -f simple&
+# pid=$!
+# sleep 1
+# cd $XDK
+# xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_05-09.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_simple1/wsj23_05-09_XDK.xml
+# kill -9 $!
+# #
+# cd $XDK/XTAG
+# xtagserver.exe -p 4712 -f tagger&
+# pid=$!
+# sleep 1
+# cd $XDK
+# xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_05-09.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_tagger1/wsj23_05-09_XDK.xml
+# kill -9 $!
+# ############################################################
+# # 10-14
+# cd $XDK/XTAG
+# xtagserver.exe -p 4712 -f none&
+# pid=$!
+# sleep 1
+# cd $XDK
+# xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_10-14.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_none1/wsj23_10-14_XDK.xml
+# kill -9 $!
+# #
+# cd $XDK/XTAG
+# xtagserver.exe -p 4712 -f simple&
+# pid=$!
+# sleep 1
+# cd $XDK
+# xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_10-14.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_simple1/wsj23_10-14_XDK.xml
+# kill -9 $!
+# #
+# cd $XDK/XTAG
+# xtagserver.exe -p 4712 -f tagger&
+# pid=$!
+# sleep 1
+# cd $XDK
+# xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_10-14.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_tagger1/wsj23_10-14_XDK.xml
+# kill -9 $!
+# ############################################################
+# # 15-19
+# cd $XDK/XTAG
+# xtagserver.exe -p 4712 -f none&
+# pid=$!
+# sleep 1
+# cd $XDK
+# xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_15-19.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_none1/wsj23_15-19_XDK.xml
+# kill -9 $!
+# #
+# cd $XDK/XTAG
+# xtagserver.exe -p 4712 -f simple&
+# pid=$!
+# sleep 1
+# cd $XDK
+# xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_15-19.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_simple1/wsj23_15-19_XDK.xml
+# kill -9 $!
+# #
+# cd $XDK/XTAG
+# xtagserver.exe -p 4712 -f tagger&
+# pid=$!
+# sleep 1
+# cd $XDK
+# xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_15-19.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_tagger1/wsj23_15-19_XDK.xml
+# kill -9 $!
+# ############################################################
+# # 20-24
+# cd $XDK/XTAG
+# xtagserver.exe -p 4712 -f none&
+# pid=$!
+# sleep 1
+# cd $XDK
+# xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_20-24.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_none1/wsj23_20-24_XDK.xml
+# kill -9 $!
+# #
+# cd $XDK/XTAG
+# xtagserver.exe -p 4712 -f simple&
+# pid=$!
+# sleep 1
+# cd $XDK
+# xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_20-24.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_simple1/wsj23_20-24_XDK.xml
+# kill -9 $!
+# #
+# cd $XDK/XTAG
+# xtagserver.exe -p 4712 -f tagger&
+# pid=$!
+# sleep 1
+# cd $XDK
+# xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_20-24.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_tagger1/wsj23_20-24_XDK.xml
+# kill -9 $!
+# ############################################################
+# # 25-29
+# cd $XDK/XTAG
+# xtagserver.exe -p 4712 -f none&
+# pid=$!
+# sleep 1
+# cd $XDK
+# xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_25-29.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_none1/wsj23_25-29_XDK.xml
+# kill -9 $!
+# #
+# cd $XDK/XTAG
+# xtagserver.exe -p 4712 -f simple&
+# pid=$!
+# sleep 1
+# cd $XDK
+# xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_25-29.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_simple1/wsj23_25-29_XDK.xml
+# kill -9 $!
+# #
+# cd $XDK/XTAG
+# xtagserver.exe -p 4712 -f tagger&
+# pid=$!
+# sleep 1
+# cd $XDK
+# xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_25-29.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_tagger1/wsj23_25-29_XDK.xml
+# kill -9 $!
+# ############################################################
+# # 30-34
+# cd $XDK/XTAG
+# xtagserver.exe -p 4712 -f none&
+# pid=$!
+# sleep 1
+# cd $XDK
+# xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_30-34.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_none1/wsj23_30-34_XDK.xml
+# kill -9 $!
+# #
+# cd $XDK/XTAG
+# xtagserver.exe -p 4712 -f simple&
+# pid=$!
+# sleep 1
+# cd $XDK
+# xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_30-34.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_simple1/wsj23_30-34_XDK.xml
+# kill -9 $!
+# #
+# cd $XDK/XTAG
+# xtagserver.exe -p 4712 -f tagger&
+# pid=$!
+# sleep 1
+# cd $XDK
+# xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_30-34.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_tagger1/wsj23_30-34_XDK.xml
+# kill -9 $!
+# ############################################################
+# # 35-39
+# cd $XDK/XTAG
+# xtagserver.exe -p 4712 -f none&
+# pid=$!
+# sleep 1
+# cd $XDK
+# xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_35-39.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_none1/wsj23_35-39_XDK.xml
+# kill -9 $!
+#
+cd $XDK/XTAG
+xtagserver.exe -p 4712 -f simple&
+pid=$!
+sleep 1
+cd $XDK
+xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_35-39.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_simple1/wsj23_35-39_XDK.xml
+kill -9 $!
+#
+cd $XDK/XTAG
+xtagserver.exe -p 4712 -f tagger&
+pid=$!
+sleep 1
+cd $XDK
+xdks.exe -g 4712.ulsocket -e XTAG/XDK_evaluation/wsj23_35-39.txt -s first -t 300 -f >XTAG/XDK_evaluation/filter_tagger1/wsj23_35-39_XDK.xml
+kill -9 $!
+############################################################
+cd $olddir

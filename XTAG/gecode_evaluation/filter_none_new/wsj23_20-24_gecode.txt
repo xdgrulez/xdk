@@ -1,0 +1,11 @@
+20-24/4712.fzn1
+earlier the company announced it would sell its aging fleet of Iraqi Iraqi Iraqis because of increasing maintenance costs .
+
+	runtime:       5660
+	solutions:     1
+	propagators:   74572
+	propagations:  2749135
+	failures:      24
+	clones:        32
+	commits:       116
+	peak memory:   130640 KB

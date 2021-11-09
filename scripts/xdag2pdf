@@ -1,0 +1,24 @@
+#!/bin/bash
+dir=`pwd`
+TEXINPUTS=$TEXINPUTS:$dir
+for file in $*
+do
+  dir1=`dirname $file`
+  file1=`basename $file`
+  file2=${file1%.tex}
+  cd $dir1
+  sed '0,/./s/\(.*\)$/\\documentclass{article}\
+\\usepackage{xdag}\
+\\pagestyle{empty}\
+\\begin{document}\
+\1/g' $file2.tex >$file2.1.tex
+  sed '$,/./s/\(.*\)$/\1\
+\\end{document}/g' $file2.1.tex >$file2.2.tex
+  latex $file2.2.tex
+  dvips $file2.2.dvi -o $file2.2.eps
+  ps2epsi $file2.2.eps $file2.2.epsi
+  epstopdf $file2.2.epsi
+  mv $file2.2.pdf $file2.pdf
+  rm $file2.2.aux $file2.2.dvi $file2.2.eps $file2.2.epsi $file2.2.log $file2.1.tex $file2.2.tex
+  cd $dir
+done

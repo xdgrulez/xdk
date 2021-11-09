@@ -1,0 +1,33 @@
+@section Dimensions
+
+@subsection Defining dimensions
+Each grammar file defines a set of @emph{dimensions}.
+@cindex dimension
+A dimension definition consists of:
+@enumerate
+@item type definitions (see @ref{Types})
+@item a specification of used principles on that dimension (see @ref{Principles})
+@item a specification of used outputs on that dimension (see @ref{Outputs1})
+@end enumerate
+
+In the UL, a dimension definition is written:
+@example
+defdim <constant> @{<dimension definition>@}
+@end example
+where @code{<constant>} is the dimension identifier for the defined
+dimension.
+
+Notice that the XDK supports a special dimension: @code{lex}.
+@cindex lex dimension
+The @code{lex} dimension serves to assign a word to each lexical
+entry, and must be defined in each grammar file. It cannot be turned
+off - the lexicon is always used.
+
+@subsection Using dimensions
+From the set of defined dimensions, each grammar file uses a subset.
+To use a dimension, you write:
+@example
+usedim <constant>
+@end example
+where @code{<constant>} is the dimension identifier of the used
+dimension.

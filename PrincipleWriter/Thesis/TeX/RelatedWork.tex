@@ -1,0 +1,40 @@
+\section{Bisherige Arbeiten}
+
+XDG ist ein constraint-basierter Grammatikformalismus, und als solcher
+auch vergleichbar mit unifikationsbasierten Formalismen wie Definite
+Clause Grammars (DCG) und PATR-II \cite{Shieber84}. Auch hier werden
+Wohlgeformtheitsbedingungen durch Constraints beschrieben, allerdings
+in einer Programmiersprache (Prolog).
+
+Der Grammatikformalismus Head-driven Phrase Structure Grammar (HPSG)
+ist ebenfalls h{\"a}ufig in Prolog implementiert, z.B.\ im
+Babel-System \cite{Mueller96}. Neue Wohlgeformtheitsbedingungen werden
+hier jedoch, ebenso wie in anderen HPSG-Implementationen wie dem Type
+Resolution System (Troll) \cite{GerdemannEtal94}, Attribute Logic
+Engine (ALE) \cite{CarpenterPenn94} und TRALE \cite{MeurersEtal02},
+durch Unifikation {\"u}ber Merkmalsstrukturen ausgedr{\"u}ckt.
+
+Die Pr{\"a}dikatenlogik erster Stufe, mit der die Constraints von XDG
+beschrieben werden, l{\"a}sst sich auch als Modellierungssprache
+f{\"u}r Constraintprogrammierung auffassen. Als solche ist sie
+vergleichbar mit Sprachen wie die Optimization Programming Language
+(OPL) \cite{Hentenryck99}, MiniZinc \cite{NethercoteEtal07}, und
+nat{\"u}rlich auch Mozart/Oz \cite{Smolka95}, \cite{Schulte02}.
+
+Das L{\"o}sen von First-Order Formeln mithilfe von
+Constraintprogrammierung ist auch in \cite{AptVermeulen02} zu finden.
+In \cite{TackEtal06} werden Formeln in Existential Monadic Second
+Order Logic (EMSO) in neue Propagatoren {\"u}bersetzt, die auf
+endlichen Mengen arbeiten.  Diese Arbeit kommt meiner noch am
+n{\"a}chsten. Allerdings setze ich die XDG-Formeln (in
+Pr{\"a}dikatenlogik erster Stufe) nicht in neue Propagatoren um,
+sondern in Code, der existierende Propagatoren von Mozart/Oz einsetzt.
+
+\section{Gliederung der Arbeit}
+
+Die Arbeit ist wie folgt gegliedert. In Kapitel~\ref{XDG} f{\"u}hre
+ich XDG ein, und in Kapitel~\ref{ch:XDK} das XDG Development Kit
+(XDK). Diese beiden Kapitel bereiten das Hauptkapitel der Arbeit vor,
+Kapitel~\ref{ch:pw}, in dem ich den PrincipleWriter vorstelle.
+Kapitel~\ref{ch:conc} schlie{\ss}t die Arbeit ab und gibt einen
+Ausblick.

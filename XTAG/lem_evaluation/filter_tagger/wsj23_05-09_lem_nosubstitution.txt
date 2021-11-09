@@ -1,0 +1,434 @@
+sent: 8: no , it was not Black Monday . 
+done parsing...
+time(CPU): 0.010000
+parsed 1 from a total of 1
+
+sent: 6: the equity market was illiquid . 
+done parsing...
+time(CPU): 0.010000
+parsed 1 from a total of 1
+
+sent: 5: these stocks eventually reopened . 
+done parsing...
+time(CPU): 0.000000
+parsed 1 from a total of 1
+
+sent: 5: but stocks kept falling . 
+done parsing...
+time(CPU): 0.010000
+parsed 0 from a total of 1
+
+sent: 8: buyers stepped in to the futures pit . 
+done parsing...
+time(CPU): 0.030000
+parsed 1 from a total of 1
+
+sent: 6: but there were no buyers . 
+done parsing...
+time(CPU): 0.000000
+parsed 1 from a total of 1
+
+sent: 8: just thought you 'd like to know . 
+done parsing...
+time(CPU): 0.100000
+parsed 1 from a total of 1
+
+sent: 7: we want to build and hold . 
+done parsing...
+time(CPU): 0.050000
+parsed 1 from a total of 1
+
+sent: 5: people are not panicking . 
+done parsing...
+time(CPU): 0.000000
+parsed 1 from a total of 1
+
+sent: 6: the test may come today . 
+done parsing...
+time(CPU): 0.010000
+parsed 1 from a total of 1
+
+sent: 8: but fund managers say they 're ready . 
+done parsing...
+time(CPU): 0.090000
+parsed 1 from a total of 1
+
+sent: 9: trading volume was only modestly higher than normal . 
+done parsing...
+time(CPU): 0.020000
+parsed 0 from a total of 1
+
+sent: 9: the centers normally are closed through the weekend . 
+done parsing...
+time(CPU): 0.100000
+parsed 1 from a total of 1
+
+sent: 5: the accord expired yesterday . 
+done parsing...
+time(CPU): 0.010000
+parsed 1 from a total of 1
+
+sent: 5: the projects are big . 
+done parsing...
+time(CPU): 0.000000
+parsed 1 from a total of 1
+
+sent: 8: we usually operate in that conservative manner . 
+done parsing...
+time(CPU): 0.010000
+parsed 1 from a total of 1
+
+sent: 9: people were even hoarding bags , he says . 
+done parsing...
+time(CPU): 0.100000
+parsed 1 from a total of 1
+
+sent: 8: now producers hope prices have hit bottom . 
+done parsing...
+time(CPU): 0.380000
+parsed 1 from a total of 1
+
+sent: 6: then a second explosion occurred . 
+done parsing...
+time(CPU): 0.000000
+parsed 0 from a total of 1
+
+sent: 8: and then you still have to negotiate . 
+done parsing...
+time(CPU): 0.030000
+parsed 0 from a total of 1
+
+sent: 9: many called it simply a contrast in styles . 
+done parsing...
+time(CPU): 0.130000
+parsed 0 from a total of 1
+
+sent: 7: i do not feel very ferocious . 
+done parsing...
+time(CPU): 0.120000
+parsed 1 from a total of 1
+
+sent: 9: i do not feel either hard or soft . 
+done parsing...
+time(CPU): 0.120000
+parsed 0 from a total of 1
+
+sent: 5: terms were not disclosed . 
+done parsing...
+time(CPU): 0.010000
+parsed 1 from a total of 1
+
+sent: 5: companies added capacity furiously . 
+done parsing...
+time(CPU): 0.010000
+parsed 1 from a total of 1
+
+sent: 6: the main reason remains weather . 
+done parsing...
+time(CPU): 0.000000
+parsed 1 from a total of 1
+
+sent: 9: looking ahead to other commodity markets this week : 
+done parsing...
+time(CPU): 0.480000
+parsed 1 from a total of 1
+
+sent: 6: retailers are just in disarray . 
+done parsing...
+time(CPU): 0.010000
+parsed 1 from a total of 1
+
+sent: 7: the government 's action was unusual . 
+done parsing...
+time(CPU): 0.010000
+parsed 1 from a total of 1
+
+sent: 7: the exchange ratio was never established . 
+done parsing...
+time(CPU): 0.010000
+parsed 1 from a total of 1
+
+sent: 9: in New York , the company declined comment . 
+done parsing...
+time(CPU): 0.260000
+parsed 1 from a total of 1
+
+sent: 8: she analyzed families by their sleeping arrangements . 
+done parsing...
+time(CPU): 0.020000
+parsed 1 from a total of 1
+
+sent: 7: they came by their strangeness honestly . 
+done parsing...
+time(CPU): 0.000000
+parsed 1 from a total of 1
+
+sent: 5: he 's a bore . 
+done parsing...
+time(CPU): 0.000000
+parsed 1 from a total of 1
+
+sent: 5: where 's the leadership ? 
+done parsing...
+time(CPU): 0.000000
+parsed 1 from a total of 1
+
+sent: 8: this further confuses retailers , she says . 
+done parsing...
+time(CPU): 0.110000
+parsed 1 from a total of 1
+
+sent: 9: it makes investment castings and has traded over-the-counter . 
+done parsing...
+time(CPU): 0.280000
+parsed 0 from a total of 1
+
+sent: 5: it had traded over-the-counter . 
+done parsing...
+time(CPU): 0.010000
+parsed 1 from a total of 1
+
+sent: 7: the pharmaceuticals maker had traded over-the-counter . 
+done parsing...
+time(CPU): 0.050000
+parsed 1 from a total of 1
+
+sent: 9: that perception takes the focus off the magazine . 
+done parsing...
+time(CPU): 0.290000
+parsed 1 from a total of 1
+
+sent: 9: we are trying to create quality and involvement . 
+done parsing...
+time(CPU): 0.080000
+parsed 1 from a total of 1
+
+sent: 7: but that wo not be easy . 
+done parsing...
+time(CPU): 0.000000
+parsed 1 from a total of 1
+
+sent: 7: some in the industry are skeptical . 
+done parsing...
+time(CPU): 0.010000
+parsed 0 from a total of 1
+
+sent: 7: a new president was not named . 
+done parsing...
+time(CPU): 0.000000
+parsed 1 from a total of 1
+
+sent: 5: the device was replaced . 
+done parsing...
+time(CPU): 0.010000
+parsed 1 from a total of 1
+
+sent: 6: the woman won the bet . 
+done parsing...
+time(CPU): 0.010000
+parsed 1 from a total of 1
+
+sent: 8: but frequently there is not much choice . 
+done parsing...
+time(CPU): 0.010000
+parsed 1 from a total of 1
+
+sent: 8: it 's very much a growing concern . 
+done parsing...
+time(CPU): 0.110000
+parsed 1 from a total of 1
+
+sent: 9: but that was all of three months ago . 
+done parsing...
+time(CPU): 0.020000
+parsed 0 from a total of 1
+
+sent: 5: the industry defies characterization . 
+done parsing...
+time(CPU): 0.000000
+parsed 1 from a total of 1
+
+sent: 8: companies will continue to war over standards . 
+done parsing...
+time(CPU): 0.230000
+parsed 1 from a total of 1
+
+sent: 9: the gap between winners and laggards will grow . 
+done parsing...
+time(CPU): 0.200000
+parsed 1 from a total of 1
+
+sent: 8: but they will have to act quickly . 
+done parsing...
+time(CPU): 0.130000
+parsed 1 from a total of 1
+
+sent: 8: so are Indiana , Ohio and Michigan . 
+done parsing...
+time(CPU): 0.000000
+parsed 0 from a total of 1
+
+sent: 8: this small Dallas suburb 's got trouble . 
+done parsing...
+time(CPU): 0.220000
+parsed 1 from a total of 1
+
+sent: 8: it would open a can of worms . 
+done parsing...
+time(CPU): 0.020000
+parsed 1 from a total of 1
+
+sent: 6: now comes the pool flap . 
+done parsing...
+time(CPU): 0.000000
+parsed 0 from a total of 1
+
+sent: 7: things had just gone too far . 
+done parsing...
+time(CPU): 0.030000
+parsed 1 from a total of 1
+
+sent: 8: your paper needs a serious reality check . 
+done parsing...
+time(CPU): 0.080000
+parsed 1 from a total of 1
+
+sent: 9: does this signal another Black Monday is coming ? 
+done parsing...
+time(CPU): 0.250000
+parsed 1 from a total of 1
+
+sent: 6: my advice is to buy . 
+done parsing...
+time(CPU): 0.020000
+parsed 1 from a total of 1
+
+sent: 8: margin debt was at a record high . 
+done parsing...
+time(CPU): 0.010000
+parsed 1 from a total of 1
+
+sent: 7: sort of a two-step bear market . 
+done parsing...
+time(CPU): 0.030000
+parsed 1 from a total of 1
+
+sent: 7: i guess that 's my forecast . 
+done parsing...
+time(CPU): 0.000000
+parsed 0 from a total of 1
+
+sent: 8: so it 's a very mixed bag . 
+done parsing...
+time(CPU): 0.000000
+parsed 0 from a total of 1
+
+sent: 5: yes , he did . 
+done parsing...
+time(CPU): 0.010000
+parsed 1 from a total of 1
+
+sent: 7: apparently , their verdict is in . 
+done parsing...
+time(CPU): 0.000000
+parsed 0 from a total of 1
+
+sent: 7: right now they 're pursuing evidence . 
+done parsing...
+time(CPU): 0.000000
+parsed 0 from a total of 1
+
+sent: 7: no doubt that 's partially true . 
+done parsing...
+time(CPU): 0.020000
+parsed 1 from a total of 1
+
+sent: 8: individuals can always have their hands slapped . 
+done parsing...
+time(CPU): 0.040000
+parsed 1 from a total of 1
+
+sent: 5: but they are worried . 
+done parsing...
+time(CPU): 0.010000
+parsed 1 from a total of 1
+
+sent: 5: but they fell sharply . 
+done parsing...
+time(CPU): 0.000000
+parsed 0 from a total of 1
+
+sent: 9: the turnover in both issues was roughly normal . 
+done parsing...
+time(CPU): 0.030000
+parsed 0 from a total of 1
+
+sent: 8: and they plan to buy more today . 
+done parsing...
+time(CPU): 0.130000
+parsed 1 from a total of 1
+
+sent: 8: other money managers also opened their wallets . 
+done parsing...
+time(CPU): 0.090000
+parsed 1 from a total of 1
+
+sent: 9: it can happen before you can turn around . 
+done parsing...
+time(CPU): 0.080000
+parsed 1 from a total of 1
+
+sent: 6: all that now has changed . 
+done parsing...
+time(CPU): 0.020000
+parsed 1 from a total of 1
+
+sent: 5: that did not happen . 
+done parsing...
+time(CPU): 0.000000
+parsed 1 from a total of 1
+
+sent: 6: now it 's happening again . 
+done parsing...
+time(CPU): 0.000000
+parsed 1 from a total of 1
+
+sent: 8: making computers smaller often means sacrificing memory . 
+done parsing...
+time(CPU): 0.280000
+parsed 0 from a total of 1
+
+sent: 8: analysts do not see it that way . 
+done parsing...
+time(CPU): 0.120000
+parsed 1 from a total of 1
+
+sent: 5: do not jump yet . 
+done parsing...
+time(CPU): 0.010000
+parsed 0 from a total of 1
+
+sent: 5: debt burdens are heavier . 
+done parsing...
+time(CPU): 0.010000
+parsed 1 from a total of 1
+
+sent: 8: a lot of pent-up demand is gone . 
+done parsing...
+time(CPU): 0.050000
+parsed 1 from a total of 1
+
+sent: 7: that was offset by strength elsewhere . 
+done parsing...
+time(CPU): 0.010000
+parsed 0 from a total of 1
+
+sent: 7: they are more sophisticated this time . 
+done parsing...
+time(CPU): 0.010000
+parsed 1 from a total of 1
+
+sent: 7: pricing details were not immediately available . 
+done parsing...
+time(CPU): 0.020000
+parsed 1 from a total of 1

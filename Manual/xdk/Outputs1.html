@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+<title>Outputs1 - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Compiler.html#Compiler" title="Compiler">
+<link rel="prev" href="Principles.html#Principles" title="Principles">
+<link rel="next" href="Lexicon.html#Lexicon" title="Lexicon">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Outputs1"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Lexicon.html#Lexicon">Lexicon</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Principles.html#Principles">Principles</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Compiler.html#Compiler">Compiler</a>
+<hr>
+</div>
+
+<h3 class="section">4.5 Outputs</h3>
+
+<p>In a dimension definition, you can specify a set of outputs to
+visualize the solutions on that dimension. The outputs must be taken from
+the predefined <em>output library</em>,
+<a name="index-output-library_002e-104"></a>of the XDK. Using outputs proceeds in two steps:
+     <ol type=1 start=1>
+<li>choose outputs
+<li>use outputs
+        </ol>
+
+<h4 class="subsection">4.5.1 Choosing outputs</h4>
+
+<p>First, you <em>choose</em>
+<a name="index-choose-outputs-105"></a>the subset of <em>chosen outputs</em>
+<a name="index-chosen-outputs-106"></a>from the outputs available in the output library. All of these outputs
+must be able to visualize the solution on the currently defined
+dimension.
+
+   <p>In the UL, you choose an output as follows:
+<pre class="example">     output &lt;constant&gt;
+</pre>
+   <p>where the <code>&lt;constant&gt;</code> is an output identifier.
+
+<h4 class="subsection">4.5.2 Using outputs</h4>
+
+<p>Then, you <em>use</em>
+<a name="index-use-107"></a><a name="index-use-outputs-108"></a>a subset of the chosen outputs (the <em>used outputs</em>)
+<a name="index-used-outputs-109"></a>which are actually utilized by the XDK to visualize the individual
+solutions of a solution for that dimension.
+
+   <p>In the UL, you use an output as follows:
+<pre class="example">     useoutput &lt;constant&gt;
+</pre>
+   <p>where the <code>&lt;constant&gt;</code> is an output identifier.
+
+   <p>This rather artificial difference between choosing and using outputs
+has its roots in the GUI of the XDK. Here, all the chosen outputs are
+available in the <code>Outputs</code> menu (so that you can still use them
+on demand), but only the used outputs are actually used for
+visualizing solutions.
+
+<h4 class="subsection">4.5.3 Example</h4>
+
+<p>In our example grammar file, only the output <code>output.pretty</code> is
+chosen on both the id and the lp dimension (but not used):
+
+<pre class="example">       %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %% use and choose outputs
+       output "output.pretty"
+</pre>
+   <p>The multi-dimensional outputs <code>output.dags1</code> and
+<code>output.latexs1</code> are used on the lex dimension, but only the
+former is chosen:
+
+<pre class="example">       %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+       %% use and choose outputs
+       output "output.dags1"
+       output "output.latexs1"
+       useoutput "output.dags1"
+</pre>
+   <!-- ************************************************************ -->
+   </body></html>
+

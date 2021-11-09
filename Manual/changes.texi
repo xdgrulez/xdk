@@ -1,0 +1,1793 @@
+@chapter Changes
+
+Version 1.8.1 (September 13, 2011)
+
+New stuff after a three year hiatus :)
+
+Added support for underspecified nodesets (you can specify a lower bound
+and an upper bound in the node sets). For use in Jochen Setz's Master's
+Thesis.
+
+Version 1.8.0 (August 20, 2008)
+
+New Principle Manager included! Because of its importance, it has its
+own menu in the XDK GUI. It Replaces the scripts @code{addprinciple},
+@code{mvprinciple} and @code{rmprinciple}, which we removed from the XDK
+distribution. Very convenient principle management, as it always should
+have been...
+
+User experience: unhandled errors: now, the error records of unhandled
+errors are always shown in the Oz Inspector - you do not have to switch
+on the Debug mode anymore.
+
+Simplification (for further development): removed support for MOGUL
+deployment into global directory. From now on, all paths are relative to
+the XDK main directory.
+
+Version 1.7.1 (July 30, 2008)
+
+Added latest additions by Jorge (extensive Memoization support).
+
+Made output functor @code{output.xTAGDerivation} work also under
+Windows. Mostly path-related problems, solved with lots of
+trial-and-error. Problem under Windows, @code{OS.pipe} does not always
+return the correct process ID for killing the window again. This seems
+to be a Cygwin issue. The only solution I have found on the Web is a
+C-call to an internal Cygwin function.  Which we will not do. So, under
+Windows, you might have to close the derivation tree windows on your
+own.
+
+@code{Outputs.oz} and @code{Principles.oz} are now dynamically linked,
+i.e., it is possible to change the lists of outputs and principles
+without having to 1) recompile the XDK executable, and 2) restarting
+them. Simply reloading the grammar in the GUI suffices. In preparation
+for the upcoming PrincipleManager.
+
+Version 1.7.0 (December 28, 2007)
+
+Updated manual with some information about how to use the Principle
+Writer.
+
+Version 1.6.53 (December 27, 2007)
+
+Updated manual with the latest grammars.
+
+Version 1.6.52 (December 21, 2007)
+
+More fixes, most importantly, fixed the CSP and FlatZinc output again.
+Until I have time for more documentation, for Flatzinc to work, you need
+to install Gecode, and then the FlatZinc-reader (it's a separate program),
+and then call it like this on the FlatZinc output file @code{test.fzn}
+
+@example
+fz -mode stat -solutions 0 test.fzn
+@end example
+
+Here, @code{-solutions 0} means ``find all solutions''. Call @code{fz
+--help} for the options of @code{fz}.
+
+This is it for now, my last day at university has ended. End of this
+year (after Xmas), I will make an official last uni-release (1.7.0 or
+whatever). After that, I hope Jorge and Denys will step in again to
+continue development, with me helping in my spare time (or in the time
+I have when traveling to/from my new workplace SAP).
+
+With the PW even in this shape, the XDK should actually become very
+useful at least for teaching dependency grammars, but also for
+developing/prototyping new kinds of dependency grammars.
+
+Also, it is a challenging topic more in the realms of constraint
+programming to continue working on the optimizer of the principle
+compiler. Jorge has already done a lot of work, which he should really
+bring in a form to publish, but there is ample space for more
+optimizations.
+
+Version 1.6.51 (December 21, 2007)
+
+Lots of small fixes everywhere :)
+
+Version 1.6.50 (December 20, 2007)
+
+First version with 1) lots of unnecessary stuff removed (support for
+deep guards, support for Gdbm, node/edge constraints, constraints
+type/lattice etc.) and 2) lots of new stuff, mostly done by Jorge:
+Principle Writer optimizations, memoization, lazy variables, dynamic
+profiling, type inference etc. To be documented soon.
+
+Version 1.6.43 (September 20, 2007)
+
+Removed support for let expressions again, kept only the old PW code
+not yet touched by Jorge. Jorge has implemented a new, much cooler
+version of PW which I'll integrate as soon as I can... stay
+tuned. It's really great stuff.
+
+You can now use the usual valency notation using wild cards also for
+tuples (PW valency principle). That is, no need to write @code{[a
+"?"]}  anymore, just write @code{a?} as before.
+
+New grammar (@code{regdgPW.ul}) and principles to model regular
+dependency grammars (Kuhlmann/Moehl ACL 2007). Being able to model
+regular dependency grammars means that we can prove that XDG is at
+least as expressive as LCFRS!
+
+Added fix to @code{GraphPWConstraints}, was incomplete if confronted
+with cyclic graphs.
+
+Version 1.6.42 (July 23, 2007)
+
+Added support for let expressions done by Jorge. Thanks again!
+
+Added new node record feature @code{pos}, and removed the @code{pos}
+feature from all order principle model record definitions. That means
+that now all dimensions share the same positions for their nodes.
+
+Great simplification: the solver can now be explicitly instructed to
+``parse'', i.e., to equate the position with the index, or
+``generate'', i.e., leave the @code{pos} feature untouched and
+distribute over it. The switch is in the @code{Search} pulldown menu
+(or the @code{--mode}/@code{-m} commandline switch).
+
+This change bereaves the XDK somewhat of its flexibility, but makes it
+much simpler as well. And, most important, it fits better with the
+latest formalizations of XDG.
+
+As a consequence of this simplification, I could remove the
+@code{Parse} and @code{SameOrder} principles.
+
+Added hand-optimized versions of some of the PW principles suffixed
+@code{PW1.oz} in @code{Solver/Principles/Lib}. Now we need a
+compositional way of obtaining these optimizations...
+
+Version 1.6.41 (July 20, 2007)
+
+Added a transparent fix of @code{FS.reified.include} to
+@code{Share.oz}. @code{FS.reified.include} is broken in Mozart 1.3.2
+(see Mozart users list), as Jorge has found out by deep private
+investigation. Thanks a lot! The fix however makes the XDK slower, I
+hope there will be a fix to Mozart someday.
+
+First version of @code{dissPW.ul} works with only PW principles, same
+number of solutions (except for one sentence), and almost the same
+propagation, but much slower as the principles are not yet optimized.
+
+Version 1.6.40 (July 19, 2007)
+
+Continued writing PW principles for @code{dissPW.ul}. Now finished,
+almost works properly :-)
+
+Version 1.6.39 (July 18, 2007)
+
+Important bugfixes to @code{xdk.oz} (Inspect Lexical Entries) and
+@code{Compiler/Lattices/Set.oz} (@code{EncodeProc1} only worked
+properly for intersective sets).
+
+New principles for new grammar @code{dissPW.ul} (dissertation grammar
+with PW principles).
+
+Added set generator expressions and unequality to PW language, added
+set equality to @code{Solver/Principles/Lib/PW.oz}.
+
+Version 1.6.38 (July 17, 2007)
+
+Integrated IsIn optimization code into the
+@code{Solver/Principles/Lib/PW.oz}, thereby simplified the optimizer a
+lot. Same efficiency!
+
+Version 1.6.37 (July 16, 2007)
+
+Added new optimizations for
+negations/conjunctions/disjunctions/equivalences.
+
+Added @code{PrincipleWriter} directory containg the work-in-progress
+principle compiler.
+
+Version 1.6.36 (July 13, 2007)
+
+Slight addition to the grammar record specification: now includes
+feature @code{as}, a list of all words in the lexicon of the grammar.
+
+Added slight optimization to PW: now, all lattices used for encoding
+are created only once at the beginning of the constraint functor. As a
+result, all automatically generated functors with suffix @code{PW1}
+are now as fast (even a bit faster) as their quasi-automatically
+generated functors with suffix @code{PW}.
+
+Removed all grammars and principles with suffix @code{PW1}, and
+replaced the principles with automatically generated ones using the
+latest PW.
+
+Version 1.6.35 (July 12, 2007)
+
+Modularized PW. Now we have an executable @code{pw.exe} in the
+@code{PrincipleWriter} subdirectory, which is the first live running
+version of PW! It still misses type inference and type checking, but
+it does already do some optimizations. To compile a principle and add
+it to the principle library, type:
+@example
+pw.exe -p Examples/valencyPW.ul
+@end example
+To omit the optimizations, add @code{--nooptimize}.
+
+Version 1.6.34 (July 11, 2007)
+
+Added further optimizations to PW and indentation a la the emacs mode
+for Oz. Ready to be modularized tomorrow.
+
+Fixed a bug in @code{pwtest1.oz} found by Jorge Marques Pelizzoni.
+
+Version 1.6.33 (July 9, 2007)
+
+Now the PW works for the first time and generates non-optimized
+principles. Used it to generate all @code{PW1}-suffixed principles,
+and, voila, seems to work with the example grammars.
+
+Lots of stuff still to do:
+@itemize @bullet
+@item clean up, split into several functors
+@item error detection and sensible error messages (type checking)
+@item type inference
+@item optimizations (as seen in the manually implemented @code{PW}-suffixed principles)
+@item new Mozart code for adding new principles to the system (replacing
+the old perl-based scripts which do not have error checking)
+@end itemize
+
+Version 1.6.32 (July 5, 2007)
+
+New PW grammars @code{nut1PW.ul} and @code{nut1PW1.ul}, the
+latter again unoptimized, imaginary PW output.
+
+New PW principles @code{principle.agrPW},
+@code{principle.agreementPW}, @code{principle.dagPW},
+@code{principle.linkingEndPW} and @code{principle.linkingMotherPW},
+and unoptimized versions with suffix @code{1}.
+
+Version 1.6.31 (July 3, 2007)
+
+Changed lexicalized order principle such that @code{^} is an edge
+label again, but there cannot be any edges labeled @code{^}. Also
+changed all grammars using the principle accordingly.
+
+Removed type union/disjunction (not needed anymore).
+
+Worked a lot on the new PW principles to make them as efficient as the
+original ones.
+
+Duplicated the PW principles: now, there is always one version which
+is optimized as far as possible (e.g. @code{principle.orderPW}), and
+one which is not optimized, marked by a suffixed @code{1}
+(e.g. @code{principle.orderPW1}). Accordingly, the grammars
+@code{ANBNPW.ul} and @code{EQABPW.ul} use the optimized, and
+@code{ANBNPW1.ul} and @code{EQABPW1.ul} the unoptimized principles.
+
+Version 1.6.30 (June 8, 2007)
+
+Improvements to and optimizations of the new PW principles.
+
+Version 1.6.31 (June 5, 2007)
+
+New principles @code{principle.orderPW} and
+@code{principle.projectivityPW}, and new grammar @code{ANBNPW.ul}, again
+to support the ongoing ``PrincipleWriter'' work.
+
+Version 1.6.29 (June 4, 2007)
+
+New principles @code{principle.graphPW}, @code{principle.treePW} and
+@code{principle.valencyPW} and new grammar @code{EQABPW.ul} to support
+the ongoing work on the principle compiler ``PrincipleWriter''.  The
+principles are basically what should be obtained from the compiler when
+it works.
+
+Version 1.6.28 (May 4, 2007)
+
+Solving statistics now supports a timeout, i.e., solving is interrupted
+after a fixed amount of time. The default is 3600 (1 hour). Notice that
+the timeout is checked only at choice points/solutions/failures in the
+search tree, i.e., it may take longer than the timeout to reach the
+first fixpoint and thus it may take longer to solve in overall despite
+the timeout.
+
+Changed defaults for solving statistics in @code{xdk.exe} and
+@code{xdks.exe} again: the maximum number of solutions is 9999 again, as
+is the maximum number of failures.
+
+Version 1.6.27 (April 27, 2007)
+
+New tool for extracting example sentence files from Penn Treebank
+@code{*.pos} files (tagged). The tool is called @code{ptbextraxt.exe}
+and lets you also specify the minimum and maximum length of the
+sentences to be extracted. The vocabulary of the sentences is adapted
+to the XTAG grammar found in the current lem distribution (0.14.0).
+
+Made fixed recomputation with recomputation distance 5 the default for
+@code{xdk.exe}, for Explorer, IOzSeF and Oracle search. This has the
+effect that exploring even large search spaces will not immediately
+lead to a rather unresponsible system.
+
+Added new option for solving statistics (@code{xdk.exe} and
+@code{xdks.exe}) to specify the maximum number of failures. Using this
+and the possibility to specify the maximum number of solutions helps
+to terminate the search for solutions before it goes on forever.
+
+Consistently made executables lower case (except for the included SXDG
+directory). Hence, @code{ManualOracleServer.exe} is now called
+@code{manualoracleserver.exe}, and @code{XTAGServer.exe}
+@code{xtagserver.exe}.
+
+Many other small improvements.
+
+Version 1.6.26 (April 23, 2007)
+
+Now CSPs can be printed into files whose filename can be conveniently
+chosen. No more printing out to stdout.
+
+Added experimental functionality to print out CSPs using FlatZinc
+syntax. This is a new standard syntax for constraint solvers,
+developed by the G12 project at several universities in Australia (see
+@uref{http://www.g12.cs.mu.oz.au/Summary.html}). In particular, the
+Gecode constraint library will soon support FlatZinc officially, which
+means that this gets the XDK one step closer to integration with
+Gecode.
+
+Printing out CSPs now also works with the standalone solver
+@code{xdks.exe}.
+
+New file suffixes: @code{csp} for printed out CSPs, @code{fzn} for
+printed out CSPs using FlatZinc syntax, and @code{sol} for solutions
+obtained from the program @code{explore.exe} in @code{CSPOutput}.
+
+Many small bugfixes and enhancements.
+
+Version 1.6.25 (April 11, 2007)
+
+Slight fix to XTAG grammar generation to adapt to the new output
+functors (which display the words of @code{word} features of all
+dimensions, not just @code{lex}): the @code{word} feature on the
+@code{lp} dimension is now called @code{word1}.
+
+Version 1.6.24 (April 10, 2007)
+
+Made it much easier for users from the outside to use the oracle
+functionality of the XDK:
+@itemize @bullet
+@item Added the two IOzSeF packages @code{tack-iozsef-1.1.pkg} and
+@code{tack-TkTreeWidget-0.7.pkg} by Guido Tack to the XDK distribution
+(in case MOGUL is not available or so).
+@item Integrated the SXDG package by Marco Kuhlmann.
+@end itemize
+Now, the example oracle can be used already after simply installing
+the two IOzSeF packages.
+
+Included a license at last - CeCILL v2 (GNU-GPL-compatible).
+
+Cleaned up a bit:
+@itemize @bullet
+@item Removed script @code{doublefdfs}.
+@item Removed example files @code{pri_EQAB.oz} and @code{pri_EQAB_lex.oz}
+from the XDK distribution.
+@end itemize
+
+Version 1.6.23 (February 23, 2007)
+
+Removed the code supporting the second node-word mapping
+(@code{lex.entry.word1}) since it was too hacky IMHO.
+
+Now, following a discussion with Vineet Chaitanya, the output functors
+(Tcl/Tk and Latex), and the @code{GenerateOrderings} code support the
+possibility of additional node-word mappings on any other
+dimension. An example is given in the grammar @code{Grammars/MWE.ul},
+where the syntactic dimensions (@code{id} and @code{lp}) have a word
+feature different from that on the semantic dimension (@code{pa}). Now
+if the grammar shall be used for parsing, the input word feature
+(@code{lex.entry.word}) is unified with the syntactic word and the
+parsing principle is switched on. If the grammar shall be used for
+generation, the input word feature is unified with the semantic word,
+and the parse principle switched off. This is implemented in the
+example grammar @code{Grammars/MWEgen.ul}.
+
+Added three work-in-progress example grammars:
+@code{Grammars/MTS10.ul}, a grammar where two context-free grammars
+are combined to model scrambling, and @code{Grammars/FG_TAGDC.ul} and
+@code{Grammars/FG_TAGDCgen.ul}, where a TAG grammar and a grammar for
+dominance constraints (modeled as in the dissertation) are combined.
+
+Version 1.6.22 (February 19, 2007)
+
+Wrote a new principle @ref{XTAGLinking} which combines the now removed
+@code{principle.linkingEnd1} and @ref{SameEdges}.
+
+Added code to @code{Solver/Principles/Lib/Helpers.oz} that generates the
+records encoding the dominance/precedence relations on Gorn addresses
+on-the-fly for the @ref{XTAG1} and @ref{XTAGRedundant} principles.
+
+These two steps greatly simplify the writing of TAG grammars, as can be
+observed e.g. in the grammar @ref{ww}.
+
+Further improved the GenerateOrderings dialog.
+
+The GenerateOrderings function and all DAG output functors now recognize
+whether a grammar as the feature @code{lex.entry.word1}, which is a
+feature additional to @code{lex.entry.word}, modeling a second
+``node-word mapping''. This is convenient for generation, as e.g. in the
+grammar @ref{MWEgen}, where the @code{lex.entry.word1} feature denotes
+the generated word for the node.
+
+Version 1.6.21 (February 18, 2007)
+
+Improved the @code{GenerateOrderings} functionality of the GUI. Now,
+several dimensions can be selected where the parse principle shall be
+switched off. The selection is now much more comfortable using
+checkbuttons instead of a text field.
+
+Version 1.6.20 (February 17, 2007)
+
+Updated the @ref{CSD1} principle to more closely reflect the diss, and
+to be more configurable.
+
+Removed the @code{principle.projectivity1} principle and put its
+functionality into @ref{Projectivity}. Now, if a principle which
+introduces a @code{yield} feature is used, then the @code{yield} set
+must be convex, otherwise, the principle constrains the @code{eqdown}
+set to be convex.
+
+Removed the @code{Projective} argument variable from the @ref{Order}
+and @ref{Order1} principles (and their variant @ref{OrderConstraints}
+and @ref{Order1Constraints}). Please note: if you made use of this
+argument variable to make your analyses projective, please change your
+grammars to use the additional @ref{Projectivity} principle instead!
+I already changed this for the example grammars of course.
+
+Version 1.6.19 (February 16, 2007)
+
+Optimized XTAG principles.
+
+Added @code{XTAGDist} constraint functor for distributing the
+positions when the solver is used as a realizer for TAG grammars.
+
+Updated the main page of the manual, highlighting the compiler and
+solver chapters.
+
+Fixed severe bug in @code{principle.linkingAboveStart}.
+
+Fixed bug in the UL grammar file parser --- could not handle missing
+brackets at the end of the file.
+
+Version 1.6.18 (February 14, 2007)
+
+Made the XTAG principles reversible.
+
+Version 1.6.17 (February 13, 2007)
+
+Finished updating the functor profiles for all constraint
+functors. Now the profiler gives precisely the right number of
+propagators and variables, which can be tested by using the
+@code{solve.exe} executable from the @code{CSPOutput} directory.
+
+Also added a new chapter to the documentation which explains the
+profiling functionality.
+
+Version 1.6.16 (February 9, 2007)
+
+Removed memory consumption measurements from solving statistics again
+(too imprecise).
+
+Removed copies of the @code{NewTkDAG} and @code{Select} directories
+from @code{CSPOutput}. That is, @code{CSPOutput} is not stand-alone
+anymore, but must be distributed with the entire XDK. Which isn't so
+much of a problem, compared with the overhead of having to deal with
+copies of especially the selection constraint.
+
+Changed all hard-wired references to the @code{/tmp/} directory. Would
+not work on Windows, and this was the reason why the XTAG code would
+not work on Windows. Now it does --- temporary files are now either
+written to @code{/tmp/}, or, if that is not available, to
+@code{/C/Windows/Temp}, or to @code{/C/Temp}.
+
+Added new Windows binaries of the slighly optimized @code{Select.fs}
+and @code{Select.union} constraints.
+
+Updated constraint functor profiles using the propagator output.  Not
+all done yet though.
+
+Version 1.6.15 (February 7, 2007)
+
+Added slight optimizations to @code{Select.fs} and @code{Select.union}.
+Not included in the Windows binary yet.
+
+Version 1.6.14 (February 2, 2007)
+
+Improved LOP grammar (@code{Grammars/LOP.ul}) and principle
+(@code{Solver/Principles/Lib/LOP.oz}).
+
+Version 1.6.13 (February 1, 2007)
+
+Plugged in a reimplementation of the @code{tagger_filter.pl} tree
+filter from the lem parser distribution. Uses the mxpost POS tagger by
+Adwait Ratnaparkhi, which does not seem to be publicly available
+anymore though. Works perfectly, same number of solutions as the
+original lem parser. To use it, given that mxpost is properly
+installed in the directory pointed to by the @code{MXPOST} environment
+variable, call the XTAGServer as shown below:
+@example
+XTAGServer.exe -f tagger
+@end example
+
+Plugged in the supertagger available on the XTAG webpage. Can be selected
+as a tree filter as shown below:
+@example
+XTAGServer.exe -f supertagger
+@end example
+Where the environment variable @code{COREF} must point to the
+currently used data directory within the supertagger directory (as
+stated in the @code{README} there), e.g. to the @code{200K.data}
+directory.
+
+Added a function in @code{xdk.exe} to compare the solutions from the
+lem parser, using the tagger filter, and the XDK, using the
+reimplementation of the filter.
+
+Fixed bug in @code{LemComparer.oz} (would not properly handle the
+distinguishing suffixes introduced in the previous version of the
+XDK).
+
+Fixed @code{XTAGRoot} constraint.
+
+Cleaned up @code{Extras} menu of the GUI.
+
+Version 1.6.12 (January 30, 2007)
+
+Fixed small small bugs in @code{xdk.exe}.
+
+Improved filter reimplementation. Now gets precisely the same
+solutions as the lem parser when using pruning and filtering. Plugging
+in a tagger/supertagger comes next.
+
+Prepared plugging in of a tagger/supertagger to the XTAG grammar
+generator. Most notably, introduced a way to distinguish multiple
+occurrences of the same word by adding suffixes separated from the
+word by a hash, e.g. ``a man who sleeps sleeps#1''. Not thoroughly
+tested though.
+
+Version 1.6.11 (January 25, 2007)
+
+Added implementation of syn lookup pruning from the lem parser, obtainable
+via the @code{--prune} option of the the XTAGServer. Put on by default.
+
+Version 1.6.10 (January 23, 2007)
+
+Added reimplementation of the @code{simple_filter.pl} tree filter from
+the lem parser distribution to the XTAG grammar server code. Can be
+invoked by launching the XTAGServer using the @code{-f simple} option:
+@example
+XTAGServer.exe -f simple
+@end example
+
+Adapted the GUI to include two different versions of @code{Compare lem
+solutions...} (@code{Extras} menu): one without filtering (useful if
+you called the XTAGServer with @code{-f none}), and one with
+filtering (if you called it with @code{-f simple}).
+
+Added file @code{4712.ulsocket} for convenience (for easier access to
+the XTAG grammar generator, given that it is started on port 4712).
+
+Added debug output to solving statistics, showing the number of
+failures and solutions (succeeded).
+
+Version 1.6.9 (January 19, 2007)
+
+Renamed example file @code{pri.oz} to @code{pri_EQAB.oz}.
+
+Added example file @code{pri_EQAB_lex.oz}, the valency-lexicalized
+version of @code{pri_EQAB.oz}.
+
+Version 1.6.8 (January 18, 2007)
+
+Added missing nodeset files for @code{diss} and @code{LOP} grammars.
+
+Changed Denys' location to Orleans at last :)
+
+Version 1.6.7 (January 16, 2007)
+
+stderr printouts of @code{xdkc.exe} and @code{xdks.exe} now use
+@code{System.showError} instead of @code{System.printError} for better
+readability.
+
+Changed memory consumption measurement to use the @code{gc.active}
+property.
+
+Added scripts @code{optiOff} and @code{optiOn} to toggle the native
+@code{IsIn} optimization.
+
+Version 1.6.6 (January 15, 2007)
+
+Small improvement to @code{principle.lop}.
+
+Changed some defaults for solving statistics in @code{xdk.exe} and
+@code{xdks.exe} profiling is now turned off per default, the maximum
+number of solutions 1000 (instead of 9999), and the recomputation
+distance 5 (1).
+
+Added memory consumption to solving statistics, based on the
+@code{'memory.heap'} property of Mozart/Oz. Also adapted the DTD
+@code{Extras/statistics.dtd}.
+
+Version 1.6.5 (January 12, 2007)
+
+CSPOutput: renamed @code{solve.exe} to @code{explore.exe} and added a
+new program @code{solve.exe} which does not call the explorer but uses
+a handmade search engine to obtain solving statistics.
+
+Improved @code{principle.lop} for the new LOP grammar
+(@code{Grammars/LOP.ul}).
+
+Version 1.6.4 (January 10, 2007)
+
+LOP grammar and principle added.
+
+Version 1.6.3 (January 8, 2007)
+
+Added information about the principles and constraint functors
+belonging to the propagators in the propagators output.
+
+Added @code{Helpers.isIn} optimization to @code{Order2Conditions}, big
+speed-up for grammars using the lexicalized order principle
+(e.g. @code{Grammars/diss.ul}).
+
+Version 1.6.2 (January 5, 2007)
+
+Removed constraints that partitioned the sets of daughters and mothers
+sorted by label (@code{daughtersL} and @code{mothersL}) from the
+@code{GraphMakeNodes} and @code{GraphMakeNodes1} constraint functors.
+This wrongly disallowed that nodes had multiple outgoing edges to the
+same daughter node (of course with different edge labels).
+
+Added these partitioning constraints to the @code{TreeConditions}
+constraint functor, and, optionally (@code{DisjointDaughters} argument
+variable) to the @code{Dag} constraint functor.
+
+Changed default for the @code{Connected} argument of the @code{Dag}
+constraint functor to @code{false}.
+
+Adapted all grammars affected by these changes (i.e., those using the
+Dag principle).
+
+Fixed bug in @code{LinkingAboveBelow1or2StartDG} constraint functor.
+
+Added constraint to @code{GraphConditions} and @code{GraphConditions1}
+constraint functors for better propagation on cyclic graphs (the
+@code{down} and @code{eqdown} sets were not properly constrained
+whenever a node only had itself as its daughter).
+
+Added example file @code{pri.oz} which is a first example of 
+principle compilation.
+
+Version 1.6.1 (January 2, 2007)
+
+Added @code{AddHandlers} procedure for the executable in the
+@code{CSPOutput} directory - they were not able to find the selection
+constraint when compiled from the toplevel XDK directory.
+
+Bumped copyrights to 2007.
+
+Version 1.6.0 (December 22, 2006)
+
+Much much much faster CSP output thanks to an idea by Stefan Thater.
+
+Introduced new directory @code{CSPOutput} for functors and programs
+working with CSP output. Includes the programs @code{solve.exe} for
+solving CSP outputs, and @code{view.exe} to view the solutions of CSP
+outputs (saved from the Explorer in @code{solve.exe}).
+
+The directory is stand-alone, e.g. it can be tar-gzipped and then be
+used on a machine without the XDK installed. This is another landmark
+in our transition to Gecode.
+
+Merry Christmas BTW!
+
+Version 1.5.8 (December 18, 2006)
+
+Fixed bug just introduced into the IsIn optimization --- it would
+suspend when printing out propagators.
+
+Changed @code{Solver/Principles/Lib/Share.oz} such that it now filters
+out non-fd/fs variables (e.g. @code{lex.entry.word}).
+
+Version 1.5.7 (December 14, 2006)
+
+Found out why the parser had become slower - it was the IsIn
+optimization in @code{Solver/Principles/Lib/Helpers.oz} which I had
+changed to the worse. Fixed.
+
+Removed native treeness constraint from @code{principle.tree} (functor
+@code{TreeConditions.oz}. Added a new principle @code{principle.tree1}
+(with new functor @code{TreeConditions1.oz}) which still includes the
+native treeness constraint in case a grammar still needs it.
+
+Version 1.5.6 (December 13, 2006)
+
+Removed remaining deep guards from @code{principle.coindex} and
+@code{principle.pl}.
+
+Made printing propagators more efficient using a trick involving the
+counter for finite domain variables available in the Properties module
+of Mozart/Oz.
+
+New script @code{doublefdfs} to check whether print propagators output
+is buggy, introducing the same variable numbers for both finite set
+and finite domain variables.
+
+New Oz test code @code{testpropagatoroutput.oz} to test the print
+propagators output against Mozart/Oz itself.
+
+Continued updating the manual, grammars and principles to reflect the
+state-of-the-art of the system, many many small fixes and improvements.
+
+Version 1.5.5 (December 5, 2006)
+
+Added logo to GUI (Project -> About).
+
+Updated the grammars to only use principles not using deep guards, except
+@code{DiplomDG.ul} and @code{dissDG.ul}. This also meant that the grammars
+using edge constraints had to be reformulated without. As a result, no 
+grammar uses edge constraints any more. Since I could also remove all node 
+constraints from the grammars, further versions of the XDK could drop the 
+expression of node and edge constraints altogether, since their benefit 
+is not high enough (I think) to warrant the complications they 
+introduce to the system.
+
+Removed grammar @code{seg.ul}.
+
+Added diss to list of references in this manual.
+
+Version 1.5.4 (December 1, 2006)
+
+Suffixed all constraint functors, principle definition functors and
+grammars using edge constraints with DG for ``deep guards'', and
+removed the NDG suffix from those not using deep guards. As a result,
+if the user e.g. uses the @code{principle.graph} principle, (s)he gets
+the more efficient implementation without deep guards. Not quite done
+yet - the grammars and the manual still need to be updated.
+
+Thanks to my wife Simone, the XDK has a logo now:
+
+@image{pix/xdk}
+
+The logo expresses the extensibility of XDG, and the building of grammars 
+like with lego blocks, by stacking the three acronym letters on each 
+other. This is also a hint to the multiple levels/dimensions that XDG 
+grammars can have. Well, that's what I interpret :-)
+
+Version 1.5.3 (November 28, 2006)
+
+Added hooks for the FD, FS and Select functors. Now, by choosing the
+print option in the GUI, all the propagators which are normally posted
+can now be printed out to stdout (and not posted). This is the first
+step in the transition to the new Gecode constraint engine, which
+Guido Tack and me are now undertaking. The very idea to simply flatly
+print out the propagators is due to Gert Smolka.
+
+Transformed principle constraints such that all infixed FD
+constraints, e.g. @code{=:} or @code{=<:} are now prefixed, using the
+appropriate prefixed equivalents.
+
+Fixed a bug in @code{Extras/SolvingStatistics.oz} which would raise an
+unhandled error whenever a word in the input was not in the lexicon of
+the grammar.
+
+Removed grammar @code{Grammars/TAG-wwRwwR.ul}.
+
+Fixed small bugs in some of the grammars/examples files.
+
+Version 1.5.2 (October 25, 2006)
+
+Changed defaults for the order principles: now, the argument variables
+@code{Projective} and @code{Yields} have default @code{false} instead
+of @code{true}. Makes the principles more intuitive to use (I had
+wondered why the hell switching off the projectivity principle would
+not give me the overgeneration I expected in @code{Grammars/ANBN.ul}).
+
+Version 1.5.1 (September 14, 2006)
+
+Updated the manual to reflect all the new stuff in the XDK, especially
+the new principles.
+
+Lots of fixes around the socket functionality of @code{xdk.exe} and
+@code{xdks.exe}, and in particular solving statistics. Solving
+statistics would not work at all with grammars coming from a socket
+etc.
+
+Most important news: now, the XDK supports the English TAG grammar
+developed in the XTAG project
+(@uref{http://www.cis.upenn.edu/~xtag/}).  This is the first real
+large-scale grammar for the XDK, which will allow us to improve the
+system, see where its bottlenecks are etc. The XTAG grammar generator
+module of the XDK is described in @ref{XTAG}.
+
+The generated grammars make use of three new principles:
+@itemize @bullet
+@item @code{principle.xTAG} (@ref{XTAG1})
+@item @code{principle.xTAGRedundant} (@ref{XTAGRedundant})
+@item @code{principle.xTAGRoot} (@ref{XTAGRoot})
+@end itemize
+
+And the new output @code{output.xTAGDerivation} (@ref{XTAGDerivation})
+to display XTAG derivation trees using the tree viewer from the XTAG
+project lem parser.
+
+The function ``Compare lem solutions'' in @code{xdk.exe} compares the
+derivation trees obtained from the encoded XDG grammar with the
+derivation trees obtained from the lem parser.
+
+Version 1.5.0 (September 1, 2006)
+
+Added support for the XTAG grammar. Soon to be documented :)
+
+Version 1.4.11 (August 18, 2006)
+
+Added Selection constraint to the XDK package since the Select package
+would not individually compile under Mozart 1.3.2 anymore :( Makes the
+installation of the XDK simpler anyway :)
+
+Version 1.4.10 (July 27, 2006)
+
+Fixed @code{principle.linkingEndNDG} and changed the constraint in
+@code{principle.linkingEnd} accordingly.
+
+Version 1.4.9 (July 26, 2006)
+
+Added principle @code{principle.sameEdges}.
+
+Renamed @code{principle.sameorder} to @code{principle.sameOrder} (used
+only in @code{Grammars/diss.ul}, @code{Grammars/dissNDG.ul} and
+@code{Grammars/igk.ul}).
+
+Added new output functor @code{output.pretty1} for better comparison
+of solutions.
+
+Version 1.4.8 (July 18, 2006)
+
+Recompiled binaries using the new Mozart 1.3.2.
+
+Changed Diplom grammar (@code{Grammars/Diplom.ul}) such that it does
+not use the deprecated @code{principle.nodeconstraints} and
+@code{principle.edgeconstraints} principles anymore but instead
+@code{principle.agr}, @code{principle.agreement},
+@code{principle.government} and the new
+@code{principle.agreementSubset} principles.
+
+Added new versions of all principles using edge constraints with the
+crucial difference that they do not use deep guards. The new versions
+are suffixed with @code{NDG} ("no deep guards"). Here are the
+principles:
+@itemize @bullet
+@item @code{principle.agreementNDG}
+@item @code{principle.agreementSubsetNDG}
+@item @code{principle.coindexNDG}
+@item @code{principle.copynpasteNDG}
+@item @code{principle.governmentNDG}
+@item @code{principle.graph1ConstraintsNDG}
+@item @code{principle.graph1NDG}
+@item @code{principle.graphConstraintsNDG}
+@item @code{principle.graphNDG}
+@item @code{principle.linking12BelowStartEndNDG}
+@item @code{principle.linkingAboveNDG}
+@item @code{principle.linkingAboveBelow1or2StartNDG}
+@item @code{principle.linkingAboveEndNDG}
+@item @code{principle.linkingAboveStartNDG}
+@item @code{principle.linkingAboveStartEndNDG}
+@item @code{principle.linkingBelowNDG}
+@item @code{principle.linkingBelow1or2StartNDG}
+@item @code{principle.linkingBelowEndNDG}
+@item @code{principle.linkingBelowStartNDG}
+@item @code{principle.linkingBelowStartEndNDG}
+@item @code{principle.linkingDaughterNDG}
+@item @code{principle.linkingDaughterEndNDG}
+@item @code{principle.linkingEndNDG}
+@item @code{principle.linkingMotherNDG}
+@item @code{principle.linkingMotherEndNDG}
+@item @code{principle.linkingNotDaughterNDG}
+@item @code{principle.linkingNotMotherNDG}
+@item @code{principle.linkingSistersNDG}
+@item @code{principle.partialAgreementNDG}
+@end itemize
+
+Added new grammars using the new principle versions:
+@itemize @bullet
+@item @code{DiplomNDG.ul}
+@item @code{coindexNDG.ul}
+@item @code{dissNDG.ul}
+@item @code{wwNDG.ul}
+@item @code{wwRNDG.ul}
+@item @code{wwRwwRNDG.ul}
+@end itemize
+
+Version 1.4.7 (May 9, 2006)
+
+Fixed install scripts, removed grammar @code{Grammars/MOZ04.ul}.
+
+Added new version of @code{xdag.sty} improved by Robert Grabowski.
+
+Version 1.4.6 (April 20, 2006)
+
+Added third dimension variable to multidimensional principles which
+can be parametrized lexically to more closely reflect the principle
+definitions in the thesis.
+
+Version 1.4.5 (April 19, 2006)
+
+Updated @code{Grammars/SAT.ul} to properly reflect the grammar in the
+complexity chapter of the thesis.
+
+Added grammar files to online versions of the manual.
+
+Added principle constraint functors to online versions of the manual.
+
+Changed name (to maintain consistency with the diss):
+@emph{mapping/map types} are now called @emph{vectors}. That is, in
+UL, @code{map(T1 T2)} becomes @code{vec(T1 T2)}, in IL,
+@code{type.map} becomes @code{type.vec}, and in XML, @code{typeMap}
+becomes @code{typeVec}.
+
+Renamed @emph{disjunctive domains} to @code{unions}. In IL,
+@code{type.disj} becomes @code{type.union}, and in XML,
+@code{typeDisj} becomes @code{typeUnion}.
+
+Version 1.4.4 (April 5, 2006)
+
+Added first support for partial specification of the solutions before
+parsing. Each input string can now be extended with file names which
+contain partial descriptions of sets of nodes, which will be type
+checked and then used as additional information in the solver. For
+example, using the grammar @code{Grammars/diss.ul}, parsing the
+sentence:
+
+@example
+mary_L+H*_LH% sees the man with a telescope_H*_LL% . Grammars/diss.nodeset.xml
+@end example
+
+leads to the addition of the additional information in
+@code{Grammars/diss.nodeset.xml}
+
+This functionality supports all file types (except precompiled
+grammars) also available for writing grammars, i.e., UL (suffix
+@code{ul}), XML (@code{xml}) or IL (@code{ilp} for pickles or
+@code{ozf} for functors exporting @code{set}). XML sockets are also
+supported (@code{xmlsocket}).
+
+Improved @code{Grammars/diss.ul} on the id dimension (no distinction
+between @code{padv} and @code{padj}), new names for prepositions.
+
+Version 1.4.3 (April 3, 2006)
+
+Updated manual to reflect the latest changes, removed some obsolete
+grammars and principles, added the recent papers etc.
+
+Version 1.4.2 (March 31, 2006)
+
+Improved @code{Decode} output functor to show only the dimension on
+which it is used.
+
+New output functors @code{AllDags1}, @code{AllDags2}, @code{AllDags3}
+and @code{AllDags4}: show all dags of the multigraph, also those
+without edges. This is especially useful if interface dimensions (such
+as idlp etc.) are defined and you would like to see the node record of
+a node for this dimension.
+
+Similarly, added new output functors @code{AllLatexs1}, @code{AllLatexs2},
+@code{AllLatexs3} and @code{AllLatexs4}.
+
+New principles @code{principle.linkingAboveBelow1or2Start},
+@code{principle.lockingDaughters}.
+
+Lots of changes in @code{diss1.ul}. Still improved syntax-semantics
+interface.
+
+Added progress "report" for grammar compilation (too useful to be just
+debugging output).
+
+Version 1.4.1 (March 18, 2006)
+
+New grammar @code{diss1.ul} using the new lexicalized order principle
+@code{principle.order3} instead of the old one. Surprisingly good
+propagation (better than the old non-lexicalized one!).
+
+New principle @code{principle.projectivity1} enforcing convex @code{yield}
+sets instead of @code{eqdown} sets as @code{principle.projectivity}.
+
+Removed @code{Projectivity} argument variable and projectivity
+constraint from @code{principle.order3} (use
+@code{principle.projectivity1} instead please) to bring the principle
+more in line with the formalization in the thesis.
+
+Improved principles and outputs menus in GUI @code{xdk.exe}: now they
+are ordered by dimension.
+
+Improved latex output functors: now, the index/position of each node
+is also displayed alongside the word.
+
+Important! Changed the type of the constraint functors, replacing the
+two arguments @code{DVA2DIDA} and @code{ArgRecProc} with the argument
+@code{Principle} standing for the instance of the principle in whose
+context the constraint functor is called. The advantage is that more
+of the information attached to the principle instance is then
+available to the constraint functors, including the type of its
+arguments. The (cosmetic) drawback is that the two functions
+@code{DVA2DIDA} and @code{ArgRecProc} must now be dereferenced from
+@code{Principle} first.
+
+Adapted all principles in the principle library to these new
+conventions.
+
+Adapted the manual to reflect the conventions @ref{Writing new
+principles}.
+
+Added new principle @code{principle.partialAgreement} to handle
+partial agreement in a generalized way. This principle is used in the
+new thesis grammar @code{diss1.ul} to establish partial agreement of
+relative pronouns with their modified nouns (with respect to gender).
+
+Enhanced @code{xdag.sty} with new command @code{penode} for
+parametrized nodes with an extra node label, which can be freely
+positioned (done together with Robert Grabowski).
+
+Enhanced @code{xdag.sty} for better support for "ghosting" nodes and
+edges instead of just omitting them.
+
+Changed @code{Dag} and @code{Latex} output functors to "ghost" nodes
+and edges instead of just omitting them.
+
+Version 1.4.0 (March 2, 2006)
+
+Added disjunctive domain types as syntactic sugar for combining domain
+types. Useful for the new lexicalized order principle
+@code{principle.order3}, which is formulated on top of a strict total
+order on the set of edge labels plus the special label @code{"^"}.
+can be now written down as:
+@example
+  deftype "syn.label" @{root subj part obj vinf adv@}
+  deftype "syn.label1" "syn.label" | @{"^"@}
+  defentrytype @{...
+                order: set(tuple("syn.label1" "syn.label1"))
+                ...@}
+@end example
+
+Adapted the thesis grammars @code{nut.ul}, @code{nut1.ul},
+@code{ANBN.ul}, @code{ANBNCN.ul}, @code{CSD.ul}, @code{SCR.ul} and
+@code{SAT.ul} to reflect this new syntactic sugar.
+
+Adapted the manual (descriptions of UL, XML and IL syntax) to reflect
+the new syntactic sugar.
+
+Improvements to the scripts @code{code2pic}, @code{ozcolor},
+@code{ulcolor} and @code{xmlcolor}.
+
+Improved the principles @code{principle.order3},
+@code{principle.order3Constraints} and @code{principle.order3Dist}.
+
+Fixed the principle @code{BarriersAttrib} (used wrong syntax for type
+variables).
+
+Made the domain types ``position insensitive'' by sorting the atoms
+lexically (using Mozart's @code{Value.'<'}) of a domain 1) before type
+checking (@code{TypeCollector.oz}), and 2) when creating lattice
+functor ADTs (@code{Domain.oz}).
+
+Added 100 to the priority of all principles to stay in accord with the
+formalization given in the thesis. Now, constraints with priority
+higher than 100 are started first, then come the edge constraints with
+priority 100, and then the remaining constraints with priority less
+than 100 (currently, only distribution).
+
+Version 1.3.24 (February 24, 2006)
+
+New output functor @code{output.decode} for displaying solutions in
+the Intermediate Language. This was already possible using the Inspect
+action from the Explorer, but its output could not be redirected
+e.g. into the Oz Browser for copy and paste.
+
+Improved generation of orderings, now an arbitrary ordered dimension
+can be selected (was restricted to @code{lp}).
+
+Various improvements to the scripts @code{code2pic}, @code{ozcolor},
+@code{ulcolor} and @code{xmlcolor}.
+
+Version 1.3.23 (February 21, 2006)
+
+Added new principle @code{principle.order3}, which implements the
+order principle in the thesis. Used in the diss grammars
+@code{nut.ul}, @code{nut1.ul}, @code{EQAB.ul}, @code{ANBN.ul},
+@code{ANBNCN.ul}, @code{CSD.ul}, @code{SCR.ul} and @code{SAT.ul}.
+
+Merged scripts @code{oz2eps}, @code{oz2pdf}, @code{oz2jpg},
+@code{oz2epsn}, @code{oz2pdfn}, @code{oz2jpgn}, @code{ul2eps},
+@code{ul2pdf}, @code{ul2jpg}, @code{ul2epsn}, @code{ul2pdfn},
+@code{ul2jpgn} into one script @code{code2pic}.
+
+Added support for XML source code highlighting (@code{xmlcolor}).
+Merged that into @code{code2pic} as well.
+
+Version 1.3.22 (February 7, 2006)
+
+Manual: Improved section @ref{UL syntax} (e.g. didn't list the new
+abbreviations for type reference and class reference).
+
+Improved type checker: didn't check for ambiguous set generator expressions
+due to doubly occurring constants in the corresponding domains.
+
+Improved @code{xdag.sty}: added commands @code{pnode} (parametrized
+node) and @code{rednode} (red node). The latter draws the node in red,
+and the former has an additional argument for pstricks parameters,
+e.g. to magically remove nodes from sight using the parameter
+@code{linecolor=white}.
+
+Cleaned up the @code{Grammars} directory. Need to update the manual to
+reflect this still.
+
+Added new scripts @code{oz2eps}, @code{oz2pdf}, @code{oz2jpg},
+@code{oz2epsn}, @code{oz2pdfn}, @code{oz2jpgn}, @code{ul2eps},
+@code{ul2pdf}, @code{ul2jpg}, @code{ul2epsn}, @code{ul2pdfn},
+@code{ul2jpgn} for source code highlighting in LaTeX (for the thesis).
+
+Version 1.3.21 (Feburary 3, 2006)
+
+Improved the new example grammars to match better with the thesis,
+e.g., using the new principle @code{principle.order2} instead of the
+old one (@code{principle.order}). It is less efficient, but has better
+support for lexicalization.
+
+Added new script @code{ozcolor} to do Oz-source code coloring.
+
+Fixed a small bug in the GUI ("Solve Examples").
+
+Bumped copyrights to 2006.
+
+Version 1.3.20 (January 6, 2006)
+
+Added stuff written to support the thesis: new grammars @code{csd.ul}
+(cross-serial dependencies) @code{scr.ul} (scrambling), new principle
+@code{principle.csd}.
+
+Version 1.3.19 (December 23, 2005)
+
+better support for graphs with cycles: principles fixed
+(@code{principle.graph}, @code{principle.order}), dag output functor
+improved (though by far not perfect yet).
+
+Version 1.3.18 (December 16, 2005)
+
+Experimental version for Bertrand :)
+
+Version 1.3.17 (September 30, 2005)
+
+Renamed @code{principle.poetry} to @code{principle.coindex},
+and @code{poetry.ul} to @code{coindex.ul}.
+
+Completely rewrote @code{Grammars/pl.ul} and @code{principle.pl}
+(former version would not take care of coreferent variables).
+
+Version 1.3.16 (September 12, 2005)
+
+More improvements to @code{NewTkDag.oz}.
+
+Changed the underlying finite domain for the type @code{bool}
+(@ref{Bool}), which used to encode @code{true} as @code{1} and
+@code{false} as @code{2}. Now encodes @code{false} as @code{1} and
+@code{true} as @code{2}, so that subtracting one gives the right truth
+value for reified constraints in Mozart (@code{0} for @code{false} and
+@code{1} for @code{true}). Adapted the constraints in the
+principle library
+to reflect this:
+@itemize @bullet
+@item @code{Solver/Principles/Lib/Climbing.oz},
+@item @code{Solver/Principles/Lib/Dag.oz}
+@item @code{Solver/Principles/Lib/Order1Conditions.oz}
+@item @code{Solver/Principles/Lib/Order2Conditions.oz}
+@item @code{Solver/Principles/Lib/OrderConditions.oz}
+@end itemize
+
+Added new grammar @code{Grammars/pl.ul} and new principle
+@code{principle.pl}. This is a grammar for propositional logic, where
+you can enter propositional formulae as sentences, and the XDK
+enumerates the solutions.
+
+Version 1.3.15 (September 12, 2005)
+
+Added new @code{NewTkDag.oz} functor for Tcl/Tk dag output which tries
+to move around edge labels if they overlap. Still experimental, please
+write email if it does not do the right thing for you!
+
+Version 1.3.14 (September 6, 2005)
+
+Added revised grammar @code{Grammars/MOZ04.ul} again, since the
+grammar in the corresponding paper does not work with the new XDK
+anymore.
+
+Fixed biiig bug in profiler: the profiler multiplied the lexical entry
+variables and propagators introduced per node with the number of
+entries for that node, which was wrong and resulted in way too many
+variables and propagators counted...
+
+Added combined count of finite domain and finite set variables to
+profiler (called @code{fdfs}). Also adapted the DTD
+@code{Extras/statistics.dtd} to reflect this.
+
+Version 1.3.13 (August 23, 2005)
+
+Fixed @code{Compiler/Lattices/Tuple.oz}: function @code{as2I} would
+return an integer one short. This had repurcussions in
+@code{Compiler/Lattices/Set.oz}, and in
+@code{Solver/Principles/Order2Conditions.oz}.
+
+Added new principles @code{principle.barriers.attrib} and
+@code{principle.barriers.labels} contributed by Denys Duchier.
+
+Added new experimental principle @code{principle.poetry} which
+realizes our first ideas on how to handle FB-LTAG features, and an
+accompanying example grammar @code{Grammars/poetry.ul}.
+
+Version 1.3.12 (June 30, 2005)
+
+Added new principle @code{principle.government2} which allows to
+govern a feature of the daughter of the daughter of a node (e.g.  the
+verb can now govern the noun under the preposition depending on the
+verb...).
+
+Version 1.3.11 (June 15, 2005)
+
+Fixed bug in the Dag functor diff functionality.
+
+More enhancements to the @code{diss.ul} grammar.
+
+Added output functor @code{output.clls1} which just prints out the
+CLLS constraint obtained from e.g. @code{diss.ul} without drawing it
+using daVinci.
+
+Version 1.3.10 (May 23, 2005)
+
+Augmented @code{diss.ul} grammar with personal pronouns, perfect
+constructions and additional lexical entries.
+
+Version 1.3.9 (May 20, 2005)
+
+Added code to enable the use of disjunction for features (e.g.
+important for valencies).
+
+Version 1.3.8 (May 13, 2005)
+
+Dynamic grammar loading via sockets works now :)
+
+You can now run a server which awaits client connections from the XDK.
+To make the XDK establish a client connection, attempt to load
+grammars with suffix @code{xmlsocket},
+e.g. @code{4712.xmlsocket}. This makes the XDK try to establish a
+connection with a grammar server on port 4712. For each parse, the XDK
+client now sends a message containing the sentence to be parsed (as a
+string) to the server, and expects the server to return a grammar for
+this sentence, which is then used for parsing.
+
+Bumped copyrights to 2005.
+
+Version 1.3.7 (May 11, 2005)
+
+Added experimental support for dynamic grammar loading via sockets,
+to be finished in 1.4.0.
+
+Changed example grammars such that the outputs are used and
+chosen on the lex dimension instead of the multi dimension.
+
+Changed Dag(s) and Latex(s) output functors: @code{conj} and
+@code{pred} edges (emanating from the root) are not left out anymore.
+
+Version 1.3.6 (April 27, 2005)
+
+Fixed @code{Order} and @code{Order1} principles to support
+lexicalization (even though this is not recommended...).
+
+Added more information to the debugging section.
+
+Version 1.3.5 (April 11, 2005)
+
+In debugging mode, the grammar file compiler now prints out the names
+of the unused lexical classes.
+
+Improved @code{xdag2eps}, @code{xdag2pdf} and @code{xdag2jpg} to cope
+with input files in other directories than the current one.
+
+Further improvements to the dissertation grammar.
+
+Version 1.3.4 (April 9, 2005)
+
+Added new syntactic sugar for generating order relations. In the UL, you
+can write e.g. @code{<a b c>} for the order relation @code{@{[a b] [a c]
+[b c]@}}. This only works if the type of the expression is a set of
+pairs of the same type.
+
+New experimental principles @code{Order2} (constraint functor
+@code{Order2Conditions}), @code{Order2Constraints} and
+@code{Order2Dist}.
+
+Improved the XML language to deal with variable features, cf. the
+example grammar @code{Grammars/Acl01.xml}. Important: if you use
+parametrized lexical classes, please change your XML output and use
+@code{varFeature} instead of @code{feature} when instantiating the
+parameters of a lexical class.
+
+Lots of improvements to the dissertation grammar. 
+
+Version 1.3.3 (April 7, 2005)
+
+Many more improvements to grammar @code{Grammars/diss.ul}.
+
+New principle @code{LinkingDaughter1Above2}. Kind of like parametrized
+climbing.
+
+Made new principle @code{Locking} more general.
+
+Updated @code{diffnotime} to also exclude the date when comparing.
+
+Added ``proportional'' Dag output: now each node has its own width, as
+opposed to the maximum width. Improves usability a lot.
+
+Version 1.3.2 (April 6, 2005)
+
+New principle @code{Locking}.
+
+Heavily improved grammar @code{Grammars/diss.ul}, now using the new
+locking principle for a much cleaner syntax-semantics interface
+(idpa).
+
+Renamed @code{principle.linkingSubgraphs} to
+@code{principle.subgraphs}.
+
+Renamed @code{principle.graphExceptDist} to
+@code{principle.graphConstraints}, @code{principle.graph1ExceptDist}
+to @code{principle.graph1Constraints}, @code{principle.graphOnlyDist}
+to @code{principle.graphDist}, @code{principle.graph1OnlyDist} to to
+@code{principle.graph1Dist}, @code{principle.orderExceptDist} to
+@code{principle.orderConstraints}, @code{principle.order1ExceptDist}
+to @code{principle.order1Constraints}, @code{principle.orderOnlyDist}
+to @code{principle.orderDist}, and @code{principle.order1OnlyDist} to
+@code{principle.order1Dist}.
+
+Version 1.3.2 (April 6, 2005)
+
+Updated description of the LaTeX output.
+
+Removed @code{Grammars/scatter.ul} and
+@code{Grammars/scatter_wwRwwR.ul}, @code{Gapfilling} and
+@code{OrderGap} principles again.
+
+Added new grammar @code{Grammars/diss.ul}, combining
+@code{Grammars/Chorus.ul} (syntax-semantics interface) and
+@code{Grammars/igk.ul} (information structure) which I have been
+written for my dissertation.
+
+Updated the Dag output functors to check whether node labels have
+changed from one analysis to another. Very useful if you just cannot
+see a difference between two analyses (now you can).
+
+New principle @code{Linking2BelowStart}.
+
+Version 1.3.1 (March 30, 2005)
+
+Fixed a bug in the Tcl/Tk dag output which would cause the Explorer to
+hang, at least under Win XP.
+
+Version 1.3.0 (March 28, 2005)
+
+Significant improvement to the type checker: removed the ``any'' type,
+and introduced type variables for principle arguments: each principle
+can introduce a set of type variables for its arguments, and these can
+be instantiated by either feature paths or type annotations.
+
+Numerous other bugfixes.
+
+Version 1.2.4 (March 21, 2005)
+
+Small changes to the solving statistics.
+
+Bugfix for passives in @code{Chorus.ul}.
+
+Version 1.2.3 (March 20, 2005)
+
+Fixed a nasty bug causing the grammar file compiler to hang in case a
+graph principle was used on a dimension with an empty set of edge
+labels.
+
+Version 1.2.2 (March 18, 2005)
+
+Removed @code{xdkcount.exe} again and folded its functionality into
+the solving statistics. This also yielded additions in
+@code{Extras/statistics.dtd}.
+
+Changed default for adding profiling information to solving statistics
+(now on), applies to @code{xdk.exe} and @code{xdks.exe}.
+
+Version 1.2.1 (March 16, 2005)
+
+Small changes in the XML output for solving statistics (tag
+@code{solution} renamed to @code{string}).
+
+Fixed bug in @code{scripts/addprinciple}, @code{scripts/mvprinciple}
+and @code{scripts/rmprinciple} (occurred when changing the toplevel
+@code{makefile.oz}), and added some nice output to the scripts telling
+the user what they are doing.
+
+Ported relative clause principle (for @code{Grammars/Diplom.ul}) from
+old TDG parser.
+
+Optimized propagation of the Dag/Tree functors.
+
+Added propagators introduced by the @code{Edge.oz} edge constraint
+functor to the profiling.
+
+Added solving statistics tool @code{xdkcount.exe}.
+
+Version 1.2.0 (March 14, 2005)
+
+Added profiling support for counting the additional variables
+introduced by the constraint functors, and the propagators
+they introduce. This involved the following changes:
+@itemize @bullet
+@item added procedure @code{Profile} to all constraint functors
+(except @code{NodeConstraints.oz} and @code{EdgeConstraints.oz} which
+are quickly becoming obsolete anyway). The procedure (manually) counts
+the additional variables (in addition to the variables introduced in
+the node record) and the propagators.
+@item added lots of additional code to @code{Extras/Profile.oz}
+@item changed the solving statistics (functor: @code{Extras/SolvingStatistics.oz}
+to reflect the changes in the profiling functor
+@end itemize
+
+Notice: the grammar format for compiled grammars changes with this
+version, so please recompile your grammars if you have any. Sorry for
+any inconveniences caused.
+
+Version 1.1.4 (March 9, 2005)
+
+Removed hardcoded @code{multi} dimension (and mapping from dimension
+variable @code{Multi} to @code{multi}).
+
+Added mapping from dimension variable @code{This} to the dimension id
+of the currently defined dimension.
+
+Version 1.1.3
+
+Added perl-scripts for adding/removing/renaming principles and
+accompanying constraints: @code{scripts/addprinciple},
+@code{scripts/rmprinciple} and @code{scripts/mvprinciple}. Should ease
+the tedious addition/removal/renaming of principles.
+
+Updated parameter names for the linking principles according to the
+current thesis version.
+
+Renamed @code{principle.linkingBelow12StartEnd} principle to
+@code{principle.linking12BelowStartEnd}.
+
+Added @code{principle.linkingBelow1Start1End2} principle, and grammar
+@code{Grammars/ESSLLI04_idlppasc.ul} (without deep syntax, instead
+slightly more complicated linking via the above new principle).
+
+Version 1.1.2
+
+Fixed small bug in @code{xdk.oz} which hit when you switched off a
+dimension, called Generate Orderings, and then selected "Outputs" for
+one of the analyses.
+
+Version 1.1.1
+
+Added script @code{scripts/xdag2jpg} to convert LaTeX-output
+dependency graphs into JPG. This is very useful for those notorious
+applications which do not support EPS/JPG image import, most notably,
+Microsoft Office (Word, PowerPoint) and OpenOffice.
+
+Version 1.1.0
+
+Totally re-organized the linking/dominance principles according to
+their formalizations in my thesis, making it a lot more systematic
+than before. Now, it should be much clearer which principle does what,
+and when to use which and so on.
+
+The re-organization has led to the following changes:
+@itemize @bullet
+@item replaced @code{principle.linking} by
+@code{principle.linkingEnd},
+@item replaced @code{principle.directcolinking} by
+@code{principle.linkingDaughterEnd}
+@item replaced @code{principle.directcontralinking} by
+@code{principle.linkingMotherEnd}
+@item split @code{principle.immediate} into
+@code{principle.linkingDaughter} (co-immediate) and
+@code{principle.linkingMother} (contra-immediate)
+@item split @code{principle.notImmediate} into
+@code{principle.linkingNotDaughter} (co-not-immediate) and
+@code{principle.linkingNotMother} (contra-not-immediate)
+@item split @code{principle.dominance} into
+@code{principle.linkingBelow} (co-dominance) and
+@code{principle.linkingAbove} (contra-dominance)
+@item split @code{principle.ldominance} into
+@code{principle.linkingBelowStart} (l-co-dominance) and
+@code{principle.linkingAboveEnd} (l-contra-dominance)
+@item added @code{principle.linkingBelowEnd} and
+@code{principle.linkingAboveStart}
+@item replaced @code{principle.colinking} by
+@code{principle.linkingBelowStartEnd}
+@item replaced @code{principle.contralinking} by
+@code{principle.linkingAboveStartEnd}
+@item replaced @code{principle.dominance1} by
+@code{principle.chorus}
+@item replaced @code{principle.sisters} by
+@code{principle.linkingSisters}
+@item replaced @code{principle.sublinking} by
+@code{principle.linkingSubgraphs}
+@item replaced @code{principle.colinking1} by
+@code{principle.linkingBelow12StartEnd}
+@end itemize
+Please also notice, that the features of the principles are different,
+as are their defaults.  Please check the principles list
+(@ref{Principles list}) to adapt your grammars, and do not hesitate to
+ask me if any problems occur. Sorry in advance for any inconveniences
+this may cause.
+
+This renovation affected the principle library of course, the grammars
+(I adapted all grammars in @code{Grammars/} to reflect the changes),
+Ondrej's PDT grammar generation code (I have adapted that as well) and
+the manual. VAST changes to do, but hopefully not very difficult to
+adapt to for you users.
+
+The debug output at grammar compilation stage
+(@code{Compiler/Encoder.oz}) is now more informative: it prints out
+the number of actual lexical entries stored in the compiled out
+grammar.
+
+Version 1.0.6
+
+Heavily improved the type system according to what I write in my
+upcoming thesis:
+@itemize @bullet
+@item added new type @code{card} for cardinalities, and the corresponding
+lattice functor @code{Card.oz}
+@item removed the superfluous @code{Map.oz} lattice functor, its
+work was already done by @code{Record.oz}
+@item removed the @code{Valency.oz} lattice functor, its work is
+now done by @code{Record.oz} and @code{Card.oz}
+@item removed the following @code{Ints.oz} lattice functor, and pushed
+its functionality into the set lattice functor @code{Set.oz} (sub
+lattice @code{intSet})
+@end itemize
+
+The result is a cleaner and leaner type checker. This also fixed some
+bugs in the type system which were due to the slightly faulty design.
+E.g. it was impossible to write down sets of integers so far. And it
+was possible to write down valency sets which were no sets.
+
+I guess I could have introduced some new bugs though, since I
+undertook quite a lot of changes. Please test your stuff and report
+any new errors, or even unusable error messages etc.
+
+Version 1.0.5
+
+Removed the non-monotonic behavior of the greatest lower bound (glb)
+operations of strings and lists. Now, all glb operations are
+commutative again.
+
+The result of the prior change is that lists cannot be concatenated
+anymore. Since nobody has actually ever used this functionality, this
+should not come as a big loss.
+
+Strings on the other hand still can: I introduced an explicit
+concatenation operator (@code{@@} in the UL, @code{<concat>} in the
+XML language). An example of how to use this can be found in
+@code{Grammars/igk.ul}.
+
+These changes make the XDK cleaner, and more similar to the actual
+formalization which I am currently working out for my thesis.
+
+Version 1.0.4
+
+Added new experimental TAG-encoding grammars
+@code{Grammars/scatter.ul} and @code{Grammars/scatter_wwRwwR.ul}.
+
+Added new experimental principles @code{Gapfilling} and
+@code{OrderGap} to accompany the two grammars above.
+
+Added window resizing functionality to the ManualOracle-code, and
+fixed a bug there.
+
+Version 1.0.3
+
+Slightly optimized the propagation behavior of the Order and Climbing
+principles.
+
+The Climbing principle is now parametrizable. Attention if you use the
+climbing principle on dimensions which are not trees: you must now
+explicitly set the parameter @code{MotherCards} to @code{false} in
+this case to turn off an optimization restricted to trees.
+
+Version 1.0.2
+
+Added automatic resizing of Dag output windows to fit on the screen, e.g.
+to make MacOS X users' life easier 8-) This was also pointed out by Mark,
+thanks again!
+
+Added version information to the About window in the
+@code{xdk}-executable.
+
+Version 1.0.1
+
+Set/DomainTupleSet could not encode sets but only set generators. Fixed.  
+Pointed out by Mark Pedersen, thanks!
+
+Re-added @code{duchier-select.pkg} and the native functor object files
+(@code{*.o}) to the Windows binary distribution in order to be able to 
+compile it using ozmake.
+
+Version 1.0.0
+
+It's done!
+
+Version 0.9.16
+
+Changed shortcut for @code{--port} (in @code{xdg} and
+@code{Oracles/ManualOracle/Server.exe}) from @code{-t} to @code{-p}.
+
+Made profiling optional for parse statistics.
+
+Added commandline option @code{--(no)profile} (@code{-f}) to toggle
+profiling in the @code{xdk} and @code{xdks} programs.
+
+Added menu checkbutton @code{Profile} to the @code{xdk} program.
+
+Made @code{gprofile} and @code{sprofile} elements optional in
+@code{Extras/statistics.dtd}.
+
+Renamed @code{sentence} element to @code{solution} again.
+
+Version 0.9.15
+
+Added new profiling functionality: the counting of fd/fs variables
+introduced. This involved changes in the lattice functor
+implementation in @code{Compiler/Lattices} (added a new function
+@code{Count} to each lattice).
+
+This is also used in the new solving statistics output, and thus, I
+changed the DTD (@code{Extras/statistics.dtd}):
+@itemize @bullet
+@item the @code{statistics} element has now a new obligatory daughter
+element @code{gprofile} (grammar profile)
+@item I renamed the @code{solution} element to @code{sentence} (which
+makes more sense)
+@item this @code{sentence} element has now a new obligatory daughter
+element @code{sprofile} (sentence profile)
+@end itemize
+
+Further improvements in the manual (types, lattices, lattice
+functors).
+
+Version 0.9.14
+
+Updated the parts of the manual pertaining to 1) the grammars, 2) the
+outputs, and 3) the principles. Especially the latter is now much
+better and contains much more comprehensible explanations of the
+principles and their behaviors.
+
+Version 0.9.13
+
+Added @code{principle.sameorder} to equate the positions on ordered
+dimensions.
+
+Added boolean parameter @code{Yields} to the order principles (true by
+default). If true, the yields of a node are ordered, if false, the
+daughters.
+
+Version 0.9.12
+
+Renamed XDK executables for consistency: xdg -> xdk, xdgc -> xdkc,
+xdgs -> xdks and xdgconv -> xdkconv.
+
+Version 0.9.11
+
+Added check for undefined values in lexical entries (throws an
+exception if so). Quite optimized so---only those features which
+@emph{can} be undefined at all.
+
+Added same check for undefined values also for principle arguments
+(except for constraint arguments which are not checked, too much
+effort for too little gain, IMHO).
+
+Version 0.9.10
+
+Made the order of the dimensions more consistent (always
+alphabetically ordered now), e.g. in the GUI menus and in the Dags
+output functors.
+
+Increased the associativity strength of the conjunction (@code{&}) and
+disjunction (@code{|}) operators in the UL to make for less
+bracketing.
+
+Changed the behavior of the List and String types. Their top value is
+now resp. the empty list and the empty string (instead of, as before,
+being undefined), and their greatest lower bound is now the
+concatenation of resp. the two lists and strings under consideration
+(instead of, as before, bottom if the two were different and none of
+them was the top value). I.e. now you can even do some simple
+morphology in the XDG lexicon.
+
+The Dag and Latex output functor families behave more consistently.
+
+Latex functor now escapes LaTeX special characters properly (@code{$},
+@code{&}, @code{%}, @code{#}, @code{_}, @code{@{}, @code{@}}, @code{~},
+@code{^}, @code{\}).
+
+New Latex, Latex1, Latex2, Latex3 output functors for individual
+dimensions (corresponding to Dag, Dag1, ...).
+
+New Latexs, Latexs1, Latexs2, Latexs3 output functors for multiple
+dimensions (corresponding to Latex, Latex1, ...).
+
+Improved xdag2eps, xdag2pdf.
+
+Added ulcolor script (uses LaTeX color package to do UL code highlighting).
+
+Added big new German grammar done by Regine Bader, Christine Foeldesi,
+Ulrich Pfeiffer and Jochen Steigner (building on my Diplom grammar).
+
+Added Benoit Crabbe's first version of his French grammar (Benoit.ul).
+
+Added the first attempt to handle Information Structure (igk.ul) done at
+the IGK annual meeting in Edinburgh (Ciprian Gerstenberger, Oana
+Postolache, Stefan Thater and Maarika Traat).
+
+Put all scripts in a separate directory (@code{scripts}).
+
+And many many more improvements.
+
+Version 0.9.8
+
+Introduced the multi dimension
+@cindex multi
+@cindex multi dimension
+for collecting multi-dimensional principles, corresponding lexical
+attributes, and outputs, in addition to the lex dimension.
+@cindex lex
+@cindex lex dimension
+
+Added ESSLLI 2004 example grammars, removed COLING04 and DG04
+grammars, updated Chorus grammar.
+
+Added French example grammar by Benoit Crabbe.
+
+New principles: CoLinking, CoLinking1 and ContraLinking
+
+Lots of additional fixes and stuff.
+
+Version 0.9.7
+
+Renamed @code{latex2eps} to @code{xdag2eps}, and also @code{latex2pdf}
+to @code{xdag2pdf}.
+
+Much improved type checking (and error output) for type annotations
+and feature paths (esp. useful for principle type checking).
+
+Version 0.9.6
+
+Introduced the type 'type.any'. This can be used to bypass the type
+checker, and is useful e.g. for the principles surrounding the notion
+of agreement (@code{principle.agr}, @code{principle.agreement},
+@code{principle.government}). Here, 'type.any' is used for principle
+arguments which are not known a priori. Notice that this type cannot
+be used for values, only for feature paths (i.e. value descriptions).
+
+Version 0.9.5
+
+Due to popular request, type references (@code{ref}) and class
+references (@code{useclass}) can now be invoked just by the
+identifier, i.e. you can omit the respective keywords.
+
+Examples: @code{ref("id.attrs")} can be written tersely as
+@code{"id.attrs"}.  Similarly, @code{useclass "noncan" @{Word:
+"koennen"@}} can be written tersely as @code{"noncan" @{Word:
+"koennen"@}}.
+
+You can use the shell script @code{ulterse} to convert an ``old
+style'' UL grammar file into a ``new style'', terser one, e.g.
+@code{./ulterse Acl01.ul} converts @code{Acl01.ul}.

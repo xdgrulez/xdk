@@ -1,0 +1,25 @@
+In this subdirectory, the XTAG grammar generator requires the files:
+
+syntax.flat
+treefams.dat
+treenames.dat
+xtag.trees.dat
+
+from the lem parser distribution, which can be obtained here:
+
+ftp://ftp.cis.upenn.edu/pub/xtag/lem/lem-0.14.0.tgz
+
+Within the archive, the files can be found in the directory:
+
+lem-0.14.0/data/english
+
+For comparisons with the lem parser, use the preferences file:
+
+xtag.prefs
+
+i.e., put it into the suitable directory in the lem parser installation:
+
+lem-0.14.0/lib/ 
+
+Enjoy!
+Ralph

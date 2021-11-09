@@ -1,0 +1,95 @@
+% test1 8/1, 2/0, 3/0, 10/5 (1)
+peter_L+H*_LH% is persuaded by mary to persuade the woman to sleep_H*_LL% .
+peter_L+H*_LH% is persuaded by mary to sleep_H*_LL% .
+peter_L+H*_LH% tries to persuade mary to sleep_H*_LL% .
+peter_L+H*_LH% is persuaded by mary to try to persuade the woman to sleep_H*_LL% .
+
+% test2 1/0, 2/1, 3/2
+peter_L+H*_LH% tries to be persuaded to sleep_H*_LL% .
+peter_L+H*_LH% appeals to mary to sleep_H*_LL% .
+peter_L+H*_LH% tries to appeal to mary to sleep_H*_LL% .
+
+% test3 2/0, 1/0, 2/0, 2/0
+peter_L+H*_LH% sees a woman who smiles_H*_LL% .
+a good man_L+H*_LH% laughs_H*_LL% .
+peter_L+H*_LH% persuades mary to try to sleep_H*_LL% .
+who_L+H*_LH% does peter persuade to try to sleep_H*_LL% ?
+
+% test4 8/1 (0), 3/1, 3/1, 3/0
+who_L+H*_LH% does peter persuade to persuade the researcher to sleep_H*_LL% ?
+whom_L+H*_LH% does peter who laughs try to love_H*_LL% ?
+with whom_L+H*_LH% does peter laugh_H*_LL% ?
+whom_L+H*_LH% does peter laugh with_H*_LL% ?
+
+% test5  2/0, 2/0, 4/0
+marcel_L+H* proves_LH% completeness_H*_LL% .
+marcel proves_LH% completeness_H*_LL% .
+marcel_LH% proves completeness_H*_LL% .
+
+% wh-questions 2/0, 3/1
+who_L+H*_LH% does peter like_H*_LL% ?
+whom_L+H*_LH% does peter who laughs try to love_H*_LL% ?
+
+% Begehung 2/0, 17/5 (3)
+every student_L+H*_LH% reads a book_H*_LL% .
+mary_L+H*_LH% sees a student with a book_H*_LL% .
+
+% topicalization 2/0, 2/0, 3/0
+a woman_L+H*_LH% peter marries_H*_LL% .
+a woman_L+H*_LH% peter expects to smile_H*_LL% .
+a good book_L+H*_LH% every researcher tries to read_H*_LL% .
+
+% scope 2/0, 2/0, 5/1 (0), 42/84 (42/53)
+every man_L+H*_LH% marries a woman_H*_LL% .
+every researcher of a company_L+H*_LH% laughs_H*_LL% .
+every researcher of a company_L+H*_LH% sees most samples_H*_LL% .
+some researchers of every department of most companies_L+H*_LH% see most samples of every product_H*_LL% .
+
+% relative clauses 1 2/0, 7/4, 2/1 (0), 4/5 (2)
+mary_L+H*_LH% sees a woman who smiles_H*_LL% .
+mary_L+H*_LH% sees a woman whom peter likes_H*_LL% .
+mary_L+H*_LH% sees a woman who tries to sleep_H*_LL% .
+a woman_L+H*_LH% who tries to persuade mary to smile sleeps_H*_LL% .
+
+% relative clauses 2 9/40 (11), 11/85 (37), 9/42 (14)
+mary_L+H*_LH% sees a woman who tries to persuade mary to smile_H*_LL% .
+mary_L+H*_LH% sees a woman who tries to be persuaded to appeal to mary to smile_H*_LL% .
+mary_L+H*_LH% sees a woman who tries to appeal to mary to smile_H*_LL% .
+
+% pp attachment 3/0, 17/5 (3)
+mary_L+H*_LH% laughs with the man_H*_LL% .
+mary_L+H*_LH% sees the man with a telescope_H*_LL% .
+
+% node sets 12/4 (2), 12/4 (2), 12/4 (2)
+mary_L+H*_LH% sees the man with a telescope_H*_LL% . Grammars/diss.nodeset.ozf
+mary_L+H*_LH% sees the man with a telescope_H*_LL% . Grammars/diss.nodeset.ul
+mary_L+H*_LH% sees the man with a telescope_H*_LL% . Grammars/diss.nodeset.xml
+
+% passives 2/0, 1/0, 6/1, 2/0, 6/1, 2/0
+a woman_L+H*_LH% is married by every man_H*_LL% .
+a woman_L+H*_LH% is married_H*_LL% .
+a researcher_L+H*_LH% is assigned every task by peter_H*_LL% .
+a researcher_L+H*_LH% is assigned every task_H*_LL% .
+every task_L+H*_LH% is assigned to a researcher by peter_H*_LL% .
+every task_L+H*_LH% is assigned to a researcher_H*_LL% .
+
+% subordinate sentences 3/0, 3/0, 3/0, 15/8
+a man_L+H*_LH% says every woman laughs_H*_LL% .
+every man_L+H*_LH% says a woman laughs_H*_LL% .
+peter_L+H*_LH% says that mary has slept_H*_LL% .
+peter_L+H*_LH% says that mary tries to persuade him to sleep_H*_LL% .
+
+% dative shift 6/1, 6/1
+peter_L+H*_LH% assigns a researcher every task_H*_LL% .
+peter_L+H*_LH% assigns every task to a researcher_H*_LL% .
+
+% control and raising 1 1/0, 2/0, 2/0, 2/0
+peter_L+H*_LH% tries to laugh_H*_LL% .
+peter_L+H*_LH% promises mary to smile_H*_LL% .
+peter_L+H*_LH% expects mary to smile_H*_LL% .
+peter_L+H*_LH% seems to laugh_H*_LL% .
+
+% control and raising 2 3/0, 3/0, 2/0
+peter_L+H*_LH% believes mary to laugh_H*_LL% .
+some student_L+H*_LH% wants to visit a foreign university_H*_LL% .
+every student_L+H*_LH% does not understand_H*_LL% .

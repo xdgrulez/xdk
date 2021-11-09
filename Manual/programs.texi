@@ -1,0 +1,42 @@
+@chapter Programs
+In this chapter, we describe the executable programs which expose the
+functionality of the XDK: the graphical user interface (@code{xdk}),
+the standalone grammar file compiler (@code{xdkc}), the standalone
+grammar file converter, and the standalone solver (@code{xdks}).
+
+@menu
+* xdk::                Graphical user interface
+
+* xdkpm::              Principle Manager
+
+* xdkc::               Standalone grammar file compiler 
+
+* xdkconv::            Standalone grammar file converter 
+
+* xdks::               Standalone solver
+@end menu
+
+@c ************************************************************
+
+@node xdk, xdkpm, , Programs
+@include programs-xdk.texi
+
+@c ************************************************************
+
+@node xdkpm, xdkc, xdk, Programs
+@include programs-xdkpm.texi
+
+@c ************************************************************
+
+@node xdkc, xdkconv, xdkpm, Programs
+@include programs-xdkc.texi
+
+@c ************************************************************
+
+@node xdkconv, xdks, xdkc, Programs
+@include programs-xdkconv.texi
+
+@c ************************************************************
+
+@node xdks, , xdkconv, Programs
+@include programs-xdks.texi

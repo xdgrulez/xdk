@@ -1,0 +1,18 @@
+defprinciple "principle.treePW" {
+  dims {D}
+  constraints {
+
+forall V: ~dom(V V D)
+
+existsone V: ~exists V1: edge(V1 V D)
+
+forall V:
+  (~exists V1: edge(V1 V D)) |
+  (existsone V1: edge(V1 V D))
+
+forall V: forall V1:
+  forall L: forall L1:
+    dom(V V1 L D) & dom(V V1 L1 D) => L=L1
+  
+  }
+}

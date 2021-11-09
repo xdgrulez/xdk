@@ -1,0 +1,604 @@
+\chapter{Inferenzregeln f\"ur die Typinferenz}
+\label{inferenzregeln}
+\Infer{\Gamma \vdash \mathtt{X::type}}
+      {\Gamma \cup \{X \mapsto type\} \vdash \mathtt{X::type}}
+      {X \mapsto T \in \Gamma \Rightarrow T=type}
+      {Getypte Variable}
+\Infer{\Gamma \cup \{X \mapsto type\} \vdash \mathtt{X}}
+      {\Gamma \cup \{X \mapsto type\} \vdash \mathtt{X::type}}
+      {}
+      {Ungetypte Variable, inferrierbar} 
+\Infer{\Gamma \vdash \mathtt{X}}
+      {\Gamma \cup \{X \mapsto \_ \} \vdash \mathtt{X}}
+      {X \mapsto T \notin \Gamma}
+      {Ungetypte Variable, noch nicht inferrierbar}
+
+
+\Infer{\begin{array}{l}
+        \Gamma \vdash \mathtt{exists~ X::type:Form} \\
+        \Gamma \cup \{X \mapsto type\} \vdash \mathtt{Form}
+       \end{array}}
+      {\Gamma \vdash \mathtt{exists~ X::type:Form}}
+      {(type \in Dom)}
+      {$\exists$, getypt}
+\Infer{\begin{array}{l}
+        \Gamma \vdash \mathtt{exists~ X:Form} \\
+        \Gamma_2 \cup \{X \mapsto type\} \vdash \mathtt{Form}
+       \end{array}}
+      {\Gamma \vdash \mathtt{exists~ X::type:Form}}
+      {(type \in Dom)}
+      {$\exists$, ungetypt, inferrierbar}
+\Infer{\begin{array}{l}
+        \Gamma \vdash \mathtt{exists~ X:Form} \\
+        \Gamma \vdash \mathtt{Form}
+       \end{array}}
+      {\mathtt{Error Coud not infer Type of X}}
+      {\begin{array}{l}
+       (con \mapsto T \notin \Gamma) \vee\\
+       (T=\_)
+       \end{array}}
+      {$\exists$, ungetypt, nicht inferrierbar}
+
+\Infer{\begin{array}{l}
+        \Gamma \vdash \mathtt{existsone~ X::type:Form} \\
+        \Gamma \cup \{X \mapsto type\} \vdash \mathtt{Form}
+       \end{array}}
+      {\Gamma \vdash \mathtt{existsone~ X::type:Form}}
+      {(type \in Dom)}
+      {$\exists!$, getypt}
+\Infer{\begin{array}{l}
+        \Gamma \vdash \mathtt{existsone~ X:Form} \\
+        \Gamma_2 \cup \{X \mapsto type\} \vdash \mathtt{Form}
+       \end{array}}
+      {\Gamma \vdash \mathtt{existsone~ X::type:Form}}
+      {(type \in Dom)}
+      {$\exists!$, ungetypt, inferrierbar}
+\Infer{\begin{array}{l}
+        \Gamma \vdash \mathtt{existsone~ X:Form} \\
+        \Gamma \vdash \mathtt{Form}
+       \end{array}}
+      {\mathtt{Error Coud not infer Type of X}}
+      {\begin{array}{l}
+       (con \mapsto T \notin \Gamma) \vee\\
+       (T=\_)
+       \end{array}}
+      {$\exists!$, ungetypt, nicht inferrierbar}
+
+
+\Infer{\begin{array}{l}
+        \Gamma \vdash \mathtt{forall~ X::type:Form} \\
+        \Gamma \cup \{X \mapsto type\} \vdash \mathtt{Form}
+       \end{array}}
+      {\Gamma \vdash \mathtt{forall~ X::type:Form}}
+      {(type \in Dom)}
+      {$\forall$, getypt}
+\Infer{\begin{array}{l}
+        \Gamma \vdash \mathtt{forall~ X:Form} \\
+        \Gamma_2 \cup \{X \mapsto type\} \vdash \mathtt{Form}
+       \end{array}}
+      {\Gamma \vdash \mathtt{forall~ X::type:Form}}
+      {(type \in Dom)}
+      {$\forall$, ungetypt, inferrierbar}
+\Infer{\begin{array}{l}
+        \Gamma \vdash \mathtt{forall~ X:Form} \\
+        \Gamma \vdash \mathtt{Form}
+       \end{array}}
+      {\mathtt{Error Coud not infer Type of X}}
+      {\begin{array}{l}
+       (con \mapsto T \notin \Gamma) \vee\\
+       (T=\_)
+       \end{array}}
+      {$\forall$, ungetypt, nicht inferrierbar}
+\Infer{\Gamma \vdash \mathtt{edge(v1 ~ v2 ~ d)}}
+      {\Gamma \vdash \mathtt{edge(v1 ~ v2 ~ d)}}
+       {}
+      {$v_1 \rightarrow_d v_2~~v_1,v_2 ~Konstanten$}
+\Infer{\Gamma \vdash \mathtt{edge(v1 ~ v2 ~ d)}}
+      {\begin{array}{l}
+        \Gamma \cup \{v1 \mapsto node, v2 \mapsto node, d
+        \mapsto dim\}\\
+        \vdash \mathtt{edge(v1 ~ v2 ~ d)}
+       \end{array}}
+       {\begin{array}{l}
+         (v1 \mapsto T_1 \in \Gamma \Rightarrow T_1=node) \wedge \\
+         (v2 \mapsto T_2 \in \Gamma \Rightarrow T_2=node) \wedge \\
+         (d \mapsto T_3 \in \Gamma \Rightarrow T_3=dim)
+       \end{array}}
+      {$v_1 \rightarrow_d v_2~~v_1,v_2 ,d~ Variablen$}
+
+
+\Infer{\Gamma \vdash \mathtt{edge(v1 ~ v2 ~ l ~d)}}
+      {\begin{array}{l}
+        \Gamma \cup \{v1 \mapsto node, v2 \mapsto node, l
+        \mapsto label(d), d \mapsto dim\}\\
+        \vdash \mathtt{edge(v1::node ~ v2::node ~ l::label(d) d::dim~)}
+       \end{array}}
+       {\begin{array}{l}
+         (v1 \mapsto T_1 \in \Gamma \Rightarrow T_1=node) \wedge \\
+         (v2 \mapsto T_2 \in \Gamma \Rightarrow T_2=node) \wedge \\
+         (l \mapsto T_3 \in \Gamma \Rightarrow T_3=label(d))\\
+         (d \mapsto T_4 \in \Gamma \Rightarrow T_4=dim)\\ 
+        \end{array}}
+      {$v_1 \overset{l}{\rightarrow}_d v_2~~v_1,v_2,l,d~ Variablen$}
+
+\Infer{\Gamma \vdash \mathtt{edge(v1 ~ v2 ~ l ~d)}}
+      {\Gamma \vdash \mathtt{edge(v1::node ~ v2::node ~ l::label(d) d::dim~)}}
+       {}
+      {$v_1 \overset{l}{\rightarrow}_d v_2~~v_1,v_2,l,d~ Konstanten$}
+
+\Infer{\Gamma \vdash \mathtt{domeq(v1 ~ v2 ~d)}}
+      {\begin{array}{l}
+        \Gamma \cup \{v1 \mapsto node, v2 \mapsto node, d \mapsto dim\}\\
+        \vdash \mathtt{domeq(v1::node ~ v2::node ~ d::dim~)}
+       \end{array}}
+       {\begin{array}{l}
+         (v1 \mapsto T_1 \in \Gamma \Rightarrow T_1=node) \wedge \\
+         (v2 \mapsto T_2 \in \Gamma \Rightarrow T_2=node) \wedge \\
+         (d \mapsto T_3 \in \Gamma \Rightarrow T_3=dim)\\ 
+        \end{array}}
+      {$v_1 \overset{l}{\rightarrow}_d^* v_2~~v_1,v_2,d~ Variablen$}
+
+\Infer{\Gamma \vdash \mathtt{domeq(v1 ~ v2 ~d)}}
+      {\Gamma \vdash \mathtt{domeq(v1::node ~ v2::node ~ d::dim~)}}
+       {}
+      {$v_1 \overset{l}{\rightarrow}_d^* v_2~~v_1,v_2,d~ Konstanten$}
+
+
+\Infer{\Gamma \vdash \mathtt{dom(v1 ~ v2 ~ l ~d)}}
+      {\begin{array}{l}
+        \Gamma \cup \{v1 \mapsto node, v2 \mapsto node, l
+        \mapsto label(d), d \mapsto dim\}\\
+        \vdash \mathtt{dom(v1::node ~ v2::node ~ l::label(d) d::dim~)}
+       \end{array}}
+       {\begin{array}{l}
+         (v1 \mapsto T_1 \in \Gamma \Rightarrow T_1=node) \wedge \\
+         (v2 \mapsto T_2 \in \Gamma \Rightarrow T_2=node) \wedge \\
+         (l \mapsto T_3 \in \Gamma \Rightarrow T_3=label(d))\\
+         (d \mapsto T_4 \in \Gamma \Rightarrow T_4=dim)\\ 
+        \end{array}}
+      {$v_1 \overset{l}{\rightarrow}_d^+ v_2~~v_1,v_2,l,d~ Variablen$}
+
+\Infer{\Gamma \vdash \mathtt{dom(v1 ~ v2 ~ l ~d)}}
+      {\Gamma \vdash \mathtt{dom(v1::node ~ v2::node ~ l::label(d) d::dim~)}}
+       {}
+      {$v_1 \overset{l}{\rightarrow}_d^+ v_2~~v_1,v_2,l,d~ Konstanten$}
+
+
+\Infer{\Gamma \vdash \mathtt{dom(v1 ~ v2  ~d)}}
+      {\begin{array}{l}
+        \Gamma \cup \{v1 \mapsto node, v2 \mapsto node, d \mapsto dim\}\\
+        \vdash \mathtt{dom(v1::node ~ v2::node ~ d::dim~)}
+       \end{array}}
+       {\begin{array}{l}
+         (v1 \mapsto T_1 \in \Gamma \Rightarrow T_1=node) \wedge \\
+         (v2 \mapsto T_2 \in \Gamma \Rightarrow T_2=node) \wedge \\
+         (d \mapsto T_3 \in \Gamma \Rightarrow T_3=dim)\\ 
+        \end{array}}
+      {$v_1 \rightarrow_d^+ v_2~~v_1,v_2,d~ Variablen$}
+
+\Infer{\Gamma \vdash \mathtt{dom(v1 ~ v2  ~d)}}
+      {\Gamma \vdash \mathtt{dom(v1::node ~ v2::node ~ d::dim~)}}
+       {}
+      {$v_1 \rightarrow_d^+ v_2~~v_1,v_2,d~ Konstanten$}
+
+
+\Infer{\Gamma \vdash \mathtt{v1 ~ < v2}}
+{\begin{array}{l}
+ \Gamma \cup \{ v1 \mapsto node, v2 \mapsto node \} \\
+ \vdash \mathtt{v1::node~<~ v2::node}
+\end{array}} 
+{\begin{array}{l}
+        v1,v2 \mapsto T \notin \Gamma \vee\\
+         (v1 \mapsto T_1 \in \Gamma \Rightarrow T_1= (node \wedge \_) \vee\\
+         v2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(node \wedge \_))
+         \end{array}}
+{Pr\"azedenz, v1 und v2 Variablen}
+\Infer{\Gamma \vdash \mathtt{v1 ~ < v2}}
+{\begin{array}{l}
+ \Gamma \vdash \mathtt{v1::node~<~ v2::node}
+\end{array}} 
+{}
+{Pr\"azedenz, v1 und v2 Konstanten}
+
+\Infer{\Gamma \vdash \mathtt{v1.word = v2}}
+{\begin{array}{l}
+\Gamma \cup \{ v1 \mapsto node, v2 \mapsto word \} \\
+\vdash \mathtt{v1::node.word=v2::word}
+\end{array}}
+{\begin{array}{l}
+        v1,v2 \mapsto T \notin \Gamma \vee\\
+         (v1 \mapsto T_1 \in \Gamma \Rightarrow T_1= (node \wedge \_) \vee\\
+         v2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(word \wedge \_))
+         \end{array}}
+{Word, v1 und v2 Variablen}
+
+\Infer{\Gamma \vdash \mathtt{v1.word = v2}}
+{\Gamma \vdash \mathtt{v1::node.word=v2::word}}
+{}
+{Word, v1 und v2 Konstanten}
+
+\StarInfer{\Gamma \vdash \mathtt{X1 ~ in ~ X2::set(label(D))}}
+{\begin{array}{l}
+\Gamma \cup \{X1 \mapsto label(D), X2 \mapsto set(label(D)) \\
+\vdash \mathtt{X}_1 \mathtt{::label(D) ~ in ~ X}_2 \mathtt{::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{1-2} \mapsto T \notin \Gamma \vee\\
+         & (Expr_1 \mapsto T_1 \in \Gamma \Rightarrow T_1= (label(D) \wedge \_) \vee\\
+         & Expr_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Element, teilweise annotiert, inferrierbar}
+
+\StarInfer{\Gamma \vdash \mathtt{X1::label(D) ~ in ~ X2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto label(D), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::label(D) ~ in ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{1-2} \mapsto T \notin \Gamma \vee\\
+         & (X_1 \mapsto T_1 \in \Gamma \Rightarrow T_1= (label(D) \wedge \_) \vee\\
+         & X_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Element, teilweise annotiert, inferrierbar}
+
+\StarInfer{\Gamma \cup \{X1 \mapsto label(D) \} \vdash \mathtt{X1 ~ in ~ X2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto label(D), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::label(D) ~ in ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{2} \mapsto T \notin \Gamma \vee\\
+         & X_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Element, inferrierbar}
+
+\StarInfer{\Gamma \cup \{X_2 \mapsto set(label(D)) \} \vdash \mathtt{X1 ~ in ~ X_2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto label(D), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::label(D) ~ in ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_1 \mapsto T \notin \Gamma \vee\\
+         & X_1 \mapsto T_1 \in \Gamma \Rightarrow T_1=(label(D) \wedge \_))
+         \end{array}
+}
+{Element, inferrierbar}
+
+%%%%%%%%%%
+
+
+\StarInfer{\Gamma \vdash \mathtt{X1 ~ notin ~ X2::set(label(D))}}
+{\begin{array}{l}
+\Gamma \cup \{X1 \mapsto label(D), X2 \mapsto set(label(D)) \\
+\vdash \mathtt{X}_1 \mathtt{::label(D) ~ notin ~ X}_2 \mathtt{::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{1-2} \mapsto T \notin \Gamma \vee\\
+         & (Expr_1 \mapsto T_1 \in \Gamma \Rightarrow T_1= (label(D) \wedge \_) \vee\\
+         & Expr_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Nicht Element, teilweise annotiert, inferrierbar}
+
+\StarInfer{\Gamma \vdash \mathtt{X1::label(D) ~ notin ~ X2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto label(D), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::label(D) ~ notin ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{1-2} \mapsto T \notin \Gamma \vee\\
+         & (X_1 \mapsto T_1 \in \Gamma \Rightarrow T_1= (label(D) \wedge \_) \vee\\
+         & X_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Nicht Element, teilweise annotiert, inferrierbar}
+
+\StarInfer{\Gamma \cup \{X1 \mapsto label(D) \} \vdash \mathtt{X1 ~ notin ~ X2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto label(D), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::label(D) ~ notin ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{2} \mapsto T \notin \Gamma \vee\\
+         & X_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Nicht Element, inferrierbar}
+
+\StarInfer{\Gamma \cup \{X_2 \mapsto set(label(D)) \} \vdash \mathtt{X1 ~ notin ~ X_2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto label(D), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::label(D) ~ notin ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_1 \mapsto T \notin \Gamma \vee\\
+         & X_1 \mapsto T_1 \in \Gamma \Rightarrow T_1=(label(D) \wedge \_))
+         \end{array}
+}
+{Nicht Element, inferrierbar}
+
+
+
+%%%%%%%%%%%%%%%%%
+\StarInfer{\Gamma \vdash \mathtt{X1 ~subseteq ~ X2::set(label(D))}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ subseteq ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{1-2} \mapsto T \notin \Gamma \vee\\
+         & (X_1 \mapsto T_1 \in \Gamma \Rightarrow T_1= (set(label(D)) \wedge \_) \vee\\
+         & X_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Teilmenge, teilweise annotiert, inferrierbar}
+
+\StarInfer{\Gamma \vdash \mathtt{X1::label(D) ~ subseteq ~ X2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ subseteq ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{1-2} \mapsto T \notin \Gamma \vee\\
+         & (X_1 \mapsto T_1 \in \Gamma \Rightarrow T_1= (set(label(D)) \wedge \_) \vee\\
+         & X_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Teilmenge, teilweise annotiert, inferrierbar}
+
+\StarInfer{\Gamma \cup \{X_1 \mapsto set(label(D)) \} \vdash \mathtt{X1 ~ subseteq ~ X2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ subseteq ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{2} \mapsto T \notin \Gamma \vee\\
+         & X_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Teilmenge, inferrierbar}
+
+\StarInfer{\Gamma \cup \{X_2 \mapsto set(label(D)) \} \vdash \mathtt{X1 ~ subseteq ~ X2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ subseteq ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{1} \mapsto T \notin \Gamma \vee\\
+         & X_1 \mapsto T_1 \in \Gamma \Rightarrow T_1=set((label(D)) \wedge \_))
+         \end{array}
+}
+{Teilmenge, inferrierbar}
+
+%%%%%%%%%%
+\StarInfer{\Gamma \vdash \mathtt{X1 ~disjoint ~ X2::set(label(D))}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ disjoint ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{1-2} \mapsto T \notin \Gamma \vee\\
+         & (X_1 \mapsto T_1 \in \Gamma \Rightarrow T_1= (set(label(D)) \wedge \_) \vee\\
+         & X_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Disjunktheit, teilweise annotiert, inferrierbar}
+
+\StarInfer{\Gamma \vdash \mathtt{X1::label(D) ~ disjoint ~ X2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ disjoint ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{1-2} \mapsto T \notin \Gamma \vee\\
+         & (X_1 \mapsto T_1 \in \Gamma \Rightarrow T_1= (set(label(D)) \wedge \_) \vee\\
+         & X_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Disjunktheit, teilweise annotiert, inferrierbar}
+
+\StarInfer{\Gamma \cup \{X_1 \mapsto set(label(D)) \} \vdash \mathtt{X1 ~ disjoint ~ X2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ disjoint ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{2} \mapsto T \notin \Gamma \vee\\
+         & X_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Disjunktheit, inferrierbar}
+
+\StarInfer{\Gamma \cup \{X_2 \mapsto set(label(D)) \} \vdash \mathtt{X1 ~ disjoint ~ X2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ disjoint ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{1} \mapsto T \notin \Gamma \vee\\
+         & X_1 \mapsto T_1 \in \Gamma \Rightarrow T_1=set((label(D)) \wedge \_))
+         \end{array}
+}
+{Disjunktheit, inferrierbar}
+
+%%%%%%%%%%%%%%
+\StarInfer{\Gamma \vdash \mathtt{X1 ~intersect ~ X2::set(label(D))}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ intersect ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{1-2} \mapsto T \notin \Gamma \vee\\
+         & (X_1 \mapsto T_1 \in \Gamma \Rightarrow T_1= (set(label(D)) \wedge \_) \vee\\
+         & X_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Schnitt, teilweise annotiert, inferrierbar}
+
+\StarInfer{\Gamma \vdash \mathtt{X1::label(D) ~ intersect ~ X2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ intersect ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{1-2} \mapsto T \notin \Gamma \vee\\
+         & (X_1 \mapsto T_1 \in \Gamma \Rightarrow T_1= (set(label(D)) \wedge \_) \vee\\
+         & X_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Schnitt, teilweise annotiert, inferrierbar}
+
+\StarInfer{\Gamma \cup \{X_1 \mapsto set(label(D)) \} \vdash \mathtt{X1 ~ intersect ~ X2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ intersect ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{2} \mapsto T \notin \Gamma \vee\\
+         & X_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Schnitt, inferrierbar}
+
+\StarInfer{\Gamma \cup \{X_2 \mapsto set(label(D)) \} \vdash \mathtt{X1 ~ intersect ~ X2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ intersect ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{1} \mapsto T \notin \Gamma \vee\\
+         & X_1 \mapsto T_1 \in \Gamma \Rightarrow T_1=set((label(D)) \wedge \_))
+         \end{array}
+}
+{Schnitt, inferrierbar}
+%%%%%%%%%%%%
+\StarInfer{\Gamma \vdash \mathtt{X1 ~union ~ X2::set(label(D))}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ union ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{1-2} \mapsto T \notin \Gamma \vee\\
+         & (X_1 \mapsto T_1 \in \Gamma \Rightarrow T_1= (set(label(D)) \wedge \_) \vee\\
+         & X_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Vereinigung, teilweise annotiert, inferrierbar}
+
+\StarInfer{\Gamma \vdash \mathtt{X1::label(D) ~ union ~ X2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ union ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{1-2} \mapsto T \notin \Gamma \vee\\
+         & (X_1 \mapsto T_1 \in \Gamma \Rightarrow T_1= (set(label(D)) \wedge \_) \vee\\
+         & X_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Vereinigung, teilweise annotiert, inferrierbar}
+
+\StarInfer{\Gamma \cup \{X_1 \mapsto set(label(D)) \} \vdash \mathtt{X1 ~ union ~ X2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ union ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{2} \mapsto T \notin \Gamma \vee\\
+         & X_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Vereinigung, inferrierbar}
+
+\StarInfer{\Gamma \cup \{X_2 \mapsto set(label(D)) \} \vdash \mathtt{X1 ~ union ~ X2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ union ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{1} \mapsto T \notin \Gamma \vee\\
+         & X_1 \mapsto T_1 \in \Gamma \Rightarrow T_1=set((label(D)) \wedge \_))
+         \end{array}
+}
+{Vereinigung, inferrierbar}
+%%%%%%%%%
+\StarInfer{\Gamma \vdash \mathtt{X1 ~minus ~ X2::set(label(D))}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ minus ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{1-2} \mapsto T \notin \Gamma \vee\\
+         & (X_1 \mapsto T_1 \in \Gamma \Rightarrow T_1= (set(label(D)) \wedge \_) \vee\\
+         & X_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Minus, teilweise annotiert, inferrierbar}
+
+\StarInfer{\Gamma \vdash \mathtt{X1::label(D) ~ minus ~ X2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ minus ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{1-2} \mapsto T \notin \Gamma \vee\\
+         & (X_1 \mapsto T_1 \in \Gamma \Rightarrow T_1= (set(label(D)) \wedge \_) \vee\\
+         & X_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Minus, teilweise annotiert, inferrierbar}
+
+\StarInfer{\Gamma \cup \{X_1 \mapsto set(label(D)) \} \vdash \mathtt{X1 ~ minus ~ X2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ minus ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{2} \mapsto T \notin \Gamma \vee\\
+         & X_2 \mapsto T_2 \in \Gamma \Rightarrow T_2=(set(label(D)) \wedge \_))
+         \end{array}
+}
+{Minus, inferrierbar}
+
+\StarInfer{\Gamma \cup \{X_2 \mapsto set(label(D)) \} \vdash \mathtt{X1 ~ minus ~ X2}}
+{\begin{array}{l}
+\Gamma \cup \{X_1 \mapsto set(label(D)), X_2 \mapsto set(label(D)) \\
+\vdash \mathtt{X1::set(label(D)) ~ minus ~ X2::set(label(D))}
+\end{array}
+}
+{\begin{array}{r l}
+        \text{*} & X_{1} \mapsto T \notin \Gamma \vee\\
+         & X_1 \mapsto T_1 \in \Gamma \Rightarrow T_1=set((label(D)) \wedge \_))
+         \end{array}
+}
+{Minus, inferrierbar}

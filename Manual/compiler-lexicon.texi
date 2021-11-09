@@ -1,0 +1,286 @@
+@section Lexicon
+In this section, we explain how to write the @emph{lexicon}
+@cindex lexicon
+ of an XDG grammar. The XDG lexicon is a mapping from words to sets of
+@emph{lexical entries}
+@cindex lexical entry
+@cindex entry
+for that word.  Lexical entries can be constructed using a hierarchy
+of parametrized @emph{lexical classes}.
+@cindex lexical class
+@cindex class
+
+@subsection Disjunction
+The grammar file compiler supports a kind of @emph{disjunction}
+@cindex disjunction
+to express lexical generalizations. The idea stems from Marie-Helene
+Candito's work on @emph{Metagrammar}
+@cindex Metagrammar
+(@cite{Generating an LTAG out of a Principle-based Hierarchical
+Representation}, @ref{References}) for LTAG. Disjunction corresponds
+to Candito's notion of @emph{crossings}.
+@cindex crossing
+The Metagrammar approach is pursued further by Benoit Crabbe and Denys
+Duchier (@cite{A Metagrammatical Formalism for Lexicalized TAGs},
+@cite{Lexical Classes for Structuring the Lexicon of a TAG},
+@cite{Metagrammar Redux}), and Denys Duchier actually had the idea to
+incorporate crossings under the disguise of disjunction into the XDK
+grammar file compiler (@ref{References}).
+
+@subsection Defining lexical entries
+A lexical entry is divided into @emph{entry dimensions}
+@cindex entry dimension
+corresponding to the individual used dimensions. The type of an entry
+dimension for dimension @math{d} equals the entry type for @math{d}.
+In the following, we call the value of entry dimension for a dimension
+@math{d} the @emph{d entry}.
+@cindex d entry
+
+Obligatorily, each lexical entry must define the @code{word} feature
+on the lex dimension. This is the @emph{key}
+@cindex key
+of the lexical entry.
+
+In the UL, a lexical entry is written as follows:
+@example
+defentry @{
+  dim d_1 <term_1>
+  @dots{}
+  dim d_n <term_n> @}
+@end example
+where @code{<term_i>} is the value of the entry dimension for
+dimension @code{d_i}, i.e. the @code{d_i} entry (@code{1<=i<=n}).
+
+@subsubsection Example (lexical entry)
+Below, we show an example lexical entry. It follows the type
+definitions of our example grammar file @code{Grammars/Acl01.ul}:
+
+@example
+defentry @{
+  dim id @{in: @{det@}
+          out: @{@}
+          agrs: ($ fem & (dat|gen) & sg & def)
+          agree: @{@}
+          govern: @{det: $ ()
+                   subj: $ ()
+                   obj: $ ()
+                   vbse: $ ()
+                   vprt: $ ()
+                   vinf: $ ()
+                   prt: $ ()@}@}
+  dim lp @{in: @{df@}
+          out: @{@}
+          on: @{d@}@}
+  dim idlp @{blocks: @{@}
+            end: @{d: @{@}
+                  df: @{@}
+                  n: @{@}
+                  mf: @{@}
+                  vcf: @{@}
+                  p: @{@}
+                  pf: @{@}
+                  v: @{@}
+                  vxf: @{@}@}
+  dim lex @{word: "der"@}@}
+@end example
+
+The id entry sets the @code{in} field to value @code{@{det@}}, i.e. a
+singleton set containing the constant @code{det}. It sets the
+@code{out} field to value @code{@{@}}, i.e. the empty set. The
+@code{agrs} field is set to @code{($ fem & (dat|gen) & sg & def)}
+which is a @emph{set generator expression}.
+@cindex set generator expression
+@cindex set generator
+We explain set generator expressions in @ref{Types reference}. Suffice
+to say here that set generator expressions describe sets of tuples of
+a certain type, using set generator conjunction @code{&} and set
+generator disjunction @code{|}. Here, the set generator expression
+describes all tuples with feminine gender (@code{fem}), either dative
+or genitive case (@code{(dat|gen)}), singular (@code{sg}), and
+definite (@code{def}).  The @code{agree} field is set the empty set,
+and the @code{govern} field to a record which maps each edge label on
+the id dimension to an empty set generator expression. The empty set
+generator expression denotes all possible tuples of the corresponding
+type.
+
+The lp entry sets the @code{in} field to value @code{@{df@}},
+@code{out} to @code{@{@}}, and @code{on} to @code{@{d@}}.
+
+The idlp entry sets the @code{blocks} field to @code{@{@}}. The
+@code{link} field is set to a record which maps each edge label on the
+lp dimension to the empty set.
+
+The value of @code{word} on the lex dimension is ``der''; i.e. the
+dimension record for the lex dimension sets the key for the entire
+lexical entry to ``der''
+
+@subsection Defining lexical classes
+Lexical entries can be build more conveniently using @emph{lexical
+classes}.
+@cindex lexical class
+@cindex class
+A lexical class is a lexical entry with the difference that the value
+of the feature @code{word} on the lex dimension does not have to be
+defined. Instead each lexical class has its unique @emph{class
+identifier}.
+@cindex class identifier
+
+In the UL, a lexical class is written as follows:
+@example
+defclass <constant> @{
+  dim d_1 <term_1>
+  @dots{}
+  dim d_n <term_n> @}
+@end example
+where the constant is the class identifier, and @code{<term_i>} is the
+@code{d_i} entry (@code{1<=i<=n}).
+
+@subsubsection Example (lexical class)
+Here is an example lexical class:
+@example
+defclass "det" @{
+  dim id @{in: @{det@}
+          out: @{@}
+          agrs: ($ fem & (dat|gen) & sg & def)
+          agree: @{@}
+          govern: @{det: $ ()
+                   subj: $ ()
+                   obj: $ ()
+                   vbse: $ ()
+                   vprt: $ ()
+                   vinf: $ ()
+                   prt: $ ()@}@}
+  dim lp @{in: @{df@}
+          out: @{@}
+          on: @{d@}@}
+  dim idlp @{blocks: @{@}
+            end: @{d: @{@}
+                  df: @{@}
+                  n: @{@}
+                  mf: @{@}
+                  vcf: @{@}
+                  p: @{@}
+                  pf: @{@}
+                  v: @{@}
+                  vxf: @{@}@}
+  dim lex @{word: "der"@}@}
+@end example
+The only difference to the lexical entry above is that the class has
+the identifier ``det'' in addition to its key ``der''.
+
+@subsubsection Class parameters
+Classes can introduce an arbitrary number of variables called
+@emph{class parameters}.
+
+In the UL, class parameters are introduced after the class identifier and
+must begin with an upper case letter:
+@example
+defclass <constant> <variable_1> @dots{} <variable_m> @{
+  dim d_1 <term_1>
+  @dots{}
+  dim d_n <term_n> @}
+@end example
+where @code{<variable_j>} (@code{1<=j<=m}) correspond to the class
+parameters.
+
+@subsubsection Example (lexical class with parameters)
+Here is an example of a class with class parameters:
+
+@example
+defclass "det" Word Agrs @{
+  dim id @{in: @{det@}
+          out: @{@}
+          agrs: Agrs
+          agree: @{@}
+          govern: @{det: $ ()
+                   subj: $ ()
+                   obj: $ ()
+                   vbse: $ ()
+                   vprt: $ ()
+                   vinf: $ ()
+                   prt: $ ()@}@}
+  dim lp @{in: @{df@}
+          out: @{@}
+          on: @{d@}@}
+  dim idlp @{blocks: @{@}
+            link: @{d: @{@}
+                   df: @{@}
+                   n: @{@}
+                   mf: @{@}
+                   vcf: @{@}
+                   p: @{@}
+                   pf: @{@}
+                   v: @{@}
+                   vxf: @{@}@}
+  dim lex @{word: Word@}@}
+@end example
+
+The lexical class has two parameters, @code{Word} and
+@code{Agrs}. @code{Word} is the value of the @code{word} feature on
+the lex dimension, and @code{Agrs} is the value of the @code{agrs}
+feature on the id dimension.
+
+@subsection Using lexical classes
+Lexical classes can used to construct other lexical classes or to
+construct lexical entries.  All parameters of a class must be
+instantiated upon use.
+
+In the UL, a class use is written as follows:
+@example
+useclass <constant> @{
+  <variable_1> : <term_1>
+  @dots{}
+  <variable_m> : <term_m> @}
+@end example
+where the constant is the class identifier, and parameter
+@code{<variable_j>} is bound to @code{<term_j>} (@code{1<=j<=m}).
+
+Notice that you can omit the @code{useclass} keyword for convenience.
+
+@subsubsection Example (class use)
+In the example below, we construct a lexical entry for the word
+``der'' using the lexical class @code{det} defined above (note that we
+omit the @code{useclass} keyword here):
+
+@example
+defentry @{
+  "det" @{Word: "der"
+         Agrs: ($ fem & (dat|gen) & sg & def)@}@}
+@end example
+
+The resulting lexical entry is identical to the lexical entry in the
+example given above.
+
+@subsection Disjunction
+The XDK grammar file compiler supports the use of @emph{disjunction},
+@cindex disjunction
+as a powerful tool to model lexical generalizations.  If a value can
+be either @math{A} or @math{B}, you write that down: @math{A or B}. In
+the resulting lexicon, the XDK grammar file compiler compiles out all
+possibilities into separate lexical entries.
+
+In the UL, disjunction is written using the @code{|} operator.
+
+@subsubsection Example (disjunction of set generator expressions)
+In the example below, we use disjunction to express that the
+determiner ``der'' in German can have three different agreement
+values:
+
+@example
+defentry @{
+  "det" @{Word: "der"
+        Agrs: (($ masc & nom & sg & def) |
+               ($ fem & (dat|gen) & sg & def) |
+               ($ gen & pl & def))@}@}
+@end example
+
+I.e., the agreement value is either @code{($ masc & nom & sg & def)},
+@code{($ fem & (dat|gen) & sg & def)}, or @code{($ gen & pl &
+def)}. In the resulting lexicon, the expression above yields three
+lexical entries, differing only in the value of their agreement
+(i.e. the value of the feature @code{agrs} on the id
+dimension). Notice that the @code{|} operator within the second set
+generator expression (@code{($ fem & (dat|gen) & sg & def)} stands for
+set generator disjunction which is a different form of disjunction
+inside set generators. Set generator disjunction does not yield
+additional lexical entries.

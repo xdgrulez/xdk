@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+<title>Exceptions - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Directories.html#Directories" title="Directories">
+<link rel="next" href="Variable-names.html#Variable-names" title="Variable names">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Exceptions"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Variable-names.html#Variable-names">Variable names</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Directories.html#Directories">Directories</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">14 Exceptions</h2>
+
+<p>This section describes the standard format for exceptions. We strongly
+encourage all developers to adhere to this format, for two main
+reasons:
+     <ul>
+<li>all executables pertaining to the XDK expect this format
+(e.g. the GUI expects it to correctly create the appropriate exception
+windows)
+<li>consistency
+</ul>
+
+   <p>A typical exception from the XDK looks is a record with label
+<code>error1</code>, and features <code>'functor'</code>, <code>'proc'</code>,
+<code>info</code>, <code>msg</code>, <code>coord</code> and <code>file</code>. The latter
+three features are obligatory, the others optional. The obligatory
+features are always printed out by the error handling procedures of
+the executables pertaining to the XDK. The other features are
+typically only to be seen when the debug mode is on.
+
+   <p>Here is an example exception:
+
+<pre class="example">     error1('functor':'Compiler/TypeCollector.ozf'
+            'proc':'CollectTypes1'
+            info:o(AttrsType 'dimension')
+            msg:'Attributes type must be a record.'
+            coord:AttrsCoord
+            file:AttrsFile)
+</pre>
+   <p>The value of <code>'functor'</code> must be an atom representing
+the path to the functor in which the exception was raised.
+
+   <p>The value of <code>'proc'</code> must be an atom representing the name of
+the procedure in which the exception was raised.
+
+   <p>The value of <code>info</code> is a tuple with label <code>o</code> with arbitrary
+projections providing extra information (in addition to the message,
+see below) for debugging purposes.
+
+   <p>The value of <code>msg</code> is a virtual string representing the message
+to be printed by the error handling procedures.
+
+   <p>The value of <code>coord</code> is either the atom <code>noCoord</code>, a pair
+<code>I1#I2</code> of two integers <code>I1</code> and <code>I2</code>, or just an
+integer <code>I</code>, denoting the range of lines or just the line of an
+error which occurred when compiling a grammar file.
+
+   <p>The value of <code>file</code> is either the atom <code>noFile</code>, or an atom
+<code>A</code> denoting the filename of the grammar file where the error
+occurred.
+
+<!-- ************************************************************ -->
+   </body></html>
+

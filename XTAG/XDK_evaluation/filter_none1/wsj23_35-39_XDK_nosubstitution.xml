@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE statistics SYSTEM "Extras/statistics.dtd">
+<statistics>
+  <grammar data="4712.ulsocket"/>
+  <examples data="XTAG/XDK_evaluation/wsj23_35-39.txt" count="185"/>
+  <date data="Jun 19, 2007 1:41:28"/>
+  <solutions data="1"/>
+  <failures data="9999"/>
+  <timeout data="300"/>
+  <reco data="5"/>
+  <dimensions>
+    <dimension data="id"/>
+    <dimension data="idlp"/>
+    <dimension data="lex"/>
+    <dimension data="lp"/>
+  </dimensions>
+  <principles>
+    <principle data="id principle.graph1Constraints (id)"/>
+    <principle data="id principle.graph1Dist (id)"/>
+    <principle data="id principle.tree (id)"/>
+    <principle data="id principle.in (id)"/>
+    <principle data="id principle.out (id)"/>
+    <principle data="id principle.xTAGRoot (id)"/>
+    <principle data="lp principle.graph1Constraints (lp)"/>
+    <principle data="lp principle.graph1Dist (lp)"/>
+    <principle data="lp principle.tree (lp)"/>
+    <principle data="lp principle.in (lp)"/>
+    <principle data="lp principle.out (lp)"/>
+    <principle data="lp principle.government (lp)"/>
+    <principle data="lp principle.xTAG (lp)"/>
+    <principle data="lp principle.parse (lp)"/>
+    <principle data="idlp principle.xTAGLinking (id,lp,idlp)"/>
+    <principle data="idlp principle.xTAGRedundant (id,lp)"/>
+    <principle data="lex principle.entries ()"/>
+  </principles>
+  <gprofile fd="6" fs="257" fdfs="263" entries="819">
+    <gpnode fd="2" fs="1" fdfs="3"/>
+    <gpattrs fd="0" fs="0" fdfs="0">
+      <gpdimension data="id" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="idlp" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="0" fs="0" fdfs="0"/>
+    </gpattrs>
+    <gpentry fd="2" fs="137" fdfs="139">
+      <gpdimension data="id" fd="0" fs="33" fdfs="33"/>
+      <gpdimension data="idlp" fd="0" fs="34" fdfs="34"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="2" fs="70" fdfs="72"/>
+    </gpentry>
+    <gpmodel fd="2" fs="119" fdfs="121">
+      <gpdimension data="id" fd="1" fs="40" fdfs="41"/>
+      <gpdimension data="idlp" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="1" fs="79" fdfs="80"/>
+    </gpmodel>
+    <gplabel>
+      <gpdimension data="id" label="32"/>
+      <gpdimension data="idlp" label="0"/>
+      <gpdimension data="lex" label="0"/>
+      <gpdimension data="lp" label="34"/>
+    </gplabel>
+  </gprofile>
+  <string id="string4">
+    <words>
+    this confusion effectively halted one form of program trading , stock index arbitrage , that closely links the futures and stock markets , and has been blamed by some for the market 's big swings .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="493"/>
+    <depth data="63"/>
+    <failed data="473"/>
+    <succeeded data="0"/>
+    <time data="300430"/>
+    <sprofile fd="345852" fs="103785" fdfs="449637" pr="593458" entries="30.25" words="36">
+      <spnode index="1" word="this" entries="5" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="2" word="confusion" entries="19" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="3" word="effectively" entries="4" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="4" word="halted" entries="51" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="5" word="one" entries="22" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="6" word="form" entries="54" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="7" word="of" entries="28" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="8" word="program" entries="58" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="9" word="trading" entries="51" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="10" word="," entries="23" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="11" word="stock" entries="72" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="12" word="index" entries="58" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="13" word="arbitrage" entries="19" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="14" word="," entries="23" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="15" word="that" entries="6" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="16" word="closely" entries="2" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="17" word="links" entries="54" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="18" word="the" entries="2" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="19" word="futures" entries="19" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="20" word="and" entries="11" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="21" word="stock" entries="72" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="22" word="markets" entries="70" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="23" word="," entries="23" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="24" word="and" entries="11" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="25" word="has" entries="50" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="26" word="been" entries="5" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="27" word="blamed" entries="53" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="28" word="by" entries="34" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="29" word="some" entries="6" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="30" word="for" entries="30" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="31" word="the" entries="2" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="32" word="market" entries="70" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="33" word="'s" entries="8" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="34" word="big" entries="18" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="35" word="swings" entries="54" fd="6" fs="234" fdfs="240" pr="367"/>
+      <spnode index="36" word="." entries="2" fd="6" fs="234" fdfs="240" pr="367"/>
+    </sprofile>
+  </string>
+  <string id="string33">
+    <words>
+    major oil companies in the next few days are expected to report much less robust earnings than they did for the third quarter a year ago , largely reflecting deteriorating chemical prices and gasoline profitability .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="233"/>
+    <depth data="50"/>
+    <failed data="226"/>
+    <succeeded data="0"/>
+    <time data="300300"/>
+    <sprofile fd="565704" fs="173796" fdfs="739500" pr="984200" entries="35.139" words="36">
+      <spnode index="1" word="major" entries="60" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="2" word="oil" entries="58" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="3" word="companies" entries="71" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="4" word="in" entries="33" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="5" word="the" entries="2" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="6" word="next" entries="47" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="7" word="few" entries="24" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="8" word="days" entries="24" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="9" word="are" entries="8" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="10" word="expected" entries="70" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="11" word="to" entries="38" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="12" word="report" entries="147" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="13" word="much" entries="38" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="14" word="less" entries="7" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="15" word="robust" entries="18" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="16" word="earnings" entries="3" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="17" word="than" entries="4" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="18" word="they" entries="1" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="19" word="did" entries="146" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="20" word="for" entries="30" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="21" word="the" entries="2" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="22" word="third" entries="21" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="23" word="quarter" entries="77" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="24" word="a" entries="6" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="25" word="year" entries="24" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="26" word="ago" entries="32" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="27" word="," entries="23" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="28" word="largely" entries="4" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="29" word="reflecting" entries="70" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="30" word="deteriorating" entries="65" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="31" word="chemical" entries="19" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="32" word="prices" entries="58" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="33" word="and" entries="11" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="34" word="gasoline" entries="3" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="35" word="profitability" entries="19" fd="6" fs="357" fdfs="363" pr="563"/>
+      <spnode index="36" word="." entries="2" fd="6" fs="357" fdfs="363" pr="563"/>
+    </sprofile>
+  </string>
+  <string id="string76">
+    <words>
+    she was raised , for the first eight years , by her mother , Rosie , whom she remembers as a loving liar , who realigned history to explain why Lily 's father did not live with them .
+    </words>
+    <outputs>
+      <spnode index="27" word="ornate" entries="14" fd="6" fs="343" fdfs="349" pr="541"/>
+      <spnode index="28" word="," entries="22" fd="6" fs="343" fdfs="349" pr="541"/>
+      <spnode index="29" word="owing" entries="100" fd="6" fs="343" fdfs="349" pr="541"/>
+      <spnode index="30" word="all" entries="20" fd="6" fs="343" fdfs="349" pr="541"/>
+      <spnode index="31" word="inspiration" entries="3" fd="6" fs="343" fdfs="349" pr="541"/>
+      <spnode index="32" word="to" entries="38" fd="6" fs="343" fdfs="349" pr="541"/>
+      <spnode index="33" word="heathen" entries="16" fd="6" fs="343" fdfs="349" pr="541"/>
+      <spnode index="34" word="cultures" entries="70" fd="6" fs="343" fdfs="349" pr="541"/>
+      <spnode index="35" word="." entries="2" fd="6" fs="343" fdfs="349" pr="541"/>
+    </sprofile>
+  </string>
+  <string id="string76">
+    <words>
+    she was raised , for the first eight years , by her mother , Rosie , whom she remembers as a loving liar , who realigned history to explain why Lily 's father did not live with them .
+    </words>
+    <outputs>

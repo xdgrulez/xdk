@@ -1,0 +1,157 @@
+<html lang="en">
+<head>
+<title>Latex - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Outputs.html#Outputs" title="Outputs">
+<link rel="prev" href="Decode.html#Decode" title="Decode">
+<link rel="next" href="Latex1.html#Latex1" title="Latex1">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Latex"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Latex1.html#Latex1">Latex1</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Decode.html#Decode">Decode</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Outputs.html#Outputs">Outputs</a>
+<hr>
+</div>
+
+<h3 class="section">9.20 Latex</h3>
+
+<p>This section explains the Latex output functor.
+
+     <ul>
+<li>identifier: <code>output.latex</code>
+<li>open method: prints a LaTeX file containing all known
+edges (and known edge labels and node labels) of the directed acyclic
+graph on the output dimension
+<li>close method: does nothing
+</ul>
+
+   <p>The Latex output functor assumes that the graph principle is
+used on the output dimension.
+
+   <p>The resulting LaTeX output makes use of the style file
+<code>xdag.sty</code>, which is based on the original style file
+<code>dtree.sty</code> by Denys Duchier.
+
+   <p>Unix users can use the shell script <code>xdag2eps</code> to convert the
+latex output into encapsulated postscript (EPS), <code>xdag2pdf</code> into
+PDF, or <code>xdag2jpg</code> to JPG.  <code>xdag2eps</code>, <code>xdag2pdf</code> and
+<code>xdag2jpg</code> require the style file <code>xdag.sty</code> to be in the
+current directory. The latex file to convert is also required to be in
+the current directory.
+
+   <p>Below, we display an example Latex output after having been compiled
+into pdf:
+
+   <pre class="sp">
+
+</pre>
+<img src="pix/latexid.jpg" alt="pix/latexid.jpg">
+
+   <p>And below, we display an example Dag output including node labels
+(written on the vertical <em>projection edges</em>):
+<a name="index-projection-edge-326"></a>
+   <pre class="sp">
+
+</pre>
+<img src="pix/latexlp.jpg" alt="pix/latexlp.jpg">
+
+   <p>To get the LaTeX output into a file, just tick <code>file</code> in the
+<code>Extras</code> pull-down menu instead of the default
+<code>inspect</code>. This effects that all output normally printed using
+the Oz Inspector is redirected into a file. Whenever this happens, you
+are asked where to create this file. Having the file in your hands,
+you can then convert it into EPS, PDF or JPG using the scripts
+<code>xdag2eps</code>, <code>xdag2pdf</code> and <code>xdag2jpg</code>, respectively.
+
+   <p>Here is the LaTeX code for the latter Dag:
+<pre class="example">     \begin{xdag}
+     \node{1}{2}{$\begin{array}{c}1\\\\\textrm{maria}\end{array}$}{n}
+     \node{2}{1}{$\begin{array}{c}2\\\\\textrm{versucht}\end{array}$}{v}
+     \node{3}{4}{$\begin{array}{c}3\\\\\textrm{einen}\end{array}$}{d}
+     \node{4}{3}{$\begin{array}{c}4\\\\\textrm{mann}\end{array}$}{n}
+     \node{5}{3}{$\begin{array}{c}5\\\\\textrm{zu}\end{array}$}{p}
+     \node{6}{2}{$\begin{array}{c}6\\\\\textrm{lieben}\end{array}$}{v}
+     \edge{6}{5}{pf}
+     \edge{6}{4}{mf}
+     \edge{4}{3}{df}
+     \edge{2}{6}{vxf}
+     \edge{2}{1}{mf}
+     \end{xdag}
+</pre>
+   <p>The Latex output functor paints dags using the <code>xdag</code> environment
+from the <code>xdag.sty</code> style file. <code>xdag</code> provides two basic
+commands: <code>\node</code> and <code>\edge</code>.
+
+   <p><code>\node</code> has four arguments:
+     <ol type=1 start=1>
+<li>a unique index of the node
+<li>the depth of the node (1 corresponds to the top of the dag,
+and &gt;1 to a lower position)
+<li>the word corresponding to the node (here: augmented with the index of the node using an array)
+<li>the node label of the node (usually empty for all dimensions other than lp)
+        </ol>
+
+   <p><code>\edge</code> has three arguments:
+     <ol type=1 start=1>
+<li>a node index denoting the startpoint of the edge
+<li>a node index denoting the endpoint of the edge
+<li>the edge label
+        </ol>
+
+   <p>Notice that you can increase the horizontal distance between nodes
+using the <code>\xdagExtraColSep</code> command:
+<pre class="example">     \begin{xdag}
+     \xdagExtraColsep{1}{20pt}
+     \node{1}{2}{$\begin{array}{c}1\\\\\textrm{maria}\end{array}$}{n}
+     \node{2}{1}{$\begin{array}{c}2\\\\\textrm{versucht}\end{array}$}{v}
+     \node{3}{4}{$\begin{array}{c}3\\\\\textrm{einen}\end{array}$}{d}
+     \node{4}{3}{$\begin{array}{c}4\\\\\textrm{mann}\end{array}$}{n}
+     \node{5}{3}{$\begin{array}{c}5\\\\\textrm{zu}\end{array}$}{p}
+     \node{6}{2}{$\begin{array}{c}6\\\\\textrm{lieben}\end{array}$}{v}
+     \edge{6}{5}{pf}
+     \edge{6}{4}{mf}
+     \edge{4}{3}{df}
+     \edge{2}{6}{vxf}
+     \edge{2}{1}{mf}
+     \end{xdag}
+</pre>
+   <p>Here, the horizontal distance between the first and the second node is
+increased by <code>20pt</code>. You can also set this distance all nodes
+using <code>\xdagColsep</code>, as in the following example:
+<pre class="example">     \begin{xdag}
+     \xdagColsep=20pt
+     \node{1}{2}{$\begin{array}{c}1\\\\\textrm{maria}\end{array}$}{n}
+     \node{2}{1}{$\begin{array}{c}2\\\\\textrm{versucht}\end{array}$}{v}
+     \node{3}{4}{$\begin{array}{c}3\\\\\textrm{einen}\end{array}$}{d}
+     \node{4}{3}{$\begin{array}{c}4\\\\\textrm{mann}\end{array}$}{n}
+     \node{5}{3}{$\begin{array}{c}5\\\\\textrm{zu}\end{array}$}{p}
+     \node{6}{2}{$\begin{array}{c}6\\\\\textrm{lieben}\end{array}$}{v}
+     \edge{6}{5}{pf}
+     \edge{6}{4}{mf}
+     \edge{4}{3}{df}
+     \edge{2}{6}{vxf}
+     \edge{2}{1}{mf}
+     \end{xdag}
+</pre>
+   <!-- ************************************************************ -->
+   </body></html>
+

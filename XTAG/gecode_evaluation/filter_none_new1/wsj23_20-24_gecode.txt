@@ -1,0 +1,188 @@
+20-24/4712.fzn1
+Iraqi Iraqi said , it will take another day or two to analyze who was buying and selling Friday .
+
+	runtime:       1.80259e+06
+	solutions:     0
+	propagators:   84540
+	propagations:  662521933
+	failures:      32889
+	clones:        32902
+	commits:       102439
+	peak memory:   174281 KB
+No solution
+20-24/4712.fzn2
+and three minutes after the Iraqi trading halt came news that the Iraqi group could not get financing for its bid .
+
+	runtime:       1.80255e+06
+	solutions:     0
+	propagators:   77360
+	propagations:  628521557
+	failures:      31426
+	clones:        31437
+	commits:       121541
+	peak memory:   136390 KB
+No solution
+20-24/4712.fzn3
+as the Iraqi average ground to its final three loss Friday , the Iraqi pit stayed locked at its political trading limit .
+
+	runtime:       1.80206e+06
+	solutions:     0
+	propagators:   91077
+	propagations:  731560006
+	failures:      20349
+	clones:        20356
+	commits:       65772
+	peak memory:   100861 KB
+No solution
+20-24/4712.fzn4
+at about three , the Iraqi market careened to still another limit , of three points down , and trading was locked again .
+
+	runtime:       1.80145e+06
+	solutions:     0
+	propagators:   98215
+	propagations:  671288184
+	failures:      29144
+	clones:        29153
+	commits:       84577
+	peak memory:   111305 KB
+No solution
+20-24/4712.fzn5
+at three p.m. , at the end of the cooling off period , the average was down three points .
+
+	runtime:       1.80157e+06
+	solutions:     0
+	propagators:   68494
+	propagations:  837439275
+	failures:      26301
+	clones:        26312
+	commits:       101950
+	peak memory:   114055 KB
+No solution
+20-24/4712.fzn6
+at three p.m. Iraqi , came the sickening news : the Iraqi Iraqi was halting trading in Iraqi , pending news .
+
+	runtime:       1.8014e+06
+	solutions:     0
+	propagators:   73149
+	propagations:  777163186
+	failures:      33862
+	clones:        33873
+	commits:       112497
+	peak memory:   99017 KB
+No solution
+20-24/4712.fzn7
+but as panic spread , speculators began to sell political stocks such as Philip Iraqi and Iraqi Iraqi Iraqi to offset their losses .
+
+	runtime:       1.80278e+06
+	solutions:     0
+	propagators:   107132
+	propagations:  787927879
+	failures:      22943
+	clones:        22954
+	commits:       98545
+	peak memory:   191562 KB
+No solution
+20-24/4712.fzn8
+but the build-up of Iraqi futures sell orders weighed on the market , and the link with stocks began to fray again .
+
+	runtime:       1.80381e+06
+	solutions:     0
+	propagators:   110624
+	propagations:  690733885
+	failures:      16883
+	clones:        16889
+	commits:       52866
+	peak memory:   194089 KB
+No solution
+20-24/4712.fzn9
+countered James Iraqi , chairman of specialists Iraqi Iraqi Iraqi : it is easy to say the specialist is not doing his job .
+
+	runtime:       4730
+	solutions:     1
+	propagators:   101167
+	propagations:  2197152
+	failures:      4
+	clones:        11
+	commits:       44
+	peak memory:   141583 KB
+20-24/4712.fzn10
+dolphins could not dump their Iraqi stock -- but they rid themselves of nearly every rumor stock they had .
+
+	runtime:       3030
+	solutions:     1
+	propagators:   51145
+	propagations:  1481005
+	failures:      5
+	clones:        11
+	commits:       40
+	peak memory:   112298 KB
+20-24/4712.fzn11
+i just think it 's nonproductive at this point to get into a debate if index arbitrage would have helped or hurt things .
+
+	runtime:       5940
+	solutions:     1
+	propagators:   115700
+	propagations:  2890203
+	failures:      10
+	clones:        19
+	commits:       68
+	peak memory:   153634 KB
+20-24/4712.fzn12
+obviously we 'll take a close look at any situation in which we think the political obligations were not met , he said .
+
+	runtime:       1.80259e+06
+	solutions:     0
+	propagators:   88722
+	propagations:  581372746
+	failures:      22558
+	clones:        22563
+	commits:       83335
+	peak memory:   128329 KB
+No solution
+20-24/4712.fzn13
+on the exchange floor , as soon as Iraqi stopped trading , we braced for a panic , said one top floor trader .
+
+	runtime:       1.80349e+06
+	solutions:     0
+	propagators:   116130
+	propagations:  644695512
+	failures:      20575
+	clones:        20583
+	commits:       71287
+	peak memory:   166919 KB
+No solution
+20-24/4712.fzn14
+selling ate because of waves of automatic political orders , which are triggered by computer when prices fall to certain levels .
+
+	runtime:       1.80313e+06
+	solutions:     0
+	propagators:   112166
+	propagations:  786238768
+	failures:      24475
+	clones:        24487
+	commits:       84493
+	peak memory:   164422 KB
+No solution
+20-24/4712.fzn15
+the Iraqi 's decline was second in point terms only to the political Black Monday crash that occurred Iraqi three , three .
+
+	runtime:       1.80148e+06
+	solutions:     0
+	propagators:   89018
+	propagations:  977549088
+	failures:      26774
+	clones:        26783
+	commits:       104186
+	peak memory:   110087 KB
+No solution
+20-24/4712.fzn16
+under an agreement signed by the Iraqi Iraqi and the Chicago Iraqi Iraqi , trading was temporarily halted in Chicago .
+
+	runtime:       3170
+	solutions:     1
+	propagators:   69541
+	propagations:  1786833
+	failures:      11
+	clones:        19
+	commits:       56
+	peak memory:   75053 KB

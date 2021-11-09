@@ -1,0 +1,108 @@
+<html lang="en">
+<head>
+<title>Customs - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="Coindex.html#Coindex" title="Coindex">
+<link rel="next" href="Dag.html#Dag" title="Dag">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Customs"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Dag.html#Dag">Dag</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Coindex.html#Coindex">Coindex</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.12 Customs principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.customs</code>
+<li>dimension variables: <code>D</code>
+<li>argument variables:<br>
+<code>Customs: iset(label(D))</code>
+<li>default values:<br>
+<code>Customs: _.D.entry.customs</code>
+<li>model record: empty
+<li>constraints: <code>Customs</code> (priority 130)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle was written by Ondrej Bojar.
+
+   <p>Here is the definition of the <code>Customs</code> constraint functor:
+<pre class="verbatim">%% Copyright 2004-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University)
+%%    Ondrej Bojar &lt;obo@cuni.cz>
+%%
+functor
+import
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      DIDA = {DVA2DIDA 'D'}
+   in
+      %% check features
+      if {Helpers.checkModel 'Customs.oz' Nodes
+          [DIDA#labels DIDA#daughters DIDA#down]} then
+         for Node in Nodes do
+           if Node.index > 1 andthen
+	      Node.index &lt; {Length Nodes}
+           then
+             AllowedOverEdges = {ArgRecProc 'Customs' o('_': Node)}
+             DaughtersMs = {Map Nodes fun {$ A} A.DIDA.model.daughters end}
+             LabelsMs = {Map Nodes fun {$ A} A.DIDA.model.labels end}
+             ML = {FS.value.make [1#(Node.index-1)]}
+               % nodes left of me
+             MLAbove = {FS.diff ML Node.DIDA.model.down}
+               % nodes left of me and not below me
+             MR = {FS.value.make [(Node.index+1)#{Length Nodes}]}
+             MRAbove = {FS.diff MR Node.DIDA.model.down}
+             MLSons = {Select.union DaughtersMs MLAbove}
+	       % sons of nodes left of me
+	     MRL = {FS.intersect MLSons MR}
+               % nodes right of me that have the father left of me
+             LabsRL = {Select.union LabelsMs MRL}
+               % labels of such edges
+             MRSons = {Select.union DaughtersMs MRAbove}
+               % nodes left of me that have the father right of me
+	       % sons of nodes left of me
+	     MLR = {FS.intersect MRSons ML}
+             LabsLR = {Select.union LabelsMs MLR}
+               % labels of such edges
+             in
+               {FS.subset LabsLR AllowedOverEdges}
+               {FS.subset LabsRL AllowedOverEdges}
+           end % if
+         end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

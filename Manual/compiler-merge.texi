@@ -1,0 +1,20 @@
+@section Merge
+The XDK grammar file compiler allows to @emph{merge}
+@cindex merge
+an arbitrary number of grammars into one. Two grammars @math{g_1} and
+@math{g_2} can be merged into @math{g_3} if they have the same type
+definitions.
+
+The merge operation is defined as follows:
+@itemize @bullet
+@item the lexicon of @math{g_3} includes all the lexical entries of
+@math{g_1} and @math{g_2} (i.e. @math{g_3} maps each word to the union
+of the set of lexical entries for this word in @math{g_1} and
+@math{g_2})
+@item the dimension definitions of @math{g_3} are taken from
+@math{g_2}
+@end itemize
+
+If more than two grammars @math{g_i} (@math{1<=i<=n}, and @math{n>2})
+are merged, the last grammar in the sequence determines the dimension
+definitions of the merged grammar.

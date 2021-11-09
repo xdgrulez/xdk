@@ -1,0 +1,57 @@
+@chapter Directories
+The directory structure of the XDK is as follows:
+@itemize @bullet
+@item CSPOutput: programs dealing with CSP output 
+@itemize @bullet
+@item Parsers: Parsers needed for the CSP output programs
+@end itemize
+@item Compiler: Grammar file compiler
+@itemize @bullet
+@item Lattices: Lattice functors
+@item UL: User Language (UL) front end
+@item XML: XML language (XML) front end
+@end itemize
+@item Extras: Extra functors
+@item Grammars: Grammar files
+@item Oracles: Oracles
+@itemize @bullet
+@item ManualOracle: Manual oracle
+@end itemize
+@item Outputs: Outputs
+@itemize @bullet
+@item Lib: Output functors
+@itemize @bullet
+@item CLLS: Code for the CLLS output
+@itemize @bullet
+@item DaVinci: daVinci support code (for the CLLS output)
+@end itemize
+@item Dag: Code for drawing dags using Tk
+@itemize @bullet
+@item NewTkDAG: Rewrite of Denys Duchier's TkDAG functor
+@end itemize
+@item Latex: Code for outputting LaTeX code using @code{xdag.sty}
+@end itemize
+@end itemize
+@item PrincipleWriter: Principle compiler
+@itemize @bullet
+@item Examples: Example principles
+@item QuadOptimizer: Principle optimizer
+@end itemize
+@item SXDG: Marco Kuhlmann's SXDG code
+@item Solver: The solver
+@itemize @bullet
+@item Principles: Principle definitions
+@itemize @bullet
+@item Lib: Principle functors
+@itemize @bullet
+@item Select: Denys Duchier's selection constraint
+@item FlatZinc: Support code for FlatZinc output
+@end itemize
+@end itemize
+@end itemize
+@item XTAG: XTAG grammar generator
+@itemize @bullet
+@item Grammar: XTAG grammar (not included in the XDK package, contained in
+@uref{ftp://ftp.cis.upenn.edu/pub/xtag/lem/lem-0.14.0.tgz})
+@end itemize
+@end itemize

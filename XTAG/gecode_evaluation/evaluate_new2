@@ -1,0 +1,35 @@
+#!/bin/bash
+############################################################
+# 10-14
+#cd $XDK/XTAG
+#xtagserver.exe -p 4712 -f none&
+#pid=$!
+#sleep 1
+cd $XDK
+#xdks.exe -g 4712.ulsocket -e XTAG/gecode_evaluation/wsj23_10-14_new2.txt -s flatzinc
+#kill -9 $!
+#
+cd XTAG/gecode_evaluation/filter_none_new2
+#mkdir 10-14
+#mv $XDK/4712.fzn* 10-14
+#
+#evaluate_none10-14 >wsj23_10-14_gecode.txt
+evaluate_none10-14_100 >wsj23_10-14_gecode100.txt
+evaluate_none10-14_1000 >wsj23_10-14_gecode1000.txt
+############################################################
+# 15-19
+#cd $XDK/XTAG
+#xtagserver.exe -p 4712 -f none&
+#pid=$!
+#sleep 1
+cd $XDK
+#xdks.exe -g 4712.ulsocket -e XTAG/gecode_evaluation/wsj23_15-19_new2.txt -s flatzinc
+#kill -9 $!
+#
+cd XTAG/gecode_evaluation/filter_none_new2
+#mkdir 15-19
+#mv $XDK/4712.fzn* 15-19
+#
+#evaluate_none15-19 >wsj23_15-19_gecode.txt
+evaluate_none15-19_100 >wsj23_15-19_gecode100.txt
+evaluate_none15-19_1000 >wsj23_15-19_gecode1000.txt

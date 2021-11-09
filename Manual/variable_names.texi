@@ -1,0 +1,159 @@
+@chapter Variable names
+Variables names have the format @code{<description><type>} where
+@code{<description>} is an arbitrary description of the variable, and
+@code{<type>} its type. This is similar to the @emph{Hungarian notation}
+@cindex Hungarian
+@cindex notation
+used by Microsoft. Many people do not like it, but I think it is a
+good way to save time debugging type errors in Mozart (not being
+statically typed).
+
+Types can be combined to yield new types. This is especially useful for
+records, tuples and functions:
+
+@itemize @bullet
+@item records: A record mapping elements from type X to elements of type Y has
+type XY.
+@item tuples: A tuple X#Y where the first projection is of type X and the second of
+type Y has type XYTup.
+@item functions: A function from values of type X to values of type Y has type
+X2Y.
+@end itemize
+
+In addition, we write XY for a ``type disjunction'', i.e., a variable
+which can either be of type X or of type Y.
+
+We display the Oz type hierarchy taken from@*
+@uref{http://www.mozart-oz.org/documentation/base/node2.html#chapter.typestruct}
+below:
+
+@example
+X Y Z - Value
+  FI - Number (Float or Int)
+    I - Int
+      D - FDInt
+      Ch - Char
+    F - Float
+
+  Rec - Record (R)
+    Tup - Tuple (T)
+    L - Literal
+      A - Atom
+      N - Name
+        B - Bool
+        U - Unit
+
+  Proc - Procedure (P)
+  PO - unary Procedure or Object
+
+  Ce - Cell
+
+  C - Chunk
+    Arr - Array
+    Dict - Dictionary
+    BitArr - BitArray
+    K - Class
+    O - Object
+    Lock - Lock
+    Port - Port
+@end example
+
+The types used in the XDK are based on the type hierarchy above. Here
+they are:
+
+@example
+Attribute - XML attribute
+A - atom
+Arr - array
+B - bool
+ByteS - byte string
+BitS - bit string
+BitArr - bit array
+Bot - (SL) lattice bottom value
+C - chunk
+Ce - cell
+Ch - char
+CIDA - class ID (atom)
+CIDCIL - class ID (IL constant)
+CIL - IL constant
+CA - (A) principle constraint name
+Co - lattice fd/fs variable count
+Coord - coordinate
+D - finite domain
+Desc - expression description
+Dict - dictionary
+DIDA - dimension ID (atom)
+DIDCIL - dimension ID (IL constant)
+Dimension - (SL) a dimension
+DVA - (A) dimension variable
+DSpec - specification of a finite domain
+Element - XML element
+Entry - (SL) an entry
+Entries - (SLs) a list of entries
+E - exception
+F - float
+FI - number (float or integer)
+File - file
+Functor - functor
+Handler - resolve handler
+I - integer
+IDA - any ID (atom)
+IDCIL - any ID (IL constant)
+IL - intermediate language (IL) expression
+ILDist - IL expression after Distributor.oz
+ILEnc - IL expression after Encoder.oz
+ILCh - IL expression after TypeChecker.oz
+ILTCo - IL expression after TypeCollector.oz
+IIL - IL integer
+K - class
+Lock - lock
+L - literal
+Lat - Lattice abstract data type
+LI - feature (literal or integer)
+M - finite set
+MSpec - specification of a finite set
+N - name
+O - object
+OIDA - output ID
+OL - output language (OL) expression
+On - (N) output name
+PIDA - principle ID (atom)
+PIDCIL - principle ID (IL constant)
+SL - solver language (SL) expression
+SLC - SL after Compiler.oz
+SLE - SL after Encoder.oz (stateless)
+Pn - (N) principle name
+Port - port
+Principle - (SL) principle
+Proc - procedure
+Prof - profile
+PO - unary procedure or object
+Rec - record
+S - string
+Sem - sem feature value
+Spc - space
+Str - Stream
+Sym - sym feature value
+Term - expression
+TIDA - type ID (atom)
+TIDCIL - type ID (IL constant)
+TkDEdges - edges
+TkDOptions - options
+TkDNodes - nodes
+Tkvar - Tk-variable
+Tn - (N) type name
+Token - token
+Top - (SL) lattice top value
+Tup - tuple
+U - unit
+UL - user language expression
+Url - URL record
+UrlV - virtual string representing a URL
+V - virtual string
+W - Tk-widget
+Win - Tk-toplevel widget (= window)
+X - any type
+Xs - list of X elements
+Y - any type
+Z - any type
+@end example

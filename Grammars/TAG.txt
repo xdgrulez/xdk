@@ -1,0 +1,34 @@
+%%
+%%  TAG adjunction
+%%  Marco Kuhlmann <kuhlmann@ps.uni-sb.de>
+%%
+
+%%  The six basic forms of adjunction of an auxiliary tree beta
+%%  into an initial tree alpha, with different positions of the
+%%  head and dummy substitution sites.
+
+alpha_A beta_B x x x
+x beta_B alpha_C x x
+x beta_B x x alpha_E
+alpha_A x x beta_D x
+x x alpha_C beta_D x
+x x x beta_D alpha_E
+
+%%  A variant of the copy language
+
+alpha_A beta_B beta_B x x x x
+alpha_A beta_B beta_B beta_B x x x x x
+alpha_A beta_B beta_B beta_B beta_B x x x x x x
+alpha_A beta_B beta_B beta_B beta_B beta_B x x x x x x x
+alpha_A beta_B beta_B beta_B beta_B beta_B beta_B x x x x x x x x
+
+%% Cross-serial dependencies in Dutch,
+%% without the sentential complementizer "omdat"
+
+ik Cecilia de nijlpaarden zag voeren
+ik Cecilia Henk de nijlpaarden zag helpen voeren
+
+%% Nested dependencies (like in German)
+
+ik Cecilia de nijlpaarden voeren zag
+ik Cecilia Henk de nijlpaarden voeren helpen zag

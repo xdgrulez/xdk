@@ -1,0 +1,18 @@
+defprinciple "principle.valencyPW" {
+  dims {D}
+  constraints {
+
+forall V: forall L:
+  ( [L "!"] in V.D.entry."in" => existsone V1: edge(V1 V L D) ) &
+  ( [L "+"] in V.D.entry."in" => exists V1: edge(V1 V L D) ) &
+  ( [L "?"] in V.D.entry."in" => (existsone V1: edge(V1 V L D)) | (~exists V1: edge(V1 V L D)) ) &
+  ( ~[L "!"] in V.D.entry."in" & ~[L "+"] in V.D.entry."in" & ~[L "?"] in V.D.entry."in" & ~[L "*"] in V.D.entry."in" => ~exists V1: edge(V1 V L D) )
+
+forall V: forall L:
+  ( [L "!"] in V.D.entry."out" => existsone V1: edge(V V1 L D) ) &
+  ( [L "+"] in V.D.entry."out" => exists V1: edge(V V1 L D) ) &
+  ( [L "?"] in V.D.entry."out" => (existsone V1: edge(V V1 L D)) | (~exists V1: edge(V V1 L D)) ) &
+  ( ~[L "!"] in V.D.entry."out" & ~[L "+"] in V.D.entry."out" & ~[L "?"] in V.D.entry."out" & ~[L "*"] in V.D.entry."out" => ~exists V1: edge(V V1 L D) )
+
+  }
+}

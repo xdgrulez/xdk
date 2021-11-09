@@ -1,0 +1,36 @@
+defprinciple "principle.lcfgPW" {
+  dims {D}
+  constraints {
+
+%% in
+
+forall V: forall L:
+  L in V.D.entry."in" =>
+    forall V1: forall L1:
+      edge(V1 V L1 D) => L1=L
+
+forall V: forall L:
+  L notin V.D.entry."in" =>
+    ~exists V1: edge(V1 V L D)
+
+forall V: forall L:
+  L in V.D.entry."in" & ~L=s =>
+    exists V1: edge(V1 V D)
+
+%% out
+
+forall V: ~exists V1:
+  edge(V V1 "^" D)
+
+forall V: forall L: forall L1:
+  [L L1] in V.D.entry.out =>
+    (~L="^" => existsone V1: edge(V V1 L D)) &
+    (~L1="^" => existsone V1: edge(V V1 L1 D))
+
+forall V: forall L: forall L1:
+  [L L1] in V.D.entry.out =>
+    (forall V1: L="^" & edge(V V1 L1 D) => V<V1) &
+    (forall V1: edge(V V1 L D) & L1="^" => V1<V) &
+    (forall V1: forall V2: edge(V V1 L D) & edge(V V2 L1 D) => V1<V2)
+  }
+}

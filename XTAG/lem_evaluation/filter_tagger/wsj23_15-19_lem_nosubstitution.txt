@@ -1,0 +1,626 @@
+sent: 16: speculators are calling for a degree of liquidity that is not there in the market . 
+done parsing...
+time(CPU): 7.350000
+parsed 1 from a total of 1
+
+sent: 17: traders said most of their major institutional investors , on the other hand , sat tight . 
+done parsing...
+time(CPU): 7.080000
+parsed 1 from a total of 1
+
+sent: 15: as a result , the link between the futures and stock markets ripped apart . 
+done parsing...
+time(CPU): 6.720000
+parsed 1 from a total of 1
+
+sent: 16: we did not even get a chance to do the programs we wanted to do . 
+done parsing...
+time(CPU): 132.720000
+parsed 1 from a total of 1
+
+sent: 18: during this time , small investors began ringing their brokers , wondering whether another crash had begun . 
+done parsing...
+time(CPU): 24.540000
+parsed 1 from a total of 1
+
+sent: 16: i have a hunch that this particular decline today is something more ado about less . 
+done parsing...
+time(CPU): 4.740000
+parsed 0 from a total of 1
+
+sent: 15: but the exchange will look at the performance of all specialists in all stocks . 
+done parsing...
+time(CPU): 3.560000
+parsed 1 from a total of 1
+
+sent: 17: unlike the weekend before Black Monday , the funds were not swamped with heavy withdrawal requests . 
+done parsing...
+time(CPU): 21.610000
+parsed 1 from a total of 1
+
+sent: 19: and many fund managers have built up cash levels and say they will be buying stock this week . 
+done parsing...
+time(CPU): 285.950000
+parsed 1 from a total of 1
+
+sent: 16: many have raised cash levels , which act as a buffer against steep market declines . 
+done parsing...
+time(CPU): 12.590000
+parsed 1 from a total of 1
+
+sent: 16: also , persistent redemptions would force some fund managers to dump stocks to raise cash . 
+done parsing...
+time(CPU): 19.180000
+parsed 1 from a total of 1
+
+sent: 19: but a strong level of investor withdrawals is much more unlikely this time around , fund managers said . 
+done parsing...
+time(CPU): 28.830000
+parsed 1 from a total of 1
+
+sent: 15: she added , if they all were bullish , i 'd really be upset . 
+done parsing...
+time(CPU): 0.610000
+parsed 0 from a total of 1
+
+sent: 17: the maker of scientific instruments and laser parts said orders fell below expectations in recent months . 
+done parsing...
+time(CPU): 100.510000
+parsed 1 from a total of 1
+
+sent: 15: it also is sure to help the machinists put added pressure on the company . 
+done parsing...
+time(CPU): 2.020000
+parsed 0 from a total of 1
+
+sent: 16: still , he said , it 's possible that the strike could last considerably longer . 
+done parsing...
+time(CPU): 2.990000
+parsed 1 from a total of 1
+
+sent: 18: it had planned a strike vote for next Sunday , but that has been pushed back indefinitely . 
+done parsing...
+time(CPU): 236.430000
+parsed 1 from a total of 1
+
+sent: 18: ideally , we 'd like to be the operator of the project and a modest equity investor . 
+done parsing...
+time(CPU): 12.260000
+parsed 1 from a total of 1
+
+sent: 15: our long suit is our proven ability to operate power plants , he said . 
+done parsing...
+time(CPU): 42.640000
+parsed 1 from a total of 1
+
+sent: 17: the company outpaced much of the chemical industry as annual profit grew fivefold in two years . 
+done parsing...
+time(CPU): 73.500000
+parsed 0 from a total of 1
+
+sent: 16: China , which had been putting in huge orders for polyethylene , abruptly halted them . 
+done parsing...
+time(CPU): 65.710000
+parsed 1 from a total of 1
+
+sent: 19: they recently announced increases of a few cents a pound to take effect in the next several weeks . 
+done parsing...
+time(CPU): 33.790000
+parsed 1 from a total of 1
+
+sent: 19: noting others ' estimates of when price increases can be sustained , he remarks , some say October . 
+done parsing...
+time(CPU): 15.200000
+parsed 0 from a total of 1
+
+sent: 17: by lifting ethylene production , the expansion will also lower the company 's raw material costs . 
+done parsing...
+time(CPU): 32.080000
+parsed 0 from a total of 1
+
+sent: 16: the studies on closing the unit could not be completed until now , he said . 
+done parsing...
+time(CPU): 1.590000
+parsed 0 from a total of 1
+
+sent: 17: the balance is supplied by a host of smaller exporters , such as Australia and Venezuela . 
+done parsing...
+time(CPU): 3.110000
+parsed 1 from a total of 1
+
+sent: 15: she said the company will study results from this market before expanding to others . 
+done parsing...
+time(CPU): 6.610000
+parsed 1 from a total of 1
+
+sent: 16: but with so many brands vying for space , that 's no longer the case . 
+done parsing...
+time(CPU): 0.700000
+parsed 0 from a total of 1
+
+sent: 19: i am painted sometimes as ferocious , perhaps because i have a ferocious list of statutes to implement . 
+done parsing...
+time(CPU): 29.370000
+parsed 1 from a total of 1
+
+sent: 17: but her main thrust was to promote the importance of world-wide free trade and open competition . 
+done parsing...
+time(CPU): 2.510000
+parsed 1 from a total of 1
+
+sent: 16: i will not enter into an agreement that stipulates to a percentage of the market . 
+done parsing...
+time(CPU): 6.640000
+parsed 1 from a total of 1
+
+sent: 15: the oil industry 's middling profits could persist through the rest of the year . 
+done parsing...
+time(CPU): 0.660000
+parsed 1 from a total of 1
+
+sent: 19: that change will obviously impact third and fourth quarter earnings for the industry in general , he added . 
+done parsing...
+time(CPU): 144.320000
+parsed 1 from a total of 1
+
+sent: 18: in addition , crude oil prices were up some from a year earlier , further pressuring profitability . 
+done parsing...
+time(CPU): 13.100000
+parsed 0 from a total of 1
+
+sent: 19: crude oil production may turn out to be the most surprising element of companies ' earnings this year . 
+done parsing...
+time(CPU): 18.210000
+parsed 1 from a total of 1
+
+sent: 17: demand has been much stronger than anticipated , and it typically accelerates in the fourth quarter . 
+done parsing...
+time(CPU): 8.070000
+parsed 0 from a total of 1
+
+sent: 16: while oil prices have been better than expected , natural gas prices have been worse . 
+done parsing...
+time(CPU): 14.650000
+parsed 0 from a total of 1
+
+sent: 17: the lagging gas price is not going to assist fourth quarter performance as many had expected . 
+done parsing...
+time(CPU): 70.830000
+parsed 1 from a total of 1
+
+sent: 17: however , these agencies generally agree that the West should be cautious about any further liberalization . 
+done parsing...
+time(CPU): 0.600000
+parsed 1 from a total of 1
+
+sent: 16: and they 're likely to stay that way for months to come , analysts say . 
+done parsing...
+time(CPU): 14.940000
+parsed 1 from a total of 1
+
+sent: 18: Brazil wants to stimulate demand for its product , which is going to be in plentiful supply . 
+done parsing...
+time(CPU): 33.150000
+parsed 1 from a total of 1
+
+sent: 17: Friday capped a week of steadily rising crude oil prices in both futures and spot markets . 
+done parsing...
+time(CPU): 17.620000
+parsed 0 from a total of 1
+
+sent: 15: there has been little news to account for such buoyancy in the oil markets . 
+done parsing...
+time(CPU): 11.290000
+parsed 1 from a total of 1
+
+sent: 18: all bets are off , analysts say , because of the shifting ownership of the retail chains . 
+
+sent: 18: maybe Lily became so obsessed with where people slept and how because her own arrangements kept shifting . 
+done parsing...
+time(CPU): 7.210000
+parsed 0 from a total of 1
+
+sent: 15: they painted the apartment orange , pink and white , according to her instructions . 
+done parsing...
+time(CPU): 5.040000
+parsed 1 from a total of 1
+
+sent: 15: the agreement and consent decree are subject to court approval , the company said . 
+done parsing...
+time(CPU): 40.960000
+parsed 1 from a total of 1
+
+sent: 18: if we get rid of a lot of that nonsense , it will be a big plus . 
+done parsing...
+time(CPU): 80.860000
+parsed 1 from a total of 1
+
+sent: 19: of course , established corporate managements often tend to applaud the setbacks of stock speculators and takeover artists . 
+done parsing...
+time(CPU): 19.780000
+parsed 1 from a total of 1
+
+sent: 19: weakness in the restaurant industry , which is leaving retail space vacant , exacerbates the problem for landlords . 
+done parsing...
+time(CPU): 54.410000
+parsed 1 from a total of 1
+
+sent: 15: after that , the buyers may repudiate the rates paid by the former thrifts . 
+done parsing...
+time(CPU): 1.270000
+parsed 0 from a total of 1
+
+sent: 17: its niche as the network of record during major crises draws elite audiences around the world . 
+done parsing...
+time(CPU): 5.090000
+parsed 1 from a total of 1
+
+sent: 18: it is paying higher salaries -- after years of scrimping -- to lure and keep experienced staffers . 
+done parsing...
+time(CPU): 9.970000
+parsed 1 from a total of 1
+
+sent: 15: but to improve , they 've really got to make the investment in people . 
+done parsing...
+time(CPU): 27.470000
+parsed 1 from a total of 1
+
+sent: 18: and the facts , as found by the various courts in these two lawsuits , were different . 
+done parsing...
+time(CPU): 12.850000
+parsed 0 from a total of 1
+
+sent: 18: when you suggest otherwise , you leave the realm of reporting and enter the orbit of speculation . 
+done parsing...
+time(CPU): 16.640000
+parsed 1 from a total of 1
+
+sent: 19: if true , the court wrote , this contention would justify dismissal of these actions on prudential grounds . 
+done parsing...
+time(CPU): 63.190000
+parsed 1 from a total of 1
+
+sent: 15: he reiterated his opposition to such funding , but expressed hope of a compromise . 
+done parsing...
+time(CPU): 0.380000
+parsed 0 from a total of 1
+
+sent: 17: but economists were divided over the extent of the inflation threat signaled by the new numbers . 
+done parsing...
+time(CPU): 18.780000
+parsed 1 from a total of 1
+
+sent: 17: i would say this is not bad news ; this is a blip , he said . 
+done parsing...
+time(CPU): 0.580000
+parsed 0 from a total of 1
+
+sent: 18: energy prices then plummeted through the summer , causing the index to decline for three consecutive months . 
+done parsing...
+time(CPU): 30.890000
+parsed 1 from a total of 1
+
+sent: 18: he predicted that inflation will moderate next year , saying that credit conditions are fairly tight world-wide . 
+done parsing...
+time(CPU): 90.950000
+parsed 1 from a total of 1
+
+sent: 17: but at least part of the increase could have come from higher prices , analysts said . 
+done parsing...
+time(CPU): 47.160000
+parsed 1 from a total of 1
+
+sent: 18: the legislation requires thrifts to divest themselves of junk bonds in the new , somber regulatory climate . 
+done parsing...
+time(CPU): 25.140000
+parsed 0 from a total of 1
+
+sent: 17: he also said substantial reserves have been set aside for possible losses from the junk bonds . 
+done parsing...
+time(CPU): 106.490000
+parsed 1 from a total of 1
+
+sent: 15: many interpret the delay as an indication that regulators are skeptical about the proposal . 
+done parsing...
+time(CPU): 3.150000
+parsed 1 from a total of 1
+
+sent: 19: branches and deposits can be sold at a premium in the event federal regulators take over an institution . 
+done parsing...
+time(CPU): 16.570000
+parsed 1 from a total of 1
+
+sent: 17: for the most part , what 's made here stays here , and for good reason . 
+done parsing...
+time(CPU): 47.210000
+parsed 1 from a total of 1
+
+sent: 17: the financially struggling station offers programs obviously made available cheaply from its boss 's other ventures . 
+done parsing...
+time(CPU): 49.710000
+parsed 0 from a total of 1
+
+sent: 17: there has been a swing of the pendulum back to the gas side , he said . 
+done parsing...
+time(CPU): 50.590000
+parsed 1 from a total of 1
+
+sent: 16: but when something is inevitable , you learn to live with it , he said . 
+done parsing...
+time(CPU): 7.700000
+parsed 1 from a total of 1
+
+sent: 17: on the other hand , the battle of the bus is expected to grow increasingly irrelevant . 
+done parsing...
+time(CPU): 150.820000
+parsed 1 from a total of 1
+
+sent: 18: and although Pennsylvania and Massachusetts suffered slight declines earlier in the decade , they are growing again . 
+done parsing...
+time(CPU): 38.600000
+parsed 1 from a total of 1
+
+sent: 19: at the same time , several states in the South and West have had their own population turnaround . 
+done parsing...
+time(CPU): 125.820000
+parsed 1 from a total of 1
+
+sent: 15: and even after losing a spouse , more of the elderly are staying independent . 
+done parsing...
+time(CPU): 0.360000
+parsed 0 from a total of 1
+
+sent: 17: like their younger counterparts , the older elderly are less likely to live with other relatives . 
+done parsing...
+time(CPU): 2.260000
+parsed 0 from a total of 1
+
+sent: 16: more people are remaining independent longer presumably because they are better off physically and financially . 
+done parsing...
+time(CPU): 1.740000
+parsed 0 from a total of 1
+
+sent: 17: being successful in careers and spending the money they make are top priorities for this group . 
+done parsing...
+time(CPU): 71.090000
+parsed 1 from a total of 1
+
+sent: 16: trouble with a capital t and that rhymes with p and that stands for pool . 
+done parsing...
+time(CPU): 24.280000
+parsed 1 from a total of 1
+
+sent: 17: sorry , the show does not even have the one redeeming quality of genuine local color . 
+done parsing...
+time(CPU): 2.670000
+parsed 0 from a total of 1
+
+sent: 16: of all the ethnic tensions in America , which is the most troublesome right now ? 
+done parsing...
+time(CPU): 3.790000
+parsed 1 from a total of 1
+
+sent: 17: the economy , he added , remains well-balanced and the outlook is for continued moderate growth . 
+done parsing...
+time(CPU): 5.960000
+parsed 1 from a total of 1
+
+sent: 16: we do not need this as a way to get capital gains , he said . 
+done parsing...
+time(CPU): 109.490000
+parsed 0 from a total of 1
+
+sent: 19: new federal legislation requires that all thrifts divest themselves of such speculative securities over a period of years . 
+done parsing...
+time(CPU): 77.690000
+parsed 1 from a total of 1
+
+sent: 17: well , in some ways it is different , but technically it is just the same . 
+done parsing...
+time(CPU): 1.590000
+parsed 0 from a total of 1
+
+sent: 15: right now they 're telling me to get the hell out and stay out . 
+done parsing...
+time(CPU): 14.000000
+parsed 0 from a total of 1
+
+sent: 16: most people , he says , have no idea what a massacre pattern looks like . 
+done parsing...
+time(CPU): 12.260000
+parsed 1 from a total of 1
+
+sent: 15: now , as in those two years , her stock market indicators are positive . 
+done parsing...
+time(CPU): 4.980000
+parsed 0 from a total of 1
+
+sent: 19: the main thing was portfolio insurance , a mechanical trading system intended to protect an investor against losses . 
+done parsing...
+time(CPU): 60.590000
+parsed 1 from a total of 1
+
+sent: 17: i expect the market to open weaker Monday , but then it should find some stability . 
+done parsing...
+time(CPU): 60.700000
+parsed 0 from a total of 1
+
+sent: 18: thus , he concludes , this is not a good environment to be fully invested in stocks . 
+done parsing...
+time(CPU): 1.400000
+parsed 0 from a total of 1
+
+sent: 16: i see this as a reaction to the whole junk bond explosion , he says . 
+done parsing...
+time(CPU): 51.650000
+parsed 0 from a total of 1
+
+sent: 17: there is more resiliency in the economy at large than we commonly suppose , he says . 
+done parsing...
+time(CPU): 3.540000
+parsed 0 from a total of 1
+
+sent: 15: dealers would give you a quote , but then refuse to make the trade . 
+done parsing...
+time(CPU): 8.540000
+parsed 1 from a total of 1
+
+sent: 17: that 's not a bad way to proceed , just somewhat different from standard american practice . 
+done parsing...
+time(CPU): 6.100000
+parsed 0 from a total of 1
+
+sent: 15: why not simply questions designed to identify sources and causes of waste and inefficiency ? 
+done parsing...
+time(CPU): 4.640000
+parsed 0 from a total of 1
+
+sent: 16: absent the risk of such prosecution , a court may order the defendant to testify . 
+done parsing...
+time(CPU): 37.940000
+parsed 1 from a total of 1
+
+sent: 17: most of the complaints about unanswered phone calls came from regional brokers rather than individual investors . 
+done parsing...
+time(CPU): 5.990000
+parsed 0 from a total of 1
+
+sent: 15: but , he added , you can only take one call at a time . 
+done parsing...
+time(CPU): 4.080000
+parsed 1 from a total of 1
+
+sent: 16: market makers keep supplies of stock on hand to maintain orderly trading when imbalances occur . 
+done parsing...
+time(CPU): 25.790000
+parsed 1 from a total of 1
+
+sent: 15: two years ago we were carrying huge inventories and that was the big culprit . 
+done parsing...
+time(CPU): 1.030000
+parsed 1 from a total of 1
+
+sent: 19: nevertheless , the shock of another steep plunge in stock prices undoubtedly will shake many investors ' confidence . 
+done parsing...
+time(CPU): 197.720000
+parsed 1 from a total of 1
+
+sent: 18: it wo not take much more to scare the hell out of retail investors , he says . 
+done parsing...
+time(CPU): 6.570000
+parsed 0 from a total of 1
+
+sent: 17: if they could not sell , some of them put the shares back on the shelf . 
+done parsing...
+time(CPU): 3.060000
+parsed 0 from a total of 1
+
+sent: 15: the issues of companies with ties to the junk bond market also tumbled Friday . 
+done parsing...
+time(CPU): 18.380000
+parsed 1 from a total of 1
+
+sent: 15: these rate indications are not directly comparable ; lending practices vary widely by location . 
+done parsing...
+time(CPU): 4.530000
+parsed 1 from a total of 1
+
+sent: 16: i waited to make sure all the program trades had kicked through , he said . 
+done parsing...
+time(CPU): 161.870000
+parsed 1 from a total of 1
+
+sent: 18: especially gleeful were the short sellers , who have been pounded by this year 's market climb . 
+done parsing...
+time(CPU): 69.240000
+parsed 0 from a total of 1
+
+sent: 18: the shorts sell borrowed shares , hoping to profit by replacing them later at a lower price . 
+done parsing...
+time(CPU): 3.270000
+parsed 0 from a total of 1
+
+sent: 16: but so far the company has not complied with that request , the spokesman said . 
+done parsing...
+time(CPU): 15.410000
+parsed 0 from a total of 1
+
+sent: 19: -- the administration has sent out confusing signals about its response to a recent spate of airline takeovers . 
+done parsing...
+time(CPU): 69.390000
+parsed 0 from a total of 1
+
+sent: 18: he has four stocks in mind to buy if the prices drop to the level he wants . 
+done parsing...
+time(CPU): 73.630000
+parsed 1 from a total of 1
+
+sent: 18: we told the little guy it could only happen once in a lifetime , come on back . 
+done parsing...
+time(CPU): 76.170000
+parsed 1 from a total of 1
+
+sent: 18: small investors have tiptoed back into the market following Black Monday , but mostly through mutual funds . 
+done parsing...
+time(CPU): 23.070000
+parsed 1 from a total of 1
+
+sent: 15: but it 's not only the stock market that has some small investors worried . 
+done parsing...
+time(CPU): 8.800000
+parsed 1 from a total of 1
+
+sent: 19: all of this comes in a machine that weighs only six pounds and fits comfortably into most briefcases . 
+done parsing...
+time(CPU): 55.620000
+parsed 0 from a total of 1
+
+sent: 19: some critics , however , say its ability to run commonplace programs is restricted by a limited memory . 
+done parsing...
+time(CPU): 14.510000
+parsed 0 from a total of 1
+
+sent: 15: the market is so new , nobody knows yet how big it can be . 
+done parsing...
+time(CPU): 1.860000
+parsed 0 from a total of 1
+
+sent: 15: responding to that demand , however , has led to a variety of compromises . 
+done parsing...
+time(CPU): 12.010000
+parsed 1 from a total of 1
+
+sent: 19: but some big brokerage firms said they do not expect major problems as a result of margin calls . 
+done parsing...
+time(CPU): 256.520000
+parsed 1 from a total of 1
+
+sent: 16: the stock market 's swoon may turn out to be good news for the economy . 
+done parsing...
+time(CPU): 1.310000
+parsed 1 from a total of 1
+
+sent: 16: the effects were much less severe and less prolonged than some had feared or expected . 
+done parsing...
+time(CPU): 0.560000
+parsed 0 from a total of 1
+
+sent: 17: what 's more , the corporate borrowing binge has not abated in the past two years . 
+done parsing...
+time(CPU): 18.810000
+parsed 0 from a total of 1
+
+sent: 18: the more a company relies on borrowed money , the greater its sensitivity to an economic slowdown . 
+done parsing...
+time(CPU): 0.700000
+parsed 0 from a total of 1
+
+sent: 18: the economy does , however , depend on the confidence of businesses , consumers and foreign investors . 
+done parsing...
+time(CPU): 13.800000
+parsed 1 from a total of 1
+
+sent: 15: in the latest quarter , at least , profit is expected to fall sharply . 
+done parsing...
+time(CPU): 2.670000
+parsed 0 from a total of 1

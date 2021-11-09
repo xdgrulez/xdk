@@ -1,0 +1,138 @@
+@chapter Overview 
+The XDG Development Kit (XDK) is a grammar development environment for
+the grammar formalism Extensible Dependency Grammar (XDG).
+
+@section XDG
+
+An XDG grammar is a description of a set of @emph{dependency
+multigraphs}.
+@cindex dependency multigraph
+@cindex multigraph
+A dependency multigraph is a set of dependency graphs over the same
+string of words.  The words correspond @emph{one-to-one} to the nodes in
+the multigraph.
+@cindex one-to-one correspondence words-nodes
+The individual dependency graphs are called @emph{dimensions}, and
+@cindex dimension
+the nodes of the dimensions are connected by @emph{labeled edges}.
+@cindex labeled edge
+@cindex edge
+Dependency multigraphs are a @emph{modular}
+@cindex modular
+way of representing multiple aspects of a linguistic analysis.  For
+example, a multigraph can consist of two dimensions: one representing
+the grammatical functions, and another representing the topological
+structure.  Here is an analysis of the German subordinate clause
+@emph{(dass) Maria versucht einen Mann zu lieben} along these lines: the
+dimension of grammatical functions is shown on top and the dimension of
+topological structure below. Notice that the two dimensions share the
+same string of words and the same set of corresponding nodes but have
+different edges:
+
+@image{pix/dagid,10cm}
+@image{pix/daglp,10cm}
+
+The modularity of XDG paves the way for a @emph{divide-and-conquer
+strategy}
+@cindex divide-and-conquer
+to grammatical description. The problem of modeling all linguistic
+aspects of a grammar and their interactions is broken down into multiple
+smaller problems:
+
+@enumerate
+@item modeling the individual linguistic aspects independently of each other,
+each on a separate dimension and
+@item modeling the interactions between them.
+@end enumerate
+
+This strategy stands in stark contrast to grammar formalisms where the
+linguistic aspects are modeled in a more interlocked manner, and all
+their interactions have to be taken care of at the same time. The XDG
+strategy can lead to significantly simplified and less error-prone
+grammar development. In addition, it allows for simple yet powerful
+linguistic models.
+
+An XDG grammar consists of the following ingredients:
+@enumerate
+@item a @emph{multigraph type}
+@cindex multigraph type
+determining the basic properties of the multigraphs licensed by the
+grammar: its dimensions, words, edge labels and attributes.
+@item a set of @emph{principles}
+@cindex principle
+constituting the well-formedness conditions of the grammar.
+@item a @emph{lexicon}
+@cindex lexicon
+determining specific properties of nodes associated with specific words
+@end enumerate
+
+@section XDK
+
+The XDK is a grammar development environment for XDG.
+In the XDK, grammars are written as XDK @emph{grammar files}.
+@cindex grammar file
+Grammar files include definitions of the multigraph type and the
+lexicon, and references to the principles.  Principles are implemented
+using @emph{finite-set constraint programming}
+@cindex finite-set constraint programming
+in @emph{Mozart/Oz}.
+@cindex Mozart/Oz
+Starting with version 1.6.33, the XDK includes @emph{PrincipleWriter}
+(@emph{PW}),
+@cindex PrincipleWriter
+@cindex PW
+developed by Jochen Setz and Jorge Marques Pelizzoni. With PW, new
+principles can be automatically compiled from declarative specifications
+(formulas in first-order logic) without any knowledge in Mozart/Oz
+constraint programming.
+
+Taken together, the XDK provides the following:
+@itemize @bullet
+@item compilers for grammar files in various input languages (e.g. XML)
+@item a solver for XDG parsing/generation
+@item output functors to visualize the solutions of the solver
+@item the principle compiler @emph{PrincipleWriter} (@ref{PrincipleWriter}) for automatic compilation of principles into
+Mozart/Oz constraint functors
+@item lots of handcrafted example grammars
+@item an adaptation of the large-scale English TAG grammar developed in the
+XTAG project
+@item many useful shell-scripts
+@end itemize
+
+@section Literature
+
+XDG is described most thoroughly in Ralph Debusmann's dissertation
+@cite{Extensible Dependency Grammar - A Modular Grammar Formalism Based
+On Multigraph Description}. The XDK has been published in @cite{The XDG
+Grammar Development Kit}. These and other papers can be found on the
+references pages of this document: @ref{References}.  Still more
+material can be found online here:
+@uref{http://www.ps.uni-sb.de/~rade/xdg.html}. The latter page also
+includes pointers to slides, e.g. from the ESSLLI 2004 course by Ralph
+Debusmann and Denys Duchier:
+@uref{http://www.ps.uni-sb.de/~rade/talks.html}.
+
+@section Structure of this Manual
+
+The structure of this manual is as follows. @ref{Installation} explains
+how to install the XDK. @ref{Compiler} explains how to write
+grammars. @ref{Grammars} describes the example grammars included in the
+XDK distribution. This excludes the XDK version of the XTAG grammar,
+which is described in @ref{XTAG}.  In @ref{Solver}, we explain the
+constraint-based solver for parsing and generation.  @ref{Oracles} is
+about oracles to guide the search for solutions.  @ref{Outputs} explains
+the various available output functors and how to define new ones.
+@ref{PrincipleWriter} introduces the principle compiler. In
+@ref{Programs}, we explain how to use the executable programs provided
+by the XDK.  @ref{Debug} illustrates how XDG grammars can be
+debugged. @ref{Changes} lists the changes the XDK has gone through
+during its lifetime, and @ref{Contributors} those people who have
+contributed to it. @ref{References} contains pointers to all relevant
+papers, and @ref{Concept index} is the concept index of this document.
+
+Throughout this manual, sections labeled ``developers only'' contain
+information useful only for people who wish to understand the inner
+workings of the XDK. Here, in @ref{Directories}, we describe the
+directory structure of the XDK.  In @ref{Exceptions} we specify the
+standard format for exceptions throughout the system.  In
+@ref{Variable names}, we describe the variable name conventions.

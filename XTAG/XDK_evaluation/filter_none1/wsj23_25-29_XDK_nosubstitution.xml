@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE statistics SYSTEM "Extras/statistics.dtd">
+<statistics>
+  <grammar data="4712.ulsocket"/>
+  <examples data="XTAG/XDK_evaluation/wsj23_25-29.txt" count="376"/>
+  <date data="Jun 17, 2007 11:51:36"/>
+  <solutions data="1"/>
+  <failures data="9999"/>
+  <timeout data="300"/>
+  <reco data="5"/>
+  <dimensions>
+    <dimension data="id"/>
+    <dimension data="idlp"/>
+    <dimension data="lex"/>
+    <dimension data="lp"/>
+  </dimensions>
+  <principles>
+    <principle data="id principle.graph1Constraints (id)"/>
+    <principle data="id principle.graph1Dist (id)"/>
+    <principle data="id principle.tree (id)"/>
+    <principle data="id principle.in (id)"/>
+    <principle data="id principle.out (id)"/>
+    <principle data="id principle.xTAGRoot (id)"/>
+    <principle data="lp principle.graph1Constraints (lp)"/>
+    <principle data="lp principle.graph1Dist (lp)"/>
+    <principle data="lp principle.tree (lp)"/>
+    <principle data="lp principle.in (lp)"/>
+    <principle data="lp principle.out (lp)"/>
+    <principle data="lp principle.government (lp)"/>
+    <principle data="lp principle.xTAG (lp)"/>
+    <principle data="lp principle.parse (lp)"/>
+    <principle data="idlp principle.xTAGLinking (id,lp,idlp)"/>
+    <principle data="idlp principle.xTAGRedundant (id,lp)"/>
+    <principle data="lex principle.entries ()"/>
+  </principles>
+  <gprofile fd="6" fs="295" fdfs="301" entries="876">
+    <gpnode fd="2" fs="1" fdfs="3"/>
+    <gpattrs fd="0" fs="0" fdfs="0">
+      <gpdimension data="id" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="idlp" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="0" fs="0" fdfs="0"/>
+    </gpattrs>
+    <gpentry fd="2" fs="159" fdfs="161">
+      <gpdimension data="id" fd="0" fs="37" fdfs="37"/>
+      <gpdimension data="idlp" fd="0" fs="40" fdfs="40"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="2" fs="82" fdfs="84"/>
+    </gpentry>
+    <gpmodel fd="2" fs="135" fdfs="137">
+      <gpdimension data="id" fd="1" fs="44" fdfs="45"/>
+      <gpdimension data="idlp" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="1" fs="91" fdfs="92"/>
+    </gpmodel>
+    <gplabel>
+      <gpdimension data="id" label="36"/>
+      <gpdimension data="idlp" label="0"/>
+      <gpdimension data="lex" label="0"/>
+      <gpdimension data="lp" label="40"/>
+    </gplabel>
+  </gprofile>
+  <string id="string2">
+    <words>
+    big investment banks refused to step up to the plate to support the beleaguered floor traders by buying big blocks of stock , traders say .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="511"/>
+    <depth data="104"/>
+    <failed data="489"/>
+    <succeeded data="0"/>
+    <time data="300080"/>
+    <sprofile fd="300612" fs="95850" fdfs="396462" pr="530206" entries="47.692" words="26">
+      <spnode index="1" word="big" entries="18" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="2" word="investment" entries="3" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="3" word="banks" entries="70" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="4" word="refused" entries="116" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="5" word="to" entries="38" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="6" word="step" entries="104" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="7" word="up" entries="133" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="8" word="to" entries="38" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="9" word="the" entries="2" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="10" word="plate" entries="59" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="11" word="to" entries="38" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="12" word="support" entries="58" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="13" word="the" entries="2" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="14" word="beleaguered" entries="39" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="15" word="floor" entries="42" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="16" word="traders" entries="19" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="17" word="by" entries="34" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="18" word="buying" entries="143" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="19" word="big" entries="18" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="20" word="blocks" entries="59" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="21" word="of" entries="28" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="22" word="stock" entries="72" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="23" word="," entries="22" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="24" word="traders" entries="19" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="25" word="say" entries="64" fd="6" fs="349" fdfs="355" pr="551"/>
+      <spnode index="26" word="." entries="2" fd="6" fs="349" fdfs="355" pr="551"/>
+    </sprofile>
+  </string>
+  <string id="string3">
+    <words>
+    many money managers and some traders had already left their offices early Friday afternoon on a warm autumn day -- because the stock market was so quiet .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="580"/>
+    <depth data="71"/>
+    <failed data="560"/>
+    <succeeded data="0"/>
+    <time data="300250"/>
+    <sprofile fd="264824" fs="82704" fdfs="347528" pr="462406" entries="29.643" words="28">
+      <spnode index="1" word="many" entries="7" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="2" word="money" entries="19" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="3" word="managers" entries="19" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="4" word="and" entries="11" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="5" word="some" entries="6" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="6" word="traders" entries="19" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="7" word="had" entries="96" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="8" word="already" entries="6" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="9" word="left" entries="118" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="10" word="their" entries="3" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="11" word="offices" entries="19" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="12" word="early" entries="23" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="13" word="Friday" entries="7" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="14" word="afternoon" entries="23" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="15" word="on" entries="46" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="16" word="a" entries="5" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="17" word="warm" entries="82" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="18" word="autumn" entries="23" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="19" word="day" entries="24" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="20" word="--" entries="10" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="21" word="because" entries="4" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="22" word="the" entries="2" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="23" word="stock" entries="72" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="24" word="market" entries="70" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="25" word="was" entries="5" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="26" word="so" entries="25" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="27" word="quiet" entries="84" fd="6" fs="275" fdfs="281" pr="433"/>
+      <spnode index="28" word="." entries="2" fd="6" fs="275" fdfs="281" pr="433"/>
+    </sprofile>
+  </string>
+  <string id="string8">
+    <words>
+    when the airline information came through , it cracked every model we had for the marketplace , said a managing director at one of the largest program-trading firms .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="901"/>
+    <depth data="22"/>
+    <failed data="893"/>
+    <succeeded data="0"/>
+    <time data="300050"/>
+    <sprofile fd="252126" fs="77965" fdfs="330091" pr="438078" entries="28.586" words="29">
+      <spnode index="1" word="when" entries="24" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="2" word="the" entries="2" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="3" word="airline" entries="3" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="4" word="information" entries="30" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="5" word="came" entries="57" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="6" word="through" entries="43" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="7" word="," entries="22" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="8" word="it" entries="1" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="9" word="cracked" entries="69" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="10" word="every" entries="2" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="11" word="model" entries="54" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="12" word="we" entries="1" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="13" word="had" entries="50" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="14" word="for" entries="30" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="15" word="the" entries="2" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="16" word="marketplace" entries="19" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="17" word="," entries="22" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="18" word="said" entries="78" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="19" word="a" entries="5" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="20" word="managing" entries="84" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="21" word="director" entries="19" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="22" word="at" entries="31" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="23" word="one" entries="22" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="24" word="of" entries="28" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="25" word="the" entries="2" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="26" word="largest" entries="18" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="27" word="program-trading" entries="39" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="28" word="firms" entries="70" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="29" word="." entries="2" fd="6" fs="250" fdfs="256" pr="393"/>
+    </sprofile>
+  </string>
+  <string id="string16">
+    <words>
+    while Friday 's debacle involved mainly professional traders rather than investors , it left the market vulnerable to continued selling this morning , traders said .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="36"/>
+    <depth data="37"/>
+    <failed data="5"/>
+    <succeeded data="1"/>
+    <time data="8900"/>
+    <sprofile fd="264966" fs="84037" fdfs="349003" pr="465942" entries="29.462" words="26">
+      <spnode index="1" word="while" entries="7" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="2" word="Friday" entries="7" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="3" word="'s" entries="8" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="4" word="debacle" entries="3" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="5" word="involved" entries="53" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="6" word="mainly" entries="5" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="7" word="professional" entries="21" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="8" word="traders" entries="19" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="9" word="rather" entries="19" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="10" word="than" entries="4" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="11" word="investors" entries="3" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="12" word="," entries="22" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="13" word="it" entries="19" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="14" word="left" entries="118" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="15" word="the" entries="2" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="16" word="market" entries="70" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="17" word="vulnerable" entries="18" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="18" word="to" entries="38" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="19" word="continued" entries="81" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="20" word="selling" entries="100" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="21" word="this" entries="5" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="22" word="morning" entries="23" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="23" word="," entries="22" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="24" word="traders" entries="19" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="25" word="said" entries="78" fd="6" fs="310" fdfs="316" pr="489"/>
+      <spnode index="26" word="." entries="2" fd="6" fs="310" fdfs="316" pr="489"/>
+    </sprofile>
+  </string>
+  <string id="string19">
+    <words>
+    the agreements bring to a total of nine the number of planes the travel company has sold this year as part of a restructuring .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="556"/>
+    <depth data="77"/>
+    <failed data="536"/>
+    <succeeded data="0"/>
+    <time data="301320"/>
+    <sprofile fd="282950" fs="90437" fdfs="373387" pr="499502" entries="36.68" words="25">
+      <spnode index="1" word="the" entries="2" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="2" word="agreements" entries="4" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="3" word="bring" entries="132" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="4" word="to" entries="38" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="5" word="a" entries="5" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="6" word="total" entries="72" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="7" word="of" entries="28" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="8" word="nine" entries="5" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="9" word="the" entries="2" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="10" word="number" entries="77" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="11" word="of" entries="28" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="12" word="planes" entries="15" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="13" word="the" entries="2" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="14" word="travel" entries="70" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="15" word="company" entries="71" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="16" word="has" entries="50" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="17" word="sold" entries="97" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="18" word="this" entries="5" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="19" word="year" entries="24" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="20" word="as" entries="34" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="21" word="part" entries="82" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="22" word="of" entries="28" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="23" word="a" entries="5" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="24" word="restructuring" entries="39" fd="6" fs="342" fdfs="348" pr="541"/>
+      <spnode index="25" word="." entries="2" fd="6" fs="342" fdfs="348" pr="541"/>
+    </sprofile>
+  </string>
+  <string id="string28">
+    <words>
+    some shareholders have held off until today because any fund exchanges made after Friday 's close would take place at today 's closing prices .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="681"/>
+    <depth data="81"/>
+    <failed data="661"/>
+    <succeeded data="0"/>
+    <time data="300160"/>
+    <sprofile fd="236100" fs="75079" fdfs="311179" pr="415444" entries="47.64" words="25">
+      <spnode index="1" word="some" entries="6" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="2" word="shareholders" entries="19" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="3" word="have" entries="50" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="4" word="held" entries="138" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="5" word="off" entries="75" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="6" word="until" entries="10" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="7" word="today" entries="23" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="8" word="because" entries="4" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="9" word="any" entries="6" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="10" word="fund" entries="58" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="11" word="exchanges" entries="58" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="12" word="made" entries="154" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="13" word="after" entries="25" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="14" word="Friday" entries="7" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="15" word="'s" entries="8" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="16" word="close" entries="114" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="17" word="would" entries="2" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="18" word="take" entries="157" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="19" word="place" entries="58" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="20" word="at" entries="31" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="21" word="today" entries="23" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="22" word="'s" entries="8" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="23" word="closing" entries="97" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="24" word="prices" entries="58" fd="6" fs="296" fdfs="302" pr="467"/>
+      <spnode index="25" word="." entries="2" fd="6" fs="296" fdfs="302" pr="467"/>
+    </sprofile>
+  </string>
+  <string id="string29">
+    <words>
+    one reason is that after two years of monthly net redemptions , the fund posted net inflows of money from investors in August and September .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="890"/>
+    <depth data="104"/>
+    <failed data="870"/>
+    <succeeded data="0"/>
+    <time data="300020"/>
+    <sprofile fd="204126" fs="64057" fdfs="268183" pr="356670" entries="25.115" words="26">
+      <spnode index="1" word="one" entries="22" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="2" word="reason" entries="74" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="3" word="is" entries="5" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="4" word="that" entries="6" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="5" word="after" entries="25" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="6" word="two" entries="6" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="7" word="years" entries="24" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="8" word="of" entries="28" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="9" word="monthly" entries="21" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="10" word="net" entries="72" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="11" word="redemptions" entries="19" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="12" word="," entries="23" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="13" word="the" entries="2" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="14" word="fund" entries="58" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="15" word="posted" entries="39" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="16" word="net" entries="72" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="17" word="inflows" entries="19" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="18" word="of" entries="28" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="19" word="money" entries="19" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="20" word="from" entries="28" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="21" word="investors" entries="3" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="22" word="in" entries="33" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="23" word="August" entries="7" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="24" word="and" entries="11" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="25" word="September" entries="7" fd="6" fs="250" fdfs="256" pr="393"/>
+      <spnode index="26" word="." entries="2" fd="6" fs="250" fdfs="256" pr="393"/>
+    </sprofile>
+  </string>
+  <string id="string36">
+    <words>
+    half of them are really scared and want to sell , she said , but i 'm trying to talk them out of it .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="621"/>
+    <depth data="56"/>
+    <failed data="611"/>
+    <succeeded data="0"/>
+    <time data="300310"/>
+    <sprofile fd="288250" fs="92596" fdfs="380846" pr="509966" entries="41.04" words="25">
+      <spnode index="1" word="half" entries="38" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="2" word="of" entries="28" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="3" word="them" entries="1" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="4" word="are" entries="8" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="5" word="really" entries="6" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="6" word="scared" entries="51" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="7" word="and" entries="11" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="8" word="want" entries="98" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="9" word="to" entries="38" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="10" word="sell" entries="146" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="11" word="," entries="23" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="12" word="she" entries="13" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="13" word="said" entries="78" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="14" word="," entries="23" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="15" word="but" entries="18" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="16" word="i" entries="19" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="17" word="'m" entries="1" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="18" word="trying" entries="130" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="19" word="to" entries="38" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="20" word="talk" entries="70" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="21" word="them" entries="1" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="22" word="out" entries="138" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="23" word="of" entries="28" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="24" word="it" entries="19" fd="6" fs="363" fdfs="369" pr="573"/>
+      <spnode index="25" word="." entries="2" fd="6" fs="363" fdfs="369" pr="573"/>
+    </sprofile>
+  </string>
+  <string id="string37">
+    <words>
+    two years ago , unlike today , the dollar was weak , interest rates were rising and the market was very overvalued , they say .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="1134"/>
+    <depth data="85"/>
+    <failed data="1118"/>
+    <succeeded data="0"/>
+    <time data="300000"/>
+    <sprofile fd="209196" fs="65722" fdfs="274918" pr="365776" entries="25.423" words="26">
+      <spnode index="1" word="two" entries="6" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="2" word="years" entries="24" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="3" word="ago" entries="32" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="4" word="," entries="23" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="5" word="unlike" entries="45" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="6" word="today" entries="23" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="7" word="," entries="23" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="8" word="the" entries="2" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="9" word="dollar" entries="19" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="10" word="was" entries="5" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="11" word="weak" entries="18" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="12" word="," entries="23" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="13" word="interest" entries="42" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="14" word="rates" entries="69" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="15" word="were" entries="5" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="16" word="rising" entries="68" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="17" word="and" entries="11" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="18" word="the" entries="2" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="19" word="market" entries="70" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="20" word="was" entries="5" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="21" word="very" entries="17" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="22" word="overvalued" entries="39" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="23" word="," entries="23" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="24" word="they" entries="1" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="25" word="say" entries="64" fd="6" fs="255" fdfs="261" pr="401"/>
+      <spnode index="26" word="." entries="2" fd="6" fs="255" fdfs="261" pr="401"/>
+    </sprofile>
+  </string>
+  <string id="string39">
+    <words>
+    America West , though , is a smaller airline and therefore more affected by the delayed delivery of a single plane than many of its competitors would be .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="1203"/>
+    <depth data="57"/>
+    <failed data="1191"/>
+    <succeeded data="0"/>
+    <time data="300080"/>
+    <sprofile fd="220806" fs="67810" fdfs="288616" pr="382078" entries="16.448" words="29">
+      <spnode index="1" word="America" entries="3" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="2" word="West" entries="17" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="3" word="," entries="23" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="4" word="though" entries="5" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="5" word="," entries="23" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="6" word="is" entries="5" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="7" word="a" entries="5" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="8" word="smaller" entries="18" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="9" word="airline" entries="3" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="10" word="and" entries="11" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="11" word="therefore" entries="5" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="12" word="more" entries="7" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="13" word="affected" entries="57" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="14" word="by" entries="34" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="15" word="the" entries="2" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="16" word="delayed" entries="69" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="17" word="delivery" entries="19" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="18" word="of" entries="28" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="19" word="a" entries="5" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="20" word="single" entries="56" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="21" word="plane" entries="29" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="22" word="than" entries="4" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="23" word="many" entries="7" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="24" word="of" entries="28" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="25" word="its" entries="2" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="26" word="competitors" entries="3" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="27" word="would" entries="2" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="28" word="be" entries="5" fd="6" fs="225" fdfs="231" pr="353"/>
+      <spnode index="29" word="." entries="2" fd="6" fs="225" fdfs="231" pr="353"/>
+    </sprofile>
+  </string>
+  <string id="string40">
+    <words>
+    indeed , a random check Friday did not seem to indicate that the strike was having much of an effect on other airline operations .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="65"/>
+    <depth data="47"/>
+    <failed data="39"/>
+    <succeeded data="1"/>
+    <time data="24040"/>
+    <sprofile fd="273850" fs="87639" fdfs="361489" pr="483594" entries="30.76" words="25">
+      <spnode index="1" word="indeed" entries="6" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="2" word="," entries="22" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="3" word="a" entries="5" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="4" word="random" entries="18" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="5" word="check" entries="54" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="6" word="Friday" entries="7" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="7" word="did" entries="100" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="8" word="not" entries="3" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="9" word="seem" entries="2" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="10" word="to" entries="38" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="11" word="indicate" entries="58" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="12" word="that" entries="6" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="13" word="the" entries="2" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="14" word="strike" entries="127" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="15" word="was" entries="5" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="16" word="having" entries="96" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="17" word="much" entries="38" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="18" word="of" entries="28" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="19" word="an" entries="2" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="20" word="effect" entries="58" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="21" word="on" entries="65" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="22" word="other" entries="5" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="23" word="airline" entries="3" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="24" word="operations" entries="19" fd="6" fs="340" fdfs="346" pr="537"/>
+      <spnode index="25" word="." entries="2" fd="6" fs="340" fdfs="346" pr="537"/>
+    </sprofile>
+  </string>
+      <spnode index="20" word="reasons" entries="74" fd="6" fs="353" fdfs="359" pr="557"/>
+      <spnode index="21" word="," entries="22" fd="6" fs="353" fdfs="359" pr="557"/>
+      <spnode index="22" word="but" entries="27" fd="6" fs="353" fdfs="359" pr="557"/>
+      <spnode index="23" word="not" entries="10" fd="6" fs="353" fdfs="359" pr="557"/>
+      <spnode index="24" word="because" entries="27" fd="6" fs="353" fdfs="359" pr="557"/>
+      <spnode index="25" word="of" entries="28" fd="6" fs="353" fdfs="359" pr="557"/>
+      <spnode index="26" word="the" entries="2" fd="6" fs="353" fdfs="359" pr="557"/>
+      <spnode index="27" word="strike" entries="127" fd="6" fs="353" fdfs="359" pr="557"/>
+      <spnode index="28" word="." entries="2" fd="6" fs="353" fdfs="359" pr="557"/>
+    </sprofile>
+  </string>
+  <string id="string45">
+    <words>
+    Britain 's government plans to raise about  three billion three billion from the sale of most of its giant water and electric dolphins , beginning next month .
+    </words>
+    <outputs>

@@ -1,0 +1,116 @@
+<html lang="en">
+<head>
+<title>BarriersAttrib - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="Barriers.html#Barriers" title="Barriers">
+<link rel="next" href="BarriersLabels.html#BarriersLabels" title="BarriersLabels">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="BarriersAttrib"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="BarriersLabels.html#BarriersLabels">BarriersLabels</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Barriers.html#Barriers">Barriers</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.6 BarriersAttrib principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.barriers.attrib</code>
+<li>dimension variables: <code>D1</code>, <code>D2</code>, <code>D3</code>
+<li>argument variables:<br>
+<code>Blocks: set(T)</code>
+<code>Attrib: set(T)</code>
+<li>default values: none
+<li>model record: empty
+<li>constraints: <code>BarriersAttrib</code> (priority 110)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle was written by Denys Duchier.
+
+   <p>Here is the definition of the <code>BarriersAttrib</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      D1DIDA = {DVA2DIDA 'D1'}
+      D2DIDA = {DVA2DIDA 'D2'}
+   in
+      %% check features
+      if {Helpers.checkModel 'BarriersAttrib.oz' Nodes
+	  [D2DIDA#down
+	   D1DIDA#mothers
+	   D2DIDA#up
+	   D2DIDA#labels]} then
+	 D2DownMs = {Map Nodes
+		     fun {$ Node} Node.D2DIDA.model.down end}
+	 %%
+	 BlocksMs = {Map Nodes
+		     fun {$ Node}
+			BlocksM = {ArgRecProc 'Blocks' o('_':Node)}
+		     in
+			BlocksM
+		     end}
+      in
+	 for Node in Nodes do
+	    %% get all nodes below my D1 mother on D2
+	    %% down_D2_mothers_D1(v) = union { down_D2(v') | v' in
+	    %% mothers_D1(v) }
+	    D2DownD1MothersM = {Select.union D2DownMs Node.D1DIDA.model.mothers}
+	    %% from this set, keep only those nodes which are above
+	    %% me, these are then between my D1 mother and myself on
+	    %% D2
+	    %% between(v) = down_D2_mothers_D1(v) intersect up_D2(v)
+	    BetweenM = {FS.intersect D2DownD1MothersM Node.D2DIDA.model.up}
+	    %% get all attribute values which are blocked by the nodes in
+	    %% between(v)
+	    %% blocked(v) = union { blocks(v') | v' in between(v) }
+	    BlockedLM = {Select.union BlocksMs BetweenM}
+	 in
+	    %% my attribute value set must be disjoint from the
+	    %% set of blocked attribute values.
+	    %% labels_D2(v) disjoint blocked(v)
+	    {FS.disjoint {ArgRecProc 'Attrib' o('_':Node)} BlockedLM}
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

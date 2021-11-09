@@ -1,0 +1,135 @@
+<html lang="en">
+<head>
+<title>Climbing - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="Chorus1.html#Chorus1" title="Chorus1">
+<link rel="next" href="Coindex.html#Coindex" title="Coindex">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Climbing"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Coindex.html#Coindex">Coindex</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Chorus1.html#Chorus1">Chorus1</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.10 Climbing principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.climbing</code>
+<li>dimension variables: <code>D1</code>, <code>D2</code>
+<li>argument variables:<br>
+<code>Subgraphs: bool</code><br>
+<code>MotherCards: bool</code>
+<li>default values:<br>
+<code>Subgraphs: true</code><br>
+<code>MotherCards: true</code>
+<li>model record: empty
+<li>constraints: <code>Climbing</code> (priority 110)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle assumes that the Graph principle (<a href="Graph.html#Graph">Graph</a>) is used
+on dimensions <code>D1</code> and <code>D2</code>.
+
+   <p>The climbing principle stipulates that <code>D1</code> is a flatter graph
+than <code>D2</code>. Intuitively, that means that nodes on <code>D2</code>
+dimension can &ldquo;climb up&rdquo; and end up higher up on <code>D1</code>.
+
+   <p>The argument variable <code>Subgraphs</code> specifies whether each node is
+required to take its entire subgraph along when migrating upwards
+(<code>true</code>), or not (<code>false</code>). Its default value is
+<code>true</code>.
+
+   <p>The argument variable <code>MotherCards</code> specifies whether the for
+each node, the cardinalities of the sets of mothers on <code>D1</code> and
+<code>D2</code> must be equal (<code>true</code>), or not (<code>false</code>). This is
+an optimization for the case that both <code>D1</code> and <code>D2</code> are
+trees. If any of the two is not a tree, <code>MotherCards</code> should be
+set to <code>false</code>. The default value of <code>MotherCards</code> is
+<code>true</code>.
+
+   <p>Climbing can be restricted by the Barriers principle (<a href="Barriers.html#Barriers">Barriers</a>).
+
+   <p>Here is the definition of the <code>Climbing</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      D1DIDA = {DVA2DIDA 'D1'}
+      D2DIDA = {DVA2DIDA 'D2'}
+   in
+      %% check features
+      if {Helpers.checkModel 'Climbing.oz' Nodes
+	  [D1DIDA#equp
+	   D1DIDA#mothers
+	   D2DIDA#equp
+	   D1DIDA#up
+	   D2DIDA#mothers]} then
+	 SubgraphsB = {ArgRecProc 'Subgraphs' o}==2
+	 MotherCardsB = {ArgRecProc 'MotherCards' o}==2
+	 %%
+	 D1EqupMs = {Map Nodes
+		     fun {$ Node} Node.D1DIDA.model.equp end}
+      in
+	 for Node in Nodes do
+	    %% climbing
+	    %% mothers_D1(v) subseteq equp_D2(v)
+	    {FS.subset Node.D1DIDA.model.mothers Node.D2DIDA.model.equp}
+	    
+	    if SubgraphsB then
+	       %% equp_D1_mothers_D2(v) =
+	       %%   union { equp_D1(v') | v' in mothers_D2(v) }
+	       D1EqupD2MothersM =
+	       {Select.union D1EqupMs Node.D2DIDA.model.mothers}
+	    in
+	       %% up_D1(v) subseteq equp_D1_mothers_D2(v)
+	       {FS.subset Node.D1DIDA.model.up D1EqupD2MothersM}
+	    end
+	    
+	    if MotherCardsB then
+	       %% |mothers_D1(v)| = |mothers_D2(v)|
+	       {FD.equal
+		{FS.card Node.D1DIDA.model.mothers}
+		{FS.card Node.D2DIDA.model.mothers}}
+	    end
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

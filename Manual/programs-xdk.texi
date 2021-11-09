@@ -1,0 +1,337 @@
+@section xdk
+This section is about the @emph{graphical user interface (GUI)}
+@cindex graphical user interface
+@cindex GUI
+of the XDK.
+
+@menu
+* Main window::        Main window
+
+* Explorer window::    Explorer window
+
+* Commandline::        Commandline arguments
+@end menu
+
+@c ************************************************************
+
+@node Main window, Explorer window, , xdk
+@subsection Main window
+We show a screenshot of the main window of the GUI below:
+
+@sp 1
+@image{pix/main,10cm}
+
+The main window consists of five parts, from top to bottom:
+
+@enumerate
+@item the menu bar comprising the pull-down menus
+@item the status display comprising information about the currently loaded grammar
+and example files
+@item the inspect lexical entries button and text field
+@item the examples list view and scroll bar
+@item the solve button and text field
+@end enumerate
+
+@subsubsection Menu bar
+The menu bar consists of the following pull-down menus, from left to
+right:
+
+@itemize @bullet
+@item Project
+@item Search
+@item Dimensions
+@item Principles
+@item Outputs
+@item Extras
+@end itemize
+
+The @code{Project} menu consists of the following menu entries:
+
+@itemize @bullet
+@item @code{About...}: Opens a dialog to display some information
+about the XDK.
+@item @code{Open grammar file...}: Opens a file dialog in which you
+can select a grammar file which is then compiled. The GUI also tries
+to find the corresponding example file with suffix @code{txt}.
+@item @code{Open grammar file/socket...}: Opens a string dialog in which you
+can select a grammar file or grammar socket
+(e.g. @code{4712.xmlsocket}). The GUI also tries to find the
+corresponding example file with suffix @code{txt}.
+@item @code{Open multiple grammar files...}: Opens a sequence
+of file dialogs in which you can select multiple grammar files which
+are then compiled and merged. Click on the @code{Cancel} button of the
+file dialog after the last grammar file to break the sequence.  The
+GUI also tries to find the corresponding example file with suffix
+@code{txt} (for the first grammar file in the sequence).
+@item @code{Reload grammar files}: Recompiles the currently opened grammar
+file(s) and reloads the corresponding examples file.
+@item @code{Save compiled grammar file...}: Opens a file dialog in which
+you can select a path and filename and then saves the compiled grammar
+there.
+@item @code{Convert grammar file...}: Opens two file dialogs in which you
+can select the paths and filenames of the source and destination files
+for grammar conversion. The grammar file language into which the
+destination grammar file is converted depends on its suffix.  The source
+grammar file can be one of the following:
+@itemize @bullet
+@item UL file (suffix: @code{ul})
+@item XML file (suffix: @code{xml})
+@item IL pickle (suffix: @code{ilp})
+@item IL functor@footnote{The functor must export the IL grammar under the
+key @code{grammar}.} (suffix: @code{ozf})
+@end itemize
+And the destination grammar file can be one of the following:
+@itemize @bullet
+@item UL file (suffix: @code{ul})
+@item XML file (suffix: @code{xml})
+@item IL pickle (suffix: @code{ilp})
+@end itemize
+@itemize @bullet
+@end itemize
+@item @code{Open examples file...}: Opens an examples file which is then
+displayed in the examples list view.
+@item @code{Reload examples file}: Reloads the currently opened examples
+file.
+@item @code{Close output windows}: Calls the close method of all currently
+used outputs
+@item @code{Quit}: Quits the GUI.
+@end itemize
+
+The @code{Search} menu consists of the following menu entries:
+
+@itemize @bullet
+@item @code{First solution}/@code{All solutions}/@code{Print CSP}/@code{Print FlatZinc}: 
+When solving, either search for the first solution only, enumerate all
+solutions, print the CSP into a file, or print the CSP into a file
+using FlatZinc syntax.
+@item @code{Explorer}/@code{IOzSeF}/@code{Oracle}: Choose the search
+exploration tool, either the Oz Explorer, IOzSeF or Oracle (also using
+IOzSeF).
+@item @code{Set oracle port...}: Set oracle socket port for communication
+with the oracle server. Must be the same as set for the oracle server.
+@end itemize
+
+The @code{Dimensions}, @code{Principles} and @code{Outputs} menus are
+different depending on the currently opened grammar. Here, you can
+decide whether you wish to use or to switch off individual
+dimensions@footnote{Toggling the lex dimension has no effect on the
+XDK solver - the lexicon is always used.}, principles and outputs.
+
+The @code{Extras} menu consists of the following menu entries:
+
+@itemize @bullet
+@item @code{Print}:
+Here, you can specify how the output functors @emph{print}
+information:
+@itemize @bullet
+@item @code{inspect} uses the Oz Inspector.
+@item @code{browse} uses the
+Oz Browser (useful for copying text to the clipboard, which the
+Inspector cannot do).
+@item @code{stdout} prints to stdout.
+@item @code{file} prints into a file.
+@end itemize
+@item @code{Compare lem solutions}
+Compares the derivation trees obtained from the generated XDG grammar
+(by the XTAG grammar generator) with the derivation trees obtained
+from the original XTAG lem parser. Counts the number of solutions and
+then prints out those solutions unique to the lem parser and the XDK.
+For this function to work, the executables of the lem parser
+(@uref{ftp://ftp.cis.upenn.edu/pub/xtag/lem/lem-0.14.0.tgz}) must be
+installed in the search path. The executables @code{runparser} and
+@code{print_deriv} are called. There are a couple of variants:
+@itemize @bullet
+@item @code{No filter} does not use any tree filtering.
+@item @code{Simple filter} uses a reimplementation of @code{simple_filter.pl}
+from the lem parser from the lem parser distribution.
+@item @code{Tagger filter} uses a reimplementation of @code{tagger_filter.pl}
+to do tree filtering. For this, the @code{mxpost} tagger by Adwait
+Ratnaparkhi must be installed in the directory denoted by the
+environment variable @code{MXPOST}.  In addition, for @code{Tagger
+filter}, the @code{LEM} environment variable must point to the
+location of the lem parser.
+@end itemize
+@item @code{Generate orderings...}: Uses the solver to search
+for the possible orderings of a sentence.
+@item @code{Solve examples}: Going downwards from the highlighted
+example, solves each sentence from the list of examples. Can come in
+handy for debugging grammars (answering the question whether all the
+examples still work).
+@item @code{Solving Statistics}:
+@itemize @bullet
+@item @code{Save solving statistics...}: Opens a file dialog in which
+you can select a path and a filename.  Then obtains the solving
+statistics for the current grammar and examples. The statistics are in
+XML format (DTD: @code{Extras/statistics.dtd}). Unix users can use the
+shell script @code{diffnotime} to compare two solving statistics
+without taking the solving time into account (e.g. to spot the
+differences with respect to solutions, choices and failures).
+@item @code{Set number of solutions...}: Opens a dialog in which you can
+set the maximum number of solutions for solving statistics. 0 means no
+solving (can be used e.g. to do profiling only)
+@item @code{Set number of failures...}: Opens a dialog in which you can
+set the maximum number of failures for solving statistics.
+@item @code{Set recomputation distance...}: Opens a dialog in which
+you can set the maximum recomputation distance for solving statistics.
+@item @code{Open outputs}: If checked, the used outputs are opened
+for each solution in solving statistics.
+@end itemize
+@item @code{Debug mode}: If checked, the XDK is in
+debug mode, giving out more information to ease (system, not grammar)
+debugging.
+@end itemize
+
+Below, we display an example output of the @code{Generate all
+orderings...} function:
+
+@sp 1
+@image{pix/orderings,10cm}
+
+@code{'number of orderings'} states the number of possible
+orderings. @code{'number of solutions'} states the number of solutions
+(this can be higher than the number of possible orderings for
+e.g. different analyses on a dimension other than lp).
+@code{'ordering -> solutions'} states a mapping from sentences to
+lists of indices of their corresponding solutions. By clicking on this
+list with the right mouse button, and then selecting @code{Actions}
+and then @code{Outputs}, you can invoke all used output functors for
+the solutions contained in the list.
+
+The @code{Save solving statistics file...} function omits empty
+examples, examples starting with @code{/}, @code{*} or @code{%}.
+
+@subsubsection Status display
+The status display shows two things:
+
+@itemize @bullet
+@item @code{Grammar}: the name of the currently
+opened grammar file(s)
+@item @code{Examples}: the name of the currently opened examples
+file.
+@end itemize
+
+If the selected grammar file(s) could not be successfully compiled,
+the @code{Grammar} status includes the note @code{(not successfully
+compiled)}.
+
+@subsubsection Inspect lexical entries button and text field
+In the @code{inspect lexical entries} text field you can enter a list
+of words. After pressing the return key or after clicking on the
+@code{Inspect lexical entries} button the GUI opens the Oz Inspector
+to display all possible lexical entries for that word for the used
+dimensions. The lexical entries are displayed in the @code{Output
+Language (OL)}.
+@cindex Output Language
+@cindex OL
+If a lexical entry in the list equals another, e.g. the third is equal
+to the first, then this is signified as follows: @code{entry#3#'=1'}.
+
+Below, we show an example output of this function:
+@sp 1
+@image{pix/entries,10cm}
+
+Here, the first number (3) corresponds to the number of lexical
+entries for the word (@code{lieben}), and the numbers before each of
+these lexical entries is the index of that entry.
+
+@subsubsection Examples list view and scroll bar
+The examples list view displays the list of currently opened
+examples. Use the scroll bar on the right hand side of the list view
+to scroll through it.  If you click on one of the examples, the GUI
+copies this example to the solve text field.  If you double click on
+one of the examples, the GUI first copies the example to the solve
+text field and then solves the example.
+
+@subsubsection Solve button and text field
+In the @code{solve} text field you can enter a list of words.  After
+pressing the return key or after clicking on the @code{solve} button
+the GUI opens the Oz Explorer to display all possible solutions for
+that list of words (under the currently opened grammar and selections
+in the @code{Dimensions} and @code{Principles} menus).
+
+@subsubsection Tips and tricks
+When looking for example files which correspond to grammar files, the
+GUI simply removes the suffix from the grammar file and adds the new
+suffix @code{txt}. E.g. for the grammar file @code{Grammars/Acl01.ul},
+it looks for the examples file @code{Grammars/Acl01.txt}.
+
+You can ``tear-off'' the pull-down menus such that they become
+independent windows (depends on the version of Tcl/Tk and your
+operating system, e.g. seems to work under Unix and Windows, but not
+MacOS X).
+
+Some of the menu entries have keyboard shortcuts, displayed to their
+right. E.g. by pressing the keys @code{control} and @code{o}
+simultaneously, you can invoke the menu entry @code{Open grammar
+file...} of the @code{Project} menu.
+
+@c ************************************************************
+
+@node Explorer window, Commandline, Main window, xdk
+@subsection Explorer window
+We employ the Oz Explorer to display the search space traversed during
+the search for solutions. The Oz Explorer is described in more detail
+in @uref{http://www.mozart-oz.org/documentation/explorer/index.html}.
+Essentially, blue circles denote choice points (XDG analyses which are
+not yet fully specified) in the search space, green diamonds solutions
+(fully specified XDG analyses) and red boxes failures. If the search
+space contains only red boxes, the solver could not find a solution
+for the input sentence.  We show an example Explorer search tree
+below:
+
+@sp 1
+@image{pix/explorer,10cm}
+
+Non-failed nodes in the search tree (blue circles and green diamonds)
+can be double-clicked to invoke the used outputs.
+
+Note that you can get a raw display of the underlying representation
+of the solver by selecting the menu @code{Nodes}, sub menu
+@code{Information} action, and then @code{Inspect}. This uses the Oz
+Inspector. If you choose @code{Show}, the display is printed to
+stdout. Choose @code{Outputs} to get back to the used outputs.
+
+@c ************************************************************
+
+@node Commandline, , Explorer window, xdk
+@subsection Commandline
+You can supply the GUI with various parameters upon startup using
+commandline arguments. Each argument has a long version (starting with
+a double dash) and, of its positive occurrence, a short version
+(starting with one dash):
+
+@itemize @bullet
+@item @code{--help} or @code{--nohelp} (short version: @code{-h}): Display an
+overview of the commandline arguments. Default: @code{--nohelp}.
+@item @code{--grammars} (@code{-g}): Select the list of
+grammar files which shall be compiled (and then merged). Default: no files.
+@item @code{--examples} (@code{-e}): Select the examples
+file. Default: first grammar file with suffix @code{txt}
+@item @code{--input} (@code{-i}): Supply the GUI with a sentence which
+is then copied to the solve text field and solved. Default: @code{""}.
+@item @code{--search first}, @code{--search all},
+@code{--search print} or @code{--search flatzinc} (@code{-s first},
+@code{-s all}, @code{-s print} or @code{-s flatzinc}): Specify whether
+the solver shall search only for the first solution, enumerate all
+solutions or print the propagators to a file.  Default: @code{--search
+all}.
+@item @code{--explorer explorer} or @code{--explorer iozsef} or @code{--explorer oracle} (@code{-x explorer} or @code{-x iozsef} or @code{-x oracle}): Use either the Oz Explorer, IOzSeF or the oracle for search visualization.
+@item @code{--port <Int>} (@code{-t}): Set oracle port to
+@code{<Int>}. Default: @code{4711}.
+@item @code{--print inspect}, @code{--print browse}, @code{--print stdout}
+or @code{--print file}: Specify the print procedure of the
+outputs. Default: @code{--print inspect}.
+@item @code{--solutions <Int>} (@code{-u}): Set maximum number of solutions to
+@code{<Int>} (for @code{Save solving statistics...}). Default: @code{1000}.
+@item @code{--failures <Int>} (@code{-u}): Set maximum number of failures to
+@code{<Int>} (for @code{Save solving statistics...}). Default: @code{1000}.
+@item @code{--reco <Int>} (@code{-c}): Set maximum recomputation distance to
+@code{<Int>} (for @code{Save solving statistics...}). Default: @code{5}.
+@item @code{--profile} or @code{--noprofile} (@code{-p}): 
+Toggle profiling (for @code{Save solving statistics...}). Default:
+@code{noprofile}.
+@item @code{--outputs} or @code{--nooutputs} (@code{-o}): Open all used outputs
+(for @code{Save solving statistics...}). Default: @code{nooutputs}.
+@item @code{--debug} or @code{--nodebug} (@code{-d}): Switch on the debug mode. 
+Default: @code{nodebug}.
+@end itemize

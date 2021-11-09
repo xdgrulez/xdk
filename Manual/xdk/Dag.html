@@ -1,0 +1,158 @@
+<html lang="en">
+<head>
+<title>Dag - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="Customs.html#Customs" title="Customs">
+<link rel="next" href="Dutch.html#Dutch" title="Dutch">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Dag"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Dutch.html#Dutch">Dutch</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Customs.html#Customs">Customs</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.13 Dag principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.dag</code>
+<li>dimension variables: <code>D</code>
+<li>argument variables:<br>
+<code>Connected: bool</code><br>
+<code>DisjointDaughters: bool</code>
+<li>default values:<br>
+<code>Connected: false</code><br>
+<code>DisjointDaughters: false</code>
+<li>model record: empty
+<li>constraints: <code>Dag</code> (priority 130)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle assumes that the Graph principle (<a href="Graph.html#Graph">Graph</a>) is used
+on dimension <code>D</code>.
+
+   <p>The <code>Connected</code> argument variable is a boolean. Its default value
+is <code>false</code>. The <code>DisjointDaughters</code> argument variable is
+also a boolean. Its default value is <code>false</code>.
+
+   <p>The dag principle states that the graph on dimension <code>D</code> must be
+a <em>directed acyclic graph (dag)</em>. 
+<a name="index-directed-acyclic-graph-243"></a><a name="index-dag-244"></a>If <code>Connected</code> is true, this dag must be connected, i.e., has
+only one root. If <code>DisjointDaughters</code> is true, then the sets of
+daughters must be disjoint, i.e., there can be no more than one
+outgoing edge to the same node.
+
+   <p>This principle is less specific than the Tree principle (<a href="Tree.html#Tree">Tree</a>).
+
+   <p>Here is the definition of the <code>Dag</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+   
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      DIDA = {DVA2DIDA 'D'}
+   in
+      %% check features
+      if {Helpers.checkModel 'Dag.oz' Nodes
+	  [DIDA#daughters
+	   DIDA#mothers
+	   DIDA#equp
+	   DIDA#eq
+	   DIDA#up
+	   DIDA#eqdown
+	   DIDA#daughtersL
+	   DIDA#down]} then
+	 Models = {Map Nodes fun {$ Node} Node.DIDA.model end}
+	 ConnectedB = {ArgRecProc 'Connected' o}==2
+	 if ConnectedB then
+	    %% get node set NodeSetM
+	    NodeSetM = Nodes.1.nodeSet
+	    %%
+	    RootsM = {FS.subset $ NodeSetM}
+	    %% precisely one root
+	    {FD.equal {FS.card RootsM} 1}
+	    %%
+	    DaughtersMs = {Map Models
+			   fun {$ Model} Model.daughters end}
+	    DaughtersM = {FS.unionN DaughtersMs}
+	 in
+	    {FS.partition [RootsM DaughtersM] NodeSetM}
+	    %%
+	    for Model in Models I in 1..{Length Models} do
+	       %% a node is root iff it has no mother
+	       {FD.equi
+		{FS.reified.include I RootsM}
+		{FD.reified.equal {FS.card Model.mothers} 0} 1}
+	       
+	       %% a node is root iff its eqdown-set contains all nodes
+	       {FD.equi
+		{FS.reified.include I RootsM}
+		{FS.reified.equal Model.eqdown NodeSetM} 1}
+	    end
+	 end
+	 %%
+	 DisjointDaughtersB = {ArgRecProc 'DisjointDaughters' o}==2
+	 if DisjointDaughtersB then
+	    for Model in Models do
+	       %% daughters(v) = uplus{ daughters_l(v) | l in labels }
+	       Model.daughters = {FS.partition Model.daughtersL}
+	    end
+	 end
+      in
+	 for Model in Models do
+	    %% equp(v) = eq(v) uplus up(v)
+	    Model.equp = {FS.partition [Model.eq Model.up]}
+	    %% eqdown(v) = eq(v) uplus down(v)
+	    Model.eqdown = {FS.partition [Model.eq Model.down]}
+	    %% eq(v) = equp(v) intersect eqdown(v)
+	    Model.eq = {FS.intersect Model.equp Model.eqdown}
+	    %% post additional constraints if the dag is ordered (= if the fields
+	    %% yield, pos and yieldS exist)
+	    if {HasFeature Model pos} andthen
+	       {HasFeature Model yield} andthen
+	       {HasFeature Model yieldS} then
+	       %% yield(v) = pos(v) uplus yieldS(v)
+	       Model.yield = {FS.partition [Model.pos Model.yieldS]}
+	    end
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

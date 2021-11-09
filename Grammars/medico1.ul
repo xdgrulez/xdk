@@ -1,0 +1,102 @@
+usedim anno
+usedim owl
+usedim rdf
+usedim lex
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension
+defdim anno {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "anno.label" {"type" "disease" "trial" "diseaseName" "sameAs" "degree"}
+  deflabeltype "anno.label"
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graphPW" {
+    dims {D: anno}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dag"
+  output "output.latex"
+  output "output.pretty"
+  output "output.xml"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension
+defdim owl {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "owl.label" {"sameAs"}
+  deflabeltype "owl.label"
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graphPW" {
+    dims {D: owl}}
+  useprinciple "principle.sameAsPW" {
+    dims {D: owl}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dag"
+  output "output.latex"
+  output "output.pretty"
+  output "output.xml"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension
+defdim rdf {
+  deftype "rdf.label" {"type" "cond" "related" "trial" "label" "degree"}
+  deflabeltype "rdf.label"
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graphPW" {
+    dims {D: rdf}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dag"
+  output "output.latex"
+  output "output.pretty"
+  output "output.xml"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension
+defdim lex {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype {word: string}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dags1"
+  output "output.latexs1"
+  useoutput "output.dags1"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define entries
+defentry {
+  dim lex {word: "<patient1>"}}
+defentry {
+  dim lex {word: "medico:patient"}}
+defentry {
+  dim lex {word: "<disease1>"}}
+defentry {
+  dim lex {word: "medico:disease"}}
+defentry {
+  dim lex {word: "<trialXXX>"}}
+defentry {
+  dim lex {word: "NS1:Trials"}}
+defentry {
+  dim lex {word: "<cond4532>"}}
+defentry {
+  dim lex {word: "NS1:Cond"}}
+defentry {
+  dim lex {word: "Hodgkin"}}
+defentry {
+  dim lex {word: "<Dis33>"}}
+defentry {
+  dim lex {word: "NS2:Diseases"}}
+defentry {
+  dim lex {word: "<Indi68883>"}}
+defentry {
+  dim lex {word: "1"}}
+defentry {
+  dim lex {word: "NS3:Indications"}}

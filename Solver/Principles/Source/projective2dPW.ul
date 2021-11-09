@@ -1,0 +1,37 @@
+%%
+%%  Principle Projective2dPW
+%%
+%%  - relies on eitherEdgeIfPath(ORD D) being posed 
+%%
+defprinciple "principle.projective2dPW" {
+	dims {D ORD}
+constraints {
+	forall V::node: forall V1::node: 
+		(~domeq(V1 V D) => % : also applies to sisters
+			% Ordering yields:
+			(edge(V1 V ORD)
+			 => forall V2::node: dom(V1 V2 D) => edge(V2 V ORD))
+			&
+			 ((exists V2::node: dom(V1 V2 D) & edge(V2 V ORD))
+			  => edge(V1 V ORD)))
+		&
+		% Parsing perspective:
+		(dom(V V1 D) =>
+			(edge(V1 V ORD) 
+			 => (forall V2::node: 
+				edge(V1 V2 ORD) & edge(V2 V ORD)
+				=> dom(V V2 D)))
+			&
+			(edge(V V1 ORD) 
+			 => (forall V2::node: 
+				edge(V V2 ORD) & edge(V2 V1 ORD)
+				=> dom(V V2 D))))
+
+% Surprisingly enough, the above source currently yields slightly better
+% code than the (equivalent) below:
+% 
+%	forall V::node: forall V1::node: dom(V V1 D) => 
+%		forall V2::node: dom(V1 V2 D) => 
+%			(edge(V1 V ORD) <=> edge(V2 V ORD))
+%	
+}}

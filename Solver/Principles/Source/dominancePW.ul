@@ -1,0 +1,9 @@
+defprinciple "principle.dominancePW" {
+  dims {D1 D2 D3}
+  constraints {
+
+forall V: forall V1: forall L:
+  edge(V V1 L D1) & L in V.D3.entry."dom" => dom(V1 V D2)
+
+  }
+}

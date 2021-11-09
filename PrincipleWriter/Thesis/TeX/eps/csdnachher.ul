@@ -1,0 +1,10 @@
+defprinciple "principle.csdPW" {
+  dims {D}
+  constraints {
+
+    forall V: forall V1:
+      edge(V V1 n D) =>
+        forall V2: 
+          forall V3: dom(V2 V D) & edge(V2 V3 n D) => V3<V1
+  }
+}

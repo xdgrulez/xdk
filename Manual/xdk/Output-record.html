@@ -1,0 +1,154 @@
+<html lang="en">
+<head>
+<title>Output record - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Outputs.html#Outputs" title="Outputs">
+<link rel="prev" href="OL-syntax.html#OL-syntax" title="OL syntax">
+<link rel="next" href="Writing-new-outputs.html#Writing-new-outputs" title="Writing new outputs">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Output-record"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Writing-new-outputs.html#Writing-new-outputs">Writing new outputs</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="OL-syntax.html#OL-syntax">OL syntax</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Outputs.html#Outputs">Outputs</a>
+<hr>
+</div>
+
+<h3 class="section">9.37 Output record</h3>
+
+<p>The <em>output record</em> is the result of preparing the solution for
+the individual output functors. A solution is a list of node
+records. The output record is defined as follows:
+
+<pre class="example">     o(usedDIDAs: DIDAs
+       graphUsedDIDAs: DIDAs
+       nodes: SLs
+       nodeILs: ILs
+       nodeOLs: OLs
+       nodeOLAbbrs: OLAbbrs
+       index2Pos: I2I
+       printProc: PrintProc
+       edges: EdgesRec)
+</pre>
+   <p>The value of the <code>usedDIDAs</code> feature is a list of dimension
+identifiers (<code>DIDAs</code>) which are the used dimensions.
+
+   <p>The value of the <code>usedGraphDIDAs</code> feature is a list of dimension
+identifiers (<code>DIDAs</code>) which are the used <em>graph dimensions</em>. 
+<a name="index-graph-dimensions-333"></a>A graph dimension is a dimension on which the either
+<code>principle.graph</code> or <code>principle.graph1</code> is used. This is
+useful to distinguish graph dimensions (which can e.g. be visualized
+using <code>output.dag</code>) from special dimensions like <code>lex</code>
+(purpose: assign a word form to a lexical entry) and <code>multi</code>
+(purpose: use multi-dimensional principles) which need not be
+visualized like this.
+
+   <p>The value of the <code>nodes</code> feature is the Solver Language (SL)
+version of the solution: a list of node records.
+
+   <p>The value of the <code>nodeILs</code> feature is the Intermediate Language
+(IL) version of the solution.
+
+   <p>The value of the <code>nodeOLs</code> feature is the Output Language (OL)
+version of the solution.
+
+   <p>The value of the <code>nodeOLAbbrs</code> feature is the abbreviated Output
+Language (OL) version of the solution (here: top values are
+abbreviated with <code>top</code> and bottom values with <code>bot</code>, and
+features denoting <code>top</code> are left out from records and valencies).
+
+   <p>The value of the <code>index2Pos</code> feature<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>  is a function from node
+indices (<code>I</code>) to the corresponding node positions (<code>I</code>).
+
+   <p>The value of the <code>printProc</code> feature is a function from anything
+to nothing (<code>X -&gt; U</code>), used for printing.
+
+   <p>indices (<code>I</code>) to the corresponding node positions (<code>I</code>).
+
+   <p>The value of the <code>edges</code> feature<a rel="footnote" href="#fn-2" name="fnd-2"><sup>2</sup></a>  is the <em>edges record</em>
+<a name="index-edges-record-334"></a><code>EdgesRec</code>:
+<pre class="example">     o(edges: DIDAEdgesRec
+       ledges: DIDALEdgesRec
+       lusedges: DIDALUSEdgesRec
+       dedges: DIDADEdgesRec
+       ldedges: DIDALDEdgesRec
+       lusdedges: DIDALUSDEdgesRec)
+</pre>
+   <p>The values of the features of the edges record are defined as follows:
+     <ul>
+<li><code>DIDAEdgesRec</code>: Maps dimension identifier
+<code>DIDA</code> to the set of determined edges (<code>Edges</code>) on
+<code>DIDA</code>.  An edge is an Oz record <code>edge(I1 I2)</code> representing an
+edge from the node with index <code>I1</code> to the node with index
+<code>I2</code>. The edge label of the edge need not be determined. 
+<li><code>DIDALEdgesRec</code>: Maps dimension identifier <code>DIDA</code>
+to the set of determined labeled edges (<code>LEdges</code>) on <code>DIDA</code>. 
+A labeled edge is an Oz record <code>edge(I1 I2 LA)</code> representing an
+edge from the node with index <code>I1</code> to the node with index <code>I2</code>
+labeled <code>LA</code>. The edge label of the edge must be determined. 
+<li><code>DIDALUSEdgesRec</code>: Maps dimension identifier
+<code>DIDA</code> to the set of determined edges (<code>LUSEdges</code>) on
+<code>DIDA</code>. Here, the edge label of the edge must still be undetermined. 
+<li><code>DIDADEdgesRec</code>: Maps dimension identifier
+<code>DIDA</code> to the set of <em>unlabeled dominance edges</em>
+<a name="index-unlabeled-dominance-edge-335"></a><a name="index-dominance-edge-336"></a>(<code>DEdges</code>) on <code>DIDA</code>. An unlabeled dominance edge is an Oz
+record <code>dom(I1 I2)</code> representing a unlabeled dominance edge from
+the node with index <code>I1</code> to the node with index <code>I2</code>. 
+An unlabeled dominance edge holds between nodes v and
+v' if:
+          <ol type=1 start=1>
+<li>v' is in the set of nodes below v
+<li>the set of mothers of v' is not yet determined
+<li>v' is not in the set of nodes below any node below v
+          </ol>
+<li><code>DIDALDEdgesRec</code>: Maps dimension identifier
+<code>DIDA</code> to the set of <em>labeled dominance edges</em>
+<a name="index-labeled-dominance-edge-337"></a><a name="index-dominance-edge-338"></a>(<code>LDEdges</code>) on <code>DIDA</code>. A labeled dominance edge is an Oz
+record <code>dom(I1 I2 LA)</code> representing a labeled dominance edge from
+the node with index <code>I1</code> to the node with index <code>I2</code> labeled
+<code>LA</code>.  A labeled dominance edge exists between <code>I1</code> and <code>I2</code>
+if:
+          <ol type=1 start=1>
+<li>v' is in the set of nodes equal or below the daughters of
+v labeled with l
+<li>the set of mothers of v' is not yet determined
+<li>v' is not in the set of nodes below any node below v
+          </ol>
+<li><code>DIDALUSDEdgesRec</code>: Maps dimension identifier
+<code>DIDA</code> to the set of <em>unlabeled dominance edges</em>
+<a name="index-unlabeled-dominance-edge-339"></a><a name="index-dominance-edge-340"></a>(<code>LUSDEdges</code>) on <code>DIDA</code>. Here, the edge label of the
+dominance edge must still be undetermined. 
+</ul>
+
+<!-- ************************************************************ -->
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> This feature only
+makes sense if you use the order principle.</p>
+
+   <p class="footnote"><small>[<a name="fn-2" href="#fnd-2">2</a>]</small> This feature only makes
+sense for dimensions using the graph principle (or the graph1
+principle).</p>
+
+   <hr></div>
+
+   </body></html>
+

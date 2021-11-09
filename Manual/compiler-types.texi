@@ -1,0 +1,289 @@
+@section Types
+The types used throughout a grammar file are defined inside dimension
+definitions. Each dimension defines at least three types:
+
+@enumerate
+@item its @emph{attributes type}
+@cindex attributes type
+@item its @emph{entry type}
+@cindex entry type
+@item its @emph{label type}
+@cindex label type
+@end enumerate
+
+You can define an arbitrary number of additional types.
+
+We give a list of all types in @ref{Types reference}.
+
+@subsection Attributes type
+The attributes type is a record specifying the type of
+the @emph{attributes record}
+@cindex attributes record
+of the currently defined dimension. The attributes record includes a
+set of additional features for each node on the defined dimension. If
+you do not provide an attribute type, the grammar file compiler
+assumes it to be the empty record.
+
+In the UL, the attributes type is defined as follows:
+
+@example
+defattrstype <type>
+@end example
+
+@subsection Entry type
+The entry type is a record specifying the type of the @emph{entry
+record}
+@cindex entry record
+on the currently defined dimension. The entry record includes all
+features of a lexical entry on the defined dimension.  If you do not
+provide an entry type, the grammar file compiler assumes it to be the
+empty record.
+
+In the UL, the entry type is defined as follows:
+
+@example
+defentrytype <type>
+@end example
+
+@subsection Label type
+The label type is a domain specifying the type of labels on the
+currently defined dimension. The labels correspond to the edge labels
+on the defined dimension. If you do not provide a label type, the
+grammar file compiler assumes it to be the empty domain.
+
+In the UL, the label type is defined as follows:
+
+@example
+deflabeltype <type>
+@end example
+
+@subsection Additional types
+You can define an arbitrary number of additional types, e.g. to ease
+the construction of more complex types.
+
+In the UL, you define additional types as follows:
+
+@example
+deftype <constant> <type>
+@end example
+
+where the constant corresponds to the type identifier@footnote{The
+grammar file compiler considers all identifiers, and therefore also
+type identifiers, to be global to the grammar file.  For instance, you
+cannot define two types with the same identifier, even if the
+definitions are contained in different dimension definitions. On the
+other hand, you can freely access types defined on a different
+dimension than the currently defined one.} of the type.
+
+@subsection Example (id dimension)
+Here are the type definitions on the id dimension of our example
+grammar file @code{Grammars/Acl01.ul}:
+
+@example
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension id
+defdim id @{
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "id.label" @{det subj obj vbse vprt vinf prt@}
+  deftype "id.person" @{first second third@}
+  deftype "id.number" @{sg pl@}
+  deftype "id.gender" @{masc fem neut@}
+  deftype "id.case" @{nom gen dat acc@}
+  deftype "id.def" @{def indef undef@}
+  deftype "id.agr" tuple("id.person" "id.number" "id.gender" "id.case" "id.def")
+  deftype "id.agrs" iset("id.agr")
+
+  deflabeltype "id.label"
+  defattrstype @{agr: "id.agr"@}
+  defentrytype @{in: valency("id.label")
+                out: valency("id.label")
+                agrs: "id.agrs"
+                agree: set("id.label")
+                govern: vec("id.label" "id.agrs")@}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  @dots{}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  @dots{}
+@}
+@end example
+
+@code{defdim id} indicates the definition of a dimension with
+identifier @code{id}.
+
+@code{deftype "id.label" @{det subj obj vbse vprt vinf prt@}} defines
+a type with identifier @code{id.label}, a domain with consisting of
+the constants @code{det}, @code{subj}, @code{obj}, @code{vbse},
+@code{vprt}, @code{vinf} and @code{prt}.
+
+@code{deftype "id.person" @{first second third@}} defines a type with
+identifier @code{id.person}, a @emph{domain}
+@cindex domain
+consisting of the constants @code{first}, @code{second} and
+@code{third}.
+
+@code{deftype "id.number" @{sg pl@}} defines a type with identifier
+@code{id.number}, a domain consisting of the constants @code{sg} and
+@code{pl}.
+
+@code{deftype "id.gender" @{masc fem neut@}} defines a type with
+identifier @code{id.gender}, a domain consisting of the constants
+@code{masc}, @code{fem} and @code{neut}.
+
+@code{deftype "id.case" @{nom gen dat acc@}} defines a type with
+identifier @code{id.case}, a domain consisting of the constants
+@code{nom}, @code{gen}, @code{dat} and @code{acc}.
+
+@code{deftype "id.def" @{def indef undef@}} defines a type with
+identifier @code{id.def}, a domain consisting of the constants
+@code{def}, @code{indef} and @code{undef}.
+
+@code{deftype "id.agr" tuple("id.person" "id.number" "id.gender"
+"id.case" "id.def")} defines a type with identifier @code{id.agr}, a
+@emph{tuple}
+@cindex tuple
+with the projections @code{"id.person"}, @code{"id.number"},
+@code{"id.gender"}, @code{"id.case"}, and @code{"id.def"}.
+
+@code{deftype "id.agrs" iset("id.agr")} defines a type with identifier
+@code{id.agrs}, an @emph{intersective set}
+@cindex intersective set
+with domain @code{id.agr}.
+
+@code{deflabeltype "id.label"} states that the label type is
+@emph{type reference}
+@cindex type reference
+@cindex reference
+to the type with identifier @code{id.label}.
+
+@code{defattrstype @{agr: "id.agr"@}} states that the attributes type
+is a @emph{record}
+@cindex record
+with field @code{agr} of type @code{id.agr}.
+
+The lines starting with @code{defentrytype} define the entry type, a
+record with fields @code{in}, @code{out}, @code{agrs}, @code{agree}
+and @code{govern}. @code{in} has type @code{valency("id.label")}, a
+@emph{valency}
+@cindex valency
+with domain @code{"id.label"}. @code{out} has type
+@code{valency("id.label")}, a valency with domain
+@code{"id.label"}. @code{agrs} has type @code{"id.agrs"}. @code{agree}
+is an @emph{accumulative set}
+@cindex accumulative set
+with domain @code{"id.label"}. @code{govern} has type
+@code{vec("id.label" "id.agrs")}, a @emph{map}
+@cindex map
+with domain @code{"id.label"} and co-domain @code{"id.agrs"}.
+
+@subsection Example (lp dimension)
+Here are the type definitions on the lp dimension of our example
+grammar file @code{Grammars/Acl01.ul}:
+
+@example
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lp
+defdim lp @{
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "lp.label" @{d df n mf vcf p pf v vxf@}
+  deflabeltype "lp.label"
+  defentrytype @{in: valency("lp.label")
+                out: valency("lp.label")
+                on: iset("lp.label")@}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  @dots{}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  @dots{}
+@}
+@end example
+
+@code{defdim lp} indicates the definition of a dimension named
+@code{lp}.
+
+@code{deftype "lp.label" @{d df n mf vcf p pf v vxf@}} defines a type
+with identifier @code{lp.label}, a domain with consisting of the
+constants @code{d}, @code{df}, @code{n}, @code{mf}, @code{vcf},
+@code{p}, @code{pf}, @code{v} and @code{vxf}.
+
+@code{deflabeltype "lp.label"} states that the label type is a
+reference to @code{lp.label}.
+
+We omit the definition of the attributes type on the lp dimension,
+thus the grammar file compiler assumes it to be the empty record.
+
+The lines starting with @code{defentrytype} define the entry type, a
+record with fields @code{in}, @code{out} and @code{on}.  @code{in} has
+type @code{valency("lp.label")}, a valency with domain
+@code{"lp.label"}. @code{out} has type @code{valency("lp.label")}, a
+valency with domain @code{"lp.label"}. @code{on} has type
+@code{iset("lp.label")}, an intersective set with domain
+@code{"lp.label"}.
+
+@subsection Example (idlp dimension)
+Here are the type definitions on the idlp dimension of our example
+grammar file @code{Grammars/Acl01.ul}:
+
+@example
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension idlp
+defdim idlp @{
+  defentrytype @{blocks: set("id.label")
+                end: vec("lp.label" set("id.label"))@}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  @dots{}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  @dots{}
+@}
+@end example
+
+@code{defdim idlp} indicates the definition of a dimension named
+@code{idlp}.
+
+The lines starting with @code{defentrytype} define the entry type,
+a record with fields
+@code{blocks} and @code{link}.  @code{blocks} has type
+@code{set("id.label")}, an @emph{accumulative set}
+@cindex accumulative set
+with domain @code{id.label}.@footnote{Note that we refer here to a
+type which is defined on another dimension (viz. the id dimension).}
+@code{link} has type @code{vec("lp.label" set("id.label")}, a map with
+domain @code{lp.label} and co-domain @code{set("id.label")}.
+
+@subsection Example (lex dimension)
+Here are the type definitions on the @emph{lex dimension}
+@cindex lex dimension
+of our example grammar file @code{Grammars/Acl01.ul}:
+
+@example
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lex
+defdim lex @{
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype @{word: string@}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  @dots{}
+@}
+@end example
+
+@code{defentrytype @{word: string@}} states that the entry type is a
+record with only the field @code{word} of type @code{string}.
+
+The lex dimension must be defined in each grammar file, and its entry
+type must at least include the field @code{word} of type
+@code{string}. The XDK compiler collects all lexical entries with
+identical @code{word} values on the lex dimension in sets of lexical
+entries, assigned to this @code{word} value.
+
+Notice that the lex dimension is very different from the
+``full-blown'' id and lp dimensions: it serves only to add lexical
+information such as the word form (and optionally further information)
+to each lexical entry.

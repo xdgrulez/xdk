@@ -1,0 +1,750 @@
+@chapter Grammars
+In this chapter, we describe the example grammars coming with the XDK.
+Note that the XTAG grammar generator @ref{XTAG} offers a larger-scale
+grammar than those describes in this chapter.
+
+All grammars suffixed with @code{PW} use only principles compiled
+by @ref{PrincipleWriter}.
+
+@menu
+* ANBN::                   Grammar for ANBN (diss)
+
+* ANBNCN::                 Grammar for ANBNCN (diss)
+
+* ANBNCNPW::               Grammar for ANBNCN (diss, uses only PW principles)
+
+* ANBNPW::                 Grammar for ANBN (diss, uses only PW principles)
+
+* Acl01::                  German ACL 2001 grammar
+
+* Acl01PW::                German ACL 2001 grammar (uses only PW principles)
+
+* Arabic::                 Arabic Forschungsprojekt grammar
+
+* Benoit::                 French toy grammar
+
+* CSD::                    Grammar for cross-serial dependencies (diss)
+
+* CSDPW::                  Grammar for cross-serial dependencies (diss, uses only PW principles)
+
+* Chorus::                 English CHORUS demo grammar
+
+* Diplom::                 German Diplomarbeit grammar
+
+* Dutch:Dutch1.            Dutch grammar
+
+* EQAB::                   Grammar for EQAB (diss)
+
+* EQABPW::                 Grammar for EQAB (diss, uses only PW principles)
+
+* ESSLLI04_id::            German ESSLLI 2004 grammar (id)
+
+* ESSLLI04_idPW::          German ESSLLI 2004 grammar (id, uses only PW principles)
+
+* ESSLLI04_idlp::          German ESSLLI 2004 grammar (id, lp)
+
+* ESSLLI04_idlpPW::        German ESSLLI 2004 grammar (id, lp, uses only PW principles)
+
+* ESSLLI04_idlpds::        German ESSLLI 2004 grammar (id, lp, ds)
+
+* ESSLLI04_idlpdsPW::      German ESSLLI 2004 grammar (id, lp, ds, uses only PW principles)
+
+* ESSLLI04_idlpdspa::      German ESSLLI 2004 grammar (id, lp, ds, pa)
+
+* ESSLLI04_idlpdspaPW::    German ESSLLI 2004 grammar (id, lp, ds, pa, uses only PW principles)
+
+* ESSLLI04_idlpdspasc::    German ESSLLI 2004 grammar (id, lp, ds, pa, sc)
+
+* ESSLLI04_idlpdspascPW::  German ESSLLI 2004 grammar (id, lp, ds, pa, sc, uses only PW principles)
+
+* FG_TAGDC::               Grammar combining TAG and Dominance Constraints (parsing)
+
+* FG_TAGDCgen::            Grammar combining TAG and Dominance Constraints (generation)
+
+* MTS10::                  Grammar modeling the combination of LCFGs
+
+* MWE::                    Multiword expressions grammar (parsing)
+
+* MWEgen::                 Multiword expressions grammar (generation)
+
+* Negation::               Grammar for French negation
+
+* SAT::                    Grammar for the SAT problem (diss)
+
+* SATPW::                  Grammar for the SAT problem (diss, uses only PW principles)
+
+* SCR::                    Grammar for scrambling (diss)
+
+* SCRPW::                  Grammar for scrambling (diss, uses only PW principles)
+
+* TAG:TAG1.                New TAG encoding grammar
+
+* adjunction::             Old TAG encoding grammar
+
+* coindex::                Grammar for demoing @code{principle.coindex}
+
+* diss::                   English dissertation grammar (diss)
+
+* dissPW::                 English dissertation grammar (diss, uses only PW principles)
+
+* dissPW.2dorder::         English dissertation grammar (diss, uses only PW principles, uses two-dimensional order)
+
+* ema::                    Experimental Czech grammar
+
+* ema_th::                 Experimental Czech grammar th
+
+* igk::                    English grammar including Information Structure
+
+* nut::                    English grammar for the nutshell chapter (diss)
+
+* nut1::                   English grammar for the nutshell chapter 1 (diss)
+
+* nut1PW::                 English grammar for the nutshell chapter 1 (diss, uses only PW principles)
+
+* nutPW::                  English grammar for the nutshell chapter (diss, uses only PW principles)
+
+* regdgPW::                Grammar modeling a regular dependency grammar
+
+* softproj::               German Softwareprojekt grammar
+
+* ww::                     Grammar for the language ww
+@end menu
+
+@c ************************************************************
+
+@node ANBN, ANBNCN, , Grammars
+@section ANBN
+This grammar covers the context-free language of words with @math{n}
+as followed by @math{n} bs. It was written by Ralph Debusmann for his
+dissertation.
+
+@ifnottex
+@verbatiminclude ../Grammars/ANBN.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node ANBNCN, ANBNCNPW, ANBN, Grammars
+@section ANBNCN
+This grammar covers the non-context-free language of words with
+@math{n} as followed by @math{n} bs followed by @math{n} cs.  It was
+written by Ralph Debusmann for his dissertation.
+
+@ifnottex
+@verbatiminclude ../Grammars/ANBNCN.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node ANBNCNPW, ANBNPW, ANBNCN, Grammars
+@section ANBNCNPW
+This grammar is the same as @ref{ANBNCN} except that it only uses
+PW principles.
+
+@ifnottex
+@verbatiminclude ../Grammars/ANBNCNPW.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node ANBNPW, Acl01, ANBNCNPW, Grammars
+@section ANBNPW
+This grammar is the same as @ref{ANBN} except that it only uses PW
+principles.
+
+@ifnottex
+@verbatiminclude ../Grammars/ANBNPW.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node Acl01, Acl01PW, ANBNPW, Grammars
+@section Acl01
+This grammar covers German subordinate clauses and word order
+variation therein. It uses the two TDG graph dimensions ID and LP, and
+was written by Denys Duchier and Ralph Debusmann, for their ACL 2001
+paper @cite{Topological Dependency Trees: A Constraint-Based Account
+of Linear Precedence} (@ref{References}), and is described therein.
+
+@ifnottex
+@verbatiminclude ../Grammars/Acl01.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node Acl01PW, Arabic, Acl01, Grammars
+@section Acl01PW
+This grammar is the same as @ref{Acl01} except that it only uses PW
+principles.
+
+@ifnottex
+@verbatiminclude ../Grammars/Acl01PW.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node Arabic, Benoit, Acl01PW, Grammars
+@section Arabic
+This is an Arabic grammar developed in a Forschungspraktikum by Marwan
+Odeh.  It is described in @cite{Topologische Dependenzgrammatik fuers
+Arabische} (@ref{References}).
+
+@ifnottex
+@verbatiminclude ../Grammars/Arabic.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node Benoit, CSD, Arabic, Grammars
+@section Benoit
+This is a French toy grammar written by Benoit Crabbe.
+
+@ifnottex
+@verbatiminclude ../Grammars/Benoit.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node CSD, CSDPW, Benoit, Grammars
+@section CSD
+This grammar covers the language of @math{n} ns followed by @math{n}
+vs, where the @math{i}th n depends on the @math{i}th v, using the
+special principle @code{principle.csd} (@ref{CSD1}). It is a demo
+grammar for cross-serial dependencies.  It was written by Ralph
+Debusmann for his dissertation.
+
+@ifnottex
+@verbatiminclude ../Grammars/CSD.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node CSDPW, Chorus, CSD, Grammars
+@section CSDPW
+This grammar is the same as @ref{CSD} except that it only uses PW
+principles.
+
+@ifnottex
+@verbatiminclude ../Grammars/CSDPW.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node Chorus, Diplom, CSDPW, Grammars
+@section Chorus
+This is a grammar for English covering the sentences of the old CHORUS
+demo system and more. It uses five graph dimensions: ID and LP (as in
+TDG), DS (Deep Syntax), PA (Predicate Argument) and SC (Scope). It was
+written by Ralph Debusmann and Stefan Thater. Parts of it are
+described in @cite{A Relational Syntax-Semantics Interface Based on
+Dependency Grammar} (@ref{References}). It was used for the CHORUS
+demo for the ``Begehung'' in May 2004.
+
+@ifnottex
+@verbatiminclude ../Grammars/Chorus.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node Diplom, Dutch1, Chorus, Grammars
+@section Diplom
+This grammar covers many interesting German word order phenomena.  It
+uses the two TDG graph dimensions ID and LP, and was written by Ralph
+Debusmann, for his Diplomarbeit @cite{A Declarative Grammar Formalism
+For Dependency Grammar} (@ref{References}), and it described
+therein. An extended version can be found here (@ref{softproj}).
+
+@ifnottex
+@verbatiminclude ../Grammars/Diplom.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node Dutch1, EQAB, Diplom, Grammars
+@section Dutch
+This grammar covers many interesting Dutch word order phenomena.  It
+uses only the two TDG graph dimensions ID and LP, and was written by
+Ralph Debusmann, for the unpublished article @cite{Topological
+Dependency Analysis of the Dutch Verb Cluster} (@ref{References}), and
+is described therein.
+
+@ifnottex
+@verbatiminclude ../Grammars/Dutch.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node EQAB, EQABPW, Dutch1, Grammars
+@section EQAB
+This grammar covers the language of @math{n} as and @math{n} bs, in
+any order. It was written by Ralph Debusmann for his dissertation.
+
+@ifnottex
+@verbatiminclude ../Grammars/EQAB.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node EQABPW, ESSLLI04_id, EQAB, Grammars
+@section EQABPW
+This grammar is the same as @ref{EQAB} except that it only uses PW
+principles.
+
+@ifnottex
+@verbatiminclude ../Grammars/EQABPW.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node ESSLLI04_id, ESSLLI04_idPW, EQABPW, Grammars
+@section ESSLLI04_id
+This is the first part of the grammar developed in the ESSLLI 2004
+course, using only the ID graph dimension. It was written by Ralph
+Debusmann and Denys Duchier. The ESSLLI 2004 course slides can be
+found here: @uref{http://www.ps.uni-sb.de/~rade/talks.html}.
+
+@ifnottex
+@verbatiminclude ../Grammars/ESSLLI04_id.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node ESSLLI04_idPW, ESSLLI04_idlp, ESSLLI04_id, Grammars
+@section ESSLLI04_idPW
+This grammar is the same as @ref{ESSLLI04_id} except that it only uses
+PW principles.
+
+@ifnottex
+@verbatiminclude ../Grammars/ESSLLI04_idPW.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node ESSLLI04_idlp, ESSLLI04_idlpPW, ESSLLI04_idPW, Grammars
+@section ESSLLI04_idlp
+This is the second part of the grammar developed in the ESSLLI 2004
+course, using the ID and LP graph dimensions. It was written by Ralph
+Debusmann and Denys Duchier. The ESSLLI 2004 course slides can be
+found here: @uref{http://www.ps.uni-sb.de/~rade/talks.html}.
+
+@ifnottex
+@verbatiminclude ../Grammars/ESSLLI04_idlp.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node ESSLLI04_idlpPW, ESSLLI04_idlpds, ESSLLI04_idlp, Grammars
+@section ESSLLI04_idlpPW
+This grammar is the same as @ref{ESSLLI04_idlp} except that it only
+uses PW principles.
+
+@ifnottex
+@verbatiminclude ../Grammars/ESSLLI04_idlpPW.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node ESSLLI04_idlpds, ESSLLI04_idlpdsPW, ESSLLI04_idlpPW, Grammars
+@section ESSLLI04_idlpds
+This is the third part of the grammar developed in the ESSLLI 2004
+course, using the ID, LP and DS graph dimensions. It was written by
+Ralph Debusmann and Denys Duchier. The ESSLLI 2004 course slides can
+be found here: @uref{http://www.ps.uni-sb.de/~rade/talks.html}.
+
+@ifnottex
+@verbatiminclude ../Grammars/ESSLLI04_idlpds.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node ESSLLI04_idlpdsPW, ESSLLI04_idlpdspa, ESSLLI04_idlpds, Grammars
+@section ESSLLI04_idlpdsPW
+This grammar is the same as @ref{ESSLLI04_idlpds} except that it only
+uses PW principles.
+
+@ifnottex
+@verbatiminclude ../Grammars/ESSLLI04_idlpdsPW.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node ESSLLI04_idlpdspa, ESSLLI04_idlpdspaPW, ESSLLI04_idlpdsPW, Grammars
+@section ESSLLI04_idlpdspa
+This is the fourth part of the grammar developed in the ESSLLI 2004
+course, using the ID, LP, DS and PA graph dimensions. It was written
+by Ralph Debusmann and Denys Duchier. The ESSLLI 2004 course slides
+can be found here: @uref{http://www.ps.uni-sb.de/~rade/talks.html}.
+
+@ifnottex
+@verbatiminclude ../Grammars/ESSLLI04_idlpdspa.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node ESSLLI04_idlpdspaPW, ESSLLI04_idlpdspasc, ESSLLI04_idlpdspa, Grammars
+@section ESSLLI04_idlpdspaPW
+This grammar is the same as @ref{ESSLLI04_idlpdspa} except that it only
+uses PW principles.
+
+@ifnottex
+@verbatiminclude ../Grammars/ESSLLI04_idlpdspaPW.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node ESSLLI04_idlpdspasc, ESSLLI04_idlpdspascPW, ESSLLI04_idlpdspaPW, Grammars
+@section ESSLLI04_idlpdspasc
+This is the fifth part of the grammar developed in the ESSLLI 2004
+course, using the ID, LP, DS, PA and SC graph dimensions. It was
+written by Ralph Debusmann and Denys Duchier. The ESSLLI 2004 course
+slides can be found here:
+@uref{http://www.ps.uni-sb.de/~rade/talks.html}.
+
+@ifnottex
+@verbatiminclude ../Grammars/ESSLLI04_idlpdspasc.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node ESSLLI04_idlpdspascPW, FG_TAGDC, ESSLLI04_idlpdspasc, Grammars
+@section ESSLLI04_idlpdspascPW
+This grammar is the same as @ref{ESSLLI04_idlpdspasc} except that it
+only uses PW principles.
+
+@ifnottex
+@verbatiminclude ../Grammars/ESSLLI04_idlpdspascPW.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node FG_TAGDC, FG_TAGDCgen, ESSLLI04_idlpdspascPW, Grammars
+@section FG_TAGDC
+This grammar combines TAG and Dominance Constraints. It was written by
+Ralph Debusmann.
+
+@ifnottex
+@verbatiminclude ../Grammars/FG_TAGDC.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node FG_TAGDCgen, MTS10, FG_TAGDC, Grammars
+@section FG_TAGDCgen
+This grammar combines TAG and Dominance Constraints. It was written by
+Ralph Debusmann.
+
+@ifnottex
+@verbatiminclude ../Grammars/FG_TAGDCgen.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node MTS10, MWE, FG_TAGDCgen, Grammars
+@section MTS10
+This grammar models the combination of lexicalized context-free
+grammars from the paper at ESSLLI 2007 (Workshop: Model-Theoretic
+Syntax at 10). It was written by Ralph Debusmann.
+
+@ifnottex
+@verbatiminclude ../Grammars/MTS10.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node MWE, MWEgen, MTS10, Grammars
+@section MWE
+This is a grammar for English covering the couple of sentences in the
+paper @cite{Multiword expressions as dependency subgraphs}
+(@ref{References}) for the ACL 2004 Workshop on Multiword
+Expressions. It uses three graph dimensions: ID and LP (as in TDG) and
+PA (Predicate Argument). The paper and the grammar were written by
+Ralph Debusmann.
+
+This is the grammar for the parsing direction.
+
+@ifnottex
+@verbatiminclude ../Grammars/MWE.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node MWEgen, Negation, MWE, Grammars
+@section MWEgen
+This is a grammar for English covering the couple of sentences in the
+paper @cite{Multiword expressions as dependency subgraphs}
+(@ref{References}) for the ACL 2004 Workshop on Multiword
+Expressions. It uses three graph dimensions: ID and LP (as in TDG) and
+PA (Predicate Argument). The paper and the grammar were written by
+Ralph Debusmann.
+
+This is the grammar for the generation direction.
+
+@ifnottex
+@verbatiminclude ../Grammars/MWEgen.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node Negation, SAT, MWEgen, Grammars
+@section Negation
+This is a grammar modeling French negation. It was written by Denys
+Duchier.
+
+@ifnottex
+@verbatiminclude ../Grammars/Negation.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node SAT, SATPW, Negation, Grammars
+@section SAT
+This is a grammar representing a reduction of the NP-complete SAT
+problem to XDG parsing, using the special principle
+@code{principle.pl} (@ref{PL}).  It was written by Ralph Debusmann and
+Gert Smolka, and is featured in Ralph Debusmann's dissertation and the
+paper @cite{Multi-dimensional Dependency Grammar as Multigraph
+Description} (@ref{References}).
+
+@ifnottex
+@verbatiminclude ../Grammars/SAT.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node SATPW, SCR, SAT, Grammars
+@section SATPW
+This grammar is the same as @ref{SAT} except that it only uses PW
+principles.
+
+@ifnottex
+@verbatiminclude ../Grammars/SATPW.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node SCR, SCRPW, SATPW, Grammars
+@section SCR
+This grammar covers the language of @math{n} ns followed by @math{n}
+vs, where the @math{i}th n depends on any of the vs. It is a demo
+grammar for scrambling. It was written by Ralph Debusmann for his
+dissertation.
+
+@ifnottex
+@verbatiminclude ../Grammars/SCR.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node SCRPW, TAG1, SCR, Grammars
+@section SCRPW
+This grammar is the same as @ref{SCR} except that it only uses PW
+principles.
+
+@ifnottex
+@verbatiminclude ../Grammars/SCRPW.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node TAG1, adjunction, SCRPW, Grammars
+@section TAG
+This grammar showcases the new @emph{Tree Adjoining Grammar (TAG)}
+@cindex Tree Adjoining Grammar
+@cindex TAG
+encoding developed by Denys Duchier and Marco Kuhlmann, and was
+written by Marco Kuhlmann.
+
+@ifnottex
+@verbatiminclude ../Grammars/TAG.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node adjunction, coindex, TAG1, Grammars
+@section adjunction
+This grammar showcases the old @emph{Tree Adjoining Grammar (TAG)}
+@cindex Tree Adjoining Grammar
+@cindex TAG
+encoding developed by Marco Kuhlmann, and was also written by him.
+
+@ifnottex
+@verbatiminclude ../Grammars/adjunction.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node coindex, diss, adjunction, Grammars
+@section coindex
+This is a grammar demoing @code{principle.coindex} (@ref{Coindex}) for
+coindexing, which will probably be crucial for encoding FB-TAG in XDG.
+It was written by Ralph Debusmann.
+
+@ifnottex
+@verbatiminclude ../Grammars/coindex.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node diss, dissPW.2dorder, coindex, Grammars
+@section diss
+This is a superset of @code{Chorus.ul} (@ref{Chorus}), including the
+treatment of information structure from @code{igk} (@ref{igk}). It
+uses six graph dimensions: ID and LP (as in TDG), PA (Predicate
+Argument), SC (Scope), PS (Prosodic Structure) and IS (Information
+Structure). It also uses the lexicalized order principle
+@code{principle.order2} (@ref{Order2}) instead of a non-lexicalized
+one.  It was written by Ralph Debusmann for his dissertation.
+
+@ifnottex
+@verbatiminclude ../Grammars/diss.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node dissPW.2dorder, dissPW, diss, Grammars
+@section dissPW.2dorder
+This grammar is the same as @ref{diss} except that it only uses PW
+principles, and uses a new two-dimensional order principle. Adapted by
+Jorge Pelizzoni.
+
+@ifnottex
+@verbatiminclude ../Grammars/dissPW.2dorder.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node dissPW, ema, dissPW.2dorder, Grammars
+@section dissPW
+This grammar is the same as @ref{diss} except that it only uses PW
+principles.
+
+@ifnottex
+@verbatiminclude ../Grammars/dissPW.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node ema, ema_th, dissPW, Grammars
+@section ema
+This grammar covers some Czech sentences. It was written by Ondrej
+Bojar.
+
+@ifnottex
+@verbatiminclude ../Grammars/ema.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node ema_th, igk, ema, Grammars
+@section ema_th
+This grammar covers some Czech sentences.  The difference to the
+@code{ema} grammar is that this grammar includes an additional TH
+graph dimension (THematic) modeling tectogrammatical structure.  It
+was written by Ondrej Bojar.
+
+@ifnottex
+@verbatiminclude ../Grammars/ema_th.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node igk, nut, ema_th, Grammars
+@section igk
+This grammar covers a small fragment of English, and includes the two
+graph dimensions of Prosodic Structure (PS) and Information Structure
+(IS). It was written by Ralph Debusmann, in a project at the IGK
+annual meeting 2004 in Edinburgh together with Ciprian Gerstenberger,
+Oana Postolache, Stefan Thater and Maarika Traat. It is described in
+@cite{A Modular Account of Information Structure in Extensible
+Dependency Grammar} (@ref{References}).
+
+@ifnottex
+@verbatiminclude ../Grammars/igk.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node nut, nut1, igk, Grammars
+@section nut
+This is an English toy grammar written for the nutshell chapter of the
+dissertation by Ralph Debusmann. Compared to @ref{nut1}, it does not
+use lexical classes but generates the lexicon directly.
+
+@ifnottex
+@verbatiminclude ../Grammars/nut.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node nut1, nut1PW, nut, Grammars
+@section nut
+This is an English toy grammar written for the nutshell chapter of the
+dissertation by Ralph Debusmann. Compared to @ref{nut}, it uses
+lexical classes for economic lexicon generation.
+
+@ifnottex
+@verbatiminclude ../Grammars/nut1.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node nut1PW, nutPW, nut1, Grammars
+@section nut1PW
+This grammar is the same as @ref{nut1} except that it only uses PW
+principles.
+
+@ifnottex
+@verbatiminclude ../Grammars/nut1PW.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node nutPW, regdgPW, nut1PW, Grammars
+@section nutPW
+This grammar is the same as @ref{nut} except that it only uses PW
+principles.
+
+@ifnottex
+@verbatiminclude ../Grammars/nutPW.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node regdgPW, softproj, nutPW, Grammars
+@section regdgPW
+This grammar models a regular dependency grammar as introduced in the
+ACL 2007 paper by Marco Kuhlmann and Mathias Moehl.
+
+@ifnottex
+@verbatiminclude ../Grammars/regdgPW.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node softproj, ww, regdgPW, Grammars
+@section softproj
+This grammar is an extension of the Diplom grammar (@ref{Diplom}), and
+was developed in a Softwareprojekt by Regine Bader, Christine
+Foeldesi, Ulrich Pfeiffer and Jochen Steigner. It is described in
+@cite{Modellierung grammatischer Phaenomene der deutschen Sprache mit
+Topologischer Dependenzgrammatik} (@ref{References}).
+
+@ifnottex
+@verbatiminclude ../Grammars/softproj.ul
+@end ifnottex
+
+@c ************************************************************
+
+@node ww, , softproj, Grammars
+@section ww
+This grammar covers the language @math{L = @{ww | w in @{a, b@}@}},
+using a @emph{Tree Adjoining Grammar (TAG)}
+@cindex Tree Adjoining Grammar
+@cindex TAG
+encoding developed by Ralph Debusmann and Marco Kuhlmann (the same
+encoding as used for the XTAG grammar generator of the XDK).  It was
+written by Ralph Debusmann.
+
+@ifnottex
+@verbatiminclude ../Grammars/ww.ul
+@end ifnottex

@@ -1,0 +1,101 @@
+<html lang="en">
+<head>
+<title>LookRight - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="LockingDaughters.html#LockingDaughters" title="LockingDaughters">
+<link rel="next" href="Order.html#Order" title="Order">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="LookRight"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Order.html#Order">Order</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="LockingDaughters.html#LockingDaughters">LockingDaughters</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.47 LookRight principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.lookright</code>
+<li>dimension variables: <code>D</code>
+<li>argument variables:<br>
+<code>LookRight: vec("id.agrreq" iset(label(D)))</code>
+<li>default values:<br>
+<code>LookRight: _.D.entry.lookright</code>
+<li>model record: empty
+<li>constraints: <code>LookRight</code> (priority 130)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle was written by Ondrej Bojar.
+
+   <p>Here is the definition of the <code>LookRight</code> constraint functor:
+<pre class="verbatim">%% Copyright 2004-2011
+%% by Ondrej Bojar &lt;obo@cuni.cz>
+%%
+functor
+import
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      DIDA = {DVA2DIDA 'D'}
+      AttrsLat = {G.dIDA2AttrsLat DIDA}
+      ALatRec = AttrsLat.record
+      AgrReqLat = ALatRec.agrreq
+      AgrReqAs = AgrReqLat.constants
+   in
+      %% check features
+      if {Helpers.checkModel 'LookRight.oz' Nodes
+          [DIDA#labels]} then
+         for Node in Nodes I in 1..{Length Nodes} do
+            LookRightRec = {ArgRecProc 'LookRight' o('_': Node)}
+            Index1 = I+1
+	    N = {Length Nodes}
+            %% right neighbour's agr must allow our edge label,
+            %% i.e. our edge label in ...
+	    AllowedLabelsM =
+	    if Index1 =&lt; N then
+	       Node1 = {Nth Nodes Index1}
+	       AgrReqD = Node1.DIDA.attrs.agrreq
+	    in
+	       {Select.fs
+		{Map AgrReqAs fun {$ A} LookRightRec.A end}
+		AgrReqD}
+	    else
+	       LookRightRec.'-1'
+	    end
+	 in
+	    {FS.subset Node.DIDA.model.labels AllowedLabelsM}
+         end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

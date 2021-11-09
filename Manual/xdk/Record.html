@@ -1,0 +1,86 @@
+<html lang="en">
+<head>
+<title>Record - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Types-reference.html#Types-reference" title="Types reference">
+<link rel="prev" href="Map.html#Map" title="Map">
+<link rel="next" href="Set-_0028accumulative_0029.html#Set-_0028accumulative_0029" title="Set (accumulative)">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Record"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Set-_0028accumulative_0029.html#Set-_0028accumulative_0029">Set (accumulative)</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Map.html#Map">Map</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Types-reference.html#Types-reference">Types reference</a>
+<hr>
+</div>
+
+<h4 class="subsection">4.9.8 Record</h4>
+
+<p>A record over n features, where each of these features consists
+of a <em>field</em>
+<a name="index-field-158"></a>field_i and a <em>value</em>
+<a name="index-value-159"></a>term_i of type type_i (1&lt;=i&lt;=n). We call the set
+of fields of a record its
+<em>arity</em>. 
+<a name="index-arity-160"></a>
+
+<h5 class="subsubsection">4.9.8.1 Top value</h5>
+
+<p>For each field field_i in the arity of the record, its value is
+the top value of the corresponding type type_i.
+
+<h5 class="subsubsection">4.9.8.2 Bottom value</h5>
+
+<p>For each field field_i in the arity of the record, its value is
+the bottom value of the corresponding type type_i.
+
+<h5 class="subsubsection">4.9.8.3 Greatest lower bound operation</h5>
+
+<p>Recursively, the greatest lower bound of two records A and B is the
+record where the value of each field field_i is the result of
+the greatest lower bound of the value at field_i in record A,
+and the value field_i in record B.
+
+   <p>Notice that you can also use the greatest lower bound operation
+(conjunction) on the features in a record specification. The
+conjunction of two features field_1:term_1 and
+field_2:term_2 is defined as:
+     <ul>
+<li>If field_1 and field_2 are equal, then replace the
+two features by field_1:term in the record specification, where
+term is the conjunction of term_1 and term_2. 
+<li>Otherwise, keep the two features in the record specification. 
+</ul>
+
+<h5 class="subsubsection">4.9.8.4 Example</h5>
+
+<p>Here is an example record type definition with three fields in its
+arity (<code>field_1</code>, <code>field_2</code> and <code>field_3</code>). These have
+types <code>ref("type_1")</code>, <code>ref("type_2")</code> and
+<code>ref("type_3")</code>, respectively:
+
+<pre class="example">     deftype "record" {field_1: ref("type_1")
+                       field_2: ref("type_2")
+                       field_3: ref("type_3")}
+</pre>
+   <!-- ************************************************************ -->
+   </body></html>
+

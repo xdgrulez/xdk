@@ -1,0 +1,13 @@
+defprinciple "principle.csdPW" {
+  dims {D}
+  constraints {
+    
+    forall V::node:
+      forall V1::node:
+        edge(V V1 n D) =>
+          forall V2::node:
+            forall V3::node:
+              dom(V2 V D) & edge(V2 V3 n D) => V3<V1
+
+  }
+}

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE statistics SYSTEM "Extras/statistics.dtd">
+<statistics>
+  <grammar data="4712.ulsocket"/>
+  <examples data="XTAG/XDK_evaluation/wsj23_25-29_new.txt" count="1"/>
+  <mode data="parse"/>
+  <date data="Nov 6, 2007 13:12:42"/>
+  <solutions data="1"/>
+  <failures data="99999"/>
+  <timeout data="1800"/>
+  <reco data="5"/>
+  <dimensions>
+    <dimension data="id"/>
+    <dimension data="idlp"/>
+    <dimension data="lex"/>
+    <dimension data="lp"/>
+  </dimensions>
+  <principles>
+    <principle data="id principle.graph1Constraints (id)"/>
+    <principle data="id principle.graph1Dist (id)"/>
+    <principle data="id principle.tree (id)"/>
+    <principle data="id principle.in (id)"/>
+    <principle data="id principle.out (id)"/>
+    <principle data="id principle.xTAGRoot (id)"/>
+    <principle data="lp principle.graph1Constraints (lp)"/>
+    <principle data="lp principle.graph1Dist (lp)"/>
+    <principle data="lp principle.tree (lp)"/>
+    <principle data="lp principle.in (lp)"/>
+    <principle data="lp principle.out (lp)"/>
+    <principle data="lp principle.government (lp)"/>
+    <principle data="lp principle.xTAG (lp)"/>
+    <principle data="idlp principle.xTAGLinking (id,lp,idlp)"/>
+    <principle data="idlp principle.xTAGRedundant (id,lp)"/>
+    <principle data="lex principle.entries ()"/>
+  </principles>
+  <gprofile fd="4" fs="310" fdfs="314" entries="725">
+    <gpnode fd="2" fs="2" fdfs="4"/>
+    <gpattrs fd="0" fs="0" fdfs="0">
+      <gpdimension data="id" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="idlp" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="0" fs="0" fdfs="0"/>
+    </gpattrs>
+    <gpentry fd="2" fs="168" fdfs="170">
+      <gpdimension data="id" fd="0" fs="37" fdfs="37"/>
+      <gpdimension data="idlp" fd="0" fs="43" fdfs="43"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="2" fs="88" fdfs="90"/>
+    </gpentry>
+    <gpmodel fd="0" fs="140" fdfs="140">
+      <gpdimension data="id" fd="0" fs="44" fdfs="44"/>
+      <gpdimension data="idlp" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="0" fs="96" fdfs="96"/>
+    </gpmodel>
+    <gplabel>
+      <gpdimension data="id" label="36"/>
+      <gpdimension data="idlp" label="0"/>
+      <gpdimension data="lex" label="0"/>
+      <gpdimension data="lp" label="43"/>
+    </gplabel>
+  </gprofile>
+  <string id="string1">
+    <words>
+    while Friday 's debacle involved mainly professional traders rather than investors , it left the market vulnerable to continued selling this morning , traders said .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="36"/>
+    <depth data="37"/>
+    <failed data="5"/>
+    <succeeded data="1"/>
+    <time data="12370"/>
+    <sprofile fd="264914" fs="81983" fdfs="346897" pr="463835" entries="29.462" words="26">
+      <spnode index="1" word="while" entries="7" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="2" word="Friday" entries="7" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="3" word="'s" entries="8" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="4" word="debacle" entries="3" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="5" word="involved" entries="53" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="6" word="mainly" entries="5" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="7" word="professional" entries="21" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="8" word="traders" entries="19" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="9" word="rather" entries="19" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="10" word="than" entries="4" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="11" word="investors" entries="3" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="12" word="," entries="22" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="13" word="it" entries="19" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="14" word="left" entries="118" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="15" word="the" entries="2" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="16" word="market" entries="70" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="17" word="vulnerable" entries="18" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="18" word="to" entries="38" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="19" word="continued" entries="81" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="20" word="selling" entries="100" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="21" word="this" entries="5" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="22" word="morning" entries="23" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="23" word="," entries="22" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="24" word="traders" entries="19" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="25" word="said" entries="78" fd="4" fs="310" fdfs="314" pr="488"/>
+      <spnode index="26" word="." entries="2" fd="4" fs="310" fdfs="314" pr="488"/>
+    </sprofile>
+  </string>
+  <counts>
+    <cchoices min="36" max="36" average="36.0"/>
+    <cdepth min="37" max="37" average="37.0"/>
+    <cfailed min="5" max="5" average="5.0"/>
+    <csucceeded min="1" max="1" average="1.0"/>
+    <ctime min="12370" max="12370" average="12370.0"/>
+  </counts>
+  <profilecounts>
+    <cfd min="264914" max="264914" average="2.6491e05"/>
+    <cfs min="81983" max="81983" average="81983.0"/>
+    <cfdfs min="346897" max="346897" average="3.469e05"/>
+    <cpr min="463835" max="463835" average="4.6384e05"/>
+    <cwords min="26" max="26" average="26.0"/>
+    <centries min="2" max="118" average="29.462"/>
+  </profilecounts>
+</statistics>

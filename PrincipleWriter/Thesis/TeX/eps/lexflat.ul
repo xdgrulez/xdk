@@ -1,0 +1,20 @@
+defentry {
+  dim id {in: {}
+          out: {n! v?}}
+  dim lp {in: {}
+          out: {"1"* "2"?}
+          order: <"1" "^" "2">}
+  dim lex {word: "v"}}
+
+defentry {
+  dim id {in: {v!}
+          out: {n! v?}}
+  dim lp {in: {"2"!}
+          out: {"2"?}
+          order: <"^" "2"}
+  dim lex {word: "v"}}
+
+defentry {
+  dim id {in: {n!}}
+  dim lp {in: {"1"!}}
+  dim lex {word: "n"}}

@@ -1,0 +1,467 @@
+usedim id
+usedim lp
+usedim lex
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% id-Dimension
+defdim id {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% Typen
+  defattrstype ref("id.attrs")
+  defentrytype ref("id.entry")
+  deflabeltype ref("id.label")
+  deftype "id.case" {nom acc jar}
+  deftype "id.gender" {masc fem}
+  deftype "id.number" {sg pl}
+  deftype "id.agr" tuple(ref("id.gender") ref("id.number") ref("id.case"))
+  deftype "id.agrs" iset(ref("id.agr"))
+  deftype "id.attrs" {agr: ref("id.agr")}
+  deftype "id.entry" {in: iset(ref("id.label"))
+                      out: valency(ref("id.label"))
+                      agrs: ref("id.agrs")
+                      govern: vec(ref("id.label") ref("id.agrs"))}
+  deftype "id.label" {adj adjart adv app art cor gen mm obj1 obj2 pp prep prepobj subj}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% Prinzipien
+  useprinciple "principle.graph1" {
+    dims {D: id}}
+  useprinciple "principle.tree" {
+    dims {D: id}}
+  useprinciple "principle.in" {
+    dims {D: id}}
+  useprinciple "principle.out" {
+    dims {D: id}}
+  useprinciple "principle.agr" {
+    dims {D: id}
+    args {Agr: _.D.attrs.agr
+          Agrs: _.D.entry.agrs}}
+  useprinciple "principle.agreement" {
+    dims {D: id}
+    args {Agr1: ^.D.attrs.agr
+          Agr2: _.D.attrs.agr
+          Agree: {adj}}}
+  useprinciple "principle.government" {
+    dims {D: id}
+    args {Agr2: _.D.attrs.agr
+          Govern: ^.D.entry.govern}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% Ausgaben
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% lp-Dimension
+defdim lp {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% Typen
+  defentrytype ref("lp.entry")
+  deflabeltype ref("lp.label")
+  deftype "lp.entry" {in: iset(ref("lp.label"))
+                      out: valency(ref("lp.label"))
+                      on: iset(ref("lp.label"))
+                      blocks: set(ref("id.label"))}
+  deftype "lp.label" {corf appf adjf genf n artf
+                      a adjartf
+                      prepobjf p
+                      mmf sf m}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% Prinzipien
+  useprinciple "principle.graph1" {
+    dims {D: lp}}
+  useprinciple "principle.tree" {
+    dims {D: lp}}
+  useprinciple "principle.in" {
+    dims {D: lp}}
+  useprinciple "principle.out" {
+    dims {D: lp}}
+  useprinciple "principle.order" {
+    dims {D: lp}
+    args {Order: [corf appf adjf genf n artf
+                  a adjartf
+                  prepobjf p
+                  mmf sf m]
+          Yields: true}}
+  useprinciple "principle.projectivity" {
+    dims {D: lp}}
+  useprinciple "principle.climbing" {
+    dims {D1: lp
+          D2: id}}
+  useprinciple "principle.barriers" {
+    dims {D1: lp
+          D2: id
+          D3: lp}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% Ausgaben
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% lex-Dimension
+defdim lex {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% Typen
+  defentrytype {word: string}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% Prinzipien
+%  useprinciple "principle.entries" {}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% Ausgaben
+  output "output.dags1"
+  output "output.latexs1"
+  %%
+  useoutput "output.dags1"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lexikalische Klassen (id)
+
+defclass "t-fin-id" Govern {
+  dim id {in: {}  
+          out: {subj adv* mm* pp*}
+          govern: Govern}}
+
+defclass "t-intransitive-id" {
+  dim id {in: {}
+          out: {}}}
+
+defclass "t-art-id" {
+  dim id {in: {art adjart}
+          out: {}}}
+
+defclass "t-adj-id" Agrs {
+  dim id {in: {adj}
+          out: {adjart?}
+          agrs: Agrs}}
+
+defclass "t-app-id" {
+  dim id {in: {app}
+          out: {}}}
+
+defclass "t-cor-id" {
+  dim id {in: {cor}
+          out: {}}}
+
+defclass "t-adv-id" {
+  dim id {in: {adv}
+          out: {}}}
+
+defclass "t-mm-id" {
+  dim id {in: {mm}
+          out: {adv* pp*}}}
+
+defclass "t-prep-id" {
+  dim id {in: {prep}
+          out: {prepobj}
+          govern: {prepobj: $ jar}}}
+
+defclass "t-pp-id" {
+  dim id {in: {pp}
+          out: {prepobj}
+          govern: {prepobj: $ jar}}}
+
+defclass "t-znomen-id" {
+  dim id {out: {cor* app* adj* gen? art?}
+          agrs: Agrs}}
+
+defclass "t-name-id" {
+  dim id {out: {cor* app* adj* gen?}
+          agrs: Agrs}}
+
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lexikalische Klassen (lp)
+
+defclass "t-fin-lp" {
+  dim lp {in: {}
+          on: {sf}
+          out: {mmf* sf*}}}
+
+defclass "t-intransitive-lp" {
+  dim lp {in: {}
+          out: {}}}
+
+defclass "t-art-lp" {
+  dim lp {in: {artf adjartf}
+          on: {artf}
+          out: {}}}
+
+defclass "t-adj-lp" {
+  dim lp {in: {adjf}
+          on: {a}
+          out: {adjartf?}
+          blocks: {adjart}}}
+
+defclass "t-app-lp" {
+  dim lp {in: {appf}
+          on: {appf}
+          out: {}}}
+
+defclass "t-cor-lp" {
+  dim lp {in: {corf}
+          on: {corf}
+          out: {}}}
+
+defclass "t-adv-lp" {
+  dim lp {in: {sf}
+          on: {sf}
+          out: {}}}
+
+defclass "t-mm-lp" {
+  dim lp {in: {mmf}
+          on: {m}
+          out: {sf*}
+          blocks: {adv pp}}}
+
+defclass "t-prep-lp" {
+  dim lp {in: {sf}
+          on: {p}
+          out: {prepobjf}}}
+
+defclass "t-pp-lp" {
+  dim lp {in: {sf}
+          on: {p}
+          out: {prepobjf}}}
+
+defclass "t-znomen-lp" {
+  dim lp {on: {n}
+          out: {corf* appf* adjf* genf? artf?}
+          blocks: {cor app adj gen art}}}
+
+defclass "t-name-lp" {
+  dim lp {on: {n}
+          out: {corf* appf* adjf* genf?}
+          blocks: {cor app adj gen}}}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lexikalische Klassen (id, lp)
+
+defclass "t-fin" Word Govern {
+  "t-fin-id" {Govern: Govern}
+  "t-fin-lp"
+  dim lex {word: Word}}
+
+defclass "t-intransitive" Word Govern {
+  "t-fin" {Word: Word
+           Govern: Govern}
+  "t-intransitive-id"
+  "t-intransitive-lp"}
+
+defclass "t-transitive" Word Govern {
+  "t-fin" {Word: Word
+           Govern: Govern}
+  dim id {out: {(obj1)|prep}
+          govern: {obj1: $ acc}}}
+
+defclass "t-ditransitive" Word Govern {
+  "t-transitive" {Word: Word 
+                  Govern: Govern}
+  dim id {out: {obj2}}}
+
+defclass "t-art" Word {
+  "t-art-id"  
+  "t-art-lp"
+  dim lex {word: Word}}
+
+defclass "t-adj" Word Agrs {
+  "t-adj-id" {Agrs: Agrs}
+  "t-adj-lp"
+  dim lex {word: Word}}
+
+defclass "t-app" Word {
+  "t-app-id"
+  "t-app-lp"
+  dim lex {word: Word}}
+
+defclass "t-cor" Word {
+  "t-cor-id"
+  "t-cor-lp"
+  dim lex {word: Word}}
+
+defclass "t-adv" Word {
+  "t-adv-id"
+  "t-adv-lp"
+  dim lex {word: Word}}
+
+defclass "t-mm" Word {
+  "t-mm-id"
+  "t-mm-lp"
+  dim lex {word: Word}}
+
+defclass "t-prep" Word {
+  "t-prep-id"
+  "t-prep-lp"
+  dim lex {word: Word}}
+
+defclass "t-pp" Word {
+  "t-pp-id"
+  "t-pp-lp"
+  dim lex {word: Word}}
+
+defclass "t-nomen" Word Agrs {
+  ((dim id {in: {subj obj1 obj2}} &
+    dim lp {in: {sf}}) |
+   (dim id {in: {gen}} &
+    dim lp {in: {genf}}) |
+   (dim id {in: {prepobj}} &
+    dim lp {in: {prepobjf}}))
+  dim id {agrs: Agrs}
+  dim lex {word: Word}}
+  
+defclass "t-znomen" Word Agrs {
+  "t-nomen" {Word: Word
+             Agrs: Agrs}
+  "t-znomen-id"
+  "t-znomen-lp"}
+
+defclass "t-name" Word Agrs {
+  "t-nomen" {Word: Word
+             Agrs: Agrs}
+  "t-name-id"
+  "t-name-lp"}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Lexikoneintraege
+
+%% intransitive Verben
+defentry {
+  "t-intransitive" {Word: "tadhak-u"
+                    Govern: {subj: $ (fem & (sg|pl) & nom)}}}
+
+defentry {
+  "t-intransitive" {Word: "yadhak-u"
+                    Govern: {subj: $ (masc & (sg|pl) & nom)}}}
+
+defentry {
+  "t-intransitive" {Word: "yadhak-un"
+                    Govern: {subj: $ (masc & pl & nom)}}}
+
+defentry {
+  "t-intransitive" {Word: "laib-a"
+                    Govern: {subj: $ (masc & (sg|pl) & nom)}}}
+
+%% transitive Verben
+defentry {
+  "t-transitive" {Word: "tuhibu"
+                  Govern: {subj: $ (fem & (sg|pl) & nom)}}}
+
+defentry {
+  "t-transitive" {Word: "yuhibuon"
+                  Govern: {subj: $ (masc & pl & nom)}}}
+
+defentry {
+  "t-transitive" {Word: "yuhibu"
+                  Govern: {subj: $ (masc & sg & nom)}}}
+
+defentry {
+  "t-transitive" {Word: "tuqabilu"
+                  Govern: {subj: $ (fem & (sg|pl) & nom)}}}
+
+defentry {
+  "t-transitive" {Word: "yuqabilu"
+                  Govern: {subj: $ (masc & sg & nom)}}}
+
+defentry {
+  "t-transitive" {Word: "yuqabiluon"
+                  Govern: {subj: $ (masc & pl & nom)}}}
+
+%% ditransitive Verben
+defentry {
+  "t-ditransitive" {Word: "tuiti"
+                    Govern: {subj: $ (fem & (sg|pl) & nom)}}}
+
+defentry {
+  "t-ditransitive" {Word: "yuiti"
+                    Govern: {subj: $ (masc & sg & nom)}}}
+
+defentry {
+  "t-ditransitive" {Word: "yuitoon"
+                    Govern: {subj: $ (masc & pl)}}}
+
+%% Artikel
+defentry { "t-art" {Word: "al"} }
+
+%% Adjektive
+defentry { "t-adj" {Word: "tawilat-u"
+                    Agrs: $ (fem & sg & nom)} }
+
+defentry { "t-adj" {Word: "tawilat-a"
+                    Agrs: $ (fem & sg & acc)} }
+
+defentry { "t-adj" {Word: "jamilat-u"
+                    Agrs: $ (fem & sg & nom)} }
+
+defentry { "t-adj" {Word: "jamilat-a"
+                    Agrs: $ (fem & sg & acc)} }
+
+defentry { "t-adj" {Word: "jadid"
+                    Agrs: $ (masc & sg)} }
+
+%% Appositionen
+defentry { "t-app" {Word: "dr-m-salami"} }
+
+%% Korrelationen
+defentry { "t-cor" {Word: "nafsaho"} }
+
+%% Adverbien
+defentry {
+  "t-adv" {Word: "kathiran"}}
+
+%% Mafool Motlak
+defentry {
+  "t-mm" {Word: "huban"}}
+
+defentry {
+  "t-mm" {Word: "laiban"}}
+
+%% praepositionale Komplemente
+defentry {
+  "t-prep" {Word: "li"}}
+
+%% praepositionale Modifikatoren
+defentry {
+  "t-pp" {Word: "bi"}}
+
+%% Nomina
+defentry { "t-znomen" {Word: "fatat"
+                      Agrs: $ (fem & sg)} }
+
+defentry { "t-znomen" {Word: "fatat-u"
+                      Agrs: $ (fem & sg & nom)} }
+
+defentry { "t-znomen" {Word: "fatat-a"
+                       Agrs: $ (fem & sg & acc)} }
+
+defentry { "t-znomen" {Word: "fatat-i"
+                       Agrs: $ (fem & sg & jar)} }
+
+defentry { "t-znomen" {Word: "awlad-u"
+                       Agrs: $ (masc & pl & nom)}}
+
+defentry { "t-znomen" {Word: "walad-u"
+                       Agrs: $ (masc & sg)}}
+
+defentry { "t-znomen" {Word: "kitab-a"
+                       Agrs: $ (masc & sg & acc)}}
+
+defentry { "t-znomen" {Word: "qahira"
+                       Agrs: $ (fem & sg)} }
+
+defentry { "t-znomen" {Word: "jamiat"
+                       Agrs: $ (fem & sg)} }
+
+defentry { "t-znomen" {Word: "raees"
+                       Agrs: $ (masc & sg)} }
+
+defentry { "t-znomen" {Word: "taleb-u"
+                       Agrs: $ (masc & sg & nom)} }
+
+defentry { "t-znomen" {Word: "taleb-a"
+                       Agrs: $ (masc & sg & acc)} }
+%% Namen
+defentry { "t-name" {Word: "mohammed"
+                     Agrs: $ (masc & sg)} }
+
+defentry { "t-name" {Word: "mohammed-u"
+                     Agrs: $ (masc & sg & nom)} }
+
+defentry { "t-name" {Word: "mohammed-a"
+                     Agrs: $ (masc & sg & acc)} }
+
+defentry { "t-name" {Word: "mohammed-i"
+                     Agrs: $ (masc & sg & jar)} }

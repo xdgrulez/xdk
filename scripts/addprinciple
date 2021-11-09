@@ -1,0 +1,191 @@
+#!/usr/bin/perl
+# usage:
+# addprinciple <principle name> <constraint name_1> ... <constraint name_N>
+
+############################################################
+
+# 'makefile.oz'
+sub subst1
+{
+    local(@lines);
+
+    # read file into array @lines
+    open(fh,'makefile.oz');
+    @lines = <fh>;
+    close(fh);
+    
+    # convert array @lines into scalar $lines
+    $lines = "";
+    foreach $line (@lines) {
+	$lines = "$lines$line";
+    }
+
+    for ($i = 1; $i <= $#ARGV; ++$i) {
+	# add principle name to file
+	$_ = $lines;
+	s/(.*Outputs\/Lib\/.*\n\s*\n)(.*Solver\/Principles\/Lib\/.*)/\1\t \'Solver\/Principles\/Lib\/$ARGV[$i]\.ozf\'\n\2/;
+	print "Added 'Solver/Principles/Lib/$ARGV[$i].ozf' to file 'makefile.oz'.\n"; 	$lines = $_;
+    }
+
+    # write back file
+    open(fh,'>makefile.oz');
+    print fh $lines;
+    close(fh);
+}
+
+############################################################
+
+# 'Solver/Principles/Principles.oz'
+sub subst2
+{
+    local($c);
+    $c = $_[0];
+
+    local(@lines);
+
+    # read file into array @lines
+    open(fh,'Solver/Principles/Principles.oz');
+    @lines = <fh>;
+    close(fh);
+    
+    # convert array @lines into scalar $lines
+    $lines = "";
+    foreach $line (@lines) {
+	$lines = "$lines$line";
+    }
+
+    # add principle name to file (1)
+    $_ = $lines;
+    s/(.*Share\(printComment\).*\n\s*\n)(.*\(principle\))/\1   $c\(principle\)\n\2/;
+    $lines = $_;
+    print "Added '$c(principle)' to file 'Solver/Principles/Principles.oz'.\n";
+
+    # add principle name to file (2)
+    $_ = $lines;
+    s/(.*Principles =\n   \[\n)(   .*\.principle)/\1    $c\.principle\n\2/;
+    $lines = $_;
+    print "Added '$c.principle' to file 'Solver/Principles/Principles.oz'.\n";
+
+    # write back file
+    open(fh,'>Solver/Principles/Principles.oz');
+    print fh $lines;
+    close(fh);
+}
+
+############################################################
+
+# 'Solver/Principles/makefile.oz'
+sub subst3
+{
+    local($c);
+    $c = $_[0];
+
+    local(@lines);
+
+    # read file into array @lines
+    open(fh,'Solver/Principles/makefile.oz');
+    @lines = <fh>;
+    close(fh);
+    
+    # convert array @lines into scalar $lines
+    $lines = "";
+    foreach $line (@lines) {
+	$lines = "$lines$line";
+    }
+
+    # add principle name to file
+    $_ = $lines;
+    s/(.*Principles\.ozf.*\n\s*\n)(.*\.ozf\')/\1\t \'$c\.ozf\'\n\2/;
+    $lines = $_;
+    print "Added '$c.ozf' to file 'Solver/Principles/makefile.oz'.\n";
+
+    # write back file
+    open(fh,'>Solver/Principles/makefile.oz');
+    print fh $lines;
+    close(fh);
+}
+
+############################################################
+
+# 'Solver/Principles/principles.xml'
+sub subst4
+{
+    local($c);
+    $c = $_[0];
+
+    local(@lines);
+
+    # read file into array @lines
+    open(fh,'Solver/Principles/principles.xml');
+    @lines = <fh>;
+    close(fh);
+    
+    # convert array @lines into scalar $lines
+    $lines = "";
+    foreach $line (@lines) {
+	$lines = "$lines$line";
+    }
+
+    # add principle name to file
+    $_ = $lines;
+    s/(.*principle\..*\n)/<principleDef id=\"principle\.$c\"\/>\n\1/;
+    $lines = $_;
+    print "Added '<principleDef id=\"principle.$c\"/>' to file 'Solver/Principles/principles.xml'.\n";
+
+    # write back file
+    open(fh,'>Solver/Principles/principles.xml');
+    print fh $lines;
+    close(fh);
+}
+
+############################################################
+
+# 'Solver/Principles/Lib/makefile.oz'
+sub subst5 {
+    local(@lines);
+
+    # read file into array @lines
+    open(fh,'Solver/Principles/Lib/makefile.oz');
+    @lines = <fh>;
+    close(fh);
+    
+    # convert array @lines into scalar $lines
+    $lines = "";
+    foreach $line (@lines) {
+	$lines = "$lines$line";
+    }
+    
+    for ($i = 1; $i <= $#ARGV; ++$i) {
+	# add principle name to file
+	$_ = $lines;
+	s/(.*NatUtils\.so.*\n\n)(.*\.ozf\')/\1\t \'$ARGV[$i]\.ozf\'\n\2/;
+	print "Added '$ARGV[$i].ozf' to file 'Solver/Principles/Lib/makefile.oz'.\n";
+	$lines = $_;
+    }
+
+    # write back file
+    open(fh,'>Solver/Principles/Lib/makefile.oz');
+    print fh $lines;
+    close(fh);
+}
+
+############################################################
+############################################################
+############################################################
+
+# $lc: principle name starting with a lowercase letter
+$_ = @ARGV[0];
+s/^([a-zA-Z])(.*)$/\l\1\2/g;
+$lc = $_;
+
+# $uc: principle name starting with an uppercase letter
+$_ = @ARGV[0];
+s/^([a-zA-Z])(.*)$/\u\1\2/g;
+$uc = $_;
+
+&subst1;
+
+&subst2($uc);
+&subst3($uc);
+&subst4($lc);
+&subst5($uc);

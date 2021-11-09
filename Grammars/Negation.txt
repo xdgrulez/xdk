@@ -1,0 +1,95 @@
+il ne ose pas venir .
+il ne ose venir .
+il ne cesse de venir .
+il ne cesse pas de venir .
+il ne peut pas venir .
+il ne peut venir .
+il ne voit jamais le ingénieur .
+il ne voit jamais personne .
+il ne voit jamais rien .
+il ne voit pas le ingénieur .
+il ne voit personne .
+il ne voit rien .
+
+%%
+il voit jamais le ingénieur .
+il voit jamais personne .
+il voit jamais rien .
+il voit pas le ingénieur .
+il voit personne .
+il voit rien .
+
+%%
+il avoue ne avoir fait entrer personne .
+il avoue ne avoir fait jamais démarrer le moteur .
+il avoue ne avoir pas fait jamais démarrer le moteur .
+il avoue ne avoir rien fait démarrer .
+il avoue ne jamais avoir fait démarrer le moteur .
+il avoue ne jamais le avoir fait démarrer .
+il avoue ne le avoir jamais fait démarrer .
+il avoue ne le avoir pas fait démarrer .
+il avoue ne pas avoir fait démarrer le moteur .
+il avoue ne pas le avoir fait démarrer .
+il avoue ne rien avoir fait démarrer .
+
+il ne a jamais été vu .
+il ne a pas été vu .
+il ne a rien été vu .
+il ne fait entrer personne .
+il ne fait jamais démarrer le moteur .
+il ne fait pas démarrer le moteur .
+il ne fait rien démarrer .
+il ne le fait jamais démarrer .
+il ne le fait pas démarrer .
+il ne le lui donne jamais .
+il ne le lui donne pas .
+il ne le voit jamais .
+il ne le voit pas .
+il ne lui donne rien .
+il ne veut jamais le voir .
+il ne veut jamais voir le ingénieur .
+il ne veut pas le voir .
+il ne veut pas voir le ingénieur .
+il ne veut rien voir .
+il ne veut voir personne .
+il ne voit jamais le ingénieur .
+il ne voit marcher personne .
+il ne voit pas le ingénieur .
+il ne voit personne .
+il ne voit personne marcher .
+il ne voit rien .
+il veut ne jamais le voir .
+il ne veut jamais voir le ingénieur .
+il ne veut pas le voir .
+il ne veut pas voir le ingénieur .
+il veut ne rien voir .
+il veut ne voir personne . 
+
+il avoue ne avoir pas fait démarrer le moteur .
+il avoue ne le avoir pas fait démarrer .
+il avoue ne pas avoir fait démarrer le moteur .
+il avoue ne pas le avoir fait démarrer .
+il ne a pas été vu .
+il ne fait pas démarrer le moteur .
+il ne le fait pas démarrer .
+il ne le lui donne pas .
+il ne le voit pas .
+il ne veut pas le voir .
+il ne veut pas voir le ingénieur .
+il ne voit pas le ingénieur .
+il veut ne pas le voir .
+il veut ne pas voir le ingénieur .
+
+%% bad
+
+il ne voit jamais quelqu_un .
+il ne voit jamais quelque_chose .
+il ne voit le ingénieur .
+il ne voit pas jamais le ingénieur .
+il ne voit pas jamais personne .
+il ne voit pas jamais rien .
+il ne voit pas personne .
+il ne voit pas rien .
+%il ne voit toujours personne .
+%il ne voit toujours quelqu_un .
+%il ne voit toujours quelque_chose .

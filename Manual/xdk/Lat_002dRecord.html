@@ -1,0 +1,71 @@
+<html lang="en">
+<head>
+<title>Lat-Record - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Lattice-functors.html#Lattice-functors" title="Lattice functors">
+<link rel="prev" href="Lat_002dList.html#Lat_002dList" title="Lat-List">
+<link rel="next" href="Lat_002dSet.html#Lat_002dSet" title="Lat-Set">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Lat-Record"></a>
+<a name="Lat_002dRecord"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Lat_002dSet.html#Lat_002dSet">Lat-Set</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Lat_002dList.html#Lat_002dList">Lat-List</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Lattice-functors.html#Lattice-functors">Lattice functors</a>
+<hr>
+</div>
+
+<h4 class="subsection">4.15.7 Record functor</h4>
+
+<h5 class="subsubsection">4.15.7.1 Select function</h5>
+
+<p>The select function of the record lattice functor recursively calls
+the select functions of the lattices corresponding to its features.
+
+<h5 class="subsubsection">4.15.7.2 Make variable function</h5>
+
+<p>The make variable function of the record lattice functor recursively
+calls the make variable functions of the lattices corresponding to its
+features.
+
+<h5 class="subsubsection">4.15.7.3 Count function</h5>
+
+<p>The count function returns:
+<pre class="example">     o(fd: FDI
+       fs: FSI)
+</pre>
+   <p>where <code>FDI</code> is the sum of the finite domain variables counted for
+the co-domains of the record, and <code>FSI</code> the sum of the finite set
+variables.
+
+<h5 class="subsubsection">4.15.7.4 Additional interface features</h5>
+
+<p>Below, we show the additional interface features of this lattice:
+
+<pre class="example">     record: ALatRec
+</pre>
+   <p>The <code>record</code> feature is a record representing mapping the fields
+in the arity of the record (A) to the lattices corresponding to their
+types (Lat).
+
+<!-- ************************************************************ -->
+   </body></html>
+

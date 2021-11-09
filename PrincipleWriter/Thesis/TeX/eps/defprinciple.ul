@@ -1,0 +1,3 @@
+defprinciple "principle.csd" {
+  dims {D}
+  constraints {"CSD": 110}}

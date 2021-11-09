@@ -1,0 +1,252 @@
+<html lang="en">
+<head>
+<title>Graph1 - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="GraphDist.html#GraphDist" title="GraphDist">
+<link rel="next" href="Graph1Constraints.html#Graph1Constraints" title="Graph1Constraints">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Graph1"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Graph1Constraints.html#Graph1Constraints">Graph1Constraints</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="GraphDist.html#GraphDist">GraphDist</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.21 Graph1 principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.graph1</code>
+<li>dimension variables: <code>D</code>
+<li>argument variables: none
+<li>default values: none
+<li>model record:
+     <pre class="example">          { mothers:    ints
+            daughters:  ints
+            up:         ints
+            down:       ints
+            index:      int
+            eq:         ints
+            equp:       ints
+            eqdown:     ints
+            labels:     set(label(D))
+            daughtersL: vec(label(D) ints)}
+</pre>
+     <li>constraints: <code>GraphMakeNodes1</code> (priority 130),
+<code>GraphConditions1</code> (120), <code>GraphMakeEdges1</code> (100) and
+<code>GraphDist</code> (90)
+<li>edge constraints: none
+</ul>
+
+   <p>The Graph1 principle introduces a model record with the
+following features for each node v:
+
+     <ul>
+<li><code>mothers</code>: set of mothers of v
+<li><code>daughters</code>: set of daughters of v
+<li><code>up</code>: set of nodes above v
+<li><code>down</code>: set of nodes below v
+<li><code>index</code>: index of v
+<li><code>eq</code>: singleton set containing the index of v
+<li><code>equp</code>: set of nodes equal or above v
+<li><code>eqdown</code>: set of nodes equal or below v
+<li><code>labels</code>: set of incoming edge labels of v
+<li><code>daughtersL</code>: set of daughters of v over an edge
+labeled l
+</ul>
+
+   <p>The integers and sets of integers contain node indices.
+
+   <p>The Graph1 principle states that <code>D</code> is a graph.
+
+   <p>The only difference of the Graph1 principle and the Graph principle
+(<a href="Graph.html#Graph">Graph</a>) is that the Graph1 principle omits the model record
+features <code>mothersL</code>, <code>upL</code> and <code>downL</code>, and thereby
+improves solving efficiency. Most principles work in conjunction with
+both principles, but some (e.g. the Valency principle
+(<a href="Valency1.html#Valency1">Valency1</a>)) do require the additional model record features of
+the Graph principle (<a href="Graph.html#Graph">Graph</a>). Each such principle clearly states
+this particularity in its description in this document.
+
+   <p>Here is the definition of the <code>GraphMakeNodes1</code> constraint
+functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+   
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+prepare
+   RecordForAll = Record.forAll
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+   in      
+      if {Helpers.checkModel 'GraphMakeNodes.oz' Nodes nil} then
+	 DIDA = {DVA2DIDA 'D'}
+	 %%
+	 NodeSetM = Nodes.1.nodeSet
+      in
+	 for Node in Nodes do
+	    IndexI = Node.index
+	    Model = Node.DIDA.model
+	 in
+	    {FS.subset Model.mothers NodeSetM}
+	    {FS.subset Model.daughters NodeSetM}
+	    {FS.equal Model.eq {FS.value.singl IndexI}}
+	    {FS.subset Model.up NodeSetM}
+	    {FS.subset Model.equp NodeSetM}
+	    {FS.subset Model.down NodeSetM}
+	    {FS.subset Model.eqdown NodeSetM}
+	    {RecordForAll Model.daughtersL proc {$ M} {FS.subset M NodeSetM} end}
+	    %% daughters(v) = union{ daughters_l(v) | l in labels }
+	    Model.daughters = {FS.unionN Model.daughtersL}
+	    %% equp(v) = eq(v) union up(v)
+	    Model.equp = {FS.union Model.eq Model.up}
+	    %% eqdown(v) = eq(v) union down(v)
+	    Model.eqdown = {FS.union Model.eq Model.down}
+	    %% eq(v) = equp(v) intersect eqdown(v)
+	    Model.eq = {FS.intersect Model.equp Model.eqdown}
+	 end
+      end      
+   end
+end
+</pre>
+Here is the definition of the <code>GraphConditions1</code> constraint
+functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+export
+   Constraint
+prepare
+   ListToRecord = List.toRecord
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      %%
+      DIDA = {DVA2DIDA 'D'}
+      %% get label lattice LabelLat
+      DIDA2LabelLat = G.dIDA2LabelLat
+      LabelLat = {DIDA2LabelLat DIDA}
+      LAs = LabelLat.constants
+      %%
+      Models = {Map Nodes fun {$ Node} Node.DIDA.model end}
+      %%
+      LADaughtersLMTups =
+      {Map LAs
+       fun {$ LA}
+	  DaughtersLMs = {Map Models
+			  fun {$ Model} Model.daughtersL.LA end}
+	  DaughtersLM = {FS.unionN DaughtersLMs}
+       in
+	  LA#DaughtersLM
+       end}
+      LADaughtersLMRec = {ListToRecord o LADaughtersLMTups}
+      %% get all eqdowns EqdownMs
+      EqdownMs = {Map Models fun {$ Model} Model.eqdown end}
+      %% get all equps EqupMs
+      EqupMs = {Map Models fun {$ Model} Model.equp end}
+   in
+      for Model in Models I in 1..{Length Models} do
+	 %% down(v) = union{ eqdown(v') | v' in daughters(v) }
+	 Model.down = {Select.union EqdownMs Model.daughters}
+	 %% up(v) = union{ equp(v') | v' in mothers(v) }
+	 Model.up = {Select.union EqupMs Model.mothers}
+	 %% daughters(v)={v} => down(v)={v}
+	 {FD.impl
+	  {FS.reified.equal Model.daughters Model.eq}
+	  {FS.reified.equal Model.down Model.eq} 1}
+      in
+	 %% l in labels(v) iff v in { daughters_l(v') | v' in nodes }
+	 for LA in LAs do
+	    {FD.equi
+	     {FS.reified.include {LabelLat.aI2I LA} Model.labels}
+	     {FS.reified.include I LADaughtersLMRec.LA} 1}
+	 end
+      end
+   end
+end
+</pre>
+Here is the definition of the <code>GraphMakeEdges1</code> constraint
+functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+   
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      DIDA = {DVA2DIDA 'D'}
+   in      
+      if {Helpers.checkModel 'GraphMakeEdges1.oz' Nodes
+	  [DIDA#down
+	   DIDA#up
+	   DIDA#daughters
+	   DIDA#mothers]} then
+	 for Node1 in Nodes do
+	    Model1 = Node1.DIDA.model
+	 in
+	    for Node2 in Nodes do
+	       Model2 = Node2.DIDA.model
+	    in	       
+	       %% v2 in down(v1) iff v1 in up(v2)
+	       {FD.equi
+		{FS.reified.include Node2.index Model1.down}
+		{FS.reified.include Node1.index Model2.up} 1}
+		  
+	       %% v2 in daughters(v1) iff v1 in mothers(v2)
+	       {FD.equi
+		{FS.reified.include Node2.index Model1.daughters}
+		{FS.reified.include Node1.index Model2.mothers} 1}
+	    end
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

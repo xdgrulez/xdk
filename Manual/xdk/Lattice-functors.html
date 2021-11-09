@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+<title>Lattice functors - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Compiler.html#Compiler" title="Compiler">
+<link rel="prev" href="Grammar-record.html#Grammar-record" title="Grammar record">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Lattice-functors"></a>
+<p>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Grammar-record.html#Grammar-record">Grammar record</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Compiler.html#Compiler">Compiler</a>
+<hr>
+</div>
+
+<h3 class="section">4.15 Lattice functors</h3>
+
+<p>Lattices are implemented as <em>abstract data types (ADTs)</em>. 
+<a name="index-abstract-data-types-204"></a><a name="index-ADT-205"></a>Each abstract data type is implemented as an Oz <em>functor</em>. 
+<a name="index-functor-206"></a>
+In this section, we start with an overview of the lattice functors in
+<a href="Lat_002dOverview.html#Lat_002dOverview">Lat-Overview</a>, before we explain the individual lattice
+functors.<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>
+
+<ul class="menu">
+<li><a accesskey="1" href="Lat_002dOverview.html#Lat_002dOverview">Overview</a>:       Overview
+
+<li><a accesskey="2" href="Lat_002dCard.html#Lat_002dCard">Card</a>:               Cardinality lattice functor
+
+<li><a accesskey="3" href="Lat_002dDomain.html#Lat_002dDomain">Domain</a>:           Domain lattice functor
+
+<li><a accesskey="4" href="Lat_002dFlat.html#Lat_002dFlat">Flat</a>:               Flat lattice functor
+
+<li><a accesskey="5" href="Lat_002dInt.html#Lat_002dInt">Int</a>:                 Integer lattice functor
+
+<li><a accesskey="6" href="Lat_002dList.html#Lat_002dList">List</a>:               List lattice functor
+
+<li><a accesskey="7" href="Lat_002dRecord.html#Lat_002dRecord">Record</a>:           Record lattice functor
+
+<li><a accesskey="8" href="Lat_002dSet.html#Lat_002dSet">Set</a>:                 Set lattice functor
+
+<li><a accesskey="9" href="Lat_002dString.html#Lat_002dString">String</a>:           String lattice functor
+
+<li><a href="Lat_002dTuple.html#Lat_002dTuple">Tuple</a>:             Tuple lattice functor
+</ul>
+
+<!-- ************************************************************ -->
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> In the explanation of the individual lattice
+functors, we omit the <code>top</code>, <code>bot</code>, <code>glb</code>,
+<code>encode</code>, <code>decode</code> and <code>pretty</code> features because their
+function explained elsewhere in this manual: <code>top</code>, <code>bot</code>
+and <code>glb</code> are explained <a href="Types-reference.html#Types-reference">Types reference</a>. <code>encode</code>,
+<code>decode</code> and <code>pretty</code> are explained in <a href="IL-syntax.html#IL-syntax">IL syntax</a>,
+<a href="SL-syntax.html#SL-syntax">SL syntax</a>, and <a href="OL-syntax.html#OL-syntax">OL syntax</a> &mdash; they convert back and forth
+between these languages.</p>
+
+   <hr></div>
+
+   </body></html>
+

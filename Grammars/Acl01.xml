@@ -1,0 +1,1705 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE grammar SYSTEM "../Compiler/XML/xdk.dtd">
+<grammar>
+    <useDimension idref="id"/>
+    <useDimension idref="lp"/>
+    <useDimension idref="idlp"/>
+    <useDimension idref="lex"/>
+    <dimension id="id">
+	<attrsType>
+	    <typeRecord>
+		<typeFeature data="agr">
+		    <typeRef idref="id.agr"/>
+		</typeFeature>
+	    </typeRecord>
+	</attrsType>
+	<entryType>
+	    <typeRecord>
+		<typeFeature data="in">
+		    <typeValency>
+			<typeRef idref="id.label"/>
+		    </typeValency>
+		</typeFeature>
+		<typeFeature data="out">
+		    <typeValency>
+			<typeRef idref="id.label"/>
+		    </typeValency>
+		</typeFeature>
+		<typeFeature data="agrs">
+		    <typeRef idref="id.agrs"/>
+		</typeFeature>
+		<typeFeature data="agree">
+		    <typeSet>
+			<typeRef idref="id.label"/>
+		    </typeSet>
+		</typeFeature>
+		<typeFeature data="govern">
+		    <typeVec>
+			<typeRef idref="id.label"/>
+			<typeRef idref="id.agrs"/>
+		    </typeVec>
+		</typeFeature>
+	    </typeRecord>
+	</entryType>
+	<labelType>
+	    <typeRef idref="id.label"/>
+	</labelType>
+	<typeDef id="id.label">
+	    <typeDomain>
+		<constant data="det"/>
+		<constant data="subj"/>
+		<constant data="obj"/>
+		<constant data="vbse"/>
+		<constant data="vprt"/>
+		<constant data="vinf"/>
+		<constant data="prt"/>
+	    </typeDomain>
+	</typeDef>
+	<typeDef id="id.person">
+	    <typeDomain>
+		<constant data="first"/>
+		<constant data="second"/>
+		<constant data="third"/>
+	    </typeDomain>
+	</typeDef>
+	<typeDef id="id.number">
+	    <typeDomain>
+		<constant data="sg"/>
+		<constant data="pl"/>
+	    </typeDomain>
+	</typeDef>
+	<typeDef id="id.gender">
+	    <typeDomain>
+		<constant data="masc"/>
+		<constant data="fem"/>
+		<constant data="neut"/>
+	    </typeDomain>
+	</typeDef>
+	<typeDef id="id.case">
+	    <typeDomain>
+		<constant data="nom"/>
+		<constant data="gen"/>
+		<constant data="dat"/>
+		<constant data="acc"/>
+	    </typeDomain>
+	</typeDef>
+	<typeDef id="id.def">
+	    <typeDomain>
+		<constant data="def"/>
+		<constant data="indef"/>
+		<constant data="undef"/>
+	    </typeDomain>
+	</typeDef>
+	<typeDef id="id.agr">
+	    <typeTuple>
+		<typeRef idref="id.person"/>
+		<typeRef idref="id.number"/>
+		<typeRef idref="id.gender"/>
+		<typeRef idref="id.case"/>
+		<typeRef idref="id.def"/>
+	    </typeTuple>
+	</typeDef>
+	<typeDef id="id.agrs">
+	    <typeISet>
+		<typeRef idref="id.agr"/>
+	    </typeISet>
+	</typeDef>
+	<usePrinciple idref="principle.graph">
+	    <dim var="D" idref="id"/>
+
+	</usePrinciple>
+	<usePrinciple idref="principle.tree">
+	    <dim var="D" idref="id"/>
+
+	</usePrinciple>
+	<usePrinciple idref="principle.valency">
+	    <dim var="D" idref="id"/>
+
+	</usePrinciple>
+	<usePrinciple idref="principle.agr">
+	    <dim var="D" idref="id"/>
+	    <arg var="Agr">
+		<featurePath root="down" dimension="D" aspect="attrs">
+		    <constant data="agr"/>
+		</featurePath>
+	    </arg>
+	    <arg var="Agrs">
+		<featurePath root="down" dimension="D" aspect="entry">
+		    <constant data="agrs"/>
+		</featurePath>
+	    </arg>
+	</usePrinciple>
+	<usePrinciple idref="principle.agreement">
+	    <dim var="D" idref="id"/>
+	    <arg var="Agr1">
+		<featurePath root="up" dimension="D" aspect="attrs">
+		    <constant data="agr"/>
+		</featurePath>
+	    </arg>
+	    <arg var="Agr2">
+		<featurePath root="down" dimension="D" aspect="attrs">
+		    <constant data="agr"/>
+		</featurePath>
+	    </arg>
+	    <arg var="Agree">
+		<featurePath root="up" dimension="D" aspect="entry">
+		    <constant data="agree"/>
+		</featurePath>
+	    </arg>
+	</usePrinciple>
+	<usePrinciple idref="principle.government">
+	    <dim var="D" idref="id"/>
+	    <arg var="Agr2">
+		<featurePath root="down" dimension="D" aspect="attrs">
+		    <constant data="agr"/>
+		</featurePath>
+	    </arg>
+	    <arg var="Govern">
+		<featurePath root="up" dimension="D" aspect="entry">
+		    <constant data="govern"/>
+		</featurePath>
+	    </arg>
+	</usePrinciple>
+	<output idref="output.dag"/>
+	<output idref="output.latex"/>
+	<output idref="output.decode"/>
+	<output idref="output.pretty"/>
+	<output idref="output.xml"/>
+	<output idref="output.xml1"/>
+	<output idref="output.xml2"/>
+	<output idref="output.xml3"/>
+	<output idref="output.xml4"/>
+
+    </dimension>
+    <dimension id="lp">
+	<attrsType>
+	    <typeRecord>
+
+	    </typeRecord>
+	</attrsType>
+	<entryType>
+	    <typeRecord>
+		<typeFeature data="in">
+		    <typeValency>
+			<typeRef idref="lp.label"/>
+		    </typeValency>
+		</typeFeature>
+		<typeFeature data="out">
+		    <typeValency>
+			<typeRef idref="lp.label"/>
+		    </typeValency>
+		</typeFeature>
+		<typeFeature data="on">
+		    <typeISet>
+			<typeRef idref="lp.label"/>
+		    </typeISet>
+		</typeFeature>
+	    </typeRecord>
+	</entryType>
+	<labelType>
+	    <typeRef idref="lp.label"/>
+	</labelType>
+	<typeDef id="lp.label">
+	    <typeDomain>
+		<constant data="d"/>
+		<constant data="df"/>
+		<constant data="n"/>
+		<constant data="mf"/>
+		<constant data="vcf"/>
+		<constant data="p"/>
+		<constant data="pf"/>
+		<constant data="v"/>
+		<constant data="vxf"/>
+	    </typeDomain>
+	</typeDef>
+	<usePrinciple idref="principle.graph">
+	    <dim var="D" idref="lp"/>
+
+	</usePrinciple>
+	<usePrinciple idref="principle.tree">
+	    <dim var="D" idref="lp"/>
+
+	</usePrinciple>
+	<usePrinciple idref="principle.valency">
+	    <dim var="D" idref="lp"/>
+
+	</usePrinciple>
+	<usePrinciple idref="principle.order">
+	    <dim var="D" idref="lp"/>
+	    <arg var="Order">
+		<list>
+		    <constant data="d"/>
+		    <constant data="df"/>
+		    <constant data="n"/>
+		    <constant data="mf"/>
+		    <constant data="vcf"/>
+		    <constant data="p"/>
+		    <constant data="pf"/>
+		    <constant data="v"/>
+		    <constant data="vxf"/>
+		</list>
+	    </arg>
+	    <arg var="On">
+		<featurePath root="down" dimension="D" aspect="entry">
+		    <constant data="on"/>
+		</featurePath>
+	    </arg>
+	    <arg var="Yields">
+		<constant data="true"/>
+	    </arg>
+	</usePrinciple>
+	<usePrinciple idref="principle.projectivity">
+	    <dim var="D" idref="lp"/>
+
+	</usePrinciple>
+	<output idref="output.dag"/>
+	<output idref="output.latex"/>
+	<output idref="output.decode"/>
+	<output idref="output.pretty"/>
+
+    </dimension>
+    <dimension id="idlp">
+	<attrsType>
+	    <typeRecord>
+
+	    </typeRecord>
+	</attrsType>
+	<entryType>
+	    <typeRecord>
+		<typeFeature data="blocks">
+		    <typeSet>
+			<typeRef idref="id.label"/>
+		    </typeSet>
+		</typeFeature>
+		<typeFeature data="end">
+		    <typeVec>
+			<typeRef idref="lp.label"/>
+			<typeSet>
+			    <typeRef idref="id.label"/>
+			</typeSet>
+		    </typeVec>
+		</typeFeature>
+	    </typeRecord>
+	</entryType>
+	<labelType>
+	    <typeDomain>
+
+	    </typeDomain>
+	</labelType>
+
+	<usePrinciple idref="principle.climbing">
+	    <dim var="D1" idref="lp"/>
+	    <dim var="D2" idref="id"/>
+
+	</usePrinciple>
+	<usePrinciple idref="principle.barriers">
+	    <dim var="D1" idref="lp"/>
+	    <dim var="D2" idref="id"/>
+	    <dim var="D3" idref="idlp"/>
+	    <arg var="Blocks">
+		<featurePath root="down" dimension="D3" aspect="entry">
+		    <constant data="blocks"/>
+		</featurePath>
+	    </arg>
+	</usePrinciple>
+	<usePrinciple idref="principle.linkingEnd">
+	    <dim var="D1" idref="lp"/>
+	    <dim var="D2" idref="id"/>
+	    <dim var="D3" idref="idlp"/>
+	    <arg var="End">
+		<featurePath root="up" dimension="D3" aspect="entry">
+		    <constant data="end"/>
+		</featurePath>
+	    </arg>
+	</usePrinciple>
+
+
+    </dimension>
+    <dimension id="lex">
+	<attrsType>
+	    <typeRecord>
+
+	    </typeRecord>
+	</attrsType>
+	<entryType>
+	    <typeRecord>
+		<typeFeature data="word">
+		    <typeString/>
+		</typeFeature>
+	    </typeRecord>
+	</entryType>
+	<labelType>
+	    <typeDomain>
+
+	    </typeDomain>
+	</labelType>
+
+	<usePrinciple idref="principle.entries">
+
+
+	</usePrinciple>
+	<output idref="output.dags1"/>
+	<output idref="output.latexs1"/>
+	<useOutput idref="output.dags1"/>
+    </dimension>
+    <classDef id="det">
+	<variable data="Word"/>
+	<variable data="Agrs"/>
+	<classConj>
+	    <classDimension idref="id">
+		<record>
+		    <feature data="in">
+			<set>
+			    <constantCard data="det" card="opt"/>
+			</set>
+		    </feature>
+		    <feature data="agrs">
+			<variable data="Agrs"/>
+		    </feature>
+		    <feature data="govern">
+			<record>
+			    <feature data="det">
+				<setGen>
+				    <setGenConj>
+
+				    </setGenConj>
+				</setGen>
+			    </feature>
+			</record>
+		    </feature>
+		</record>
+	    </classDimension>
+	    <classDimension idref="lp">
+		<record>
+		    <feature data="in">
+			<set>
+			    <constantCard data="df" card="opt"/>
+			</set>
+		    </feature>
+		    <feature data="on">
+			<set>
+			    <constant data="d"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	    <classDimension idref="lex">
+		<record>
+		    <feature data="word">
+			<variable data="Word"/>
+		    </feature>
+		</record>
+	    </classDimension>
+	</classConj>
+    </classDef>
+    <classDef id="cnoun">
+	<variable data="Word"/>
+	<variable data="Agrs"/>
+	<classConj>
+	    <classDimension idref="id">
+		<record>
+		    <feature data="in">
+			<set>
+			    <constantCard data="subj" card="opt"/>
+			    <constantCard data="obj" card="opt"/>
+			</set>
+		    </feature>
+		    <feature data="out">
+			<set>
+			    <constantCard data="det" card="opt"/>
+			</set>
+		    </feature>
+		    <feature data="agrs">
+			<variable data="Agrs"/>
+		    </feature>
+		    <feature data="agree">
+			<set>
+			    <constant data="det"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	    <classDimension idref="lp">
+		<record>
+		    <feature data="in">
+			<set>
+			    <constantCard data="mf" card="opt"/>
+			</set>
+		    </feature>
+		    <feature data="on">
+			<set>
+			    <constant data="n"/>
+			</set>
+		    </feature>
+		    <feature data="out">
+			<set>
+			    <constantCard data="df" card="opt"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	    <classDimension idref="idlp">
+		<record>
+		    <feature data="blocks">
+			<set>
+			    <constant data="det"/>
+			</set>
+		    </feature>
+		    <feature data="end">
+			<record>
+			    <feature data="df">
+				<set>
+				    <constant data="det"/>
+				</set>
+			    </feature>
+			</record>
+		    </feature>
+		</record>
+	    </classDimension>
+	    <classDimension idref="lex">
+		<record>
+		    <feature data="word">
+			<variable data="Word"/>
+		    </feature>
+		</record>
+	    </classDimension>
+	</classConj>
+    </classDef>
+    <classDef id="pname">
+	<variable data="Word"/>
+	<variable data="Agrs"/>
+	<classConj>
+	    <classDimension idref="id">
+		<record>
+		    <feature data="in">
+			<set>
+			    <constantCard data="subj" card="opt"/>
+			    <constantCard data="obj" card="opt"/>
+			</set>
+		    </feature>
+		    <feature data="agrs">
+			<variable data="Agrs"/>
+		    </feature>
+		</record>
+	    </classDimension>
+	    <classDimension idref="lp">
+		<record>
+		    <feature data="in">
+			<set>
+			    <constantCard data="mf" card="opt"/>
+			</set>
+		    </feature>
+		    <feature data="on">
+			<set>
+			    <constant data="n"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	    <classDimension idref="lex">
+		<record>
+		    <feature data="word">
+			<variable data="Word"/>
+		    </feature>
+		</record>
+	    </classDimension>
+	</classConj>
+    </classDef>
+    <classDef id="fin">
+	<variable data="Word"/>
+	<variable data="Agrs"/>
+	<classConj>
+	    <classDimension idref="id">
+		<record>
+		    <feature data="in">
+			<set>
+
+			</set>
+		    </feature>
+		    <feature data="out">
+			<set>
+			    <constant data="subj"/>
+			</set>
+		    </feature>
+		    <feature data="agrs">
+			<variable data="Agrs"/>
+		    </feature>
+		    <feature data="agree">
+			<set>
+			    <constant data="subj"/>
+			</set>
+		    </feature>
+		    <feature data="govern">
+			<record>
+			    <feature data="subj">
+				<setGen>
+				    <constant data="nom"/>
+				</setGen>
+			    </feature>
+			</record>
+		    </feature>
+		</record>
+	    </classDimension>
+	    <classDimension idref="lp">
+		<record>
+		    <feature data="in">
+			<set>
+
+			</set>
+		    </feature>
+		    <feature data="out">
+			<set>
+			    <constantCard data="mf" card="any"/>
+			    <constantCard data="vxf" card="opt"/>
+			</set>
+		    </feature>
+		    <feature data="on">
+			<set>
+			    <constant data="v"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	    <classDimension idref="idlp">
+		<record>
+		    <feature data="blocks">
+			<bot/>
+		    </feature>
+		</record>
+	    </classDimension>
+	    <classDimension idref="lex">
+		<record>
+		    <feature data="word">
+			<variable data="Word"/>
+		    </feature>
+		</record>
+	    </classDimension>
+	</classConj>
+    </classDef>
+    <classDef id="can">
+	<variable data="Word"/>
+	<classConj>
+	    <classDimension idref="lp">
+		<record>
+		    <feature data="in">
+			<set>
+			    <constantCard data="vcf" card="opt"/>
+			</set>
+		    </feature>
+		    <feature data="on">
+			<set>
+			    <constant data="v"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	    <classDimension idref="lex">
+		<record>
+		    <feature data="word">
+			<variable data="Word"/>
+		    </feature>
+		</record>
+	    </classDimension>
+	</classConj>
+    </classDef>
+    <classDef id="noncan">
+	<variable data="Word"/>
+	<classConj>
+	    <classDimension idref="lp">
+		<record>
+		    <feature data="in">
+			<set>
+			    <constantCard data="vxf" card="opt"/>
+			</set>
+		    </feature>
+		    <feature data="on">
+			<set>
+			    <constant data="v"/>
+			</set>
+		    </feature>
+		    <feature data="out">
+			<set>
+			    <constantCard data="mf" card="any"/>
+			    <constantCard data="vxf" card="opt"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	    <classDimension idref="lex">
+		<record>
+		    <feature data="word">
+			<variable data="Word"/>
+		    </feature>
+		</record>
+	    </classDimension>
+	</classConj>
+    </classDef>
+    <classDef id="ersatz">
+
+	<classConj>
+	    <classDimension idref="id">
+		<record>
+		    <feature data="in">
+			<set>
+			    <constantCard data="vbse" card="opt"/>
+			    <constantCard data="vprt" card="opt"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	</classConj>
+    </classDef>
+    <classDef id="vbse">
+
+	<classConj>
+	    <classDimension idref="id">
+		<record>
+		    <feature data="in">
+			<set>
+			    <constantCard data="vbse" card="opt"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	</classConj>
+    </classDef>
+    <classDef id="vinf">
+
+	<classConj>
+	    <classDimension idref="id">
+		<record>
+		    <feature data="in">
+			<set>
+			    <constantCard data="vinf" card="opt"/>
+			</set>
+		    </feature>
+		    <feature data="out">
+			<set>
+			    <constant data="prt"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	    <classDimension idref="lp">
+		<record>
+		    <feature data="out">
+			<set>
+			    <constant data="pf"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	</classConj>
+    </classDef>
+    <classDef id="vprt">
+
+	<classConj>
+	    <classDimension idref="id">
+		<record>
+		    <feature data="in">
+			<set>
+			    <constantCard data="vprt" card="opt"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	</classConj>
+    </classDef>
+    <classDef id="tr">
+
+	<classConj>
+	    <classDimension idref="id">
+		<record>
+		    <feature data="out">
+			<set>
+			    <constant data="obj"/>
+			</set>
+		    </feature>
+		    <feature data="govern">
+			<record>
+			    <feature data="obj">
+				<setGen>
+				    <constant data="acc"/>
+				</setGen>
+			    </feature>
+			</record>
+		    </feature>
+		</record>
+	    </classDimension>
+	</classConj>
+    </classDef>
+    <classDef id="vbsec">
+
+	<classConj>
+	    <classDimension idref="id">
+		<record>
+		    <feature data="out">
+			<set>
+			    <constant data="vbse"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	    <classDimension idref="lp">
+		<record>
+		    <feature data="out">
+			<set>
+			    <constantCard data="vcf" card="opt"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	</classConj>
+    </classDef>
+    <classDef id="vprtc">
+
+	<classConj>
+	    <classDimension idref="id">
+		<record>
+		    <feature data="out">
+			<set>
+			    <constant data="vprt"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	    <classDimension idref="lp">
+		<record>
+		    <feature data="out">
+			<set>
+			    <constantCard data="vcf" card="opt"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	</classConj>
+    </classDef>
+    <classDef id="vinfc">
+
+	<classConj>
+	    <classDimension idref="id">
+		<record>
+		    <feature data="out">
+			<set>
+			    <constant data="vinf"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	    <classDimension idref="lp">
+		<record>
+		    <feature data="out">
+			<set>
+			    <constantCard data="vcf" card="opt"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	</classConj>
+    </classDef>
+    <classDef id="prt">
+	<variable data="Word"/>
+	<classConj>
+	    <classDimension idref="id">
+		<record>
+		    <feature data="in">
+			<set>
+			    <constantCard data="prt" card="opt"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	    <classDimension idref="lp">
+		<record>
+		    <feature data="in">
+			<set>
+			    <constantCard data="pf" card="opt"/>
+			</set>
+		    </feature>
+		    <feature data="on">
+			<set>
+			    <constant data="p"/>
+			</set>
+		    </feature>
+		</record>
+	    </classDimension>
+	    <classDimension idref="lex">
+		<record>
+		    <feature data="word">
+			<variable data="Word"/>
+		    </feature>
+		</record>
+	    </classDimension>
+	</classConj>
+    </classDef>
+    <entry>
+	<classConj>
+	    <useClass idref="det">
+		<varFeature data="Agrs">
+		    <disj>
+			<setGen>
+			    <setGenConj>
+				<setGenConj>
+				    <setGenConj>
+					<constant data="masc"/>
+					<constant data="nom"/>
+				    </setGenConj>
+				    <constant data="sg"/>
+				</setGenConj>
+				<constant data="indef"/>
+			    </setGenConj>
+			</setGen>
+			<setGen>
+			    <setGenConj>
+				<setGenConj>
+				    <setGenConj>
+					<constant data="neut"/>
+					<setGenDisj>
+					    <constant data="nom"/>
+					    <constant data="acc"/>
+					</setGenDisj>
+				    </setGenConj>
+				    <constant data="sg"/>
+				</setGenConj>
+				<constant data="indef"/>
+			    </setGenConj>
+			</setGen>
+		    </disj>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="ein"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="det">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<setGenConj>
+				    <constant data="masc"/>
+				    <constant data="acc"/>
+				</setGenConj>
+				<constant data="sg"/>
+			    </setGenConj>
+			    <constant data="indef"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="einen"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="det">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<setGenConj>
+				    <setGenDisj>
+					<constant data="masc"/>
+					<constant data="neut"/>
+				    </setGenDisj>
+				    <constant data="dat"/>
+				</setGenConj>
+				<constant data="sg"/>
+			    </setGenConj>
+			    <constant data="indef"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="einem"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="det">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<setGenConj>
+				    <setGenDisj>
+					<constant data="masc"/>
+					<constant data="neut"/>
+				    </setGenDisj>
+				    <constant data="gen"/>
+				</setGenConj>
+				<constant data="sg"/>
+			    </setGenConj>
+			    <constant data="indef"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="eines"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="det">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<setGenConj>
+				    <constant data="fem"/>
+				    <setGenDisj>
+					<constant data="nom"/>
+					<constant data="acc"/>
+				    </setGenDisj>
+				</setGenConj>
+				<constant data="sg"/>
+			    </setGenConj>
+			    <constant data="indef"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="eine"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="det">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<setGenConj>
+				    <constant data="fem"/>
+				    <setGenDisj>
+					<constant data="dat"/>
+					<constant data="gen"/>
+				    </setGenDisj>
+				</setGenConj>
+				<constant data="sg"/>
+			    </setGenConj>
+			    <constant data="indef"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="einer"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="det">
+		<varFeature data="Agrs">
+		    <disj>
+			<disj>
+			    <setGen>
+				<setGenConj>
+				    <setGenConj>
+					<setGenConj>
+					    <constant data="masc"/>
+					    <constant data="nom"/>
+					</setGenConj>
+					<constant data="sg"/>
+				    </setGenConj>
+				    <constant data="def"/>
+				</setGenConj>
+			    </setGen>
+			    <setGen>
+				<setGenConj>
+				    <setGenConj>
+					<setGenConj>
+					    <constant data="fem"/>
+					    <setGenDisj>
+						<constant data="dat"/>
+						<constant data="gen"/>
+					    </setGenDisj>
+					</setGenConj>
+					<constant data="sg"/>
+				    </setGenConj>
+				    <constant data="def"/>
+				</setGenConj>
+			    </setGen>
+			</disj>
+			<setGen>
+			    <setGenConj>
+				<setGenConj>
+				    <constant data="gen"/>
+				    <constant data="pl"/>
+				</setGenConj>
+				<constant data="def"/>
+			    </setGenConj>
+			</setGen>
+		    </disj>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="der"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="det">
+		<varFeature data="Agrs">
+		    <disj>
+			<setGen>
+			    <setGenConj>
+				<setGenConj>
+				    <setGenConj>
+					<constant data="masc"/>
+					<constant data="acc"/>
+				    </setGenConj>
+				    <constant data="sg"/>
+				</setGenConj>
+				<constant data="def"/>
+			    </setGenConj>
+			</setGen>
+			<setGen>
+			    <setGenConj>
+				<setGenConj>
+				    <constant data="dat"/>
+				    <constant data="pl"/>
+				</setGenConj>
+				<constant data="def"/>
+			    </setGenConj>
+			</setGen>
+		    </disj>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="den"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="det">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<setGenConj>
+				    <setGenDisj>
+					<constant data="masc"/>
+					<constant data="neut"/>
+				    </setGenDisj>
+				    <constant data="dat"/>
+				</setGenConj>
+				<constant data="sg"/>
+			    </setGenConj>
+			    <constant data="def"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="dem"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="det">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<setGenConj>
+				    <setGenDisj>
+					<constant data="masc"/>
+					<constant data="neut"/>
+				    </setGenDisj>
+				    <constant data="gen"/>
+				</setGenConj>
+				<constant data="sg"/>
+			    </setGenConj>
+			    <constant data="def"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="des"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="det">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<setGenConj>
+				    <constant data="neut"/>
+				    <setGenDisj>
+					<constant data="nom"/>
+					<constant data="acc"/>
+				    </setGenDisj>
+				</setGenConj>
+				<constant data="sg"/>
+			    </setGenConj>
+			    <constant data="def"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="das"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="det">
+		<varFeature data="Agrs">
+		    <disj>
+			<setGen>
+			    <setGenConj>
+				<setGenConj>
+				    <setGenConj>
+					<constant data="fem"/>
+					<setGenDisj>
+					    <constant data="nom"/>
+					    <constant data="acc"/>
+					</setGenDisj>
+				    </setGenConj>
+				    <constant data="sg"/>
+				</setGenConj>
+				<constant data="def"/>
+			    </setGenConj>
+			</setGen>
+			<setGen>
+			    <setGenConj>
+				<setGenConj>
+				    <setGenDisj>
+					<constant data="nom"/>
+					<constant data="acc"/>
+				    </setGenDisj>
+				    <constant data="pl"/>
+				</setGenConj>
+				<constant data="def"/>
+			    </setGenConj>
+			</setGen>
+		    </disj>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="die"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="cnoun">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<constant data="fem"/>
+				<constant data="third"/>
+			    </setGenConj>
+			    <constant data="sg"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="frau"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="cnoun">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<constant data="fem"/>
+				<constant data="third"/>
+			    </setGenConj>
+			    <constant data="pl"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="frauen"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="cnoun">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<setGenConj>
+				    <constant data="masc"/>
+				    <constant data="third"/>
+				</setGenConj>
+				<constant data="sg"/>
+			    </setGenConj>
+			    <setGenDisj>
+				<setGenDisj>
+				    <constant data="nom"/>
+				    <constant data="dat"/>
+				</setGenDisj>
+				<constant data="acc"/>
+			    </setGenDisj>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="mann"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="cnoun">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<setGenConj>
+				    <constant data="masc"/>
+				    <constant data="third"/>
+				</setGenConj>
+				<constant data="sg"/>
+			    </setGenConj>
+			    <constant data="dat"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="manne"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="cnoun">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<setGenConj>
+				    <constant data="masc"/>
+				    <constant data="third"/>
+				</setGenConj>
+				<constant data="sg"/>
+			    </setGenConj>
+			    <constant data="gen"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <disj>
+			<constant data="mannes"/>
+			<constant data="manns"/>
+		    </disj>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="cnoun">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<setGenConj>
+				    <constant data="masc"/>
+				    <constant data="third"/>
+				</setGenConj>
+				<constant data="pl"/>
+			    </setGenConj>
+			    <setGenDisj>
+				<setGenDisj>
+				    <constant data="nom"/>
+				    <constant data="gen"/>
+				</setGenDisj>
+				<constant data="acc"/>
+			    </setGenDisj>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="maenner"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="cnoun">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<setGenConj>
+				    <constant data="masc"/>
+				    <constant data="third"/>
+				</setGenConj>
+				<constant data="pl"/>
+			    </setGenConj>
+			    <constant data="dat"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="maennern"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="pname">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<setGenConj>
+				    <constant data="fem"/>
+				    <constant data="sg"/>
+				</setGenConj>
+				<constant data="third"/>
+			    </setGenConj>
+			    <setGenDisj>
+				<setGenDisj>
+				    <constant data="nom"/>
+				    <constant data="dat"/>
+				</setGenDisj>
+				<constant data="acc"/>
+			    </setGenDisj>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="maria"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="pname">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<setGenConj>
+				    <constant data="fem"/>
+				    <constant data="sg"/>
+				</setGenConj>
+				<constant data="third"/>
+			    </setGenConj>
+			    <constant data="gen"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="marias"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="pname">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<setGenConj>
+				    <constant data="masc"/>
+				    <constant data="sg"/>
+				</setGenConj>
+				<constant data="third"/>
+			    </setGenConj>
+			    <setGenDisj>
+				<setGenDisj>
+				    <constant data="nom"/>
+				    <constant data="dat"/>
+				</setGenDisj>
+				<constant data="acc"/>
+			    </setGenDisj>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="peter"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="pname">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<setGenConj>
+				    <constant data="masc"/>
+				    <constant data="sg"/>
+				</setGenConj>
+				<constant data="third"/>
+			    </setGenConj>
+			    <constant data="gen"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="peters"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="pname">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<constant data="masc"/>
+				<constant data="sg"/>
+			    </setGenConj>
+			    <constant data="third"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="hans"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="fin">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<constant data="third"/>
+				<constant data="sg"/>
+			    </setGenConj>
+			    <constant data="nom"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="wird"/>
+		</varFeature>
+	    </useClass>
+	    <useClass idref="vbsec">
+
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="fin">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<constant data="third"/>
+				<constant data="sg"/>
+			    </setGenConj>
+			    <constant data="nom"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="hat"/>
+		</varFeature>
+	    </useClass>
+	    <useClass idref="vprtc">
+
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="fin">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<constant data="third"/>
+				<constant data="sg"/>
+			    </setGenConj>
+			    <constant data="nom"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="versucht"/>
+		</varFeature>
+	    </useClass>
+	    <useClass idref="vinfc">
+
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="fin">
+		<varFeature data="Agrs">
+		    <setGen>
+			<setGenConj>
+			    <setGenConj>
+				<constant data="third"/>
+				<constant data="sg"/>
+			    </setGenConj>
+			    <constant data="nom"/>
+			</setGenConj>
+		    </setGen>
+		</varFeature>
+		<varFeature data="Word">
+		    <constant data="liebt"/>
+		</varFeature>
+	    </useClass>
+	    <useClass idref="tr">
+
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="can">
+		<varFeature data="Word">
+		    <constant data="lieben"/>
+		</varFeature>
+	    </useClass>
+	    <useClass idref="tr">
+
+	    </useClass>
+	    <useClass idref="vbse">
+
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="can">
+		<varFeature data="Word">
+		    <constant data="geliebt"/>
+		</varFeature>
+	    </useClass>
+	    <useClass idref="tr">
+
+	    </useClass>
+	    <useClass idref="vprt">
+
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="can">
+		<varFeature data="Word">
+		    <constant data="koennen"/>
+		</varFeature>
+	    </useClass>
+	    <useClass idref="vbsec">
+
+	    </useClass>
+	    <useClass idref="vbse">
+
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="noncan">
+		<varFeature data="Word">
+		    <constant data="koennen"/>
+		</varFeature>
+	    </useClass>
+	    <useClass idref="vbsec">
+
+	    </useClass>
+	    <useClass idref="ersatz">
+
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="noncan">
+		<varFeature data="Word">
+		    <constant data="haben"/>
+		</varFeature>
+	    </useClass>
+	    <useClass idref="vprtc">
+
+	    </useClass>
+	    <useClass idref="vbse">
+
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="can">
+		<varFeature data="Word">
+		    <constant data="lieben"/>
+		</varFeature>
+	    </useClass>
+	    <useClass idref="tr">
+
+	    </useClass>
+	    <useClass idref="vinf">
+
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="noncan">
+		<varFeature data="Word">
+		    <constant data="lieben"/>
+		</varFeature>
+	    </useClass>
+	    <useClass idref="tr">
+
+	    </useClass>
+	    <useClass idref="vinf">
+
+	    </useClass>
+	</classConj>
+    </entry>
+    <entry>
+	<classConj>
+	    <useClass idref="prt">
+		<varFeature data="Word">
+		    <constant data="zu"/>
+		</varFeature>
+	    </useClass>
+	</classConj>
+    </entry>
+</grammar>

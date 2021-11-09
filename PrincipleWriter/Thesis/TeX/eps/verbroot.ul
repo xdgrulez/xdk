@@ -1,0 +1,3 @@
+defentry {
+  "verb" {Word: "v"}
+  dim lp {out: {"1"*}}}

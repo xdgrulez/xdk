@@ -1,0 +1,8 @@
+#!/bin/bash
+for file in $*
+do
+  sed 's/ref(\([^)]*\))/\1/g' $file >$file.1
+  sed 's/useclass //g' $file.1 >$file.2
+  rm $file.1
+  mv $file.2 $file
+done

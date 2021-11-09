@@ -1,0 +1,90 @@
+#!/bin/bash
+src=$1
+if [ $# == 1 ]; then
+    dst=${src%.[a-z]*}.eps
+else
+    dst=$2
+fi
+
+dir=`pwd`
+srcdir=`dirname $src`
+src1=`basename $src`
+dst1=`basename $dst`
+
+# convert src
+cd $srcdir
+dir1=`dirname $0`
+PATH=$dir:$dir1:$PATH
+case $src in
+    *.oz )
+	ozcolor $src1;;
+    
+    *.ul )
+	ulcolor $src1;;
+    
+    *.xml )
+	xmlcolor $src1;;
+
+    * )
+	echo "Usage: code2pic <code> <pic>"
+	echo "<code>: *.oz, *.ul or *.xml"
+	exit 0;;
+esac
+
+# add line numbers
+case $src in
+    *_*n.* )
+	cat -n $src1.tex >$src1.0.tex
+	sed 's/^   \([0-9 ]\)\([0-9 ]\)\([0-9 ]\)/(\1\2\3)/g' $src1.0.tex >$src1.tex
+	rm $src1.0.tex;;
+esac
+
+# wrap into a latex document (DIN A0 size)
+sed '0,/./s/\(.*\)$/\\documentclass{article}\
+\\usepackage[T1]{fontenc}\
+\\usepackage{textcomp}\
+\\usepackage{mathptmx}\
+\\usepackage[scaled]{helvet}\
+\\usepackage{courier}\
+\\usepackage{alltt}\
+\\usepackage[usenames]{color}\
+\\pagestyle{empty}\
+\\textwidth=841mm\
+\\textheight=1189mm\
+\\begin{document}\
+\\definecolor{MyDarkBlue}{rgb}{0,0,0.90}\
+\\definecolor{MyDarkPurple}{rgb}{0.50,0,0.50}\
+\\definecolor{MyDarkOrange}{rgb}{0.60,0.30,0}\
+\\begin{alltt}\
+\1/g' $src1.tex >$src1.1.tex
+sed '$,/./s/\(.*\)$/\1\
+\\end{alltt}\
+\\end{document}/g' $src1.1.tex >$src1.2.tex
+
+# generate epsi
+TEXINPUTS=$TEXINPUTS:$dir
+latex $src1.2.tex
+dvips $src1.2.dvi -o $src1.2.eps
+ps2epsi $src1.2.eps $src1.2.epsi
+
+# generate destination (eps/pdf/jpg)
+case $dst in
+    *.eps )
+	cp $src1.2.epsi $dst1.1;;
+
+    *.pdf )
+	epstopdf $src1.2.epsi
+	mv $src1.2.pdf $dst1.1;;
+
+    *.jpg )
+	gs -q -dNOPAUSE -dBATCH -dEPSCrop -sDEVICE=jpeg -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -r300 -sOutputFile=$dst1.1 $src1.2.epsi;;
+    * )
+	echo "Usage: code2pic <code> <pic>"
+	echo "<pic>: *.eps, *.pdf or *.jpg"
+	exit 0;;
+esac
+
+# clean up
+rm $src1.2.aux $src1.2.dvi $src1.2.eps $src1.2.epsi $src1.2.log $src1.tex $src1.1.tex $src1.2.tex
+cd $dir
+mv $srcdir/$dst1.1 $dst

@@ -1,0 +1,4 @@
+defentry {
+  "verb" {Word: "v"}
+  dim id {in: {v!}}
+  dim lp {in: {"2"!}}}

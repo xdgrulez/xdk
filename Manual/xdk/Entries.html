@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+<title>Entries - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="Dutch.html#Dutch" title="Dutch">
+<link rel="next" href="Government.html#Government" title="Government">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Entries"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Government.html#Government">Government</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Dutch.html#Dutch">Dutch</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.15 Entries principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.entries</code>
+<li>dimension variables: none
+<li>argument variables: none
+<li>default values: none
+<li>model record: empty
+<li>constraints: <code>Entries</code> (priority 80)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle can be applied on any dimension, but it
+is usually used on the lex dimension only.
+
+   <p>The purpose of the Entries principle is to ensure that for each node,
+precisely one lexical entry is selected.
+
+   <p>If you do not use this principle, and there are two lexical lexical
+entries for a word in the input which do not make a difference for the
+analysis, the XDK solver does not select one of the two. If you do use
+it, it does select one, i.e. it enumerates all possible lexical
+entries for a word in the input.
+
+   <p>Here is the definition of the <code>Entries</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      EntryIndexDs = {Map Nodes
+		      fun {$ Node} Node.entryIndex end}
+   in
+      {FD.distribute ff EntryIndexDs}
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

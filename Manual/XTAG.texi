@@ -1,0 +1,59 @@
+@chapter XTAG
+
+The XTAG grammar generator generates XDG grammars from the TAG grammar
+developed in the XTAG project
+(@uref{http://www.cis.upenn.edu/~xtag/}). For installing the relevant
+files from the XTAG grammar, see @ref{Installation} (optional
+installation bits, XTAG grammar generator, XTAG additional
+functionality).
+
+The grammar generator uses the socket functionality of the XDK, which
+provides the possibility to read in grammars for specific input
+sentences from a server (over a socket connection).
+
+To make it work, you need to take two steps:
+@enumerate
+@item Start a grammar generator server by entering the @code{XTAG} directory
+and then starting the server by typing:
+@example
+./XTAGServer.exe -p 4712
+@end example
+where the @code{-p} option determines the port which is taken by the
+server (default: 4712).
+@item Start the XDK and open the grammar ``file'' @code{4712.ulsocket} (given the server runs on port 4712). Now, if the connection of the XDK and the server could be established, you can parse English sentences using the XTAG grammar. For each sentence, a new grammar is generated on-the-fly.
+@end enumerate
+
+The full set of commandline arguments is the following:
+@itemize @bullet
+@item @code{--help} or @code{--nohelp} (short version: @code{-h}): Display an
+overview of the commandline arguments. Default: @code{--nohelp}.
+@item @code{--prune} or @code{--noprune} (@code{-r}): Prune tree lookup, i.e., when looking
+up the elementary trees for a word in the input, remove those multiply
+anchored trees where any of the additional anchors is not present in
+the input sentence. Pruning is used per default.
+@item @code{--filter none} or @code{--filter simple} or @code{--filter tagger} or @code{--filter supertagger} (@code{-f none} or @code{-f simple} or @code{-f tagger} or @code{-f supertagger}): Filter the set of elementary trees
+selected for the words in the input. @code{none} does not filter,
+@code{simple} uses a reimplementation of @code{simple_filter.pl}, the
+default tree filter from the lem parser distribution, @code{tagger} a
+reimplementation of @code{tagger_filter.pl}, and @code{supertagger}
+uses the supertagger available on the XTAG webpage.  For the
+@code{tagger} option, the @code{mxpost} tagger by Adwait Ratnaparkhi
+must be installed in the directory denoted by the environment variable
+@code{MXPOST}.  For the @code{supertagger} option, the environment
+variable @code{COREF} must point to the currently used data directory
+within the supertagger directory (as stated in the @code{README}
+there), e.g. to the @code{200K.data} directory.  Default:
+@code{--filter none}.
+@end itemize
+
+The XDG grammars generated from the XTAG grammar make use of the
+principles:
+@itemize @bullet
+@item @code{principle.xTAG} (@ref{XTAG1})
+@item @code{principle.xTAGRedundant} (@ref{XTAGRedundant})
+@item @code{principle.xTAGRoot} (@ref{XTAGRoot})
+@end itemize
+
+And the output @code{output.xTAGDerivation} (@ref{XTAGDerivation}) to
+display XTAG derivation trees using the tree viewer from the XTAG
+project lem parser.

@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+<title>XTAGRoot - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="XTAGRedundant.html#XTAGRedundant" title="XTAGRedundant">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="XTAGRoot"></a>
+<p>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="XTAGRedundant.html#XTAGRedundant">XTAGRedundant</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.73 XTAGRoot principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.xTAGRoot</code>
+<li>dimension variables: <code>D</code>
+<li>argument variables: none
+<li>default values: none
+<li>model record: empty
+<li>constraints: <code>XTAGRoot</code> (priority 120)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle states that the tree at the root of each derivation
+must be labeled by category <code>S</code>. I.e., in the current encoding,
+the lexical <code>in</code> value of the corresponding lexical entry must
+include the label <code>S_s</code> (category <code>S</code>, initial tree).
+
+   <p>Here is the definition of the <code>XTAGRoot</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      DIDA = {DVA2DIDA 'D'}
+   in
+      %% check features
+      if {Helpers.checkModel 'XTAGRoot.oz' Nodes
+	  [DIDA#mothers]} then
+	 DIDA2LabelLat = G.dIDA2LabelLat
+	 LabelLat = {DIDA2LabelLat DIDA}
+	 LAs = LabelLat.constants
+      in
+	 if {Not {Member 'S_s' LAs}} then
+	    fail 
+	 else
+	    A2I = LabelLat.aI2I
+	    IDSI = {A2I 'S_s'}
+	 in
+	    for Node in Nodes do
+	       {FD.impl
+		{FD.nega {FS.reified.include IDSI Node.DIDA.entry.'in'}}
+		{FD.reified.equal {FS.card Node.DIDA.model.mothers} 1} 1}
+	    end
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

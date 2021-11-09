@@ -1,0 +1,824 @@
+<html lang="en">
+<head>
+<title>IL syntax - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Compiler.html#Compiler" title="Compiler">
+<link rel="prev" href="XML-syntax.html#XML-syntax" title="XML syntax">
+<link rel="next" href="SL-syntax.html#SL-syntax" title="SL syntax">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="IL-syntax"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="SL-syntax.html#SL-syntax">SL syntax</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="XML-syntax.html#XML-syntax">XML syntax</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Compiler.html#Compiler">Compiler</a>
+<hr>
+</div>
+
+<h3 class="section">4.12 IL syntax</h3>
+
+<p>In this section, we describe the syntax of <em>Intermediate Language (IL)</em>
+<a name="index-Intermediate-Language-185"></a><a name="index-IL-186"></a>grammar files.  The IL is a record language in Mozart-Oz syntax. It is
+designed specifically to be dealt with easily in Mozart-Oz.
+
+   <p>We describe the syntax of the IL in a notation similar to the
+<em>Extended Backus Naur Form (EBNF)</em>. 
+<a name="index-Extended-Backus-Naur-Form-187"></a><a name="index-EBNF-188"></a>
+We use the record syntax of Mozart-Oz, where records look like this:
+<pre class="example">     &lt;constant&gt;(&lt;constant_1&gt;:&lt;value_1&gt;
+                ...
+                &lt;constant_n&gt;:&lt;value_n&gt;)
+</pre>
+   <p>where <code>&lt;constant&gt;</code> is the record name, and
+<code>&lt;constant_i&gt;:&lt;value_i&gt;</code> is a feature with field
+<code>&lt;constant_i&gt;</code> and value <code>&lt;value_i&gt;</code> (<code>1&lt;=i&lt;=n</code>).
+
+<h4 class="subsection">4.12.1 Descriptions</h4>
+
+<p>We write down the syntax of the IL as a mapping from <em>description
+identifiers</em>
+<a name="index-description-identifier-189"></a>to <em>descriptions</em>. 
+<a name="index-description-190"></a>This mapping is written as a Mozart-Oz record as follows:
+
+<pre class="example">     o(&lt;description id_1&gt;:&lt;description_1&gt;
+       ...
+       &lt;description id_n&gt;:&lt;description_n&gt;)
+</pre>
+   <p>A description can be one of the following:
+     <ul>
+<li>tuple of <code>n</code> descriptions: <code>&lt;description_1&gt;#...#&lt;description_n&gt;</code>
+<li>list of descriptions: <code>'*'(&lt;description&gt;)</code> (if such a description
+is not given, the empty list is assumed)
+<li>optional description: <code>'?'(&lt;description&gt;)</code> (if such a description
+is not given, a default depending on the description is assumed)
+<li>a reference to a description identifier: <code>&lt;description_id&gt;</code>
+<li>a disjunction of <code>n</code> descriptions:
+     <pre class="example">          disj(&lt;description_1&gt;
+               ...
+               &lt;description_n&gt;)
+</pre>
+     <li>a complex description (an element):
+     <pre class="example">          elem(tag: &lt;constant&gt;
+               &lt;constant_1&gt;: &lt;description_1&gt;
+               ...
+               &lt;constant_n&gt;: &lt;description_n&gt;)
+</pre>
+     <li>a simple description, i.e. either:
+          <ul>
+<li>an atom defining a unique identifier: <code>'ID'</code>
+<li>an atom referring to a unique identifier: <code>'IDREF'</code>
+<li>character data: <code>'CDATA'</code>
+<li>an atom: <code>'ATOM'</code>
+<li>an integer: <code>'INT'</code>
+</ul>
+     </ul>
+
+   <p>We use single quotes to escape Mozart-Oz keywords
+(e.g. <code>functor</code>), tokens starting with an upper case letter
+(Mozart-Oz variables), and tokens containing dots
+(e.g. <code>'principle.tree'</code>).
+
+<h4 class="subsection">4.12.2 Syntax checker</h4>
+
+<p>The XDK includes the Mozart-Oz functor
+<code>Compiler/SyntaxChecker.ozf</code> whose exported procedure
+<code>Check</code> can be used to check whether an file fulfills its syntax
+specifications. The IL syntax specification is in the functor
+<code>Compiler/ILSyntax.ozf</code>. The file
+<code>Compiler/SyntaxCheckerTest.oz</code>, which can be fed in the <em>Oz
+Programming Interface (OPI)</em>,
+<a name="index-Oz-Programming-Interface-191"></a><a name="index-OPI-192"></a>demonstrates how to use the syntax checker to check whether the output
+of the UL and XML language frontends are syntactically correct.
+
+   <p>The syntax checker will be useful if you decide to design a new grammar file
+input language in addition to the UL and the XML language.
+
+<h4 class="subsection">4.12.3 Start symbol ('S')</h4>
+
+<p>We continue with giving an overview of the syntax of the IL. The start
+symbol of the IL syntax is 'S':
+
+<pre class="example">     'S': 'GRAMMAR'
+</pre>
+   <h4 class="subsection">4.12.4 Grammar definition ('GRAMMAR')</h4>
+
+<p>A grammar definition has tag <code>grammar</code>:
+
+<pre class="example">     'GRAMMAR': elem(tag: grammar
+                     principles: '*'('PRINCIPLEDEF')
+                     outputs: '*'('OUTPUTDEF')
+                     usedimensions: '*'('CONSTANT')
+                     dimensions: '*'('DIMENSION')
+                     classes: '*'('CLASSDEF')
+                     entries: '*'('ENTRY'))
+</pre>
+   <p>The <code>principles</code> feature corresponds to a list of principle
+definitions (<code>'*'('PRINCIPLEDEF')</code>).
+
+   <p>The <code>outputs</code> feature corresponds to a list of output definitions
+(<code>'*'('OUTPUTDEF')</code>).
+
+   <p>The <code>usedimensions</code> feature corresponds to a list of constants
+which represent the identifiers of the used dimensions
+(<code>'*'('CONSTANT')</code>).
+
+   <p>The <code>dimensions</code> feature corresponds to a list of dimension
+definitions (<code>'*'('DIMENSION')</code>).
+
+   <p>The <code>classes</code> feature corresponds to a list of class definitions
+(<code>'*'('CLASSDEF')</code>).
+
+   <p>The <code>entries</code> feature corresponds to a list of lexical entries
+(<code>'*'('ENTRY')</code>).
+
+<h4 class="subsection">4.12.5 Principle definitions ('PRINCIPLEDEF')</h4>
+
+<p>A principle definition has tag <code>principledef</code>. Notice that
+principle definitions can only be written in the IL since they are
+closed for the user. They cannot be written in the UL or the XML
+language:
+
+<pre class="example">     'PRINCIPLEDEF': elem(tag: principledef
+                          id: 'CONSTANT'
+                          dimensions: '*'('VARIABLE')
+                          args: '*'('VARIABLE'#'TYPE')
+                          defaults: '*'('VARIABLE'#'TERM')
+                          node: '?'('TYPE')
+                          constraints: '*'('CONSTANT'#'INTEGER'))
+</pre>
+   <p>The <code>id</code> feature corresponds to the principle identifier
+(<code>'CONSTANT'</code>).
+
+   <p>The <code>dimensions</code> feature corresponds to a list of dimension
+variables (<code>'*'('VARIABLE')</code>), the dimension variables which are
+introduced by the principle.
+
+   <p>The <code>args</code> feature corresponds to a list of pairs of argument
+variables and their types (<code>'*'('VARIABLE'#'TYPE')</code>).
+
+   <p>The <code>defaults</code> feature corresponds to a list of pairs of argument
+variables and their default values (<code>'*'('VARIABLE'#'TERM')</code>).
+
+   <p>The <code>node</code> feature corresponds to an optional model
+record type <code>'?'('TYPE')</code>. If this feature is not given, the
+empty record is assumed.
+
+   <p>The <code>constraints</code> feature corresponds to a list of pairs of
+constraint names and their priorities
+(<code>'*'('CONSTANT'#'INTEGER')</code>).
+
+<h4 class="subsection">4.12.6 Output definitions</h4>
+
+<p>An output definition has tag <code>outputdef</code>. Notice that output
+definitions can only be written in the IL since they are closed for
+the user. They cannot be written in the UL or the XML language.
+
+<pre class="example">     'OUTPUTDEF': elem(tag: outputdef
+                       id: 'CONSTANT'
+                       'functor': 'CONSTANT')
+</pre>
+   <p>The <code>id</code> feature corresponds to the output identifier
+(<code>'CONSTANT'</code>).
+
+   <p>The <code>'functor'</code> feature corresponds to the functor name of
+the output (<code>'CONSTANT'</code>).
+
+<h4 class="subsection">4.12.7 Dimension definitions ('DIMENSION')</h4>
+
+<p>A dimension definition has tag <code>dimension</code>:
+
+<pre class="example">     'DIMENSION': elem(tag: dimension
+                       id: 'CONSTANT'
+                       attrs: '?'('TYPE')
+                       entry: '?'('TYPE')
+                       label: '?'('TYPE')
+                       types: '*'('TYPEDEF')
+                       principles: '*'('USEPRINCIPLE')
+                       outputs: '*'('OUTPUT')
+                       useoutputs: '*'('USEOUTPUT'))
+</pre>
+   <p>The <code>id</code> feature corresponds to the dimension identifier
+(<code>'CONSTANT'</code>).
+
+   <p>The <code>attrs</code> feature corresponds to an optional attributes type
+(<code>'?'('TYPE')</code>). The default for this description is the empty
+record.
+
+   <p>The <code>entry</code> feature corresponds to an optional entry type
+(<code>'?'('TYPE')</code>). The default for this description is the empty
+record.
+
+   <p>The <code>label</code> feature corresponds to an optional label type
+(<code>'?'('TYPE')</code>). The default for this description is the empty
+domain.
+
+   <p>The <code>types</code> feature corresponds to a list of type definitions
+(<code>'*'('TYPEDEF')</code>).
+
+   <p>The <code>principles</code> feature corresponds to a list of principle uses
+(<code>'*'('USEPRINCIPLE')</code>).
+
+   <p>The <code>outputs</code> feature corresponds to a list of chosen outputs
+(<code>'*'('OUTPUT')</code>).
+
+   <p>The <code>useoutputs</code> feature corresponds to a list of used outputs
+(<code>'*'('USEOUTPUT')</code>).
+
+<h4 class="subsection">4.12.8 Output chooses ('OUTPUT')</h4>
+
+<p>An output chooses has tag <code>output</code>:
+
+<pre class="example">     'OUTPUT': elem(tag: output
+                    idref: 'CONSTANT')
+</pre>
+   <p>The <code>idref</code> feature corresponds to the chosen output identifier
+(<code>'CONSTANT'</code>).
+
+<h4 class="subsection">4.12.9 Output uses ('USEOUTPUT')</h4>
+
+<p>An output choosing has tag <code>useoutput</code>:
+
+<pre class="example">     'USEOUTPUT': elem(tag: useoutput
+                       idref: 'CONSTANT')
+</pre>
+   <p>The <code>idref</code> feature corresponds to the used output identifier
+(<code>'CONSTANT'</code>).
+
+<h4 class="subsection">4.12.10 Type definitions ('TYPEDEF')</h4>
+
+<p>A type definition has tag <code>typedef</code>:
+
+<pre class="example">     'TYPEDEF': elem(tag: typedef
+                     id: 'CONSTANT'
+                     type: 'TYPE')
+</pre>
+   <p>The <code>id</code> feature corresponds to the type identifier
+(<code>'CONSTANT'</code>).
+
+   <p>The <code>type</code> feature corresponds to the type (<code>'TYPE'</code>).
+
+<h4 class="subsection">4.12.11 Types ('TYPE')</h4>
+
+<p>The description identifier <code>'TYPE'</code> corresponds to
+the following:
+
+<pre class="example">     'TYPE': disj(elem(tag: 'type.domain'
+                       args: '*'('CONSTANT'))
+                  elem(tag: 'type.set'
+                       arg: 'TYPE')
+                  elem(tag: 'type.iset'
+                       arg: 'TYPE')
+                  elem(tag: 'type.tuple'
+                       args: '*'('TYPE'))
+                  elem(tag: 'type.list'
+                       arg: 'TYPE')
+                  elem(tag: 'type.record'
+                       args: '*'('CONSTANT'#'TYPE'))
+                  elem(tag: 'type.valency'
+                       arg: 'TYPE')
+                  elem(tag: 'type.card')
+                  elem(tag: 'type.vec'
+                       arg1: 'TYPE'
+                       arg2: 'TYPE')
+                  elem(tag: 'type.int')
+                  elem(tag: 'type.ints')
+                  elem(tag: 'type.string')
+                  elem(tag: 'type.bool')
+                  elem(tag: 'type.ref'
+                       idref: 'CONSTANT')
+                  elem(tag: 'type.labelref'
+                       arg: 'VARIABLE')
+                  elem(tag: 'type.variable'
+                       data: 'ATOM'))
+</pre>
+   <h5 class="subsubsection">4.12.11.1 Domain types ('type.domain')</h5>
+
+<p>A domain type has tag <code>'type.domain'</code>. The <code>args</code> feature
+corresponds to the set of constants in the domain
+(<code>'*'('CONSTANT')</code>).
+
+<h5 class="subsubsection">4.12.11.2 Accumulative set types ('type.set')</h5>
+
+<p>An accumulative set type has tag <code>'type.set'</code>. The <code>arg</code>
+feature corresponds to the type of the domain of the set
+(<code>'TYPE'</code>).
+
+<h5 class="subsubsection">4.12.11.3 Intersective set types ('type.iset')</h5>
+
+<p>An intersective set type has tag <code>'type.iset'</code>. The <code>arg</code>
+feature corresponds to the type of the domain of the set
+(<code>'TYPE'</code>).
+
+<h5 class="subsubsection">4.12.11.4 Tuple types ('type.tuple')</h5>
+
+<p>A tuple type has tag <code>'type.tuple'</code>. The <code>args</code> feature
+corresponds to the types of the projections of the tuple
+(<code>'*'('TYPE')</code>).
+
+<h5 class="subsubsection">4.12.11.5 List types ('type.list')</h5>
+
+<p>A list type has tag <code>'type.record'</code>. The <code>arg</code> feature
+corresponds to the type of the domain of the list (<code>'TYPE'</code>).
+
+<h5 class="subsubsection">4.12.11.6 Record types ('type.record')</h5>
+
+<p>A record type has tag <code>'type.list'</code>. The <code>args</code> feature
+corresponds to a list of pairs of the record fields and their types
+(<code>'*'('CONSTANT'#'TYPE')</code>).
+
+<h5 class="subsubsection">4.12.11.7 Valency types ('type.valency')</h5>
+
+<p>A valency type has tag <code>'type.valency'</code>. The <code>arg</code> feature
+corresponds to the type of the domain of the valency (<code>'TYPE'</code>).
+
+<h5 class="subsubsection">4.12.11.8 Vector types ('type.vec')</h5>
+
+<p>A vector type has tag <code>'type.vec'</code>. The <code>arg1</code> feature
+corresponds to the domain of the fields of the vector (<code>'TYPE'</code>),
+and the <code>arg2</code> feature to the type of the values (<code>'TYPE'</code>).
+
+<h5 class="subsubsection">4.12.11.9 Integer types ('type.int')</h5>
+
+<p>An integer type has tag <code>'type.int'</code>.
+
+<h5 class="subsubsection">4.12.11.10 Set of integers types ('type.ints')</h5>
+
+<p>A set of integers type has tag <code>'type.ints'</code>.
+
+<h5 class="subsubsection">4.12.11.11 String types ('type.string')</h5>
+
+<p>A string type has tag <code>'type.string'</code>.
+
+<h5 class="subsubsection">4.12.11.12 Bool types ('type.bool')</h5>
+
+<p>A boolean type has tag <code>'type.bool'</code>.
+
+<h5 class="subsubsection">4.12.11.13 Type reference types ('type.ref')</h5>
+
+<p>A type reference has tag <code>'type.ref'</code>. The <code>idref</code> feature
+corresponds to the identifier of the referenced type
+(<code>'CONSTANT'</code>).
+
+<h5 class="subsubsection">4.12.11.14 Label reference types ('type.labelref')</h5>
+
+<p>A label reference has tag <code>'type.labelref'</code>. The <code>arg</code>
+feature corresponds to the dimension variable whose set of edge labels
+is referenced (<code>'VARIABLE'</code>).
+
+<h5 class="subsubsection">4.12.11.15 Type variable ('type.variable')</h5>
+
+<p>A type variable has tag <code>'type.variable'</code>.
+
+<h4 class="subsection">4.12.12 Principle uses ('USEPRINCIPLE')</h4>
+
+<p>A principle use has tag <code>useprinciple</code>:
+
+<pre class="example">     'USEPRINCIPLE': elem(tag: useprinciple
+                          idref: 'CONSTANT'
+                          dimensions: '*'('VARIABLE'#'CONSTANT')
+                          args: '*'('VARIABLE'#'TERM'))
+</pre>
+   <p>The <code>idref</code> feature corresponds to the principle identifier of
+the used principle (<code>'CONSTANT'</code>).
+
+   <p>The <code>dimensions</code> feature corresponds to the dimension mapping, a
+list of pairs of dimension variables and dimension identifiers
+(<code>'*'('VARIABLE'#'CONSTANT')</code>).
+
+   <p>The <code>args</code> feature corresponds to the argument mapping, a list of
+pairs of argument variables and their values
+(<code>'*'('VARIABLE'#'TERM')</code>).
+
+<h4 class="subsection">4.12.13 Class definitions ('CLASSDEF')</h4>
+
+<p>A class definition has tag <code>classdef</code>:
+
+<pre class="example">     'CLASSDEF': elem(tag: classdef
+                      id: 'CONSTANT'
+                      vars: '*'('VARIABLE')
+                      body: 'CLASS')
+</pre>
+   <p>The <code>id</code> feature corresponds to the class identifier
+(<code>'CONSTANT'</code>).
+
+   <p>The <code>vars</code> feature corresponds to the list of variables which are
+bound by the class (<code>'*'('VARIABLE')</code>).
+
+   <p>The <code>body</code> feature corresponds to the class body (<code>'CLASS'</code>).
+
+<h4 class="subsection">4.12.14 Class bodies ('CLASS')</h4>
+
+<p>The description identifier <code>'CLASS'</code> corresponds to the following:
+
+<pre class="example">     'CLASS': disj(elem(tag: 'class.dimension'
+                        idref: 'CONSTANT'
+                        arg: 'TERM')
+                    elem(tag: 'class.ref'
+                         idref: 'CONSTANT'
+                         args: '*'('VARIABLE'#'TERM'))
+                    elem(tag: conj
+                         args: '*'('CLASS'))
+                    elem(tag: disj
+                         args: '*'('CLASS')))
+</pre>
+   <h5 class="subsubsection">4.12.14.1 Entry dimension ('class.dimension')</h5>
+
+<p>An entry dimension has tag <code>'class.dimension'</code>. The <code>idref</code>
+feature corresponds to the dimension identifier (<code>'CONSTANT'</code>), and
+the <code>arg</code> feature corresponds to the entry dimension itself
+(<code>'TERM'</code>).
+
+<h5 class="subsubsection">4.12.14.2 Class reference ('class.ref')</h5>
+
+<p>A class reference has tag <code>'class.ref'</code>. The <code>idref</code> feature
+corresponds to the class identifier of the referenced class.  The
+<code>args</code> feature corresponds to the list of pairs of variables and
+values that specify the variable binding of the class reference
+(<code>'*'('VARIABLE'#'TERM')</code>).
+
+<h5 class="subsubsection">4.12.14.3 Conjunction (conj)</h5>
+
+<p>A conjunction of class bodies has tag <code>conj</code>. The <code>args</code>
+feature corresponds to the list of class bodies which are combined by
+conjunction (<code>'*'('CLASS')</code>).
+
+<h5 class="subsubsection">4.12.14.4 Disjunction (disj)</h5>
+
+<p>A disjunction of class bodies has tag <code>disj</code>. The <code>args</code>
+feature corresponds to the list of class bodies which are combined by
+disjunction (<code>'*'('CLASS')</code>).
+
+<h4 class="subsection">4.12.15 Lexical entries ('ENTRY')</h4>
+
+<p>A lexical entry has tag <code>entry</code>.
+
+<pre class="example">     'ENTRY': elem(tag: entry
+                   body: 'CLASS')
+</pre>
+   <p>The <code>body</code> feature corresponds to the class body which specifies
+the lexical entry (<code>'CLASS'</code>).
+
+<h4 class="subsection">4.12.16 Terms ('TERM')</h4>
+
+<p>The description identifier <code>'TERM'</code> corresponds to the
+following:
+
+<pre class="example">     'TERM': disj('CONSTANT'
+                  'VARIABLE'
+                  'INTEGER'
+                  'CARD'
+                  'CONSTANT'#'CARD'
+                  'VARIABLE'#'CARD'
+                  elem(tag: top)
+                  elem(tag: bot)
+                  elem(tag: set
+                       args: '*'('TERM'))
+                  elem(tag: list
+                       args: '*'('TERM'))
+                  elem(tag: record
+                       args: '*'('RECSPEC'))
+                  elem(tag: setgen
+                       arg: 'SETGEN')
+                  elem(tag: featurepath
+                       root: 'ROOT'
+                       dimension: 'VARIABLE'
+                       aspect: 'ASPECT'
+                       fields: '*'('CONSTANT'))
+                  elem(tag: annotation
+                       arg1: 'TERM'
+                       arg2: 'TYPE')
+                  elem(tag: conj
+                       args: '*'('TERM'))
+                  elem(tag: disj
+                       args: '*'('TERM'))
+                  elem(tag: concat
+                       args: '*'('TERM'))
+                  elem(tag: order
+                       args: '*'('TERM')))
+     
+     'ROOT': disj('_' '^')
+     'ASPECT': disj('entry' 'attrs')
+</pre>
+   <h5 class="subsubsection">4.12.16.1 Constants ('CONSTANT')</h5>
+
+<p>A constant has tag <code>constant</code>:
+
+<pre class="example">     'CONSTANT': elem(tag: constant
+                      data: 'ATOM')
+</pre>
+   <p>The <code>data</code> feature corresponds to the constant itself.
+
+<h5 class="subsubsection">4.12.16.2 Variables ('VARIABLE')</h5>
+
+<p>A variable has tag <code>variable</code>.
+
+<pre class="example">     'VARIABLE': elem(tag: variable
+                      data: 'ATOM')
+</pre>
+   <p>The <code>data</code> feature corresponds to the variable itself.
+
+<h5 class="subsubsection">4.12.16.3 Integers ('INTEGER')</h5>
+
+<p>An integer has tag <code>integer</code>.
+
+<pre class="example">     'INTEGER': disj(elem(tag: integer
+                          data: 'INT')
+                     elem(tag: integer
+                          data: 'infty'))
+</pre>
+   <p>An integer is either an integer or infinity.
+
+   <p>The <code>data</code> feature of an integer corresponds to the integer
+itself or to the special constant <code>infty</code> (for &ldquo;infinity&rdquo;).
+
+<h5 class="subsubsection">4.12.16.4 Cardinality sets ('CARD')</h5>
+
+<p>The description identifier <code>CARD</code> corresponds to the following:
+
+<pre class="example">     'CARD': disj(elem(tag: 'card.wild'
+                       arg: 'WILD')
+                  elem(tag: 'card.set'
+                       args: '*'('INTEGER'))
+                  elem(tag: 'card.interval'
+                       arg1: 'INTEGER'
+                       arg2: 'INTEGER'))
+     
+     'WILD': disj('!' '?' '*' '+')
+</pre>
+   <p>A wild card cardinality set has tag <code>'card.wild'</code>. The <code>arg</code>
+feature corresponds to one of the wild cards <code>'!'</code>, <code>'?'</code>,
+<code>'*'</code>, or <code>'+'</code>.
+
+   <p>A cardinality set has tag <code>'card.set'</code>. The <code>args</code> feature
+corresponds to a list of integers which specify the set
+(<code>'*'('INTEGER')</code>).
+
+   <p>A cardinality interval has tag <code>'card.interval'</code>. The <code>arg1</code>
+feature corresponds to the left endpoint of the closed interval
+(<code>'INTEGER'</code>), and the <code>arg2</code> feature to the right endpoint
+(<code>'INTEGER'</code>).
+
+<h5 class="subsubsection">4.12.16.5 Cardinality specifications (<code>'CONSTANT'#'CARD'</code> or <code>'VARIABLE'#'CARD'</code>)</h5>
+
+<p>Cardinality specifications have the syntax <code>'CONSTANT'#'CARD'</code>,
+or <code>'VARIABLE'#'CARD'</code>.
+
+<h5 class="subsubsection">4.12.16.6 Top values (<code>top</code>)</h5>
+
+<p>Top values have tag <code>top</code>.
+
+<h5 class="subsubsection">4.12.16.7 Bottom values (<code>bot</code>)</h5>
+
+<p>Bottom values have tag <code>bot</code>.
+
+<h5 class="subsubsection">4.12.16.8 Sets (<code>set</code>)</h5>
+
+<p>Sets have tag <code>set</code>. The <code>args</code> feature corresponds to the
+set elements (<code>'*'('TERM')</code>).
+
+<h5 class="subsubsection">4.12.16.9 Lists (<code>list</code>)</h5>
+
+<p>Lists have tag <code>list</code>. The <code>args</code> feature corresponds to the
+list elements (<code>'*'('TERM')</code>).
+
+<h5 class="subsubsection">4.12.16.10 Records (<code>record</code>)</h5>
+
+<p>Records have tag <code>record</code>. The <code>args</code> feature corresponds to
+the list of record specifications for this record
+<code>'*'('RECSPEC')</code>.
+
+   <p>A record specification (description identifier <code>'RECSPEC'</code>) has
+the following syntax:
+
+<pre class="example">     'RECSPEC': disj('CONSTANT'#'TERM'
+                     'VARIABLE'#'TERM'
+                     elem(tag: conj
+                          args: '*'('RECSPEC'))
+                     elem(tag: disj
+                          args: '*'('RECSPEC')))
+</pre>
+   <p>I.e. a record specification is either a pair of a field and a value
+(<code>'CONSTANT'#'TERM'</code>), of a variable and a value
+(<code>'VARIABLE'#'TERM'</code>), or a conjunction of record specifications
+(tag: <code>conj</code>), or a disjunction of record specifications (tag:
+<code>disj</code>).
+
+<h5 class="subsubsection">4.12.16.11 Set generator expressions (<code>setgen</code>)</h5>
+
+<p>A set generator expression has tag <code>setgen</code>. The <code>arg</code>
+feature is the set generator expression body (description identifier
+<code>'SETGEN'</code>):
+
+<pre class="example">     'SETGEN': disj('CONSTANT'
+                    elem(tag: conj
+                         args: '*'('SETGEN'))
+                    elem(tag: disj
+                         args: '*'('SETGEN')))
+</pre>
+   <p>I.e. a set generator expression body is either a constant, or a
+conjunction of set generator expression bodies (tag: <code>conj</code>), or
+a disjunction of set generator expression bodies (tag: <code>disj</code>).
+
+<h5 class="subsubsection">4.12.16.12 Feature paths (<code>featurepath</code>)</h5>
+
+<p>A feature path has tag <code>featurepath</code>.
+
+   <p>The <code>root</code> feature corresponds to the root variable of the
+feature path, either <code>'_'</code> or <code>'^'</code>.
+
+   <p>The <code>dimension</code> feature corresponds to the dimension variable
+of the feature path (<code>'VARIABLE'</code>).
+
+   <p>The <code>aspect</code> feature corresponds to the aspect of the feature path,
+either <code>'entry'</code> or <code>'attrs'</code>.
+
+   <p>The <code>fields</code> feature corresponds to the fields of the feature
+path (<code>'*'('CONSTANT')</code>).
+
+<h5 class="subsubsection">4.12.16.13 Type annotations (<code>annotation</code>)</h5>
+
+<p>A type annotation has tag <code>annotation</code>.
+
+   <p>The <code>arg1</code> feature corresponds to the term (<code>'TERM'</code>), and
+the <code>arg2</code> feature to the annotated type (<code>'TYPE'</code>).
+
+<h5 class="subsubsection">4.12.16.14 Conjunction (<code>conj</code>)</h5>
+
+<p>A conjunction has tag <code>conj</code>.
+
+   <p>The <code>args</code> feature corresponds to the list of terms which are
+combined by conjunction.
+
+<h5 class="subsubsection">4.12.16.15 Disjunction (<code>disj</code>)</h5>
+
+<p>A disjunction has tag <code>disj</code>.
+
+   <p>The <code>args</code> feature corresponds to the list of terms which are
+combined by disjunction.
+
+<h5 class="subsubsection">4.12.16.16 Concatenation (<code>concat</code>)</h5>
+
+<p>A concatenation has tag <code>concat</code>.
+
+   <p>The <code>args</code> feature corresponds to the list of terms which are
+to be <em>concatenated</em>. 
+<a name="index-concatenation-193"></a>Concatenation is restricted to strings.
+
+<h5 class="subsubsection">4.12.16.17 Order (<code>order</code>)</h5>
+
+<p>An <em>order generator</em>
+<a name="index-order-generator-194"></a>has tag <code>order</code>.
+
+   <p>The <code>args</code> feature corresponds to the list of terms from which
+a set of pairs representing an order relation is generated.
+
+<h4 class="subsection">4.12.17 Undetermined values</h4>
+
+<p>The XDK solver can also yield <em>partial solutions</em>
+<a name="index-partial-solution-195"></a>in which not all values in the node record are determined; instead
+some of the values are still variables. In the following, we show how
+these variables are represented in the IL.
+
+<h5 class="subsubsection">4.12.17.1 Undetermined cardinality sets</h5>
+
+<p>This is the IL syntax for undetermined cardinality sets (i.e. 
+cardinality set variables) in valencies:
+
+<pre class="example">     elem(tag: '_'
+          args: [IL1 IL2])
+</pre>
+   <p><code>IL1</code> is the cardinality set representing the set of integers which
+are already known to be in the cardinality set variable.
+
+   <p><code>IL2</code> is the cardinality set representing the set of integers which
+can still be bound to the cardinality set variable.
+
+<h5 class="subsubsection">4.12.17.2 Undetermined constants</h5>
+
+<p>This is the IL syntax for undetermined constants (i.e. constant
+variables):
+
+<pre class="example">     elem(tag: '_'
+          args: [DSpec])
+</pre>
+   <p><code>DSpec</code> is a <em>domain specification</em><a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>,
+<a name="index-domain-specification-196"></a>representing the set of constants which can still be bound to the
+constant variable.
+
+<h5 class="subsubsection">4.12.17.3 Undetermined integers</h5>
+
+<p>This is the IL syntax for undetermined integers (i.e. integer
+variables):
+
+<pre class="example">     elem(tag: '_'
+          args: [DSpec])
+</pre>
+   <p><code>DSpec</code> is a domain specification representing the set of integers
+which can still be bound to the integer variable.
+
+<h5 class="subsubsection">4.12.17.4 Undetermined lists</h5>
+
+<p>This is the IL syntax for undetermined lists (i.e. list variables):
+
+<pre class="example">     elem(tag: '_'
+          args: nil)
+</pre>
+   <h5 class="subsubsection">4.12.17.5 Undetermined sets</h5>
+
+<p>The IL syntax for undetermined sets (i.e. set variables) differs
+depending on the domain of the set:
+     <ol type=1 start=1>
+<li>a finite domain of constants or a tuple of which all
+projections are finite domains of constants
+<li>any other type
+        </ol>
+
+     <ol type=1 start=1>
+<li>The IL syntax for undetermined sets whose domain is either
+a finite domain of constants or a tuple of which all projections are
+finite domains of constants is given below:
+     <pre class="example">          elem(tag: '_'
+               args: [MSpec1 MSpec2 DSpec])
+</pre>
+     <p><code>MSpec1</code> is a set specification representing the set of constants
+which are already known to be in the set variable.
+
+     <p><code>MSpec2</code> is a set specification representing the set of constants
+which could still end up in the set variable.
+
+     <p><code>DSpec</code> is a domain specification representing the set of
+integers which can still be bound to the integer variable representing
+the cardinality of the set variable.
+
+     <li>The IL syntax for undetermined sets over any other domain is given
+below:
+     <pre class="example">          elem(tag: '_'
+               args: nil)
+</pre>
+     </ol>
+
+<h5 class="subsubsection">4.12.17.6 Undetermined strings</h5>
+
+<p>This is the IL syntax for undetermined strings (i.e. string variables):
+
+<pre class="example">     elem(tag: '_'
+          args: nil)
+</pre>
+   <h5 class="subsubsection">4.12.17.7 Undetermined tuples</h5>
+
+<p>The IL syntax for undetermined tuples (i.e. tuple variables) differs
+depending on the types of the projections of the tuple:
+     <ol type=1 start=1>
+<li>all projections are finite
+domains of constants
+<li>any of the projections has a type other than finite domain of constants
+        </ol>
+
+     <ol type=1 start=1>
+<li>This is the IL syntax for undetermined tuples of which all projections
+are finite domains of constants:
+
+     <pre class="example">          elem(tag: '_'
+               args: [DSpec])
+</pre>
+     <p><code>DSpec</code> is a domain specification representing the set of tuples
+which can still be bound to the tuple variable.
+
+     <li>This is the IL syntax for undetermined tuples
+of which any of the projections has a type other than finite domain of
+constants:
+
+     <pre class="example">          elem(tag: '_'
+               args: nil)
+</pre>
+     </ol>
+
+<!-- ************************************************************ -->
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> A domain
+specification can be a list of values (or pairs of values), or just a
+value (or a pair of values) describing the domain. Pairs of values
+denote closed intervals within the set.</p>
+
+   <hr></div>
+
+   </body></html>
+

@@ -1,0 +1,261 @@
+<html lang="en">
+<head>
+<title>TAG - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="Subgraphs.html#Subgraphs" title="Subgraphs">
+<link rel="next" href="Test.html#Test" title="Test">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="TAG"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Test.html#Test">Test</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Subgraphs.html#Subgraphs">Subgraphs</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.65 TAG principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.tag</code>
+<li>dimension variables: <code>D</code>
+<li>argument variables:<br>
+<code>Anchor: iset(label(D))</code><br>
+<code>Dominates: vec(label(D) set(label(D)))</code><br>
+<code>Foot: set(label(D))</code><br>
+<code>Leaves: set(label(D))</code><br>
+<code>Order: list(label(D))</code>
+<li>default values:<br>
+<code>Anchor: _.D.entry.anchor</code><br>
+<code>Dominates: _.D.entry.dominates</code><br>
+<code>Foot: _.D.entry.foot</code><br>
+<code>Leaves: _.D.entry.leaves</code><br>
+<code>Order: []</code>
+<li>model record:
+     <pre class="example">          { anchorsL:    vec(label(D) ints)
+            belowL:      vec(label(D) ints)
+            pasteL:      vec(label(D) ints)
+            pastedL:     vec(label(D) ints)
+            yieldL:      vec(label(D) ints)
+            leaveYieldL: vec(label(D) ints)
+            yield:       ints
+          }
+</pre>
+     <li>constraints: <code>TAGMakeNodes</code> (priority 130),
+<code>TAGConditions</code> (120), and <code>TAGDist</code> (90)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle was written by Marco Kuhlmann.
+
+   <p>Here is the definition of the <code>TAGMakeNodes</code> constraint functor:
+<pre class="verbatim">functor
+import
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      proc {Codomain R C}
+	 {Record.forAll R proc {$ S} {FS.subset S C} end}
+      end
+      %%
+      proc {Weigh S1 D S2}
+	 D2 = {FD.int 1#2}
+      in
+	 {FD.sum [D 1] '=:' D2}
+	 {Select.fs unit(FS.value.empty S1) D2 S2}
+      end
+      %%
+      proc {Cond D S1 S2 S3}
+	 D2 = {FD.int 1#2}
+      in
+	 {FD.sum [D 1] '=:' D2}
+	 {Select.fs unit(S2 S1) D2 S3}
+      end
+      %%
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      DIDA = {DVA2DIDA 'D'}
+   in
+      if {Helpers.checkModel 'TAGMakeNodes.oz' Nodes nil} then
+	 DIDA2LabelLat = G.dIDA2LabelLat
+	 LabelLat = {DIDA2LabelLat DIDA}
+	 NodeSet = Nodes.1.nodeSet
+	 Models = {List.map Nodes fun {$ N} N.DIDA.model end}
+
+	 %% lists of below(w)(l), for all nodes w, sorted by label
+	 BelowL =
+	 {Record.mapInd {Record.make unit LabelLat.constants}
+	  fun {$ L _} {List.map Models fun {$ N} N.belowL.L end} end}
+      in
+	 for Node in Nodes do
+	    Model = Node.DIDA.model
+	    
+	    %% get arguments
+	    Anchor = {ArgRecProc 'Anchor' o('_': Node)}
+	    Dominates = {ArgRecProc 'Dominates' o('_': Node)}
+	    Foot = {ArgRecProc 'Foot' o('_': Node)}
+	    Leaves = {ArgRecProc 'Leaves' o('_': Node)}
+
+	    %% initialise variables
+	    {Codomain Model.anchorsL NodeSet}
+	    {Codomain Model.belowL NodeSet}
+	    {Codomain Model.pasteL NodeSet}
+	    {Codomain Model.pastedL NodeSet}
+	    {Codomain Model.yieldL NodeSet}
+	    {Codomain Model.leaveYieldL NodeSet}
+
+	    {FS.subset Model.yield NodeSet}
+
+	    %% list of paste(w)(l), for the current node
+	    PasteL = {List.map LabelLat.constants fun {$ L} Model.pasteL.L end}
+
+	    %% paste(w) = U {paste(w)(l) | exists w' with w' -l-> w}
+	    Paste = {Select.union PasteL Model.labels}
+
+	    %% list of pasted(w)(l), for the current node
+	    PastedL =
+	    {List.map LabelLat.constants fun {$ L} Model.pastedL.L end}
+
+	    %% list of yield(w)(l), for the current node
+	    YieldL = {List.map LabelLat.constants fun {$ L} Model.yieldL.L end}
+	 in
+	    for L in LabelLat.constants do
+	       LI = {LabelLat.aI2I L}
+	    in
+	       %% anchor(w)(l) = {w} if l is anchor of w, empty otherwise
+	       Model.anchorsL.L =
+	       {Weigh Model.eq {FS.reified.include LI Anchor}}
+
+	       %% below(w)(l) = U {yield(w)(l') | l dominates l'}
+	       Model.belowL.L = {Select.union YieldL Dominates.L}
+	       
+	       %% pasteL(w)(l) = U {below(w')(l) | w' is mother of w}
+	       Model.pasteL.L = {Select.union BelowL.L Model.mothersL.L}
+	       
+	       %% pasted(w)(l) = paste(w), if l is foot of w, empty otherwise
+	       Model.pastedL.L = {Weigh Paste {FS.reified.include LI Foot}}
+
+	       %% yield(w)(l) = anchors(w)(l) + down(w)(l) + pasted(w)(l)
+
+	       %% NOTE that down(w)(l) = inserted(w)(l) from the paper
+	       
+	       %% OPTIMISATION.  The below(w)(l) component mentioned in the
+	       %% paper is not needed here, as the convexity principle is
+	       %% imposed on Model.yield (see below).  The remaining components
+	       %% actually partition yield(w)(l).
+
+	       Model.yieldL.L =
+	       {FS.partition [Model.anchorsL.L
+			      Model.downL.L
+			      Model.pastedL.L
+			      Model.belowL.L]}
+
+	       %% leaveYield(w)(l) =
+	       %% yield(w)(l), if l is a leaf, empty otherwise
+	       %%
+	       %% NOTE: This is no longer true.  As Denys suggested:
+	       %% If l is not a leaf, we can at least order its
+	       %% anchor.  (We could even do a little more: We could
+	       %% order that part of its yield that lies on the same
+	       %% side of its foot node than its anchor.)
+	       Model.leaveYieldL.L =
+	       {Cond {FS.reified.include LI Leaves}
+		Model.yieldL.L Model.daughtersL.L}
+	    end
+
+	    %% yield(w) = U yield(w)(l) (= yield(w)(root))
+	    Model.yield = {FS.unionN Model.yieldL}
+
+	    %% OPTIMISATION to increase propagation
+	    Model.yield = {FS.partition Model.eqdown|PastedL}
+	 end
+      end
+   end
+end
+</pre>
+Here is the definition of the <code>TAGConditions</code> constraint functor:
+<pre class="verbatim">functor
+import
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      DIDA = {DVA2DIDA 'D'}
+   in
+      if {Helpers.checkModel 'TAGConditions.oz' Nodes nil} then
+	 for Node in Nodes do
+	    DIDA2LabelLat = G.dIDA2LabelLat
+	    LabelLat = {DIDA2LabelLat DIDA}
+	    Model = Node.DIDA.model
+
+	    %% get arguments
+	    OrderIs = {ArgRecProc 'Order' o}
+	    OrderLAs = {List.map OrderIs LabelLat.i2AI}
+
+	    OrderedLeaveYields =
+	    {List.map OrderLAs fun {$ L} Model.leaveYieldL.L end}
+	 in
+	    %% convexity principle
+	    {FS.int.convex Model.yield}
+
+	    for L in LabelLat.constants do
+	       {FS.int.convex Model.yieldL.L}
+	    end
+
+	    %% order principle
+	    {FS.int.seq OrderedLeaveYields}
+	 end
+      end
+   end
+end
+</pre>
+Here is the definition of the <code>TAGDist</code> constraint functor:
+<pre class="verbatim">functor
+import
+   Distributor(distributeDs distributeMs) at 'Distributor.ozf'
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+   in
+      if {Helpers.checkModel 'TAGDist.oz' Nodes nil} then
+	 DIDA = {DVA2DIDA 'D'}
+	 %% distribute yield
+	 YieldMs = {Map Nodes fun {$ Node} Node.DIDA.model.yield end}
+      in
+	 {Distributor.distributeMs YieldMs FS}
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

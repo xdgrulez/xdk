@@ -1,0 +1,56 @@
+#!/usr/bin/perl
+$file = @ARGV[0];
+open(fh,$file);
+@lines = <fh>;
+close(fh);
+
+$lines = "";
+foreach $line (@lines) {
+    $lines = "$lines$line";
+}
+
+$_ = $lines;
+
+s/\x7b/\\textttAAA\\AAABBB/g;
+s/\x7d/\\textttAAA\\BBBBBB/g;
+s/%(.*)/\\textcolor{BrickRed}{%\1}/g;
+s/([^\x27\x23])([*+~\x2e])/\1\\textcolor{MyDarkPurple}{\2}/g;
+s/#/\\textcolor{MyDarkPurple}{#}/g;
+s/\[\]([ \t\n][ \t\n]*)/\\textcolor{MyDarkPurple}{[]}\1/g;
+s/define/\\textcolor{MyDarkPurple}{define}/g;
+s/end\n/\\textcolor{MyDarkPurple}{end}\n/g;
+s/([ \t\n][ \t\n]*)end(..*)/\1\\textcolor{MyDarkPurple}{end}\2/g;
+s/export/\\textcolor{MyDarkPurple}{declare}/g;
+s/export/\\textcolor{MyDarkPurple}{export}/g;
+s/functor/\\textcolor{MyDarkPurple}{functor}/g;
+s/import/\\textcolor{MyDarkPurple}{import}/g;
+s/in\n/\\textcolor{MyDarkPurple}{in}\n/g;
+s/in([ \t\n][ \t\n]*)/\\textcolor{MyDarkPurple}{in}\1/g;
+s/do\n/\\textcolor{MyDarkPurple}{do}\n/g;
+s/([ \t\n][ \t\n]*)do([ \t\n][ \t\n]*)/\1\\textcolor{MyDarkPurple}{do}\2/g;s/for([ \t\n][ \t\n]*)/\\textcolor{MyDarkPurple}{for}\1/g;
+s/or([ \t\n][ \t\n]*)/\\textcolor{MyDarkPurple}{or}\1/g;
+s/proc \\textttAAA\\AAABBB([A-Za-z0-9\$]*) /\\textcolor{MyDarkPurple}{proc} \\textttAAA\\AAABBB\\textcolor{MyDarkBlue}{\1} /g;
+s/fun \\textttAAA\\AAABBB([A-Za-z0-9\$]*) /\\textcolor{MyDarkPurple}{fun} \\textttAAA\\AAABBB\\textcolor{MyDarkBlue}{\1} /g;
+s/([ \t\n][ \t\n]*)if([ \t\n][ \t\n]*)/\1\\textcolor{MyDarkPurple}{if}\2/g;
+s/([ \t\n][ \t\n]*)then/\1\\textcolor{MyDarkPurple}{then}/g;
+s/skip/\\textcolor{MyDarkPurple}{skip}/g;
+s/thread/\\textcolor{MyDarkPurple}{thread}/g;
+s/([ \t\n][ \t\n]*)else/\1\\textcolor{MyDarkPurple}{else}/g;
+s/([ \t\n][ \t\n]*)at([ \t\n][ \t\n]*)/\1\\textcolor{MyDarkPurple}{at}\2/g;
+s/([ \t\n][ \t\n]*)andthen([ \t\n][ \t\n]*)/\1\\textcolor{MyDarkPurple}{andthen}\2/g;
+s/=<:/\\textcolor{MyDarkPurple}{=<:}/g;
+s/==/\\textcolor{MyDarkPurple}{==}/g;
+s/<:/\\textcolor{MyDarkPurple}{<:}/g;
+s/=:/\\textcolor{MyDarkPurple}{=:}/g;
+s/>:/\\textcolor{MyDarkPurple}{>:}/g;
+s/\x27([^\x27]*)\x27/\\textcolor{MyDarkOrange}{\x27\1\x27}/g;
+s/\x22([^\x22]*)\x22/\\textcolor{MyDarkOrange}{\x22\1\x22}/g;
+s/\t/        /g;
+s/AAA/{/g;
+s/BBB/}/g;
+
+$lines = $_;
+
+open(fh,">$file.tex");
+print fh $lines;
+close(fh);

@@ -1,0 +1,17 @@
+#!/bin/bash
+chmod u+x scripts/addprinciple
+chmod u+x scripts/code2pic
+chmod u+x scripts/diffnotime
+chmod u+x scripts/global2local
+chmod u+x scripts/installdeps
+chmod u+x scripts/local2global
+chmod u+x scripts/mvprinciple
+chmod u+x scripts/ozcolor
+chmod u+x scripts/prepinstall
+chmod u+x scripts/rmprinciple
+chmod u+x scripts/ulcolor
+chmod u+x scripts/ulterse
+chmod u+x scripts/xdag2eps
+chmod u+x scripts/xdag2jpg
+chmod u+x scripts/xdag2pdf
+chmod u+x scripts/xmlcolor

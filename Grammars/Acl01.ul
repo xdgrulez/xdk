@@ -1,0 +1,357 @@
+usedim id
+usedim lp
+usedim idlp
+usedim lex
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension id
+defdim id {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "id.label" {det subj obj vbse vprt vinf prt}
+  deftype "id.person" {first second third}
+  deftype "id.number" {sg pl}
+  deftype "id.gender" {masc fem neut}
+  deftype "id.case" {nom gen dat acc}
+  deftype "id.def" {def indef undef}
+  deftype "id.agr" tuple("id.person" "id.number" "id.gender" "id.case" "id.def")
+  deftype "id.agrs" iset("id.agr")
+
+  deflabeltype "id.label"
+  defattrstype {agr: "id.agr"}
+  defentrytype {in: valency("id.label")
+                out: valency("id.label")
+                agrs: "id.agrs"
+                agree: set("id.label")
+                govern: vec("id.label" "id.agrs")}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph" {
+    dims {D: id}}
+  useprinciple "principle.tree" {
+    dims {D: id}}
+  useprinciple "principle.valency" {
+    dims {D: id}}
+  useprinciple "principle.agr" {
+    dims {D: id}
+    args {Agr: _.D.attrs.agr
+          Agrs: _.D.entry.agrs}}
+  useprinciple "principle.agreement" {
+    dims {D: id}
+    args {Agr1: ^.D.attrs.agr
+          Agr2: _.D.attrs.agr
+          Agree: ^.D.entry.agree}}
+  useprinciple "principle.government" {
+    dims {D: id}
+    args {Agr2: _.D.attrs.agr
+          Govern: ^.D.entry.govern}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dag"
+  output "output.latex"
+  output "output.decode"
+  output "output.pretty"
+  output "output.xml"
+  output "output.xml1"
+  output "output.xml2"
+  output "output.xml3"
+  output "output.xml4"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lp
+defdim lp {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "lp.label" {d df n mf vcf p pf v vxf}
+  deflabeltype "lp.label"
+  defentrytype {in: valency("lp.label")
+                out: valency("lp.label")
+                on: iset("lp.label")
+}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph" {
+    dims {D: lp}}
+  useprinciple "principle.tree" {
+    dims {D: lp}}
+  useprinciple "principle.valency" {
+    dims {D: lp}}
+  useprinciple "principle.order" {
+    dims {D: lp}
+    args {Order: [d df n mf vcf p pf v vxf]
+          On: _.D.entry.on
+          Yields: true}}
+  useprinciple "principle.projectivity" {
+    dims {D: lp}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dag"
+  output "output.latex"
+  output "output.decode"
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension idlp
+defdim idlp {
+  defentrytype {blocks: set("id.label")
+                end: vec("lp.label" set("id.label"))}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.climbing" {
+    dims {D1: lp
+          D2: id}}
+  useprinciple "principle.barriers" {
+    dims {D1: lp
+          D2: id
+          D3: idlp}
+    args {Blocks: _.D3.entry.blocks}}
+  useprinciple "principle.linkingEnd" {
+    dims {D1: lp
+          D2: id
+          D3: idlp}
+    args {End: ^.D3.entry.end}}
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lex
+defdim lex {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype {word: string}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.entries" {}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dags1"
+  output "output.latexs1"
+  useoutput "output.dags1"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define classes
+defclass "det" Word Agrs {
+  dim id {in: {det?}
+          agrs: Agrs
+          govern: {det: $ ()}}
+  dim lp {in: {df?}
+          on: {d}}
+  dim lex {word: Word}}
+
+defclass "cnoun" Word Agrs {
+  dim id {in: {subj? obj?}
+          out: {det?}
+          agrs: Agrs
+          agree: {det}}
+  dim lp {in: {mf?}
+          on: {n}
+          out: {df?}}
+  dim idlp {blocks: {det}
+            end: {df: {det}}}
+  dim lex {word: Word}}
+
+defclass "pname" Word Agrs {
+  dim id {in: {subj? obj?}
+          agrs: Agrs}
+  dim lp {in: {mf?}
+          on: {n}}
+  dim lex {word: Word}}
+
+defclass "fin" Word Agrs {
+  dim id {in: {}
+          out: {subj}
+          agrs: Agrs
+          agree: {subj}
+          govern: {subj: $ nom}}
+  dim lp {in: {}
+          out: {mf* vxf?}
+          on: {v}}
+  dim idlp {blocks: bot}
+  dim lex {word: Word}}
+
+defclass "can" Word {
+  dim lp {in: {vcf?}
+          on: {v}}
+  dim lex {word: Word}}
+
+defclass "noncan" Word {
+  dim lp {in: {vxf?}
+          on: {v}
+          out: {mf* vxf?}}
+  dim lex {word: Word}}
+
+defclass "ersatz" {
+  dim id {in: {vbse? vprt?}}}
+
+defclass "vbse" {
+  dim id {in: {vbse?}}}
+
+defclass "vinf" {
+  dim id {in: {vinf?}
+          out: {prt}}
+  dim lp {out: {pf}}}
+
+defclass "vprt" {
+  dim id {in: {vprt?}}}
+
+defclass "tr" {
+  dim id {out: {obj}
+          govern: {obj: $ acc}}}
+
+defclass "vbsec" {
+  dim id {out: {vbse}}
+  dim lp {out: {vcf?}}}
+
+defclass "vprtc" {
+  dim id {out: {vprt}}
+  dim lp {out: {vcf?}}}
+
+defclass "vinfc" {
+  dim id {out: {vinf}}
+  dim lp {out: {vcf?}}}
+
+defclass "prt" Word {
+  dim id {in: {prt?}}
+  dim lp {in: {pf?}
+          on: {p}}
+  dim lex {word: Word}}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define entries
+% Determiners
+defentry {
+  "det" {Agrs: ($ masc & nom & sg & indef) | ($ neut & (nom|acc) & sg & indef)
+         Word: "ein"}}
+defentry {
+  "det" {Agrs: ($ masc & acc & sg & indef)
+         Word: "einen"}}
+defentry {
+  "det" {Agrs: ($ (masc|neut) & dat & sg & indef)
+         Word: "einem"}}
+defentry {
+  "det" {Agrs: ($ (masc|neut) & gen & sg & indef)
+         Word: "eines"}}
+defentry {
+  "det" {Agrs: ($ fem & (nom|acc) & sg & indef)
+         Word: "eine"}}
+defentry {
+  "det" {Agrs: ($ fem & (dat|gen) & sg & indef)
+         Word: "einer"}}
+
+defentry {
+  "det" {Agrs: (($ masc & nom & sg & def) | ($ fem & (dat|gen) & sg & def) |
+                ($ gen & pl & def))
+         Word: "der"}}
+defentry {
+  "det" {Agrs: ($ masc & acc & sg & def) | ($ dat & pl & def)
+         Word: "den"}}
+defentry {
+  "det" {Agrs: ($ (masc|neut) & dat & sg & def)
+         Word: "dem"}}
+defentry {
+  "det" {Agrs: ($ (masc|neut) & gen & sg & def)
+         Word: "des"}}
+defentry {
+  "det" {Agrs: ($ neut & (nom|acc) & sg & def)
+         Word: "das"}}
+defentry {
+  "det" {Agrs: ($ fem & (nom|acc) & sg & def) | ($ (nom|acc) & pl & def)
+         Word: "die"}}
+
+% Common nouns
+defentry {
+  "cnoun" {Agrs: ($ fem & third & sg)
+           Word: "frau"}}
+defentry {
+  "cnoun" {Agrs: ($ fem & third & pl)
+           Word: "frauen"}}
+
+defentry {
+  "cnoun" {Agrs: ($ masc & third & sg & (nom|dat|acc))
+           Word: "mann"}}
+defentry {
+  "cnoun" {Agrs: ($ masc & third & sg & dat)
+           Word: "manne"}}
+defentry {
+  "cnoun" {Agrs: ($ masc & third & sg & gen)
+           Word: "mannes"|"manns"}}
+defentry {
+  "cnoun" {Agrs: ($ masc & third & pl & (nom|gen|acc))
+           Word: "maenner"}}
+defentry {
+  "cnoun" {Agrs: ($ masc & third & pl & dat)
+           Word: "maennern"}}
+
+% Proper names
+defentry {
+  "pname" {Agrs: ($ fem & sg & third & (nom|dat|acc))
+           Word: "maria"}}
+defentry {
+  "pname" {Agrs: ($ fem & sg & third & gen)
+           Word: "marias"}}
+
+defentry {
+  "pname" {Agrs: ($ masc & sg & third & (nom|dat|acc))
+           Word: "peter"}}
+defentry {
+  "pname" {Agrs: ($ masc & sg & third & gen)
+           Word: "peters"}}
+
+defentry {
+  "pname" {Agrs: ($ masc & sg & third)
+           Word: "hans"}}
+
+% Finite verbs
+defentry {
+  "fin" {Agrs: ($ third & sg & nom)
+         Word: "wird"}
+  "vbsec"}
+
+defentry {
+  "fin" {Agrs: ($ third & sg & nom)
+         Word: "hat"}
+  "vprtc"}
+
+defentry {
+  "fin" {Agrs: ($ third & sg & nom)
+         Word: "versucht"}
+  "vinfc"}
+
+defentry {
+  "fin" {Agrs: ($ third & sg & nom)
+         Word: "liebt"}
+  "tr"}
+
+% Non-finite verbs
+defentry {
+  "can" {Word: "lieben"}
+  "tr"
+  "vbse"}
+defentry {
+  "can" {Word: "geliebt"}
+  "tr"
+  "vprt"}
+
+defentry {
+  "can" {Word: "koennen"}
+  "vbsec"
+  "vbse"}
+defentry {
+  "noncan" {Word: "koennen"}
+  "vbsec"
+  "ersatz"}
+
+defentry {
+  "noncan" {Word: "haben"}
+  "vprtc"
+  "vbse"}
+
+defentry {
+  "can" {Word: "lieben"}
+  "tr"
+  "vinf"}
+defentry {
+  "noncan" {Word: "lieben"}
+  "tr"
+  "vinf"}
+
+% zu-particle
+defentry {
+  "prt" {Word: "zu"}}

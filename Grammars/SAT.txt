@@ -1,0 +1,15 @@
+impl var I 0
+impl var I var I I
+impl impl var I 0 var I I
+impl impl var I var I I var I I
+impl impl impl impl var I 0 0 impl var I I 0 0
+
+impl var I var I
+impl impl var I 0 var I
+impl impl impl impl var I 0 0 impl var I 0 0
+
+impl impl impl var I var I I var I var I I
+
+impl 0 0
+
+impl impl 0 0 0

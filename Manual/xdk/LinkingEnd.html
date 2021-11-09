@@ -1,0 +1,122 @@
+<html lang="en">
+<head>
+<title>LinkingEnd - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="LinkingDaughterEnd.html#LinkingDaughterEnd" title="LinkingDaughterEnd">
+<link rel="next" href="LinkingMother.html#LinkingMother" title="LinkingMother">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="LinkingEnd"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="LinkingMother.html#LinkingMother">LinkingMother</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="LinkingDaughterEnd.html#LinkingDaughterEnd">LinkingDaughterEnd</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.40 LinkingEnd principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.linkingEnd</code>
+<li>dimension variables: <code>D1</code>, <code>D2</code>, <code>D3</code>
+<li>argument variables:<br>
+<code>End: vec(label(D1) iset(label(D2)))</code>
+<li>default values:<br>
+<code>End: ^.D3.entry.end</code>
+<li>model record: empty
+<li>constraints: <code>LinkingEnd</code> (priority 100)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle assumes that the Graph principle (<a href="Graph.html#Graph">Graph</a>) is used
+on dimensions <code>D1</code> and <code>D2</code>.
+
+   <p>This principle is from the family of <em>linking principles</em>. 
+<a name="index-linking-284"></a><a name="index-linking-principles-285"></a>
+The constraint for all edges from v to v' labeled
+l on <code>D1</code> is:
+     <ul>
+<li>if <code>End</code>(l) is not empty, then on <code>D2</code>,
+the incoming edge label of v' must be in <code>End</code>(l). 
+</ul>
+   In other words, <code>End</code> specifies the <em>endpoint</em> of the path
+to v' on <code>D2</code>.
+
+   <p>Here is the definition of the <code>LinkingEnd</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+   System(show)
+
+   Helpers(checkModel) at 'Helpers.ozf'
+   Opti(isIn) at 'Opti.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      D1DIDA = {DVA2DIDA 'D1'}
+      D2DIDA = {DVA2DIDA 'D2'}
+      DIDA2LabelLat = G.dIDA2LabelLat
+      D1LabelLat = {DIDA2LabelLat D1DIDA}
+      D1LAs = D1LabelLat.constants
+   in
+      if {Helpers.checkModel 'LinkingEnd.oz' Nodes
+	  [D1DIDA#daughtersL
+	   D2DIDA#labels]} then
+	 for Node1 in Nodes do
+	    for Node2 in Nodes do
+	       for LA in D1LAs do
+		  if {Not {Opti.isIn Node2.index Node1.D1DIDA.model.daughtersL.LA}=='out'} then
+		     %% LinkingEnd
+		     %%
+		     %% m -l->1 d =>
+		     %%   End(l) neq emptyset =>
+		     %%     -End(l)->2 d
+		     EndLALMRec =
+		     {ArgRecProc 'End' o('^': Node1)}
+		     EndLM = EndLALMRec.LA
+		  in
+		     {FD.impl
+		      {FS.reified.include Node2.index Node1.D1DIDA.model.daughtersL.LA}
+		      {FD.impl
+		       {FD.nega {FS.reified.equal EndLM FS.value.empty}}
+		       {FD.reified.greater
+			{FS.card {FS.intersect Node2.D2DIDA.model.labels EndLM}} 0}} 1}
+		  end
+	       end
+	    end
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

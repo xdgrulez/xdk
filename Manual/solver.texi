@@ -1,0 +1,97 @@
+@chapter Solver
+This chapter presents the heart of the XDG development kit, viz. the
+XDK solver, a solver for specialized @emph{constraint satisfaction
+problems (CSPs)}.
+@cindex constraint satisfaction problem
+@cindex CSP
+These CSPs are defined by:
+
+@enumerate
+@item a list of tokens that we call @emph{words}
+@cindex word
+@item the @emph{lexicon}
+@cindex lexicon
+which maps each word to a set of possible @emph{lexical entries}.
+@cindex lexical entry
+@item the set of used @emph{dimensions}
+@cindex dimension
+and the set of @emph{principles}
+@cindex principle
+used on them
+@end enumerate
+
+The CSP is split up into a set of dimensions, each of which uses a set
+of principles.
+
+The principles are either taken from a predefined @emph{principle library},
+@cindex principle library
+or can be conveniently written in a First-Order Logic using the
+principle compiler @ref{PrincipleWriter}.
+
+A principle definition includes:
+
+@itemize @bullet
+@item the @emph{principle identifier}
+@cindex principle identifier
+@item the set of @emph{dimension variables}
+@cindex dimension variable
+@item the set of @emph{argument variables} and their types
+@cindex argument variable
+@item @emph{default values}
+@cindex default value
+for the argument variables
+@item the type of the @emph{model record}
+@cindex model record
+introduced by the principle
+@item the set of @emph{constraints}
+@cindex constraint
+and their @emph{priorities}
+@cindex priority
+which implement the principle. The higher the priority, the earlier the
+constraint is executed by the solver. By convention, node constraints
+have priority >=100 for constraints doing propagation, and <100 for
+those doing distribution.
+@end itemize
+
+We give an overview of the library in Principle overview
+(@ref{Principles overview}). In Principle list (@ref{Principles
+list}), we explain the whole range of principles in the current
+library.
+
+Developers only: The @emph{node record}
+@cindex node record
+is the internal representation of a node in a solution.  We explicate
+it in @ref{Node record}.  In @ref{Writing new principles} we explain
+how to write new principles.
+
+@menu
+* Principles overview::       Principles overview
+
+* Principles list::           Principles list
+
+-- developers only --
+
+* Node record::               Node record
+
+* Writing new principles::    Writing new principles
+@end menu
+
+@c ************************************************************
+
+@node Principles overview, Principles list, , Solver
+@include solver-principles_overview.texi
+
+@c ************************************************************
+
+@node Principles list, Node record, Principles overview, Solver
+@include solver-principles_list.texi
+
+@c ************************************************************
+
+@node Node record, Writing new principles, Principles list, Solver
+@include solver-node_record.texi
+
+@c ************************************************************
+
+@node Writing new principles, , Node record, Solver
+@include solver-new_principles.texi

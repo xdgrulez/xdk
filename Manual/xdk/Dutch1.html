@@ -1,0 +1,852 @@
+<html lang="en">
+<head>
+<title>Dutch1 - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Grammars.html#Grammars" title="Grammars">
+<link rel="prev" href="Diplom.html#Diplom" title="Diplom">
+<link rel="next" href="EQAB.html#EQAB" title="EQAB">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Dutch1"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="EQAB.html#EQAB">EQAB</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Diplom.html#Diplom">Diplom</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Grammars.html#Grammars">Grammars</a>
+<hr>
+</div>
+
+<h3 class="section">5.13 Dutch</h3>
+
+<p>This grammar covers many interesting Dutch word order phenomena.  It
+uses only the two TDG graph dimensions ID and LP, and was written by
+Ralph Debusmann, for the unpublished article <cite>Topological
+Dependency Analysis of the Dutch Verb Cluster</cite> (<a href="References.html#References">References</a>), and
+is described therein.
+
+<pre class="verbatim">usedim id
+usedim lp
+usedim lex
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension id
+defdim id {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defattrstype "id.attrs"
+  defentrytype "id.entry"
+  deflabeltype "id.label"
+  deftype "id.person" {first second third}
+  deftype "id.gender" {masc fem neut}
+  deftype "id.number" {sg pl}
+  deftype "id.def" {def indef undef}
+  deftype "id.case" {nom gen dat acc}
+  deftype "id.agr" tuple("id.person"
+                         "id.gender"
+                         "id.number"
+                         "id.def"
+                         "id.case")
+  deftype "id.agrs" iset("id.agr")
+  deftype "id.pref" {pref_aan}
+  deftype "id.attrs" {agr: "id.agr"}
+  deftype "id.entry" {in: iset("id.label")
+                      out: valency("id.label")
+                      agrs: "id.agrs"
+                      govern: vec("id.label" "id.agrs")
+                      prefs: set("id.pref")
+                      prefsReq: set("id.pref")}
+  deftype "id.label" {subj obj adj adv comp det genobj iobj pp rel vpref sub
+                      vbse vprt vinfunsat vinf vinfsat te}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph" {
+    dims {D: id}}
+  useprinciple "principle.agr" {
+    dims {D: id}
+    args {Agr: _.D.attrs.agr
+          Agrs: _.D.entry.agrs}}
+  useprinciple "principle.agreement" {
+    dims {D: id}
+    args {Agr1: ^.D.attrs.agr
+          Agr2: _.D.attrs.agr
+          Agree: {adj det subj}}}
+  useprinciple "principle.agreementSubset" {
+    dims {D: id}
+    args {Agr1: ^.D.entry.prefsReq
+          Agr2: _.D.entry.prefs
+          Agree: {vpref}}}
+  useprinciple "principle.government" {
+    dims {D: id}
+    args {Agr2: _.D.attrs.agr
+          Govern: ^.D.entry.govern}}
+  useprinciple "principle.tree" {
+    dims {D: id}}
+  useprinciple "principle.in" {
+    dims {D: id}}
+  useprinciple "principle.out" {
+    dims {D: id}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.latex"
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lp
+defdim lp {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype "lp.entry"
+  deflabeltype "lp.label"
+  deftype "lp.entry" {in: iset("lp.label")
+                      out: valency("lp.label")
+                      on: iset("lp.label")
+                      blocks: set("id.label")}
+  deftype "lp.label" {df af n ppf vf c mf vlf pf v vrf nf}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph" {
+    dims {D: lp}}
+  useprinciple "principle.tree" {
+    dims {D: lp}}
+  useprinciple "principle.in" {
+    dims {D: lp}}
+  useprinciple "principle.out" {
+    dims {D: lp}}
+  useprinciple "principle.order" {
+    dims {D: lp}
+    args {Order: [df af n ppf vf c mf vlf pf v vrf nf]
+          Yields: true}}
+  useprinciple "principle.projectivity" {
+    dims {D: lp}}
+  useprinciple "principle.climbing" {
+    dims {D1: lp
+          D2: id}}
+  useprinciple "principle.barriers" {
+    dims {D1: lp
+          D2: id
+          D3: lp}}
+  useprinciple "principle.dutch" {
+    dims {D1: lp
+          D2: id}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.latex"
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lex
+defdim lex {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype {word: string}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+%  useprinciple "principle.entries" {}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dags1"
+  %%
+  useoutput "output.dags1"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define classes (ID part)
+
+%% Subcategorisation
+%%
+%% class identifier template:
+%%   sc_&lt;[opt]R1_..._[opt]Rn>
+%%   where Ri in ROLE, opt for optional roles
+defclass "sc_genobj" {
+  dim id {out: {genobj}} }
+
+defclass "sc_iobj" {
+  dim id {out: {iobj}} }
+
+defclass "sc_obj" {
+  dim id {out: {obj}} }
+
+defclass "sc_obj_iobj" {
+  dim id {out: {obj iobj}} }
+
+defclass "sc_optgenobj" {
+  dim id {out: {genobj?}} }
+
+defclass "sc_optiobj" {
+  dim id {out: {iobj?}} }
+
+defclass "sc_optobj" {
+  dim id {out: {obj?}} }
+
+defclass "sc_comp" {
+  dim id {out: {comp}} }
+
+defclass "sc_vbse" {
+  dim id {out: {vbse}} }
+
+defclass "sc_vinfunsat" {
+  dim id {out: {vinfunsat}} }
+
+defclass "sc_vinf" {
+  dim id {out: {vinf}} }
+
+defclass "sc_vinfsat" {
+  dim id {out: {vinfsat}} }
+
+defclass "sc_vprt" {
+  dim id {out: {vprt}} }
+
+%% Finite verbs
+defclass "vfin_id" {
+  dim id {in: {sub rel}
+          out: {subj adv* pp?}} }
+
+%% Non-finite verbs
+defclass "vnonfin_id" {
+  dim id {in: {vbse vinfunsat vinf vinfsat vprt}
+          out: {adv* pp?}} }
+
+defclass "vbse_id" {
+  "vnonfin_id"
+  dim id {in: {vbse}} }
+
+defclass "vinfunsat_id" {
+  "vnonfin_id"
+  dim id {in: {vinfunsat}
+          out: {te}} }
+
+defclass "vinf_id" {
+  "vnonfin_id"
+  dim id {in: {vinf}
+          out: {te}} }
+
+defclass "vinfsat_id" {
+  "vnonfin_id"
+  dim id {in: {vinfsat}
+          out: {te}} }
+
+defclass "vprt_id" {
+  "vnonfin_id"
+  dim id {in: {vprt}} }
+
+%% Te-particles
+defclass "te_id" {
+  dim id {in: {te}} }
+
+%% Complementisers
+defclass "comp_id" {
+  dim id {in: {comp}} }
+
+defclass "koui_id" {
+  "comp_id"
+  dim id {out: {vinfsat}} }
+
+defclass "kous_id" {
+  "comp_id"
+  dim id {out: {sub}} }
+
+%% Adverbs
+defclass "adv_id" {
+  dim id {in: {adv}} }
+
+%% Nouns
+defclass "noun_id" {
+  dim id {in: {subj obj iobj genobj}} }
+
+defclass "cnoun_id" {
+  "noun_id"
+  dim id {out: {det? adj* pp? rel?}} }
+
+defclass "pname_id" { "noun_id" }
+defclass "relpro_id" { "noun_id" }
+defclass "perpro_id" { "noun_id" }
+
+%% Determiners
+defclass "det_id" {
+  dim id {in: {det}} }
+
+%% Adjectives
+defclass "adj_id" {
+  dim id {in: {adj}} }
+
+%% Prepositions
+defclass "prep_id" {
+  dim id {in: {pp}
+          out: {obj}} }
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define classes (LP part, and ID/LP)
+
+%% Finite verbs
+defclass "vfin_lp" {
+  dim lp {on: {c v}
+          out: {mf* nf?}
+          blocks: bot} }
+
+defclass "w_lp" {
+  "vfin_lp"
+  dim id {in: {}}
+  dim lp {in: {}
+          on: {c}
+          out: {vf?}} }
+
+defclass "sub_lp" {
+  "vfin_lp"
+  dim id {in: {sub}}
+  dim lp {in: {nf}
+          on: {v}} }
+
+%% Verb-raisers, inversion possible
+defclass "vfin_inv_lp" {
+  dim lp {out: {vlf? vrf?}} }
+
+%% Verb-raisers, inversion not possible
+defclass "vfin_noinv_lp" {
+  dim lp {out: {vrf?}} }
+
+%% Non-finite verbs
+defclass "vnonfin_lp" {
+  dim lp {in: {vf vlf vrf}
+          on: {v}
+          blocks: {}} }
+
+defclass "vbse_lp" { "vnonfin_lp" }
+
+defclass "vinfunsat_lp" {
+  "vnonfin_lp"
+  dim lp {in: {vf vrf}
+          out: {pf}
+          blocks: {te}} }
+
+defclass "vinf_lp" {
+  "vnonfin_lp"
+  dim lp {in: {vf vrf}
+          out: {pf mf*}
+          blocks: {te}} }
+
+defclass "vinfsat_lp" {
+  "vnonfin_lp"
+  dim lp {in: {vf vrf}
+          out: {pf mf*}
+          blocks: bot} }
+
+defclass "vprt_lp" {
+  "vnonfin_lp" }
+
+%% Verb-raisers, inversion possible
+defclass "vnonfin_inv_lp" {
+  dim lp {in: {vrf}
+%%          out: {vlf? vrf?} %% Flemish (allows e.g. moet gelezen hebben)
+          out: {vrf?} %% Dutch (allows only e.g. gelezen moet hebben)
+          blocks: {}} }
+
+%% Verb-raisers, inversion not possible
+defclass "vnonfin_noinv_lp" {
+  dim lp {in: {vrf}
+          out: {vrf?}
+          blocks: {vbse vinfunsat vinf vinfsat vprt}} }
+
+%% Te-particles
+defclass "te_lp" {
+  dim lp {in: {pf}
+          on: {v}} }
+
+%% Complementisers
+defclass "comp_lp" {
+  dim lp {on: {v}
+          blocks: bot} }
+
+defclass "koui_lp" {
+  "comp_lp"
+  dim lp {in: {vf vrf}
+          out: {vrf}} }
+
+defclass "kous_lp" {
+  "comp_lp"
+  dim lp {in: {vf nf}
+          out: {nf}} }
+
+%% Adverbs
+defclass "adv_lp" {
+  dim lp {in: {vf mf}
+          on: {v}} }
+
+%% Nouns
+defclass "noun_lp" {
+  dim lp {in: {vf mf ppf}
+          on: {n}} }
+
+defclass "cnoun_lp" {
+  "noun_lp"
+  dim lp {out: {df? af* ppf? nf?}
+          blocks: {det adj}} }
+
+defclass "pname_lp" { "noun_lp" }
+
+defclass "relpro_lp" {
+  "noun_lp"
+  dim lp {in: {vf mf df}} }
+
+defclass "perpro_lp" { "noun_lp" }
+
+%% Determiners
+defclass "det_lp" {
+  dim lp {in: {df}
+          on: {n}} }
+
+%% Adjectives
+defclass "adj_lp" {
+  dim lp {in: {af}
+          on: {n}} }
+
+%% Prepositions
+defclass "prep_lp" {
+  dim lp {in: {vf mf ppf}
+          on: {n}
+          out: {ppf}
+          blocks: {obj}} }
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define classes (additional stuff)
+
+%% fin
+defclass "vfin" Word Agrs {
+  "vfin_id"
+  "vfin_lp"
+  dim lex {word: Word}
+  dim id {agrs: Agrs} }
+
+%% bse
+defclass "vbse" Word {
+  "vbse_id"
+  "vbse_lp"
+  dim lex {word: Word} }
+
+%% infunsat
+defclass "vinfunsat" Word {
+  "vinfunsat_id"
+  "vinfunsat_lp"
+  dim lex {word: Word} }
+
+%% inf
+defclass "vinf" Word {
+  "vinf_id"
+  "vinf_lp"
+  dim lex {word: Word} }
+
+%% infsat
+defclass "vinfsat" Word {
+  "vinfsat_id"
+  "vinfsat_lp"
+  dim lex {word: Word} }
+
+%% prt
+defclass "vprt" Word {
+  "vprt_id"
+  "vprt_lp"
+  dim lex {word: Word} }
+
+%% separable verb prefixes
+defclass "vpref" Word Prefs {
+  dim lex {word: Word}
+  dim id {in: {vpref}
+          prefs: Prefs}
+  dim lp {in: {vlf}
+          on: {v}} }
+
+defclass "koui" Word {
+  "koui_id"
+  "koui_lp" 
+  dim lex {word: Word} }
+
+defclass "kous" Word {
+  "kous_id"
+  "kous_lp" 
+  dim lex {word: Word} }
+
+defclass "adv" Word {
+  "adv_id"
+  "adv_lp" 
+  dim lex {word: Word} }
+
+defclass "te" Word {
+  "te_id"
+  "te_lp" 
+  dim lex {word: Word} }
+
+defclass "cnoun" Word Agrs {
+  "cnoun_id"
+  "cnoun_lp" 
+  dim lex {word: Word}
+  dim id {agrs: Agrs} }
+
+defclass "pname" Word Agrs {
+  "pname_id"
+  "pname_lp" 
+  dim lex {word: Word}
+  dim id {agrs: Agrs} }
+
+defclass "relpro" Word Agrs {
+  "relpro_id"
+  "relpro_lp" 
+  dim lex {word: Word}
+  dim id {agrs: Agrs} }
+
+defclass "perpro" Word Agrs {
+  "perpro_id"
+  "perpro_lp" 
+  dim lex {word: Word}
+  dim id {agrs: Agrs} }
+
+defclass "det" Word Agrs {
+  "det_id"
+  "det_lp" 
+  dim lex {word: Word} 
+  dim id {agrs: Agrs} }
+
+defclass "prep" Word {
+  "prep_id"
+  "prep_lp" 
+  dim lex {word: Word} }
+
+%%
+
+defclass "verb_full" Word1 Word2 Word3 {
+  ("vfin" {Word: Word1
+                    Agrs: ($ third &amp; sg &amp; nom)} &amp;
+   ("w_lp" | "sub_lp")) |
+  "vbse" {Word: Word2} |
+  "vinfunsat" {Word: Word2} |
+  "vinf" {Word: Word2} |
+  "vinfsat" {Word: Word2} |
+  "vprt" {Word: Word3}}
+
+defclass "verb_modal" Word1 Word2 Word3 {
+  (("vfin" {Word: Word1
+                     Agrs: ($ third &amp; sg &amp; nom)} &amp;
+    ("w_lp" | "sub_lp") &amp;
+    "vfin_inv_lp") |
+   (("vbse" {Word: Word2} |
+     "vprt" {Word: (Word2 | Word3)}) &amp;
+    "vnonfin_noinv_lp"))
+  "sc_vbse" }
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define entries
+
+%% Complementisers
+defentry { "kous" {Word: "dat"} }
+defentry { "kous" {Word: "omdat"} }
+
+defentry { "koui" {Word: "om"} }
+
+%% Adverbs
+defentry { "adv" {Word: "zeer"} }
+defentry { "adv" {Word: "vaak"} }
+defentry { "adv" {Word: "niet"} }
+defentry { "adv" {Word: "vandaag"} }
+
+%% Prepositions
+defentry { "prep" {Word: "van"} }
+
+%% te-particles
+defentry { "te" {Word: "te"} }
+
+%% Nouns
+
+%% Common nouns
+defentry { "cnoun" {Word: "man"
+                             Agrs: ($ masc &amp; third &amp; sg)} }
+defentry { "cnoun" {Word: "mannen"
+                             Agrs: ($ masc &amp; third &amp; pl)} }
+
+defentry { "cnoun" {Word: "vrouw"
+                             Agrs: ($ fem &amp; third &amp; sg)} }
+defentry { "cnoun" {Word: "vrouwen"
+                             Agrs: ($ fem &amp; third &amp; pl)} }
+
+defentry { "cnoun" {Word: "boek"
+                             Agrs: ($ neut &amp; third &amp; sg)} }
+defentry { "cnoun" {Word: "boeken"
+                             Agrs: ($ neut &amp; third &amp; pl)} }
+
+defentry { "cnoun" {Word: "nijlpaard"
+                             Agrs: ($ neut &amp; third &amp; sg)} }
+defentry { "cnoun" {Word: "nijlpaarden"
+                             Agrs: ($ neut &amp; third &amp; pl)} }
+
+defentry { "cnoun" {Word: "gelijk"
+                             Agrs: ($ neut &amp; third &amp; sg)} }
+defentry { "cnoun" {Word: "gelijken"
+                             Agrs: ($ neut &amp; third &amp; pl)} }
+
+defentry { "cnoun" {Word: "trainer"
+                             Agrs: ($ masc &amp; third &amp; sg)} }
+defentry { "cnoun" {Word: "traineren"
+                             Agrs: ($ masc &amp; third &amp; pl)} }
+
+%% Proper names
+defentry { "pname" {Word: "jan"
+                             Agrs: ($ masc &amp; sg &amp; third)} }
+
+defentry { "pname" {Word: "piet"
+                             Agrs: ($ masc &amp; sg &amp; third)} }
+
+defentry { "pname" {Word: "marie"
+                             Agrs: ($ fem &amp; sg &amp; third)} }
+
+%% Personal pronouns
+defentry { "perpro" {Word: "hij"
+                              Agrs: ($ masc &amp; sg &amp; third &amp; nom)} }
+
+defentry { "perpro" {Word: "ze"
+                              Agrs: ($ fem &amp; sg &amp; third &amp; nom)} }
+
+defentry { "perpro" {Word: "het"
+                              Agrs: ($ neut &amp; sg &amp; third &amp; (nom|dat|acc))} }
+
+defentry { "perpro" {Word: "hem"
+                              Agrs: ($ masc &amp; sg &amp; third &amp; (dat|acc))} }
+defentry { "perpro" {Word: "haar"
+                              Agrs: ($ fem &amp; sg &amp; third &amp; (dat|acc))} }
+
+%% Determiners
+defentry { "det" {Word: "een"
+                           Agrs: ($ sg &amp; indef)} }
+
+defentry { "det" {Word: "de"
+                           Agrs: ($ (masc|fem) &amp; sg &amp; def) |
+                                 ($ pl &amp; def)} }
+
+defentry { "det" {Word: "het"
+                           Agrs: ($ neut &amp; sg &amp; def)} }
+
+defentry { "det" {Word: "dit"
+                           Agrs: ($ neut &amp; sg &amp; def)} }
+
+defentry { "det" {Word: "zijn"
+                           Agrs: top } }
+
+%% Verb prefixes
+defentry { "vpref" {Word: "aan"
+                             Prefs: {pref_aan}} }
+
+%% Intransitive, transitive and ditransitive verbs
+defentry { "verb_full" {Word1: "slaapt"
+                                 Word2: "slapen"
+                                 Word3: "geslapen"} }
+
+defentry { "verb_full" {Word1: "zingt"
+                                 Word2: "zingen"
+                                 Word3: "gezongen"} }
+
+defentry { "verb_full" {Word1: "leest"
+                                 Word2: "lezen"
+                                 Word3: "gelezen"}
+           "sc_obj" }
+
+defentry { "verb_full" {Word1: "overtuigt"
+                                 Word2: "overtuigen"
+                                 Word3: "overtuigd"}
+           "sc_obj" }
+
+defentry { "verb_full" {Word1: "kust"
+                                 Word2: "kussen"
+                                 Word3: "gekust"}
+           "sc_obj" }
+
+defentry { "verb_full" {Word1: "ziet"
+                                 Word2: "zien"
+                                 Word3: "gezien"}
+           "sc_obj" }
+
+defentry { "verb_full" {Word1: "voert"
+                                 Word2: "voeren"
+                                 Word3: "gevoerd"}
+           "sc_obj" }
+
+defentry { "verb_full" {Word1: "geeft"
+                                 Word2: "geven"
+                                 Word3: "gegeven"}
+           "sc_obj"
+           "sc_iobj" }
+
+%% Modals
+defentry { "verb_modal" {Word1: "kan"
+                                  Word2: "kunnen"
+                                  Word3: "gekund"} }
+
+defentry { "verb_modal" {Word1: "moet"
+                                  Word2: "moeten"
+                                  Word3: "gemoeten"} }
+
+defentry { "verb_modal" {Word1: "wil"
+                                  Word2: "willen"
+                                  Word3: "gewild"} }
+%% Auxiliaries
+defentry {
+  (("vfin" {Word: "heeft"
+                     Agrs: ($ third &amp; sg &amp; nom)} &amp;
+    ("w_lp" | "sub_lp") &amp;
+    "vfin_inv_lp") |
+   (("vbse" {Word: "hebben"} |
+     "vprt" {Word: "gehad"}) &amp;
+    "vnonfin_inv_lp"))
+  "sc_vprt" }
+
+defentry {
+  (("vfin" {Word: ("zal" | "zou")
+                     Agrs: ($ third &amp; sg &amp; nom)} &amp;
+    ("w_lp" | "sub_lp") &amp;
+    "vfin_inv_lp") |
+   ("vbse" {Word: "zullen"} &amp;
+    "vnonfin_inv_lp"))
+  "sc_vbse" }
+
+%% Causatives
+defentry {
+  (("vfin" {Word: "laat"
+                     Agrs: ($ third &amp; sg &amp; nom)} &amp;
+    ("w_lp" | "sub_lp") &amp;
+    "vfin_inv_lp") |
+   (("vbse" {Word: "laten"} |
+     "vprt" {Word: "laten"}) &amp;
+    "vnonfin_inv_lp"))
+  "sc_vbse"
+  "sc_optobj" }
+
+%% Perception verbs
+defentry {
+  (("vfin" {Word: "ziet"
+                     Agrs: ($ third &amp; sg &amp; nom)} &amp;
+    ("w_lp" | "sub_lp") &amp;
+    "vfin_noinv_lp") |
+   (("vbse" {Word: "zien"} |
+     "vprt" {Word: "zien"}) &amp;
+    "vnonfin_noinv_lp"))
+  "sc_vbse"
+  "sc_obj" }
+
+defentry {
+  (("vfin" {Word: "hort"
+                     Agrs: ($ third &amp; sg &amp; nom)} &amp;
+    ("w_lp" | "sub_lp") &amp;
+    "vfin_noinv_lp") |
+   (("vbse" {Word: "horen"} |
+     "vprt" {Word: "horen"}) &amp;
+    "vnonfin_noinv_lp"))
+  "sc_vbse"
+  "sc_obj" }
+
+%% Raising/Control
+defentry {
+  ("vfin" {Word: "probeert"
+                    Agrs: ($ third &amp; sg &amp; nom)} &amp;
+   ("w_lp" | "sub_lp") &amp;
+   "vfin_noinv_lp")
+  ("sc_vinf" | "sc_comp") }
+defentry {
+  (("vbse" {Word: "proberen"} &amp;
+    "sc_vinf") |
+   ("vprt" {Word: "proberen"} &amp;
+    "sc_vinfunsat") |
+   ("vbse" {Word: "proberen"} &amp;
+    "sc_comp") |
+   ("vprt" {Word: "geprobeerd"} &amp;
+    "sc_vinf") |
+   ("vprt" {Word: "geprobeerd"} &amp;
+    "sc_comp"))
+  "vnonfin_noinv_lp" }
+
+defentry {
+  ("vfin" {Word: "meent"
+                    Agrs: ($ third &amp; sg &amp; nom)} &amp;
+   ("w_lp" | "sub_lp") &amp;
+   "vfin_noinv_lp")
+  ("sc_vinf" | "sc_comp") }
+defentry {
+  (("vbse" {Word: "menen"} &amp;
+    "sc_vinf") |
+   ("vprt" {Word: "menen"} &amp;
+    "sc_vinf") |
+   ("vbse" {Word: "menen"} &amp;
+    "sc_comp") |
+   ("vprt" {Word: "gemeend"} &amp;
+    "sc_vinf") |
+   ("vprt" {Word: "gemeend"} &amp;
+    "sc_comp"))
+  "vnonfin_noinv_lp" }
+
+defentry {
+  ("vfin" {Word: "dwingt"
+                    Agrs: ($ third &amp; sg &amp; nom)} &amp;
+   ("w_lp" | "sub_lp") &amp;
+   "vfin_noinv_lp")
+  ("sc_vinfsat" | "sc_comp")
+  "sc_obj" }
+defentry {
+  (("vbse" {Word: "dwingen"} &amp;
+    "sc_vinfsat") |
+   ("vprt" {Word: "dwingen"} &amp;
+    "sc_vinfsat") |
+   ("vbse" {Word: "dwingen"} &amp;
+    "sc_comp") |
+   ("vprt" {Word: "gedwongen"} &amp;
+    "sc_vinfsat") |
+   ("vprt" {Word: "gedwongen"} &amp;
+    "sc_comp"))
+  "sc_obj"
+  "vnonfin_noinv_lp" }
+
+defentry {
+  "vfin" {Word: "spreekt"
+                   Agrs: ($ third &amp; sg &amp; nom)}
+  "sc_obj"
+  ("w_lp" | "sub_lp")
+  dim id {prefsReq: {pref_aan}
+          out: {vpref}}
+  dim lp {out: {vlf?}}}
+defentry {
+  "vfin" {Word: "aanspreekt"
+                   Agrs: ($ third &amp; sg &amp; nom)}
+  "sc_obj"
+  "sub_lp" }
+defentry {
+  "vbse" {Word: "spreken"}
+  "sc_obj"
+  dim id {prefsReq: {pref_aan}
+          out: {vpref}}
+  dim lp {in: {vlf vrf}
+          out: {vlf?}} }
+defentry {
+  "vbse" {Word: "aanspreken"}
+  "sc_obj" }
+defentry {
+  "vprt" {Word: "gesproken"}
+  "sc_obj"
+  dim id {prefsReq: {pref_aan}
+          out: {vpref}}
+  dim lp {in: {vlf vrf}
+          out: {vlf?}} }
+defentry {
+  "vprt" {Word: "aangesproken"}
+  "sc_obj" }
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

@@ -1,0 +1,484 @@
+@section Types reference
+This section lists all types and their corresponding lattices,
+including their top values, bottom values, and greatest lower bound
+operations. @emph{Type synonyms}
+@cindex type synonym
+(@code{Bool}, @code{Ints}, @code{Map}, @code{Valency}) are included.
+
+@menu
+* Bool::               Bool
+
+* Card::               Card
+
+* Domain::             Domain
+
+* Integer::            Integer
+
+* Integers::           Intgers
+
+* List::               List
+
+* Map::                Map
+
+* Record::             Record
+
+* Set (accumulative):: Set (accumulative)
+
+* Set (intersective):: Set (intersective)
+
+* String::             String
+
+* Tuple::              Tuple
+
+* Valency::            Valency
+@end menu
+
+@c ************************************************************
+
+@node Bool, Card, , Types reference
+@subsection Bool
+Bool is a type synonym
+@cindex type synonym
+for a @ref{Domain} including only the two constants @code{false} and
+@code{true}.@footnote{@code{false} is encoded by the integer @math{1},
+and @code{true} by the integer @math{2} since @code{false}
+alphabetically precedes @code{true}.}
+
+@subsubsection Example
+Here is an example bool type definition:
+
+@example
+deftype "bool" bool
+@end example
+
+@c ************************************************************
+
+@node Card, Domain, Bool, Types reference
+@subsection Card
+Card is a specialized set of integers used for cardinality
+sets. Usually, such types do not show up explicitly but are introduced
+via the type synonym
+@cindex type synonym
+@ref{Valency}.
+
+A cardinality set can be specified in various ways:
+@itemize @bullet
+@item set specification: @code{<constant>#@{<integer_1> @dots{} <integer_n>@}}
+specifies a set of integers
+@item interval specification: @code{<constant>#[<integer_1> <integer_2>]} specifies
+the closed interval between the integers @code{<integer_1>} and
+@code{<integer_2>}
+@item @code{<constant>} is equivalent to @code{<constant>#@{1@}}
+@item @code{<constant>!} is equivalent to @code{<constant>#@{1@}}
+@item @code{<constant>?} is equivalent to @code{<constant>#@{0 1@}}
+@item @code{<constant>*} is equivalent to @code{<constant>#[0 infty]@}} (where @code{infty}
+corresponds to ``infinity'')
+@item @code{<constant>+} is equivalent to @code{<constant>#[1 infty]@}}
+@end itemize
+
+@subsubsection Top value
+The set @code{@{0@}}.
+
+@subsubsection Bottom value
+See domain type (@ref{Domain}).
+
+@subsubsection Greatest lower bound operation
+The greatest lower bound of two cardinality sets S_1 and S_2 is defined
+as follows:
+@itemize @bullet
+@item S_2 if S_1 is top
+@item S_1 if S_2 is top
+@item S_1 if S_1 and S_2 are equal
+@item the intersection of S_1 and S_2 otherwise
+@end itemize
+
+@subsubsection Example
+Here is an example card type definition:
+
+@example
+deftype "card" card
+@end example
+
+@c ************************************************************
+
+@node Domain, Integer, Card, Types reference
+@subsection Domain
+
+@subsubsection Description
+A constant from a finite domain of constants.
+
+@subsubsection Top value
+@code{flat_top} (undefined)
+
+@subsubsection Bottom value
+@code{flat_bot} (undefined)
+
+@subsubsection Greatest lower bound operation
+The greatest lower bound of two values A and B yields:
+@itemize @bullet
+@item B if A is top
+@item A if B is top
+@item A if A and B are equal
+@item bottom otherwise
+@end itemize
+
+@subsubsection Example
+Here is an example domain type definition including the constants
+@code{constant_1}, @code{constant_2} and @code{constant_3}:
+
+@example
+deftype "domain" @{constant_1 constant_2 constant_3@}
+@end example
+
+@c ************************************************************
+
+@node Integer, Integers, Domain, Types reference
+@subsection Integer
+An integer.
+
+@subsubsection Top value
+See domain type (@ref{Domain}).
+
+@subsubsection Bottom value
+See domain type (@ref{Domain}).
+
+@subsubsection Greatest lower bound operation
+See domain type (@ref{Domain}).
+
+@subsubsection Example
+Here is an example of an integer type definition:
+
+@example
+deftype "integer" int
+@end example
+
+@c ************************************************************
+
+@node Integers, List, Integer, Types reference
+@subsection Integers
+A set of integers. This is a type synonym
+@cindex type synonym
+for the type @code{set(int)} (@ref{Set (accumulative)}).
+
+@subsubsection Example
+Here is an example of an integers type definition:
+
+@example
+deftype "integers" ints
+@end example
+
+@c ************************************************************
+
+@node List, Map, Integers, Types reference
+@subsection List
+A list over a domain of any type.
+
+@subsubsection Top value
+See domain type (@ref{Domain}).
+
+@subsubsection Bottom value
+See domain type (@ref{Domain}).
+
+@subsubsection Greatest lower bound operation
+See domain type (@ref{Domain}).
+
+@subsubsection Example
+Here is an example list type definition with domain
+@code{ref("domain")}:
+
+@example
+deftype "list" ref("domain")
+@end example
+
+@c ************************************************************
+
+@node Map, Record, List, Types reference
+@subsection Map
+A @emph{map}
+@cindex map
+models a total function from a domain to a co-domain by a record whose
+arity is the domain, and whose type at all fields is the co-domain. The
+domain must be a finite domain of constants, while the co-domain can
+have any type.
+
+This is a type synonym
+@cindex type synonym
+for the @ref{Record} type:
+@example
+field_1:type,...,field_n:type
+@end example
+where @code{field_1,...,field_n} are the elements of the domain of the
+function, and @code{type} is the type of the co-domain.
+
+@subsubsection Example
+Here is an example map type definition from domain
+@code{ref("domain")} to co-domain @code{ref("codomain")}:
+
+@example
+deftype "map" vec(ref("domain") ref("codomain"))
+@end example
+
+@c ************************************************************
+
+@node Record, Set (accumulative), Map, Types reference
+@subsection Record
+A record over @math{n} features, where each of these features consists
+of a @emph{field}
+@cindex field
+@math{field_i} and a @emph{value}
+@cindex value
+@math{term_i} of type @math{type_i} (@math{1<=i<=n}). We call the set
+of fields of a record its
+@emph{arity}.
+@cindex arity
+
+@subsubsection Top value
+For each field @math{field_i} in the arity of the record, its value is
+the top value of the corresponding type @math{type_i}.
+
+@subsubsection Bottom value
+For each field @math{field_i} in the arity of the record, its value is
+the bottom value of the corresponding type @math{type_i}.
+
+@subsubsection Greatest lower bound operation
+Recursively, the greatest lower bound of two records A and B is the
+record where the value of each field @math{field_i} is the result of
+the greatest lower bound of the value at @math{field_i} in record A,
+and the value @math{field_i} in record B.
+
+Notice that you can also use the greatest lower bound operation
+(conjunction) on the features in a record specification. The
+conjunction of two features @math{field_1:term_1} and
+@math{field_2:term_2} is defined as:
+@itemize @bullet
+@item If @math{field_1} and @math{field_2} are equal, then replace the
+two features by @math{field_1:term} in the record specification, where
+@math{term} is the conjunction of @math{term_1} and @math{term_2}.
+@item Otherwise, keep the two features in the record specification.
+@end itemize
+
+@subsubsection Example
+Here is an example record type definition with three fields in its
+arity (@code{field_1}, @code{field_2} and @code{field_3}). These have
+types @code{ref("type_1")}, @code{ref("type_2")} and
+@code{ref("type_3")}, respectively:
+
+@example
+deftype "record" @{field_1: ref("type_1")
+                  field_2: ref("type_2")
+                  field_3: ref("type_3")@}
+@end example
+
+@c ************************************************************
+
+@node Set (accumulative), Set (intersective), Record, Types reference
+@subsection Set (accumulative)
+A set over a domain.  Different lattices depending on the domain, which
+can be:
+@enumerate
+@item a finite domain of constants
+@item integer
+@item a tuple of which all projections are finite domains of constants
+@end enumerate
+
+@subsubsection Set generator expressions
+Values of accumulative sets over tuples of finite domains of constants
+(b) can be specified using @emph{set generator expressions}.
+@cindex set generator expression
+@cindex set generator
+Set generator expressions are explained in the previous section for
+intersective sets.
+
+@subsubsection Top value
+@enumerate
+@item empty set
+@item empty set
+@item empty set
+@end enumerate
+
+@subsubsection Bottom value
+@enumerate
+@item the full set (containing all constants in the domain)
+@item the set of all integers
+@item the full set (containing all tuples in the domain)
+@end enumerate
+
+@subsubsection Greatest lower bound operation
+@enumerate
+@item set union
+@item set union
+@item set union
+@end enumerate
+
+@subsubsection Example
+Here is an example accumulative set type definition with domain type
+@code{ref("type")}:
+
+@example
+deftype "set" ref("type")
+@end example
+
+@c ************************************************************
+
+@node Set (intersective), String, Set (accumulative), Types reference
+@subsection Intersective set
+A set over a domain.  Different lattices depending on the domain, which
+can be:
+@enumerate
+@item a finite domain of constants
+@item integer
+@item a tuple of which all projections are finite domains of constants
+@end enumerate
+
+@subsubsection Set generator expressions
+If the domain of the intersective set is a tuple of which all
+projections are finite domains of constants (case 2), the set can be
+specified using a @emph{set generator expression}.
+@cindex set generator expression
+@cindex set generator
+Set generator expressions describe sets of tuples over finite domains
+of constants, using @emph{set generator conjunction}
+@cindex set generator conjunction
+(@code{&} operator) and @emph{set generator disjunction}
+@cindex set generator disjunction
+(@code{|} operator).@footnote{Set generator conjunction @code{&} and
+set generator disjunction @code{|} are different from conjunction and
+disjunction in the lexicon. Set generator disjunction is restricted to
+set generator expressions and set generator disjunction does not lead
+to an increase of the the number of lexical entries. On the other
+hand, conjunction and disjunction in the lexicon can be used for all
+terms, and disjunction leads to an increase of the number of lexical
+entries.}  Here is the semantics of set generator conjunction:
+@itemize @bullet
+@item a constant in a set generator conjunction must be in the
+appropriate projection of all described tuples
+@item a constant in a set generator disjunction must be in the
+appropriate projection of at least one described tuple
+@end itemize
+
+@subsubsection Example (set generator expressions)
+As an example from our grammar file @code{Grammars/Acl01.ul}, consider
+the set generator expression @code{($ fem & (dat|gen) & sg & def)}.
+The corresponding type has identifier @code{id.agrs}, and corresponds to
+the type definitions below:
+@example
+  deftype "id.person" @{first second third@}
+  deftype "id.number" @{sg pl@}
+  deftype "id.gender" @{masc fem neut@}
+  deftype "id.case" @{nom gen dat acc@}
+  deftype "id.def" @{def indef undef@}
+  deftype "id.agr" tuple(ref("id.person")
+                         ref("id.number")
+                         ref("id.gender")
+                         ref("id.case")
+                         ref("id.def"))
+  deftype "id.agrs" iset(ref("id.agr"))
+@end example
+
+The set generator expression @code{($ fem & (dat|gen) & sg & def)}
+describes the set of all tuples with constant @code{fem} at the third
+projection (corresponding to the finite domain @code{id.gender}),
+either @code{dat} or @code{gen} at the fourth projection
+(@code{id.case}), @code{sg} a the second projection
+(@code{id.number}), and @code{def} at the fifth projection
+(@code{id.def}). The first projection (@code{id.person}) is not
+specified, i.e. it can be any of the constants in the domain
+(@code{first}, @code{second}, or @code{third}).
+
+@subsubsection Top value
+@enumerate
+@item the full set (containing all constants in the domain)
+@item the set of all integers
+@item the full set (containing all tuples in the domain)
+@end enumerate
+
+@subsubsection Bottom value
+@enumerate
+@item empty set
+@item empty set
+@item empty set
+@end enumerate
+
+@subsubsection Greatest lower bound operation
+@enumerate
+@item set intersection
+@item set intersection
+@item set intersection
+@end enumerate
+
+@subsubsection Example
+Here is an example intersective set type definition with domain type
+@code{ref("type")}:
+
+@example
+deftype "iset" ref("type")
+@end example
+
+@c ************************************************************
+
+@node String, Tuple, Set (intersective), Types reference
+@subsection String
+A string.
+
+@subsubsection Top value
+See domain type (@ref{Domain}).
+
+@subsubsection Bottom value
+See domain type (@ref{Domain}).
+
+@subsubsection Greatest lower bound operation
+See domain type (@ref{Domain}).
+
+@subsubsection Example
+Here is an example of a string type definition:
+
+@example
+deftype "string" string
+@end example
+
+
+@c ************************************************************
+
+@node Tuple, Valency, String, Types reference
+@subsection Tuple
+A tuple over @math{n} finite domains of constants.
+
+@subsubsection Top value
+see domain type (@ref{Domain}).
+
+@subsubsection Bottom value
+see domain type (@ref{Domain}).
+
+@subsubsection Greatest lower bound operation
+see domain type (@ref{Domain}).
+
+@subsubsection Example
+Here is an example tuple type definition whose first projection has
+type @code{ref("type_1")}.  The second projection has type
+@code{ref("type_2")} and the third projection type
+@code{ref("type_3")}:
+
+@example
+deftype "tuple" tuple(ref("type_1") ref("type_2") ref("type_3"))
+@end example
+
+@c ************************************************************
+
+@node Valency, , Tuple, Types reference
+@subsection Valency
+A valency is a record whose arity is a finite domain of constants, and
+whose type at all fields is a set of integers called @emph{cardinality
+set}.
+@cindex cardinality set
+
+This is a type synonym
+@cindex type synonym
+for a @ref{Map} type with the same domain and co-domain @code{card}.
+
+@subsubsection Example
+Here is an example valency type definition with domain type
+@code{ref("domain")}:
+
+@example
+deftype "valency" ref("domain")
+@end example

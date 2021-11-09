@@ -1,0 +1,221 @@
+<html lang="en">
+<head>
+<title>Principles overview - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Solver.html#Solver" title="Solver">
+<link rel="next" href="Principles-list.html#Principles-list" title="Principles list">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Principles-overview"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Principles-list.html#Principles-list">Principles list</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Solver.html#Solver">Solver</a>
+<hr>
+</div>
+
+<h3 class="section">7.1 Principles overview</h3>
+
+<p>In this section, we give an overview of the <em>principle library</em>. 
+<a name="index-principle-library-231"></a>Roughly, we divide the principles into families lumped together under
+explanatory themes.
+
+<h4 class="subsection">7.1.1 Graph</h4>
+
+<p>This family defines graphs and further restricts them. It contains
+the following principles:
+     <ul>
+<li>Graph (<a href="Graph.html#Graph">Graph</a>)
+<li>GraphConstraints (<a href="GraphConstraints.html#GraphConstraints">GraphConstraints</a>)
+<li>GraphDist (<a href="GraphDist.html#GraphDist">GraphDist</a>)
+<li>Graph1 (<a href="Graph1.html#Graph1">Graph1</a>)
+<li>Graph1Constraints (<a href="Graph1Constraints.html#Graph1Constraints">Graph1Constraints</a>)
+<li>Graph1Dist (<a href="Graph1Dist.html#Graph1Dist">Graph1Dist</a>)
+<li>Dag (<a href="Dag.html#Dag">Dag</a>)
+<li>Tree (<a href="Tree.html#Tree">Tree</a>)
+<li>Tree1 (<a href="Tree1.html#Tree1">Tree1</a>)
+</ul>
+   The Graph1 principle is more efficient than the Graph principle, but
+it is not compatible with some of the principles, e.g. the Valency
+principle (<a href="Valency1.html#Valency1">Valency1</a>).
+
+   <p>The Graph1Constraints and GraphConstraints omit non-deterministic
+<em>distribution</em>,
+<a name="index-distribution-232"></a>which can be added on using resp. Graph1Dist and GraphDist. 
+Omitting distribution can be useful if you do not want to enumerate
+the models on a particular dimension, e.g. for scope
+underspecification (cf. the Chorus grammar (<a href="Chorus.html#Chorus">Chorus</a>)).
+
+   <p>The Dag and Tree principles further restrict the graphs to be
+<em>directed acyclic graphs (dags)</em>
+<a name="index-directed-acyclic-graph-233"></a><a name="index-dag-234"></a>or <em>trees</em>. 
+<a name="index-tree-235"></a>
+
+<h4 class="subsection">7.1.2 Valency</h4>
+
+<p>This family constrains the incoming and outgoing edges of nodes. It
+contains the following principles:
+     <ul>
+<li>In (<a href="In.html#In">In</a>)
+<li>In1 (<a href="In1.html#In1">In1</a>)
+<li>In2 (<a href="In2.html#In2">In2</a>)
+<li>Out (<a href="Out.html#Out">Out</a>)
+<li>Valency (<a href="Valency1.html#Valency1">Valency1</a>)
+</ul>
+
+<h4 class="subsection">7.1.3 Agreement</h4>
+
+<p>This family controls agreement and government.  It contains the
+following principles:
+     <ul>
+<li>Agr (<a href="Agr.html#Agr">Agr</a>)
+<li>Agreement (<a href="Agreement.html#Agreement">Agreement</a>)
+<li>Agreement1 (<a href="Agreement1.html#Agreement1">Agreement1</a>)
+<li>AgreementSubset (<a href="AgreementSubset.html#AgreementSubset">AgreementSubset</a>)
+<li>Government (<a href="Government.html#Government">Government</a>)
+<li>Government1 (<a href="Government1.html#Government1">Government1</a>)
+<li>PartialAgreement (<a href="PartialAgreement.html#PartialAgreement">PartialAgreement</a>)
+</ul>
+   Both the Agreement and the Government principles depend on the Agr
+principle.
+
+<h4 class="subsection">7.1.4 Order</h4>
+
+<p>This family defines order on graphs and further restricts it. It contains
+the following principles:
+     <ul>
+<li>Order (<a href="Order.html#Order">Order</a>)
+<li>Order1 (<a href="Order1.html#Order1">Order1</a>)
+<li>Order1Constraints (<a href="Order1Constraints.html#Order1Constraints">Order1Constraints</a>)
+<li>Order1Dist (<a href="Order1Dist.html#Order1Dist">Order1Dist</a>)
+<li>Order2 (<a href="Order2.html#Order2">Order2</a>)
+<li>Order2Constraints (<a href="Order2Constraints.html#Order2Constraints">Order2Constraints</a>)
+<li>Order2Dist (<a href="Order2Dist.html#Order2Dist">Order2Dist</a>)
+<li>OrderConstraints (<a href="OrderConstraints.html#OrderConstraints">OrderConstraints</a>)
+<li>OrderDist (<a href="OrderDist.html#OrderDist">OrderDist</a>)
+<li>Projectivity (<a href="Projectivity.html#Projectivity">Projectivity</a>)
+</ul>
+   The Order1 principle is more general than the Order principle: It
+orders sets of labels instead of just labels. The Order2 principle
+lexicalized but less efficient.
+
+   <p>The Order1Constraints and OrderConstraints omit non-deterministic
+<em>distribution</em>,
+<a name="index-distribution-236"></a>which can be added on using resp. Order1Dist and OrderDist.
+
+   <p>The Parse principle further restricts the Order and Order1 principles
+to respect the order of the input. If it is not used, the input is
+regarded as a bag of words.
+
+   <p>The SameOrder principle also further restricts the Order and Order1
+principles. For all nodes, it equates the positions of the
+corresponding words.
+
+<h4 class="subsection">7.1.5 Climbing</h4>
+
+<p>This family specifies and further restricts the climbing relation
+between two dimensions. It contains the following principles:
+     <ul>
+<li>Climbing (<a href="Climbing.html#Climbing">Climbing</a>)
+<li>Barriers (<a href="Barriers.html#Barriers">Barriers</a>)
+<li>BarriersAttrib (<a href="BarriersAttrib.html#BarriersAttrib">BarriersAttrib</a>)
+<li>BarriersLabels (<a href="BarriersLabels.html#BarriersLabels">BarriersLabels</a>)
+</ul>
+   The Barriers, BarriersAttrib and BarriersLabels principles depends on
+the Climbing principle, and specifies further restrictions on
+climbing.
+
+<h4 class="subsection">7.1.6 Linking</h4>
+
+<p>This is the family of <em>linking principles</em>,
+<a name="index-linking-237"></a><a name="index-linking-principles-238"></a>stipulating, for each edge from v to v' labeled l
+on <code>D1</code>, the corresponding path (from v) to v' on
+<code>D2</code>.
+
+   <p>It contains the following principles:
+     <ul>
+<li>Linking12BelowStartEnd (<a href="Linking12BelowStartEnd.html#Linking12BelowStartEnd">Linking12BelowStartEnd</a>)
+<li>LinkingAbove (<a href="LinkingAbove.html#LinkingAbove">LinkingAbove</a>)
+<li>LinkingAboveBelow1or2Start (<a href="LinkingAboveBelow1or2Start.html#LinkingAboveBelow1or2Start">LinkingAboveBelow1or2Start</a>)
+<li>LinkingAboveEnd (<a href="LinkingAboveEnd.html#LinkingAboveEnd">LinkingAboveEnd</a>)
+<li>LinkingAboveStart (<a href="LinkingAboveStart.html#LinkingAboveStart">LinkingAboveStart</a>)
+<li>LinkingAboveStartEnd (<a href="LinkingAboveStartEnd.html#LinkingAboveStartEnd">LinkingAboveStartEnd</a>)
+<li>LinkingBelow (<a href="LinkingBelow.html#LinkingBelow">LinkingBelow</a>)
+<li>LinkingBelow1or2Start (<a href="LinkingBelow1or2Start.html#LinkingBelow1or2Start">LinkingBelow1or2Start</a>)
+<li>LinkingBelowEnd (<a href="LinkingBelowEnd.html#LinkingBelowEnd">LinkingBelowEnd</a>)
+<li>LinkingBelowStart (<a href="LinkingBelowStart.html#LinkingBelowStart">LinkingBelowStart</a>)
+<li>LinkingBelowStartEnd (<a href="LinkingBelowStartEnd.html#LinkingBelowStartEnd">LinkingBelowStartEnd</a>)
+<li>LinkingDaughter (<a href="LinkingDaughter.html#LinkingDaughter">LinkingDaughter</a>)
+<li>LinkingDaughterEnd (<a href="LinkingDaughterEnd.html#LinkingDaughterEnd">LinkingDaughterEnd</a>)
+<li>LinkingEnd (<a href="LinkingEnd.html#LinkingEnd">LinkingEnd</a>)
+<li>LinkingMother (<a href="LinkingMother.html#LinkingMother">LinkingMother</a>)
+<li>LinkingMotherEnd (<a href="LinkingMotherEnd.html#LinkingMotherEnd">LinkingMotherEnd</a>)
+<li>LinkingNotDaughter (<a href="LinkingNotDaughter.html#LinkingNotDaughter">LinkingNotDaughter</a>)
+<li>LinkingNotMother (<a href="LinkingNotMother.html#LinkingNotMother">LinkingNotMother</a>)
+<li>LinkingSisters (<a href="LinkingSisters.html#LinkingSisters">LinkingSisters</a>)
+</ul>
+
+   <p>Some principles (<a href="LinkingNotDaughter.html#LinkingNotDaughter">LinkingNotDaughter</a>, <a href="LinkingNotMother.html#LinkingNotMother">LinkingNotMother</a>,
+<a href="LinkingSisters.html#LinkingSisters">LinkingSisters</a> do not stipulate a path, but we dub them
+<em>linking principles</em> nonetheless since they follow a similar
+concept.
+
+<h4 class="subsection">7.1.7 TAG encoding</h4>
+
+<p>This family includes constraints developed for the encoding of
+<em>Tree Adjoining Grammar (TAG)</em>. 
+<a name="index-Tree-Adjoining-Grammar-239"></a><a name="index-TAG-240"></a>It includes the following constraints:
+     <ul>
+<li>OrderWithCuts (<a href="OrderWithCuts.html#OrderWithCuts">OrderWithCuts</a>)
+<li>TAG (<a href="TAG.html#TAG">TAG</a>)
+<li>XTAG (<a href="XTAG1.html#XTAG1">XTAG1</a>)
+<li>XTAGLinking (<a href="XTAGLinking.html#XTAGLinking">XTAGLinking</a>)
+<li>XTAGRedundant (<a href="XTAGRedundant.html#XTAGRedundant">XTAGRedundant</a>)
+<li>XTAGRoot (<a href="XTAGRoot.html#XTAGRoot">XTAGRoot</a>)
+</ul>
+
+<h4 class="subsection">7.1.8 Test</h4>
+
+<p>This principle can be used to test out constraints:
+     <ul>
+<li>Test (<a href="Test.html#Test">Test</a>)
+</ul>
+
+<h4 class="subsection">7.1.9 Miscellaneous</h4>
+
+<p>These are the remaining constraints, defying to be lumped together
+yet:
+     <ul>
+<li>Chorus (<a href="Chorus1.html#Chorus1">Chorus1</a>)
+<li>Coindex (<a href="Coindex.html#Coindex">Coindex</a>)
+<li>CSD (<a href="CSD1.html#CSD1">CSD1</a>)
+<li>Customs (<a href="Customs.html#Customs">Customs</a>)
+<li>Dutch (<a href="Dutch.html#Dutch">Dutch</a>)
+<li>Entries (<a href="Entries.html#Entries">Entries</a>)
+<li>LockingDaughters (<a href="LockingDaughters.html#LockingDaughters">LockingDaughters</a>)
+<li>LookRight (<a href="LookRight.html#LookRight">LookRight</a>)
+<li>PL (<a href="PL.html#PL">PL</a>)
+<li>Relative (<a href="Relative.html#Relative">Relative</a>)
+<li>SameEdges (<a href="SameEdges.html#SameEdges">SameEdges</a>)
+<li>Subgraphs (<a href="Subgraphs.html#Subgraphs">Subgraphs</a>)
+</ul>
+
+<!-- ************************************************************ -->
+   </body></html>
+

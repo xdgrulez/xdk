@@ -1,0 +1,577 @@
+usedim lp
+usedim id
+usedim lex
+usedim neg
+
+defdim id {
+   deftype "id.label" {det suj obj iobj obj_s obj_s_de pp adv_neg ne root}
+   deflabeltype "id.label"
+
+   deftype "id.entry" {
+      in  : valency("id.label")
+      out : valency("id.label")
+   }
+   defentrytype "id.entry"
+
+   useprinciple "principle.graph" { dims {D:id} }
+   useprinciple "principle.tree" { dims {D:id} }
+   useprinciple "principle.valency" {
+      dims {D:id}
+      args {In : _.D.entry.in
+            Out: _.D.entry.out}
+   }
+
+   output "output.dags1"
+   useoutput "output.dags1"
+}
+
+defdim lex {
+   defentrytype { word : string }
+   useprinciple "principle.entries" {}
+}
+
+defdim lp {
+   deftype "lp.label" {df d n suj_f suj_cl_f neg_cl_f l_neg_adv_f
+                       acc_cl_f dat_cl_f v r_neg_adv_f dep_v_f cplt_f root_f r}
+   deflabeltype "lp.label"
+
+   deftype "lp.entry" {
+      in  : valency("lp.label")
+      out : valency("lp.label")
+      on  : iset("lp.label")
+      blocks : set("id.label")
+      blocks_lp : set("lp.label")
+   }
+   defentrytype "lp.entry"
+
+   useprinciple "principle.graph" { dims {D: lp} }
+   useprinciple "principle.tree" { dims {D: lp} }
+   useprinciple "principle.valency" {
+      dims {D:lp}
+      args {In : _.D.entry.in
+            Out: _.D.entry.out}}
+   useprinciple "principle.order" {
+      dims {D:lp}
+      args {On: _.D.entry.on
+            Order: [df d n suj_f suj_cl_f neg_cl_f l_neg_adv_f
+                       acc_cl_f dat_cl_f v r_neg_adv_f dep_v_f cplt_f root_f r]
+            Yields: true}}
+   useprinciple "principle.projectivity" { dims {D:lp} }
+   useprinciple "principle.climbing" {
+      dims {D1:lp D2:id}
+      args {MotherCards:true}}
+   useprinciple "principle.barriers" {
+      dims {D1: lp D2: id D3: lp}
+      args {Blocks: _.D1.entry.blocks}}
+   useprinciple "principle.barriers.labels" {
+      dims {D1: lp D2: id D3: lp D4: lp}
+      args {Blocks: _.D1.entry.blocks_lp}}
+}
+
+defdim neg {
+   deftype "neg.label" { ne_n pas_n neg_n other_n }
+   deflabeltype "neg.label"
+
+   deftype "neg.entry" {
+      in  : valency("neg.label")
+      out : valency("neg.label")
+      blocks : set("neg.label")
+   }
+   defentrytype "neg.entry"
+
+   useprinciple "principle.graph" { dims {D:neg} }
+   useprinciple "principle.tree" { dims {D:neg} }
+   useprinciple "principle.valency" {
+      dims {D:neg}
+      args {In : _.D.entry.in
+            Out: _.D.entry.out}}
+
+   useprinciple "principle.climbing" {
+      dims {D1:neg D2:id}
+      args {MotherCards:true}}
+
+   useprinciple "principle.barriers.labels" {
+      dims {D1:neg D2:id D3:neg D4:neg}
+      args {Blocks: _.D1.entry.blocks}}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+defclass "root_id" {
+  dim id { in : {} out : {root!}}}
+
+defclass "root_lp" {
+   dim lp { in : {} out : {root_f!} on : {r}}}
+
+defclass "root_neg" {
+   dim neg { in : {} out : {other_n!}}}
+
+defclass "root" Word {
+  "root_id"
+  "root_lp"
+  "root_neg"
+  dim lex { word : Word }}
+
+defentry { "root" { Word : "." } }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+defclass "det_id" {
+   dim id { in : {det!}}}
+
+defclass "det_lp" {
+   dim lp { in : {df!}
+            on : {d}}}
+
+defclass "NEG" {
+   dim neg { in : {neg_n!} }}
+
+defclass "POS" {
+   dim neg { in : {other_n!} }}
+
+defclass "det" Word {
+   "det_id"
+   "det_lp"
+   dim lex {word: Word}}
+
+defentry {
+   "det" { Word : "le" } "POS"}
+
+defentry {
+   "det" { Word : "un" } "POS"}
+
+defentry {
+   "det" { Word : "aucun" } "NEG"}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+defclass "nom_commun_id" {
+   dim id {
+      in  : { suj? obj? iobj? }
+      out : { det! }}}
+
+defclass "nom_commun_lp" {
+   dim lp {
+      in  : { suj_f? cplt_f? }
+      out : { df! }
+      on  : { n }
+   }
+}
+
+defclass "nom_commun_neg" {
+   "POS"
+   dim neg { 
+      out : {other_n*}
+      blocks : {other_n}}}
+
+defclass "nom_commun" Word {
+   "nom_commun_id"
+   "nom_commun_lp"
+   "nom_commun_neg"
+   dim lex { word : Word }}
+
+defentry { "nom_commun" { Word : "ingénieur" }}
+defentry { "nom_commun" { Word : "moteur" }}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+defclass "pronom_indefini_id" {
+   dim id {
+      in  : { suj? obj? }}}
+
+defclass "pronom_indefini_lp" {
+   dim lp {
+      in  : { suj_f? cplt_f? }
+      on  : { n }}}
+
+defclass "pronom_indefini" Word {
+   "pronom_indefini_id"
+   "pronom_indefini_lp"
+   dim lex { word : Word }}
+
+defentry { "pronom_indefini" { Word : "personne" } "NEG"}
+defentry { "pronom_indefini" { Word : "quelqu_un" } "POS"}
+defentry { "pronom_indefini" { Word : "quelque_chose" } "POS"}
+defentry { "pronom_indefini" { Word : "rien" } "NEG"
+   dim lp { in : { l_neg_adv_f? r_neg_adv_f? }}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+defclass "pronom_clitique_id" { "POS" }
+
+defclass "pronom_clitique_suj_id" {
+   "pronom_clitique_id"
+   dim id {
+      in  : { suj! }}}
+defclass "pronom_clitique_obj_id" {
+   "pronom_clitique_id"
+   dim id {
+      in  : { obj! }}}
+defclass "pronom_clitique_iobj_id" {
+   "pronom_clitique_id"
+   dim id {
+      in  : { iobj! }}}
+
+defclass "pronom_clitique_suj_lp" {
+   dim lp { in : { suj_cl_f? } on : {n}}}
+defclass "pronom_clitique_obj_lp" {
+   dim lp { in : { acc_cl_f? } on : {n}}}
+defclass "pronom_clitique_iobj_lp" {
+   dim lp { in : { dat_cl_f? } on : {n}}}
+
+
+defclass "pronom_clitique_suj" Word {
+   "pronom_clitique_suj_id"
+   "pronom_clitique_suj_lp"
+   dim lex { word : Word }}
+defclass "pronom_clitique_obj" Word {
+   "pronom_clitique_obj_id"
+   "pronom_clitique_obj_lp"
+   dim lex { word : Word }}
+defclass "pronom_clitique_iobj" Word {
+   "pronom_clitique_iobj_id"
+   "pronom_clitique_iobj_lp"
+   dim lex { word : Word }}
+
+defentry { "pronom_clitique_suj" { Word : "il" }}
+defentry { "pronom_clitique_obj" { Word : "le" }}
+defentry { "pronom_clitique_iobj" { Word : "lui" }}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+defclass "ne_clitique_id" {
+   dim id {
+      in  : { ne! }}}
+
+defclass "ne_clitique_lp" {
+   dim lp {
+      in  : { neg_cl_f! }
+      on  : {n}}}
+
+defclass "ne_clitique_neg" {
+   dim neg { in : {ne_n!} }}
+
+defclass "ne_clitique" Word {
+   "ne_clitique_id"
+   "ne_clitique_lp"
+   "ne_clitique_neg"
+   dim lex { word : Word }}
+
+defentry { "ne_clitique" { Word : "ne" }}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+defclass "adverbe_negatif_id" {
+   dim id {
+      in  : { adv_neg! }}}
+
+defclass "adverbe_negatif_lp" {
+   dim lp {
+      in  : { l_neg_adv_f? r_neg_adv_f? }
+      on  : { n }
+   }
+}
+
+defclass "adverbe_negatif" Word {
+   "adverbe_negatif_id"
+   "adverbe_negatif_lp"
+   dim lex { word : Word }}
+
+defentry { "adverbe_negatif" { Word : "pas" }
+   dim neg { in : {pas_n!}}}
+defentry { "adverbe_negatif" { Word : "jamais" } "NEG" }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+defclass "verbe_POS_neg" {
+   "POS"
+   dim neg { out: {other_n*}}}
+
+defclass "verbe_NE_PAS_neg" {
+   "POS"
+   dim neg { out: {ne_n! pas_n! other_n*}}}
+
+defclass "verbe_NE_PAS_OPT_neg" {
+   "POS"
+   dim neg { out: {ne_n! pas_n? other_n*}}}
+
+defclass "verbe_NE_neg" {
+   "POS"
+   dim neg { out: {ne_n! neg_n+ other_n*}}}
+
+defclass "verbe_neg" {
+   dim neg { blocks: {ne_n pas_n other_n}}
+   ( "verbe_POS_neg"
+    |"verbe_NE_PAS_neg"
+    |"verbe_NE_neg" ) }
+
+defclass "verbe_opt_neg" {
+   dim neg { blocks: {ne_n pas_n other_n}}
+   ( "verbe_POS_neg"
+    |"verbe_NE_PAS_OPT_neg"
+    |"verbe_NE_neg" ) }
+
+defclass "verbe_id" {
+   dim id {
+      out : { adv_neg? ne? }}}
+
+defclass "verbe_infinitif_id" {
+   dim id {
+      in  : { obj_s? }
+      out : { suj? }}}		% ATTENTION!!!!
+
+defclass "verbe_participe_passe_id" {
+   dim id {
+      in  : { pp? }}}
+
+defclass "verbe_fini_id" {
+   dim id {
+      in  : { root? }
+      out : { suj! }}}
+
+defclass "verbe_transitif_nominal_id" {
+   "verbe_id"
+   dim id {
+      out : { obj! }}}
+
+defclass "verbe_transitif_phrastique_id" {
+   "verbe_id"
+   dim id {
+      out : { obj_s! }}}
+
+defclass "verbe_transitif_de_phrastique_id" {
+   "verbe_id"
+   dim id {
+      out : { obj_s_de! }}}
+
+defclass "verbe_ditransitif_nominal_id" {
+   "verbe_transitif_nominal_id"
+   dim id {
+      out : { iobj! }}}
+
+defclass "verbe_intransitif_id" {
+   "verbe_id"
+}
+
+defclass "verbe_auxiliaire_id" {
+   "verbe_id"
+   dim id {
+      out : { pp! }}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+defclass "verbe_lp" {
+   dim lp {
+      blocks : { ne adv_neg obj_s obj_s_de }
+      blocks_lp : { cplt_f }}
+}
+
+defclass "verbe_fini_lp" {
+   "verbe_lp"
+   dim lp {
+      in  : { root_f! }
+      out : { suj_f? suj_cl_f? neg_cl_f? acc_cl_f? dat_cl_f? r_neg_adv_f? cplt_f* }
+      on  : {v}
+   }
+}
+
+defclass "verbe_infinitif_lp" {
+   "verbe_lp"
+   dim lp {
+      in  : { cplt_f? }
+      out : { neg_cl_f? l_neg_adv_f? acc_cl_f? dat_cl_f? cplt_f* }
+      on  : {v}
+   }
+}
+
+defclass "verbe_auxiliaire_lp" {
+   "verbe_lp"
+   dim lp {
+      out : { dep_v_f? }
+      on  : {v}
+   }
+}
+
+defclass "verbe_auxiliaire_infinitif_lp" {
+   "verbe_lp"
+   dim lp {
+      out : { r_neg_adv_f? }
+      on  : {v}
+   }
+}
+
+defclass "verbe_participe_passe_lp" {
+   "verbe_lp"
+   dim lp {
+      in  : { dep_v_f! }
+      out : { dep_v_f? cplt_f* }
+      on  : {v}
+   }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+defclass "verbe_fini" {
+   "verbe_fini_id"
+   "verbe_fini_lp"
+}
+
+defentry {
+   dim lex { word : "ose" }
+   "verbe_fini"
+   "verbe_transitif_phrastique_id"
+   "verbe_opt_neg"
+}
+
+defentry {
+   dim lex { word : "cesse" }
+   "verbe_fini"
+   "verbe_transitif_de_phrastique_id"
+   "verbe_opt_neg"
+}
+
+defentry {
+   dim lex { word : "peut" }
+   "verbe_fini"
+   "verbe_transitif_phrastique_id"
+   "verbe_opt_neg"
+}
+
+defentry {
+   dim lex { word : "voit" }
+   "verbe_fini"
+   ( "verbe_transitif_nominal_id"
+    |"verbe_transitif_phrastique_id" )
+   "verbe_neg"
+}
+
+defentry {
+   dim lex { word : "avoue" }
+   "verbe_fini"
+   "verbe_transitif_phrastique_id"
+   "verbe_neg"
+}
+
+defclass "verbe_participe_passe" {
+   "verbe_participe_passe_id"
+   "verbe_participe_passe_lp"
+}
+
+defentry {
+   dim lex { word : "fait" }
+   "verbe_participe_passe"
+   ( "verbe_transitif_phrastique_id"
+    |"verbe_transitif_nominal_id" )
+   "verbe_neg"
+}
+
+defentry {
+   dim lex { word : "fait" }
+   "verbe_fini"
+   "verbe_transitif_phrastique_id"
+   "verbe_neg"
+}
+
+defclass "verbe_infinitif" {
+   "verbe_infinitif_id"
+   "verbe_infinitif_lp"
+}
+
+defentry {
+   dim lex { word : "entrer" }
+   "verbe_infinitif"
+   "verbe_intransitif_id"
+   "verbe_neg"
+}
+
+defentry {
+   dim lex { word : "marcher" }
+   "verbe_infinitif"
+   "verbe_intransitif_id"
+   "verbe_neg"
+}
+
+defclass "verbe_auxiliaire" {
+   "verbe_auxiliaire_id"
+   "verbe_auxiliaire_lp"
+}
+
+defentry {
+   dim lex { word : "été" }
+   "verbe_auxiliaire"
+   "verbe_participe_passe"
+   "verbe_neg"
+}
+
+defentry {
+   dim lex { word : "a" }
+   "verbe_auxiliaire"
+   "verbe_fini"
+   "verbe_neg"
+}
+
+defentry {
+   dim lex { word : "avoir" }
+   "verbe_auxiliaire"
+   "verbe_infinitif"
+   "verbe_auxiliaire_infinitif_lp"
+   "verbe_neg"
+ }
+
+defentry {
+   dim lex { word : "veut" }
+   "verbe_fini"
+   "verbe_transitif_phrastique_id"
+   "verbe_neg"
+}
+
+defentry {
+   dim lex { word : "voir" }
+   "verbe_infinitif"
+   "verbe_transitif_nominal_id"
+   "verbe_neg"
+}
+
+defentry {
+   dim lex { word : "démarrer" }
+   "verbe_infinitif"
+   "verbe_transitif_nominal_id"
+   "verbe_neg"
+}
+
+defentry {
+   dim lex { word : "vu" }
+   "verbe_participe_passe"
+   ( "verbe_intransitif_id"
+    |"verbe_transitif_nominal_id" )
+   "verbe_neg"
+}
+
+defentry {
+   dim lex { word : "donne" }
+   "verbe_fini"
+   "verbe_ditransitif_nominal_id"
+   "verbe_neg"
+}
+
+defentry {
+   dim lex { word : "venir" }
+   "verbe_infinitif"
+   "verbe_intransitif_id"
+   "verbe_neg"
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+defentry {
+   dim lex { word : "de" }
+   dim id {
+      in  : { obj_s_de! }
+      out : { obj_s! }}
+   dim lp {
+      in  : { cplt_f! }
+      out : { cplt_f! }
+      on  : { v }
+      blocks : { obj_s }}
+   dim neg {
+      in : {other_n!}}}

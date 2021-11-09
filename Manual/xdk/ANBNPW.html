@@ -1,0 +1,85 @@
+<html lang="en">
+<head>
+<title>ANBNPW - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Grammars.html#Grammars" title="Grammars">
+<link rel="prev" href="ANBNCNPW.html#ANBNCNPW" title="ANBNCNPW">
+<link rel="next" href="Acl01.html#Acl01" title="Acl01">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="ANBNPW"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Acl01.html#Acl01">Acl01</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="ANBNCNPW.html#ANBNCNPW">ANBNCNPW</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Grammars.html#Grammars">Grammars</a>
+<hr>
+</div>
+
+<h3 class="section">5.4 ANBNPW</h3>
+
+<p>This grammar is the same as <a href="ANBN.html#ANBN">ANBN</a> except that it only uses PW
+principles.
+
+<pre class="verbatim">usedim lp
+usedim lex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lp dimension
+defdim lp {
+  deftype "lp.label" {a b "^"}
+  deflabeltype "lp.label"
+  defentrytype {in: set(tuple("lp.label" {"!" "?" "+" "*"}))
+                out: set(tuple("lp.label" {"!" "?" "+" "*"}))
+                order: set(tuple("lp.label" "lp.label"))}
+%%
+  useprinciple "principle.graphPW" { dims {D: lp} }
+  useprinciple "principle.treePW" { dims {D: lp} }
+  useprinciple "principle.valencyPW" { dims {D: lp} }
+  useprinciple "principle.orderPW" { dims {D: lp} }
+  useprinciple "principle.projectivityPW" { dims {D: lp} }
+%%
+  output "output.pretty"
+  output "output.pretty1"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lex dimension
+defdim lex {
+  defentrytype {word: string}
+%%
+  output "output.dags1"
+  output "output.latexs1"
+  useoutput "output.dags1"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lexicon
+
+defentry {
+  dim lp {in: {a?}
+          out: {a? b!}
+          order: &lt;"^" a b>}
+  dim lex {word: "a"}}
+
+defentry {
+  dim lp {in: {b!}}
+  dim lex {word: "b"}}
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

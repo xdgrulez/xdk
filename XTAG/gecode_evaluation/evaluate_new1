@@ -1,0 +1,96 @@
+#!/bin/bash
+############################################################
+# 05-09
+#cd $XDK/XTAG
+#xtagserver.exe -p 4712 -f none&
+#pid=$!
+#sleep 1
+#cd $XDK
+#xdks.exe -g 4712.ulsocket -e XTAG/gecode_evaluation/wsj23_05-09_new1.txt -s flatzinc
+#kill -9 $!
+#
+#cd XTAG/gecode_evaluation/filter_none_new1
+#mkdir 05-09
+#mv $XDK/4712.fzn* 05-09
+#
+#evaluate_none05-09 >wsj23_05-09_gecode.txt
+#evaluate_none05-09_100 >wsj23_05-09_gecode100.txt
+#evaluate_none05-09_1000 >wsj23_05-09_gecode1000.txt
+#tar cvzf 05-09.tgz 05-09/
+#rm -r 05-09
+############################################################
+# 10-14
+#cd $XDK/XTAG
+#xtagserver.exe -p 4712 -f none&
+#pid=$!
+#sleep 1
+#cd $XDK
+#xdks.exe -g 4712.ulsocket -e XTAG/gecode_evaluation/wsj23_10-14_new1.txt -s flatzinc
+#kill -9 $!
+#
+#cd XTAG/gecode_evaluation/filter_none_new1
+#mkdir 10-14
+#mv $XDK/4712.fzn* 10-14
+#
+#evaluate_none10-14 >wsj23_10-14_gecode.txt
+#evaluate_none10-14_100 >wsj23_10-14_gecode100.txt
+#evaluate_none10-14_1000 >wsj23_10-14_gecode1000.txt
+#tar cvzf 10-14.tgz 10-14/
+#rm -r 10-14
+############################################################
+# 15-19
+#cd $XDK/XTAG
+#xtagserver.exe -p 4712 -f none&
+#pid=$!
+#sleep 1
+#cd $XDK
+#xdks.exe -g 4712.ulsocket -e XTAG/gecode_evaluation/wsj23_15-19_new1.txt -s flatzinc
+#kill -9 $!
+#
+#cd XTAG/gecode_evaluation/filter_none_new1
+#mkdir 15-19
+#mv $XDK/4712.fzn* 15-19
+#
+#evaluate_none15-19 >wsj23_15-19_gecode.txt
+#evaluate_none15-19_100 >wsj23_15-19_gecode100.txt
+#evaluate_none15-19_1000 >wsj23_15-19_gecode1000.txt
+#tar cvzf 15-19.tgz 15-19/
+#rm -r 15-19
+############################################################
+# 20-24
+#cd $XDK/XTAG
+#xtagserver.exe -p 4712 -f none&
+#pid=$!
+#sleep 1
+#cd $XDK
+#xdks.exe -g 4712.ulsocket -e XTAG/gecode_evaluation/wsj23_20-24_new1.txt -s flatzinc
+#kill -9 $!
+#
+#cd XTAG/gecode_evaluation/filter_none_new1
+#mkdir 20-24
+#mv $XDK/4712.fzn* 20-24
+#
+#evaluate_none20-24 >wsj23_20-24_gecode.txt
+#evaluate_none20-24_100 >wsj23_20-24_gecode100.txt
+#evaluate_none20-24_1000 >wsj23_20-24_gecode1000.txt
+#tar cvzf 20-24.tgz 20-24/
+#rm -r 20-24
+############################################################
+# 25-29
+#cd $XDK/XTAG
+#xtagserver.exe -p 4712 -f none&
+#pid=$!
+#sleep 1
+cd $XDK
+#xdks.exe -g 4712.ulsocket -e XTAG/gecode_evaluation/wsj23_25-29_new1.txt -s flatzinc
+#kill -9 $!
+#
+cd XTAG/gecode_evaluation/filter_none_new1
+#mkdir 25-29
+#mv $XDK/4712.fzn* 25-29
+#
+#evaluate_none25-29 >wsj23_25-29_gecode.txt
+evaluate_none25-29_100 >wsj23_25-29_gecode100.txt
+evaluate_none25-29_1000 >wsj23_25-29_gecode1000.txt
+#tar cvzf 25-29.tgz 25-29/
+#rm -r 25-29

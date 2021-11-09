@@ -1,0 +1,134 @@
+<!ENTITY % type "(typeDomain|typeSet|typeISet|typeTuple|typeList|typeRecord|typeValency|typeCard|typeVec|typeInt|typeInts|typeString|typeBool|typeRef|typeLabelRef|typeVariable)">
+<!ENTITY % types "(%type;*)">
+<!ENTITY % term "(constant|variable|integer|top|bot|constantCard|constantCardSet|constantCardInterval|variableCard|variableCardSet|variableCardInterval|set|list|record|setGen|featurePath|annotation|conj|disj|concat|order|bounds|feature|varFeature)">
+<!ENTITY % terms "(%term;*)">
+<!ENTITY % class "(classDimension|useClass|classConj|classDisj)">
+<!ENTITY % classes "(%class;*)">
+<!ENTITY % recSpec "(feature|varFeature|recordConj|recordDisj)">
+<!ENTITY % recSpecs "(%recSpec;*)">
+<!ENTITY % setGenSpec "(constant|setGenConj|setGenDisj)">
+<!ENTITY % setGenSpecs "(%setGenSpec;*)">
+
+<!ENTITY principleDefs SYSTEM "../../Solver/Principles/principles.xml">
+<!ENTITY outputDefs SYSTEM "../../Outputs/outputs.xml">
+
+<!ELEMENT grammar (principleDef*,outputDef*,useDimension*,dimension*,classDef*,entry*)>
+<!ELEMENT principleDef EMPTY>
+<!ATTLIST principleDef id ID #REQUIRED>
+<!ELEMENT outputDef EMPTY>
+<!ATTLIST outputDef id ID #REQUIRED>
+<!ELEMENT useDimension EMPTY>
+<!ATTLIST useDimension idref IDREF #REQUIRED>
+<!ELEMENT dimension (attrsType?,entryType?,labelType?,typeDef*,usePrinciple*,output*,useOutput*)>
+<!ATTLIST dimension id ID #REQUIRED>
+<!ELEMENT attrsType %type;>
+<!ELEMENT entryType %type;>
+<!ELEMENT labelType %type;>
+<!ELEMENT output EMPTY>
+<!ATTLIST output idref IDREF #REQUIRED>
+<!ELEMENT useOutput EMPTY>
+<!ATTLIST useOutput idref IDREF #REQUIRED>
+
+<!ELEMENT typeDef %type;>
+<!ATTLIST typeDef id ID #REQUIRED>
+
+<!ELEMENT typeDomain (constant*)>
+<!ELEMENT typeSet %type;>
+<!ELEMENT typeISet %type;>
+<!ELEMENT typeTuple %types;>
+<!ELEMENT typeList %type;>
+<!ELEMENT typeRecord (typeFeature*)>
+<!ELEMENT typeValency %type;>
+<!ELEMENT typeCard EMPTY>
+<!ELEMENT typeVec (%type;,%type;)>
+<!ELEMENT typeInt EMPTY>
+<!ELEMENT typeInts EMPTY>
+<!ELEMENT typeString EMPTY>
+<!ELEMENT typeBool EMPTY>
+<!ELEMENT typeRef EMPTY>
+<!ATTLIST typeRef idref IDREF #REQUIRED>
+<!ELEMENT typeLabelRef EMPTY>
+<!ATTLIST typeLabelRef data CDATA #REQUIRED>
+<!ELEMENT typeVariable EMPTY>
+<!ELEMENT typeUnion %types;>
+
+<!ELEMENT typeFeature %type;>
+<!ATTLIST typeFeature
+          data CDATA #REQUIRED>
+<!ELEMENT feature %term;>
+<!ATTLIST feature
+          data CDATA #REQUIRED>
+<!ELEMENT varFeature %term;>
+<!ATTLIST varFeature
+          data CDATA #REQUIRED>
+
+<!ELEMENT usePrinciple (dim*,arg*)>
+<!ATTLIST usePrinciple idref IDREF #REQUIRED>
+<!ELEMENT dim EMPTY>
+<!ATTLIST dim
+          var CDATA #REQUIRED
+	  idref IDREF #REQUIRED>
+<!ELEMENT arg %term;>
+<!ATTLIST arg
+          var CDATA #REQUIRED>
+     
+<!ELEMENT classDef (variable*,%classes;)>
+<!ATTLIST classDef 
+          id ID #REQUIRED>
+
+<!ELEMENT classDimension %term;>
+<!ATTLIST classDimension idref IDREF #REQUIRED>
+<!ELEMENT useClass (varFeature*)>
+<!ATTLIST useClass idref IDREF #REQUIRED>
+<!ELEMENT classConj %classes;>
+<!ELEMENT classDisj %classes;>
+
+<!ELEMENT entry %classes;>
+
+<!ELEMENT constant EMPTY>
+<!ATTLIST constant data CDATA #REQUIRED>
+<!ELEMENT integer EMPTY>
+<!ATTLIST integer data CDATA #REQUIRED>
+<!ELEMENT top EMPTY>
+<!ELEMENT bot EMPTY>
+<!ELEMENT variable EMPTY>
+<!ATTLIST variable data CDATA #REQUIRED>
+<!ELEMENT constantCard EMPTY>
+<!ATTLIST constantCard
+          data CDATA #REQUIRED
+	  card (one|opt|any|geone) "one">
+<!ELEMENT constantCardSet (integer*)>
+<!ATTLIST constantCardSet
+          data CDATA #REQUIRED>
+<!ELEMENT constantCardInterval (integer,integer)>
+<!ATTLIST constantCardInterval
+          data CDATA #REQUIRED>
+<!ELEMENT variableCard EMPTY>
+<!ATTLIST variableCard
+          data CDATA #REQUIRED
+	  card (one|opt|any|geone) "one">
+<!ELEMENT variableCardSet (integer*)>
+<!ATTLIST variableCardSet
+          data CDATA #REQUIRED>
+<!ELEMENT variableCardInterval (integer,integer)>
+<!ATTLIST variableCardInterval
+          data CDATA #REQUIRED>
+<!ELEMENT set %terms;>
+<!ELEMENT list %terms;>
+<!ELEMENT record %recSpecs;>
+<!ELEMENT recordConj %recSpecs;>
+<!ELEMENT recordDisj %recSpecs;>
+<!ELEMENT setGen %setGenSpecs;>
+<!ELEMENT setGenConj %setGenSpecs;>
+<!ELEMENT setGenDisj %setGenSpecs;>
+<!ELEMENT featurePath (constant*)>
+<!ATTLIST featurePath
+          root (down|up) #REQUIRED
+          dimension CDATA #REQUIRED
+          aspect (entry|attrs) #REQUIRED>
+<!ELEMENT annotation (%term;,%type;)>
+<!ELEMENT conj %terms;>
+<!ELEMENT disj %terms;>
+<!ELEMENT concat %terms;>
+<!ELEMENT order %terms;>
+<!ELEMENT bounds (%term;,%term;)>

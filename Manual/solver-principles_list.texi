@@ -1,0 +1,2750 @@
+@section Principles list
+In this section, we explain the whole range of principles in the
+predefined @emph{principle library}.
+@cindex principle library
+Note that the library is constantly changing, and that some
+principles, may still lack a description.
+
+@menu
+* Agr::                           Agr principle
+
+* Agreement::                     Agreement principle
+
+* Agreement1::                    Agreement1 principle
+
+* AgreementSubset::               AgreementSubset principle
+
+* Barriers::                      Barriers principle
+
+* BarriersAttrib::                BarriersAttrib principle
+
+* BarriersLabels::                Barriers principle
+
+* Chorus:Chorus1.                 Chorus principle
+
+* Climbing::                      Climbing principle
+
+* Coindex::                       Coindex principle
+
+* CSD:CSD1.                       CSD principle
+
+* Customs::                       Customs principle
+
+* Dag::                           Dag principle
+
+* Dutch::                         Dutch principle
+
+* Entries::                       Entries principle
+
+* Government::                    Government principle
+
+* Government1::                   Government1 principle
+
+* Graph::                         Graph principle
+
+* GraphConstraints::              Graph principle (no distribution)
+
+* GraphDist::                     Graph principle (only distribution)
+
+* Graph1::                        Graph1 principle
+
+* Graph1Constraints::             Graph1 principle (no distribution)
+
+* Graph1Dist::                    Graph1 principle (only distribution)
+
+* In::                            In principle
+
+* In1::                           In1 principle
+
+* In2::                           In2 principle
+
+* Linking12BelowStartEnd::        Linking12BelowStartEnd principle
+
+* LinkingAbove::                  LinkingAbove principle
+
+* LinkingAboveBelow1or2Start::    LinkingAboveBelow1or2Start principle
+
+* LinkingAboveEnd::               LinkingAboveEnd principle
+
+* LinkingAboveStart::             LinkingAboveStart principle
+
+* LinkingAboveStartEnd::          LinkingAboveStartEnd principle
+
+* LinkingBelow::                  LinkingBelow principle
+
+* LinkingBelow1or2Start::         LinkingBelow1or2Start principle
+
+* LinkingBelowEnd::               LinkingBelowEnd principle
+
+* LinkingBelowStart::             LinkingBelowStart principle
+
+* LinkingBelowStartEnd::          LinkingBelowStartEnd principle
+
+* LinkingDaughter::               LinkingDaughter principle
+
+* LinkingDaughterEnd::            LinkingDaughterEnd principle
+
+* LinkingEnd::                    LinkingEnd principle
+
+* LinkingMother::                 LinkingMother principle
+
+* LinkingMotherEnd::              LinkingMotherEnd principle
+
+* LinkingNotDaughter::            LinkingNotDaughter principle
+
+* LinkingNotMother::              LinkingNotMother principle
+
+* LinkingSisters::                LinkingSisters principle
+
+* LockingDaughters::              LockingDaughters principle
+
+* LookRight::                     LookRight principle
+
+* Order::                         Order principle
+
+* Order1::                        Order1 principle
+
+* Order1Constraints::             Order1 principle (no distribution)
+
+* Order1Dist::                    Order1 principle (only distribution)
+
+* Order2::                        Order2 principle
+
+* Order2Constraints::             Order2 principle (no distribution)
+
+* Order2Dist::                    Order2 principle (only distribution)
+
+* OrderConstraints::              Order principle (no distribution)
+
+* OrderDist::                     Order principle (only distribution)
+
+* OrderWithCuts::                 OrderWithCuts principle
+
+* Out::                           Out principle
+
+* PL::                            PL principle
+
+* PartialAgreement::              PartialAgreement principle
+
+* Projectivity::                  Projectivity principle
+
+* Relative::                      Relative principle
+
+* SameEdges::                     SameEdges principle
+
+* Subgraphs::                     Subgraphs principle
+
+* TAG::                           TAG principle
+
+* Test::                          Test principle
+
+* Tree::                          Tree principle
+
+* Tree1::                         Tree1 principle
+
+* Valency:Valency1.               Valency principle
+
+* XTAG:XTAG1.                     XTAG principle
+
+* XTAGLinking::                   XTAGLinking principle
+
+* XTAGRedundant::                 XTAGRedundant principle
+
+* XTAGRoot::                      XTAGRoot principle
+@end menu
+
+@c ************************************************************
+
+@node Agr, Agreement, , Principles list
+@subsection Agr principle
+
+@itemize @bullet
+@item identifier: @code{principle.agr}
+@item dimension variables: @code{D}
+@item argument variables:@*
+@code{Agr: tv(T)}@*
+@code{Agrs: iset(tv(T))}
+@item default values:@*
+@code{Agr: _.D.attrs.agr}@*
+@code{Agrs: _.D.entry.agrs}
+@item model record: empty
+@item constraints: @code{Agr} (priority 130)
+@item edge constraints: none
+@end itemize
+
+The Agr principle picks out one agreement value from a set of possible
+agreement values.
+
+The type variable @code{tv(T)} is typically a tuple of e.g. person,
+number, gender etc.
+
+The principle stipulates that:
+@itemize @bullet
+@item for all nodes, @code{Agr} is an element of @code{Agrs}
+@end itemize
+
+@ifnottex
+Here is the definition of the @code{Agr} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Agr.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Agreement, Agreement1, Agr, Principles list
+@subsection Agreement principle
+
+@itemize @bullet
+@item identifier: @code{principle.agreement}
+@item dimension variables: @code{D}
+@item argument variables:@*
+@code{Agr1: tv(T)}@*
+@code{Agr2: tv(T)}@*
+@code{Agree: set(label(D))}
+@item default values:@*
+@code{Agr1: ^.D.attrs.agr}@*
+@code{Agr2: _.D.attrs.agr}@*
+@code{Agree: ^.D.entry.agree}
+@item model record: empty
+@item constraints: @code{Agreement} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimension @code{D}.
+
+The Agreement principle establishes agreement between the nodes
+connected by an edge.
+
+It stipulates that:
+@itemize @bullet
+@item for all edges labeled @math{l}, if @math{l} is in @code{Agree},
+then @code{Agr1=Agr2}
+@end itemize
+
+@ifnottex
+Here is the definition of the @code{Agreement} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Agreement.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Agreement1, AgreementSubset, Agreement, Principles list
+@subsection Agreement1 principle
+
+@itemize @bullet
+@item identifier: @code{principle.agreement1}
+@item dimension variables: @code{D}, @code{D1}
+@item argument variables:@*
+@code{Agr1: tv(T)}@*
+@code{Agr2: tv(T)}@*
+@code{Agree: set(label(D))}
+@item default values:@*
+@code{Agr1: ^.D1.attrs.agr}@*
+@code{Agr2: _.D1.attrs.agr}@*
+@code{Agree: ^.D.entry.agree}
+@item model record: empty
+@item constraints: @code{Agreement} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This is the same principle as @ref{Agreement} except that it has an
+additional dimension variable @code{D1}.
+
+@c ************************************************************
+
+@node AgreementSubset, Barriers, Agreement1, Principles list
+@subsection AgreementSubset principle
+
+@itemize @bullet
+@item identifier: @code{principle.agreementSubset}
+@item dimension variables: @code{D}
+@item argument variables:@*
+@code{Agr1: tv(T)}@*
+@code{Agr2: tv(T)}@*
+@code{Agree: set(label(D))}
+@item default values:@*
+@code{Agr1: ^.D.attrs.agr}@*
+@code{Agr2: _.D.attrs.agr}@*
+@code{Agree: ^.D.entry.agree}
+@item model record: empty
+@item constraints: @code{AgreementSubset} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimension @code{D}.
+
+The AgreementSubset principle establishes subset agreement between the
+nodes connected by an edge.
+
+It stipulates that:
+@itemize @bullet
+@item for all edges labeled @math{l}, if @math{l} is in @code{Agree},
+then @code{Agr2} is a subset of @code{Agr1}
+@end itemize
+
+@ifnottex
+Here is the definition of the @code{AgreementSubset} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/AgreementSubset.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Barriers, BarriersAttrib, AgreementSubset, Principles list
+@subsection Barriers principle
+
+@itemize @bullet
+@item identifier: @code{principle.barriers}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{Blocks: set(label(D2))}
+@item default values:@*
+@code{Blocks: _.D3.entry.blocks}
+@item model record: empty
+@item constraints: @code{Barriers} (priority 110)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.
+
+The @code{Blocks} argument variable defines the set of @emph{blocked
+edge labels}.
+@cindex blocked edge label
+
+The effect of the barriers principle is that nodes become ``barriers''
+for other nodes, and effectively prohibits unbounded climbing. It is
+therefore most useful in conjunction with the Climbing principle
+(@ref{Climbing}).
+
+The principle creates for each node @math{v} a set of blocked nodes
+@math{blocked(v)} which must stay below @math{v} on @code{D1}.
+@math{v'} is in @math{blocked(v)} if it satisfies the conjunction of
+the following constraints:
+@itemize @bullet
+@item @math{v'} is below @math{v} on @code{D2}
+@item the incoming edge label of @math{v'} is one from the
+set of blocked edge labels of one of the nodes between @math{v} and
+@math{v'}
+@end itemize
+
+@ifnottex
+Here is the definition of the @code{Barriers} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Barriers.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node BarriersAttrib, BarriersLabels, Barriers, Principles list
+@subsection BarriersAttrib principle
+
+@itemize @bullet
+@item identifier: @code{principle.barriers.attrib}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{Blocks: set(T)}
+@code{Attrib: set(T)}
+@item default values: none
+@item model record: empty
+@item constraints: @code{BarriersAttrib} (priority 110)
+@item edge constraints: none
+@end itemize
+
+This principle was written by Denys Duchier.
+
+@ifnottex
+Here is the definition of the @code{BarriersAttrib} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/BarriersAttrib.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node BarriersLabels, CSD1, BarriersAttrib, Principles list
+@subsection BarriersLabels principle
+
+@itemize @bullet
+@item identifier: @code{principle.barriers.labels}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}, @code{D4}
+@item argument variables:@*
+@code{Blocks: set(label(D3))}
+@item default values:@*
+@code{Blocks: _.D4.entry.blocks}
+@item model record: empty
+@item constraints: @code{BarriersLabels} (priority 110)
+@item edge constraints: none
+@end itemize
+
+This principle was written by Denys Duchier.
+
+@ifnottex
+Here is the definition of the @code{BarriersLabels} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/BarriersLabels.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node CSD1, Chorus1, BarriersLabels, Principles list
+@subsection CSD principle
+
+@itemize @bullet
+@item identifier: @code{principle.csd}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{NodeLabels: set(label(D2))}
+@item default values:@*
+@code{NodeLabels: @{@}}
+@item model record: empty
+@item constraints: @code{CSD} (priority 110)
+@item edge constraints: none
+@end itemize
+
+This principle supports the grammar for cross-serial dependencies
+@code{Grammars/CSD.ul} (@ref{CSD}).
+
+It stipulates the constraint that all noun dependents of a node
+@math{v} must follow the noun dependents of the nodes above @math{v}.
+
+The @code{NodeLabels} argument variable determines the set of labels
+for noun dependents, e.g. @code{@{n@}} for @code{Grammars/CSD.ul}
+(@ref{CSD}).
+
+@ifnottex
+Here is the definition of the @code{CSD} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/CSD.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Chorus1, Climbing, CSD1, Principles list
+@subsection Chorus principle
+
+@itemize @bullet
+@item identifier: @code{principle.chorus}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{Chorus: set(label(D1))}
+@item default values:@*
+@code{Chorus: _.D3.entry.chorus}
+@item model record: empty
+@item constraints: @code{Chorus} (priority 130)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.@footnote{This principle does
+not work in conjunction with the Graph1 principle (@ref{Graph1}) on
+@code{D1} as it accesses the model record feature @code{downL} only
+introduced by the Graph principle (@ref{Graph}).}
+
+It is fairly specialized, and is so far only used in the Chorus
+grammar (@ref{Chorus}) for optimization (hence its name).
+
+It creates for each node @math{v} the two sets @math{S1} and
+@math{S2}.  @math{S1} is the set of nodes below edges labeled by
+@math{l'} in @code{Chorus} which emanate from @math{v} on @code{D1}.
+@math{S2} is the set of nodes equal or below the mother of @math{v} on
+@code{D2}.
+
+It then stipulates for all nodes @math{v} that @math{S1} must be
+subset of @math{S2}.
+
+@ifnottex
+Here is the definition of the @code{Chorus} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Chorus.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Climbing, Coindex, Chorus1, Principles list
+@subsection Climbing principle
+
+@itemize @bullet
+@item identifier: @code{principle.climbing}
+@item dimension variables: @code{D1}, @code{D2}
+@item argument variables:@*
+@code{Subgraphs: bool}@*
+@code{MotherCards: bool}
+@item default values:@*
+@code{Subgraphs: true}@*
+@code{MotherCards: true}
+@item model record: empty
+@item constraints: @code{Climbing} (priority 110)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.
+
+The climbing principle stipulates that @code{D1} is a flatter graph
+than @code{D2}. Intuitively, that means that nodes on @code{D2}
+dimension can ``climb up'' and end up higher up on @code{D1}.
+
+The argument variable @code{Subgraphs} specifies whether each node is
+required to take its entire subgraph along when migrating upwards
+(@code{true}), or not (@code{false}). Its default value is
+@code{true}.
+
+The argument variable @code{MotherCards} specifies whether the for
+each node, the cardinalities of the sets of mothers on @code{D1} and
+@code{D2} must be equal (@code{true}), or not (@code{false}). This is
+an optimization for the case that both @code{D1} and @code{D2} are
+trees. If any of the two is not a tree, @code{MotherCards} should be
+set to @code{false}. The default value of @code{MotherCards} is
+@code{true}.
+
+Climbing can be restricted by the Barriers principle (@ref{Barriers}).
+
+@ifnottex
+Here is the definition of the @code{Climbing} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Climbing.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Coindex, Customs, Climbing, Principles list
+@subsection Coindex principle
+
+@itemize @bullet
+@item identifier: @code{principle.coindex}
+@item dimension variables: @code{D}
+@item argument variables: none
+@item default values: none
+@item model record: empty
+@item constraints: @code{Coindex} (priority 120)@*
+@code{CoindexEdge} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle supports the grammar @code{Grammars/coindex.ul}
+(@ref{coindex}).
+
+@ifnottex
+Here is the definition of the @code{Coindex} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Coindex.oz
+@end ifnottex
+
+@ifnottex
+And here is the definition of the @code{CoindexEdge} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/CoindexEdge.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Customs, Dag, Coindex, Principles list
+@subsection Customs principle
+
+@itemize @bullet
+@item identifier: @code{principle.customs}
+@item dimension variables: @code{D}
+@item argument variables:@*
+@code{Customs: iset(label(D))}
+@item default values:@*
+@code{Customs: _.D.entry.customs}
+@item model record: empty
+@item constraints: @code{Customs} (priority 130)
+@item edge constraints: none
+@end itemize
+
+This principle was written by Ondrej Bojar.
+
+@ifnottex
+Here is the definition of the @code{Customs} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Customs.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Dag, Dutch, Customs, Principles list
+@subsection Dag principle
+
+@itemize @bullet
+@item identifier: @code{principle.dag}
+@item dimension variables: @code{D}
+@item argument variables:@*
+@code{Connected: bool}@*
+@code{DisjointDaughters: bool}
+@item default values:@*
+@code{Connected: false}@*
+@code{DisjointDaughters: false}
+@item model record: empty
+@item constraints: @code{Dag} (priority 130)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimension @code{D}.
+
+The @code{Connected} argument variable is a boolean. Its default value
+is @code{false}. The @code{DisjointDaughters} argument variable is
+also a boolean. Its default value is @code{false}.
+
+The dag principle states that the graph on dimension @code{D} must be
+a @emph{directed acyclic graph (dag)}.
+@cindex directed acyclic graph
+@cindex dag
+If @code{Connected} is true, this dag must be connected, i.e., has
+only one root. If @code{DisjointDaughters} is true, then the sets of
+daughters must be disjoint, i.e., there can be no more than one
+outgoing edge to the same node.
+
+This principle is less specific than the Tree principle (@ref{Tree}).
+
+@ifnottex
+Here is the definition of the @code{Dag} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Dag.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Dutch, Entries, Dag, Principles list
+@subsection Dutch principle
+
+@itemize @bullet
+@item identifier: @code{principle.dutch}
+@item dimension variables: @code{D1}, @code{D2}
+@item argument variables: none
+@item default values: none
+@item model record: empty
+@item constraints: @code{Dutch} (priority 110)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used on
+dimensions @code{D1} and @code{D2}. It also assumes that an order
+principle is used on @code{D1}, and that the set of edge labels on
+@code{D2} contains @code{subj}, @code{iobj} and @code{obj}.
+
+The dutch principle is fairly specialized, and so far only used in the
+Dutch grammar (@ref{Dutch}). It posits the conjunction of the
+following two constraints:
+@itemize @bullet
+@item for each node @math{v}, the subject (@code{subj}) daughter of @math{v}
+precedes the indirect object (@code{iobj}) daughter, which in turn
+precedes the direct object daughter (@code{obj}).
+@item for each node @math{v}, the set of noun daughters above @math{v}
+(i.e. those daughters of nodes above which have incoming edge label
+@code{subj}, @code{iobj} or @code{obj}) precede the set of noun
+daughters of @math{v}
+@end itemize
+
+@ifnottex
+Here is the definition of the @code{Dutch} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Dutch.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Entries, Government, Dutch, Principles list
+@subsection Entries principle
+
+@itemize @bullet
+@item identifier: @code{principle.entries}
+@item dimension variables: none
+@item argument variables: none
+@item default values: none
+@item model record: empty
+@item constraints: @code{Entries} (priority 80)
+@item edge constraints: none
+@end itemize
+
+This principle can be applied on any dimension, but it
+is usually used on the lex dimension only.
+
+The purpose of the Entries principle is to ensure that for each node,
+precisely one lexical entry is selected.
+
+If you do not use this principle, and there are two lexical lexical
+entries for a word in the input which do not make a difference for the
+analysis, the XDK solver does not select one of the two. If you do use
+it, it does select one, i.e. it enumerates all possible lexical
+entries for a word in the input.
+
+@ifnottex
+Here is the definition of the @code{Entries} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Entries.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Government, Government1, Entries, Principles list
+@subsection Government principle
+
+@itemize @bullet
+@item identifier: @code{principle.government}
+@item dimension variables: @code{D}
+@item argument variables:@*
+@code{Agr2: tv(T)}@*
+@code{Govern: vec(label(D) iset(tv(T)))}
+@item default values:@*
+@code{Agr2: _.D.attrs.agr}@*
+@code{Govern: ^.D.entry.govern}
+@item model record: empty
+@item constraints: @code{Government} (priority 100)
+@item edge constraints: none
+@end itemize
+
+The government principle establishes government between two nodes
+connected by an edge.
+
+The type variable @code{tv(T)} is typically a tuple of e.g. person,
+number, gender etc.
+
+It stipulates for all edges from @math{v} to @math{v'} labeled
+@math{l} on @code{D}:
+@itemize @bullet
+@item if @code{Govern(l)} is not empty, then @code{Agr2} must be
+in @code{Govern(l)}
+@end itemize
+
+@ifnottex
+Here is the definition of the @code{Government} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Government.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Government1, Graph, Government, Principles list
+@subsection Government1 principle
+
+@itemize @bullet
+@item identifier: @code{principle.government1}
+@item dimension variables: @code{D}, @code{D1}
+@item argument variables:@*
+@code{Agr2: tv(T)}@*
+@code{Govern: vec(label(D) iset(tv(T)))}
+@item default values:@*
+@code{Agr2: _.D1.attrs.agr}@*
+@code{Govern: ^.D.entry.govern}
+@item model record: empty
+@item constraints: @code{Government} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This is the same principle as @ref{Government} except that it has
+additional dimension variable @code{D1}.
+
+@c ************************************************************
+
+@node Graph, GraphConstraints, Government1, Principles list
+@subsection Graph principle
+
+@itemize @bullet
+@item identifier: @code{principle.graph}
+@item dimension variables: @code{D}
+@item argument variables: none
+@item default values: none
+@item model record:
+@example
+@{ mothers:    ints
+  daughters:  ints
+  up:         ints
+  down:       ints
+  index:      int
+  eq:         ints
+  equp:       ints
+  eqdown:     ints
+  labels:     set(label(D))
+  mothersL:   vec(label(D) ints)
+  upL:        vec(label(D) ints)
+  daughtersL: vec(label(D) ints)
+  downL:      vec(label(D) ints)@}
+@end example
+@item constraints: @code{GraphMakeNodes} (priority 130),
+@code{GraphConditions} (120), @code{GraphMakeEdges} (100) and
+@code{GraphDist} (90)
+@item edge constraints: none
+@end itemize
+
+The Graph principle introduces a model record with the
+following features for each node @math{v}:
+
+@itemize @bullet
+@item @code{mothers}: set of mothers of @math{v}
+@item @code{daughters}: set of daughters of @math{v}
+@item @code{up}: set of nodes above @math{v}
+@item @code{down}: set of nodes below @math{v}
+@item @code{index}: index of @math{v}
+@item @code{eq}: singleton set containing the index of @math{v}
+@item @code{equp}: set of nodes equal or above @math{v}
+@item @code{eqdown}: set of nodes equal or below @math{v}
+@item @code{labels}: set of incoming edge labels of @math{v}
+@item @code{mothersL}: set of mothers of @math{v} over an edge
+labeled @math{l}
+@item @code{upL}: set of nodes equal or above
+an edge into @math{v} labeled @math{l}
+@item @code{daughtersL}: set of daughters of @math{v} over an edge
+labeled @math{l}
+@item @code{downL}: set of nodes equal or below the daughters
+of @math{v} labeled @math{l}
+@end itemize
+
+The integers and sets of integers contain node indices.
+
+The Graph principle states that @code{D} is a graph.
+
+@ifnottex
+Here is the definition of the @code{GraphMakeNodes} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/GraphMakeNodes.oz
+@end ifnottex
+
+@ifnottex
+Here is the definition of the @code{GraphConditions} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/GraphConditions.oz
+@end ifnottex
+
+@ifnottex
+Here is the definition of the @code{GraphMakeEdges} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/GraphMakeEdges.oz
+@end ifnottex
+
+@ifnottex
+Here is the definition of the @code{GraphDist} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/GraphDist.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node GraphConstraints, GraphDist, Graph, Principles list
+@subsection Graph principle (no distribution)
+
+This principle is like the Graph principle (@ref{Graph}), except that
+it does not apply non-deterministic @emph{distribution}.
+@cindex distribution
+That is, it does not use the constraint functor @code{GraphDist}.
+
+@c ************************************************************
+
+@node GraphDist, Graph1, GraphConstraints, Principles list
+@subsection Graph principle (only distribution)
+
+This principle adds non-deterministic @emph{distribution}
+@cindex distribution
+to the GraphConstraints principle (@ref{GraphConstraints}). The two
+principles together are equivalent to the Graph principle
+(@ref{Graph}).
+
+@c ************************************************************
+
+@node Graph1, Graph1Constraints, GraphDist, Principles list
+@subsection Graph1 principle
+
+@itemize @bullet
+@item identifier: @code{principle.graph1}
+@item dimension variables: @code{D}
+@item argument variables: none
+@item default values: none
+@item model record:
+@example
+@{ mothers:    ints
+  daughters:  ints
+  up:         ints
+  down:       ints
+  index:      int
+  eq:         ints
+  equp:       ints
+  eqdown:     ints
+  labels:     set(label(D))
+  daughtersL: vec(label(D) ints)@}
+@end example
+@item constraints: @code{GraphMakeNodes1} (priority 130),
+@code{GraphConditions1} (120), @code{GraphMakeEdges1} (100) and
+@code{GraphDist} (90)
+@item edge constraints: none
+@end itemize
+
+The Graph1 principle introduces a model record with the
+following features for each node @math{v}:
+
+@itemize @bullet
+@item @code{mothers}: set of mothers of @math{v}
+@item @code{daughters}: set of daughters of @math{v}
+@item @code{up}: set of nodes above @math{v}
+@item @code{down}: set of nodes below @math{v}
+@item @code{index}: index of @math{v}
+@item @code{eq}: singleton set containing the index of @math{v}
+@item @code{equp}: set of nodes equal or above @math{v}
+@item @code{eqdown}: set of nodes equal or below @math{v}
+@item @code{labels}: set of incoming edge labels of @math{v}
+@item @code{daughtersL}: set of daughters of @math{v} over an edge
+labeled @math{l}
+@end itemize
+
+The integers and sets of integers contain node indices.
+
+The Graph1 principle states that @code{D} is a graph.
+
+The only difference of the Graph1 principle and the Graph principle
+(@ref{Graph}) is that the Graph1 principle omits the model record
+features @code{mothersL}, @code{upL} and @code{downL}, and thereby
+improves solving efficiency. Most principles work in conjunction with
+both principles, but some (e.g. the Valency principle
+(@ref{Valency1})) do require the additional model record features of
+the Graph principle (@ref{Graph}). Each such principle clearly states
+this particularity in its description in this document.
+
+@ifnottex
+Here is the definition of the @code{GraphMakeNodes1} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/GraphMakeNodes1.oz
+@end ifnottex
+
+@ifnottex
+Here is the definition of the @code{GraphConditions1} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/GraphConditions1.oz
+@end ifnottex
+
+@ifnottex
+Here is the definition of the @code{GraphMakeEdges1} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/GraphMakeEdges1.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Graph1Constraints, Graph1Dist, Graph1, Principles list
+@subsection Graph1 principle (no distribution)
+
+This principle is like the Graph1 principle (@ref{Graph1}), except
+that it does not apply non-deterministic @emph{distribution}.
+@cindex distribution
+That is, it does not use the constraint functor @code{GraphDist}.
+
+@c ************************************************************
+
+@node Graph1Dist, In, Graph1Constraints, Principles list
+@subsection Graph1 principle (only distribution)
+
+This principle adds non-deterministic @emph{distribution}
+@cindex distribution
+to the Graph1Constraints principle (@ref{Graph1Constraints}). The two
+principles together are equivalent to the Graph1 principle
+(@ref{Graph1}).
+
+@c ************************************************************
+
+@node In, In1, Graph1Dist, Principles list
+@subsection In principle
+
+@itemize @bullet
+@item identifier: @code{principle.in}
+@item dimension variables: @code{D}
+@item argument variables:@*
+@code{In: iset(label(D))}
+@item default values:@*
+@code{In: _.D.entry.in}
+@item model record: empty
+@item constraints: @code{In} (priority 130)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimension @code{D}.
+
+The @code{In} argument variable defines the set of @emph{possible
+incoming edge labels}.
+@cindex incoming edge label
+@cindex incoming edge labels
+@cindex in specification
+@cindex possible incoming edge labels
+Its default value is lexicalized by the lexical entry feature
+@code{in} on @code{D}.
+
+It stipulates for all nodes @math{v} that:
+@itemize @bullet
+@item the set of incoming edge labels of @math{v} is a subset of
+the set of possible incoming edge labels
+@end itemize
+
+This principle is now mostly superseded by the Valency principle
+(@ref{Valency}), but is still used for the classic grammars, e.g.  the
+Acl01 grammar (@ref{Acl01}).
+
+Notice that the In2 principle (@ref{In2}) uses the same constraint
+functor, but the type of the @code{In} argument variable is an
+accumulative set of labels on @code{D}, instead of an intersective
+one.
+
+@ifnottex
+Here is the definition of the @code{In} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/In.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node In1, In2, In, Principles list
+@subsection In1 principle
+
+@itemize @bullet
+@item identifier: @code{principle.in1}
+@item dimension variables: @code{D}
+@item argument variables:@*
+@code{In: valency(label(D))}
+@item default values:@*
+@code{In: _.D.entry.in}
+@item model record: empty
+@item constraints: @code{In1} (priority 130)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimension @code{D}.@footnote{This principle does not work in
+conjunction with the Graph1 principle (@ref{Graph1}) as it accesses
+the model record feature @code{mothersL} only introduced by the Graph
+principle (@ref{Graph}).}
+
+The @code{In} argument variable defines the @emph{incoming edge labels
+cardinality specification}.
+@cindex incoming edge label
+@cindex incoming edge labels
+@cindex cardinality
+@cindex in specification
+@cindex incoming edge labels cardinality specification
+Its default value is lexicalized by the lexical entry feature
+@code{in} on @code{D}.
+
+It stipulates for all nodes @math{v} that:
+@itemize @bullet
+@item the incoming edges of @math{v} must satisfy the
+incoming edge labels cardinality specification
+@end itemize
+
+The In1 principle is symmetric to the Out principle (@ref{Out}), and
+is now mostly superseded by the Valency principle (@ref{Valency1}).
+
+@ifnottex
+Here is the definition of the @code{In1} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/In1.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node In2, Linking12BelowStartEnd, In1, Principles list
+@subsection In2 principle
+
+@itemize @bullet
+@item identifier: @code{principle.in2}
+@item dimension variables: @code{D}
+@item argument variables:@*
+@code{In: set(label(D))}
+@item default values:@*
+@code{In: _.D.entry.in}
+@item model record: empty
+@item constraints: @code{In} (priority 130)
+@item edge constraints: none
+@end itemize
+
+The only difference between this principle and the In principle
+(@ref{In}) is that the type of the @code{In} argument variable is an
+accumulative set of labels on @code{D}, instead of an intersective
+one.
+
+@c ************************************************************
+
+@node Linking12BelowStartEnd, LinkingAbove, In2, Principles list
+@subsection Linking12BelowStartEnd principle
+
+@itemize @bullet
+@item identifier: @code{principle.linking12BelowStartEnd}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{Start: vec(label(D1) set(label(D2)))}@*
+@code{End: vec(label(D1) set(label(D2)))}
+@item default values:@*
+@code{Start: ^.D3.entry.start}@*
+@code{End: ^.D3.entry.end}
+@item model record: empty
+@item constraints: @code{Linking12BelowStartEnd} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.@footnote{This principle does
+not work in conjunction with the Graph1 principle (@ref{Graph1}) on
+@code{D2} as it accesses the model record feature @code{mothersL} only
+introduced by the Graph principle (@ref{Graph}).}
+
+This principle is from the family of @emph{linking principles}.
+@cindex linking
+@cindex linking principles
+
+For all edges from @math{v} to @math{v'} labeled @math{l} on @code{D1},
+it stipulates the constraints:
+@itemize @bullet
+@item if @code{Start}(l) is not empty, then on @code{D2},
+@math{v'} must be the daughter, or the daughter of the daughter of
+@math{v}, and the outgoing edge of @math{v} must be labeled by a label
+in @code{Start}(l)
+@item if @code{End}(l) is not empty, then on @code{D2},
+@math{v'} must be the daughter, or the daughter of the daughter of
+@math{v}, and the incoming edge of @math{v'} must be in
+@code{End}(l)
+@end itemize
+That is, @code{Start}(l) and @code{End}(l) specify the direction,
+distance, startpoint and endpoint of the path from @math{v} to
+@math{v'} on @code{D2}.
+
+@ifnottex
+Here is the definition of the @code{Linking12BelowStartEnd}
+constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Linking12BelowStartEnd.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LinkingAbove, LinkingAboveBelow1or2Start, Linking12BelowStartEnd, Principles list
+@subsection LinkingAbove principle
+
+@itemize @bullet
+@item identifier: @code{principle.linkingAbove}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{Which: set(label(D1))}
+@item default values:@*
+@code{Which: ^.D3.entry.which}
+@item model record: empty
+@item constraints: @code{LinkingAbove} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.
+
+This principle is from the family of @emph{linking principles}.
+@cindex linking
+@cindex linking principles
+
+The constraint for all edges from @math{v} to @math{v'} labeled
+@math{l} on @code{D1} is:
+@itemize @bullet
+@item if @math{l} in @code{Which}, then @math{v'} must be above
+@math{v} on @code{D2}
+@end itemize
+That is, @code{Which} specifies that the daughter @math{v'} of
+@math{v} on @code{D1} can be found above @math{v} on @code{D2}. In
+other words, @code{Which} specifies the direction of the path from
+@math{v} to @math{v'} on @code{D2}.
+
+@ifnottex
+Here is the definition of the @code{LinkingAbove} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/LinkingAbove.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LinkingAboveBelow1or2Start, LinkingAboveEnd, LinkingAbove, Principles list
+@subsection LinkingAboveBelow1or2Start principle
+
+@itemize @bullet
+@item identifier: @code{principle.linkingAboveBelow1or2Start}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{Start: vec(label(D1) set(label(D2)))}
+@item default values:@*
+@code{Start: ^.D3.entry.start}
+@item model record: empty
+@item constraints: @code{LinkingBelow1or2Start} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle is from the family of @emph{linking principles}.
+@cindex linking
+@cindex linking principles
+
+For all edges from @math{v} to @math{v'} labeled @math{l} on @code{D1},
+it stipulates the constraint:
+@itemize @bullet
+@item if @code{Start}(l) is not empty, then on @code{D2},
+@math{v'} must be either the daughter or the daughter of the daughter
+of a node @math{v''} above @math{v}, and the first edge on the path
+from @math{v} to @math{v'} must be labeled by a label in
+@code{Start}(l)
+@end itemize
+
+@ifnottex
+Here is the definition of the @code{LinkingBelow1or2Start} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/LinkingBelow1or2Start.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LinkingAboveEnd, LinkingAboveStart, LinkingAboveBelow1or2Start, Principles list
+@subsection LinkingAboveEnd principle
+
+@itemize @bullet
+@item identifier: @code{principle.linkingAboveEnd}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{End: vec(label(D1) set(label(D2)))}
+@item default values:@*
+@code{End: ^.D3.entry.end}
+@item model record: empty
+@item constraints: @code{LinkingAboveEnd} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.@footnote{This principle does
+not work in conjunction with the Graph1 principle (@ref{Graph1}) on
+@code{D2} as it accesses the model record feature @code{downL} only
+introduced by the Graph principle (@ref{Graph}).}
+
+This principle is from the family of @emph{linking principles}.
+@cindex linking
+@cindex linking principles
+
+For all edges from @math{v} to @math{v'} labeled @math{l} on @code{D1},
+it stipulates the constraint:
+@itemize @bullet
+@item if @code{End}(l) is not empty, then on @code{D2},
+@math{v'} must be above @math{v}, and the outgoing edge of @math{v'}
+must be in @code{End}(l)
+@end itemize
+That is, @code{End}(l) specifies the direction and endpoint of the
+path from @math{v} to @math{v'} on @code{D2}.
+
+@ifnottex
+Here is the definition of the @code{LinkingAboveEnd} edge
+constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/LinkingAboveEnd.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LinkingAboveStart, LinkingAboveStartEnd, LinkingAboveEnd, Principles list
+@subsection LinkingAboveStart principle
+
+@itemize @bullet
+@item identifier: @code{principle.linkingAboveStart}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{Start: vec(label(D1) set(label(D2)))}
+@item default values:@*
+@code{Start: ^.D3.entry.start}
+@item model record: empty
+@item constraints: @code{LinkingAboveStart} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.@footnote{This principle does
+not work in conjunction with the Graph1 principle (@ref{Graph1}) on
+@code{D2} as it accesses the model record feature @code{upL} only
+introduced by the Graph principle (@ref{Graph}).}
+
+This principle is from the family of @emph{linking principles}.
+@cindex linking
+@cindex linking principles
+
+For all edges from @math{v} to @math{v'} labeled @math{l} on @code{D1},
+it stipulates the constraint:
+@itemize @bullet
+@item if @code{Start}(l) is not empty, then on @code{D2},
+@math{v'} must be above an edge into @math{v} labeled by a label in
+@code{Start}(l)
+@end itemize
+That is, @code{Start}(l) specifies the direction and startpoint of the
+path from @math{v} to @math{v'} on @code{D2}.
+
+@ifnottex
+Here is the definition of the @code{LinkingAboveStart} edge
+constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/LinkingAboveStart.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LinkingAboveStartEnd, LinkingBelow, LinkingAboveStart, Principles list
+@subsection LinkingAboveStartEnd principle
+
+@itemize @bullet
+@item identifier: @code{principle.linkingAboveStartEnd}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{Start: vec(label(D1) set(label(D2)))}@* @code{End: vec(label(D1)
+set(label(D2)))}
+@item default values:@*
+@code{Start: ^.D3.entry.start}@*
+@code{End: ^.D3.entry.end}
+@item model record: empty
+@item constraints: @code{LinkingAboveStartEnd} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.@footnote{This principle does
+not work in conjunction with the Graph1 principle (@ref{Graph1}) on
+@code{D2} as it accesses the model record features @code{downL} and
+@code{upL} only introduced by the Graph principle (@ref{Graph}).}
+
+This principle is from the family of @emph{linking principles}.
+@cindex linking
+@cindex linking principles
+
+For all edges from @math{v} to @math{v'} labeled @math{l} on @code{D1},
+it stipulates the constraints:
+@itemize @bullet
+@item if @code{Start}(l) is not empty, then on @code{D2},
+@math{v'} must be above an edge into @math{v} labeled by a label in
+@code{Start}(l)
+@item if @code{End}(l) is not empty, then on @code{D2},
+@math{v'} must be above @math{v}, and the outgoing edge of @math{v'}
+must be in @code{End}(l)
+@end itemize
+That is, @code{Start}(l) and @code{End}(l) specify the direction,
+startpoint and endpoint of the path from @math{v} to @math{v'} on
+@code{D2}.
+
+@ifnottex
+Here is the definition of the @code{LinkingAboveStartEnd}
+constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/LinkingAboveStartEnd.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LinkingBelow, LinkingBelow1or2Start, LinkingAboveStartEnd, Principles list
+@subsection LinkingBelow principle
+
+@itemize @bullet
+@item identifier: @code{principle.linkingBelow}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{Which: set(label(D1))}
+@item default values:@*
+@code{Which: ^.D3.entry.which}
+@item model record: empty
+@item constraints: @code{LinkingBelow} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.
+
+This principle is from the family of @emph{linking principles}.
+@cindex linking
+@cindex linking principles
+
+The constraint for all edges from @math{v} to @math{v'} labeled
+@math{l} on @code{D1} is:
+@itemize @bullet
+@item if @math{l} in @code{Which}, then @math{v'} must be below
+@math{v} on @code{D2}
+@end itemize
+That is, @code{Which} specifies that the daughter @math{v'} of @math{v}
+on @code{D1} can be found below @math{v} on @code{D2}. In other words,
+@code{Which} specifies the direction of the path from @math{v} to
+@math{v'} on @code{D2}.
+
+@ifnottex
+Here is the definition of the @code{LinkingBelow} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/LinkingBelow.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LinkingBelow1or2Start, LinkingBelowEnd, LinkingBelow, Principles list
+@subsection LinkingBelow1or2Start principle
+
+@itemize @bullet
+@item identifier: @code{principle.linkingBelow1or2Start}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{Start: vec(label(D1) set(label(D2)))}
+@item default values:@*
+@code{Start: ^.D3.entry.start}
+@item model record: empty
+@item constraints: @code{LinkingBelow1or2Start} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle is from the family of @emph{linking principles}.
+@cindex linking
+@cindex linking principles
+
+For all edges from @math{v} to @math{v'} labeled @math{l} on @code{D1},
+it stipulates the constraint:
+@itemize @bullet
+@item if @code{Start}(l) is not empty, then on @code{D2},
+@math{v'} must be either the daughter or the daughter of the daughter
+of @math{v}, and the first edge on the path from @math{v} to @math{v'}
+must be labeled by a label in @code{Start}(l)
+@end itemize
+That is, @code{Start}(l) specifies the direction and
+startpoint of the path from @math{v} to @math{v'} on @code{D2}.
+
+@ifnottex
+Here is the definition of the @code{LinkingBelow1or2Start}
+constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/LinkingBelow1or2Start.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LinkingBelowEnd, LinkingBelowStart, LinkingBelow1or2Start, Principles list
+@subsection LinkingBelowEnd principle
+
+@itemize @bullet
+@item identifier: @code{principle.linkingBelowEnd}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{End: vec(label(D1) set(label(D2)))}
+@item default values:@*
+@code{End: ^.D3.entry.end}
+@item model record: empty
+@item constraints: @code{LinkingBelowEnd} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.@footnote{This principle does
+not work in conjunction with the Graph1 principle (@ref{Graph1}) on
+@code{D2} as it accesses the model record feature @code{upL} only
+introduced by the Graph principle (@ref{Graph}).}
+
+This principle is from the family of @emph{linking principles}.
+@cindex linking
+@cindex linking principles
+
+For all edges from @math{v} to @math{v'} labeled @math{l} on @code{D1},
+it stipulates the constraint:
+@itemize @bullet
+@item if @code{End}(l) is not empty, then on @code{D2},
+@math{v'} must be below @math{v}, and the incoming edge of @math{v'}
+must be in @code{End}(l)
+@end itemize
+That is, @code{End}(l) specifies the direction and endpoint of the
+path from @math{v} to @math{v'} on @code{D2}.
+
+@ifnottex
+Here is the definition of the @code{LinkingBelowEnd} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/LinkingBelowEnd.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LinkingBelowStart, LinkingBelowStartEnd, LinkingBelowEnd, Principles list
+@subsection LinkingBelowStart principle
+
+@itemize @bullet
+@item identifier: @code{principle.linkingBelowStart}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{Start: vec(label(D1) set(label(D2)))}
+@item default values:@*
+@code{Start: ^.D3.entry.start}
+@item model record: empty
+@item constraints: @code{LinkingBelowStart} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.@footnote{This principle does
+not work in conjunction with the Graph1 principle (@ref{Graph1}) on
+@code{D2} as it accesses the model record feature @code{downL} only
+introduced by the Graph principle (@ref{Graph}).}
+
+This principle is from the family of @emph{linking principles}.
+@cindex linking
+@cindex linking principles
+
+For all edges from @math{v} to @math{v'} labeled @math{l} on @code{D1},
+it stipulates the constraint:
+@itemize @bullet
+@item if @code{Start}(l) is not empty, then on @code{D2},
+@math{v'} must be below an edge emanating from @math{v} and labeled by
+a label in @code{Start}(l)
+@end itemize
+That is, @code{Start}(l) specifies the direction and
+startpoint of the path from @math{v} to @math{v'} on @code{D2}.
+
+@ifnottex
+Here is the definition of the @code{LinkingBelowStart} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/LinkingBelowStart.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LinkingBelowStartEnd, LinkingDaughter, LinkingBelowStart, Principles list
+@subsection LinkingBelowStartEnd principle
+
+@itemize @bullet
+@item identifier: @code{principle.linkingBelowStartEnd}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{Start: vec(label(D1) set(label(D2)))}@*
+@code{End: vec(label(D1) set(label(D2)))}
+@item default values:@*
+@code{Start: ^.D3.entry.start}@*
+@code{End: ^.D3.entry.end}
+@item model record: empty
+@item constraints: @code{LinkingBelowStartEnd} (@code{D1})
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.@footnote{This principle does
+not work in conjunction with the Graph1 principle (@ref{Graph1}) on
+@code{D2} as it accesses the model record features @code{downL} and
+@code{upL} only introduced by the Graph principle (@ref{Graph}).}
+
+This principle is from the family of @emph{linking principles}.
+@cindex linking
+@cindex linking principles
+
+For all edges from @math{v} to @math{v'} labeled @math{l} on @code{D1},
+it stipulates the constraints:
+@itemize @bullet
+@item if @code{Start}(l) is not empty, then on @code{D2},
+@math{v'} must be below an edge emanating from @math{v} and labeled by
+a label in @code{Start}(l)
+@item if @code{End}(l) is not empty, then on @code{D2},
+@math{v'} must be below @math{v}, and the incoming edge of @math{v'}
+must be in @code{End}(l)
+@end itemize
+That is, @code{Start}(l) and @code{End}(l) specify the direction,
+startpoint and endpoint of the path from @math{v} to @math{v'} on
+@code{D2}.
+
+@ifnottex
+Here is the definition of the @code{LinkingBelowStartEnd}
+constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/LinkingBelowStartEnd.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LinkingDaughter, LinkingDaughterEnd, LinkingBelowStartEnd, Principles list
+@subsection LinkingDaughter principle
+
+@itemize @bullet
+@item identifier: @code{principle.linkingDaughter}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{Which: set(label(D1))}
+@item default values:@*
+@code{Which: ^.D3.entry.which}
+@item model record: empty
+@item constraints: @code{LinkingDaughter} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.
+
+This principle is from the family of @emph{linking principles}.
+@cindex linking
+@cindex linking principles
+
+The constraint for all edges from @math{v} to @math{v'} labeled
+@math{l} on @code{D1} is:
+@itemize @bullet
+@item if @math{l} in @code{Which}, then @math{v'} must be a
+daughter of @math{v} on @code{D2}
+@end itemize
+That is, @code{Which} specifies that the daughter @math{v'} of
+@math{v} on @code{D1} can be found again as a daughter of @math{v} on
+@code{D2}. In other words, @code{Which} specifies the direction
+and distance of the path from @math{v} to @math{v'} on @code{D2}.
+
+@ifnottex
+Here is the definition of the @code{LinkingDaughter} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/LinkingDaughter.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LinkingDaughterEnd, LinkingEnd, LinkingDaughter, Principles list
+@subsection LinkingDaughterEnd principle
+
+@itemize @bullet
+@item identifier: @code{principle.linkingDaughterEnd}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{End: vec(label(D1) set(label(D2)))}
+@item default values:@*
+@code{End: ^.D3.entry.end}
+@item model record: empty
+@item constraints: @code{LinkingDaughterEnd} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.
+
+This principle is from the family of @emph{linking principles}.
+@cindex linking
+@cindex linking principles
+
+For all edges from @math{v} to @math{v'} labeled @math{l} on @code{D1},
+it stipulates the constraint:
+@itemize @bullet
+@item if @code{End}(l) is not empty, then on @code{D2},
+@math{v'} is a daughter of @math{v} whose incoming label is in
+@code{End}(l)
+@end itemize
+That is, @code{End}(l) specifies the direction, distance, and endpoint
+of the path from @math{v} to @math{v'} on @code{D2}.
+
+@ifnottex
+Here is the definition of the @code{LinkingDaughterEnd} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/LinkingDaughterEnd.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LinkingEnd, LinkingMother, LinkingDaughterEnd, Principles list
+@subsection LinkingEnd principle
+
+@itemize @bullet
+@item identifier: @code{principle.linkingEnd}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{End: vec(label(D1) iset(label(D2)))}
+@item default values:@*
+@code{End: ^.D3.entry.end}
+@item model record: empty
+@item constraints: @code{LinkingEnd} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.
+
+This principle is from the family of @emph{linking principles}.
+@cindex linking
+@cindex linking principles
+
+The constraint for all edges from @math{v} to @math{v'} labeled
+@math{l} on @code{D1} is:
+@itemize @bullet
+@item if @code{End}(l) is not empty, then on @code{D2},
+the incoming edge label of @math{v'} must be in @code{End}(l).
+@end itemize
+In other words, @code{End} specifies the @emph{endpoint} of the path
+to @math{v'} on @code{D2}.
+
+@ifnottex
+Here is the definition of the @code{LinkingEnd} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/LinkingEnd.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LinkingMother, LinkingMotherEnd, LinkingEnd, Principles list
+@subsection LinkingMother principle
+
+@itemize @bullet
+@item identifier: @code{principle.linkingMother}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{Which: set(label(D1))}
+@item default values:@*
+@code{Which: ^.D3.entry.which}
+@item model record: empty
+@item constraints: @code{LinkingMother} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.
+
+This principle is from the family of @emph{linking principles}.
+@cindex linking
+@cindex linking principles
+
+The constraint for all edges from @math{v} to @math{v'} labeled
+@math{l} on @code{D1} is:
+@itemize @bullet
+@item if @math{l} in @code{Which}, then @math{v'} must be a
+mother of @math{v} on @code{D2}
+@end itemize
+That is, @code{Which} specifies that the daughter @math{v'} of @math{v}
+on @code{D1} can be found again as a mother of @math{v} on
+@code{D2}. In other words, @code{Which} specifies the direction and
+distance of the path from @math{v} to @math{v'} on @code{D2}.
+
+@ifnottex
+Here is the definition of the @code{LinkingMother} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/LinkingMother.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LinkingMotherEnd, LinkingNotDaughter, LinkingMother, Principles list
+@subsection LinkingMotherEnd principle
+
+@itemize @bullet
+@item identifier: @code{principle.linkingMotherEnd}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{End: vec(label(D1) set(label(D2)))}
+@item default values:@*
+@code{End: ^.D3.entry.end}
+@item model record: empty
+@item constraints: @code{LinkingMotherEnd} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.
+
+This principle is from the family of @emph{linking principles}.
+@cindex linking
+@cindex linking principles
+
+For all edges from @math{v} to @math{v'} labeled @math{l} on @code{D1},
+it stipulates the constraint:
+@itemize @bullet
+@item if @code{End}(l) is not empty, then on @code{D2},
+@math{v'} is a mother of @math{v}, and the incoming label of @math{v}
+is in @code{End}(l)
+@end itemize
+That is, @code{End}(l) specifies the direction, distance, and endpoint
+of the path from @math{v} to @math{v'} on @code{D2}.
+
+@ifnottex
+Here is the definition of the @code{LinkingMotherEnd} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/LinkingMotherEnd.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LinkingNotDaughter, LinkingNotMother, LinkingMotherEnd, Principles list
+@subsection LinkingNotDaughter principle
+
+@itemize @bullet
+@item identifier: @code{principle.linkingNotDaughter}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{Which: set(label(D1))}
+@item default values:@*
+@code{Which: ^.D3.entry.which}
+@item model record: empty
+@item constraints: @code{LinkingNotDaughter} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.
+
+This principle is from the family of @emph{linking principles}.
+@cindex linking
+@cindex linking principles
+
+The constraint for all edges from @math{v} to @math{v'} labeled
+@math{l} on @code{D1} is:
+@itemize @bullet
+@item if @math{l} in @code{Which}, then @math{v'} must @emph{not}
+be a daughter of @math{v} on @code{D2}
+@end itemize
+That is, @code{Which} specifies that the daughter @math{v'} of @math{v}
+on @code{D1} cannot be again a daughter of @math{v} on @code{D2}.
+
+@ifnottex
+Here is the definition of the @code{LinkingNotDaughter} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/LinkingNotDaughter.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LinkingNotMother, LinkingSisters, LinkingNotDaughter, Principles list
+@subsection LinkingNotMother principle
+
+@itemize @bullet
+@item identifier: @code{principle.linkingNotMother}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{Which: set(label(D1))}
+@item default values:@*
+@code{Which: ^.D3.entry.which}
+@item model record: empty
+@item constraints: @code{LinkingNotMother} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.
+
+This principle is from the family of @emph{linking principles}.
+@cindex linking
+@cindex linking principles
+
+The constraint for all edges from @math{v} to @math{v'} labeled
+@math{l} on @code{D1} is:
+@itemize @bullet
+@item if @math{l} in @code{Which}, then @math{v'} must @emph{not}
+be a mother of @math{v} on @code{D2}
+@end itemize
+That is, @code{Which} specifies that the daughter @math{v'} of @math{v}
+on @code{D1} cannot be a mother of @math{v} on @code{D2}.
+
+@ifnottex
+Here is the definition of the @code{LinkingNotMother} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/LinkingNotMother.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LinkingSisters, LockingDaughters, LinkingNotMother, Principles list
+@subsection LinkingSisters principle
+
+@itemize @bullet
+@item identifier: @code{principle.linkingSisters}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{Which: set(label(D1))}
+@item default values:@*
+@code{Which: ^.D3.entry.which}
+@item model record: empty
+@item constraints: @code{LinkingSisters} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.
+
+This principle is from the family of @emph{linking principles}.
+@cindex linking
+@cindex linking principles
+
+The constraint for all edges from @math{v} to @math{v'} labeled
+@math{l} on @code{D1} is:
+@itemize @bullet
+@item if @math{l} in @code{Which}, then there must
+be another node @math{v''}, being the mother of both @math{v} and
+@math{v'} on @code{D2}, i.e. @math{v} and @math{v'} must be sisters on
+@code{D2}
+@end itemize
+
+@ifnottex
+Here is the definition of the @code{LinkingSisters} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/LinkingSisters.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LockingDaughters, LookRight, LinkingSisters, Principles list
+@subsection LockingDaughters principle
+
+@itemize @bullet
+@item identifier: @code{principle.lockingDaughters}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{LockDaughters: set(label(D1))}@*
+@code{ExceptAbove: set(label(D1))}@*
+@code{Key: set(label(D2))}
+@item default values:@*
+@code{LockDaughters: @{@}}@*
+@code{ExceptAbove: @{@}}@*
+@code{Key: @{@}}
+@item model record: empty
+@item constraints: @code{LockingDaughters} (priority 110)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimension @code{D1}: it does not work with the Graph1 principle
+(@ref{Graph1}) on @code{D1}.
+
+It states the constraint that for all nodes @math{v}, the dependents
+@math{v'} reachable on @code{D1} via an edge label @math{l} in the
+lexically specified set @code{LockDaughters} are ``locked'', i.e., on
+@code{D2}, they cannot be a dependent of any node except:
+@itemize @bullet
+@item @math{v}
+@item those nodes above @math{v} on @code{D1} reachable via an 
+edge labeled @math{l'} in @code{ExceptAbove}
+@item those mothers of @math{v'} which enter @math{v} via an edge
+label labeled @math{l'} in @code{Key} on @code{D1}
+@end itemize
+
+@ifnottex
+Here is the definition of the @code{LockingDaughters} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/LockingDaughters.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node LookRight, Order, LockingDaughters, Principles list
+@subsection LookRight principle
+
+@itemize @bullet
+@item identifier: @code{principle.lookright}
+@item dimension variables: @code{D}
+@item argument variables:@*
+@code{LookRight: vec("id.agrreq" iset(label(D)))}
+@item default values:@*
+@code{LookRight: _.D.entry.lookright}
+@item model record: empty
+@item constraints: @code{LookRight} (priority 130)
+@item edge constraints: none
+@end itemize
+
+This principle was written by Ondrej Bojar.
+
+@ifnottex
+Here is the definition of the @code{LookRight} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/LookRight.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Order, Order1, LookRight, Principles list
+@subsection Order principle
+
+@itemize @bullet
+@item identifier: @code{principle.order}
+@item dimension variables: @code{D}
+@item argument variables:@*
+@code{On: iset(label(D))}@*
+@code{Order: list(label(D))}@*
+@code{Yields: bool}
+@item default values:@*
+@code{On: _.D.entry.on}@*
+@code{Order: []}@*
+@code{Yields: false}
+@item model record:
+@example
+@{ selfSet:  vec(label(D) ints)
+  self:     label(D)
+  pos:      ints
+  yield:    ints
+  yieldS:   ints
+  yieldL:   vec(label(D) ints) @}
+@end example
+@item constraints: @code{OrderMakeNodes} (priority 130),
+@code{OrderConditions} (120), and @code{OrderDist} (90)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimension @code{D}.
+
+The argument variable @code{On} specifies the set of @emph{node labels}
+@cindex node label
+for each node to position it with respect to its daughters. The
+default value is lexicalized by the lexical entry feature @code{on} on
+@code{D}.
+
+The argument variable @code{Order} specifies a total order on a subset
+of the edge labels on @code{D}. Its default value is the empty list (i.e.
+nothing is ordered).
+
+The argument variable @code{Yields} specifies whether the yields
+(@code{true}) or the daughters (@code{false}) of each node on @code{D}
+shall be ordered. Its default value is @code{false} (i.e. the yields
+are not ordered).
+
+The order principle constrains the linear order of the nodes. In
+particular, it orders the daughters of each node according to their
+edge label, and positions the head with respect to the daughters using
+their node label.  The @code{On} argument specifies the set of
+possible node labels for a node.  The @code{Order} argument variable
+specifies a total order on a subset of the set of labels.
+
+Notice that there is also the more general Order1 principle
+(@ref{Order1}) where the @code{Order} argument variable specifies a
+total order on sets of labels.
+
+The order principle is most efficient if the following is satisfied:
+@enumerate
+@item @code{Order} is an exhaustive total order on @emph{all} edge labels of dimension @code{D}
+@item @code{Yields} is @code{true}
+@end enumerate
+Otherwise, the order principle uses a weaker constraint
+(@code{FS.int.seq} of the Mozart FS library instead of Denys Duchier's
+@code{Select.seqUnion} of his selection constraint package).
+
+@ifnottex
+Here is the definition of the @code{OrderMakeNodes} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/OrderMakeNodes.oz
+@end ifnottex
+
+@ifnottex
+Here is the definition of the @code{OrderConditions} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/OrderConditions.oz
+@end ifnottex
+
+@ifnottex
+Here is the definition of the @code{OrderDist} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/OrderDist.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Order1, Order1Constraints, Order, Principles list
+@subsection Order1 principle
+
+@itemize @bullet
+@item identifier: @code{principle.order1}
+@item dimension variables: @code{D}
+@item argument variables:@*
+@code{On: iset(label(D))}@*
+@code{Order: list(set(label(D)))}@*
+@code{Yields: bool}
+@item default values:@*
+@code{On: _.D.entry.on}@*
+@code{Order: []}@*
+@code{Yields: false}
+@item model record:
+@example
+@{ selfSet:  vec(label(D) ints)
+  self:     label(D)
+  pos:      ints
+  yield:    ints
+  yieldS:   ints
+  yieldL:   vec(label(D) ints) @}
+@end example
+@item constraints: @code{OrderMakeNodes} (priority 130),
+@code{Order1Conditions} (120), and @code{OrderDist} (90)
+@item edge constraints: none
+@end itemize
+
+This principle is a generalization of the original Order principle
+(@ref{Order}). Contrary to that, it the @code{Order} argument variable
+specifies an order on sets of labels, instead of just labels.
+
+@ifnottex
+Here is the definition of the @code{Order1Conditions} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Order1Conditions.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Order1Constraints, Order1Dist, Order1, Principles list
+@subsection Order1 principle (no distribution)
+
+This principle is like the Order1 principle (@ref{Order1}), except
+that it does not apply non-deterministic @emph{distribution}.
+@cindex distribution
+
+@c ************************************************************
+
+@node Order1Dist, Order2, Order1Constraints, Principles list
+@subsection Order1 principle (no distribution)
+
+This principle adds non-deterministic @emph{distribution}
+@cindex distribution
+to the Order1Constraints principle (@ref{Order1Constraints}). The two
+principles together are equivalent to the Order1 principle
+(@ref{Order1}).
+
+@c ************************************************************
+
+@node Order2, Order2Constraints, Order1Dist, Principles list
+@subsection Order2 principle
+
+@itemize @bullet
+@item identifier: @code{principle.order2}
+@item dimension variables: @code{D}
+@item argument variables:@*
+@code{Order: set(tuple(label(D)|@{"^"@} label(D)|@{"^"@}))}@*
+@code{Yields: bool}
+@item default values:@*
+@code{Order: _.D.entry.order}@*
+@code{Yields: false}
+@item model record:
+@example
+@{ pos:      ints
+  yield:    ints
+  yieldS:   ints
+  yieldL:   vec(label(D) ints) @}
+@end example
+@item constraints: @code{Order2MakeNodes} (priority 130),
+@code{Order2Conditions} (120), and @code{Order2Dist} (90)
+@item edge constraints: none
+@end itemize
+
+This is the new lexicalized order principle used also in the thesis.
+
+@ifnottex
+Here is the definition of the @code{Order2MakeNodes} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Order2MakeNodes.oz
+@end ifnottex
+
+@ifnottex
+Here is the definition of the @code{Order2Conditions} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Order2Conditions.oz
+@end ifnottex
+
+@ifnottex
+Here is the definition of the @code{Order2Dist} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Order2Dist.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Order2Constraints, Order2Dist, Order2, Principles list
+@subsection Order2 principle (no distribution)
+
+This principle is like the Order2 principle (@ref{Order2}), except
+that it does not apply non-deterministic @emph{distribution}.
+@cindex distribution
+
+@c ************************************************************
+
+@node Order2Dist, OrderConstraints, Order2Constraints, Principles list
+@subsection Order2 principle (no distribution)
+
+This principle adds non-deterministic @emph{distribution}
+@cindex distribution
+to the Order2Constraints principle (@ref{Order2Constraints}). The two
+principles together are equivalent to the Order2 principle
+(@ref{Order2}).
+
+@c ************************************************************
+
+@node OrderConstraints, OrderDist, Order2Dist, Principles list
+@subsection Order principle (no distribution)
+
+This principle is like the Order principle (@ref{Order}), except
+that it does not apply non-deterministic @emph{distribution}.
+@cindex distribution
+
+@c ************************************************************
+
+@node OrderDist, OrderWithCuts, OrderConstraints, Principles list
+@subsection Order principle (no distribution)
+
+This principle adds non-deterministic @emph{distribution}
+@cindex distribution
+to the OrderConstraints principle (@ref{OrderConstraints}). The two
+principles together are equivalent to the Order principle
+(@ref{Order}).
+
+@c ************************************************************
+
+@node OrderWithCuts, Out, OrderDist, Principles list
+@subsection OrderWithCuts principle
+
+@itemize @bullet
+@item identifier: @code{principle.orderWithCuts}
+@item dimension variables: @code{D}
+@item argument variables:@*
+@code{On: iset(label(D))}@*
+@code{Order: list(label(D))}@*
+@code{Cut: vec(label(D) set(label(D)))}@*
+@code{Paste: set(label(D))}
+@item default values:@*
+@code{On: _.D.entry.on}@*
+@code{Order: []}@*
+@code{Cut: _.D.entry.out}@*
+@code{Paste: _.D.entry.paste}
+@item model record:
+@example
+@{ selfSet:   vec(label(D) ints)
+  self:      label(D)
+  pos:       ints
+  yield:     ints
+  yieldS:    ints
+  yieldL:    vec(label(D) ints)
+  pasteByL:  vec(label(D) ints)
+  paste:     ints
+  pasteL:    vec(label(D) ints)
+  takeProjL: vec(label(D) ints)
+  giveProjL: vec(label(D) ints)
+  keepProjL: vec(label(D) ints)
+@}
+@end example
+@item constraints: @code{OrderWithCutsMakeNodes} (priority 130),
+@code{OrderWithCutsConditions} (120), and @code{OrderWithCutsDist}
+(90)
+@item edge constraints: none
+@end itemize
+
+This principle was written by Marco Kuhlmann.
+
+@ifnottex
+Here is the definition of the @code{OrderWithCutsMakeNodes} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/OrderWithCutsMakeNodes.oz
+@end ifnottex
+
+@ifnottex
+Here is the definition of the @code{OrderWithCutsConditions}
+constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/OrderWithCutsConditions.oz
+@end ifnottex
+
+@ifnottex
+Here is the definition of the @code{OrderWithCutsDist}
+constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/OrderWithCutsDist.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Out, PL, OrderWithCuts, Principles list
+@subsection Out principle
+
+@itemize @bullet
+@item identifier: @code{principle.out}
+@item dimension variables: @code{D}
+@item argument variables:@*
+@code{Out: valency(label(D))}
+@item default values:@*
+@code{Out: _.D.entry.out}
+@item model record: empty
+@item constraints: @code{Out} (priority 130)
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimension @code{D}.
+
+The @code{Out} argument variable defines the set of @emph{possible
+outgoing edge labels}.
+@cindex outgoing edge label
+@cindex outgoing edge labels
+@cindex out specification
+@cindex possible outgoing edge labels
+Its default value is lexicalized by the lexical entry feature
+@code{out} on @code{D}.
+
+It stipulates for all nodes @math{v} that:
+@itemize @bullet
+@item the outgoing edges of @math{v} must satisfy the
+outgoing edge labels cardinality specification
+@end itemize
+
+The Out principle is symmetric to the In1 principle (@ref{In1}), and
+is now mostly superseded by the Valency principle (@ref{Valency1}).
+
+@ifnottex
+Here is the definition of the @code{Out} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Out.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node PL, PartialAgreement, Out, Principles list
+@subsection PL principle
+
+@itemize @bullet
+@item identifier: @code{principle.pl}
+@item dimension variables: @code{D}
+@item argument variables: none
+@item default values: none
+@item model record: empty
+@item constraints: @code{PL} (priority 120)
+@item edge constraints: none
+@end itemize
+
+This principle contains constraint necessary for the reduction of the
+NP-complete SAT problem to XDG parsing in grammar
+@code{Grammars/SAT.ul} (@ref{SAT}).
+
+@ifnottex
+Here is the definition of the @code{PL} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/PL.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node PartialAgreement, Projectivity, PL, Principles list
+@subsection PartialAgreement principle
+
+@itemize @bullet
+@item identifier: @code{principle.partialAgreement}
+@item dimension variables: @code{D}
+@item argument variables:@*
+@code{Agr1: tv(T)}@*
+@code{Agr2: tv(T)}@*
+@code{Agree: set(label(D))}@*
+@code{Projs: ints}
+@item default values:@*
+@code{Agr1: ^.D.attrs.agr}@*
+@code{Agr2: _.D.attrs.agr}@*
+@code{Agree: ^.D.entry.agree}@*
+@code{Projs: @{@}}
+@item model record: empty
+@item constraints: @code{PartialAgreement} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimension @code{D}.
+
+The PartialAgreement principle establishes partial agreement between
+the nodes connected by an edge, similar to Agreement principle
+@code{principle.agreement} (@ref{Agreement}), which establishes
+complete agreement. The argument variable @code{Projs} represents a
+set of integers which are the projections of the agreement tuple which
+must agree.
+
+It stipulates that:
+@itemize @bullet
+@item for all edges labeled @math{l}, if @math{l} is in @code{Agree},
+then for all projections @math{i} in @code{Projs},
+@code{Agr1.i=Agr2.i}
+@end itemize
+
+@ifnottex
+Here is the definition of the @code{PartialAgreement} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/PartialAgreement.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Projectivity, Relative, PartialAgreement, Principles list
+@subsection Projectivity principle
+
+@itemize @bullet
+@item identifier: @code{principle.projectivity}
+@item dimension variables: @code{D}
+@item argument variables: none
+@item default values: none
+@item model record: empty
+@item constraints: @code{Projectivity} (priority 130)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimension @code{D}.
+
+The operation of this principle depends on whether on @code{D}, a
+principle is used that introduces the @code{yield} feature, i.e.,
+typically an order principle. If the @code{yield} feature is present,
+then the principle states that for each node on @code{D}, its
+@code{yield} set must be convex (i.e. without holes), otherwise, the
+@code{eqdown} set must be convex.
+
+@ifnottex
+Here is the definition of the @code{Projectivity} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Projectivity.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Relative, SameEdges, Projectivity, Principles list
+@subsection Relative principle
+
+@itemize @bullet
+@item identifier: @code{principle.relative}
+@item dimension variables: @code{D1}, @code{D2}
+@item argument variables: none
+@item default values: none
+@item model record: empty
+@item constraints: @code{Relative} (priority 110)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}. It also assumes that @code{D1}
+defines a node attribute @code{agr} whose type is a tuple of at least
+three domains. It also assumes that @code{D1} defines a node attribute
+@code{cat} whose type is a domain including at least the constant
+@code{prels}. It also assumes that @code{D1} includes the constant
+@code{rel} in its set of edge labels, and that @code{D2} includes
+@code{rvf}.
+
+The dutch principle is fairly specialized, and so far only used in the
+Diplom grammar (@ref{Diplom}). It stipulates the following constraints:
+@itemize @bullet
+@item a node has category @code{prels} iff it is a relative pronoun
+@item a node has incoming edge label @code{rel} iff it has a relative pronoun
+below itself
+@item on @code{D2}, the set of nodes equal or below the relative pronoun
+is equal to the set of nodes equal or below the @code{rvf}-daughter
+@item the relative pronoun of the node agrees partially
+(person, gender, number only, not def, case) with its ID mother
+@end itemize
+
+@ifnottex
+Here is the definition of the @code{Relative} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Relative.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node SameEdges, Subgraphs, Relative, Principles list
+@subsection SameEdges principle
+
+@itemize @bullet
+@item identifier: @code{principle.relative}
+@item dimension variables: @code{D1}, @code{D2}
+@item argument variables: none
+@item default values: none
+@item model record: empty
+@item constraints: @code{SameEdges} (priority 130)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.
+
+It states that the graph on dimension @code{D1} must have the same
+edges as the graph on dimension @code{D2}.
+
+@ifnottex
+Here is the definition of the @code{SameEdges} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/SameEdges.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Subgraphs, TAG, SameEdges, Principles list
+@subsection Subgraphs principle
+
+@itemize @bullet
+@item identifier: @code{principle.subgraphs}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{Start: vec(label(D1) set(label(D2)))}
+@item default values:@*
+@code{Start: ^.D3.entry.start}
+@item model record: empty
+@item constraints: @code{Subgraphs} (priority 110)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimensions @code{D1} and @code{D2}.@footnote{This principle does
+not work in conjunction with the Graph1 principle (@ref{Graph1}) on
+@code{D1} and @code{D2} as it accesses the model record feature
+@code{downL} only introduced by the Graph principle (@ref{Graph}).}
+
+The principle creates two sets @math{S1} and @math{S2} for each node
+@math{v}, and each edge label @math{l} on @code{D1}: @math{S1} is the
+set of nodes (i.e. the subgraph) below an edge labeled @math{l}
+emanating from @math{v} on @code{D1}. @math{S2} is the set of nodes
+below all edges labeled by a label in @code{Start(l)} emanating from
+@math{v} on @code{D2}.
+
+The principle then stipulates for each node @math{v}, and each edge
+label @math{l} on @code{D1}:
+@itemize @bullet
+@item if @code{Start(l)} is not empty, then @math{S1} must be
+a subset of @math{S2}
+@end itemize
+
+@ifnottex
+Here is the definition of the @code{Subgraphs} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Subgraphs.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node TAG, Test, Subgraphs, Principles list
+@subsection TAG principle
+
+@itemize @bullet
+@item identifier: @code{principle.tag}
+@item dimension variables: @code{D}
+@item argument variables:@*
+@code{Anchor: iset(label(D))}@*
+@code{Dominates: vec(label(D) set(label(D)))}@*
+@code{Foot: set(label(D))}@*
+@code{Leaves: set(label(D))}@*
+@code{Order: list(label(D))}
+@item default values:@*
+@code{Anchor: _.D.entry.anchor}@*
+@code{Dominates: _.D.entry.dominates}@*
+@code{Foot: _.D.entry.foot}@*
+@code{Leaves: _.D.entry.leaves}@*
+@code{Order: []}
+@item model record:
+@example
+@{ anchorsL:    vec(label(D) ints)
+  belowL:      vec(label(D) ints)
+  pasteL:      vec(label(D) ints)
+  pastedL:     vec(label(D) ints)
+  yieldL:      vec(label(D) ints)
+  leaveYieldL: vec(label(D) ints)
+  yield:       ints
+@}
+@end example
+@item constraints: @code{TAGMakeNodes} (priority 130),
+@code{TAGConditions} (120), and @code{TAGDist} (90)
+@item edge constraints: none
+@end itemize
+
+This principle was written by Marco Kuhlmann.
+
+@ifnottex
+Here is the definition of the @code{TAGMakeNodes} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/TAGMakeNodes.oz
+@end ifnottex
+
+@ifnottex
+Here is the definition of the @code{TAGConditions} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/TAGConditions.oz
+@end ifnottex
+
+@ifnottex
+Here is the definition of the @code{TAGDist} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/TAGDist.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Test, Tree, TAG, Principles list
+@subsection Test principle
+
+@itemize @bullet
+@item identifier: @code{principle.test}
+@item dimension variables: none
+@item argument variables: none
+@item default values: none
+@item model record: empty
+@item constraints: @code{Test} (priority 120)
+@item edge constraints: none
+@end itemize
+
+This principle can be used to try out new constraints, without having
+to worry yet about the principle definition, makefiles etc. After
+trying out, principles should however be properly integrated into the
+XDK, as described in Writing new principles (@ref{Writing new
+principles}).
+
+@ifnottex
+Here is the definition of the @code{Test} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/Test.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Tree, Tree1, Test, Principles list
+@subsection Tree principle
+
+@itemize @bullet
+@item identifier: @code{principle.tree}
+@item dimension variables: @code{D}
+@item argument variables: none
+@item default values: none
+@item model record: empty
+@item constraints: @code{TreeMakeNodes} (priority 130)
+and @code{TreeConditions} (120)
+@item edge constraints: none
+@end itemize
+
+This principle assumes that the Graph principle (@ref{Graph}) is used
+on dimension @code{D}.
+
+The principle stipulates states that @code{D} must be a @emph{tree}.
+@cindex tree
+
+This principle is more specific than the Dag principle (@ref{Dag}).
+
+@ifnottex
+Here is the definition of the @code{TreeMakeNodes} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/TreeMakeNodes.oz
+@end ifnottex
+
+@ifnottex
+Here is the definition of the @code{TreeConditions} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/TreeConditions.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Tree1, Valency1, Tree, Principles list
+@subsection Tree1 principle
+
+@itemize @bullet
+@item identifier: @code{principle.tree1}
+@item dimension variables: @code{D}
+@item argument variables: none
+@item default values: none
+@item model record: empty
+@item constraints: @code{TreeMakeNodes} (priority 130)
+and @code{TreeConditions1} (120)
+@item edge constraints: none
+@end itemize
+
+This principle is equivalent to the Tree principle (@ref{Tree}). The
+only difference is that it uses the constraint functor
+@code{TreeConditions1} instead of @code{TreeConditions}, which
+includes a native treeness constraint that can lead to better
+propagation.
+
+@ifnottex
+Here is the definition of the @code{TreeConditions1} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/TreeConditions1.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node Valency1, XTAG1, Tree1, Principles list
+@subsection Valency principle
+
+@itemize @bullet
+@item identifier: @code{principle.valency}
+@item dimension variables: @code{D}
+@item argument variables:@*
+@code{In: valency(label(D))}@*
+@code{Out: valency(label(D))}
+@item default values:@*
+@code{In: _.D.entry.in}@*
+@code{Out: _.D.entry.out}
+@item model record: empty
+@item constraints: @code{In1} (priority 130), @code{Out} (priority 130)
+@end itemize
+
+This principle combines the In1 principle (@ref{In1}) and the Out
+principle (@ref{Out}) in one, and is thus easier to use.
+
+@c ************************************************************
+
+@node XTAG1, XTAGLinking, Valency1, Principles list
+@subsection XTAG principle
+
+@itemize @bullet
+@item identifier: @code{principle.xTAG}
+@item dimension variables: @code{D}
+@item argument variables:@*
+@code{Anchor: label(D)}@*
+@code{Foot: set(label(D))}
+@item default values:@*
+@code{Anchor: _.D.entry.anchor}@*
+@code{Foot: _.D.entry.foot}
+@item model record:
+@example
+@{ cover:  ints
+  coverL:   vec(label(D) ints)
+  foot:     ints @}
+@end example
+@item constraints: @code{XTAG} (priority 120)
+@item edge constraints: none
+@end itemize
+
+This principle is the core of the TAG encoding developed by Ralph
+Debusmann and Marco Kuhlmann for the XTAG grammar generator of the
+XDK. It contains the non-redundant constraints required for the
+encoding, whereas @ref{XTAGRedundant} contains the redundant ones.
+
+The edge labels on dimension @code{D} must be Gorn addresses.
+
+The argument variable @code{Anchor} encodes the Gorn address of the
+anchor in the tree corresponding to the node, @code{Foot} the
+singleton set containing the foot node of the tree and the empty set
+if there is none. 
+
+The model record feature @code{cover} models for each node @math{v} the
+set of nodes that are ``covered'' by @math{v}, i.e., the nodes below it
+on @code{D} plus, if it has been adjoined, those which it has ``cut
+out'' from the tree into which it has been adjoined, and which are then
+``pasted'' into itself at the foot node (according to the dominance
+relation on Gorn addresses). For each node @math{v} @code{cover}(v) is
+convex.
+
+The model record feature @code{coverL} models the partition of
+@code{cover} sorted by edge labels/Gorn addresses.
+
+The model record feature @code{foot} models the set of nodes
+``pasted'' into the tree at its foot node (if any).
+
+The principle orders the partition @code{coverL} according to the
+precedence relation on Gorn addresses.
+
+@ifnottex
+Here is the definition of the @code{XTAG} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/XTAG.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node XTAGLinking, XTAGRedundant, XTAG1, Principles list
+@subsection XTAGLinking principle
+
+@itemize @bullet
+@item identifier: @code{principle.xTAGLinking}
+@item dimension variables: @code{D1}, @code{D2}, @code{D3}
+@item argument variables:@*
+@code{Link: vec(label(D2) iset(label(D1)))}
+@item default values:@*
+@code{Link: ^.D3.entry.end}
+@item model record: empty
+@item constraints: @code{XTAGLinking} (priority 100)
+@item edge constraints: none
+@end itemize
+
+This principle states two constraints:
+@enumerate
+@item The graph on dimension @code{D1} must have the same
+edges as the graph on dimension @code{D2} (same as @ref{SameEdges})
+@item For all edges from @math{v} to @math{v'} labeled @math{l}
+on @code{D2} it must be the case that on @code{D1}, the incoming edge
+label of @math{v'} is in @code{Link}(l).  That is, contrary to the
+less strict @ref{LinkingEnd} principles, the constraint must hold
+regardless of whether @code{Link}(l) is non-empty or not.  Another
+difference to @ref{LinkingEnd} is that the order of the dimensions
+@code{D1} and @code{D2} is reversed.
+@end enumerate
+
+@ifnottex
+Here is the definition of the @code{XTAGLinking} constraint
+functor:
+@verbatiminclude ../Solver/Principles/Lib/XTAGLinking.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node XTAGRedundant, XTAGRoot, XTAGLinking, Principles list
+@subsection XTAGRedundant principle
+
+@itemize @bullet
+@item identifier: @code{principle.xTAGRedundant}
+@item dimension variables: @code{D1}, @code{D2}
+@item argument variables:@*
+@code{Anchor: label(D2)}@*
+@code{Foot: set(label(D2))}
+@item default values:@*
+@code{Anchor: _.D.entry.anchor}@*
+@code{Foot: _.D.entry.foot}
+@item model record: empty
+@item constraints: @code{XTAGRedundant} (priority 120)
+@item edge constraints: none
+@end itemize
+
+This principle extends the principle @ref{XTAG1} with redundant
+constraints to improve propagation.
+
+@ifnottex
+Here is the definition of the @code{XTAGRedundant} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/XTAGRedundant.oz
+@end ifnottex
+
+@c ************************************************************
+
+@node XTAGRoot, , XTAGRedundant, Principles list
+@subsection XTAGRoot principle
+
+@itemize @bullet
+@item identifier: @code{principle.xTAGRoot}
+@item dimension variables: @code{D}
+@item argument variables: none
+@item default values: none
+@item model record: empty
+@item constraints: @code{XTAGRoot} (priority 120)
+@item edge constraints: none
+@end itemize
+
+This principle states that the tree at the root of each derivation
+must be labeled by category @code{S}. I.e., in the current encoding,
+the lexical @code{in} value of the corresponding lexical entry must
+include the label @code{S_s} (category @code{S}, initial tree).
+
+@ifnottex
+Here is the definition of the @code{XTAGRoot} constraint functor:
+@verbatiminclude ../Solver/Principles/Lib/XTAGRoot.oz
+@end ifnottex

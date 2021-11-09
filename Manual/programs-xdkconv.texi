@@ -1,0 +1,53 @@
+@section xdkconv
+This section is about the standalone grammar file converter of the XDK
+(@code{xdkconv}). The grammar file converter takes a source grammar
+file and converts it into a destination grammar file.  The grammar
+file language into which the destination grammar file is converted
+depends on its suffix.
+
+The source grammar file can be one of the following:
+@itemize @bullet
+@item UL file (suffix: @code{ul})
+@item XML file (suffix: @code{xml})
+@item IL pickle (suffix: @code{ilp})
+@item IL functor@footnote{The functor must export the IL grammar under the
+key @code{grammar}.} (suffix: @code{ozf})
+@end itemize
+
+And the destination grammar file can be one of the following:
+@itemize @bullet
+@item UL file (suffix: @code{ul})
+@item XML file (suffix: @code{xml})
+@item IL pickle (suffix: @code{ilp})
+@end itemize
+
+@subsection Invocation
+These are the commandline arguments of @code{xdkconv}:
+
+@itemize @bullet
+@item @code{--help} or @code{--nohelp} (short version: @code{-h}): Display an
+overview of the commandline arguments. Default: @code{--nohelp}.
+@item @code{--grammar} (@code{-g}): Select the source grammar file.
+Default: "".
+@item @code{--output} (@code{-o}): Select the destination grammar file.
+Default: "".
+@item @code{--debug} or @code{--nodebug} (@code{-d}): Switch on the debug mode. 
+Default: @code{nodebug}.
+@end itemize
+
+@subsection Example
+
+Here is an example. Assume you would like to convert the source grammar
+file @code{Grammars/Diplom.ul}, which is written in the @emph{User
+Language (UL)}
+@cindex User Language
+@cindex UL
+into the destination grammar file @code{Grammars/Diplom.xml} in the
+@emph{XML language}. Here is how you do this with @code{xdkconv}:
+
+@example
+xdkconv.exe -g Grammars/Diplom.ul -o Grammars/Diplom.xml
+@end example
+
+@code{xdkconv} reads the UL grammar @code{Grammars/Diplom.ul}, and saves
+the corresponding XML language grammar @code{Grammars/Diplom.xml}.

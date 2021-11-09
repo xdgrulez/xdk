@@ -1,0 +1,120 @@
+<html lang="en">
+<head>
+<title>Agreement - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="Agr.html#Agr" title="Agr">
+<link rel="next" href="Agreement1.html#Agreement1" title="Agreement1">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Agreement"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Agreement1.html#Agreement1">Agreement1</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Agr.html#Agr">Agr</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.2 Agreement principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.agreement</code>
+<li>dimension variables: <code>D</code>
+<li>argument variables:<br>
+<code>Agr1: tv(T)</code><br>
+<code>Agr2: tv(T)</code><br>
+<code>Agree: set(label(D))</code>
+<li>default values:<br>
+<code>Agr1: ^.D.attrs.agr</code><br>
+<code>Agr2: _.D.attrs.agr</code><br>
+<code>Agree: ^.D.entry.agree</code>
+<li>model record: empty
+<li>constraints: <code>Agreement</code> (priority 100)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle assumes that the Graph principle (<a href="Graph.html#Graph">Graph</a>) is used
+on dimension <code>D</code>.
+
+   <p>The Agreement principle establishes agreement between the nodes
+connected by an edge.
+
+   <p>It stipulates that:
+     <ul>
+<li>for all edges labeled l, if l is in <code>Agree</code>,
+then <code>Agr1=Agr2</code>
+</ul>
+
+   <p>Here is the definition of the <code>Agreement</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+   Helpers(checkModel) at 'Helpers.ozf'
+   Opti(isIn) at 'Opti.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      DIDA = {DVA2DIDA 'D'}
+      DIDA2LabelLat = G.dIDA2LabelLat
+      LabelLat = {DIDA2LabelLat DIDA}
+      LAs = LabelLat.constants
+   in
+      %% check features
+      if {Helpers.checkModel 'Agreement.oz' Nodes
+	  [DIDA#daughtersL]} then
+	 for Node1 in Nodes do
+	    for Node2 in Nodes do
+	       for LA in LAs do
+		  if {Not {Opti.isIn Node2.index Node1.DIDA.model.daughtersL.LA}=='out'} then
+		     LI = {LabelLat.aI2I LA}
+		     %%
+		     AgreeLM = {ArgRecProc 'Agree' o('^': Node1
+						     '_': Node2)}
+		     Agr1D = {ArgRecProc 'Agr1' o('^': Node1
+						  '_': Node2)}
+		     Agr2D = {ArgRecProc 'Agr2' o('^': Node1
+						  '_': Node2)}
+		  in
+		     {FD.impl
+		      {FS.reified.include Node2.index Node1.DIDA.model.daughtersL.LA}
+		      {FD.impl
+		       {FS.reified.include LI AgreeLM}
+		       {FD.reified.equal Agr1D Agr2D}} 1}
+		  end
+	       end
+	    end
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

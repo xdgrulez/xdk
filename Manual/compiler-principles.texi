@@ -1,0 +1,465 @@
+@section Principles
+Each dimension states which principles it uses, and their
+parameters. The principles are taken from the predefined @emph{principle
+library}
+@cindex principle library
+of the XDK. The principle library includes the definitions of the
+available principles. Developers can add new principles using the
+interface described in the developer sections.
+
+To use a principle, you need to specify two mappings:
+
+@enumerate
+@item the @emph{dimension mapping}
+@cindex dimension mapping
+@item the @emph{argument mapping}
+@cindex argument mapping
+@end enumerate
+
+@subsection Dimension mapping
+The dimension mapping
+binds @emph{dimension variables}
+@cindex dimension variable
+to dimension identifiers. Each principle definition introduces a set
+of dimension variables which must be bound upon principle use.
+@code{Lex}
+@cindex Lex dimension variable
+@cindex dimension variable Lex
+and @code{This}
+@cindex This dimension variable
+@cindex dimension variable This
+are special dimension variables, always bound to dimensions @code{lex}
+and to the currently defined dimension, respectively.
+
+@subsection Argument mapping
+The argument mapping binds @emph{argument variables}
+@cindex argument variable
+(or just @emph{arguments}
+@cindex argument
+for short) to values. Each principle definition introduces a set of
+arguments, their types, and (optionally) their default values.  Each
+argument which is not provided upon principle use gets its default
+value. If it does not have a default value, the XDK grammar file
+compiler raises an exception.
+
+In the UL, the expression to use a principle is:
+@example
+useprinciple <constant> @{dims @{ <variable_1>:<constant_1>
+                                @dots{}
+                                <variable_n>:<constant_n> @}
+                         args @{ <variable_1>:<term_1>
+                                @dots{}
+                                <variable_m>:<term_m> @}
+                         @}
+@end example
+Here, @code{<constant>} is the principle identifier. In the
+@code{dims} part, you specify the dimension mapping, and in the
+@code{args} part, you specify the argument mapping.
+
+In the following, we give a set of example of how principles are used
+in our example grammar @code{Grammars/Acl01.ul}. Note that this manual
+contains detailed descriptions of all principles in the predefined
+principle library in @ref{Principles list}.
+
+@subsection Example (principle.graph)
+Here is how the principle @code{principle.graph} is used on the id
+dimension of our example grammar file:
+
+@example
+  useprinciple "principle.graph" @{
+    dims @{D: id@}@}
+@end example
+
+The identifier of the principle is @code{principle.graph}. The
+dimension mapping maps the dimension variable @code{D} to the
+dimension identifier @code{id}.  The argument mapping is empty.
+
+@subsubsection Graph principle
+The @code{principle.graph} principle posits that the structure on the
+dimension bound to the dimension variable @code{D} is a
+graph@footnote{Currently, the principle library includes two graph
+principles: @code{principle.graph} and @code{principle.graph1}. The
+latter leads to faster solving than the former, but it is cannot be
+used together with several principles of the principle library, and is
+thus quite obsolete.}. It has no arguments.
+
+In the example, the principle posits that the id dimension is a graph.
+
+@subsection Example (principle.tree)
+Here is how the principle @code{principle.tree} is used on the id
+dimension of our example grammar file:
+
+@example
+  useprinciple "principle.tree" @{
+    dims @{D: id@}@}
+@end example
+
+The identifier of the principle is @code{principle.tree}. The
+dimension mapping maps the dimension variable @code{D} to the
+dimension identifier @code{id}.  The argument mapping is empty.
+
+@subsubsection Tree principle
+The @code{principle.tree} principle posits that the structure on
+dimension @code{D} is a tree. The principle does not have any
+arguments.
+
+In the example, the principle posits that the id dimension is a tree.
+
+@subsection Example (principle.valency)
+Here is how the principle @code{principle.valency} is used on the id
+dimension of our example grammar file:
+
+@example
+  useprinciple "principle.valency" @{
+    dims @{D: id@}
+    args @{In: _.D.entry.in
+          Out: _.D.entry.out@}@}
+@end example
+
+The identifier of the principle is @code{principle.valency}. The
+dimension mapping maps the dimension variable @code{D} to the
+dimension identifier @code{id}. The argument mapping is empty.
+
+@subsubsection Valency principle
+The @code{principle.valency} principle constrains the incoming and
+outgoing edges of each node on dimension @code{D}.  The @code{In} and
+@code{Out} arguments each specify a @emph{valency}.
+@cindex valency
+The default values of the @code{In} and @code{Out} arguments are the
+@emph{feature paths}
+@cindex feature path
+@code{_.D.entry.in} and @code{_.D.entry.out}, respectively.
+
+In the example, the values of the @code{In} and @code{Out} arguments
+are not provided, thus the grammar file compiler uses the default
+values @code{_.D.entry.in} and @code{_.D.entry.out}, respectively.
+That is, for each node @math{v}, @code{In} equals the the value of the
+field @code{in} of the entry of @math{v} on the id dimension, and
+@code{Out} equals the value of the field @code{out} of the entry of
+@math{v}.
+
+@subsubsection Feature paths
+Before we proceed, here is a short introduction of
+@emph{feature paths}.
+@cindex feature path
+Feature paths are used to access fields in the attributes or in the
+entry of a node. In the UL, the syntax for a feature path is:
+
+@example
+<root var>.<dim var>.(attrs|entry).<field_1>.@dots{}.<field_n>
+@end example
+
+Feature paths start with a @emph{root variable}
+@cindex root variable
+(@code{<root var>}) which states which node shall be accessed. The
+root variable is either ``up'' or ``down'' (in the UL, this
+corresponds to @code{^} or @code{_}). Each principle can bind ``up''
+and ``down'' to arbitrary nodes. By convention, ``up'' means
+``mother'', and ``down'' means ``daughter'' (for constraints on
+edges), and ``down'' means ``myself'' (for constraints on nodes).  As
+the valency principle states a constraint on nodes, the root variable
+@code{_} in the example @code{_.D.entry.out} denotes ``myself''.
+
+The second argument of a feature path is a dimension variable
+(@code{<dim var>}) specifying the dimension of the value which is
+eventually accessed. In the example @code{_.D.entry.out}, the
+dimension variable is @code{D}.
+
+The third argument of a feature path is one of the special constants
+@code{attrs} or @code{entry}. If you choose @code{attrs}, you access
+the attributes, and if you choose @code{entry}, you access the lexical
+entry. In the example @code{_.D.entry.out}, the lexical entry is
+accessed. Thus, the principle is lexicalized.
+
+The fourth argument of a feature path is a list (separated by dots) of
+fields describing the path to the accessed value. In the example
+@code{_.D.entry.out}, the list consists only of the field @code{out}.
+
+@subsection Example (principle.agr)
+Here is how the principle @code{principle.agr} is used on the id
+dimension of our example grammar file:
+
+@example
+  useprinciple "principle.agr" @{
+    dims @{D: id@}
+    args @{Agr: _.D.attrs.agr
+          Agrs: _.D.entry.agrs@}@}
+@end example
+
+The identifier of the principle is @code{principle.agr}. The dimension
+mapping maps the dimension variable @code{D} to the dimension
+identifier @code{id}. The argument mapping maps the argument
+@code{Agr} to the feature path @code{_.D.attrs.agr}, and @code{Agrs}
+to @code{_.D.entry.agrs}.
+
+@subsubsection Agr principle
+The @code{principle.agr} principle has the two arguments @code{Agr}
+and @code{Agrs}.  The agr principle posits the constraint that for all
+nodes @code{Agr} is an element of @code{Agrs}.
+
+The resulting constraint here is the following: for all nodes
+@math{v}, the value of the node attribute field @code{agr} is an
+element of the value of the lexical entry field @code{agrs}.
+
+@subsection Example (principle.agreement)
+Here is how the principle @code{principle.agreement} is used on the id
+dimension of our example grammar file:
+
+@example
+  useprinciple "principle.agreement" @{
+    dims @{D: id@}
+    args @{Agr1: ^.D.attrs.agr
+          Agr2: _.D.entry.agr
+          Agree: ^.D.entry.agree@}@}
+@end example
+
+The identifier of the principle is @code{principle.agreement}. The
+dimension mapping maps the dimension variable @code{D} to the
+dimension identifier @code{id}. The argument mapping maps the argument
+@code{Agr1} to the feature path @code{^.D.attrs.agr}, @code{Agr2} to
+@code{_.D.attrs.agr}, and @code{Agree} to @code{^.D.entry.agree}.
+
+@subsubsection Agreement principle
+The @code{principle.agreement} principle has the three arguments
+@code{Agr1}, @code{Agr2} and @code{Agree}. It posits the constraint
+that for all edges from mother @math{v} to daughter @math{v'} labeled
+by @math{l}, if @math{l} is in the set described by @code{Agree},
+@code{Agr1} must equal @code{Agr2}.
+
+In the example, this constraint amounts to the stipulation that for
+all edges from mother @math{v} to daughter @math{v'} labeled by
+@math{l}, if @math{l} is in the set lexically specified by the
+@code{agree} feature of the mother on the id dimension (feature path
+@code{^.D.entry.agree}), then the node attribute @code{agr} must be
+equal for both the mother @math{v} (feature path @code{^.D.attrs.agr}
+and the daughter @math{v'} (feature path @code{_.D.attrs.agr}.
+
+@subsection Example (principle.government)
+Here is how the principle @code{principle.government} is used on the id
+dimension of our example grammar file:
+
+@example
+  useprinciple "principle.government" @{
+    dims @{D: id@}
+    args @{Agr2: _.D.attrs.agr
+          Govern: ^.D.entry.govern@}@}
+@end example
+
+The identifier of the principle is @code{principle.agreement}. The
+dimension mapping maps the dimension variable @code{D} to the
+dimension identifier @code{id}. The argument mapping maps the argument
+@code{Agr2} to the feature path @code{_.D.attrs.agr}, and
+@code{Govern} to @code{^.D.entry.govern}.
+
+@subsubsection Government principle
+The @code{principle.government} principle has the two arguments
+@code{Agr2} and @code{Government}. It posits the constraint that for
+all edges from mother @math{v} to daughter @math{v'} labeled by
+@math{l}, @code{Agr2} must be in the set prescribed by @code{Govern}
+for label @math{l}.
+
+In the example, this constraint amounts to the stipulation that for
+all edges from mother @math{v} to daughter @math{v'} labeled by
+@math{l}, the value of the @code{agr} field of the node attributes of
+the daughter @math{v'} (feature path @code{_.D.attrs.agr}) must be in
+the set of labels prescribed by the field @code{govern} of the lexical
+entry of the mother @math{v} (feature path @code{^.D.entry.govern}).
+
+@subsection Example (principle.order)
+Here is how the principle @code{principle.order} is used on the lp
+dimension of our example grammar file:
+
+@example
+  useprinciple "principle.order" @{
+    dims @{D: lp@}
+    args @{Order: [d df n mf vcf p pf v vxf]
+          On: _.D.entry.on
+          Yields: true@}@}
+@end example
+
+Here, the principle identifier is @code{principle.order}. The
+dimension mapping maps dimension variable @code{D} to dimension
+identifier @code{lp}. The argument mapping maps the argument
+@code{Order} to the list @code{[d df n mf vcf p pf v vxf]}, @code{On}
+to the feature path @code{_.D.entry.on}, and @code{Yields} to
+@code{true}.
+
+@subsubsection Order principle
+The @code{principle.order} principle constrains the linear order of
+the nodes. In particular, it orders the yields or daughters of each
+node according to their edge label. The @code{Order} argument
+specifies a total order on a subset of the set of edge labels (as a
+list). The @code{On} argument specifies the set of possible @emph{node
+labels}
+@cindex node label
+for each node used to position it with respect to its daughters. The
+domain of node labels is the same as the domain of edge labels.  The
+@code{Yields} argument can be either @code{true} or @code{false},
+depending on whether for each node, its entire subgraphs shall be
+ordered (@code{true}), or just its daughters (@code{false}).  If the
+order principle is used in conjunction with the
+@code{principle.projectivity}, which is most frequently the case, then
+setting @code{Yields} to true is just an optimization for solving, but
+does not change the number of solutions.
+
+The default value of the @code{Order} argument is the empty list.  The
+default value of the @code{On} argument is the feature path
+@code{_.D.entry.on}.  The default value of the @code{Yields} argument
+is @code{false}.
+
+In the example, the total order on the set of edge labels is @code{[d
+df n mf vcf p pf v vxf]}, i.e. all daughters with edge label (or the
+mother with node label) @code{d} precede all those with edge label
+@code{df}, and so on.  The @code{On} argument is set to
+@code{_.D.entry.on}, i.e., for each node @math{v}, the set of possible
+node labels of @math{v} equals the value of the field @code{on} of the
+entry of @math{v} on the lp dimension.  The @code{Yields} argument is
+set to @code{true}.
+
+@subsection Example (principle.projectivity)
+Here is how the principle @code{principle.projectivity} is used on the
+lp dimension of our example grammar file:
+
+@example
+  useprinciple "principle.projectivity" @{
+    dims @{D: lp@}@}
+@end example
+
+Here, the principle identifier is @code{principle.projectivity}. The
+dimension mapping maps dimension variable @code{D} to dimension
+identifier @code{lp}. The argument mapping is empty.
+
+@subsubsection Projectivity principle
+The @code{principle.projectivity} principle constrains the analysis on
+the dimension @code{D} to be projective.
+
+In the example, the principle is used on the lp dimension.
+
+@subsection Example (principle.climbing)
+Here is how the principle @code{principle.climbing} is used on the
+idlp dimension of our example grammar file:
+
+@example
+  useprinciple "principle.climbing" @{
+    dims @{D1: lp
+          D2: id@}@}
+@end example
+Here, the principle identifier is @code{principle.climbing}. The
+dimension mapping maps dimension variable @code{D1} to dimension
+identifier @code{lp}, and dimension variable @code{D2} to dimension
+@code{id}. The argument mapping is empty.
+
+@subsubsection Climbing principle
+The @code{principle.climbing} principle posits that the graph on
+dimension @code{D1} must be flattening of the graph on dimension
+@code{D2}. It is called ``climbing'' since this flattening is the
+result of nodes ``climbing up'' metaphorically from the deep dimension
+@code{D2} to the flat dimension @code{D1}.  The principle introduces
+two arguments. The @code{Subgraphs} argument is either @code{true} or
+@code{false}, depending on whether each node is required to take its
+entire subgraph along when migrating upwards (@code{true}), or not
+(@code{false}). The @code{MotherCards} argument specifies whether for
+each node, the cardinalities of the sets of mothers on @code{D1} and
+@code{D2} must be equal (@code{true}), or not (@code{false}). This is
+an optimization for the case that both @code{D1} and @code{D2} are
+trees. If any of the two is not a tree, @code{MotherCards} should be
+set to @code{false}.
+
+The default value of @code{Subgraphs} and @code{MotherCards}
+is @code{true}.
+
+In the example, the principle posits that the graph on the lp
+dimension must be a flattening of the graph on the id dimension.  By
+default, @code{Subgraphs} and @code{MotherCards} are set to
+@code{true}, i.e. each node must take its entire subgraph along when
+climbing up, and the cardinalities of its sets of mothers on the id
+and lp dimensions are equal.
+
+@subsection Example (principle.barriers)
+Here is how the principle @code{principle.barriers} is used on the
+idlp dimension of our example grammar file:
+
+@example
+   useprinciple "principle.barriers" @{
+    dims @{D1: lp
+          D2: id
+          D3: idlp@}@}
+@end example
+
+Here, the principle identifier is @code{principle.barriers}. The
+dimension mapping maps dimension variable @code{D1} to dimension
+identifier @code{lp}, @code{D2} to dimension @code{id} and @code{D3}
+to @code{idlp}. The argument mapping binds the argument variable
+@code{Blocks} to the feature path @code{_.D3.entry.blocks}.
+
+@subsubsection Barriers principle
+The @code{principle.barriers} principle is a specialization of the
+climbing principle. Its purpose is to ``block'' nodes in the ``deep''
+dimension @code{D2} from climbing up and appearing higher up in the
+``flat'' dimension @code{D1}. The principle introduces an argument
+@code{Blocks} whose default value is @code{_.D3.entry.blocks}.  The
+value of @code{Blocks} is a set edge labels on the ``deep'' dimension
+@code{D2}. For each node @math{v}, all nodes below @math{v} which have
+one of these incoming edge labels on the ``deep'' dimension @code{D2}
+must stay below @math{v} on the ``flat'' dimension @code{D1}.
+
+In the example, the ``flat'' dimension is the lp dimension, and the
+``deep'' dimension is the id dimension. The value of the @code{Blocks}
+argument is lexicalized: for each node @math{v}, it equals the value
+of the @code{blocks} field of the entry of @math{v} on the idlp
+dimension.
+
+@subsection Example (principle.linkingEnd)
+Here is how the principle @code{principle.linkingEnd} is used on the
+idlp dimension of our example grammar file:
+
+@example
+   useprinciple "principle.linkingEnd" @{
+    dims @{D1: lp
+          D2: id@}@}
+@end example
+
+Here, the principle identifier is @code{principle.linkingEnd}. The
+dimension mapping maps dimension variable @code{D1} to dimension
+identifier @code{lp}, and dimension variable @code{D2} to dimension
+@code{id}. The argument mapping is empty.
+
+@subsubsection LinkingEnd principle
+The @code{principle.linkingEnd} principle constrains all outgoing
+edges from node @math{v1} to node @math{v2} labeled @math{l} on
+dimension @code{D1} with respect to the incoming edge label @math{l'}
+of @math{v2} on dimension @code{D2}. The principle introduces the
+argument @code{End} whose value is a function from the set of edge
+labels on @code{D1} to sets of edge labels on @code{D2}.  The default
+value of the @code{End} is @code{^.D3.entry.end}.
+
+An edge @math{v1} to node @math{v2} labeled @math{l} on dimension
+@code{D1} is only licensed if the incoming edge label @math{l'} of
+@math{v2} on dimension @code{D2} is an element of the set specified by
+the applying the function in the @code{End} argument to label
+@math{l}.
+
+In the example, the @code{End} argument is not provided. By default,
+it is lexicalized and equals for each node @math{v_1} the value of the
+@code{end} field of the entry of @math{v_1} on the idlp dimension.
+
+@subsection Example (principle.entries)
+Here is how the principle @code{principle.entries} is used on the lex
+dimension of our example grammar file:
+
+@example
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.entries" @{@}  
+@end example
+
+Here, the principle identifier is @code{principle.entries}. The
+dimension mapping is empty. The argument mapping is also empty.
+
+@subsubsection Entries principle
+The purpose of the @code{principle.entries} principle is to ensure
+that for each node, precisely one lexical entry is selected.  If you
+do not use the entries principle, and there are two identical lexical
+entries for a word in the input, the XDK solver does not select one of
+the two. If you do use it, it does select one, i.e. it enumerates all
+possible lexical entries for a word in the input.

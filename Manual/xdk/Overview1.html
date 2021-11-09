@@ -1,0 +1,163 @@
+<html lang="en">
+<head>
+<title>Overview1 - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Compiler.html#Compiler" title="Compiler">
+<link rel="next" href="Dimensions.html#Dimensions" title="Dimensions">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Overview1"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Dimensions.html#Dimensions">Dimensions</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Compiler.html#Compiler">Compiler</a>
+<hr>
+</div>
+
+<h3 class="section">4.1 Overview</h3>
+
+<p>The purpose of the <em>grammar file compiler</em>
+<a name="index-grammar-file-compiler-36"></a>is to compile <em>grammar files</em>
+<a name="index-grammar-file-37"></a>in one of the various grammar file input languages into a grammar
+usable by the XDK solver.
+
+<h4 class="subsection">4.1.1 Grammar files</h4>
+
+<p>Grammar files serve two purposes:
+     <ol type=1 start=1>
+<li>they specify the particular <em>XDG instance</em>,
+<a name="index-XDG-instance-38"></a><a name="index-instance-39"></a><li>they specify the <em>lexicon</em>. 
+<a name="index-lexicon_002e-40"></a>
+        </ol>
+
+   <p>For 1., each grammar file defines the <em>dimensions</em>
+<a name="index-dimension-41"></a>used by the instance, and on each of these dimensions,
+the <em>principles</em>
+<a name="index-principle-42"></a>and parameters which apply to it.  Additionally, the
+grammar file specifies on each dimension which <em>outputs</em>
+<a name="index-output-43"></a>apply to it.  The XDK includes libraries of predefined principles
+(<em>principle library</em>)
+<a name="index-principle-library-44"></a>and of predefined outputs (<em>output library</em>). 
+<a name="index-output-library-45"></a>These libraries can be extended by new principles and new outputs
+according to the interfaces described in the developer sections.
+
+   <p>For 2., each grammar file defines a number of <em>lexical classes</em>
+<a name="index-class-46"></a><a name="index-lexical-class-47"></a>and a number of unexpanded <em>lexical entries</em>. 
+<a name="index-entry-48"></a><a name="index-lexical-entry-49"></a>
+
+<h4 class="subsection">4.1.2 Grammar file languages</h4>
+
+<p>Grammar files can be written in various languages. In the current
+version of the XDK, you can choose between the <em>User Language</em>
+(UL),
+<a name="index-User-Language-50"></a><a name="index-UL-51"></a>the <em>XML language</em>,
+<a name="index-XML-language-52"></a><a name="index-XML-53"></a>and the <em>Intermediate Language (IL)</em>. 
+<a name="index-Intermediate-Language-54"></a><a name="index-IL-55"></a>We recommend the UL for handcrafted grammar development. The XML
+language is better suited for electronic processing of grammars.  The
+IL is designed to be the internal language for the grammar file
+compiler - we do not recommend to write grammars in that language.  It
+is rather hard to read, and, more importantly, if you write your
+grammars in the IL directly, the grammar file compiler cannot tell you
+the whereabouts of an error. The grammar file compiler first converts
+each UL and XML grammar file into an IL grammar file, which can be
+processed uniformly from then on.
+
+   <p>All programs of XDK can open grammar files in the following formats
+(with the following default file name suffixes):
+     <ul>
+<li>the UL (default suffix: <code>ul</code>)
+<li>the XML language (<code>xml</code>)
+<li>IL <em>Oz pickles</em>,
+<a name="index-Oz-pickle-56"></a><a name="index-pickle-57"></a>(<code>ilp</code>)
+<li>IL <em>Oz functors</em>
+<a name="index-Oz-functor-58"></a><a name="index-functor-59"></a>exporting the grammar under the key <code>grammar</code> (<code>ozf</code>)
+<li>SL <em>Oz pickles</em> in the <em>Solver Language (SL)</em>
+<a name="index-Solver-Language-60"></a><a name="index-SL-61"></a>(<code>slp</code>). 
+</ul>
+
+<h4 class="subsection">4.1.3 Type checking</h4>
+
+<p>Grammar files are <em>statically typed</em>. 
+<a name="index-statically-typed-62"></a>The grammar file compiler performs <em>type checking</em>
+<a name="index-type-checking-63"></a>on used principles and lexical classes and entries.
+
+<h4 class="subsection">4.1.4 Compilation</h4>
+
+<p>After type checking, the grammar file compiler transforms the type
+checked IL grammar file into a grammar file in the <em>Solver
+Language (SL)</em>
+<a name="index-Solver-Language-64"></a><a name="index-SL-65"></a>which can be fed into the XDK solver. The lexicon of the SL grammar
+file does not contain lexical classes anymore: it contains only the
+lexical entries which result from compiling out the lexical entries in
+the IL grammar file.
+
+   <p>An arbitrary number of grammars can be <em>merged</em>
+<a name="index-merge-66"></a>into one. The prerequisite for merging is that all the grammars must
+share the same type definitions.
+
+<h4 class="subsection">4.1.5 Summary</h4>
+
+<p>In the picture below, we summarize of the stages of processing the
+grammar file compiler performs:
+   <pre class="sp">
+
+</pre>
+<img src="pix/compiler.jpg" alt="pix/compiler.jpg">
+
+   <p>That is:
+     <ol type=1 start=1>
+<li>it converts grammar files in either the
+User Language (UL) or the XML language into an IL grammar file
+<li>it adds the definitions of the predefined principles and outputs to the IL grammar file
+<li>it performs type checking on the IL grammar file
+<li>it compiles the IL grammar file into a SL grammar which can be fed into the
+XDK solver
+        </ol>
+
+<h4 class="subsection">4.1.6 Developers only</h4>
+
+<p>Internally, the functors <code>Compiler/UL/Parser.oz</code> and then<br>
+<code>Compiler/UL/2ILConverter.oz</code> convert UL grammar files into IL
+grammar files.
+
+   <p>The functors <code>Compiler/XML/Parser.oz</code> and then
+<code>Compiler/XML/2ILConverter.oz</code> convert XML language grammar files
+into IL grammar files.
+
+   <p>Then, the functor <code>Compiler/TypeCollector.oz</code> collects all the
+types defined in the IL grammar file.
+
+   <p>Then, the functor <code>Compiler/TypeChecker.oz</code> type-checks the IL
+grammar file.
+
+   <p>Then, the functor <code>Compiler/Encoder.oz</code> encodes the IL grammar
+file using the lattice functors corresponding to the types (defined in
+<code>Compiler/Lattices/</code>). This step yields a stateless <em>Solver
+Language (SL)</em>
+<a name="index-Solver-Language-67"></a><a name="index-SL-68"></a><em>grammar record</em>
+<a name="index-grammar-record-69"></a>which can be saved to disk and loaded again (i.e. <em>pickled</em>
+<a name="index-pickle-70"></a>in Oz terminology).
+
+   <p>Finally, the functor <code>Compiler/Compiler.oz</code> compiles the
+stateless SL grammar into a stateful SL grammar record which can be
+used by the XDK solver.
+
+<!-- ************************************************************ -->
+   </body></html>
+

@@ -1,0 +1,97 @@
+******************************************
+* First attempt for Czech grammar, childish sentences
+
+
+% Ok for a native speaker.
+dobøe má se .
+dobøe se má .
+má se dobøe .
+
+% Unplausible.
+má dobøe se .
+se dobøe má .
+se má dobøe .
+
+% Ok.
+
+petr dobøe má se .
+petr má se dobøe .
+petr se dobøe má .
+petr se má dobøe .
+dobøe petr má se .
+dobøe má se petr .
+dobøe se petr má .
+dobøe se má petr .
+má dobøe se petr .
+má se petr dobøe .
+má se dobøe petr .
+
+% both the following problems solved by a two-preclif grammar
+petr dobøe se má .
+dobøe petr se má .
+% problem: se "closely" precedes the verb -> acceptable but not modelled
+% by the grammar
+má petr se dobøe .
+% problem: the preclitf contains two elements: the verb+the subj, but
+% twoelem preclitf not modelled.
+
+% Unplausible.
+petr má dobøe se .
+dobøe má petr se .
+má petr dobøe se .
+má dobøe petr se .
+se petr dobøe má .
+se petr má dobøe .
+se dobøe petr má .
+se dobøe má petr .
+se má petr dobøe .
+se má dobøe petr .
+
+
+% Ok.
+ema má mísu .
+ema mísu má .
+mísu ema má .
+mísu má ema .
+
+% Unplausible examples.
+má ema mísu .
+má mísu ema .
+
+
+
+
+% Ok
+
+nepodaøilo se otevøít soubor .
+nepodaøilo se soubor otevøít .
+otevøít nepodaøilo se soubor .
+otevøít se nepodaøilo soubor .
+otevøít se soubor nepodaøilo .
+otevøít soubor nepodaøilo se .
+soubor nepodaøilo se otevøít .
+soubor otevøít nepodaøilo se .
+soubor se nepodaøilo otevøít .
+soubor se otevøít nepodaøilo .
+
+otevøít soubor se nepodaøilo .
+soubor otevøít se nepodaøilo .
+% problem: se "closely" precedes the verb -> acceptable but not modelled
+% by the grammar; solved by two-preclif grammar
+
+% Unplausible.
+
+soubor nepodaøilo otevøít se .
+otevøít nepodaøilo soubor se .
+nepodaøilo soubor otevøít se .
+nepodaøilo otevøít soubor se .
+se nepodaøilo otevøít soubor .
+se nepodaøilo soubor otevøít .
+se otevøít nepodaøilo soubor .
+se otevøít soubor nepodaøilo .
+se soubor nepodaøilo otevøít .
+se soubor otevøít nepodaøilo .
+
+nepodaøilo soubor se otevøít .
+nepodaøilo otevøít se soubor .
+% problem: two-preclitf grammar accepts that

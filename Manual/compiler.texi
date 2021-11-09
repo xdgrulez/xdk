@@ -1,0 +1,156 @@
+@chapter Compiler
+This chapter is about the @emph{grammar file compiler} of the XDK.
+@cindex grammar file compiler
+The grammar file compiler transforms a @emph{grammar file}
+@cindex grammar file
+in one of the grammar file input languages (currently: @emph{User
+Language (UL)}
+@cindex User Language
+@cindex UL
+and @emph{XML language})
+@cindex XML language
+@cindex XML
+into a @emph{grammar}
+@cindex grammar
+in the @emph{Solver Language (SL)}
+@cindex Solver Language
+@cindex SL
+which can be fed into the XDK solver. Basically, compilation of
+grammar files consists of expanding the lexical entries and encoding
+them for use in the XDK solver.
+
+This chapter is chiefly about the structure of grammar files.  In our
+explanations, we will often refer to the example grammar
+@code{Grammars/Acl01.ul}, which is written in the UL. The example
+grammar @code{Grammars/Acl01.xml} is an XML version of the same grammar.
+
+The structure of this chapter is as follows: After an overview in
+@ref{Overview1}, we explain how to define and use dimensions in
+@ref{Dimensions}, and how to define types in @ref{Types}.  In
+@ref{Principles}, we show how to use principles, and in @ref{Outputs1}
+how to use output functors. In @ref{Lexicon}, we explain how to write
+the lexicon. In @ref{Lattices}, we introduce lattices which correspond
+to the types. @ref{Merge} explains how grammar files can be merged.
+
+The next sections are for reference purposes only: In @ref{Types
+reference} we give a list of all types and their lattices.  In @ref{UL
+syntax}, we present the full syntax of the User Language, and in
+@ref{XML syntax} of the XML language.
+
+Developers only: In @ref{IL syntax}, we explain the syntax of the
+Intermediate Language, and in @ref{SL syntax} the syntax of the Solver
+Language. The @emph{grammar record} is the internal representation of
+a compiled grammar. We explicate it in @ref{Grammar record}. Finally,
+we explain the lattice functors corresponding to the lattices, and
+used in various places in the XDK, in @ref{Lattice functors}.
+
+@menu
+* Overview:Overview1.         Overview
+
+* Dimensions::                Defining and using dimensions
+
+* Types::                     Defining types in dimension definitions
+
+* Principles::                Using principles in dimension definitions
+
+* Outputs:Outputs1.           Using outputs in dimension definitions
+
+* Lexicon::                   Defining the lexicon
+
+* Lattices::                  Types correspond to lattices
+
+* Merge::                     Merging grammar files
+
+-- reference --
+
+* Types reference::           List of all types and their corresponding lattices
+
+* UL syntax::                 User Language syntax
+
+* XML syntax::                XML language syntax
+
+-- developers only --
+
+* IL syntax::                 Intermediate Language syntax
+
+* SL syntax::                 Solver Language syntax
+
+* Grammar record::            Grammar record
+
+* Lattice functors::          Lattice functors
+@end menu
+
+@c ************************************************************
+
+@node Overview1, Dimensions, , Compiler
+@include compiler-overview.texi
+
+@c ************************************************************
+
+@node Dimensions, Types, Overview1, Compiler
+@include compiler-dimensions.texi
+
+@c ************************************************************
+
+@node Types, Principles, Dimensions, Compiler
+@include compiler-types.texi
+
+@c ************************************************************
+
+@node Principles, Outputs1, Types, Compiler
+@include compiler-principles.texi
+
+@c ************************************************************
+
+@node Outputs1, Lexicon, Principles, Compiler
+@include compiler-outputs.texi
+
+@c ************************************************************
+
+@node Lexicon, Lattices, Outputs1, Compiler
+@include compiler-lexicon.texi
+
+@c ************************************************************
+
+@node Lattices, Merge, Lexicon, Compiler
+@include compiler-lattices.texi
+
+@c ************************************************************
+
+@node Merge, Types reference, Lattices, Compiler
+@include compiler-merge.texi
+
+@c ************************************************************
+
+@node Types reference, UL syntax, Merge, Compiler
+@include compiler-types_reference.texi
+
+@c ************************************************************
+
+@node UL syntax, XML syntax, Types reference, Compiler
+@include compiler-ul_syntax.texi
+
+@c ************************************************************
+
+@node XML syntax, IL syntax, UL syntax, Compiler
+@include compiler-xml_syntax.texi
+
+@c ************************************************************
+
+@node IL syntax, SL syntax, XML syntax, Compiler
+@include compiler-il_syntax.texi
+
+@c ************************************************************
+
+@node SL syntax, Grammar record, IL syntax, Compiler
+@include compiler-sl_syntax.texi
+
+@c ************************************************************
+
+@node Grammar record, Lattice functors, SL syntax, Compiler
+@include compiler-grammar_record.texi
+
+@c ************************************************************
+
+@node Lattice functors, , Grammar record, Compiler
+@include compiler-lattice_functors.texi

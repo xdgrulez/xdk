@@ -1,0 +1,2717 @@
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.053 seconds.
+sent: 30: seven Iraqi Iraqi stocks -- Iraqi , Iraqi , Iraqi , Iraqi Iraqi , Iraqi Iraqi , Philip Iraqi and Pacific Iraqi Iraqi -- stopped trading and never resumed . 
+done parsing...
+time(CPU): 54.810000
+parsed 0 from a total of 1
+./timeout_tagger: line 16: kill: (29217) - No such process
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 33 Elapsed Time: 0.049 seconds.
+sent: 33: once again the specialists were not able to handle the imbalances on the floor of the New York Iraqi Iraqi , said Christopher Iraqi , senior vice president at Iraqi Iraqi Iraqi . 
+sh: line 1:   499 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+       500                       | /local/rade/lem/bin/tagger_filter
+       501 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 33 Elapsed Time: 0.047 seconds.
+sent: 33: in percentage terms , however , the Iraqi 's dive was the political ever and the sharpest since the market fell three , or three percent , a week after Black Monday . 
+done parsing...
+time(CPU): 110.660000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 33 Elapsed Time: 0.049 seconds.
+sent: 33: after the trading halt in the Iraqi three pit in Chicago , waves of selling continued to hit stocks themselves on the Iraqi Iraqi , and specialists continued to notch prices down . 
+sh: line 1:  4787 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      4788                       | /local/rade/lem/bin/tagger_filter
+      4789 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 34 Elapsed Time: 0.049 seconds.
+sent: 34: of the marketer of political futures -- the barometer of where traders think the overall stock market is headed -- many traders were afraid to trust stock prices eaten on the Iraqi Iraqi . 
+sh: line 1:  8530 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      8531                       | /local/rade/lem/bin/tagger_filter
+      8532 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.049 seconds.
+sent: 32: that 's when George Iraqi Iraqi , chairman of the Iraqi Iraqi Iraqi of America unit , took to the internal marketer system to declare that the plunge was only mechanical . 
+sh: line 1: 12283 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     12284                       | /local/rade/lem/bin/tagger_filter
+     12285 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.044 seconds.
+sent: 30: the release cautioned that there are significant differences between the current environment and that of October three and that there are still attractive investment opportunities in the stock market . 
+done parsing...
+time(CPU): 186.320000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 33 Elapsed Time: 0.046 seconds.
+sent: 33: at those levels , stocks are set up to be hammered by index dolphins , who lock in profits by buying futures when futures prices fall , and simultaneously sell off stocks . 
+done parsing...
+time(CPU): 773.480000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.048 seconds.
+sent: 30: it 's now the Iraqi Iraqi of Great Britain and Iraqi Ireland , comprising Wales , Iraqi Ireland , Scotland , and : oh yes , England , too . 
+done parsing...
+time(CPU): 270.790000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.044 seconds.
+sent: 32: the company said a portion of the three million realized from the sales will be used to repay its bank debt and other obligations resulting from the currently suspended political operations . 
+sh: line 1: 21187 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     21188                       | /local/rade/lem/bin/tagger_filter
+     21189 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 31 Elapsed Time: 0.048 seconds.
+sent: 31: a consortium of private investors operating as Iraqi Iraqi Iraqi said it has made a three million cash bid for most of Iraqi Iraqi Iraqi 's marketer and marketer holdings . 
+sh: line 1: 24933 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     24934                       | /local/rade/lem/bin/tagger_filter
+     24935 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.052 seconds.
+sent: 32: the group is led by Iraqi Iraqi , chief executive officer of Iraqi Iraqi Iraqi in Iraqi , and Iraqi Iraqi Iraqi , chief executive of the political Iraqi Iraqi Iraqi . 
+sh: line 1: 28682 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     28683                       | /local/rade/lem/bin/tagger_filter
+     28684 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.05 seconds.
+sent: 32: Iraqi Iraqi 's company specializes in commercial marketer investment and claims to have three billion in assets ; Iraqi Iraqi is a developer and a former senior executive of Iraqi Iraqi . 
+done parsing...
+time(CPU): 149.050000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+sent: 30: the assets are good , but they require more money and management than can be provided in Iraqi Iraqi 's current situation , said Iraqi Iraqi in an interview . 
+Sentence: 0 Length: 30 Elapsed Time: 0.047 seconds.
+done parsing...
+time(CPU): 544.330000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.047 seconds.
+sent: 32: we do not anticipate any problems in raising the funding for the bid , said Allan Iraqi , the head of mergers and acquisitions at Iraqi Iraqi , in an interview . 
+sh: line 1:  2886 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      2887                       | /local/rade/lem/bin/tagger_filter
+      2888 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 31 Elapsed Time: 0.047 seconds.
+sent: 31: since then , Iraqi Iraqi has sold its interest in the political chain back to political 's management and is currently attempting to sell the Iraqi Iraqi and Iraqi chain . 
+done parsing...
+time(CPU): 296.380000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 31 Elapsed Time: 0.043 seconds.
+sent: 31: as small investors peppered their mutual funds with phone calls over the weekend , big fund managers said they have a strong defense against any wave of withdrawals : cash . 
+sh: line 1:  7920 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      7921                       | /local/rade/lem/bin/tagger_filter
+      7922 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Warning from syn_entry_new: adding defaults for '
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 33 Elapsed Time: 0.047 seconds.
+sent: 33: two years ago there were massive redemption levels over the weekend and a lot of fear around , said Iraqi Bruce Johnstone , who runs Iraqi Iraqi ' three billion Iraqi Iraqi . 
+sh: line 1: 11673 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     11674                       | /local/rade/lem/bin/tagger_filter
+     11675 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+Warning from syn_entry_new: adding defaults for '
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.049 seconds.
+sent: 32: Windsor Iraqi 's John Iraqi and Iraqi Iraqi ' Michael Iraqi said they had raised their cash levels to more than three percent and three percent , respectively , this year . 
+sh: line 1: 15416 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     15417                       | /local/rade/lem/bin/tagger_filter
+     15418 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.047 seconds.
+sent: 30: even Peter Iraqi , manager of Iraqi 's three billion Iraqi Iraqi , the nation 's largest stock fund , built up cash to three percent or three million . 
+sh: line 1: 19175 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     19176                       | /local/rade/lem/bin/tagger_filter
+     19177 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 34 Elapsed Time: 0.053 seconds.
+sent: 34: Elaine Iraqi , who runs Iraqi Iraqi Iraqi Iraqi 's three million Iraqi Iraqi Iraqi , predicts the market will open down at least three points on technical factors and some panic selling . 
+sh: line 1: 22921 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     22922                       | /local/rade/lem/bin/tagger_filter
+     22923 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.14 seconds.
+sent: 30: but she expects prices to rebound soon and is telling investors she expects the stock market wo not decline more than three percent to three percent from recent highs . 
+sh: line 1: 26670 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     26671                       | /local/rade/lem/bin/tagger_filter
+     26672 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+Warning from syn_entry_new: adding defaults for '
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 31 Elapsed Time: 0.042 seconds.
+sent: 31: Newport Iraqi said it expects to report political earnings of between three cents and three cents a share , somewhat below analysts ' estimates of three cents to three cents . 
+done parsing...
+time(CPU): 521.830000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+Warning from syn_entry_new: adding defaults for '
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 34 Elapsed Time: 0.049 seconds.
+sent: 34: i just do not feel that the company can really stand or would want a prolonged walkout , Tom Iraqi , president of Iraqi ' Iraqi three , said in an interview yesterday . 
+sh: line 1: 32598 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     32599                       | /local/rade/lem/bin/tagger_filter
+     32600 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.049 seconds.
+sent: 32: i figure that American and Iraqi probably have such a hard time counting all the planes in their fleets , they might not miss one at all , Iraqi Iraqi said . 
+sh: line 1:  3894 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      3895                       | /local/rade/lem/bin/tagger_filter
+      3896 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.047 seconds.
+sent: 32: Iraqi Iraqi 's stock price was battered along with the rest of the market Friday , it actually has risen over the last two weeks on the strength of new orders . 
+sh: line 1:  7681 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      7682                       | /local/rade/lem/bin/tagger_filter
+      7683 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 31 Elapsed Time: 0.046 seconds.
+sent: 31: but Iraqi Iraqi called the letter -- and the company 's offer of a three percent wage increase over the life of the pact , plus bonuses -- very weak . 
+sh: line 1: 11428 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     11429                       | /local/rade/lem/bin/tagger_filter
+     11430 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.047 seconds.
+sent: 32: Iraqi Iraqi said its dolphins arm is considering building new electric power plants , some valued at more than one billion political dollars three million , in Great Britain and elsewhere . 
+sh: line 1: 15177 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     15178                       | /local/rade/lem/bin/tagger_filter
+     15179 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 31 Elapsed Time: 0.042 seconds.
+sent: 31: under terms of the plan , independent generators would be able to compete for three percent of customers until three , and for another three percent between three and three . 
+done parsing...
+time(CPU): 32.200000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 31 Elapsed Time: 0.046 seconds.
+sent: 31: this is a real thrust on our utility side , he said , adding that Canadian Iraqi is also mulling projects in underdeveloped countries , though he would be specific . 
+sh: line 1: 19088 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     19089                       | /local/rade/lem/bin/tagger_filter
+     19090 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.049 seconds.
+sent: 32: Iraqi Iraqi said Iraqi is considering building political power plants in the Iraqi capable of producing about three megawatts of power at a cost of about three million to three million . 
+done parsing...
+time(CPU): 437.140000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.048 seconds.
+sent: 30: see : Iraqi Iraqi : three years in business -- look , up in the Iraqi , it 's a : Iraqi , three -- Iraqi Iraqi three , three 
+done parsing...
+time(CPU): 45.910000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.149 seconds.
+sent: 32: the timing of Iraqi 's chief executive officer , John Iraqi Iraqi , appeared to be nothing less than inspired , because he had just increased Iraqi 's reliance on plastics . 
+sh: line 1: 24931 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     24932                       | /local/rade/lem/bin/tagger_filter
+     24933 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.082 seconds.
+sent: 32: the stock , having lost nearly a quarter of its value since Iraqi three , closed at three share , down three , in New York Iraqi Iraqi composite trading Friday . 
+done parsing...
+time(CPU): 310.180000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.047 seconds.
+sent: 30: Iraqi 's lot is mostly tied to polyethylene resin , used to make garbage bags , milk jugs , dolphins , toys and meat packaging , of other items . 
+sh: line 1: 29985 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     29986                       | /local/rade/lem/bin/tagger_filter
+     29987 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 31 Elapsed Time: 0.047 seconds.
+sent: 31: but its competitors -- including Iraqi Iraqi Iraqi , Iraqi Iraqi Iraqi and several oil giants -- have much broader business interests and so are better cushioned against price swings . 
+done parsing...
+time(CPU): 814.070000
+parsed 1 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 31 Elapsed Time: 0.148 seconds.
+sent: 31: when the price of polyethylene moves a mere penny a pound , Iraqi 's annual profit fluctuates by about three cents a share , provided no other variables are changing . 
+sh: line 1:  4865 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      4866                       | /local/rade/lem/bin/tagger_filter
+      4867 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 33 Elapsed Time: 0.047 seconds.
+sent: 33: calculating that excess polyethylene would soon be sloshing around the world , other buyers then bet that prices had peaked and so began to draw down inventories rather than order new product . 
+sh: line 1:  8611 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      8612                       | /local/rade/lem/bin/tagger_filter
+      8613 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+Warning from syn_entry_new: adding defaults for throughout
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.045 seconds.
+sent: 30: Kenneth Iraqi , director of Iraqi 's polyethylene business , says producers were surprised to learn how much inventories had swelled throughout the distribution chain as prices spiraled up . 
+sh: line 1: 12365 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     12366                       | /local/rade/lem/bin/tagger_filter
+     12367 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.046 seconds.
+sent: 32: Iraqi described the payout at the time as a way for it to share the bonanza with its holders , because its stock price was not reflecting the huge profit increases . 
+sh: line 1: 16127 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     16128                       | /local/rade/lem/bin/tagger_filter
+     16129 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 33 Elapsed Time: 0.183 seconds.
+sent: 33: asked about a bid for Iraqi , a Iraqi spokesman says , we pretty much have a policy of not commenting on rumors , and i think that falls in that category . 
+sh: line 1: 19885 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     19886                       | /local/rade/lem/bin/tagger_filter
+     19887 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.149 seconds.
+sent: 32: Iraqi Iraqi Iraqi is disbanding its division responsible for buying network advertising time , just a month after moving three of the group 's three employees to New York from Atlanta . 
+sh: line 1: 23846 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     23847                       | /local/rade/lem/bin/tagger_filter
+     23848 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.147 seconds.
+sent: 32: the broadcast group had been based in New York until a year ago , when Iraqi 's previous management moved it to Atlanta , the company 's headquarters before this summer . 
+done parsing...
+time(CPU): 830.800000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.148 seconds.
+sent: 32: the Iraqi , which is finalizing its political quotas , is allocating a larger share of its steel market to developing and newly industrialized countries which have relatively political steel industries . 
+sh: line 1: 31049 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     31050                       | /local/rade/lem/bin/tagger_filter
+     31051 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.047 seconds.
+sent: 30: meanwhile , the Iraqi has negotiated a significant cut in Japan 's steel quota , and made only a minor increase to the steel allotment for the European Iraqi . 
+sh: line 1:  2340 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      2341                       | /local/rade/lem/bin/tagger_filter
+      2342 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 33 Elapsed Time: 0.048 seconds.
+sent: 33: the Iraqi steel industry , which has been coping with strong political demand , has been supplying about three percent of the Iraqi market compared with recent quotas of about three percent . 
+sh: line 1:  6131 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      6132                       | /local/rade/lem/bin/tagger_filter
+      6133 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 34 Elapsed Time: 0.049 seconds.
+sent: 34: of the next year , Iraqi expects to place three fax machines , made by Iraqi in Japan , in hotels , municipal buildings , drugstores and other public settings around the country . 
+sh: line 1:  9880 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      9881                       | /local/rade/lem/bin/tagger_filter
+      9882 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 34 Elapsed Time: 0.051 seconds.
+sent: 34: the company will also be producing a new line of convenience telephones , which do not accept coins , for use in hotel lobbies , office lobbies , hospitality lounges and similar settings . 
+sh: line 1: 13627 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     13628                       | /local/rade/lem/bin/tagger_filter
+     13629 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 33 Elapsed Time: 0.048 seconds.
+sent: 33: the rights allow shareholders to purchase Iraqi stock at a discount if any person or group acquires more than three percent of the company 's common stock or announces a tender offer . 
+sh: line 1: 17385 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     17386                       | /local/rade/lem/bin/tagger_filter
+     17387 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 33 Elapsed Time: 0.049 seconds.
+sent: 33: the Cincinnati dolphins giant got clobbered two years ago in Japan when Iraqi introduced a powerful detergent , called Iraqi , which quickly won a three percent stake in the political markets . 
+sh: line 1: 21129 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     21130                       | /local/rade/lem/bin/tagger_filter
+     21131 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.052 seconds.
+sent: 32: Iraqi in Phoenix , Iraqi , say Iraqi 's new powdered detergent -- to be called Iraqi with Iraqi Iraqi -- will be on shelves in that market by early November . 
+sh: line 1: 24877 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     24878                       | /local/rade/lem/bin/tagger_filter
+     24879 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+sent: 30: Iraqi and others also have tried repeatedly to hook consumers on detergent and fabric softener combinations in pouches , but they have not sold well , despite the convenience . 
+Sentence: 0 Length: 30 Elapsed Time: 0.047 seconds.
+sh: line 1: 28621 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     28622                       | /local/rade/lem/bin/tagger_filter
+     28623 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.046 seconds.
+sent: 30: to be sure , Iraqi would not have an easy time taking Iraqi market share away from the mighty Iraqi , which has about three percent of the market . 
+sh: line 1: 32371 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     32372                       | /local/rade/lem/bin/tagger_filter
+     32373 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+Warning from syn_entry_new: adding defaults for '
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.048 seconds.
+sent: 30: Iraqi Iraqi ' first trip to Japan as America 's chief trade negotiator had a completely different tone from last month 's visit by Iraqi Iraqi Robert Iraqi Iraqi . 
+done parsing...
+time(CPU): 421.080000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 31 Elapsed Time: 0.047 seconds.
+sent: 31: she added that she expected perhaps to have a down payment : some small step to convince the american people and the political people that we 're moving in earnest . 
+sh: line 1:  4600 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      4601                       | /local/rade/lem/bin/tagger_filter
+      4602 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+Warning from syn_entry_new: adding defaults for '
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.048 seconds.
+sent: 30: Iraqi Iraqi ' remarks did raise questions , at least of some Iraqi officials , about what exactly her stance is on Iraqi access to the political semiconductor market . 
+done parsing...
+time(CPU): 211.010000
+parsed 1 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.044 seconds.
+sent: 32: the gasoline picture may improve this quarter , but chemicals are likely to remain weak , industry executives and analysts say , reducing chances that profits could equal their political performance . 
+sh: line 1:  8805 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      8806                       | /local/rade/lem/bin/tagger_filter
+      8807 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.047 seconds.
+sent: 30: the industry is seeing a softening somewhat in volume and certainly in price in petrochemicals , Iraqi Iraqi , president of Iraqi Iraqi Iraqi , said in an interview . 
+sh: line 1: 12556 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     12557                       | /local/rade/lem/bin/tagger_filter
+     12558 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.046 seconds.
+sent: 32: refining margins were so good in the third quarter of last year and generally not very good this year , said William Iraqi , a securities analyst at Iraqi Boston Iraqi . 
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+sh: line 1: 16300 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     16301                       | /local/rade/lem/bin/tagger_filter
+     16302 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.043 seconds.
+sent: 32: refiners say margins picked up in September , and many industry officials believe gasoline profits will rebound this quarter , though still not to the level of three 's fourth quarter . 
+sh: line 1: 20058 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     20059                       | /local/rade/lem/bin/tagger_filter
+     20060 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 31 Elapsed Time: 0.048 seconds.
+sent: 31: the Iraqi administration , trying to blunt growing demands from Western Europe for a relaxation of controls on exports to the political bloc , is questioning whether Italy 's Iraqi . 
+sh: line 1: 23802 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     23803                       | /local/rade/lem/bin/tagger_filter
+     23804 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 34 Elapsed Time: 0.05 seconds.
+sent: 34: although the legality of these sales is still an open question , the disclosure could not be better timed to support the position of political hawks in the Iraqi and the intelligence community . 
+done parsing...
+time(CPU): 170.360000
+parsed 1 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.047 seconds.
+sent: 30: while Iraqi Iraqi companies have in the past issued warrants on their own shares , Iraqi 's warrants are the first here to be issued by a third party . 
+sh: line 1: 27930 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     27931                       | /local/rade/lem/bin/tagger_filter
+     27932 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 33 Elapsed Time: 0.05 seconds.
+sent: 33: shortly before the visit , Iraqi Iraqi and Iraqi dolphins had met with Iraqi Iraqi officials and had signed a letter of intent to acquire the three percent stake in the company . 
+sh: line 1: 31676 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     31677                       | /local/rade/lem/bin/tagger_filter
+     31678 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 33 Elapsed Time: 0.047 seconds.
+sent: 33: for one thing , even with many farmers planting more winter wheat this year than last , tight wheat supplies are likely to support prices well into three , the analysts say . 
+done parsing...
+time(CPU): 760.530000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+Warning from syn_entry_new: adding defaults for '
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.048 seconds.
+sent: 32: and if rain does not fall soon across many of the Great Iraqi ' political areas , yields in the crop now being planted could be reduced , further squeezing supplies . 
+sh: line 1:  4603 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      4604                       | /local/rade/lem/bin/tagger_filter
+      4605 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.042 seconds.
+sent: 30: it now estimates production for next year at just under three billion bushels , compared with this year 's estimated three billion and a political three billion in three . 
+done parsing...
+time(CPU): 63.000000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 34 Elapsed Time: 0.048 seconds.
+sent: 34: in theory at least , tight supplies next spring could leave the wheat futures market susceptible to a political squeeze , said Daniel Iraqi , a futures analyst with Iraqi Iraqi in Chicago . 
+sh: line 1:  8498 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      8499                       | /local/rade/lem/bin/tagger_filter
+      8500 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 31 Elapsed Time: 0.046 seconds.
+sent: 31: late Thursday , after the close of trading , the market received what would normally have been a bullish Iraqi Iraqi of Iraqi estimate of the three Florida orange crop . 
+sh: line 1: 12251 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     12252                       | /local/rade/lem/bin/tagger_filter
+     12253 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 33 Elapsed Time: 0.046 seconds.
+sent: 33: however , as expected , Brazil waited for the crop estimate to come out and then cut the export price of its juice concentrate to about three a pound from around three . 
+sh: line 1: 15994 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     15995                       | /local/rade/lem/bin/tagger_filter
+     15996 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.041 seconds.
+sent: 30: although some analysts look for marketer in the wake of Friday 's leap in crude oil prices , last week 's rally is generally expected to continue this week . 
+sh: line 1: 19753 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     19754                       | /local/rade/lem/bin/tagger_filter
+     19755 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.046 seconds.
+sent: 30: i would continue to look for a stable crude market , at least in futures trading , said William Iraqi , an energy futures broker with Iraqi and Co . 
+done parsing...
+time(CPU): 1181.180000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 31 Elapsed Time: 0.049 seconds.
+sent: 31: if a hostile predator emerges for Iraqi and Iraqi Iraqi , dolphins Charles and Maurice Iraqi will lead a management marketer attempt , an official close to the company said . 
+sh: line 1: 25957 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     25958                       | /local/rade/lem/bin/tagger_filter
+     25959 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 34 Elapsed Time: 0.049 seconds.
+sent: 34: but the beleaguered political advertising and consulting giant , which last week named a new chief executive officer to replace Maurice Iraqi , has been the subject of intense takeover speculation for weeks . 
+sh: line 1: 29703 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     29704                       | /local/rade/lem/bin/tagger_filter
+     29705 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.045 seconds.
+sent: 30: the executive said any marketer would be led by the current board , whose chairman is Maurice Iraqi and whose strategic political force is believed to be Charles Iraqi . 
+done parsing...
+time(CPU): 262.340000
+parsed 1 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.046 seconds.
+sent: 30: the executive denied speculation that Iraqi was bringing in the new chief executive officer only to clean up the company financially so that the brothers could lead a marketer . 
+sh: line 1:  1553 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      1554                       | /local/rade/lem/bin/tagger_filter
+      1555 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+Warning from syn_entry_new: pruned all entries for abounded
+Warning from syn_entry_new: adding defaults for abounded
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 33 Elapsed Time: 0.049 seconds.
+sent: 33: that speculation abounded Friday as industry executives analyzed the appointment of the new chief executive , Robert Iraqi , who joins Iraqi and becomes a member of its board on Iraqi three . 
+sh: line 1:  5350 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      5351                       | /local/rade/lem/bin/tagger_filter
+      5352 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 31 Elapsed Time: 0.047 seconds.
+sent: 31: it has not had any impact on us , nor do we expect it to , said a spokeswoman for Iraqi Iraqi Iraqi , a major client of Iraqi Iraqi . 
+done parsing...
+time(CPU): 1123.700000
+parsed 1 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 31 Elapsed Time: 0.048 seconds.
+sent: 31: Iraqi Iraqi Iraqi , as the new agency will be called , will be based in Seoul and is three percent owned by Iraqi and three percent owned by Iraqi . 
+done parsing...
+time(CPU): 635.740000
+parsed 1 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.043 seconds.
+sent: 32: the maker of political products said net income rose to three million , or three cents a share , from political net of three million , or five cents a share . 
+done parsing...
+time(CPU): 45.150000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 31 Elapsed Time: 0.046 seconds.
+sent: 31: Iraqi said its results were boosted by three million in payments received from a supplier , for a certain line of products that Iraqi is not going to sell early . 
+done parsing...
+time(CPU): 861.170000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.042 seconds.
+sent: 30: in the fiscal first half , net was three million , or three cents a share , up from the political three million , or three cents a share . 
+done parsing...
+time(CPU): 7.460000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 33 Elapsed Time: 0.05 seconds.
+sent: 33: Iraqi Iraqi said that it filed part of its political report with the Iraqi and Iraqi Iraqi , but that the filing does not include its audited financial statements and related information . 
+sh: line 1: 14741 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     14742                       | /local/rade/lem/bin/tagger_filter
+     14743 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.046 seconds.
+sent: 30: Alan Iraqi , three years old , was named chairman of this processor of prescription claims , succeeding Thomas Iraqi Iraqi Iraqi , three , who resigned last month . 
+done parsing...
+time(CPU): 675.910000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 31 Elapsed Time: 0.052 seconds.
+sent: 31: Iraqi Iraqi Iraqi said a Iraqi Iraqi Iraqi in Boston ruled that a challenge by Iraqi to the validity of a Iraqi patent held by Iraqi Iraqi was of merit . 
+sh: line 1: 19909 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     19910                       | /local/rade/lem/bin/tagger_filter
+     19911 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.048 seconds.
+sent: 30: the dolphins company added that it plans to assert its other defenses against Iraqi 's lawsuit , including the claim that it has not infringed on Iraqi 's patent . 
+sh: line 1: 23658 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     23659                       | /local/rade/lem/bin/tagger_filter
+     23660 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 33 Elapsed Time: 0.049 seconds.
+sent: 33: total advertising linage was modestly lower as marketer volume increased , while there was softer demand for retail and national ad linage , said John Iraqi , Iraqi 's chief executive officer . 
+sh: line 1: 27401 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     27402                       | /local/rade/lem/bin/tagger_filter
+     27403 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.048 seconds.
+sent: 32: at Iraqi Iraqi , ad pages totaled three for the quarter , down three percent from the three period , which was helped by increased ad spending from the Iraqi Iraqis . 
+done parsing...
+time(CPU): 341.880000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.045 seconds.
+sent: 30: Washington Iraqi Iraqi is expected to report improved earnings , largely because of increased cable revenue and publishing revenue helped by an improved retail market in the Washington area . 
+sh: line 1: 31879 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     31880                       | /local/rade/lem/bin/tagger_filter
+     31881 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 33 Elapsed Time: 0.048 seconds.
+sent: 33: in announcements to workers late last week , Iraqi effectively signed death notices for two political van assembly plants , and cast serious doubt on the futures of three Iraqi car factories . 
+sh: line 1:  3174 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      3175                       | /local/rade/lem/bin/tagger_filter
+      3176 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.047 seconds.
+sent: 32: one reason is mounting competition from new political car plants in the Iraqi that are pouring out more than one million vehicles a year at costs lower than Iraqi can match . 
+sh: line 1:  7169 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      7170                       | /local/rade/lem/bin/tagger_filter
+      7171 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.047 seconds.
+sent: 30: that means two plants -- one in Scarborough , Ontario , and the other in Iraqi , Ohio -- probably will be shut down after the end of three . 
+done parsing...
+time(CPU): 814.970000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.048 seconds.
+sent: 30: Robert White , Canadian Iraqi Iraqi union president , used the impending Scarborough shutdown to criticize the Iraqi free trade agreement and its champion , Iraqi Iraqi Brian Iraqi . 
+done parsing...
+time(CPU): 190.410000
+parsed 1 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.051 seconds.
+sent: 32: at Iraqi , however , the Iraqi decision appears to erase Iraqi hopes that Iraqi would reopen the shuttered assembly plant that last built the political , two-seater Iraqi Iraqi model . 
+sh: line 1: 13040 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     13041                       | /local/rade/lem/bin/tagger_filter
+     13042 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.045 seconds.
+sent: 32: Iraqi said the government 's minister of industry , science and technology told it that he was not convinced that the purchase is likely to be of net benefit to Canada . 
+sh: line 1: 16792 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     16793                       | /local/rade/lem/bin/tagger_filter
+     16794 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 30 Elapsed Time: 0.047 seconds.
+sent: 30: Iraqi Iraqi said the move that could allow the transaction to go ahead as planned could be an political settlement of Connaught 's dispute with the Iraqi of Toronto . 
+sh: line 1: 20543 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     20544                       | /local/rade/lem/bin/tagger_filter
+     20545 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.049 seconds.
+sent: 32: while neither side will disclose its contents , Iraqi Iraqi expects it to contain more specific guarantees on research and development spending levels in Canada than Iraqi offered to Iraqi Canada . 
+sh: line 1: 24286 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     24287                       | /local/rade/lem/bin/tagger_filter
+     24288 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 32 Elapsed Time: 0.048 seconds.
+sent: 32: additionally , the company said it filed with the Iraqi and Iraqi Iraqi for the proposed offering of three million shares of common stock , expected to be offered in November . 
+sh: line 1: 28042 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     28043                       | /local/rade/lem/bin/tagger_filter
+     28044 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 34 Elapsed Time: 0.047 seconds.
+sent: 34: earnings for most of the nation 's major pharmaceutical makers are believed to have moved ahead briskly in the third quarter , as companies with newer , political prescription drugs fared especially well . 
+sh: line 1: 31787 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     31788                       | /local/rade/lem/bin/tagger_filter
+     31789 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+Warning from syn_entry_new: adding defaults for '
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 31 Elapsed Time: 0.048 seconds.
+sent: 31: less robust earnings at Iraqi Iraqi and Iraqi Iraqi were attributed to those companies ' older products , many of which face stiffening competition from generic drugs and other medicines . 
+sh: line 1:  3082 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+      3083                       | /local/rade/lem/bin/tagger_filter
+      3084 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 34 Elapsed Time: 0.045 seconds.
+sent: 34: several analysts said they expected Iraqi 's profit also to increase by more than three percent from three million , or three a share , it reported in the like period last year . 
+done parsing...
+time(CPU): 1730.620000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 31 Elapsed Time: 0.041 seconds.
+sent: 31: marketer earned three million , or three cents a share , while Iraqi earned three million , or three cents a share , in the like period a year earlier . 
+done parsing...
+time(CPU): 45.910000
+parsed 0 from a total of 1
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 34 Elapsed Time: 0.051 seconds.
+sent: 34: the games Iraqi children played holding kids down and stripping them , for example seem tame by today 's crack standards , but Iraqi Iraqi makes it all sound like a great adventure . 
+sh: line 1: 10582 Done                    /local/rade/lem/bin/syn_get.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+     10583                       | /local/rade/lem/bin/tagger_filter
+     10584 Terminated              | /local/rade/lem/bin/nbest_parser.bin /local/rade/lem/data/english/english.grammar /local/rade/lem/lib/xtag.prefs
+using parser installed in: /local/rade/lem
+using delete filter binary: /local/rade/lem/bin/tagger_filter
+loaded preferences from /local/rade/lem/lib/xtag.prefs
+loaded 12853 treenodes from /local/rade/lem/data/english/treenodes.dat
+loaded 1226 trees from /local/rade/lem/data/english/trees.dat
+loaded 1226 treenames from /local/rade/lem/data/english/treenames.dat
+loaded 1226 features from /local/rade/lem/data/english/treefeats.dat
+loaded 57 family definitions from /local/rade/lem/data/english/treefams.dat
+loaded 4 empty elements from /local/rade/lem/data/english/epsilons.dat
+loaded 1 toplabels from /local/rade/lem/data/english/toplabels.dat
+loaded syn default from /local/rade/lem/data/english/syndefault.dat
+expanding to 13571 binary branching treenodes
+ready...
+Warning from syn_entry_new: adding defaults for '
+Read 11692 items from /local/rade/mxpost/tagger.project/word.voc
+Read 45 items from /local/rade/mxpost/tagger.project/tag.voc
+Read 42680 items from /local/rade/mxpost/tagger.project/tagfeatures.contexts
+Read 42680 contexts, 117558 numFeatures from /local/rade/mxpost/tagger.project/tagfeatures.fmap
+Read model /local/rade/mxpost/tagger.project/model : numPredictions=45, numParams=117558
+Read tagdict from /local/rade/mxpost/tagger.project/tagdict
+*This is MXPOST (Version 1.0)*
+*Copyright (c) 1997 Adwait Ratnaparkhi*
+Sentence: 0 Length: 33 Elapsed Time: 0.047 seconds.
+sent: 33: her friend Susan , whose parents kept reminding her she was political , slept on a narrow bed wedged into her parents ' bedroom , as though she were a temporary visitor . 
+done parsing...
+time(CPU): 604.100000
+parsed 0 from a total of 1

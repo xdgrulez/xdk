@@ -1,0 +1,437 @@
+<html lang="en">
+<head>
+<title>ema - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Grammars.html#Grammars" title="Grammars">
+<link rel="prev" href="dissPW.html#dissPW" title="dissPW">
+<link rel="next" href="ema_005fth.html#ema_005fth" title="ema_th">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="ema"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="ema_005fth.html#ema_005fth">ema_th</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="dissPW.html#dissPW">dissPW</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Grammars.html#Grammars">Grammars</a>
+<hr>
+</div>
+
+<h3 class="section">5.42 ema</h3>
+
+<p>This grammar covers some Czech sentences. It was written by Ondrej
+Bojar.
+
+<pre class="verbatim">usedim id
+usedim lp
+usedim lex
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension id
+defdim id {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defattrstype "id.attrs"
+  defentrytype "id.entry"
+  deflabeltype "id.label"
+  deftype "id.person" {first second third}
+  deftype "id.number" {sg pl}
+  deftype "id.gender" {masc fem neut inan}
+  deftype "id.case" {nom gen dat acc voc loc ins}
+  deftype "id.agr" tuple("id.person" "id.number" "id.gender" "id.case")
+  deftype "id.agrs" iset("id.agr")
+  deftype "id.attrs" {agr: "id.agr"}
+  deftype "id.entry" {in: iset("id.label")
+                      out: valency("id.label")
+                      agrs: "id.agrs"
+                      lagrs: vec("id.label" "id.agrs")}
+  deftype "id.label" {
+            sent subj obj auxr vfin
+            subj_inf obj_inf
+            adv
+            adj
+            }
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph1" {
+    dims {D: id}}
+  useprinciple "principle.tree" {
+    dims {D: id}}
+  useprinciple "principle.in" {
+    dims {D: id}}
+  useprinciple "principle.out" {
+    dims {D: id}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dag"
+  output "output.latex"
+  output "output.pretty"
+  output "output.xml"
+  output "output.xml1"
+  %%
+%   useoutput "output.dag"
+%   useoutput "output.xml"
+  useoutput "output.xml1"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lp
+defdim lp {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype "lp.entry"
+  deflabeltype "lp.label"
+  deftype "lp.entry" {in: iset("lp.label")
+                      out: valency("lp.label")
+                      on: iset("lp.label")
+                      blocks: set("id.label")}
+  deftype "lp.label" {
+               prepf adjf noun
+               vinf verb auxrf vmodf
+               mod
+               refl
+               preclitf clitf postclitf sent
+  }
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph1" {
+    dims {D: lp}}
+  useprinciple "principle.tree" {
+    dims {D: lp}}
+  useprinciple "principle.in" {
+    dims {D: lp}}
+  useprinciple "principle.out" {
+    dims {D: lp}}
+  useprinciple "principle.order" {
+    dims {D: lp}
+    args {Order: [
+            % Every line is used for a different ordering,
+            % lines among one another are incomparable.
+            % In every line, there should be only fields (to let daughters
+            % land in) +exactly one element,  the head.
+            % Lines with only one element are used for nodes that do not
+            % offer any place for daughter.
+               prepf adjf noun
+               vinf verb auxrf vmodf
+               mod
+               refl
+               preclitf clitf postclitf sent
+             ]
+          Yields: true}}
+  useprinciple "principle.projectivity" {
+    dims {D: lp}}
+  useprinciple "principle.climbing" {
+    dims {D1: lp
+          D2: id}}
+   useprinciple "principle.barriers" {
+    dims {D1: lp
+          D2: id
+          D3: lp}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dag"
+  output "output.latex"
+  output "output.pretty"
+  output "output.xml"
+  output "output.xml1"
+  %%
+%   useoutput "output.dag"
+  useoutput "output.xml1"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lex
+defdim lex {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype {word: string}}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define classes
+
+defclass "sent" Word { % final punctuation of the sent
+  dim id {
+          in: {}
+          out: {vfin}
+  }
+  dim lex {word: Word}
+  dim lp {in: {}
+        on: {sent}
+        out: ({preclitf#{1 2} clitf+ postclitf+} | {postclitf*})
+  }
+}
+
+defclass "cnoun" Word Agrs {
+  dim id {in: {subj obj}
+          out: {adj?}
+          agrs: Agrs}
+  dim lp {in: {preclitf postclitf}
+          on: {noun}
+          out: {prepf? adjf*}
+          }
+  dim lex {word: Word}}
+
+defclass "pname" Word Agrs {
+  dim id {in: {subj obj}
+          agrs: Agrs}
+  dim lp {in: {preclitf postclitf}
+          on: {noun}}
+  dim lex {word: Word}}
+
+defclass "reflpart" Word {
+  dim id {
+    in: {auxr}
+    out: {}
+  }
+  dim lp {
+    on: {refl}
+    in: {clitf auxrf}
+    out: {}
+  }
+  dim lex {word: Word}
+}
+
+defclass "fin" Word Agrs {
+  dim id {in: {vfin}
+          out: {subj?}
+          agrs: Agrs
+          lagrs: {subj: $ nom}}
+  dim lp {in: {preclitf postclitf}
+%             out: {mf* vxf?}
+          out: {}
+          on: {verb}
+         % blocks: {det subj obj vbse vprt vinf}
+	    }
+  dim lex {word: Word}
+}
+
+defclass "inf" Word {
+  dim id {in: {subj_inf obj_inf}
+          out: {}
+%           agrs: Agrs
+%           lagrs: {subj: $ nom}
+        }
+  dim lp {in: {preclitf postclitf}
+%             out: {mf* vxf?}
+          out: {}
+          on: {vinf}
+         % blocks: {det subj obj vbse vprt vinf}
+	    }
+  dim lex {word: Word}
+}
+
+%   defclass "can" Word {
+%     dim id {in: {vbse vprt vinf}}
+%     dim lp {in: {vcf}
+%             on: {v}}
+%     dim lex {word: Word}}
+% 
+%   defclass "noncan" Word {
+%     dim id {in: {vbse vprt vinf}}
+%     dim lp {in: {vxf}
+%             on: {v}
+%             out: {mf* vxf?}}
+%     dim lex {word: Word}}
+% 
+%   defclass "ersatz" {
+%     dim id {in: {vbse vprt}}}
+% 
+%   defclass "vbse" {
+%     dim id {in: {vbse}}}
+% 
+%   defclass "vinf" {
+%     dim id {in: {vinf}
+%             out: {prt}}
+%     dim lp {out: {pf}}}
+% 
+%   defclass "vprt" {
+%     dim id {in: {vprt}}}
+
+defclass "vclass_refl" {
+  dim id {out: {auxr}}
+  dim lp {out: {auxrf?}}
+}
+
+defclass "vclass_tr" {
+  dim id {out: {obj}
+          lagrs: {obj: $ acc}}
+  dim lp {out: {vmodf?}}
+}
+
+defclass "vclass_trmod" {
+  dim id {out: {adv}}
+  dim lp {out: {vmodf?}}
+}
+
+defclass "vclass_trinf" {
+  dim id {out: {obj_inf}}
+  dim lp {out: {vmodf?}}
+}
+
+
+defclass "adv" Word {
+  dim id {
+    in: {vfin adj adv}
+    out: {adv?}
+  }
+  dim lp {
+    in: {preclitf postclitf vmodf}
+    on: {mod}
+    out: {}
+  }
+  dim lex {word: Word}
+}
+
+%   defclass "vbsec" {
+%     dim id {out: {vbse}}
+%     dim lp {out: {vcf?}}}
+% 
+%   defclass "vprtc" {
+%     dim id {out: {vprt}}
+%     dim lp {out: {vcf?}}}
+% 
+%   defclass "vinfc" {
+%     dim id {out: {vinf}}
+%     dim lp {out: {vcf?}}}
+% 
+%   defclass "prt" Word {
+%     dim id {in: {prt}}
+%     dim lp {in: {pf}
+%             on: {p}}
+%     dim lex {word: Word}}
+
+
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define entries
+
+% Punctuation
+defentry {
+  "sent" {Word: "."}
+}
+
+% Common nouns
+defentry {
+  "cnoun" {Agrs: ($ fem &amp; third &amp; sg &amp; nom)
+                    Word: "mísa"}}
+defentry {
+  "cnoun" {Agrs: ($ fem &amp; third &amp; sg &amp; acc)
+                    Word: "mísu"}}
+
+defentry {
+  "cnoun" {Agrs: ($ inan &amp; third &amp; sg &amp; (nom|acc))
+                    Word: "soubor"}}
+
+% Proper names
+defentry {
+  "pname" {Agrs: ($ masc &amp; sg &amp; third &amp; nom)
+                    Word: "ema"}}
+
+defentry {
+  "pname" {Agrs: ($ masc &amp; sg &amp; third &amp; nom)
+                    Word: "petr"}}
+
+% Reflective particle
+defentry {
+  "reflpart" {Word: "se"}
+}
+
+% Finite verbs
+defentry {
+  "fin" {Agrs: ($ third &amp; sg &amp; nom)
+                  Word: "má"}
+  "vclass_tr"}
+
+defentry {
+  "fin" {Agrs: ($ third &amp; sg &amp; nom)
+                  Word: "má"}
+  "vclass_refl"
+  "vclass_trmod"
+}
+
+defentry {
+  "fin" {Agrs: ($ third &amp; sg &amp; nom)
+                  Word: "nepodaøilo"}
+  "vclass_refl"
+  "vclass_trinf"
+}
+
+% Infinitives
+
+defentry {
+  "inf" {Word: "otevøít"}
+  "vclass_tr"}
+
+% Adverbs
+defentry {
+  "adv" {Word: "dobøe"}
+}
+
+%   defentry {
+%     "fin" {Agrs: ($ third &amp; sg &amp; nom)
+%                     Word: "hat"}
+%     "vprtc"}
+% 
+%   defentry {
+%     "fin" {Agrs: ($ third &amp; sg &amp; nom)
+%                     Word: "versucht"}
+%     "vinfc"}
+% 
+%   defentry {
+%     "fin" {Agrs: ($ third &amp; sg &amp; nom)
+%                     Word: "liebt"}
+%     "tr"}
+% 
+% % Non-finite verbs
+%   defentry {
+%     "can" {Word: "lieben"}
+%     "tr"
+%     "vbse"}
+%   defentry {
+%     "can" {Word: "geliebt"}
+%     "tr"
+%     "vprt"}
+% 
+%   defentry {
+%     "can" {Word: "koennen"}
+%     "vbsec"
+%     "vbse"}
+%   defentry {
+%     "noncan" {Word: "koennen"}
+%     "vbsec"
+%     "ersatz"}
+% 
+%   defentry {
+%     "noncan" {Word: "haben"}
+%     "vprtc"
+%     "vbse"}
+% 
+%   defentry {
+%     "can" {Word: "lieben"}
+%     "tr"
+%     "vinf"}
+%   defentry {
+%     "noncan" {Word: "lieben"}
+%     "tr"
+%     "vinf"}
+% 
+% % zu-particle
+%   defentry {
+%     "prt" {Word: "zu"}}
+% }
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

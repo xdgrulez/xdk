@@ -1,0 +1,123 @@
+<html lang="en">
+<head>
+<title>XTAGLinking - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="XTAG1.html#XTAG1" title="XTAG1">
+<link rel="next" href="XTAGRedundant.html#XTAGRedundant" title="XTAGRedundant">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="XTAGLinking"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="XTAGRedundant.html#XTAGRedundant">XTAGRedundant</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="XTAG1.html#XTAG1">XTAG1</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.71 XTAGLinking principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.xTAGLinking</code>
+<li>dimension variables: <code>D1</code>, <code>D2</code>, <code>D3</code>
+<li>argument variables:<br>
+<code>Link: vec(label(D2) iset(label(D1)))</code>
+<li>default values:<br>
+<code>Link: ^.D3.entry.end</code>
+<li>model record: empty
+<li>constraints: <code>XTAGLinking</code> (priority 100)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle states two constraints:
+     <ol type=1 start=1>
+<li>The graph on dimension <code>D1</code> must have the same
+edges as the graph on dimension <code>D2</code> (same as <a href="SameEdges.html#SameEdges">SameEdges</a>)
+<li>For all edges from v to v' labeled l
+on <code>D2</code> it must be the case that on <code>D1</code>, the incoming edge
+label of v' is in <code>Link</code>(l).  That is, contrary to the
+less strict <a href="LinkingEnd.html#LinkingEnd">LinkingEnd</a> principles, the constraint must hold
+regardless of whether <code>Link</code>(l) is non-empty or not.  Another
+difference to <a href="LinkingEnd.html#LinkingEnd">LinkingEnd</a> is that the order of the dimensions
+<code>D1</code> and <code>D2</code> is reversed.
+        </ol>
+
+   <p>Here is the definition of the <code>XTAGLinking</code> constraint
+functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+   System(show)
+
+   Helpers(checkModel) at 'Helpers.ozf'
+   Opti(isIn) at 'Opti.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      D1DIDA = {DVA2DIDA 'D1'}
+      D2DIDA = {DVA2DIDA 'D2'}
+      DIDA2LabelLat = G.dIDA2LabelLat
+      D2LabelLat = {DIDA2LabelLat D2DIDA}
+      D2LAs = D2LabelLat.constants
+   in
+      if {Helpers.checkModel 'XTAGLinking.oz' Nodes
+	  [D1DIDA#daughtersL
+	   D2DIDA#labels]} then
+	 for Node in Nodes do
+	    {FS.equal Node.D1DIDA.model.daughters Node.D2DIDA.model.daughters}
+	 end
+	 %%
+	 for Node1 in Nodes I in 1..{Length Nodes} do
+	    for Node2 in Nodes do
+	       for D2LA in D2LAs do
+		  if {Not {Opti.isIn Node2.index Node1.D2DIDA.model.daughtersL.D2LA}=='out'} then
+		     %% XTAGLinking
+		     %%
+		     %% m -l->2 d => -Link(l)->1 d
+		     %%     
+		     LinkD2LAD1LMRec =
+		     {ArgRecProc 'Link' o('^': Node1)}
+		     LinkD1LM = LinkD2LAD1LMRec.D2LA
+		  in
+		     {FD.impl
+		      {FS.reified.include Node2.index Node1.D2DIDA.model.daughtersL.D2LA}
+		      {FD.reified.greater 
+		       {FS.card {FS.intersect Node2.D1DIDA.model.labels LinkD1LM}} 0} 1}
+		  end
+	       end
+	    end
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

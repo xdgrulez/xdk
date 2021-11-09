@@ -1,0 +1,45 @@
+% Begehung 2/0, 17/2
+every student reads a book .
+Mary sees a student with a book .
+
+% topicalization 2/0, 2/0, 3/0
+a woman Peter marries .
+a woman Peter expects to smile .
+a good book every researcher tries to read .
+
+% scope 2/0, 2/0, 5/0, 42/46
+every man marries a woman .
+every researcher of a company laughs .
+every researcher of a company sees most samples .
+some researchers of every department of most companies see most samples of every product .
+
+% relative clauses 2/0, 7/4
+Mary sees a woman who smiles  .
+Mary sees a woman whom Peter likes  .
+
+% pp attachment 3/0, 17/2
+Mary laughs with the man .
+Mary sees the man with a telescope .
+
+% passives 2/0, 1/0, 6/1, 2/0
+a woman is married by every man .
+a woman is married .
+a researcher is assigned every task by Peter .
+a researcher is assigned every task .
+
+% subordinate sentences 3/0, 3/0
+a man says every woman laughs .
+every man says a woman laughs .
+
+% dative shift 6/1, 6/1
+Peter assigns a researcher every task .
+Peter assigns every task to a researcher .
+
+% control and raising 1/0, 2/0, 2/0, 2/0, 3/0, 3/0, 2/0
+Peter tries to laugh .
+Peter promises Mary to smile .
+Peter expects Mary to smile .
+Peter seems to laugh .
+Peter believes Mary to laugh .
+some student wants to visit a foreign university .
+every student does not understand .

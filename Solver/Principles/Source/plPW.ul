@@ -1,0 +1,40 @@
+defprinciple "principle.plPW" {
+  dims {D1 D2 D3}
+  constraints {
+
+% Roots
+forall V:
+  (~exists V1: edge(V1 V D1)) => V.D3.attrs.truth=true
+
+% Implications
+forall V: forall V1: forall V2:
+  edge(V V1 arg1 D1) & edge(V V2 arg2 D1) =>
+    ( V.D3.attrs.truth=true <=> ( V1.D3.attrs.truth=true => V2.D3.attrs.truth=true ) ) &
+    edge(V 1 D2)
+
+% Zeros
+forall V:
+  V.word="0" =>
+    V.D3.attrs.truth=false &
+    edge(V 1 D2)
+
+% Variables
+forall V: forall V1:
+  V.word="var" & edge(V V1 bar D1) =>
+    forall V2: forall V3: edge(V V2 D2) & edge(V1 V3 D2) => V2=V3
+
+% Bars
+forall V:
+  V.word="I" =>
+    V.D3.attrs.truth=false &
+    ( (~exists V1: edge(V V1 D1)) => edge(V 1 D2) ) &
+    ( forall V1: edge(V V1 bar D1) =>
+        ( forall V2: forall V3: edge(V V2 D2) & edge(V1 V3 D2) =>
+            V3<V2 & ~exists V4: V3<V4 & V4<V2 ) )
+
+% Coreference
+forall V: forall V1:
+  V.word="var" & V1.word="var" =>
+    forall V2: edge(V V2 D2) & edge(V1 V2 D2) => V.D3.attrs.truth=V1.D3.attrs.truth
+  }
+}

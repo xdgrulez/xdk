@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+<title>Explorer window - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="xdk.html#xdk" title="xdk">
+<link rel="prev" href="Main-window.html#Main-window" title="Main window">
+<link rel="next" href="Commandline.html#Commandline" title="Commandline">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Explorer-window"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Commandline.html#Commandline">Commandline</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Main-window.html#Main-window">Main window</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="xdk.html#xdk">xdk</a>
+<hr>
+</div>
+
+<h4 class="subsection">11.1.2 Explorer window</h4>
+
+<p>We employ the Oz Explorer to display the search space traversed during
+the search for solutions. The Oz Explorer is described in more detail
+in <a href="http://www.mozart-oz.org/documentation/explorer/index.html">http://www.mozart-oz.org/documentation/explorer/index.html</a>. 
+Essentially, blue circles denote choice points (XDG analyses which are
+not yet fully specified) in the search space, green diamonds solutions
+(fully specified XDG analyses) and red boxes failures. If the search
+space contains only red boxes, the solver could not find a solution
+for the input sentence.  We show an example Explorer search tree
+below:
+
+   <pre class="sp">
+
+</pre>
+<img src="pix/explorer.jpg" alt="pix/explorer.jpg">
+
+   <p>Non-failed nodes in the search tree (blue circles and green diamonds)
+can be double-clicked to invoke the used outputs.
+
+   <p>Note that you can get a raw display of the underlying representation
+of the solver by selecting the menu <code>Nodes</code>, sub menu
+<code>Information</code> action, and then <code>Inspect</code>. This uses the Oz
+Inspector. If you choose <code>Show</code>, the display is printed to
+stdout. Choose <code>Outputs</code> to get back to the used outputs.
+
+<!-- ************************************************************ -->
+   </body></html>
+

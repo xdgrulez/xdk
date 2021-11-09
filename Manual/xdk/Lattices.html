@@ -1,0 +1,292 @@
+<html lang="en">
+<head>
+<title>Lattices - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Compiler.html#Compiler" title="Compiler">
+<link rel="prev" href="Lexicon.html#Lexicon" title="Lexicon">
+<link rel="next" href="Merge.html#Merge" title="Merge">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Lattices"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Merge.html#Merge">Merge</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Lexicon.html#Lexicon">Lexicon</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Compiler.html#Compiler">Compiler</a>
+<hr>
+</div>
+
+<h3 class="section">4.7 Lattices</h3>
+
+<p>The XDK grammar file compiler uses lattices to model the notions of
+<em>default values</em>
+<a name="index-default-value-127"></a><a name="index-default-128"></a>and <em>conjunction</em>. Each type corresponds to a
+<a name="index-conjunction-129"></a><em>lattice</em>
+<a name="index-lattice-130"></a>having a <em>top value</em>,
+<a name="index-top-value-131"></a><a name="index-top-132"></a>a <em>bottom value</em>,
+<a name="index-bottom-value-133"></a><a name="index-bottom-134"></a>a <em>greatest lower bound operation</em>,
+<a name="index-greatest-lower-bound-operation-135"></a>and a <em>least upper bound operation</em>. 
+<a name="index-least-upper-bound-operation-136"></a>The XDK grammar file compiler only utilizes the top value, bottom
+value, and the greatest lower bound operation; it does not use the
+least upper bound operation. I.e., lattices are only traversed
+downwards, not upwards.
+
+<h4 class="subsection">4.7.1 Top values</h4>
+
+<p>The XDK grammar file compiler sets values which are not provided in a
+lexical class or lexical to the top value of the type.  As we give a
+complete list of types and their corresponding lattices in <a href="Types-reference.html#Types-reference">Types reference</a>, for the present purposes, it suffices to say that:
+     <ul>
+<li>the top value of an intersective set is the full set (containing all
+elements of the domain of the set)
+<li>the top value of an accumulative set is the empty set
+<li>the top value of a valency is the empty set
+<li>the top value of a record is defined recursively: it is the record
+where each feature has its appropriate top value
+</ul>
+
+   <p>Currently, top values serve two purposes:
+     <ol type=1 start=1>
+<li>they provide <em>default values</em>
+<a name="index-default-value-137"></a><a name="index-default-138"></a>for omitted values
+<li>they are used to make the output of the
+<em>pretty</em>
+<a name="index-pretty-139"></a>output functor more readable (values with top values are
+abbreviated to <code>top</code>)
+        </ol>
+
+   <p>In the UL, the top value can be obtained by 1) writing <code>top</code>, 2)
+omitting the value.
+
+<h5 class="subsubsection">4.7.1.1 Example (top values)</h5>
+
+<p>We come back to the example lexical entry for &ldquo;der&rdquo; in <a href="Lexicon.html#Lexicon">Lexicon</a>
+above, repeated below:
+
+<pre class="example">     defentry {
+       dim id {in: {det}
+               out: {}
+               agrs: ($ fem &amp; (dat|gen) &amp; sg &amp; def)
+               agree: {}
+               govern: {det: $ ()
+                        subj: $ ()
+                        obj: $ ()
+                        vbse: $ ()
+                        vprt: $ ()
+                        vinf: $ ()
+                        prt: $ ()}}
+       dim lp {in: {df}
+               out: {}
+               on: {d}}
+       dim idlp {blocks: {}
+                 end: {d: {}
+                       df: {}
+                       n: {}
+                       mf: {}
+                       vcf: {}
+                       p: {}
+                       pf: {}
+                       v: {}
+                       vxf: {}
+       dim lex {word: "der"}}
+</pre>
+   <p>First, we replace all values which are identical to the default values
+by <code>top</code>:
+
+<pre class="example">     defentry {
+       dim id {in: {det}
+               out: top
+               agrs: ($ fem &amp; (dat|gen) &amp; sg &amp; def)
+               agree: top
+               govern: top}
+       dim lp {in: {df}
+               out: top
+               on: {d}}
+       dim idlp {blocks: top
+                 end: top}
+       dim lex {word: "der"}}
+</pre>
+   <p>Next, we remove all these features. What we end up with is a much more
+succinct lexical entry:
+
+<pre class="example">     defentry {
+       dim id {in: {det}
+               agrs: ($ fem &amp; (dat|gen) &amp; sg &amp; def)
+       dim lp {in: {df}
+               on: {d}
+       dim lex {word: "der"}}
+</pre>
+   <h4 class="subsection">4.7.2 Bottom values</h4>
+
+<p>All types have bottom values.  As we give a complete list of types and
+their corresponding lattices in <a href="Types-reference.html#Types-reference">Types reference</a>, it suffices to say
+here that the bottom value of an accumulative set is the full set
+(containing all elements of the domain of the set).
+
+   <p>Currently, bottom values serve two purposes:
+     <ol type=1 start=1>
+<li>for accumulative sets, they can be used as an abbreviation
+replacing an explicit specification of the full set
+<li>they are used to make the output of the
+<em>pretty</em>
+<a name="index-pretty-140"></a>output functor more readable (values with bottom values are
+abbreviated to <code>bot</code>)
+        </ol>
+
+   <p>In the UL, the bottom value can be obtained by writing <code>bot</code>.
+
+<h5 class="subsubsection">4.7.2.1 Example (bottom values)</h5>
+
+<p>As an example, consider the following definition of the class
+<code>fin</code>:
+
+<pre class="example">     defclass "fin" Word Agrs {
+       dim id {in: {}
+               out: {subj}
+               agrs: Agrs
+               agree: {subj}
+               govern: {subj: $ nom}}
+       dim lp {in: {}
+               out: {mf* vxf?}
+               on: {v}}
+       dim idlp {blocks: {det subj obj vbse vprt vinf prt}}
+       dim lex {word: Word}}
+</pre>
+   <p>The value of <code>blocks</code> on the idlp dimension includes all elements
+of the domain of the set (<code>{det subj obj vbse vprt vinf prt}</code>). 
+The type of <code>blocks</code> is <em>accumulative set</em>;
+<a name="index-accumulative-set-141"></a>i.e. its bottom value is the full set. Thus, we can replace the value
+of <code>blocks</code> by its bottom value to obtain a more succinct lexical
+class:
+
+<pre class="example">     defclass "fin" Word Agrs {
+       dim id {in: {}
+               out: {subj}
+               agrs: Agrs
+               agree: {subj}
+               govern: {subj: $ nom}}
+       dim lp {in: {}
+               out: {mf* vxf?}
+               on: {v}}
+       dim idlp {blocks: bot}
+       dim lex {word: Word}}
+</pre>
+   <h4 class="subsection">4.7.3 Greatest lower bound operation</h4>
+
+<p>As we give a complete list of types and their corresponding lattices in
+<a href="Types-reference.html#Types-reference">Types reference</a>, for the present purposes, it suffices to say here that
+     <ul>
+<li>the greatest lower bound of two intersective sets is their intersection
+<li>the greatest lower bound of two accumulative sets is their union
+</ul>
+
+   <p>The greatest lower bound operation has only the purpose of
+specializing values. It can be thought of as what is called <em>lexical
+inheritance</em>
+<a name="index-lexical-inheritance-142"></a><a name="index-inheritance-143"></a>in other grammar formalisms.
+
+   <p>In the following, we will call the greatest lower bound operation
+<em>conjunction</em>
+<a name="index-conjunction-144"></a>
+
+<h5 class="subsubsection">4.7.3.1 Example (greatest lower bound operation; accumulative sets)</h5>
+
+<p>Here is a second example. First, we define the two lexical classes
+<code>block_subj</code> and <code>block_obj</code>:
+
+<pre class="example">     defclass "blocks_subj" {
+       dim idlp {blocks: {subj}}}
+     
+     defclass "blocks_obj" {
+       dim idlp {blocks: {obj}}}
+</pre>
+   <p>Next, we use the greatest lower bound operation (conjunction) to
+combine the two lexical classes:
+
+<pre class="example">     defclass "blocks_subj_obj" {
+       "blocks_subj" &amp;
+       "blocks_obj"}
+</pre>
+   <p>The type of the <code>blocks</code> feature on the idlp dimension is
+<em>accumulative set</em>. 
+<a name="index-accumulative-set-145"></a>Hence in the resulting lexical class, the <code>blocks</code> value on the lp
+dimension is the <em>union</em>
+<a name="index-set-union-146"></a><a name="index-union-147"></a>of the <code>blocks</code> value of the class <code>blocks_subj</code>
+(<code>{subj}</code>) and the <code>blocks</code> value of the class
+<code>blocks_obj</code> (<code>{obj}</code>), i.e. <code>{subj obj}</code>.
+
+   <p>If the type of the feature would be <em>intersective set</em>,
+<a name="index-intersective-set-148"></a>we would have used <em>intersection</em>
+<a name="index-set-intersection-149"></a><a name="index-intersection-150"></a>instead of union.
+
+<h5 class="subsubsection">4.7.3.2 Example (combining conjunction and disjunction)</h5>
+
+<p>Conjunction and disjunction can be combined.  Here is an
+example. First, we define five lexical classes:
+
+<pre class="example">     defclass "class_1" { ... }
+     
+     defclass "class_2" { ... }
+     
+     defclass "class_3" { ... }
+     
+     defclass "class_4" { ... }
+     
+     defclass "class_5" { ... }
+</pre>
+   <p>Next, we combine the classes using both conjunction and disjunction in
+a <code>defentry</code> expression:
+
+<pre class="example">     defentry {
+       ("class_1" |
+        "class_2" |
+        "class_3") &amp;
+       ("class_4" |
+        "class_5")}
+</pre>
+   <p>The expression defines six lexical entries which we could write less
+succinctly without disjunction as:
+
+<pre class="example">     defentry {
+       "class_1" &amp;
+       "class_4"}
+     
+     defentry {
+       "class_1" &amp;
+       "class_5"}
+     
+     defentry {
+       "class_2" &amp;
+       "class_4"}
+     
+     defentry {
+       "class_2" &amp;
+       "class_5"}
+     
+     defentry {
+       "class_3" &amp;
+       "class_4"}
+     
+     defentry {
+       "class_3" &amp;
+       "class_5"}
+</pre>
+   <!-- ************************************************************ -->
+   </body></html>
+

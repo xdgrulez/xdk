@@ -1,0 +1,841 @@
+usedim lp
+usedim sf
+usedim lex
+
+defdim lp {
+ 
+  defentrytype "lp.entry"
+  deflabeltype "lp.label"
+
+  deftype "lp.entry" {in: valency("lp.label")
+                      out: valency("lp.label")
+                      on: iset("lp.label")
+                     }
+  deftype "lp.label" {
+		p ppost 
+		front extr prevb neg cl2 cl3 cl4 cl5 cl6 caux taux innerv v advneg adjp postvb 		   	
+		det n npre npost 
+		adj adjpost
+		adv
+		cl
+		}
+
+
+  useprinciple "principle.graph" {
+    dims {D: lp}}		 
+  useprinciple "principle.tree" {
+    dims {D: lp}}
+  useprinciple "principle.valency"{
+    dims {D: lp}}
+  useprinciple "principle.order"{
+    dims {D: lp}
+    args {
+	Order:[
+		p ppost 
+		det npre n npost 
+		front extr prevb neg cl2 cl3 cl4 cl5 cl6 taux caux innerv v adjp advneg postvb 
+		adj adjpost	
+		adv
+		cl
+	      ]
+        Yields: true
+    }
+  }  
+   useprinciple "principle.projectivity"{
+	 dims {D: lp}
+   }
+
+}
+
+
+defdim sf{
+  defentrytype "sf.entry"
+  deflabeltype "sf.label"
+
+
+  deftype "sf.entry" {
+	  in: valency("sf.label")
+          out: valency("sf.label")
+	  on : iset("sf.label")
+	  end: vec("sf.label" set("lp.label"))
+  }
+
+  deftype "sf.label" {subj obj iobj gen loc man taux cop vmod neg det nmod parg}
+
+  useprinciple "principle.graph"{
+    dims {D: sf}}	
+  useprinciple "principle.tree" {
+    dims {D: sf}}
+  useprinciple "principle.valency"{
+    dims {D: sf}}
+  useprinciple "principle.linkingEnd"{
+    dims {D1: sf
+          D2: lp
+          D3: sf}}
+
+}
+
+defdim lex{
+       defentrytype {word:string}
+	useprinciple "principle.entries"{}
+  output "output.dags"
+  output "output.dags1"
+  useoutput "output.dags1"
+}
+
+%Lexicon
+
+%Macros : 
+
+% CLITICS
+defclass "clitic"{
+	dim lp{
+	    on : {cl}
+	}
+}
+
+defclass "cliticI"{
+	"clitic"	
+	dim sf{
+	    in : {subj!}
+	}
+	dim lp{
+	    in : {prevb!}
+	}
+}
+defclass "cliticII"{
+	"clitic"	
+	dim sf{
+	    in : {obj? iobj?}
+	}
+	dim lp{
+	    in : {cl2!}
+	}
+}
+defclass "cliticIII"{
+	"clitic"	
+	dim sf{
+	    in : {obj!}
+	}
+	dim lp{
+	    in : {cl3!}
+	}
+}
+
+defclass "cliticIV"{
+	"clitic"
+	dim sf{
+	    in : {iobj!}
+	}
+	dim lp{
+	    in : {cl4!}
+	}
+}
+defclass "cliticV"{
+	"clitic"
+	dim sf{
+	    in : {loc!}
+	}
+	dim lp{
+	    in : {cl5!}
+	}
+}
+defclass "cliticVI"{
+	"clitic"
+	dim sf{
+	    in : {gen!}
+	}
+	dim lp{
+	    in : {cl6!}
+	}
+}
+
+% NOUNS
+
+defclass "noun"{
+	dim sf{
+	    in :{subj? obj? parg?}		
+	}
+	dim lp{
+	    in : {prevb? postvb? ppost?}
+	    on : {n}
+	}		
+}
+defclass "propernoun"{
+	"noun"
+}
+
+defclass "strongpronoun"{
+	"noun"
+}
+
+defclass "commonnoun"{
+	"noun"
+	dim sf{
+	    out: {det! nmod*}
+	}
+	dim lp{
+	    out: {det! npre* npost*}
+	}	
+}
+defclass "determiner"{
+	dim sf{
+	    in : {det!}
+	}
+	dim lp{
+	    in : {det!}
+	    on : {det}
+	}
+}
+% Adjective stuff
+defclass "epithete"{
+	dim sf{
+	    in : {nmod!}
+	}
+}
+defclass "epithetepre"{
+	"epithete"
+	dim lp{
+	    in : {npre!}
+	    on : {adj}
+	}
+}
+defclass "epithetepost"{
+	"epithete"
+	dim lp{
+	    in : {npost!}
+	    on : {adj}
+	}
+}
+
+defclass "epithpostIobj"{
+	"epithetepost"
+	dim lp{out:{adjpost!}}
+	dim sf{out:{iobj!}}
+}	
+defclass "epithpostGen"{
+	"epithetepost"
+	dim lp{out:{adjpost!}}
+	dim sf{out:{gen!}}
+}	
+
+defclass "PredicativeAdjective"{
+	dim lp{
+		out:{caux! innerv* front* postvb*}
+		on:{adjp}
+	}
+	dim sf{
+		out:{cop! vmod*}
+		end:{cop:{caux}}
+	}	
+}
+
+defclass "IntransitiveAdjSet"{
+	"PredicativeAdjective"
+	"SubjSet"
+}
+defclass "TransitiveIobjAdjSet"{
+	"PredicativeAdjective"
+	"SubjSet"
+	"IobjLocSet"
+}
+defclass "TransitiveGenAdjSet"{
+	"PredicativeAdjective"
+	"SubjSet"
+	"GenSet"
+}
+
+
+defclass "TenseAuxiliary"{
+	dim sf{
+	    in : {taux!}	  
+	}
+	dim lp{
+	    in: {taux!}
+	    out:{neg? advneg?}
+	    on : {v} 
+	}
+}
+defclass "CopVerb"{
+	dim sf{
+		in:{cop!}
+	}
+	dim lp{
+		in:{caux!}
+		on:{v}
+	}
+}
+
+
+defentry{
+	dim sf{
+	    in : {vmod!} 
+	}
+	dim lp{
+	    in : {innerv}
+	    on : {advneg}
+	}
+	dim lex {word:"pas"}
+}
+defentry{
+	dim sf{
+	    in : {vmod!} 
+	}
+	dim lp{
+	    in : {postvb!}
+	    on : {advneg}
+	}
+	dim lex {word:"pas"}
+}
+
+defentry{
+	dim sf{
+	    in : {vmod!} 
+	}
+	dim lp{
+	    in : {innerv!}
+	    on : {advneg}
+	}
+	dim lex {word:"jamais"}
+}
+
+defentry{
+	dim sf{
+	    in : {vmod!} 
+	}
+	dim lp{
+	    in : {postvb!}
+  	    on : {advneg}
+	}
+	dim lex {word:"jamais"}
+}
+%Verbal stuff
+% (1) Structure sharing
+defclass "hasSubj"{
+	dim sf{out:{subj!}}
+}
+defclass "hasSubjCan"{
+	"hasSubj"
+	dim lp{out:{prevb!}}
+	dim sf{end:{subj: {prevb}}}		
+}
+defclass "hasObj"{
+	dim sf{out:{obj!}}
+}
+defclass "hasObjCan"{
+	"hasObj"
+	dim lp{out:{postvb+}}
+	dim sf{end:{obj: {postvb}}}
+}
+defclass "hasObjClitic"{
+	"hasObj"
+	dim lp{out:{cl2? cl3?}}
+	dim sf{end:{obj: {cl2 cl3}}}
+}
+defclass "hasIndirectObject"{
+	dim sf{out:{iobj!}}	
+}
+defclass "hasIObjCan"{
+	"hasIndirectObject"
+	dim lp{out:{postvb+}}
+	dim sf{end:{iobj: {postvb}}}
+}
+defclass "hasIObjClitic"{
+	"hasIndirectObject"
+	dim lp{out:{cl2? cl4?}}
+	dim sf{end:{iobj: {cl2 cl4}}}
+}
+defclass "hasLocative"{
+	dim sf{out:{loc!}}
+}
+defclass "hasLocativeCan"{
+	"hasLocative"
+	dim lp{out:{postvb+}}
+	dim sf{end:{loc: {postvb}}}	
+}
+defclass "hasLocativeClitic"{
+	"hasLocative"
+	dim lp{out:{cl5!}}
+	dim sf{end:{loc: {cl5}}}	
+}
+defclass "hasGenitive"{
+	dim sf{out:{gen!}}
+}
+defclass "hasGenitiveCan"{
+	"hasGenitive"
+	dim lp{out:{postvb+}}
+	dim sf{end:{gen: {postvb}}}	
+}
+defclass "hasGenitiveClitic"{
+	"hasGenitive"
+	dim lp{out:{cl6!}}
+	dim sf{end:{gen: {cl6}}}	
+}
+defclass "hasManner"{
+	dim sf{out:{man!}}
+}
+defclass "hasMannerCan"{
+	"hasManner"
+	dim lp{out:{postvb? innerv?}}
+	dim sf{end:{man: {postvb}}}	
+}
+defclass "Verb"{
+	dim sf{
+	    out: {vmod* neg?} 
+	}
+	dim lp{
+	    out: {front* postvb*}
+	    on : {v} 
+	}
+}
+defclass "finiteActiveVerb"{
+	"Verb"
+	dim lp{out: {neg?}}
+}
+defclass "pastpleActiveVerb" {
+	"Verb"
+	dim sf{out: {taux!}}
+	dim lp{
+	    out: {taux! innerv*}}
+}
+
+% 2) Lexical covariants (sets)
+defclass "ObjSet"{
+	"hasObjCan"
+	|"hasObjClitic"
+}
+defclass "SubjSet"{
+	"hasSubjCan"
+}
+defclass "IobjSet"{
+	"hasIObjCan"
+	|"hasIObjClitic"
+}
+defclass "IobjLocSet"{
+	"hasIObjCan"
+	|"hasLocativeClitic"
+}
+defclass "LocSet"{
+	"hasLocativeCan"
+	|"hasLocativeClitic"
+}
+defclass "GenSet"{
+	"hasGenitiveCan"
+	|"hasGenitiveClitic"
+}
+defclass "MannerSet"{
+	"hasMannerCan"
+}
+defclass "IntransitiveSet"{
+	"SubjSet"
+}
+defclass "TransitiveSet"{
+	"SubjSet"
+	"ObjSet"
+}
+defclass "TransitiveIobjSet"{
+	"SubjSet"
+	"IobjSet"	
+}
+defclass "TransitiveLocativeSet"{
+	"SubjSet"
+	"LocSet"	
+}
+defclass "TransitiveGenitiveSet"{
+	"SubjSet"
+	"GenSet"	
+}
+defclass "DitransitiveIobjSet"{
+	"SubjSet"
+	"ObjSet"
+	"IobjSet"
+}
+defclass "DitransitiveIobjGenSet"{
+	"SubjSet"
+	"GenSet"
+	"IobjSet"
+}
+defclass "IntransitiveMannerSet"{
+	"SubjSet"
+	"MannerSet"
+}
+
+defclass "Vmod"{
+	dim sf{
+	    in : {vmod!} 
+	}
+	dim lp{
+	    in : {front? postvb?}
+	}
+}
+defclass "advVmod"{
+	"Vmod"
+	dim lp{
+	    in : {innerv?}
+	    on : {adv}
+	}
+}
+defclass "prepVmod"{
+	"Vmod"
+	dim lp{
+	    on:{p}
+	    out:{ppost!}
+	}
+	dim sf{
+	    out:{parg!}
+	}
+}
+defclass "prepVArg"{
+	dim lp{
+		in:{postvb!}
+		out:{ppost!}
+		on:{p}
+	}
+	dim sf{
+		out:{parg!}
+	}
+}
+defclass "prepAdjArg"{
+	dim lp{
+		in:{adjpost!}
+		out:{ppost!}
+		on:{p}
+	}
+	dim sf{
+		out:{parg!}
+	}
+}
+
+defclass "locativePrep"{
+	"prepVArg"
+	dim sf{
+		in:{loc!}
+	}
+}
+defclass "locativeAdverb"{
+	dim lp{
+		in:{postvb!}
+		on:{adv}
+	}
+	dim sf{
+		in:{loc!}
+	}	
+}
+defclass "mannerAdverb"{
+	dim lp{
+		in:{postvb? innerv?}
+		on:{adv}
+	}
+	dim sf{
+		in:{man!}
+	}	
+}
+
+
+defentry{
+	"DitransitiveIobjSet"
+	"finiteActiveVerb"
+	dim lex {word:"donne"}
+}
+defentry{
+	"DitransitiveIobjSet"
+	"pastpleActiveVerb" 
+	dim lex {word:"donné"}
+}
+defentry{
+	"TransitiveSet"
+	"finiteActiveVerb"
+	dim lex {word:"aime"}
+}
+defentry{
+	"TransitiveSet"
+	"pastpleActiveVerb" 
+	dim lex {word:"aimé"}
+}
+defentry{
+	"IntransitiveSet"
+	"finiteActiveVerb"
+	dim lex {word:"dort"}
+}
+defentry{
+	"IntransitiveSet"
+	"pastpleActiveVerb" 
+	dim lex {word:"dormi"}
+}
+defentry{
+	"TransitiveIobjSet"
+	"finiteActiveVerb"
+	dim lex {word:"parle"}
+}
+defentry{
+	"TransitiveIobjSet"
+	"pastpleActiveVerb" 
+	dim lex {word:"parlé"}
+}
+defentry{
+	"TransitiveGenitiveSet"
+	"finiteActiveVerb"
+	dim lex {word:"parle"}
+}
+defentry{
+	"TransitiveGenitiveSet"
+	"pastpleActiveVerb" 
+	dim lex {word:"parlé"}
+}
+defentry{
+	"DitransitiveIobjGenSet"
+	"finiteActiveVerb"
+	dim lex {word:"parle"}
+}
+defentry{
+	"DitransitiveIobjGenSet"
+	"pastpleActiveVerb" 
+	dim lex {word:"parlé"}
+}
+defentry{
+	"TransitiveLocativeSet"
+	"finiteActiveVerb"
+	dim lex {word:"va"}
+}
+defentry{
+	"TransitiveLocativeSet"
+	"pastpleActiveVerb" 
+	dim lex {word:"allé"}
+}
+defentry{
+	"IntransitiveMannerSet"
+	"finiteActiveVerb"
+	dim lex {word:"va"}
+}
+defentry{
+	"IntransitiveMannerSet"
+	"pastpleActiveVerb" 
+	dim lex {word:"allé"}
+}
+defentry{
+	dim sf{
+	    in : {neg!}
+	}
+	dim lp{
+	    in : {neg!}
+	    on : {neg}
+	}
+	dim lex {word:"ne"}
+}
+
+defentry{
+	"cliticI"
+	dim lex {word:"il"}
+}
+defentry{
+	"cliticI"
+	dim lex {word:"je"}
+}
+defentry{
+	"cliticII"
+	dim lex {word:"me"}
+}
+defentry{
+	"cliticII"
+	dim lex {word:"te"}
+}
+defentry{
+	"cliticIII"
+	dim lex {word:"le"}
+}
+defentry{
+	"cliticIII"
+	dim lex {word:"la"}
+}
+defentry{
+	"cliticIV"
+	dim lex {word:"lui"}
+}
+defentry{
+	"cliticV"
+	dim lex {word:"y"}
+}
+defentry{
+	"cliticVI"
+	dim lex {word:"en"}
+}
+defentry{
+	"propernoun"
+	dim lex {word:"jean"}
+}
+defentry{
+	"propernoun"
+	dim lex {word:"pierre"}
+}
+defentry{
+	"propernoun"
+	dim sf{out:{det!}}
+	dim lp{out:{det!}}	
+	dim lex {word:"France"}
+}
+defentry{
+	"commonnoun"	
+	dim lex {word:"enfant"}
+}
+defentry{
+	"commonnoun"
+	dim lex {word:"fille"}
+}
+defentry{
+	"commonnoun"
+	dim lex {word:"cadeau"}
+}
+defentry{
+	"determiner"
+	dim lex {word:"le"}
+}
+defentry{
+	"determiner"
+	dim lex {word:"un"}
+}
+defentry{
+	"determiner"
+	dim lex {word:"la"}
+}
+defentry{
+	"epithetepre"
+	dim lex {word:"petit"}
+}
+defentry{
+	"epithetepre"
+	dim lex {word:"petite"}
+}
+defentry{
+	"epithetepost"
+	dim lex {word:"timide"}
+}
+defentry{
+	"propernoun"
+	dim lex {word:"marie"}
+}
+defentry{
+	"propernoun"
+	dim lex {word:"Paris"}
+}
+defentry{
+	"commonnoun"
+	dim lex {word:"place"}
+}
+defentry{
+	"commonnoun"
+	dim lex {word:"situation"}
+}
+defentry{
+	"commonnoun"
+	dim lex {word:"projet"}
+}
+defentry{
+	"advVmod"
+	dim lex {word:"vraiment"}
+}
+defentry{
+	"advVmod"
+	dim lex {word:"toujours"}
+}
+defentry{
+	"advVmod"
+	dim lex {word:"maintenant"}
+}
+defentry{
+	"advVmod"
+	dim lex {word:"gentiment"}
+}
+defentry{
+	"TenseAuxiliary"
+	dim lex {word:"a"}
+}
+defentry{
+	"CopVerb"
+	dim lex {word:"est"}
+}
+defentry{
+	"prepVmod"
+	dim lex{word:"à"}
+}
+defentry{
+	"prepVmod"
+	dim lex{word:"sur"}
+}
+defentry{
+	"prepVArg"
+	dim sf{in:{iobj!}}
+	dim lex{word:"à"}
+}
+defentry{
+	"prepVArg"
+	dim sf{in:{gen!}}
+	dim lex{word:"de"}
+}
+defentry{
+	"prepAdjArg"
+	dim sf{in:{iobj!}}
+	dim lex{word:"à"}
+}
+defentry{
+	"prepAdjArg"
+	dim sf{in:{gen!}}
+	dim lex{word:"de"}
+}
+defentry{
+	"locativePrep"
+	dim lex{word:"vers"}
+}
+defentry{
+	"locativePrep"
+	dim lex{word:"dans"}
+}
+defentry{
+	"locativePrep"
+	dim lex{word:"à"}
+}
+defentry{
+	"locativePrep"
+	dim lex{word:"chez"}
+}
+defentry{
+	"locativeAdverb"
+	dim lex{word:"là"}
+}
+defentry{
+	"locativeAdverb"
+	dim lex{word:"ici"}
+}
+defentry{
+	"locativeAdverb"
+	dim lex{word:"là-bas"}
+}
+defentry{
+	"mannerAdverb"
+	dim lex{word:"bien"}
+}
+defentry{
+	"mannerAdverb"
+	dim lex{word:"mal"}
+}
+defentry{
+	"mannerAdverb"
+	dim lex{word:"mieux"}
+}
+defentry{
+	"strongpronoun"
+	dim lex{word:"moi"}
+}
+defentry{
+	"IntransitiveAdjSet"
+	dim lex{word:"grand"}
+}
+defentry{
+	("TransitiveIobjAdjSet"
+	|"epithpostIobj")
+	dim lex{word:"attentif"}
+}
+defentry{
+	("TransitiveGenAdjSet"
+	|"epithpostGen")
+	dim lex{word:"content"}
+}

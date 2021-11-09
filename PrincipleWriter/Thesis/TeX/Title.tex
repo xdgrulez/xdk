@@ -1,0 +1,123 @@
+\begin{titlepage}
+
+\begin{center}
+  \begin{tabular}{c}
+\LARGE{Universit\"at des Saarlandes}\\
+\LARGE{Naturwissenschaftlich-Technische Fakult\"at}\\
+\LARGE{Fachrichtung Informatik}\\
+\LARGE{Bachelor-Studiengang}
+    \\\\\\\\\\
+    \\\\\\
+\LARGE{\bf{Bachelorarbeit}}\\
+\\\\
+\huge{\bf{A Principle Compiler}}\\
+\huge{\bf{for Extensible Dependency Grammar}}\\\\\\
+\LARGE{vorgelegt von}\\\\
+\LARGE{\bf{Jochen Setz}}\\\\
+\LARGE{am 10.10.2007}\\\\\\\\
+\LARGE{angefertigt unter der Leitung von}\\\\
+\LARGE{Prof.\ Dr.\ Gert Smolka}\\\\
+\LARGE{betreut von}\\\\
+\LARGE{Dr.\ Ralph Debusmann}\\\\\\\\\\
+\LARGE{begutachtet von}\\\\
+\LARGE{Prof.\ Dr.\ Gert Smolka}\\
+\LARGE{Dr.\ Ralph Debusmann}
+  \end{tabular}
+\end{center}
+
+
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{empty}
+
+\begin{flushleft}
+  \begin{tabular}{l}
+    \\\\\\\\\\\\\\\\
+    \\\\\\\\\\\\\\\\
+    \\\\\\\\\\\\\\\\
+    {\Large{\bf Erkl\"arung}}\\\\
+    {\Large{Hiermit erkl\"are ich, dass ich die vorliegende Arbeit
+    selbstst\"andig verfasst}} \\
+    {\Large und alle verwendeten Quellen angegeben habe.}\\\\
+    {\Large{Saarbr\"ucken, den 10.10.2007}}\\\\\\\\\\\\\\\\\\\\\\
+
+    {\Large{\bf Einverst\"andniserkl\"arung}}\\\\
+    {\Large{Hiermit erkl\"are ich mich damit einverstanden, dass meine
+        Arbeit in den}} \\
+    {\Large Bestand der Bibliothek der Fachrichtung Informatik aufgenommen wird.}\\\\
+    {\Large{Saarbr\"ucken, den 10.10.2007}}
+
+  \end{tabular}
+\end{flushleft}
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{empty}
+
+\begin{flushleft}
+  \begin{tabular}{l}
+    \\\\\\\\\\\\\\\\
+    \\\\\\\\\\\\\\\\
+    \\\\\\\\\\\\\\\\
+    \\\\\\\\\\\\\\\\
+    \\\\\\\\\\\\\\
+    {\Large{\bf Danksagung}}\\\\
+    {\Large{Danken m\"ochte ich Dr. Ralph Debumann und Prof. Gert
+        Smolka,}}\\
+    {\Large{dass sie mir diese Thesis angeboten haben. Vor allem Ralph}}\\ 
+    {\Large{geb\"uhrt gro{\ss}er Dank f\"ur die erstklassige Betreuung dieser Arbeit.}}\\\\
+    {\Large{Dann m\"ochte ich es nicht verpassen, mich bei meiner Familie und}}\\
+    {\Large{meinen Freunden f\"ur ihre Unterst\"utzung zu bedanken.}}\\
+\end{tabular}
+\end{flushleft}
+
+\pagebreak
+
+\pagestyle{empty}
+
+\begin{center}
+  {\sfb\Large{Abstract}}
+\end{center}
+
+\vspace{10pt}
+
+Extensible Dependency Grammar (XDG) ist ein neuer,
+constraint-basierter Meta-Gram\-matikformalismus
+\cite{Debusmann06}. Die Modelle von XDG werden durch Constraints in
+Pr{\"a}dikatenlogik erster Stufe charakterisiert, die
+\emph{Prinzipien} genannt werden. In der Entwicklungsumgebung f{\"u}r
+XDG, dem XDG Development Kit (XDK), sind die Prinzipien als
+Constraints auf endlichen Mengen in Mozart/Oz implementiert
+\cite{Schulte02}. Allerdings ist die Implementation alles andere als
+trivial, und bis jetzt konnte nur eine Minderheit der Benutzer des
+XDK, Experten in Mozart/Oz Constraintprogrammierung, dieses auch um
+neue Prinzipien erweitern.
+
+In dieser Arbeit entwickle ich ein Programm namens
+\emph{PrincipleWriter (PW)}, das Constraints in First-Order Logik
+automatisch in Constraints in Mozart/Oz umsetzt. Damit schlie{\ss}e
+ich die bisher bestehende L{\"u}cke zwischen der Formalisierung von
+XDG und der Implementierung. Jetzt k{\"o}nnen \emph{alle} Benutzer des
+XDK dieses um neue Prinzipien erweitern.  Vom PW profitieren aber auch
+diejenigen, die die manuelle Umsetzung von Prinzipien in Constraints
+beherrschen, da die schnellere und sicherere automatische
+{\"U}bersetzung die Grammatikentwicklungszeit deutlich verringert.
+All das steigert die Attraktivit{\"a}t des Systems als
+Explorationsplattform f{\"u}r dependenzbasierte Grammatikformalismen
+erheblich.
+
+\pagebreak
+\strut
+\thispagestyle{empty}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{empty}
+\end{titlepage}
+\cleardoublepage

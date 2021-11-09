@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+<title>PrincipleWriter - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Outputs.html#Outputs" title="Outputs">
+<link rel="next" href="Programs.html#Programs" title="Programs">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="PrincipleWriter"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Programs.html#Programs">Programs</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Outputs.html#Outputs">Outputs</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">10 PrincipleWriter</h2>
+
+<p>The principle compiler <em>PrincipleWriter</em> is thoroughly described in
+Jochen Setz' BSc.  Thesis (<a href="References.html#References">References</a>). Also be sure to check out
+the example principles in <code>PrincipleWriter/Examples</code>, and the
+grammars suffixed <code>PW</code> (<a href="Grammars.html#Grammars">Grammars</a>) which use them.
+
+   <p>Basically, PW makes writing principles much easier. You can write down
+your principles in a simple first-order logic, and PW compiles them into
+efficient principle implementations for the XDK.
+
+   <p>This is how it works, in a nutshell. An example is the climbing principle:
+
+<pre class="example">     defprinciple "principle.climbingPW" {
+       dims {D1 D2}
+       constraints {
+     
+     forall V: forall V1:
+       dom(V V1 D1) =&gt; dom(V V1 D2)
+       }
+     }
+</pre>
+   <p>What you do is to define the name of the principle
+(<code>principle.climbingPW</code>), the dimensions over which it should
+abstract (<code>D1</code> and <code>D2</code>), and then a set of constraints.
+
+   <p>Then you go into the directory <code>PrincipleWriter</code>, and call the
+compiler as follows:<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>
+<pre class="example">     pw.exe -p Examples/climbingPW.ul
+</pre>
+   <p>This compiles the principle, and puts the principle definition functor
+<code>ClimbingPW.oz</code> into <code>Solver/Principles</code> and the constraint
+functor also called <code>ClimbingPW.oz</code> into
+<code>Solver/Principles/Lib</code>.
+
+   <p>To use the principle, it has to be integrated into the XDK. You can do this
+using the perl script <code>addprinciple</code>:
+<pre class="example">     addprinciple ClimbingPW ClimbingPW
+</pre>
+   <p>or by adding it manually as follows:
+     <ol type=1 start=1>
+<li>add the principle
+definition functor to the <code>ozmake</code> makefile<br>
+<code>Solver/Principles/makefile.oz</code>
+<li>add the principle definition functor to the imported functors of
+the functor<br>
+<code>Solver/Principles/Principles.oz</code>, and also to the list
+<code>Principles</code> on top of<br>
+<code>Solver/Principles/Principles.oz</code>. 
+<li>add the identifier of the new principle to the XML file<br>
+<code>Solver/Principles/principles.xml</code>. Here, for each new principle,
+you add a line like the following for the graph principle:
+<li>add the constraint functor to the <code>ozmake</code> makefile<br>
+<code>Solver/Principles/Lib/makefile.oz</code>
+<li>add the constraint
+functor to the top level <code>ozmake</code> makefile <code>makefile.oz</code> in
+order to include it in the <code>ozmake</code> package created for the XDK.
+        </ol>
+
+   <p>To finalize the integration of the new principle, call <code>ozmake</code>
+from the XDK main directory (where e.g. <code>xdk.exe</code> resides in).
+
+   <p>...and off you go :)
+
+<!-- ************************************************************ -->
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> Use <code>pw.exe --help</code> to get a full
+summary of the commandline options.</p>
+
+   <hr></div>
+
+   </body></html>
+

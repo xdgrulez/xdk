@@ -1,0 +1,330 @@
+<html lang="en">
+<head>
+<title>TAG1 - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Grammars.html#Grammars" title="Grammars">
+<link rel="prev" href="SCRPW.html#SCRPW" title="SCRPW">
+<link rel="next" href="adjunction.html#adjunction" title="adjunction">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="TAG1"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="adjunction.html#adjunction">adjunction</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="SCRPW.html#SCRPW">SCRPW</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Grammars.html#Grammars">Grammars</a>
+<hr>
+</div>
+
+<h3 class="section">5.36 TAG</h3>
+
+<p>This grammar showcases the new <em>Tree Adjoining Grammar (TAG)</em>
+<a name="index-Tree-Adjoining-Grammar-209"></a><a name="index-TAG-210"></a>encoding developed by Denys Duchier and Marco Kuhlmann, and was
+written by Marco Kuhlmann.
+
+<pre class="verbatim">%%
+%% Sample grammar for TAG adjunction
+%% Marco Kuhlmann &lt;kuhlmann@ps.uni-sb.de>
+%%
+
+%% This grammar encodes TAG-like trees into lexical entries in
+%% XDG.  Note that I say TAG-like, because the trees that you
+%% get when you decode these lexical entries are probably not
+%% the trees that you would usually draw when modelling problems
+%% like the ones in this sample grammar in TAG.
+
+usedim ds
+usedim lex
+
+defdim ds {
+  defentrytype "ds.entry"
+  deflabeltype "ds.label"
+  deftype "ds.label" {s1 s11 s11b a12l s121 s122 a12r s13}
+  deftype "ds.entry" {
+    in        : iset("ds.label")
+    out       : valency("ds.label")
+    anchor    : iset("ds.label")
+    dominates : vec("ds.label" set("ds.label"))
+    foot      : set("ds.label")
+    leaves    : set("ds.label")
+  }
+  useprinciple "principle.graph" {
+    dims {D: ds}}
+  useprinciple "principle.tree" {
+    dims {D: ds}}
+  useprinciple "principle.in" {
+    dims {D: ds}}
+  useprinciple "principle.out" {
+    dims {D: ds}}
+  useprinciple "principle.tag" {
+    dims {D: ds}
+    args {Order: [s1 s11 s11b a12l s121 s122 a12r s13]}}
+  output "output.dag"
+  output "output.pretty"
+  useoutput "output.dag"
+  useoutput "output.pretty"
+}
+
+defdim lex {
+  defentrytype {word: string}
+}
+
+%% alpha with head in A
+
+defentry {
+  dim ds {
+    in        : {s1 s11 s121 s122 s13}
+    out       : {s121 s13 a12l? a12r?}
+    anchor    : {s11}
+    dominates : {a12l: {s121} a12r: {s121}}
+    leaves    : {s11 s121 s13}
+  }
+  dim lex {
+    word      : "alpha_A"
+  }
+}
+
+%% alpha with head in C
+
+defentry {
+  dim ds {
+    in        : {s1 s11 s121 s122 s13}
+    out       : {s11 s13 a12l? a12r?}
+    anchor    : {s121}
+    dominates : {a12l: {s121} a12r: {s121}}
+    leaves    : {s11 s121 s13}
+  }
+  dim lex {
+    word      : "alpha_C"
+  }
+}
+
+%% alpha with head in E
+
+defentry {
+  dim ds {
+    in        : {s1 s11 s121 s122 s13}
+    out       : {s11 s121 a12l? a12r?}
+    anchor    : {s13}
+    dominates : {a12l: {s121} a12r: {s121}}
+    leaves    : {s11 s121 s13}
+  }
+  dim lex {
+    word      : "alpha_E"
+  }
+}
+
+%% beta with head in B
+
+defentry {
+  dim ds {
+    in        : {a12l}
+    out       : {s122 a12l? a12r?}
+    anchor    : {s11}
+    dominates : {a12l: {s121 s122} a12r: {s121 s122}}
+    foot      : {s121}
+    leaves    : {s11 s121 s122}
+  }
+  dim lex {
+    word      : "beta_B"
+  }
+}
+
+%% beta with head in D
+
+defentry {
+  dim ds {
+    in        : {a12r}
+    out       : {s11 a12l? a12r?}
+    anchor    : {s122}
+    dominates : {a12l: {s121 s122} a12r: {s121 s122}}
+    foot      : {s121}
+    leaves    : {s11 s121 s122}
+  }
+  dim lex {
+    word      : "beta_D"
+  }
+}
+
+%% dummy entry for substitution sites
+
+defentry {
+  dim ds {
+    in        : {s1 s11 s121 s122 s13}
+    anchor    : {s11}
+    leaves    : {s1}
+  }
+  dim lex {
+    word      : "x"
+  }
+}
+
+%% --------------------------------------------------------------
+%% Hippo sentences
+%% --------------------------------------------------------------
+
+defentry {
+  dim ds {
+    in        : {s1 s11 s11b s121 s122 s13}
+    anchor    : {s1}
+    leaves    : {s1}
+  }
+  dim lex {
+    word      : "ik"
+  }
+}
+
+defentry {
+  dim ds {
+    in        : {s1 s11 s11b s121 s122 s13}
+    anchor    : {s1}
+    leaves    : {s1}
+  }
+  dim lex {
+    word      : "Henk"
+  }
+}
+
+defentry {
+  dim ds {
+    in        : {s1 s11 s11b s121 s122 s13}
+    anchor    : {s1}
+    leaves    : {s1}
+  }
+  dim lex {
+    word      : "Cecilia"
+  }
+}
+
+defentry {
+  dim ds {
+    in        : {s1 s11 s121 s122 s13}
+    anchor    : {s1}
+    leaves    : {s1}
+  }
+  dim lex {
+    word      : "de"
+  }
+}
+
+defentry {
+  dim ds {
+    in        : {s1 s11 s11b s121 s122 s13}
+    anchor    : {s13}
+    out       : {s11}
+    leaves    : {s11 s13}
+  }
+  dim lex {
+    word      : "nijlpaarden"
+  }
+}
+
+% Dutch "zag"
+
+defentry {
+  dim ds {
+    in        : {}
+    anchor    : {s122}
+    out       : {s11 a12l? a12r?}
+    dominates : {a12l: {s122} a12r: {s122}}
+    leaves    : {s11 s122}
+  }
+  dim lex {
+    word      : "zag"
+  }
+}
+
+% German "zag"
+
+defentry {
+  dim ds {
+    in        : {}
+    anchor    : {s122}
+    out       : {s11 s121}
+    leaves    : {s11 s121 s122}
+  }
+  dim lex {
+    word      : "zag"
+  }
+}
+
+% Dutch "helpen"
+
+defentry {
+  dim ds {
+    in        : {a12r}
+    anchor    : {s122}
+    out       : {s11 a12l? a12r?}
+    foot      : {s121}
+    dominates : {a12l: {s121 s122} a12r: {s121 s122}}
+    leaves    : {s11 s121 s122}
+  }
+  dim lex {
+    word      : "helpen"
+  }
+}
+
+% German "helpen"
+
+defentry {
+  dim ds {
+    in        : {s1 s11 s11b s121 s122 s13}
+    anchor    : {s122}
+    out       : {s11 s121}
+    leaves    : {s11 s121 s122}
+  }
+  dim lex {
+    word      : "helpen"
+  }
+}
+
+% Dutch "voeren"
+
+defentry {
+  dim ds {
+    in        : {a12r}
+    anchor    : {s122}
+    out       : {s11 s11b a12l? a12r?}
+    foot      : {s121}
+    dominates : {a12l: {s121 s122} a12r: {s121 s122}}
+    leaves    : {s11 s11b s121 s122}
+  }
+  dim lex {
+    word  : "voeren"
+  }
+}
+
+% German "voeren"
+
+defentry {
+  dim ds {
+    in        : {s1 s11 s11b s121 s122 s13}
+    anchor    : {s122}
+    out       : {s11 s11b}
+    leaves    : {s11 s11b s122}
+  }
+  dim lex {
+    word      : "voeren"
+  }
+}
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

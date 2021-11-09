@@ -1,0 +1,9 @@
+% German scrambling
+john mary peter animals feed help saw
+john mary peter animals help help saw
+john mary animals feed saw
+john mary animals help saw
+
+animals john mary peter help help saw
+
+peter animals feed john mary help saw

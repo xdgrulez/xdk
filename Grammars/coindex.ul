@@ -1,0 +1,127 @@
+usedim id
+usedim lex
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension id
+defdim id {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "id.label" {subj pred}
+  deftype "id.number" {sg pl}
+  deftype "id.gender" {masc fem}
+  deftype "id.coindex" tuple({root subj pred} {"top" "bot"} {gender number}
+                             {root subj pred} {"top" "bot"} {gender number})
+
+  deflabeltype "id.label"
+  defattrstype {
+                root: {"top": {number: "id.number"
+                               gender: "id.gender"}
+                       "bot": {number: "id.number"
+                               gender: "id.gender"}}
+                subj: {"top": {number: "id.number"
+                               gender: "id.gender"}
+                       "bot": {number: "id.number"
+                               gender: "id.gender"}}
+                pred: {"top": {number: "id.number"
+                               gender: "id.gender"}
+                       "bot": {number: "id.number"
+                               gender: "id.gender"}}}
+
+  defentrytype {in: valency("id.label")
+                out: valency("id.label")
+                %%
+                root: {"top": {number: iset("id.number")
+                               gender: iset("id.gender")}
+                       "bot": {number: iset("id.number")
+                               gender: iset("id.gender")}}
+                subj: {"top": {number: iset("id.number")
+                               gender: iset("id.gender")}
+                       "bot": {number: iset("id.number")
+                               gender: iset("id.gender")}}
+                pred: {"top": {number: iset("id.number")
+                               gender: iset("id.gender")}
+                       "bot": {number: iset("id.number")
+                               gender: iset("id.gender")}}
+                %%
+                coindex: set("id.coindex")}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph" {
+    dims {D: id}}
+  useprinciple "principle.tree" {
+    dims {D: id}}
+  useprinciple "principle.valency" {
+    dims {D: id}}
+  useprinciple "principle.coindex" {
+    dims {D: id}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lex
+defdim lex {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype {word: string}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.entries" {}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dags1"
+  output "output.latexs1"
+  useoutput "output.dags1"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define classes
+defentry {
+  dim id {in: {subj?}
+          %%
+          root: {"top": {number: {sg}
+                         gender: {masc}}}}
+                         
+  dim lex {word: "johan"}}
+
+defentry {
+  dim id {in: {subj?}
+          %%
+          root: {"top": {number: {sg}
+                         gender: {fem}}}}
+                         
+  dim lex {word: "marie"}}
+
+defentry {
+  dim id {in: {}
+          out: {subj! pred!}
+          %%
+          coindex: {[subj "top" number pred "top" number]
+                    [subj "top" gender pred "top" gender]}}
+  dim lex {word: "est"}}
+
+defentry {
+  dim id {in: {pred?}
+          %%
+          root: {"top": {number: {sg}
+                         gender: {masc}}}}
+  dim lex {word: "naif"}}
+
+defentry {
+  dim id {in: {pred?}
+          %%
+          root: {"top": {number: {pl}
+                         gender: {masc}}}}
+  dim lex {word: "naifs"}}
+
+defentry {
+  dim id {in: {pred?}
+          %%
+          root: {"top": {number: {sg}
+                         gender: {fem}}}}
+  dim lex {word: "naive"}}
+
+defentry {
+  dim id {in: {pred?}
+          %%
+          root: {"top": {number: {pl}
+                         gender: {fem}}}}
+  dim lex {word: "naives"}}

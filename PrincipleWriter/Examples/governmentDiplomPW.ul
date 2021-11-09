@@ -1,0 +1,13 @@
+defprinciple "principle.governmentDiplomPW" {
+  dims {D}
+  constraints {
+
+forall V: forall V1:
+  ( edge(V V1 subj D) => V1.D.attrs.agr in ($ nom) ) & 
+  ( edge(V V1 obj D) => V1.D.attrs.agr in ($ acc) ) &
+  ( edge(V V1 iobj D) => V1.D.attrs.agr in ($ dat) ) &
+  ( edge(V V1 genobj D) => V1.D.attrs.agr in ($ gen) ) &
+  ( edge(V V1 genmod D) => V1.D.attrs.agr in ($ gen) )
+
+  }
+}

@@ -1,0 +1,9 @@
+defprinciple "principle.agreementPW" {
+  dims {D}
+  constraints {
+
+forall V: forall V1: forall L:
+  edge(V V1 L D) & L in V.D.entry.agree => V.D.attrs.agr=V1.D.attrs.agr
+
+  }
+}

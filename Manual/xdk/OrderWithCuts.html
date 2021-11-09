@@ -1,0 +1,370 @@
+<html lang="en">
+<head>
+<title>OrderWithCuts - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="OrderDist.html#OrderDist" title="OrderDist">
+<link rel="next" href="Out.html#Out" title="Out">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="OrderWithCuts"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Out.html#Out">Out</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="OrderDist.html#OrderDist">OrderDist</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.57 OrderWithCuts principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.orderWithCuts</code>
+<li>dimension variables: <code>D</code>
+<li>argument variables:<br>
+<code>On: iset(label(D))</code><br>
+<code>Order: list(label(D))</code><br>
+<code>Cut: vec(label(D) set(label(D)))</code><br>
+<code>Paste: set(label(D))</code>
+<li>default values:<br>
+<code>On: _.D.entry.on</code><br>
+<code>Order: []</code><br>
+<code>Cut: _.D.entry.out</code><br>
+<code>Paste: _.D.entry.paste</code>
+<li>model record:
+     <pre class="example">          { selfSet:   vec(label(D) ints)
+            self:      label(D)
+            pos:       ints
+            yield:     ints
+            yieldS:    ints
+            yieldL:    vec(label(D) ints)
+            pasteByL:  vec(label(D) ints)
+            paste:     ints
+            pasteL:    vec(label(D) ints)
+            takeProjL: vec(label(D) ints)
+            giveProjL: vec(label(D) ints)
+            keepProjL: vec(label(D) ints)
+          }
+</pre>
+     <li>constraints: <code>OrderWithCutsMakeNodes</code> (priority 130),
+<code>OrderWithCutsConditions</code> (120), and <code>OrderWithCutsDist</code>
+(90)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle was written by Marco Kuhlmann.
+
+   <p>Here is the definition of the <code>OrderWithCutsMakeNodes</code> constraint
+functor:
+<pre class="verbatim">%%
+%% Authors:
+%%   Ralph Debusmann &lt;rade@ps.uni-sb.de>
+%%   Denys Duchier &lt;duchier@ps.uni-sb.de>
+%%   Marco Kuhlmann &lt;kuhlmann@ps.uni-sb.de>
+%%
+%% Copyright:
+%%   Ralph Debusmann, 2001-2011
+%%   Denys Duchier, 2001-2011
+%%   Marco Kuhlmann, 2003-2011
+%%
+
+functor
+import
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      %% Auxiliary function to make C the codomain of mapping R
+      proc {Codomain C R}
+	 {Record.forAll R proc {$ S} {FS.subset S C} end}
+      end
+      
+      %% D is a FD control variable.  If D=1, constrain S3 to S1.
+      %% Otherwise, constrain S3 to S2.
+      proc {Conditional D S1 S2 S3}
+	 D2 = {FD.int 1#2}
+      in
+	 {FD.sum [D 1] '=:' D2}
+	 {Select.fs unit(S2 S1) D2 S3}
+      end
+      %%
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      DIDA = {DVA2DIDA 'D'}
+   in
+      if {Helpers.checkModel 'OrderWithCutsMakeNodes.oz' Nodes
+	  [DIDA#eqdown DIDA#labels]} then
+	 DIDA2LabelLat = G.dIDA2LabelLat
+	 LabelLat = {DIDA2LabelLat DIDA}
+	 NodeSet = Nodes.1.nodeSet
+	 Models = {List.map Nodes fun {$ N} N.DIDA.model end}
+
+	 %% delegated material for all nodes, sorted by label
+	 Delegated =
+	 {Record.mapInd {Record.make unit LabelLat.constants}
+	  fun {$ L _} {List.map Models fun {$ N} N.giveProjL.L end} end}
+      in
+	 for Node in Nodes do
+	    Model = Node.DIDA.model
+
+	    %% get arguments
+	    OnLabels = {ArgRecProc 'On' o('_': Node)}
+	    CutSpec = {ArgRecProc 'Cut' o('_': Node)}
+	    PasteLabels = {ArgRecProc 'Paste' o('_': Node)}
+
+	    %% initialise variables
+	    {Codomain NodeSet Model.selfSet}
+	    {FS.subset Model.yield NodeSet}
+	    {FS.subset Model.yieldS NodeSet}
+	    {Codomain NodeSet Model.yieldL}
+	    {Codomain NodeSet Model.pasteByL}
+	    {FS.subset Model.paste NodeSet}
+	    {Codomain NodeSet Model.pasteL}
+	    {Codomain NodeSet Model.takeProjL}
+	    {Codomain NodeSet Model.giveProjL}
+	    {Codomain NodeSet Model.keepProjL}
+
+	    %% cut in labels -> labels^2
+	    %% restricts cutSpec to the labels actually realised
+	    %% by the current lexical entry
+	    Cut =
+	    {Record.mapInd CutSpec
+	     fun {$ L S}
+		{Conditional
+		 {FS.reified.equal Model.daughtersL.L FS.value.empty}
+		 FS.value.empty S}
+	     end}
+	    CutDomain = {FS.unionN Cut}
+	    
+	    %% list of pastes for this node
+	    PasteByL =
+	    {List.map LabelLat.constants
+	     fun {$ L} Model.pasteByL.L end}
+
+	    %% list of takes for this node
+	    TakeProjL =
+	    {List.map LabelLat.constants
+	     fun {$ L} Model.takeProjL.L end}
+	 in
+	    %% self(w) in on(w)
+	    {FS.include Model.'self' OnLabels}
+	    
+	    %% pos(w) = uplus{self_s(w) | s in selfs}
+	    {FS.partition Model.selfSet Node.pos}
+	    
+	    %% |self_l(w)| = 1 iff self(w) == l
+	    for L in LabelLat.constants do
+	       I = {LabelLat.aI2I L}
+	    in
+	       {FD.equi
+		{FD.reified.equal {FS.card Model.selfSet.L} 1}
+		{FD.reified.equal Model.'self' I} 1}
+	    end
+	    
+	    %% yield(w) = pos(w) union yieldS(w)
+	    Model.yield = {FS.union Node.pos Model.yieldS}
+	    
+	    %% |yield(w)| = |eqdown(w)|
+	    {FD.equal
+	     {FS.card Model.yield}
+	     {FS.card Model.eqdown}}
+
+	    for L in LabelLat.constants do
+	       LI = {LabelLat.aI2I L}
+	       
+	       %% proj(w)(l) = yield(w)(l) union selfSet(w)(l)
+	       ProjL = {FS.union Model.yieldL.L Model.selfSet.L}
+	    in
+	       %% material delegated from mother by label l:
+	       %% pasteByL(w)(l) =
+	       %% union {giveProj(l)(v) | v in mothersL(w)(l)}
+	       Model.pasteByL.L =
+	       {Select.union Delegated.L Model.mothersL.L}
+
+	       %% material pasted into site l:
+	       %% pasteL(w)(l) =
+	       %% paste(w), if l in pasteLabels, empty set otherwise
+	       Model.pasteL.L =
+	       {Conditional {FS.reified.include LI PasteLabels}
+		Model.paste FS.value.empty}
+	       
+	       %% takeProj(w)(l) =
+	       %% proj(w)(l) union union paste(w)(l)
+	       Model.takeProjL.L =
+	       {FS.union ProjL Model.pasteL.L}
+
+	       %% giveProj(w)(l) =
+	       %% union {takeProj(w)(l2) | l2 in cutDomain(w)(l)}
+	       Model.giveProjL.L =
+	       {Select.union TakeProjL Cut.L}
+
+	       %% keepProj(w)(l) =
+	       %% takeProjL(w)(l) union giveProj(w)(l) -
+	       %% union {giveProj(w)(l2) | l2 in labels, l2 != l}
+	       Model.keepProjL.L =
+	       {Conditional {FS.reified.include LI CutDomain}
+		FS.value.empty
+		{FS.union Model.takeProjL.L Model.giveProjL.L}}
+	    end
+	    
+	    %% paste(w) = union {pasteByL(w)(l) | l in labels(w)}
+	    Model.paste = {Select.union PasteByL Model.labels}
+	 end
+      end
+   end
+end
+</pre>
+Here is the definition of the <code>OrderWithCutsConditions</code>
+constraint functor:
+<pre class="verbatim">%%
+%% Authors:
+%%   Ralph Debusmann &lt;rade@ps.uni-sb.de>
+%%   Denys Duchier &lt;duchier@ps.uni-sb.de>
+%%   Marco Kuhlmann &lt;kuhlmann@ps.uni-sb.de>
+%%
+%% Copyright:
+%%   Ralph Debusmann, 2001-2011
+%%   Denys Duchier, 2001-2011
+%%   Marco Kuhlmann, 2003-2011
+%%
+
+%% * The yield of an initial node is convex.
+%%
+%% * The extended yield is the yield plus the paste
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% (2) The extended yield of an auxiliary node is convex.  The
+%% extended yield is the yield plus whatever gets pasted into the
+%% node.
+%%
+%% 
+
+functor
+import
+   %% TODO: import only needed methods
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      DIDA = {DVA2DIDA 'D'}
+   in
+      if {Helpers.checkModel 'OrderWithCutsConditions.oz' Nodes
+	  [DIDA#daughters
+	   DIDA#daughtersL]} then
+	 DIDA2LabelLat = G.dIDA2LabelLat
+	 LabelLat = {DIDA2LabelLat DIDA}
+	 %%
+	 Models = {List.map Nodes fun {$ N} N.DIDA.model end}
+	 %%
+	 Yields = {List.map Models fun {$ N} N.yield end}
+      in
+	 for Node in Nodes do
+	    Model = Node.DIDA.model
+	    %%
+	    OrderedLabelsI = {ArgRecProc 'Order' o('_': Node)}
+	    OrderedLabelsA = {List.map OrderedLabelsI LabelLat.i2AI}
+
+	    DerivedYield = {FS.partition [Model.yield Model.paste]}
+	    
+	    %% ordered list of daughters (incl self-daughter)
+	    OrderedDaughters =
+	    {List.map OrderedLabelsA
+	     fun {$ L}
+		{FS.unionN
+		 [Model.daughtersL.L
+		  Model.selfSet.L
+		  Model.pasteL.L]}
+	     end}
+
+	    %% ordered list of derived projections
+	    OrderedDerivedProjections =
+	    {List.map OrderedLabelsA
+	     fun {$ L} Model.keepProjL.L end}
+	 in
+	    %% yieldS(w) = union{yield(w') | w' in daughters(w)}
+	    Model.yieldS = {Select.union Yields Model.daughters}
+
+	    for L in LabelLat.constants do
+	       %% yield_l(w) = union{yield(w') | w' in daughters_l(w)}
+	       Model.yieldL.L = {Select.union Yields Model.daughtersL.L}
+	       %% |daughters_l(w)| =&lt; |yield_l(w)|
+	       {FD.lesseq
+		{FS.card Model.daughtersL.L}
+		{FS.card Model.yieldL.L}}
+	    end
+	    
+	    %% yieldS(w) = uplus{yield_l(w) | l in labels}
+	    {FS.partition Model.yieldL Model.yieldS}
+
+%%%%%%
+
+	    {FS.int.seq OrderedDaughters}
+	    {Select.seqUnion OrderedDerivedProjections DerivedYield}
+%	    {FS.int.convex {FS.partition [Model.yield Model.paste]}}
+%	    {Select.seqUnion
+%	     {List.map OrderedLabelsA fun {$ L} Model.derivedProjL.L end}
+%	     {FS.union Model.yield Model.paste}}
+	 end
+      end
+   end
+end
+</pre>
+Here is the definition of the <code>OrderWithCutsDist</code>
+constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+
+%%
+functor
+import
+%   Space(waitStable)
+
+   Distributor(distributeDs distributeMs) at 'Distributor.ozf'
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+   in
+      if {Helpers.checkModel 'OrderDist.oz' Nodes nil} then
+	 DIDA = {DVA2DIDA 'D'}
+	 %% distribute self
+	 SelfDs = {Map Nodes
+		   fun {$ Node} Node.DIDA.model.'self' end}
+      in
+	 {Distributor.distributeDs SelfDs FD}
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

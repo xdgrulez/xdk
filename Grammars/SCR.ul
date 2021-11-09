@@ -1,0 +1,87 @@
+usedim id
+usedim lp
+usedim idlp
+usedim lex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define id dimension
+defdim id {
+  deftype "id.label" {n v}
+  deflabeltype "id.label"
+  defentrytype {in: valency("id.label")
+                out: valency("id.label")}
+%%
+  useprinciple "principle.graphConstraints" {
+    dims {D: id}}
+  useprinciple "principle.graphDist" {
+    dims {D: id}}
+  useprinciple "principle.tree" {
+    dims {D: id}}
+  useprinciple "principle.valency" {
+    dims {D: id}}
+%%
+  output "output.pretty"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lp dimension
+defdim lp {
+  deftype "lp.label" {"1" "2" "^"}
+  deflabeltype "lp.label"
+  defentrytype {in: valency("lp.label")
+                out: valency("lp.label")
+                order: set(tuple("lp.label" "lp.label"))}
+%%
+  useprinciple "principle.graphConstraints" {
+    dims {D: lp}}
+  useprinciple "principle.graphDist" {
+    dims {D: lp}}
+  useprinciple "principle.tree" {
+    dims {D: lp}}
+  useprinciple "principle.valency" {
+    dims {D: lp}}
+  useprinciple "principle.order2" {
+    dims {D: lp}}
+%%
+  output "output.pretty"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define idlp dimension
+defdim idlp {
+  useprinciple "principle.climbing" {
+    dims {D1: lp
+          D2: id}
+    args {Subgraphs: false}}
+%%
+  output "output.pretty"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lex dimension
+defdim lex {
+  defentrytype {word: string}
+%%
+  output "output.dags1"
+  output "output.latexs1"
+  useoutput "output.dags1"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lexicon
+
+defentry {
+  dim id {in: {}
+          out: {n! v?}}
+  dim lp {in: {}
+          out: {"1"* "2"?}
+          order: <"1" "2" "^">}
+  dim lex {word: "v"}}
+
+defentry {
+  dim id {in: {v!}
+          out: {n! v?}}
+  dim lp {in: {"2"!}
+          out: {"2"?}
+          order: <"2" "^">}
+  dim lex {word: "v"}}
+
+defentry {
+  dim id {in: {n!}}
+  dim lp {in: {"1"!}}
+  dim lex {word: "n"}}

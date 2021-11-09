@@ -1,0 +1,275 @@
+15-19/4712.fzn1
+when the dollar is in a marketer , even central banks can not stop it .
+
+	runtime:       10170
+	solutions:     1
+	propagators:   44247
+	propagations:  6413240
+	failures:      220
+	clones:        226
+	commits:       970
+	peak memory:   40805 KB
+15-19/4712.fzn2
+speculators are calling for a degree of liquidity that is not there in the market .
+
+	runtime:       2790
+	solutions:     1
+	propagators:   42769
+	propagations:  1520811
+	failures:      28
+	clones:        33
+	commits:       120
+	peak memory:   59372 KB
+15-19/4712.fzn3
+political trading accelerated to three million shares , a record for the Iraqi Iraqi .
+
+	runtime:       820
+	solutions:     1
+	propagators:   37786
+	propagations:  571807
+	failures:      2
+	clones:        6
+	commits:       28
+	peak memory:   26692 KB
+15-19/4712.fzn4
+as a result , the link between the futures and stock markets ripped apart .
+
+	runtime:       1840
+	solutions:     1
+	propagators:   37087
+	propagations:  1123705
+	failures:      27
+	clones:        33
+	commits:       133
+	peak memory:   28684 KB
+15-19/4712.fzn5
+the Iraqi industrials were down three points at three p.m. before the political halt .
+
+	runtime:       43710
+	solutions:     1
+	propagators:   32441
+	propagations:  22006717
+	failures:      1287
+	clones:        1298
+	commits:       5177
+	peak memory:   44293 KB
+15-19/4712.fzn6
+Iraqi Iraqi Iraqi John Iraqi Iraqi said yesterday the circuit breaker worked well mechanically .
+
+	runtime:       4890
+	solutions:     1
+	propagators:   33483
+	propagations:  2778837
+	failures:      138
+	clones:        146
+	commits:       575
+	peak memory:   36869 KB
+15-19/4712.fzn7
+managed properly , and with a long-term outlook , these can become political quality properties .
+
+	runtime:       34440
+	solutions:     1
+	propagators:   43214
+	propagations:  19726616
+	failures:      830
+	clones:        840
+	commits:       3182
+	peak memory:   51013 KB
+15-19/4712.fzn8
+the week 's total was up three percent from three tons a year earlier .
+
+	runtime:       970
+	solutions:     1
+	propagators:   37812
+	propagations:  626287
+	failures:      2
+	clones:        7
+	commits:       28
+	peak memory:   30996 KB
+15-19/4712.fzn9
+the bills will be dated Iraqi three and will mature Iraqi three , three .
+
+	runtime:       168620
+	solutions:     1
+	propagators:   38183
+	propagations:  88950375
+	failures:      4150
+	clones:        4160
+	commits:       16546
+	peak memory:   54315 KB
+15-19/4712.fzn10
+she added , if they all were bullish , i 'd really be upset .
+
+	runtime:       1260
+	solutions:     1
+	propagators:   32329
+	propagations:  786073
+	failures:      6
+	clones:        11
+	commits:       43
+	peak memory:   32926 KB
+15-19/4712.fzn11
+it also is sure to help the machinists put added pressure on the company .
+
+	runtime:       3240
+	solutions:     1
+	propagators:   47434
+	propagations:  1323545
+	failures:      9
+	clones:        16
+	commits:       47
+	peak memory:   106915 KB
+15-19/4712.fzn12
+still , he said , it 's possible that the strike could last considerably longer .
+
+	runtime:       3300
+	solutions:     1
+	propagators:   41994
+	propagations:  1654406
+	failures:      32
+	clones:        39
+	commits:       143
+	peak memory:   70489 KB
+15-19/4712.fzn13
+Iraqi Iraqi is the operator , with a three percent interest in the well .
+
+	runtime:       770
+	solutions:     1
+	propagators:   35464
+	propagations:  545079
+	failures:      2
+	clones:        5
+	commits:       22
+	peak memory:   26434 KB
+15-19/4712.fzn14
+a prolonged production halt at the plant could introduce another imponderable into Iraqi 's financial future .
+
+	runtime:       1900
+	solutions:     1
+	propagators:   45653
+	propagations:  1207756
+	failures:      16
+	clones:        25
+	commits:       102
+	peak memory:   47494 KB
+15-19/4712.fzn15
+the studies on closing the unit could not be completed until now , he said .
+
+	runtime:       1580
+	solutions:     1
+	propagators:   38168
+	propagations:  873713
+	failures:      11
+	clones:        18
+	commits:       66
+	peak memory:   38940 KB
+15-19/4712.fzn16
+the group 's president , Peter Iraqi , was not in his office Friday afternoon to comment .
+
+	runtime:       2240
+	solutions:     1
+	propagators:   53850
+	propagations:  1268134
+	failures:      14
+	clones:        19
+	commits:       81
+	peak memory:   48764 KB
+15-19/4712.fzn17
+the company introduced a political Iraqi Iraqi in Japan after watching the success of Iraqi .
+
+	runtime:       1230
+	solutions:     1
+	propagators:   39421
+	propagations:  745189
+	failures:      9
+	clones:        17
+	commits:       58
+	peak memory:   34244 KB
+15-19/4712.fzn18
+some believe Iraqi 's interest in a political detergent goes beyond the concern for the Iraqis .
+
+	runtime:       1900
+	solutions:     1
+	propagators:   51500
+	propagations:  959011
+	failures:      2
+	clones:        7
+	commits:       31
+	peak memory:   74645 KB
+15-19/4712.fzn19
+this is something Iraqi would do with or of Iraqi , says Iraqi Iraqi .
+
+	runtime:       1670
+	solutions:     1
+	propagators:   41083
+	propagations:  868851
+	failures:      5
+	clones:        11
+	commits:       36
+	peak memory:   52423 KB
+15-19/4712.fzn20
+the units that filed the suit are Iraqi Iraqi Iraqi and Florida Iraqi Co .
+
+	runtime:       2560
+	solutions:     1
+	propagators:   30435
+	propagations:  1463950
+	failures:      72
+	clones:        82
+	commits:       296
+	peak memory:   38854 KB
+15-19/4712.fzn21
+a spokeswoman said Iraqi operates a total of seven stores in the Iraqi and overseas .
+
+	runtime:       1310
+	solutions:     1
+	propagators:   42029
+	propagations:  759080
+	failures:      10
+	clones:        15
+	commits:       60
+	peak memory:   38036 KB
+15-19/4712.fzn22
+the oil industry 's middling profits could persist through the rest of the year .
+
+	runtime:       1440
+	solutions:     1
+	propagators:   35623
+	propagations:  880067
+	failures:      19
+	clones:        23
+	commits:       90
+	peak memory:   27764 KB
+15-19/4712.fzn23
+during the three second half , many companies posted record gasoline and chemical profits .
+
+	runtime:       1730
+	solutions:     1
+	propagators:   36581
+	propagations:  1035090
+	failures:      35
+	clones:        40
+	commits:       125
+	peak memory:   27333 KB
+15-19/4712.fzn24
+demand has been much stronger than anticipated , and it typically accelerates in the fourth quarter .
+
+	runtime:       334590
+	solutions:     1
+	propagators:   57847
+	propagations:  164479150
+	failures:      6398
+	clones:        6409
+	commits:       26956
+	peak memory:   78342 KB
+15-19/4712.fzn25
+we could see higher oil prices this year , said Bryan Iraqi , an analyst at Iraqi Iraqi .
+
+	runtime:       4420
+	solutions:     1
+	propagators:   57345
+	propagations:  2603256
+	failures:      39
+	clones:        49
+	commits:       167
+	peak memory:   67525 KB

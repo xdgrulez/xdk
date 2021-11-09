@@ -1,0 +1,342 @@
+<html lang="en">
+<head>
+<title>nut - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Grammars.html#Grammars" title="Grammars">
+<link rel="prev" href="igk.html#igk" title="igk">
+<link rel="next" href="nut1.html#nut1" title="nut1">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="nut"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="nut1.html#nut1">nut1</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="igk.html#igk">igk</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Grammars.html#Grammars">Grammars</a>
+<hr>
+</div>
+
+<h3 class="section">5.45 nut</h3>
+
+<p>This is an English toy grammar written for the nutshell chapter of the
+dissertation by Ralph Debusmann. Compared to <a href="nut1.html#nut1">nut1</a>, it does not
+use lexical classes but generates the lexicon directly.
+
+<pre class="verbatim">usedim syn
+usedim sem
+usedim synsem
+usedim lex
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension syn
+defdim syn {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "syn.person" {"1" "2" "3"}
+  deftype "syn.number" {sg pl}
+  deftype "syn.agr" tuple("syn.person" "syn.number")
+  deftype "syn.label" {root subj part obj vinf adv "^"}
+
+  deflabeltype "syn.label"
+  defattrstype {agr: "syn.agr"}
+  defentrytype {in: valency("syn.label")
+                out: valency("syn.label")
+                order: set(tuple("syn.label" "syn.label"))
+                agrs: iset("syn.agr")
+                agree: set("syn.label")}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph" { dims {D: syn} }
+  useprinciple "principle.tree" { dims {D: syn} }
+  useprinciple "principle.valency" { dims {D: syn} }
+  useprinciple "principle.agr" { dims {D: syn} }
+  useprinciple "principle.agreement" { dims {D: syn} }
+  useprinciple "principle.order2" { dims {D: syn} }
+  useprinciple "principle.projectivity" { dims {D: syn} }
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.decode"
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension sem
+defdim sem {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "sem.label" {root del ag pat th}
+  deflabeltype "sem.label"
+  defentrytype {in: valency("sem.label")
+                out: valency("sem.label")}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph" { dims {D: sem} }
+  useprinciple "principle.dag" { dims {D: sem} 
+                                 args {Connected: false
+                                       DisjointDaughters: false} }
+  useprinciple "principle.valency" { dims {D: sem} }
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.decode"
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension synsem
+defdim synsem {
+  defentrytype {arg: vec("sem.label" set("syn.label"))
+                mod: set("sem.label")}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.linkingEnd" {
+    dims {D1: sem
+          D2: syn
+          D3: synsem}
+    args {End: ^.D3.entry.arg}}
+  useprinciple "principle.linkingMother" {
+    dims {D1: sem
+          D2: syn
+          D3: synsem}
+    args {Which: ^.D3.entry.mod}}
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lex
+defdim lex {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype {word: string}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dags1"
+  output "output.dags2"
+  output "output.latexs1"
+  output "output.latexs2"
+  useoutput "output.dags1"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lexicon
+defentry {
+  dim lex {word: "Peter"}
+  dim syn {in: {subj? obj?}
+           out: {}
+           agrs: {["3" sg]}
+           agree: {}}
+  dim sem {in: {ag* pat*}
+           out: {}}
+  dim synsem {arg: {}
+              mod: {}}}
+           
+defentry {
+  dim lex {word: "Mary"}
+  dim syn {in: {subj? obj?}
+           out: {}
+           agrs: {["3" sg]}
+           agree: {}}
+  dim sem {in: {ag* pat*}
+           out: {}}
+  dim synsem {arg: {}
+              mod: {}}}
+
+defentry {
+  dim lex {word: "spaghetti"}
+  dim syn {in: {subj? obj?}
+           out: {}
+           agrs: {["3" pl]}
+           agree: {}}
+  dim sem {in: {ag* pat*}
+           out: {}}
+  dim synsem {arg: {}
+              mod: {}}}
+
+defentry {
+  dim lex {word: "."}
+  dim syn {in: {}
+           out: {root!}
+           order: {[root "^"]}
+           agrs: top
+           agree: {}}
+  dim sem {in: {}
+           out: {root* del*}}
+  dim synsem {arg: {}
+              mod: {}}}
+
+defentry {
+  dim lex {word: "today"}
+  dim syn {in: {adv?}
+           out: {}
+           agrs: top
+           agree: {}}
+  dim sem {in: {root!}
+           out: {th!}}
+  dim synsem {arg: {}
+              mod: {th}}}
+
+defentry {
+  dim lex {word: "to"}
+  dim syn {in: {part?}
+           out: {}
+           agrs: top
+           agree: {}}
+  dim sem {in: {del!}
+           out: {}}
+  dim synsem {arg: {}
+              mod: {}}}
+
+defentry {
+  dim lex {word: "wants"}
+  dim syn {in: {root?}
+           out: {subj! vinf! adv*}
+           order: {[subj "^"] [subj vinf] [subj adv]
+                   ["^" vinf] ["^" adv] [vinf adv]}
+           agrs: {["3" sg]}
+           agree: {subj}}
+  dim sem {in: {root! th*}
+           out: {ag! th!}}
+  dim synsem {arg: {ag: {subj}
+                    th: {vinf}}
+              mod: {}}}
+
+defentry {
+  dim lex {word: "wants"}
+  dim syn {in: {root?}
+           out: {subj! obj! vinf! adv*}
+           order: {[subj "^"] [subj obj] [subj vinf] [subj adv]
+                   ["^" obj] ["^" vinf] ["^" adv]
+                   [obj vinf] [obj adv] [vinf adv]}
+           agrs: {["3" sg]}
+           agree: {subj}}
+  dim sem {in: {root! th*}
+           out: {ag! pat! th!}}
+  dim synsem {arg: {ag: {subj}
+                    pat: {obj}
+                    th: {vinf}}
+              mod: {}}}
+
+defentry {
+  dim lex {word: "want"}
+  dim syn {in: {root?}
+           out: {subj! vinf! adv*}
+           order: {[subj "^"] [subj vinf] [subj adv]
+                   ["^" vinf] ["^" adv] [vinf adv]}
+           agrs: {["1" sg] ["2" sg] ["1" pl] ["2" pl] ["3" pl]}
+           agree: {subj}}
+  dim sem {in: {root! th*}
+           out: {ag! th!}}
+  dim synsem {arg: {ag: {subj}
+                    th: {vinf}}
+              mod: {}}}
+
+defentry {
+  dim lex {word: "want"}
+  dim syn {in: {root?}
+           out: {subj! obj! vinf! adv*}
+           order: {[subj "^"] [subj obj] [subj vinf] [subj adv]
+                   ["^" obj] ["^" vinf] ["^" adv]
+                   [obj vinf] [obj adv] [vinf adv]}
+           agrs: {["1" sg] ["2" sg] ["1" pl] ["2" pl] ["3" pl]}
+           agree: {subj}}
+  dim sem {in: {root! th*}
+           out: {ag! pat! th!}}
+  dim synsem {arg: {ag: {subj}
+                    pat: {obj}
+                    th: {vinf}}
+              mod: {}}}
+
+defentry {
+  dim lex {word: "eats"}
+  dim syn {in: {root?}
+           out: {subj! obj! adv*}
+           order: {[subj "^"] [subj obj] [subj adv]
+                   ["^" obj] ["^" adv] [obj adv]}
+           agrs: {["3" sg]}
+           agree: {subj}}
+  dim sem {in: {root! th*}
+           out: {ag! pat!}}
+  dim synsem {arg: {ag: {subj}
+                    pat: {obj}}
+              mod: {}}}
+
+defentry {
+  dim lex {word: "eat"}
+  dim syn {in: {root?}
+           out: {subj! obj! adv*}
+           order: {[subj "^"] [subj obj] [subj adv]
+                   ["^" obj] ["^" adv] [obj adv]}
+           agrs: {["1" sg] ["2" sg] ["1" pl] ["2" pl] ["3" pl]}
+           agree: {subj}}
+  dim sem {in: {root! th*}
+           out: {ag! pat!}}
+  dim synsem {arg: {ag: {subj}
+                    pat: {obj}}
+              mod: {}}}
+
+defentry {
+  dim lex {word: "eats"}
+  dim syn {in: {root?}
+           out: {subj! adv*}
+           order: {[subj "^"] [subj adv] ["^" adv]}
+           agrs: {["3" sg]}
+           agree: {subj}}
+  dim sem {in: {root! th*}
+           out: {ag!}}
+  dim synsem {arg: {ag: {subj}}
+              mod: {}}}
+
+defentry {
+  dim lex {word: "eat"}
+  dim syn {in: {root?}
+           out: {subj! adv*}
+           order: {[subj "^"] [subj adv] ["^" adv]}
+           agrs: {["1" sg] ["2" sg] ["1" pl] ["2" pl] ["3" pl]}
+           agree: {subj}}
+  dim sem {in: {root! th*}
+           out: {ag!}}
+  dim synsem {arg: {ag: {subj}}
+              mod: {}}}
+
+defentry {
+  dim lex {word: "eat"}
+  dim syn {in: {vinf?}
+           out: {part! obj! adv*}
+           order: {[part "^"] [part obj] [part adv]
+                   ["^" obj] ["^" adv] [obj adv]}
+           agrs: top
+           agree: {}}
+  dim sem {in: {root! th*}
+           out: {ag! pat!}}
+  dim synsem {arg: {ag: {subj}
+                    pat: {obj}}
+              mod: {}}}
+
+defentry {
+  dim lex {word: "eat"}
+  dim syn {in: {vinf?}
+           out: {part! adv*}
+           order: {[part "^"] [part obj] [part adv]
+                   ["^" obj] ["^" adv] [obj adv]}
+           agrs: top
+           agree: {}}
+  dim sem {in: {root! th*}
+           out: {ag!}}
+  dim synsem {arg: {ag: {subj}}
+              mod: {}}}
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

@@ -1,0 +1,109 @@
+<html lang="en">
+<head>
+<title>In - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="Graph1Dist.html#Graph1Dist" title="Graph1Dist">
+<link rel="next" href="In1.html#In1" title="In1">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="In"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="In1.html#In1">In1</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Graph1Dist.html#Graph1Dist">Graph1Dist</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.24 In principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.in</code>
+<li>dimension variables: <code>D</code>
+<li>argument variables:<br>
+<code>In: iset(label(D))</code>
+<li>default values:<br>
+<code>In: _.D.entry.in</code>
+<li>model record: empty
+<li>constraints: <code>In</code> (priority 130)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle assumes that the Graph principle (<a href="Graph.html#Graph">Graph</a>) is used
+on dimension <code>D</code>.
+
+   <p>The <code>In</code> argument variable defines the set of <em>possible
+incoming edge labels</em>. 
+<a name="index-incoming-edge-label-249"></a><a name="index-incoming-edge-labels-250"></a><a name="index-in-specification-251"></a><a name="index-possible-incoming-edge-labels-252"></a>Its default value is lexicalized by the lexical entry feature
+<code>in</code> on <code>D</code>.
+
+   <p>It stipulates for all nodes v that:
+     <ul>
+<li>the set of incoming edge labels of v is a subset of
+the set of possible incoming edge labels
+</ul>
+
+   <p>This principle is now mostly superseded by the Valency principle
+(<a href="Valency.html#Valency">Valency</a>), but is still used for the classic grammars, e.g.  the
+Acl01 grammar (<a href="Acl01.html#Acl01">Acl01</a>).
+
+   <p>Notice that the In2 principle (<a href="In2.html#In2">In2</a>) uses the same constraint
+functor, but the type of the <code>In</code> argument variable is an
+accumulative set of labels on <code>D</code>, instead of an intersective
+one.
+
+   <p>Here is the definition of the <code>In</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      DIDA = {DVA2DIDA 'D'}
+   in
+      %% check features
+      if {Helpers.checkModel 'In.oz' Nodes
+	  [DIDA#labels]} then
+	 for Node in Nodes do
+	    InM = {ArgRecProc 'In' o('_': Node)}
+	 in
+	    %% labels(v) in in(v)
+	    {FS.subset Node.DIDA.model.labels InM}
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

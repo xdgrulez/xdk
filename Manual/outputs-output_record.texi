@@ -1,0 +1,119 @@
+@section Output record
+The @emph{output record} is the result of preparing the solution for
+the individual output functors. A solution is a list of node
+records. The output record is defined as follows:
+
+@example
+o(usedDIDAs: DIDAs
+  graphUsedDIDAs: DIDAs
+  nodes: SLs
+  nodeILs: ILs
+  nodeOLs: OLs
+  nodeOLAbbrs: OLAbbrs
+  index2Pos: I2I
+  printProc: PrintProc
+  edges: EdgesRec)
+@end example
+
+The value of the @code{usedDIDAs} feature is a list of dimension
+identifiers (@code{DIDAs}) which are the used dimensions.
+
+The value of the @code{usedGraphDIDAs} feature is a list of dimension
+identifiers (@code{DIDAs}) which are the used @emph{graph dimensions}.
+@cindex graph dimensions
+A graph dimension is a dimension on which the either
+@code{principle.graph} or @code{principle.graph1} is used. This is
+useful to distinguish graph dimensions (which can e.g. be visualized
+using @code{output.dag}) from special dimensions like @code{lex}
+(purpose: assign a word form to a lexical entry) and @code{multi}
+(purpose: use multi-dimensional principles) which need not be 
+visualized like this.
+
+The value of the @code{nodes} feature is the Solver Language (SL)
+version of the solution: a list of node records.
+
+The value of the @code{nodeILs} feature is the Intermediate Language
+(IL) version of the solution.
+
+The value of the @code{nodeOLs} feature is the Output Language (OL)
+version of the solution.
+
+The value of the @code{nodeOLAbbrs} feature is the abbreviated Output
+Language (OL) version of the solution (here: top values are
+abbreviated with @code{top} and bottom values with @code{bot}, and
+features denoting @code{top} are left out from records and valencies).
+
+The value of the @code{index2Pos} feature@footnote{This feature only
+makes sense if you use the order principle.}  is a function from node
+indices (@code{I}) to the corresponding node positions (@code{I}).
+
+The value of the @code{printProc} feature is a function from anything
+to nothing (@code{X -> U}), used for printing.
+
+indices (@code{I}) to the corresponding node positions (@code{I}).
+
+The value of the @code{edges} feature@footnote{This feature only makes
+sense for dimensions using the graph principle (or the graph1
+principle).}  is the @emph{edges record}
+@cindex edges record
+@code{EdgesRec}:
+@example
+o(edges: DIDAEdgesRec
+  ledges: DIDALEdgesRec
+  lusedges: DIDALUSEdgesRec
+  dedges: DIDADEdgesRec
+  ldedges: DIDALDEdgesRec
+  lusdedges: DIDALUSDEdgesRec)
+@end example
+
+The values of the features of the edges record are defined as follows:
+@itemize @bullet
+@item @code{DIDAEdgesRec}: Maps dimension identifier
+@code{DIDA} to the set of determined edges (@code{Edges}) on
+@code{DIDA}.  An edge is an Oz record @code{edge(I1 I2)} representing an
+edge from the node with index @code{I1} to the node with index
+@code{I2}. The edge label of the edge need not be determined.
+@item @code{DIDALEdgesRec}: Maps dimension identifier @code{DIDA}
+to the set of determined labeled edges (@code{LEdges}) on @code{DIDA}.
+A labeled edge is an Oz record @code{edge(I1 I2 LA)} representing an
+edge from the node with index @code{I1} to the node with index @code{I2}
+labeled @code{LA}. The edge label of the edge must be determined.
+@item @code{DIDALUSEdgesRec}: Maps dimension identifier
+@code{DIDA} to the set of determined edges (@code{LUSEdges}) on
+@code{DIDA}. Here, the edge label of the edge must still be undetermined.
+@item @code{DIDADEdgesRec}: Maps dimension identifier
+@code{DIDA} to the set of @emph{unlabeled dominance edges}
+@cindex unlabeled dominance edge
+@cindex dominance edge
+(@code{DEdges}) on @code{DIDA}. An unlabeled dominance edge is an Oz
+record @code{dom(I1 I2)} representing a unlabeled dominance edge from
+the node with index @code{I1} to the node with index @code{I2}. 
+An unlabeled dominance edge holds between nodes @math{v} and
+@math{v'} if:
+@enumerate
+@item @math{v'} is in the set of nodes below @math{v}
+@item the set of mothers of @math{v'} is not yet determined
+@item @math{v'} is not in the set of nodes below any node below @math{v}
+@end enumerate
+@item @code{DIDALDEdgesRec}: Maps dimension identifier
+@code{DIDA} to the set of @emph{labeled dominance edges}
+@cindex labeled dominance edge
+@cindex dominance edge
+(@code{LDEdges}) on @code{DIDA}. A labeled dominance edge is an Oz
+record @code{dom(I1 I2 LA)} representing a labeled dominance edge from
+the node with index @code{I1} to the node with index @code{I2} labeled
+@code{LA}.  A labeled dominance edge exists between @code{I1} and @code{I2}
+if:
+@enumerate
+@item @math{v'} is in the set of nodes equal or below the daughters of
+@math{v} labeled with @math{l}
+@item the set of mothers of @math{v'} is not yet determined
+@item @math{v'} is not in the set of nodes below any node below @math{v}
+@end enumerate
+@item @code{DIDALUSDEdgesRec}: Maps dimension identifier
+@code{DIDA} to the set of @emph{unlabeled dominance edges}
+@cindex unlabeled dominance edge
+@cindex dominance edge
+(@code{LUSDEdges}) on @code{DIDA}. Here, the edge label of the
+dominance edge must still be undetermined.
+@end itemize

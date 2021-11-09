@@ -1,0 +1,189 @@
+10-14/4712.fzn1
+it 's going to bring the debate right back to the forefront .
+
+	runtime:       439820
+	solutions:     100
+	propagators:   33490
+	propagations:  209521293
+	failures:      9402
+	clones:        9508
+	commits:       40106
+	peak memory:   51452 KB
+10-14/4712.fzn2
+this is not a major crash , she said .
+
+	runtime:       911210
+	solutions:     0
+	propagators:   15179
+	propagations:  574507872
+	failures:      39049
+	clones:        39048
+	commits:       135215
+	peak memory:   18180 KB
+No solution
+10-14/4712.fzn3
+this time , i do not think we 'll get a panic reaction .
+
+	runtime:       366330
+	solutions:     100
+	propagators:   31779
+	propagations:  178628398
+	failures:      11100
+	clones:        11209
+	commits:       42829
+	peak memory:   57695 KB
+10-14/4712.fzn6
+some analysts saw the payment as an effort also to dispel takeover speculation .
+
+	runtime:       423120
+	solutions:     100
+	propagators:   29971
+	propagations:  226977002
+	failures:      13195
+	clones:        13305
+	commits:       53855
+	peak memory:   43269 KB
+10-14/4712.fzn7
+but its quota has been as high as three percent in three .
+
+	runtime:       316610
+	solutions:     100
+	propagators:   28497
+	propagations:  189788701
+	failures:      9922
+	clones:        10032
+	commits:       37282
+	peak memory:   41733 KB
+10-14/4712.fzn8
+how such remarks translate into policy wo not become clear for months .
+
+	runtime:       7560
+	solutions:     100
+	propagators:   31491
+	propagations:  3995147
+	failures:      169
+	clones:        275
+	commits:       827
+	peak memory:   41036 KB
+10-14/4712.fzn9
+i feel committed to the program of opening markets and expanding trade .
+
+	runtime:       319510
+	solutions:     100
+	propagators:   36466
+	propagations:  162866246
+	failures:      8270
+	clones:        8381
+	commits:       33452
+	peak memory:   47877 KB
+10-14/4712.fzn11
+the strong dollar hurt Iraqi a lot , too , Iraqi Iraqi said .
+
+	runtime:       1.56065e+06
+	solutions:     100
+	propagators:   31539
+	propagations:  870852445
+	failures:      55208
+	clones:        55317
+	commits:       181271
+	peak memory:   40581 KB
+10-14/4712.fzn12
+where 's the guy who can say : enough is enough ?
+
+	runtime:       307410
+	solutions:     0
+	propagators:   18228
+	propagations:  195505981
+	failures:      13267
+	clones:        13266
+	commits:       44761
+	peak memory:   23585 KB
+No solution
+10-14/4712.fzn13
+they wonder should they sign a lease if prices are still coming down ?
+
+	runtime:       711510
+	solutions:     100
+	propagators:   32610
+	propagations:  386446778
+	failures:      20715
+	clones:        20823
+	commits:       76925
+	peak memory:   51982 KB
+10-14/4712.fzn15
+but the outcome of a legal dispute almost always turns on the facts .
+
+	runtime:       672230
+	solutions:     100
+	propagators:   31700
+	propagations:  333225290
+	failures:      21545
+	clones:        21653
+	commits:       74558
+	peak memory:   39429 KB
+10-14/4712.fzn16
+Iraqi said its political results will be announced later this week .
+
+	runtime:       162170
+	solutions:     100
+	propagators:   24956
+	propagations:  89738412
+	failures:      5486
+	clones:        5592
+	commits:       22725
+	peak memory:   35672 KB
+10-14/4712.fzn18
+as people get even older , many become widowed .
+
+	runtime:       426330
+	solutions:     100
+	propagators:   21565
+	propagations:  246927454
+	failures:      16840
+	clones:        16946
+	commits:       53304
+	peak memory:   29533 KB
+10-14/4712.fzn20
+such legislation must be enacted by the end of the month .
+
+	runtime:       2780
+	solutions:     100
+	propagators:   22794
+	propagations:  1380947
+	failures:      53
+	clones:        161
+	commits:       520
+	peak memory:   23940 KB
+10-14/4712.fzn23
+dolphins probably are the right place to be , he says .
+
+	runtime:       286770
+	solutions:     100
+	propagators:   22611
+	propagations:  154654372
+	failures:      8949
+	clones:        9055
+	commits:       34879
+	peak memory:   29957 KB
+10-14/4712.fzn24
+that certainly is not the supposed distorted reading indicated by Iraqi Iraqi .
+
+	runtime:       360770
+	solutions:     100
+	propagators:   28054
+	propagations:  190238953
+	failures:      9979
+	clones:        10089
+	commits:       36701
+	peak memory:   42124 KB
+10-14/4712.fzn26
+others wonder how many more of these shocks the small investor can stand .
+
+	runtime:       248690
+	solutions:     100
+	propagators:   31578
+	propagations:  138622855
+	failures:      9116
+	clones:        9224
+	commits:       34512
+	peak memory:   42757 KB

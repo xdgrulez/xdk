@@ -1,0 +1,193 @@
+#!/usr/bin/perl
+# usage:
+# rmprinciple <principle name> <constraint name_1> ... <constraint name_N>
+
+############################################################
+
+# 'makefile.oz'
+sub subst1
+{
+    local(@lines);
+
+    # read file into array @lines
+    open(fh,'makefile.oz');
+    @lines = <fh>;
+    close(fh);
+    
+    # convert array @lines into scalar $lines
+    $lines = "";
+    foreach $line (@lines) {
+	$lines = "$lines$line";
+    }
+
+    for ($i = 1; $i <= $#ARGV; ++$i) {
+	# remove principle name from file
+	$_ = $lines;
+	s/(.*Solver\/Principles\/Lib\/$ARGV[$i].*\n)//;
+	print "Removed 'Solver/Principles/Lib/$ARGV[$i].ozf' from file 'makefile.oz'.\n"; 
+	$lines = $_;
+    }
+
+    # write back file
+    open(fh,'>makefile.oz');
+    print fh $lines;
+    close(fh);
+}
+
+############################################################
+
+# 'Solver/Principles/Principles.oz'
+sub subst2
+{
+    local($c);
+    $c = $_[0];
+
+    local(@lines);
+
+    # read file into array @lines
+    open(fh,'Solver/Principles/Principles.oz');
+    @lines = <fh>;
+    close(fh);
+    
+    # convert array @lines into scalar $lines
+    $lines = "";
+    foreach $line (@lines) {
+	$lines = "$lines$line";
+    }
+
+    # remove principle name from file (1)
+    $_ = $lines;
+    s/(.*$c\(principle\)\n)//;
+    $lines = $_;
+    print "Removed '$c(principle)' from file 'Solver/Principles/Principles.oz'.\n";
+
+    # remove principle name from file (2)
+    $_ = $lines;
+    s/(.*$c\.principle\n)//;
+    $lines = $_;
+    print "Removed '$c.principle' from file 'Solver/Principles/Principles.oz'.\n";
+
+    # write back file
+    open(fh,'>Solver/Principles/Principles.oz');
+    print fh $lines;
+    close(fh);
+}
+
+############################################################
+
+# 'Solver/Principles/makefile.oz'
+sub subst3
+{
+    local($c);
+    $c = $_[0];
+
+    local(@lines);
+
+    # read file into array @lines
+    open(fh,'Solver/Principles/makefile.oz');
+    @lines = <fh>;
+    close(fh);
+    
+    # convert array @lines into scalar $lines
+    $lines = "";
+    foreach $line (@lines) {
+	$lines = "$lines$line";
+    }
+
+    # remove principle name from file
+    $_ = $lines;
+    s/(.*\'$c\.ozf\'\n)//;
+    $lines = $_;
+    print "Removed '$c.ozf' from file 'Solver/Principles/makefile.oz'.\n";
+
+    # write back file
+    open(fh,'>Solver/Principles/makefile.oz');
+    print fh $lines;
+    close(fh);
+}
+
+############################################################
+
+# 'Solver/Principles/principles.xml'
+sub subst4
+{
+    local($c);
+    $c = $_[0];
+
+    local(@lines);
+
+    # read file into array @lines
+    open(fh,'Solver/Principles/principles.xml');
+    @lines = <fh>;
+    close(fh);
+    
+    # convert array @lines into scalar $lines
+    $lines = "";
+    foreach $line (@lines) {
+	$lines = "$lines$line";
+    }
+
+    # remove principle name from file
+    $_ = $lines;
+    s/(.*<principleDef id=\"principle\.$c\"\/>\n)//;
+    $lines = $_;
+    print "Removed '<principleDef id=\"principle.$c\"/>' from file 'Solver/Principles/principles.xml'.\n";
+
+    # write back file
+    open(fh,'>Solver/Principles/principles.xml');
+    print fh $lines;
+    close(fh);
+}
+
+############################################################
+
+# 'Solver/Principles/Lib/makefile.oz'
+sub subst5 {
+    local(@lines);
+
+    # read file into array @lines
+    open(fh,'Solver/Principles/Lib/makefile.oz');
+    @lines = <fh>;
+    close(fh);
+    
+    # convert array @lines into scalar $lines
+    $lines = "";
+    foreach $line (@lines) {
+	$lines = "$lines$line";
+    }
+    
+    for ($i = 1; $i <= $#ARGV; ++$i) {
+	# remove principle name from file
+	$_ = $lines;
+	s/(.*\'$ARGV[$i]\.ozf\'\n)//;
+	print "Removed '$ARGV[$i].ozf' from file 'Solver/Principles/Lib/makefile.oz'.\n";
+	$lines = $_;
+    }
+
+    # write back file
+    open(fh,'>Solver/Principles/Lib/makefile.oz');
+    print fh $lines;
+    close(fh);
+}
+
+############################################################
+############################################################
+############################################################
+
+# $lc: principle name starting with a lowercase letter
+$_ = @ARGV[0];
+s/^([a-zA-Z])(.*)$/\l\1\2/g;
+$lc = $_;
+
+# $uc: principle name starting with an uppercase letter
+$_ = @ARGV[0];
+s/^([a-zA-Z])(.*)$/\u\1\2/g;
+$uc = $_;
+
+&subst1;
+
+&subst2($uc);
+&subst3($uc);
+&subst4($lc);
+
+&subst5;

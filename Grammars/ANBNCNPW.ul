@@ -1,0 +1,68 @@
+usedim id
+usedim lp
+usedim lex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define id dimension
+defdim id {
+  deftype "id.label" {a b c}
+  deflabeltype "id.label"
+  defentrytype {in: set(tuple("id.label" {"!" "?" "+" "*"}))
+                out: set(tuple("id.label" {"!" "?" "+" "*"}))}
+%%
+  useprinciple "principle.graphPW" { dims {D: id} }
+  useprinciple "principle.treePW" { dims {D: id} }
+  useprinciple "principle.valencyPW" { dims {D: id} }
+%%
+  output "output.pretty"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lp dimension
+defdim lp {
+  deftype "lp.label" {"1" "2" "3" "^"}
+  deflabeltype "lp.label"
+  defentrytype {in: set(tuple("lp.label" {"!" "?" "+" "*"}))
+                out: set(tuple("lp.label" {"!" "?" "+" "*"}))
+                order: set(tuple("lp.label" "lp.label"))}
+%%
+  useprinciple "principle.graphPW" { dims {D: lp} }
+  useprinciple "principle.treePW" { dims {D: lp} }
+  useprinciple "principle.valencyPW" { dims {D: lp} }
+  useprinciple "principle.orderPW" { dims {D: lp} }
+%%
+  output "output.pretty"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lex dimension
+defdim lex {
+  defentrytype {word: string}
+%%
+  output "output.dags1"
+  output "output.latexs1"
+  useoutput "output.dags1"
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lexicon
+
+defentry {
+  dim id {in: {a?}
+          out: {a? b! c!}}
+  dim lp {in: {}
+          out: {"1"* "2"* "3"*}
+          order: <"^" "1" "2" "3">}
+  dim lex {word: "a"}}
+
+defentry {
+  dim id {in: {a?}
+          out: {a? b! c!}}
+  dim lp {in: {"1"!}}
+  dim lex {word: "a"}}
+
+defentry {
+  dim id {in: {b!}}
+  dim lp {in: {"2"!}}
+  dim lex {word: "b"}}
+
+defentry {
+  dim id {in: {c!}}
+  dim lp {in: {"3"!}}
+  dim lex {word: "c"}}

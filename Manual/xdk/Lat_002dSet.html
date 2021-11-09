@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+<title>Lat-Set - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Lattice-functors.html#Lattice-functors" title="Lattice functors">
+<link rel="prev" href="Lat_002dRecord.html#Lat_002dRecord" title="Lat-Record">
+<link rel="next" href="Lat_002dString.html#Lat_002dString" title="Lat-String">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Lat-Set"></a>
+<a name="Lat_002dSet"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Lat_002dString.html#Lat_002dString">Lat-String</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Lat_002dRecord.html#Lat_002dRecord">Lat-Record</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Lattice-functors.html#Lattice-functors">Lattice functors</a>
+<hr>
+</div>
+
+<h4 class="subsection">4.15.8 Set functor</h4>
+
+<p>The set lattice functor is defined differently depending on its
+domain, which can be:
+     <ol type=1 start=1>
+<li>a finite domain of constants or a tuple of which all projections
+are finite domains of constants
+<li>integer
+        </ol>
+
+<h5 class="subsubsection">4.15.8.1 Select function</h5>
+
+     <ol type=1 start=1>
+<li>The select function uses the selection constraint for Oz finite set
+variables to select one set of integers from the list of sets of
+integers. 
+<li>See 1.
+     </ol>
+
+<h5 class="subsubsection">4.15.8.2 Make variable function</h5>
+
+     <ol type=1 start=1>
+<li>The make variable function creates an Oz finite set variable
+ranging over all possible sets of integers over the domain of the set. 
+<li>See 1.
+     </ol>
+
+<h5 class="subsubsection">4.15.8.3 Count function</h5>
+
+     <ol type=1 start=1>
+<li>Returns:
+     <pre class="example">          o(fd: 0
+            fs: 1)
+</pre>
+     <li>See 1.
+     </ol>
+
+<h5 class="subsubsection">4.15.8.4 Additional interface features</h5>
+
+     <ol type=1 start=1>
+<li>
+     <pre class="example">          domain: Lat
+          card: I
+          setTypeA: A
+</pre>
+     <p>The <code>domain</code> feature is the lattice corresponding to the domain
+of the set.
+
+     <p>The <code>card</code> feature is the cardinality of the power set of the
+set.
+
+     <p>The <code>setTypeA</code> feature is either the atom <code>a</code> (accumulative
+set), or <code>i</code> (intersective set).
+
+     <li>
+     <pre class="example">          domain: Lat
+          setTypeA: A
+</pre>
+     </ol>
+
+<!-- ************************************************************ -->
+   </body></html>
+

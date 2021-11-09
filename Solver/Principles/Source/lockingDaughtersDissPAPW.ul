@@ -1,0 +1,13 @@
+defprinciple "principle.lockingDaughtersDissPAPW" {
+  dims {D1 D2 D3}
+  constraints {
+
+forall V: forall V1: forall L:
+  edge(V V1 L D1) & L in V.D3.entry.lockDaughters =>
+    forall V2: edge(V2 V1 D2) =>
+      V2=V |
+      (exists V3: domeq(V2 V3 D1) & edge(V3 V th D1)) |
+      (edge(V2 V1 agm D2) | edge(V2 V1 patm D2))
+
+  }
+}

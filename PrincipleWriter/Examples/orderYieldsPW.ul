@@ -1,0 +1,13 @@
+defprinciple "principle.orderYieldsPW" {
+  dims {D}
+  constraints {
+
+forall V::node: ~exists V1::node: edge(V V1 "^" D)
+
+forall V::node: forall L::label(D): forall L1::label(D):
+  [L L1]::tuple(label(D) label(D)) in V.D.entry.order =>
+    ( L="^"::label(D) => forall V1::node: dom(V V1 L1 D) => V<V1 ) &
+    ( L1="^"::label(D) => forall V1::node: dom(V V1 L D) => V1<V ) &
+    ( forall V1::node: forall V2::node: dom(V V1 L D) & dom(V V2 L1 D) => V1<V2 )
+  }
+}

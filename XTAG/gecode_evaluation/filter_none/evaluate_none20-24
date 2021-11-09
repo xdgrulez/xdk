@@ -1,0 +1,12 @@
+#!/bin/bash
+
+n=0
+until [[ $n = 18 ]]
+do
+  ((n++))
+  file="20-24/4712.fzn$n"
+  echo $file
+  line=`sed -n -e "$n"p ../wsj23_20-24_brief.txt`
+  echo $line
+  fz -solutions 1 -mode stat -time 1800000 $file
+done

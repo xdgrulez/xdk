@@ -1,0 +1,69 @@
+<html lang="en">
+<head>
+<title>Dimensions - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Compiler.html#Compiler" title="Compiler">
+<link rel="prev" href="Overview1.html#Overview1" title="Overview1">
+<link rel="next" href="Types.html#Types" title="Types">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Dimensions"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Types.html#Types">Types</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Overview1.html#Overview1">Overview1</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Compiler.html#Compiler">Compiler</a>
+<hr>
+</div>
+
+<h3 class="section">4.2 Dimensions</h3>
+
+<h4 class="subsection">4.2.1 Defining dimensions</h4>
+
+<p>Each grammar file defines a set of <em>dimensions</em>. 
+<a name="index-dimension-71"></a>A dimension definition consists of:
+     <ol type=1 start=1>
+<li>type definitions (see <a href="Types.html#Types">Types</a>)
+<li>a specification of used principles on that dimension (see <a href="Principles.html#Principles">Principles</a>)
+<li>a specification of used outputs on that dimension (see <a href="Outputs1.html#Outputs1">Outputs1</a>)
+        </ol>
+
+   <p>In the UL, a dimension definition is written:
+<pre class="example">     defdim &lt;constant&gt; {&lt;dimension definition&gt;}
+</pre>
+   <p>where <code>&lt;constant&gt;</code> is the dimension identifier for the defined
+dimension.
+
+   <p>Notice that the XDK supports a special dimension: <code>lex</code>. 
+<a name="index-lex-dimension-72"></a>The <code>lex</code> dimension serves to assign a word to each lexical
+entry, and must be defined in each grammar file. It cannot be turned
+off - the lexicon is always used.
+
+<h4 class="subsection">4.2.2 Using dimensions</h4>
+
+<p>From the set of defined dimensions, each grammar file uses a subset. 
+To use a dimension, you write:
+<pre class="example">     usedim &lt;constant&gt;
+</pre>
+   <p>where <code>&lt;constant&gt;</code> is the dimension identifier of the used
+dimension.
+
+<!-- ************************************************************ -->
+   </body></html>
+

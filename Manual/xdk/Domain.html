@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+<title>Domain - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Types-reference.html#Types-reference" title="Types reference">
+<link rel="prev" href="Card.html#Card" title="Card">
+<link rel="next" href="Integer.html#Integer" title="Integer">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Domain"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Integer.html#Integer">Integer</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Card.html#Card">Card</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Types-reference.html#Types-reference">Types reference</a>
+<hr>
+</div>
+
+<h4 class="subsection">4.9.3 Domain</h4>
+
+<h5 class="subsubsection">4.9.3.1 Description</h5>
+
+<p>A constant from a finite domain of constants.
+
+<h5 class="subsubsection">4.9.3.2 Top value</h5>
+
+<p><code>flat_top</code> (undefined)
+
+<h5 class="subsubsection">4.9.3.3 Bottom value</h5>
+
+<p><code>flat_bot</code> (undefined)
+
+<h5 class="subsubsection">4.9.3.4 Greatest lower bound operation</h5>
+
+<p>The greatest lower bound of two values A and B yields:
+     <ul>
+<li>B if A is top
+<li>A if B is top
+<li>A if A and B are equal
+<li>bottom otherwise
+</ul>
+
+<h5 class="subsubsection">4.9.3.5 Example</h5>
+
+<p>Here is an example domain type definition including the constants
+<code>constant_1</code>, <code>constant_2</code> and <code>constant_3</code>:
+
+<pre class="example">     deftype "domain" {constant_1 constant_2 constant_3}
+</pre>
+   <!-- ************************************************************ -->
+   </body></html>
+

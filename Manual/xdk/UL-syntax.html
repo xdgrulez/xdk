@@ -1,0 +1,491 @@
+<html lang="en">
+<head>
+<title>UL syntax - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Compiler.html#Compiler" title="Compiler">
+<link rel="prev" href="Types-reference.html#Types-reference" title="Types reference">
+<link rel="next" href="XML-syntax.html#XML-syntax" title="XML syntax">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="UL-syntax"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="XML-syntax.html#XML-syntax">XML syntax</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Types-reference.html#Types-reference">Types reference</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Compiler.html#Compiler">Compiler</a>
+<hr>
+</div>
+
+<h3 class="section">4.10 UL syntax</h3>
+
+<p>In this section, we describe the syntax of <em>User Language (UL)</em>
+<a name="index-User-Language-169"></a><a name="index-UL-170"></a>grammar files, using the <em>Extended Backus Naur Form (EBNF)</em>
+<a name="index-Extended-Backus-Naur-Form-171"></a><a name="index-EBNF-172"></a>as defined in the XML specification of the W3C (see
+<a href="http://www.w3.org/TR/REC-xml#sec-notation">http://www.w3.org/TR/REC-xml#sec-notation</a>).
+
+<h4 class="subsection">4.10.1 UL lexical syntax</h4>
+
+<p>In this section, we lay out the lexical syntax of the UL.
+
+<h5 class="subsubsection">4.10.1.1 Keywords</h5>
+
+<p>Here are the keywords of the UL:
+
+<pre class="example">     &lt;keyword&gt; ::= args | attrs |
+                   bool | bot |
+                   card |
+                   defattrstype | defclass | defdim | defentry |
+                   defentrytype | defgrammar | deflabeltype | deftype |
+                   dim | dims |
+                   entry |
+                   infty | int | ints | iset |
+                   label | list |
+                   vec |
+                   output |
+                   ref |
+                   set | string |
+                   top | tuple | tv |
+                   useclass | usedim | useoutput | useprinciple |
+                   valency
+</pre>
+   <h5 class="subsubsection">4.10.1.2 Operators</h5>
+
+<p>Here are the operators of the UL:
+
+<pre class="example">     &lt;operator&gt; ::= { | } | ( | ) | * | &amp; | '| | '@ | [ | ] | &lt; | &gt; |
+                    $ | . | :: | _ | ^ | ! | ? | + | # | :
+</pre>
+   <h5 class="subsubsection">4.10.1.3 Identifiers</h5>
+
+<p>Identifiers consist of letters and the underscore:
+
+<pre class="example">     &lt;id&gt; ::= [a-zA-Z_]+
+</pre>
+   <h5 class="subsubsection">4.10.1.4 Integers</h5>
+
+<p>Integers consist of numbers:
+
+<pre class="example">     &lt;int&gt; ::= [0-9]+
+</pre>
+   <h5 class="subsubsection">4.10.1.5 Strings</h5>
+
+<p>Strings can be quoted using single quotes (<code>&lt;sstring&gt;</code>), double
+quotes (<code>&lt;dstring&gt;</code>), or guillemet quotes (<code>&lt;gstring&gt;</code>). You
+can freely choose between the different kinds of quotes. Inside the
+quotes, you can write strings using any characters from the ISO 8859-1
+character set. We write <code>.</code> for &ldquo;any character from the ISO
+8859-1 character set&rdquo;:
+
+<pre class="example">     &lt;sstring&gt; ::= '.+'
+     
+     &lt;dstring&gt; ::= ".+"
+     
+     &lt;gstring&gt; ::= «.+»
+</pre>
+   <h5 class="subsubsection">4.10.1.6 End of line comments</h5>
+
+<p>End of line comments are written using the percent symbol <code>%</code>.
+
+<h5 class="subsubsection">4.10.1.7 Balanced comments</h5>
+
+<p>Balanced comments start with <code>/*</code> and end with <code>*/</code>.
+
+<h5 class="subsubsection">4.10.1.8 Includes</h5>
+
+<p>Files can be included using the <code>\input</code> directive.  For example
+to include the file <code>Chorus_header.ul</code>, you write:
+
+<pre class="example">     \include "Chorus_header.ul"
+</pre>
+   <h4 class="subsection">4.10.2 UL context-free syntax</h4>
+
+<p>In this section, we lay out the context-free syntax of the UL.  We
+write all keywords in lower case, and all non-terminals in upper case
+letters. We use single quotes to escape the meta characters <code>(</code>,
+<code>)</code>, <code>[</code>, <code>]</code>, <code>?</code>, <code>*</code>, <code>+</code>, <code>#</code>,
+<code>|</code>, and <code>.</code>.
+
+<h5 class="subsubsection">4.10.2.1 Start symbol (S)</h5>
+
+<p>The start symbol of our context-free grammar is <code>S</code>:
+
+<pre class="example">     S ::= Defgrammar*
+</pre>
+   <h5 class="subsubsection">4.10.2.2 Grammar definitions (Defgrammar)</h5>
+
+<p>Here is the UL Syntax for grammar definitions:
+
+<pre class="example">     Defgrammar ::= defdim Constant { Defdim* }
+                |   defclass Constant Constant* { Class }
+                |   defentry { Class* }
+                |   usedim Constant
+</pre>
+   <p><code>defdim Constant { Defdim* }</code> defines a dimension with
+identifier <code>Constant</code>, and dimension definitions <code>Defdim*</code>.
+
+   <p><code>defclass Constant Constant* { Class }</code> defines a lexical class
+with identifier <code>Constant</code>, class variables <code>Constant*</code>, and
+class body <code>Class</code>.
+
+   <p><code>defentry { Class* }</code> defines a lexical entry defined by
+class bodies <code>Class*</code>.
+
+   <p><code>usedim Constant</code> uses the dimension with identifier
+<code>Constant</code>.
+
+<h5 class="subsubsection">4.10.2.3 Dimension definitions (Defdim)</h5>
+
+<p>Here is the UL syntax for dimension definitions:
+
+<pre class="example">     Defdim ::= defattrstype Type
+            |   defentrytype Type
+            |   deflabeltype Type
+            |   deftype Constant Type
+            |   useprinciple Constant { Useprinciple* }
+            |   output Constant
+            |   useoutput Constant
+</pre>
+   <p><code>defattrstype Type</code> defines the attributes type <code>Type</code>.
+
+   <p><code>defentrytype Type</code> defines the entry type <code>Type</code>.
+
+   <p><code>deflabeltype Type</code> defines the label type <code>Type</code>.
+
+   <p><code>deftype Constant Type</code> defines the type <code>Type</code> with
+identifier <code>Constant</code>.
+
+   <p><code>useprinciple Constant { Useprinciple* }</code> uses the principle
+with identifier <code>Constant</code> and dimension and argument mappings
+<code>Useprinciple*</code>.
+
+   <p><code>output Constant</code> chooses output <code>Constant</code>.
+
+   <p><code>useoutput Constant</code> uses output <code>Constant</code>.
+
+<h5 class="subsubsection">4.10.2.4 Principle use instructions (Useprinciple)</h5>
+
+<p>Here is the UL syntax for principle use instructions:
+
+<pre class="example">     Useprinciple ::= dims { VarTermFeat* }
+                  |   args { VarTermFeat* }
+</pre>
+   <p><code>dims { VarTermFeat* }</code> is the dimension mapping
+<code>VarTermFeat*</code>.
+
+   <p><code>args { VarTermFeat* }</code> is the argument mapping
+<code>VarTermFeat*</code>.
+
+<h5 class="subsubsection">4.10.2.5 Types (Type)</h5>
+
+<p>This is the UL syntax of types:
+
+<pre class="example">     Type ::= { Constant* }
+          |   set '(' Type ')'
+          |   iset '(' Type ')'
+          |   tuple '(' Type* ')'
+          |   list '(' Type ')'
+          |   valency '(' Type ')'
+          |   { TypeFeat+ }
+          |   { : }
+          |   vec '(' Type_1 Type_2 ')'
+          |   card
+          |   int
+          |   ints
+          |   string
+          |   bool
+          |   ref '(' Constant ')'
+          |   Constant
+          |   label '(' Constant ')'
+          |   tv '(' Constant ')'
+          |   '(' Type ')'
+</pre>
+   <p><code>{ Constant* }</code> is a finite domain consisting of the
+constants <code>Constant*</code>.
+
+   <p><code>set '(' Type ')'</code> is a accumulative set with domain <code>Type</code>.
+
+   <p><code>iset '(' Type ')'</code> is a intersective set with domain <code>Type</code>.
+
+   <p><code>tuple '(' Type* ')'</code> is a tuple with projections <code>Type*</code>.
+
+   <p><code>list '(' Type ')'</code> is a list with domain <code>Type</code>.
+
+   <p><code>valency '(' Type ')'</code> is a valency with domain <code>Type</code>.
+
+   <p><code>{ TypeFeat+ }</code> is a record with features <code>TypeFeat+</code>.
+
+   <p><code>{ : }</code> is the empty record.
+
+   <p><code>vec '(' Type_1 Type_2 ')'</code> is a vector with fields <code>Type_1</code>
+and values of type <code>Type_2</code>.
+
+   <p><code>card</code> is a cardinality set.
+
+   <p><code>int</code> is an integer.
+
+   <p><code>ints</code> is a set of integers.
+
+   <p><code>string</code> is a string.
+
+   <p><code>bool</code> is a boolean.
+
+   <p><code>ref '(' Constant ')'</code> is a type reference to the type with
+identifier <code>Constant</code>.
+
+   <p><code>Constant</code> is a shortcut for <code>ref '(' Constant ')'</code>.
+
+   <p><code>label '(' Constant ')'</code> is an label reference to the label type
+on the dimension referred to by dimension variable <code>Constant</code>.
+
+   <p><code>tv '(' Constant ')'</code> is a type variable.
+
+   <p><code>'(' Type ')'</code> encapsulates type <code>Type</code>.
+
+<h5 class="subsubsection">4.10.2.6 Class bodies (Class)</h5>
+
+<p>Here is the UL syntax of a lexical class body:
+
+<pre class="example">     Class ::= dim Constant Term
+           |   useclass Constant
+           |   useclass Constant { VarTermFeat* }
+           |   Constant
+           |   Constant { VarTermFeat* }
+           |   Class_1 &amp; Class_2
+           |   Class_1 '|' Class_2
+           |   '(' Class ')'
+</pre>
+   <p><code>dim Constant Term</code> defines the entry <code>Term</code> for the
+dimension with identifier <code>Constant</code>.
+
+   <p><code>useclass Constant</code> uses the lexical class with identifier
+<code>Constant</code>.
+
+   <p><code>Constant</code> is a shortcut for <code>useclass Constant</code>.
+
+   <p><code>useclass Constant { VarTermFeat* }</code> uses the lexical class
+with identifier <code>Constant</code> and class parameters
+<code>VarTermFeat*</code>.
+
+   <p><code>Constant { VarTermFeat* }</code> is a shortcut for <code>useclass
+Constant { VarTermFeat* }</code>.
+
+   <p><code>Class &amp; Class</code> is the conjunction of <code>Class_1</code> and
+<code>Class_2</code>.
+
+   <p><code>Class '|' Class</code> is the disjunction of <code>Class_1</code> and
+<code>Class_2</code>.
+
+   <p><code>'(' Class ')'</code> brackets class <code>Class</code>.
+
+<h5 class="subsubsection">4.10.2.7 Terms (Term)</h5>
+
+<p>Here is the UL syntax of terms:
+
+<pre class="example">     Term ::= Constant
+          |   Integer
+          |   top
+          |   bot
+          |   Featurepath
+          |   CardFeat
+          |   { Term* }
+          |   '[' Term* ']'
+          |   { Recspec+ }
+          |   { : }
+          |   $ Setgen
+          |   $ '(' ')'
+          |   Term :: Type
+          |   Term_1 &amp; Term_2
+          |   Term_1 '|' Term_2
+          |   Term_1 @ Term_2
+          |   '&lt;' Term* '&gt;'
+          |   '(' Term ')'
+</pre>
+   <p><code>Constant</code> is a constant.
+
+   <p><code>Integer</code> is an integer.
+
+   <p><code>top</code> is lattice top.
+
+   <p><code>bot</code> is lattice bottom.
+
+   <p><code>Featurepath</code> is a feature path.
+
+   <p><code>CardFeat</code> is a cardinality specification.
+
+   <p><code>{ Term* }</code> is a set of the elements <code>Term*</code>.
+
+   <p><code>'[' Term* ']'</code> is a list of the elements <code>Term*</code> (in this
+order).
+
+   <p><code>{ Recspec+ }</code> is a record with specification <code>Recspec+</code>.
+
+   <p><code>{ : }</code> is the empty record.
+
+   <p><code>$ Setgen</code> introduces set generator expression with set
+generator expression body <code>Setgen</code>.
+
+   <p><code>$ '(' ')'</code> is the empty set generator expression.
+
+   <p><code>Term :: Type</code> is a type annotation of term <code>Term</code> with type
+<code>Type</code>.
+
+   <p><code>Term_1 &amp; Term_2</code> is the conjunction of <code>Term_1</code> and
+<code>Term_2</code>.
+
+   <p><code>Term_1 '|' Term_2</code> is the disjunction of <code>Term_1</code> and
+<code>Term_2</code>.
+
+   <p><code>Term_1 @ Term_2</code> is the <em>concatenation</em>
+<a name="index-concatenation-173"></a>of <code>Term_1</code> and <code>Term_2</code>. Concatenation is restricted to
+strings.
+
+   <p><code>'&lt;' Term* '&gt;'</code> is an order generator specification of a list of
+elements <code>Term*</code>.
+
+   <p><code>'(' Term ')'</code> brackets term <code>Term</code>.
+
+<h5 class="subsubsection">4.10.2.8 Feature paths (Featurepath)</h5>
+
+<p>Here is the UL syntax of feature paths:
+
+<pre class="example">     Featurepath ::= Root '.' Constant '.' Aspect ('.' Constant)+
+     
+     Root ::= _|^
+     
+     Aspect ::= attrs|entry
+</pre>
+   <p><code>Root '.' Constant '.' Aspect ('.' Constant)+</code> is a feature path
+with root variable <code>Root</code>, dimension variable <code>Constant</code>,
+aspect <code>Aspect</code>, and the list fields <code>('.'Constant)+</code>.
+
+<h5 class="subsubsection">4.10.2.9 Record specifications (Recspec)</h5>
+
+<p>Here is the UL syntax of record specifications:
+
+<pre class="example">     Recspec ::= TermFeat
+             |   Recspec_1 &amp; Recspec_2
+             |   Recspec_1 '|' Recspec_2
+             |   '(' Recspec ')'
+</pre>
+   <p><code>TermFeat</code> is a feature.
+
+   <p><code>Recspec_1 &amp; Recspec_2</code> is the conjunction of <code>Recspec_1</code>
+and <code>Recspec_2</code>.
+
+   <p><code>Recspec_1 '|' Recspec_2</code> is the disjunction of <code>Recspec_1</code>
+and <code>Recspec_2</code>.
+
+   <p><code>'(' Recspec ')'</code> brackets record specification
+<code>Recspec</code>.
+
+<h5 class="subsubsection">4.10.2.10 Set generator expression bodies (Setgen)</h5>
+
+<p>Here is the UL syntax of set generator expression bodies:
+
+<pre class="example">     Setgen ::= Constant
+            |   Setgen_1 &amp; Setgen_2
+            |   Setgen_1 '|' Setgen_2
+            |   '(' Setgen ')'
+</pre>
+   <p><code>Constant</code> is a constant.
+
+   <p><code>Setgen_1 &amp; Setgen_2</code> is the conjunction of <code>Setgen_1</code>
+and <code>Setgen_2</code>.
+
+   <p><code>Setgen_1 '|' Setgen_2</code> is the disjunction of <code>Setgen_1</code>
+and <code>Setgen_2</code>.
+
+   <p><code>'(' Setgen ')'</code> brackets set generator expression body
+<code>Setgen</code>.
+
+<h5 class="subsubsection">4.10.2.11 Constants (Constant)</h5>
+
+<p>Here is the UL syntax of constants:
+
+<pre class="example">     Constant ::= &lt;id&gt; | &lt;sstring&gt; | &lt;dstring&gt; | &lt;gstring&gt;
+</pre>
+   <p>I.e. a constant is either an identifier (<code>&lt;id&gt;</code>), a single quoted
+string (<code>&lt;sstring&gt;</code>), a double quoted string (<code>&lt;dstring&gt;</code>),
+or a guillemot quoted string (<code>&lt;gstring&gt;</code>).
+
+<h5 class="subsubsection">4.10.2.12 Integers (Integer)</h5>
+
+<p>Here is the UL syntax of constants:
+
+<pre class="example">     Integer ::= &lt;int&gt; | infty
+</pre>
+   <p>I.e. an integer is either an integer (<code>&lt;int&gt;</code>) or the keyword for
+&ldquo;infinity&rdquo; (<code>infty</code>).
+
+<h5 class="subsubsection">4.10.2.13 Features (ConstantFeat, TermFeat, VarTermFeat, and CardFeat)</h5>
+
+<p>Here is the UL syntax of features:
+
+<pre class="example">     ConstantFeat ::= Constant_1 : Constant_2
+     
+     TermFeat ::= Constant : Term
+     
+     VarTermFeat ::= Constant : Term
+     
+     TypeFeat ::= Constant : Type
+     
+     CardFeat ::= Constant Card
+</pre>
+   <p><code>ConstantFeat</code> is a feature with field <code>Constant_1</code> and
+value <code>Constant_2</code>.
+
+   <p><code>TermFeat</code> and <code>VarTermFeat</code> are features with field
+<code>Constant</code> and value <code>Term</code>.
+
+   <p><code>TypeFeat</code> is a feature with field <code>Constant</code> and value
+<code>Type</code>.
+
+   <p><code>CardFeat</code> is a cardinality specification with field
+<code>Constant</code> and cardinality set <code>Card</code>.
+
+<h5 class="subsubsection">4.10.2.14 Cardinality sets (Card)</h5>
+
+<p>Here is the UL syntax of cardinality sets:
+
+<pre class="example">     Card ::= !
+          |   '?'
+          |   '*'
+          |   '+'
+          |   '#' { Integer* }
+          |   '#' '[' Integer_1 Integer_2 ']'
+</pre>
+   <p><code>!</code> is cardinality set {0}.
+
+   <p><code>'?'</code> is the cardinality set {0,1}.
+
+   <p><code>'*'</code> is the cardinality set {0,<small class="dots">...</small>,infty} where
+infty means &ldquo;infinity&rdquo;.
+
+   <p><code>'+'</code> is the cardinality set {1,<small class="dots">...</small>,infty}.
+
+   <p><code>'#' { Integer* }</code> is the cardinality set including the
+integers <code>Integer*</code>.
+
+   <p><code>'#' '[' Integer_1 Integer_2 ']'</code> is the cardinality set
+including the closed interval between <code>Integer_1</code> and
+<code>Integer_2</code>.
+
+<!-- ************************************************************ -->
+   </body></html>
+

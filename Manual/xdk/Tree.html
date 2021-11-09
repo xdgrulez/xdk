@@ -1,0 +1,195 @@
+<html lang="en">
+<head>
+<title>Tree - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="Test.html#Test" title="Test">
+<link rel="next" href="Tree1.html#Tree1" title="Tree1">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Tree"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Tree1.html#Tree1">Tree1</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Test.html#Test">Test</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.67 Tree principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.tree</code>
+<li>dimension variables: <code>D</code>
+<li>argument variables: none
+<li>default values: none
+<li>model record: empty
+<li>constraints: <code>TreeMakeNodes</code> (priority 130)
+and <code>TreeConditions</code> (120)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle assumes that the Graph principle (<a href="Graph.html#Graph">Graph</a>) is used
+on dimension <code>D</code>.
+
+   <p>The principle stipulates states that <code>D</code> must be a <em>tree</em>. 
+<a name="index-tree-307"></a>
+This principle is more specific than the Dag principle (<a href="Dag.html#Dag">Dag</a>).
+
+   <p>Here is the definition of the <code>TreeMakeNodes</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+   
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      %%
+      DIDA = {DVA2DIDA 'D'}
+   in
+      %% check features
+      if {Helpers.checkModel 'TreeMakeNodes.oz' Nodes
+	  [DIDA#mothers
+	   DIDA#equp
+	   DIDA#eq
+	   DIDA#up
+	   DIDA#eqdown
+	   DIDA#down
+	   DIDA#labels
+	   DIDA#daughtersL]} then
+	 Models = {Map Nodes fun {$ Node} Node.DIDA.model end}
+      in
+	 for Model in Models do
+	    %% each node has at most one mother
+	    {FD.lesseq {FS.card Model.mothers} 1}
+	    %% equp(v) = eq(v) uplus up(v)
+	    Model.equp = {FS.partition [Model.eq Model.up]}
+	    %% eqdown(v) = eq(v) uplus down(v)
+	    Model.eqdown = {FS.partition [Model.eq Model.down]}
+	    %% eq(v) = equp(v) intersect eqdown(v)
+	    Model.eq = {FS.intersect Model.equp Model.eqdown}
+	    %% daughters(v) = uplus{ daughters_l(v) | l in labels }
+	    Model.daughters = {FS.partition Model.daughtersL}
+	    %% post additional constraints if the graph principle has
+	    %% feature mothersL
+	    if {HasFeature Model mothersL} then
+	       %% mothers(v) = uplus{ mothers_l(v) | l in labels }
+	       Model.mothers = {FS.partition Model.mothersL}
+	    end
+	    %% post additional constraints if the graph principle has
+	    %% feature upL
+	    if {HasFeature Model upL} then
+	       %% up(v) = uplus{ up_l(v) | l in labels }
+	       Model.up = {FS.partition Model.upL}
+	    end
+	    %% post additional constraints if the graph principle has
+	    %% feature downL
+	    if {HasFeature Model downL} then
+	       %% down(v) = uplus{ down_l(v) | l in labels }
+	       Model.down = {FS.partition Model.downL}
+	    end
+	    %% post additional constraints if the tree is ordered
+	    if {HasFeature Model yieldL} andthen
+	       {HasFeature Model yieldS} then
+	       %% yieldS(v) = uplus{ yield_l(v) | l in labels }
+	       Model.yieldS = {FS.partition Model.yieldL}
+	    end
+	    %%
+	    if {HasFeature Model pos} andthen
+	       {HasFeature Model yield} andthen
+	       {HasFeature Model yieldS} then
+	       %% yield(v) = pos(v) uplus yieldS(v)
+	       Model.yield = {FS.partition [Model.pos Model.yieldS]}
+	    end
+	 end
+      end
+   end
+end
+</pre>
+Here is the definition of the <code>TreeConditions</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+   
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      %%
+      DIDA = {DVA2DIDA 'D'}
+   in
+      %% check features
+      if {Helpers.checkModel 'TreeConditions.oz' Nodes
+	  [DIDA#daughters
+	   DIDA#mothers
+	   DIDA#eq
+	   DIDA#eqdown]} then
+	 %% get node set NodeSetM
+	 NodeSetM = Nodes.1.nodeSet
+	 %%
+	 RootsM = {FS.subset $ NodeSetM}
+	 %% precisely one root
+	 {FD.equal {FS.card RootsM} 1}
+	 %% 
+	 Models = {Map Nodes fun {$ Node} Node.DIDA.model end}
+	 %%
+	 DaughtersMs = {Map Models
+			fun {$ Model} Model.daughters end}
+      in
+	 {FS.partition RootsM|DaughtersMs NodeSetM}
+	 %%
+	 for Model in Models I in 1..{Length Models} do
+	    %% |labels(v)|=|mothers(v)|
+	    {FD.equal
+	     {FS.card Model.labels}
+	     {FS.card Model.mothers}}
+	    %% a node is root iff it has no mother
+	    {FD.equi
+	     {FS.reified.include I RootsM}
+	     {FD.reified.equal {FS.card Model.mothers} 0} 1}
+	    %% a node is root iff its eqdown-set contains all nodes
+	    {FD.equi
+	     {FS.reified.include I RootsM}
+	     {FS.reified.equal Model.eqdown NodeSetM} 1}
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

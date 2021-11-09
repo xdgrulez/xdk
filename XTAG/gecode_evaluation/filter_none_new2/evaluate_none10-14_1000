@@ -1,0 +1,15 @@
+#!/bin/bash
+
+n=0
+until [[ $n = 31 ]]
+do
+  ((n++))
+  if [[ $n != 4 && $n != 5 && $n != 10 && $n != 14 && $n != 17 && $n != 19 && $n != 21 && $n != 22 && $n != 25 && $n != 27 && $n != 28 && $n != 29 && $n != 30 ]]
+    then
+    file="10-14/4712.fzn$n"
+    echo $file
+    line=`sed -n -e "$n"p ../wsj23_10-14_new2.txt`
+    echo $line
+    fz -solutions 1000 -mode stat -time 1800000 $file
+  fi
+done

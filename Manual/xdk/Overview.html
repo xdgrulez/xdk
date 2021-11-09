@@ -1,0 +1,160 @@
+<html lang="en">
+<head>
+<title>Overview - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="License.html#License" title="License">
+<link rel="next" href="Installation.html#Installation" title="Installation">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Overview"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Installation.html#Installation">Installation</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="License.html#License">License</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">2 Overview</h2>
+
+<p>The XDG Development Kit (XDK) is a grammar development environment for
+the grammar formalism Extensible Dependency Grammar (XDG).
+
+<h3 class="section">2.1 XDG</h3>
+
+<p>An XDG grammar is a description of a set of <em>dependency
+multigraphs</em>. 
+<a name="index-dependency-multigraph-1"></a><a name="index-multigraph-2"></a>A dependency multigraph is a set of dependency graphs over the same
+string of words.  The words correspond <em>one-to-one</em> to the nodes in
+the multigraph. 
+<a name="index-one_002dto_002done-correspondence-words_002dnodes-3"></a>The individual dependency graphs are called <em>dimensions</em>, and
+<a name="index-dimension-4"></a>the nodes of the dimensions are connected by <em>labeled edges</em>. 
+<a name="index-labeled-edge-5"></a><a name="index-edge-6"></a>Dependency multigraphs are a <em>modular</em>
+<a name="index-modular-7"></a>way of representing multiple aspects of a linguistic analysis.  For
+example, a multigraph can consist of two dimensions: one representing
+the grammatical functions, and another representing the topological
+structure.  Here is an analysis of the German subordinate clause
+<em>(dass) Maria versucht einen Mann zu lieben</em> along these lines: the
+dimension of grammatical functions is shown on top and the dimension of
+topological structure below. Notice that the two dimensions share the
+same string of words and the same set of corresponding nodes but have
+different edges:
+
+   <div class="block-image"><img src="pix/dagid.jpg" alt="pix/dagid.jpg"></div>
+<img src="pix/daglp.jpg" alt="pix/daglp.jpg">
+
+   <p>The modularity of XDG paves the way for a <em>divide-and-conquer
+strategy</em>
+<a name="index-divide_002dand_002dconquer-8"></a>to grammatical description. The problem of modeling all linguistic
+aspects of a grammar and their interactions is broken down into multiple
+smaller problems:
+
+     <ol type=1 start=1>
+<li>modeling the individual linguistic aspects independently of each other,
+each on a separate dimension and
+<li>modeling the interactions between them.
+        </ol>
+
+   <p>This strategy stands in stark contrast to grammar formalisms where the
+linguistic aspects are modeled in a more interlocked manner, and all
+their interactions have to be taken care of at the same time. The XDG
+strategy can lead to significantly simplified and less error-prone
+grammar development. In addition, it allows for simple yet powerful
+linguistic models.
+
+   <p>An XDG grammar consists of the following ingredients:
+     <ol type=1 start=1>
+<li>a <em>multigraph type</em>
+<a name="index-multigraph-type-9"></a>determining the basic properties of the multigraphs licensed by the
+grammar: its dimensions, words, edge labels and attributes. 
+<li>a set of <em>principles</em>
+<a name="index-principle-10"></a>constituting the well-formedness conditions of the grammar. 
+<li>a <em>lexicon</em>
+<a name="index-lexicon-11"></a>determining specific properties of nodes associated with specific words
+        </ol>
+
+<h3 class="section">2.2 XDK</h3>
+
+<p>The XDK is a grammar development environment for XDG. 
+In the XDK, grammars are written as XDK <em>grammar files</em>. 
+<a name="index-grammar-file-12"></a>Grammar files include definitions of the multigraph type and the
+lexicon, and references to the principles.  Principles are implemented
+using <em>finite-set constraint programming</em>
+<a name="index-finite_002dset-constraint-programming-13"></a>in <em>Mozart/Oz</em>. 
+<a name="index-Mozart_002fOz-14"></a>Starting with version 1.6.33, the XDK includes <em>PrincipleWriter</em>
+(<em>PW</em>),
+<a name="index-PrincipleWriter-15"></a><a name="index-PW-16"></a>developed by Jochen Setz and Jorge Marques Pelizzoni. With PW, new
+principles can be automatically compiled from declarative specifications
+(formulas in first-order logic) without any knowledge in Mozart/Oz
+constraint programming.
+
+   <p>Taken together, the XDK provides the following:
+     <ul>
+<li>compilers for grammar files in various input languages (e.g. XML)
+<li>a solver for XDG parsing/generation
+<li>output functors to visualize the solutions of the solver
+<li>the principle compiler <em>PrincipleWriter</em> (<a href="PrincipleWriter.html#PrincipleWriter">PrincipleWriter</a>) for automatic compilation of principles into
+Mozart/Oz constraint functors
+<li>lots of handcrafted example grammars
+<li>an adaptation of the large-scale English TAG grammar developed in the
+XTAG project
+<li>many useful shell-scripts
+</ul>
+
+<h3 class="section">2.3 Literature</h3>
+
+<p>XDG is described most thoroughly in Ralph Debusmann's dissertation
+<cite>Extensible Dependency Grammar - A Modular Grammar Formalism Based
+On Multigraph Description</cite>. The XDK has been published in <cite>The XDG
+Grammar Development Kit</cite>. These and other papers can be found on the
+references pages of this document: <a href="References.html#References">References</a>.  Still more
+material can be found online here:
+<a href="http://www.ps.uni-sb.de/~rade/xdg.html">http://www.ps.uni-sb.de/~rade/xdg.html</a>. The latter page also
+includes pointers to slides, e.g. from the ESSLLI 2004 course by Ralph
+Debusmann and Denys Duchier:
+<a href="http://www.ps.uni-sb.de/~rade/talks.html">http://www.ps.uni-sb.de/~rade/talks.html</a>.
+
+<h3 class="section">2.4 Structure of this Manual</h3>
+
+<p>The structure of this manual is as follows. <a href="Installation.html#Installation">Installation</a> explains
+how to install the XDK. <a href="Compiler.html#Compiler">Compiler</a> explains how to write
+grammars. <a href="Grammars.html#Grammars">Grammars</a> describes the example grammars included in the
+XDK distribution. This excludes the XDK version of the XTAG grammar,
+which is described in <a href="XTAG.html#XTAG">XTAG</a>.  In <a href="Solver.html#Solver">Solver</a>, we explain the
+constraint-based solver for parsing and generation.  <a href="Oracles.html#Oracles">Oracles</a> is
+about oracles to guide the search for solutions.  <a href="Outputs.html#Outputs">Outputs</a> explains
+the various available output functors and how to define new ones. 
+<a href="PrincipleWriter.html#PrincipleWriter">PrincipleWriter</a> introduces the principle compiler. In
+<a href="Programs.html#Programs">Programs</a>, we explain how to use the executable programs provided
+by the XDK.  <a href="Debug.html#Debug">Debug</a> illustrates how XDG grammars can be
+debugged. <a href="Changes.html#Changes">Changes</a> lists the changes the XDK has gone through
+during its lifetime, and <a href="Contributors.html#Contributors">Contributors</a> those people who have
+contributed to it. <a href="References.html#References">References</a> contains pointers to all relevant
+papers, and <a href="Concept-index.html#Concept-index">Concept index</a> is the concept index of this document.
+
+   <p>Throughout this manual, sections labeled &ldquo;developers only&rdquo; contain
+information useful only for people who wish to understand the inner
+workings of the XDK. Here, in <a href="Directories.html#Directories">Directories</a>, we describe the
+directory structure of the XDK.  In <a href="Exceptions.html#Exceptions">Exceptions</a> we specify the
+standard format for exceptions throughout the system.  In
+<a href="Variable-names.html#Variable-names">Variable names</a>, we describe the variable name conventions.
+
+<!-- ************************************************************ -->
+   </body></html>
+

@@ -1,0 +1,2071 @@
+usedim id
+usedim lp
+usedim ds
+usedim pa
+usedim sc
+usedim lex
+usedim multi
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension id
+defdim id {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defattrstype "id.attrs"
+  defentrytype "id.entry"
+  deflabeltype "id.label"
+  deftype "id.person" {first second third}
+  deftype "id.number" {sg pl}
+  deftype "id.gender" {masc fem neut}
+  deftype "id.case" {nom gen dat acc}
+  deftype "id.agr" tuple("id.person" "id.number" "id.gender" "id.case")
+  deftype "id.agrs" iset("id.agr")
+  deftype "id.p_agr" {by of to with}
+  deftype "id.p_agrs" iset("id.p_agr")
+  deftype "id.attrs" {agr: "id.agr"
+                      p_agr: "id.p_agr"}
+  deftype "id.entry" {in: valency("id.label")
+                      out: valency("id.label")
+                      on: iset("id.label")
+                      agrs: "id.agrs"
+                      agree: set("id.label")
+                      govern: vec("id.label" "id.agrs")
+                      p_agrs: "id.p_agrs"
+                      p_govern: vec("id.label" "id.p_agrs")}
+  deftype "id.label" {det adj subj obj iobj pobj padj padv pcomp part vinf vbse vprt adv radj sub dummy root}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graphConstraints" {
+    dims {D: id}}
+  useprinciple "principle.graphDist" {
+    dims {D: id}}
+  useprinciple "principle.tree" {
+    dims {D: id}}
+  useprinciple "principle.valency" {
+    dims {D: id}
+    args {In: _.D.entry.in
+          Out: _.D.entry.out}}
+  useprinciple "principle.agr" {
+    dims {D: id}
+    args {Agr: _.D.attrs.agr
+          Agrs: _.D.entry.agrs}}
+  useprinciple "principle.agreement" {
+    dims {D: id}
+    args {Agr1: ^.D.attrs.agr
+          Agr2: _.D.attrs.agr
+          Agree: ^.D.entry.agree}}
+  useprinciple "principle.government" {
+    dims {D: id}
+    args {Agr2: _.D.attrs.agr
+          Govern: ^.D.entry.govern}}
+  useprinciple "principle.agr" {
+    dims {D: id}
+    args {Agr: _.D.attrs.p_agr
+          Agrs: _.D.entry.p_agrs}}
+  useprinciple "principle.government" {
+    dims {D: id}
+    args {Agr2: _.D.attrs.p_agr
+          Govern: ^.D.entry.p_govern}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lp
+defdim lp {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype "lp.entry"
+  deflabeltype "lp.label"
+  deftype "lp.entry" {in: valency("lp.label")
+                      out: valency("lp.label")
+                      on: iset("lp.label")}
+  deftype "lp.label" {detf adjf nounf padjf radjf
+                      pf pcompf
+                      partf infinf
+                      topf relpf subjf finf iobjf objf advf vinff vbsef vprtf padvf pobjf subf
+                      dummy root}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graphConstraints" {
+    dims {D: lp}}
+  useprinciple "principle.graphDist" {
+    dims {D: lp}}
+  useprinciple "principle.tree" {
+    dims {D: lp}}
+  useprinciple "principle.valency" {
+    dims {D: lp}
+    args {In: _.D.entry.in
+          Out: _.D.entry.out}}
+  useprinciple "principle.order" {
+    dims {D: lp}
+    args {On: _.D.entry.on
+          Order: [detf adjf nounf padjf radjf
+                  pf pcompf
+                  partf infinf
+                  topf relpf subjf finf iobjf objf advf vinff vbsef vprtf padvf pobjf subf
+                  dummy root]
+          Yields: true}}
+  useprinciple "principle.projectivity" {
+    dims {D: lp}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension ds
+defdim ds {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype "ds.entry"
+  deflabeltype "ds.label"
+  deftype "ds.entry" {in: valency("ds.label")
+                      out: valency("ds.label")}
+  deftype "ds.label" {detd adjd subjd obj2d objd advd anad subd dummy root}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graphConstraints" {
+    dims {D: ds}}
+  useprinciple "principle.graphDist" {
+    dims {D: ds}}
+  useprinciple "principle.dag" {
+    dims {D: ds}
+    args {Connected: true
+          DisjointDaughters: true}}
+  useprinciple "principle.valency" {
+    dims {D: ds}
+    args {In: _.D.entry.in
+          Out: _.D.entry.out}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+   output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension pa
+defdim pa {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype "pa.entry"
+  deflabeltype "pa.label"
+  deftype "pa.entry" {in: valency("pa.label")
+                      out: valency("pa.label")}
+  deftype "pa.label" {arg1 arg2 arg3 arge arg dummy root}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graphConstraints" {
+    dims {D: pa}}
+  useprinciple "principle.graphDist" {
+    dims {D: pa}}
+  useprinciple "principle.dag" {
+    dims {D: pa}
+    args {Connected: true
+          DisjointDaughters: true}}
+  useprinciple "principle.valency" {
+    dims {D: pa}
+    args {In: _.D.entry.in
+          Out: _.D.entry.out}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension sc
+defdim sc {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype "sc.entry"
+  deflabeltype "sc.label"
+  deftype "sc.entry" {in: valency("sc.label")
+                      out: valency("sc.label")}
+  deftype "sc.label" {r s a dummy root}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graphConstraints" {
+    dims {D: sc}}
+  useprinciple "principle.graphDist" {
+    dims {D: sc}}
+  useprinciple "principle.tree" {
+    dims {D: sc}}
+  useprinciple "principle.valency" {
+    dims {D: sc}
+    args {In: _.D.entry.in
+          Out: _.D.entry.out}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lex
+defdim lex {
+  defentrytype {word: string}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dags"
+  output "output.dags1"
+  output "output.dags2"
+  output "output.dags3"
+  output "output.latexs"
+  output "output.latexs1"
+  output "output.latexs2"
+  output "output.latexs3"
+  output "output.clls"
+  %%
+  useoutput "output.dags1"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension multi
+defdim multi {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "lex.var" {x1 x2 x3 x4 x5 x6 x7 x8 x9}
+  deftype "lex.vars" set("lex.var")
+  deftype "lex.scvars" vec("sc.label" "lex.vars")
+  deftype "lex.pavars" vec("pa.label" "lex.vars")
+  defentrytype {
+    linkEnd_idlp: vec("id.label" set("lp.label"))
+    linkBelowStart_idds: vec("id.label" set("ds.label"))
+    linkBelowEnd_idds: vec("id.label" set("ds.label"))
+    linkAboveEnd_idsc: vec("id.label" set("sc.label"))
+    %%
+    blocks_lpid: set("id.label")
+    %%
+    linkDaughterEnd_dsid: vec("ds.label" set("id.label"))
+    linkBelowStart_dsid: vec("ds.label" set("id.label"))
+    linkBelowEnd_dsid: vec("ds.label" set("id.label"))
+    linkEnd_dsid: vec("ds.label" set("id.label"))
+    %%
+    linkEnd_pads: vec("pa.label" set("ds.label"))
+    linkDaughterEnd_pads: vec("pa.label" set("ds.label"))
+    linkMother_pads: set("pa.label")
+    link12BelowStart_pads: vec("pa.label" set("ds.label"))
+    link12BelowEnd_pads: vec("pa.label" set("ds.label"))
+    linkSisters_pads: set("pa.label")
+    linkBelowStart_pasc: vec("pa.label" set("sc.label"))
+    linkAboveEnd_pasc: vec("pa.label" set("sc.label"))
+    %%
+    chorus_scds: set("sc.label")
+    %%
+    cons: string
+    anchor: string
+    roots: "lex.vars"
+    dom: "lex.scvars"
+    lam: "lex.pavars"
+    var: "lex.pavars"}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.linkingEnd" {
+    dims {D1: id
+          D2: lp
+          D3: multi}
+    args {End: ^.D3.entry.linkEnd_idlp}}
+  useprinciple "principle.linkingBelowStartEnd" {
+    dims {D1: id
+          D2: ds
+          D3: multi}
+    args {Start: ^.D3.entry.linkBelowStart_idds
+          End: ^.D3.entry.linkBelowEnd_idds}}
+  useprinciple "principle.linkingAboveEnd" {
+    dims {D1: id
+          D2: sc
+          D3: multi}
+    args {End: ^.D3.entry.linkAboveEnd_idsc}}
+  %%
+  useprinciple "principle.climbing" {
+    dims {D1: lp
+          D2: id}}
+  useprinciple "principle.barriers" {
+    dims {D1: lp
+          D2: id
+          D3: multi}
+    args {Blocks: _.D3.entry.blocks_lpid}}
+  %%
+  useprinciple "principle.linkingDaughterEnd" {
+    dims {D1: ds
+          D2: id
+          D3: multi}
+    args {End: ^.D3.entry.linkDaughterEnd_dsid}}
+  useprinciple "principle.linkingBelowStartEnd" {
+    dims {D1: ds
+          D2: id
+          D3: multi}
+    args {Start: ^.D3.entry.linkBelowStart_dsid
+          End: ^.D3.entry.linkBelowEnd_dsid}}
+  useprinciple "principle.linkingEnd" {
+    dims {D1: ds
+          D2: id
+          D3: multi}
+    args {End: ^.D3.entry.linkEnd_dsid}}
+  %%
+  useprinciple "principle.linking12BelowStartEnd" {
+    dims {D1: pa
+          D2: ds
+          D3: multi}
+    args {Start: ^.D3.entry.link12BelowStart_pads
+          End: ^.D3.entry.link12BelowEnd_pads}}
+  useprinciple "principle.linkingEnd" {
+    dims {D1: pa
+          D2: ds
+          D3: multi}
+    args {End: ^.D3.entry.linkEnd_pads}}
+  useprinciple "principle.linkingDaughterEnd" {
+    dims {D1: pa
+          D2: ds
+          D3: multi}
+    args {End: ^.D3.entry.linkDaughterEnd_pads}}
+  useprinciple "principle.linkingMother" {
+    dims {D1: pa
+          D2: ds
+          D3: multi}
+    args {Which: ^.D3.entry.linkMother_pads}}
+  useprinciple "principle.linkingSisters" {
+    dims {D1: pa
+          D2: ds
+          D3: multi}
+    args {Which: ^.D3.entry.linkSisters_pads}}
+  useprinciple "principle.linkingBelowStart" {
+    dims {D1: pa
+          D2: sc
+          D3: multi}
+    args {Start: ^.D3.entry.linkBelowStart_pasc}}
+  useprinciple "principle.linkingAboveEnd" {
+    dims {D1: pa
+          D2: sc
+          D3: multi}
+    args {End: ^.D3.entry.linkAboveEnd_pasc}}
+  %%
+  useprinciple "principle.chorus" {
+    dims {D1: sc
+          D2: ds
+          D3: multi}
+    args {Chorus: _.D3.entry.chorus_scds}}
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define classes
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% id
+
+%% roots
+%% in: Have no incoming edges.
+%% out: Require a root, and allow zero or more dummies.
+defclass "root_id" {
+  dim id {in: {}
+          out: {root! dummy*}}}
+
+%% finite verbs
+%% out: Require a subject.
+%% outagrs: The subject be in nominative case
+%% multi linkEnd_idlp: The subject can either land in their
+%%   relpf, subjf or in the topf.
+defclass "fin_id" {
+  dim id {out: {subj!}
+          agree: {subj}
+          govern: {subj: $ nom}}
+  dim multi {linkEnd_idlp: {subj: {relpf subjf topf}}}}
+
+%% infinite verbs
+%% in: Can be root.
+defclass "infin_id" {
+  dim id {in: {root?}}}
+
+%% verbs with semantic content
+%% out: Can be modified by adverbs and prepositional adverbs.
+defclass "verb_cont_id" {
+  dim id {out: {adv* padv*}}}
+
+defclass "verb_nocont_id" {}
+
+%% nouns
+%% in: Can be either subject, object, indirect object, the complement
+%%   of a preposition or the root.
+defclass "noun_id" {
+  dim id {in: {subj? obj? iobj? pcomp? root?}}}
+
+defclass "pname_id" {
+  "noun_id"}
+
+%% common nouns
+%% out: Require a determiner, and allows zero or more adjectives,
+%%   and zero or one prepositional adjectives, and zero or one
+%%   relative clause adjectives.
+%% multi linkAboveEnd_idsc: Are a-dominated by their (prepositional)
+%%   adjectives.
+defclass "cnoun_id" {
+  "noun_id"
+  dim id {out: {det! adj* padj? radj?}
+          agree: {det}}
+  dim multi {linkAboveEnd_idsc: {adj: {a}
+                              padj: {a}}}}
+
+%% relative pronouns
+%% in: Can be either subject, object, indirect object, the complement
+%%   of a preposition or root.
+defclass "relp_id" {
+  dim id {in: {subj? obj? iobj? pcomp? root?}}}
+
+%% determiners
+%% in: Can be a determiner or root.
+defclass "det_id" {
+  dim id {in: {det? root?}}}
+
+%% adjectives
+%% in: Can be an adjective or root.
+defclass "adj_id" {
+  dim id {in: {adj? root?}}}
+
+%% prepositions
+%% in: Can be root.
+%% out: Require a prepositional complement.
+defclass "prep_id" {
+  dim id {in: {root?}
+          out: {pcomp!}}}
+
+%% adverbs
+%% in: Can be an adverb or root.
+defclass "adv_id" {
+  dim id {in: {adv? root?}}}
+
+%% particles
+%% in: Can be a particle or root.
+defclass "part_id" {
+  dim id {in: {part? root?}}}
+
+defclass "prep_nocont_id" {}
+
+defclass "prep_cont_id" {}
+
+%% case marking prepositions
+%% in: Can be a prepositional object.
+defclass "pcase_id" {
+  dim id {in: {pobj?}}}
+
+%% prepositional adjectives
+%% in: Can be a prepositional adjective.
+defclass "padj_id" {
+  dim id {in: {padj?}}}
+
+%% prepositional adverbs
+%% in: Can be a prepositional adverb.
+defclass "padv_id" {
+  dim id {in: {padv?}}}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% lp
+
+%% roots
+%% in: Have no incoming edges.
+%% out: Require a root, and allow zero or more dummies.
+%% on: Have node label root.
+defclass "root_lp" {
+  dim lp {in: {}
+          out: {root! dummy*}
+          on: {root}}}
+
+%% finite verbs
+%% out: Allow zero or more adverb, and zero or more
+%%   prepositional adverb field elements.
+%% on: Have node label finf.
+defclass "fin_lp" {
+  dim lp {out: {advf* padvf*}
+          on: {finf}}}
+
+%% infinite verbs
+%% in: Can be root.
+%% on: Have node label infinf.
+defclass "infin_lp" {
+  dim lp {in: {root?}
+          on: {infinf}}}
+
+defclass "verb_cont_lp" {}
+
+defclass "verb_nocont_lp" {}
+
+%% nouns
+%% in: Can land in the topicalization, subject, object,
+%%   indirect object, prepositional complement field or be root.
+%% on: Have node label nounf.
+defclass "noun_lp" {
+  dim lp {in: {topf? subjf? objf? iobjf? pcompf? root?}
+          on: {nounf}}}
+
+defclass "pname_lp" {
+  "noun_lp"}
+
+%% common nouns
+%% out: Require a determiner, and allow zero or more adjective,
+%%   zero or one prepositional adjective, and zero or one relative
+%%   clause field elements.
+defclass "cnoun_lp" {
+  "noun_lp"
+  dim lp {out: {detf! adjf* padjf? radjf?}}}
+
+%% relative pronouns
+%% in: Can land in the relative pronoun, prepositional
+%%   complement field or be root. 
+%% on: Have node label relpf.
+defclass "relp_lp" {
+  dim lp {in: {relpf? pcompf? root?}
+          on: {relpf}}}
+
+%% determiners
+%% in: Can land in the determiner field or can be root.
+%% on: Have node label detf.
+defclass "det_lp" {
+  dim lp {in: {detf? root?}
+          on: {detf}}}
+
+%% adjectives
+%% in: Can land in the adjective field or can be root.
+%% on: Have node label adjf.
+defclass "adj_lp" {
+  dim lp {in: {adjf? root?}
+          on: {adjf}}}
+
+%% prepositions
+%% in: Can be root.
+%% out: Require a prepositional complement field element.
+%% on: Have node label pf.
+defclass "prep_lp" {
+  dim lp {in: {root?}
+          out: {pcompf!}
+          on: {pf}}}
+
+%% adverbs
+%% in: Can land in the adverb field or can be root.
+%% on: Have node label advf.
+defclass "adv_lp" {
+  dim lp {in: {advf?}
+          on: {advf}}}
+
+%% particles
+%% in: Can land in the particle field or can be root.
+%% on: Have node label partf.
+defclass "part_lp" {
+  dim lp {in: {partf? root?}
+          on: {partf}}}
+
+defclass "prep_nocont_lp" {}
+
+defclass "prep_cont_lp" {}
+
+%% case marking prepositions
+%% in: Can land in the prepositional object, relative pronoun,
+%%   or topicalization field.
+defclass "pcase_lp" {
+  dim lp {in: {pobjf? relpf? topf?}}}
+
+%% prepositional adjectives
+%% in: Can land in the prepositional adjective field.
+defclass "padj_lp" {
+  dim lp {in: {padjf?}}}
+
+%% prepositional adverbs
+%% in: Can land in the prepositional adverb, relative pronoun,
+%%   or topicalization field.
+defclass "padv_lp" {
+  dim lp {in: {padvf? relpf? topf?}}}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ds
+
+%% roots
+%% in: Have no incoming edges.
+%% out: Require a root, and allows zero or more dummies.
+defclass "root_ds" {
+  dim ds {in: {}
+          out: {root! dummy*}}}
+
+%% finite verbs
+%% in: Can be root.
+%% multi linkDaughterEnd_dsid: Their deep subject is realized
+%%   by their surface subject.
+defclass "fin_ds" {
+  dim ds {in: {root?}}
+  dim multi {linkDaughterEnd_dsid: {subjd: {subj}}}}
+
+%% infinite verbs
+%% in: Can be subordinated or root.
+defclass "infin_ds" {
+  dim ds {in: {subd? root?}}}
+
+%% verbs with semantic content
+%% out: Allow zero or more deep adverbs.
+%% multi linkDaughterEnd_dsid: Their deep adverbs are realized
+%%   by their surface adverbs or surface prepositional adverbs.
+defclass "verb_cont_ds" {
+  dim ds {out: {advd*}}
+  dim multi {linkDaughterEnd_dsid: {advd: {adv padv}}}}
+
+defclass "verb_nocont_ds" {}
+
+%% nouns
+%% in: Can be a deep subject, object, object 2 or root.
+defclass "noun_ds" {
+  dim ds {in: {subjd* objd? obj2d? root?}}}
+
+defclass "pname_ds" {
+  "noun_ds"}
+
+%% common nouns
+%% out: Require a deep determiner, and allow zero or more deep
+%%   adjectives, and zero or one deep anaphors.
+%% multi linkDaughterEnd_dsid: Their deep determiner is realized
+%%   by their surface determiner, and their deep adjectives are realized
+%%   either by their surface adjectives, prepositional adjectives or
+%%   relative pronoun adjectives.
+%% multi linkBelowStart_dsid, linkBelowEnd_dsid: Their deep anaphor is below a
+%%   relative clause adjective, and is either a surface subject, object,
+%%   indirect object, or prepositional complement.
+defclass "cnoun_ds" {
+  "noun_ds"
+  dim ds {out: {detd! adjd* anad?}}
+  dim multi {linkDaughterEnd_dsid: {detd: {det}
+                                    adjd: {adj padj radj}}
+             linkBelowStart_dsid: {anad: {radj}}
+             linkBelowEnd_dsid: {anad: {subj obj iobj pcomp}}}}
+
+%% relative pronouns
+%% in: Require an incoming edge labeled anad, and can be
+%%   a deep subject, object, object 2 or root.
+defclass "relp_ds" {
+  dim ds {in: {anad! subjd* objd? obj2d? root?}}}
+
+%% determiners
+%% in: Can be a deep determiner or root.
+defclass "det_ds" {
+  dim ds {in: {detd? root?}}}
+
+%% adjectives
+%% in: Can be a deep adjective or root.
+defclass "adj_ds" {
+  dim ds {in: {adjd? root?}}}
+
+defclass "prep_ds" {}
+
+%% adverbs
+%% in: Can be a deep adverb or root.
+defclass "adv_ds" {
+  dim ds {in: {advd? root?}}}
+
+%% particles
+%% in: Are dummies.
+defclass "part_ds" {
+  dim ds {in: {dummy?}}}
+
+%% prepositions without semantic content
+%% in: Are dummies.
+defclass "prep_nocont_ds" {
+  dim ds {in: {dummy?}}}
+
+%% prepositions with semantic content
+%% in: Can be root.
+%% out: Require a deep object.
+%% multi linkDaughterEnd_dsid: Their deep object is realized
+%%   by their prepositional complement.
+defclass "prep_cont_ds" {
+  dim ds {in: {root?}
+          out: {objd!}}
+  dim multi {linkDaughterEnd_dsid: {objd: {pcomp}}}}
+
+defclass "pcase_ds" {}
+
+%% prepositional adjectives
+%% in: Can be a deep adjective or root.
+defclass "padj_ds" {
+  dim ds {in: {adjd? root?}}}
+
+%% prepositional adverbs
+%% in: Can be a deep adjective or root.
+defclass "padv_ds" {
+  dim ds {in: {advd?}}}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% pa
+
+%% roots
+%% in: Have no incoming edges.
+%% out: Allow zero or more conjunction elements (root), and zero or more
+%%   dummies.
+defclass "root_pa" {
+  dim pa {in: {}
+          out: {root* dummy*}}}
+
+defclass "fin_pa" {}
+
+defclass "infin_pa" {}
+
+%% words without semantic content
+%% in: Are dummies.
+defclass "nocont_pa" {
+  dim pa {in: {dummy?}}}
+
+%% verbs with semantic content
+%% in: Are part of the conjunction (root), and introduce an event variable
+%%   which can be bound by zero or one other nodes.
+defclass "verb_cont_pa" {
+  dim pa {in: {root! arge*}}}
+
+defclass "verb_nocont_pa" {
+  "nocont_pa"}
+
+%% proper names
+%% in: Are part of the conjunction (root), and introduce an individual variable
+%%   which can be bound by zero or more other nodes.
+defclass "pname_pa" {
+  dim pa {in: {root! arg1* arg2* arg3* arg*}}}
+
+%% words which end up in the restriction of a quantifier
+%% out: Bind an individual variable.
+%% multi linkEnd_pads: Their bound individual variable is realized
+%%   by a deep determiner.
+%% multi linkAboveEnd_pasc: End up in the restriction of the quantifier
+%%   introducing the individual variable
+defclass "restr_pa" {
+  dim pa {out: {arg!}}
+  dim multi {linkEnd_pads: {arg: {detd}}
+             linkAboveEnd_pasc: {arg: {r}}}}
+
+%% common nouns
+%% in: Are part of the conjunction (root).
+%% multi linkDaughterEnd_pads: Their bound individual variable is realized
+%%   by their deep determiner daughter.
+defclass "cnoun_pa" {
+  "restr_pa"
+  dim pa {in: {root!}}
+  dim multi {linkDaughterEnd_pads: {arg: {detd}}}}
+
+%% relative pronouns
+%% in: Introduce an individual variable which can be bound by
+%%   zero or more other nodes.
+%% multi linkSisters_pads: Their bound individual variable is realized
+%%   by their deep determiner sister.
+defclass "relp_pa" {
+  "restr_pa"
+  dim pa {in: {arg1* arg2* arg3* arg*}}
+  dim multi {linkSisters_pads: {arg}}}
+
+%% determiners
+%% in: Introduce an individual variable which can be bound by
+%%   zero or more other nodes.
+defclass "det_pa" {
+  dim pa {in: {arg1* arg2* arg3* arg*}}}
+
+%% adjectives
+%% in: Are part of the conjunction (root).
+%% multi linkSisters_pads: Their bound individual variable is realized
+%%   by their deep determiner sister.
+defclass "adj_pa" {
+  "restr_pa"
+  dim pa {in: {root!}}
+  dim multi {linkSisters_pads: {arg}}}
+
+defclass "prep_pa" {}
+
+%% adverbs
+%% in: Are part of the conjunction (root).
+%% out: Introduce and bind (=share) an event variable with their
+%%   modified verb.
+%% multi linkMother_pads: Their event variable-dependent corresponds
+%%   to the verb which they modify.
+%% multi linkBelowStart_pasc: They take a-scope over their modified verb.
+defclass "adv_pa" {
+  dim pa {in: {root!}
+          out: {arge!}}
+  dim multi {linkMother_pads: {arge}
+             linkBelowStart_pasc: {arge: {a}}}}
+
+defclass "part_pa" {
+  "nocont_pa"}
+
+defclass "prep_nocont_pa" {
+  "nocont_pa"}
+
+defclass "prep_cont_pa" {
+  "arg2objd"}
+
+defclass "pcase_pa" {}
+
+defclass "padj_pa" {
+  "adj_pa"}
+
+defclass "padv_pa" {
+  "adv_pa"}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% sc
+%% roots
+%% in: Have no incoming edges.
+%% out: Require a root, and allow zero or more dummies.
+defclass "root_sc" {
+  dim sc {in: {}
+          out: {root! dummy*}}}
+
+defclass "fin_sc" {}
+
+defclass "infin_sc" {}
+
+%% words with semantic content
+%% in: Can be in the restriction, scope, or argument of a scope
+%%   bearing node, or can be root.
+defclass "cont_sc" {
+  dim sc {in: {r? s? a? root?}}}
+
+%% words without semantic content
+%% in: Are dummies.
+defclass "nocont_sc" {
+  dim sc {in: {dummy?}}}
+
+defclass "verb_cont_sc" {
+  "cont_sc"}
+
+defclass "verb_nocont_sc" {
+  "nocont_sc"}
+
+defclass "noun_sc" {
+  "cont_sc"}
+
+%% proper names
+%% out: Allow zero or one r-scope elements, and requires one s-scope
+%%   element.
+defclass "pname_sc" {
+  "noun_sc"
+  dim sc {out: {r? s!}}}
+
+defclass "cnoun_sc" {
+  "noun_sc"}
+
+%% relative pronouns
+%% out: Require an r- and an s-scope element.
+defclass "relp_sc" {
+  "noun_sc"
+  dim sc {out: {r! s!}}}
+
+%% determiners
+%% out: Require one node in their restriction, and one in their scope.
+%% multi chorus_scds: The set of nodes below their r-edge is a subset
+%%   of the set of nodes equal or below them in the deep syntax
+%%   (optimization for better propagation).
+defclass "det_sc" {
+  "cont_sc"
+  dim sc {out: {r! s!}}
+  dim multi {chorus_scds: {r}}}
+
+%% modifiers
+%% out: Require an a-scope element.
+defclass "mod_sc" {
+  "cont_sc"
+  dim sc {out: {a!}}}
+
+defclass "adj_sc" {
+  "mod_sc"}
+
+defclass "prep_sc" {}
+
+defclass "adv_sc" {
+  "mod_sc"}
+
+defclass "part_sc" {
+  "nocont_sc"}
+
+defclass "prep_nocont_sc" {
+  "nocont_sc"}
+
+defclass "prep_cont_sc" {
+  "mod_sc"}
+
+defclass "pcase_sc" {}
+
+defclass "padj_sc" {}
+
+defclass "padv_sc" {}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% id, lp, ds, pa, sc
+
+%% contentless words (cons: "")
+defclass "nocont_clls" {
+  dim multi {cons: ""
+             anchor: ""}}
+
+%% roots
+defclass "root_noclls" Word {
+  "root_id"
+  "root_lp"
+  "root_ds"
+  "root_pa"
+  "root_sc"
+  dim lex {word: Word}}
+
+defclass "root" Word {
+  "root_noclls" {Word: Word}
+  "nocont_clls"}
+
+%% finite verbs (root)
+%% id in: Have incoming edge root on id.
+%% lp in: Have incoming edge root on lp.
+%% lp out: Require only a subject field element, or both
+%%   a subject field and a topicalization field element.
+defclass "fin_root" {
+  dim id {in: {root?}}
+  dim lp {in: {root?}
+          out: ({subjf!} | {topf! subjf!})}}
+
+%% finite verbs (subordinated)
+%% id in: Have incoming edge sub.
+%% lp in: Have incoming edge subf
+%% lp out: Require a subject field element.
+%% ds in: Have incoming edge subd.
+defclass "fin_sub" {
+  dim id {in: {sub?}}
+  dim lp {in: {subf?}
+          out: {subjf!}}
+  dim ds {in: {subd?}}}
+
+%% finite verbs (relative clause)
+%% id in: Have incoming edge radj.
+%% lp in: Have incoming edge radjf
+%% lp out: Require a relative pronoun field element,
+%%   and allow zero or one subject field elements.
+%% ds in: Have incoming edge adjd.
+defclass "fin_radj" {
+  dim id {in: {radj?}}
+  dim lp {in: {radjf?}
+          out: {relpf! subjf?}}
+  dim ds {in: {adjd?}}}
+
+defclass "third_sg" {
+  dim id {agrs: ($ third & sg)}}
+
+defclass "non_third_sg" {
+  dim id {agrs: ($ (first|second) & sg) |
+          agrs: ($ pl)}}
+
+%% finite verbs (all)
+%% 1) Can either be root, subordinated, or the root of a relative clause.
+%% 2) Have two full forms: One for not third person singular (Word1),
+%%   and one for third person singular (Word2).
+defclass "fin" Word1 Word2 {
+  "fin_id"
+  "fin_lp"
+  "fin_ds"
+  "fin_pa"
+  "fin_sc"
+  ("fin_root" | "fin_sub" | "fin_radj")
+  (("non_third_sg" &
+    dim lex {word: Word1}) |
+   ("third_sg" &
+    dim lex {word: Word2}))}
+
+%% infinite verbs (vinf = base infinitive with "to")
+%% id in: Have incoming edge vinf.
+%% id out: Require a (to-)particle.
+%% lp in: Have incoming edge vinff.
+%% lp out: Require a (to-)particle field element.
+defclass "infin_vinf" {
+  dim id {in: {vinf?}
+          out: {part!}}
+  dim lp {in: {vinff?}
+          out: {partf!}}}
+
+%% infinite verbs (vbse = base infinitive without "to")
+%% id in: Have incoming edge vbse.
+%% lp in: Have incoming edge vbsef.
+defclass "infin_vbse" {
+  dim id {in: {vbse?}}
+  dim lp {in: {vbsef?}}}
+
+%% infinite verbs (vprt = past participle)
+%% id in: Have incoming edge vprt.
+%% lp in: Have incoming edge vprtf.
+defclass "infin_vprt" {
+  dim id {in: {vprt?}}
+  dim lp {in: {vprtf?}}}
+
+%% infinite verbs (all)
+%% 1) Can be either base infinitives with or without "to", or
+%%   a past participle
+%% 2) Have two full forms: One for the infinitives (Word1), and
+%%   one for the past participle (Word2).
+defclass "infin" Word1 Word2 {
+  "infin_id"
+  "infin_lp"
+  "infin_ds"
+  "infin_pa"
+  "infin_sc"
+  ((("infin_vinf" | "infin_vbse") &
+    dim lex {word: Word1}) |
+   ("infin_vprt" &
+    dim lex {word: Word2}))}
+
+%% contentful verbs
+defclass "verb_cont" {
+  "verb_cont_id"
+  "verb_cont_lp"
+  "verb_cont_ds"
+  "verb_cont_pa"
+  "verb_cont_sc"}
+
+%% contentless verbs
+defclass "verb_nocont_noclls" {
+  "verb_nocont_id"
+  "verb_nocont_lp"
+  "verb_nocont_ds"
+  "verb_nocont_pa"
+  "verb_nocont_sc"}
+
+defclass "verb_nocont" {
+  "verb_nocont_noclls"
+  "nocont_clls"}
+
+%% verbs (all)
+%% Can be either infinite or finite. Full forms: infinitive and
+%% non-third person singular present (Word1), past participle (Word2) and
+%% third person singular present (Word3).
+defclass "verb" Word1 Word2 Word3 {
+  "infin" {Word1: Word1
+                    Word2: Word2} |
+  "fin" {Word1: Word1
+                  Word2: Word3}}
+
+%% verbs with a verbal complement (still contentless)
+%% id out: ID is required on id.
+%% lp out: LP is optional on lp.
+defclass "verbc_nocont" ID LP {
+  dim id {out: {ID!}}
+  dim lp {out: {LP?}}}
+
+%% verbs with a contentful verbal complement (direct correspondence)
+%% ds out: DS is required on DS.
+%% multi linkDaughterEnd_dsid: DS is realized directly by ID.
+defclass "verbc_cont" ID DS {
+  dim ds {out: {DS!}}
+  dim multi {linkDaughterEnd_dsid: {DS: {ID}}}}
+
+%% verbs with a (still contentless) infinitive verbal complement
+defclass "vinfc_nocont" {
+  "verbc_nocont" {ID: vinf
+                           LP: vinff}}
+
+%% verbs with a (still contentless) bare infinitive verbal complement
+defclass "vbsec_nocont" {
+  "verbc_nocont" {ID: vbse
+                           LP: vbsef}}
+
+%% verbs with a (still contentless) past participle verbal complement
+defclass "vprtc_nocont" {
+  "verbc_nocont" {ID: vprt
+                           LP: vprtf}}
+
+%% verbs with a (still contentless) subordinate verbal complement
+defclass "subc_nocont" {
+  "verbc_nocont" {ID: sub
+                           LP: subf}}
+
+%% verbs with a contentful infinitive verbal complements
+defclass "vinfc" {
+  "vinfc_nocont"
+  "verbc_cont" {ID: vinf
+                         DS: subd}}
+
+%% verbs with a contentful bare infinitive verbal complement
+defclass "vbsec" {
+  "vbsec_nocont"
+  "verbc_cont" {ID: vbse
+                         DS: subd}}
+
+%% verbs with a contentful past participle verbal complement
+defclass "vprtc" {
+  "vprtc_nocont"
+  "verbc_cont" {ID: vprt
+                         DS: subd}}
+
+%% verbs with a contentful subordinate verbal complement
+defclass "subc" {
+  "subc_nocont"
+  "verbc_cont" {ID: sub
+                         DS: subd}}
+
+%% verbs with a contentful verbal complement (pa and sc)
+%% pa out: Bind an event variable.
+%% sc out: Require an a-scope element.
+%% multi linkDaughterEnd_pads: Their bound event variable
+%%   is realized by their deep subordinate dependent on ds.
+%% multi linkBelowStart_pasc: A-dominate the event.
+defclass "verblink" {
+  dim pa {out: {arge!}}
+  dim sc {out: {a!}}
+  dim multi {linkDaughterEnd_pads: {arge: {subd}}
+             linkBelowStart_pasc: {arge: {a}}}}
+
+defclass "argesubd" {
+  "verblink"}
+
+%% verbs with a (still contentless) nominal complement
+%% id out: Require ID.
+%% lp out: Offer LP.
+%% multi linkEnd_idlp: ID can land either in LP, relpf or topf.
+defclass "nomc" ID LP {
+  dim id {out: {ID!}}
+  dim lp {out: {LP?}}
+  dim multi {linkEnd_idlp: {ID: {LP relpf topf}}}}
+
+%% verbs with a (still contentless) object
+defclass "objc" {
+  "nomc" {ID: obj
+                   LP: objf}}
+
+%% verbs with a (still contentless) indirect object
+defclass "iobjc" {
+  "nomc" {ID: iobj
+                   LP: iobjf}}
+
+%% verbs with a contentful nominal complement
+%% ds out: Require DS.
+%% multi linkDaughterEnd_dsid: DS on ds corresponds to ID on id.
+defclass "nomcd" ID DS {
+  dim ds {out: {DS!}}
+  dim multi {linkEnd_dsid: {DS: {ID}}}}
+
+%% verbs with a deep subject realized as a subject
+defclass "subjdsubjc" {
+  dim ds {out: {subjd!}}}
+
+%% verbs with a deep object realized as a subject (passive)
+defclass "objdsubjc" {
+  "nomcd" {ID: subj
+                    DS: objd}}
+
+%% verbs with a deep object realized as an object
+defclass "objdobjc" {
+  "objc"
+  "nomcd" {ID: obj
+                    DS: objd}}
+
+%% verbs with a deep object 2 realized as an indirect object
+defclass "obj2diobjc" {
+  "iobjc"
+  "nomcd" {ID: iobj
+                    DS: obj2d}}
+
+%% verbs with a deep object 2 realized as a subject (passive)
+defclass "obj2dsubjc" {
+  "nomcd" {ID: subj
+                    DS: obj2d}}
+
+%% verbs with a contentful nominal complement (pa, sc)
+%% pa out: Require PA.
+%% multi link12BelowStart_pads, link12BelowEnd_pads: On ds,
+%%   PA is below an edge labeled DS, and and its incoming edge is
+%%   either DS or detd.
+%% multi linkAboveEnd_pasc: PA s-dominates the word.
+defclass "nomlink" PA DS {
+  dim pa {out: {PA!}}
+  dim multi {link12BelowStart_pads: {PA: {DS}}
+             link12BelowEnd_pads: {PA: {DS detd}}
+             linkAboveEnd_pasc: {PA: {s}}}}
+
+%% link individual argument 1 to subjd
+defclass "arg1subjd" {
+  "nomlink" {PA: arg1
+                      DS: subjd}}
+
+%% link individual argument 1 to objd
+defclass "arg1objd" {
+  "nomlink" {PA: arg1
+                      DS: objd}}
+
+%% link individual argument 2 to objd
+defclass "arg2objd" {
+  "nomlink" {PA: arg2
+                      DS: objd}}
+
+%% link individual argument 3 to obj2d
+defclass "arg3obj2d" {
+  "nomlink" {PA: arg3
+                      DS: obj2d}}
+
+%% offer the syntactic subject as the deep subject
+%% (subject to subject control/raising)
+defclass "subjsubjd" {
+  dim multi {linkBelowStart_idds: {subj: {subd}}
+             linkBelowEnd_idds: {subj: {subjd}}}}
+
+%% offer the syntactic object as the deep subject 
+%% (subject to object control/raising)
+defclass "objsubjd" {
+  dim multi {linkBelowStart_idds: {obj: {subd}}
+             linkBelowEnd_idds: {obj: {subjd}}}}
+
+%% offer the syntactic subject as the deep object or deep object 2
+%% (passive)
+defclass "subjobjd" {
+  dim multi {linkBelowStart_idds: {subj: {subd}}
+             linkBelowEnd_idds: {subj: {objd obj2d}}}}
+
+%% verbs with a (still contentless) prepositional complement
+%% id out: Require ID.
+%% lp out: Offer LP.
+%% multi linkEnd_idlp: ID can land either in LP, relpf or topf.
+defclass "prepc" ID LP {
+  dim id {out: {ID!}}
+  dim lp {out: {LP?}}
+  dim multi {linkEnd_idlp: {ID: {LP relpf topf}}}}
+
+%% verbs with a (still contentless) prepositional object
+defclass "pobjc" {
+  "prepc" {ID: pobj
+                    LP: pobjf}}
+
+%% verbs with a contentful prepositional complement
+%% ds out: Require DS.
+%% multi linkBelowStart_dsid, linkBelowEnd_dsid: On id, DS is below an edge
+%%   labeled ID, and its incoming edge is pcomp.
+defclass "prepdc" ID DS {
+  dim ds {out: {DS!}}
+  dim multi {linkBelowStart_dsid: {DS: {ID}}
+             linkBelowEnd_dsid: {DS: {pcomp}}}}
+
+%% verbs with a deep object 2 realized as a prepositional object
+defclass "obj2dpobjc" P_govern {
+  "pobjc"
+  "prepdc" {ID: pobj
+                     DS: obj2d}
+  dim id {p_govern: {pobj: P_govern}}}
+
+%% verbs with a deep subject realized as a prepositional object
+%% (passive)
+defclass "subjdpobjc" P_govern {
+  "pobjc"
+  "prepdc" {ID: pobj
+                     DS: subjd}
+  dim id {p_govern: {pobj: P_govern}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% valency classes
+
+%% intransitive verbs
+%% 1) Have semantic content.
+%% 2) Require deep subject, realized by the subject.
+%% 3) Require arg1, realized by the deep subject.
+defclass "intrans_noclls" {
+  "verb_cont"  % 1)
+  "subjdsubjc" % 2)
+  "arg1subjd"  % 3)
+}
+
+defclass "intrans" Anchor {
+  "intrans_noclls"
+  "intrans_clls" {Anchor: Anchor}}
+
+defclass "intrans_clls" Anchor {
+  dim multi {cons: "label(x1 '@'(x2 x3)) label(x2 anchor) label(x3 var)"
+             anchor: Anchor
+             roots: {x1}
+             var: {arg1: {x3}}}}
+
+%% transitive verbs (all)
+%% 1) Have semantic content.
+%% 2) Require arg2, realized by the deep object.
+%% 3) Can be either active or passive.
+defclass "trans_noclls" {
+  "verb_cont"
+  "arg2objd"
+  "trans_act" | "trans_pas"}
+
+%% transitive verbs (active)
+%% 1) Require a deep subject, realized by the subject.
+%% 2) Require a deep object, realized by the object.
+%% 3) Require arg1, realized by the deep object.
+defclass "trans_act" {
+ "subjdsubjc"
+ "objdobjc"
+ "arg1subjd"}
+
+%% transitive verbs (passive)
+%% Either:
+%% 1) only require a deep object, realized by the subject, or
+%% 2) both require a deep object, realized by the subject and a
+%%   deep subject, realized by a "by"-prepositional object, and
+%%   arg1, realized by the deep subject.
+defclass "trans_pas" {
+  "objdsubjc" |
+  ("objdsubjc" &
+   "subjdpobjc" {P_govern: {by}} &
+    "arg1subjd")}
+
+defclass "trans" Anchor {
+  "trans_noclls"
+  "trans_clls" {Anchor: Anchor}}
+
+defclass "trans_clls" Anchor {
+  dim multi {cons: "label(x1 '@'(x2 x3)) label(x2 '@'(x4 x5)) label(x4 anchor) label(x5 var) label(x3 var)"
+             anchor: Anchor
+             roots: {x1}
+             var: {arg1: {x3}
+                   arg2: {x5}}}}
+
+%% ditransitive verbs (all)
+%% 1) Have semantic content.
+%% 2) Require a deep object, realized by the object.
+%% 3) Require arg2, realized by the deep object.
+%% 4) Require arg3, realized by the deep object 2.
+%% 5) Can be either active or passive.
+defclass "ditrans_noclls" {
+  "verb_cont"
+  "objdobjc"
+  "arg2objd"
+  "arg3obj2d"
+  ("ditrans_act" | "ditrans_pas")}
+
+%% ditransitive verbs (active)
+%% 1) Require a deep subject, realized by the subject.
+%% 2) Either realize their deep object 2 by a indirect object or
+%%   by a "to"-prepositional object.
+%% 3) Require arg1, realized by the deep subject.
+defclass "ditrans_act" {
+  "subjdsubjc"
+  ("obj2diobjc" |
+   "obj2dpobjc" {P_govern: {to}})
+  "arg1subjd"}
+
+%% ditransitive verbs (passive)
+%% Either:
+%% 1) only require a deep object 2, realized by the subject, or
+%% 2) both require a deep object 2, realized by the subject, and
+%%   a deep subject, realized by a "by"-prepositional object, and
+%%   arg1, realized by the deep subject.
+defclass "ditrans_pas" {
+  "obj2dsubjc" |
+  ("obj2dsubjc" &
+   "subjdpobjc" {P_govern: {by}} &
+   "arg1subjd")}
+
+defclass "ditrans" Anchor {
+  "ditrans_noclls"
+  "ditrans_clls" {Anchor: Anchor}}
+
+defclass "ditrans_clls" Anchor {
+  dim multi {cons: "label(x1 '@'(x2 x3)) label(x2 '@'(x4 x5)) label(x4 '@'(x6 x7)) label(x6 anchor) label(x7 var) label(x5 var) label(x3 var)"
+             anchor: Anchor
+             roots: {x1}
+             var: {arg1: {x3}
+                   arg2: {x5}
+                   arg3: {x7}}}}
+
+%% subject-to-subject raising verbs
+%% 1) Require an infinitive verbal complement.
+%% 2) Require an event, realized by the deep subordinate.
+%% 3) Offer their subject as the deep subject of subordinate verbs.
+defclass "subjsubjrais_noclls" {
+  "vinfc"     % 1)
+  "argesubd"  % 2)
+  "subjsubjd" % 3)
+}
+
+defclass "isubjsubjrais" Anchor {
+  "subjsubjrais_noclls"
+  "verb_cont"
+  "isubjsubjrais_clls" {Anchor: Anchor}}
+
+defclass "isubjsubjrais_clls" Anchor {
+  dim multi {cons: "label(x1 '@'(x2 x3)) label(x2 anchor)"
+             anchor: Anchor
+             roots: {x1}
+             dom: {a: {x3}}}}
+
+%% subject-to-object raising verbs
+%% 1) Require an infinitive verbal complement.
+%% 2) Require an event, realized by the deep subordinate.
+%% 3) Offer their object as the deep subject of subordinate verbs.
+defclass "subjobjrais_noclls" {
+  "vinfc"    % 1)
+  "argesubd" % 2)
+  "objsubjd" % 3)
+}
+
+defclass "subjobjrais" Anchor {
+  "subjobjrais_noclls"
+  "intrans_noclls"
+  "objc"
+  "subjobjrais_clls" {Anchor: Anchor}}
+
+defclass "subjobjrais_clls" Anchor {
+  dim multi {cons: "label(x1 '@'(x2 x5)) label(x2 '@'(x3 x4)) label(x3 anchor) label(x5 var)"
+             anchor: Anchor
+             roots: {x1}
+             dom: {a: {x4}}
+             var: {arg1: {x5}}}}
+
+%% subject-to-subject control verbs
+%% 1) Require an infinitive verbal complement.
+%% 2) Require an event, realized by the deep subordinate.
+%% 3) Offer their subject as the deep subject of subordinate verbs.
+%% 4) Require a deep subject, realized by the subject.
+%% 5) Require arg1, realized by the deep subject.
+defclass "subjsubjcont_noclls" {
+  "vinfc"      % 1)
+  "argesubd"   % 2)
+  "subjsubjd"  % 3)
+  "subjdsubjc" % 4)
+  "arg1subjd"  % 5)
+}
+
+defclass "isubjsubjcont" Anchor {
+  "subjsubjcont_noclls"
+  "intrans_noclls"
+  "isubjsubjcont_clls" {Anchor: Anchor}}
+
+defclass "tsubjsubjcont" Anchor {
+  "subjsubjcont_noclls"
+  "trans_noclls"
+  "tsubjsubjcont_clls" {Anchor: Anchor}}
+
+defclass "itsubjsubjcont" Anchor {
+  "subjsubjcont_noclls"
+  (("intrans_noclls" &
+    "isubjsubjcont_clls" {Anchor: Anchor}) |
+   ("trans_noclls" &
+    "tsubjsubjcont_clls" {Anchor: Anchor}))}
+
+%% intransitive
+defclass "isubjsubjcont_clls" Anchor {
+  dim multi {cons: "label(x1 '@'(x2 x5)) label(x2 '@'(x3 x4)) label(x3 anchor) label(x5 var)"
+             anchor: Anchor
+             roots: {x1}
+             dom: {a: {x4}}
+             var: {arg1: {x5}}}}
+
+%% transitive
+defclass "tsubjsubjcont_clls" Anchor {
+  dim multi {cons: "label(x1 '@'(x2 x7)) label(x2 '@'(x3 x6)) label(x3 '@'(x4 x5)) label(x4 anchor) label(x6 var) label(x7 var)"
+             anchor: Anchor
+             roots: {x1}
+             dom: {a: {x4}}
+             var: {arg1: {x7}
+                   arg2: {x6}}}}
+
+%% subject-to-object control verbs.
+%% 1) Require an infinitive verbal complement.
+%% 2) Require an event, realized by the deep subordinate.
+%% 3) Offer their object as the deep subject of subordinate verbs.
+%% 4) Require a deep subject, realized by the subject.
+%% 5) Require a deep object, realized by the object
+%% 6) Require arg1, realized by the deep subject.
+%% 7) Require arg2, realized by the deep object.
+defclass "subjobjcont_noclls" {
+  "vinfc"      % 1)
+  "argesubd"   % 2)
+  "objsubjd"   % 3)
+  "subjdsubjc" % 4)
+  "objdobjc"   % 5)
+  "arg1subjd"  % 6)
+  "arg2objd"   % 7)
+}
+
+defclass "subjobjcont" Anchor {
+  "subjobjcont_noclls"
+  "trans_noclls"
+  "subjobjcont_clls" {Anchor: Anchor}}
+
+defclass "subjobjcont_clls" Anchor {
+  dim multi {cons: "label(x1 '@'(x2 x7)) label(x2 '@'(x3 x6)) label(x3 '@'(x4 x5)) label(x4 anchor) label(x6 var) label(x7 var)"
+             anchor: Anchor
+             roots: {x1}
+             dom: {a: {x4}}
+             var: {arg1: {x7}
+                   arg2: {x6}}}}
+
+%% sentence embedding verbs
+%% 1) Require a subordinate clause.
+%% 2) Require arge, realized by the deep subordinate.
+defclass "sentemb_noclls" {
+  "subc"           % 1)
+  "argesubd"       % 2)
+}
+
+defclass "isentemb" Anchor {
+  "sentemb_noclls"
+  "intrans_noclls"
+  "isentemb_clls" {Anchor: Anchor}}
+
+defclass "isentemb_clls" Anchor {
+  dim multi {cons: "label(x1 '@'(x2 x5)) label(x2 '@'(x3 x4)) label(x3 anchor) label(x5 var)"
+             anchor: Anchor
+             roots: {x1}
+             dom: {a: {x4}}
+             var: {arg1: {x5}}}}
+
+%% common nouns
+defclass "third_pl" {
+  dim id {agrs: ($ third & pl)}}
+
+%% A common noun has two full forms: One for third person singular,
+%% and one for third person plural.
+defclass "cnoun_noclls" Word1 Word2 {
+  "cnoun_id"
+  "cnoun_lp"
+  "cnoun_ds"
+  "cnoun_pa"
+  "cnoun_sc"
+  (("third_sg" &
+    dim lex {word: Word1}) |
+   ("third_pl" &
+    dim lex {word: Word2}))}
+
+defclass "cnoun" Word1 Word2 Anchor {
+  "cnoun_noclls" {Word1: Word1
+                           Word2: Word2}
+  "cnoun_clls" {Anchor: Anchor}}
+
+defclass "cnoun_clls" Anchor {
+  dim multi {cons: "label(x1 anchor)"
+             anchor: Anchor
+             roots: {x1}}}
+
+%% proper names
+defclass "pname_noclls" Word {
+  "pname_id"
+  "pname_lp"
+  "pname_ds"
+  "pname_pa"
+  "pname_sc"
+  "third_sg"
+  dim lex {word: Word}}
+
+defclass "pname" Word Anchor {
+  "pname_noclls" {Word: Word}
+  "pname_clls" {Anchor: Anchor}}
+
+defclass "pname_clls" Anchor {
+  dim multi {cons: "label(x1 '@'(x2 x3)) label(x2 anchor) label(x3 lambda(x4))"
+             anchor: Anchor
+             roots: {x1}
+             dom: {s: {x4}}
+             lam: {arg1: {x3}
+                   arg2: {x3}
+                   arg3: {x3}
+                   arg: {x3}}}}
+
+%% relative pronouns
+defclass "acc" {
+  dim id {agrs: $ acc}}
+
+%% A relative pronoun has two full forms: One for all cases, and one
+%% for accusative case.
+defclass "relp_noclls" Word1 Word2 {
+  "relp_id"
+  "relp_lp"
+  "relp_ds"
+  "relp_pa"
+  "relp_sc"
+  "third_sg"
+  ((dim lex {word: Word1}) |
+   ("acc" &
+    dim lex {word: Word2}))}
+
+defclass "relp" Word1 Word2 {
+  "relp_noclls" {Word1: Word1
+                          Word2: Word2}
+  "relp_clls"}
+
+defclass "relp_clls" {
+  dim multi {cons: "label(x1 lambda(x2)) label(x2 '&'(x3 x6)) label(x3 '@'(x4 x5)) label(x4 var) lam(x4 x1)"
+             anchor: ""
+             roots: {x1}
+             dom: {r: {x4}
+                   s: {x6}}
+             lam: {arg1: {x1}
+                   arg2: {x1}
+                   arg3: {x1}
+                   arg: {x1}}}}
+
+%% determiners
+defclass "det_noclls" Word {
+  "det_id"
+  "det_lp"
+  "det_ds"
+  "det_pa"
+  "det_sc"
+  dim lex {word: Word}}
+
+defclass "det" Word Anchor {
+  "det_noclls" {Word: Word}
+  "det_clls" {Anchor: Anchor}}
+
+defclass "det_clls" Anchor {
+  dim multi {cons: "label(x1 '@'(x2 x5)) label(x2 '@'(x3 x4)) label(x3 anchor) label(x5 lambda(x6))"
+             anchor: Anchor
+             roots: {x1}
+             dom: {r: {x4}
+                   s: {x6}}
+             lam: {arg1: {x5}
+                   arg2: {x5}
+                   arg3: {x5}
+                   arg: {x5}}}}
+
+defclass "sg" {
+  dim id {agrs: $ sg}}
+
+defclass "pl" {
+  dim id {agrs: $ pl}}
+
+defclass "detsg" Word Anchor {
+  "det" {Word: Word
+                  Anchor: Anchor}
+  "sg"}
+
+defclass "detpl" Word Anchor {
+  "det" {Word: Word
+                  Anchor: Anchor}
+  "pl"}
+
+%% adjectives
+defclass "adj_noclls" Word {
+  "adj_id"
+  "adj_lp"
+  "adj_ds"
+  "adj_pa"
+  "adj_sc"
+  dim lex {word: Word}}
+
+defclass "adj" Word Anchor {
+  "adj_noclls" {Word: Word}
+  "adj_clls" {Anchor: Anchor}}
+
+defclass "adj_clls" Anchor {
+  dim multi {cons: "label(x1 lambda(x2)) label(x2 '&'(x3 x6)) label(x3 '@'(x4 x5)) label(x4 anchor) label(x5 var) lam(x5 x1) label(x6 '@'(x7 x8)) label(x8 var) lam(x8 x1)"
+             anchor: Anchor
+             roots: {x1}
+             dom: {a: {x7}}}}
+
+%% prepositions
+defclass "prep" Word Prep {
+  "prep_id"
+  "prep_lp"
+  "prep_ds"
+  "prep_pa"
+  "prep_sc"
+  dim lex {word: Word}
+  dim id {p_agrs: {Prep}}}
+
+defclass "prep_nocont_noclls" {
+  "prep_nocont_id"
+  "prep_nocont_lp"
+  "prep_nocont_ds"
+  "prep_nocont_pa"
+  "prep_nocont_sc"}
+
+defclass "prep_nocont" {
+  "prep_nocont_noclls"
+  "nocont_clls"}
+
+defclass "prep_cont" {
+  "prep_cont_id"
+  "prep_cont_lp"
+  "prep_cont_ds"
+  "prep_cont_pa"
+  "prep_cont_sc"}
+
+%% A case marking preposition has no semantic content.
+defclass "pcase" {
+  "pcase_id"
+  "pcase_lp"
+  "pcase_ds"
+  "pcase_pa"
+  "pcase_sc"
+  "prep_nocont"}
+
+%% A prepositional adjective has semantic content.
+defclass "padj_noclls" {
+  "padj_id"
+  "padj_lp"
+  "padj_ds"
+  "padj_pa"
+  "padj_sc"
+  "prep_cont"}
+
+defclass "padj" Anchor {
+  "padj_noclls"
+  "padj_clls" {Anchor: Anchor}}
+
+defclass "padj_clls" Anchor {
+  dim multi {cons: "label(x1 lambda(x2)) label(x2 '&'(x3 x8)) label(x3 '@'(x4 x7)) label(x4 '@'(x5 x6)) label(x5 anchor) label(x6 var) label(x7 var) lam(x7 x1) label(x8 '@'(x9 x10)) label(x10 var) lam(x10 x1)"
+             anchor: Anchor
+             roots: {x1}
+             dom: {a: {x9}}
+             var: {arg2: {x6}}}}
+
+%% A prepositional adverb has semantic content.
+defclass "padv_noclls" {
+  "padv_id"
+  "padv_lp"
+  "padv_ds"
+  "padv_pa"
+  "padv_sc"
+  "prep_cont"}
+
+defclass "padv" Anchor {
+  "padv_noclls"
+  "padv_clls" {Anchor: Anchor}}
+
+defclass "padv_clls" Anchor {
+  dim multi {cons: "label(x1 lambda(x2)) label(x2 '&'(x3 x8)) label(x3 '@'(x4 x7)) label(x4 '@'(x5 x6)) label(x5 anchor) label(x6 var) label(x7 var) lam(x7 x1) label(x8 '@'(x9 x10)) label(x10 var) lam(x10 x1)"
+             anchor: Anchor
+             roots: {x1}
+             dom: {a: {x9}}
+             var: {arg2: {x6}}}}
+
+%% adverbs
+defclass "adv_noclls" Word {
+  "adv_id"
+  "adv_lp"
+  "adv_ds"
+  "adv_pa"
+  "adv_sc"
+  dim lex {word: Word}}
+
+defclass "adv" Word Anchor {
+  "adv_noclls" {Word: Word}
+  "adv_clls" {Anchor: Anchor}}
+
+defclass "adv_clls" Anchor {
+  dim multi {cons: "label(x1 '@'(x2 x3)) label(x2 anchor)"
+             anchor: Anchor
+             roots: {x1}
+             dom: {a: {x3}}}}
+
+%% particles
+defclass "part_noclls" Word {
+  "part_id"
+  "part_lp"
+  "part_ds"
+  "part_pa"
+  "part_sc"
+  dim lex {word: Word}}
+
+defclass "part" Word {
+  "part_noclls" {Word: Word}
+  "nocont_clls"}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lexicon
+
+%% root
+defentry {
+  "root" {Word: "."}}
+
+%% verbs
+
+defentry {
+  "verb" {Word1: "assign"
+                   Word2: "assigned"
+                   Word3: "assigns"}
+  "ditrans" {Anchor: "assign"}}
+
+defentry {
+  "verb" {Word1: "be"
+                   Word2: "been"
+                   Word3: "is"}
+  "verb_nocont"
+  "vprtc"
+  "subjobjd"}
+
+defentry {
+  "verb" {Word1: "believe"
+                   Word2: "believed"
+                   Word3: "believes"}
+  "subjobjrais" {Anchor: "believe"}}
+
+defentry {
+  "verb" {Word1: "do"
+                   Word2: "done"
+                   Word3: "does"}
+  "verb_nocont"
+  "vbsec"
+  "subjsubjd"}
+
+defentry {
+  "verb" {Word1: "expect"
+                   Word2: "expected"
+                   Word3: "expects"}
+  "subjobjcont" {Anchor: "expect"}}
+
+defentry {
+  "verb" {Word1: "find"
+                   Word2: "found"
+                   Word3: "finds"}
+  "trans" {Anchor: "find"}}
+
+defentry {
+  "verb" {Word1: "give"
+                   Word2: "given"
+                   Word3: "gives"}
+  "ditrans" {Anchor: "give"}}
+
+defentry {
+  "verb" {Word1: "hate"
+                   Word2: "hated"
+                   Word3: "hates"}
+  "trans" {Anchor: "hate"}}
+
+defentry {
+  "verb" {Word1: "laugh"
+                   Word2: "laughed"
+                   Word3: "laughs"}
+  "intrans" {Anchor: "laugh"}}
+
+defentry {
+  "verb" {Word1: "like"
+                   Word2: "liked"
+                   Word3: "likes"}
+  "trans" {Anchor: "like"}}
+
+defentry {
+  "verb" {Word1: "love"
+                   Word2: "loved"
+                   Word3: "loves"}
+  "trans" {Anchor: "love"}}
+
+defentry {
+  "verb" {Word1: "marry"
+                   Word2: "married"
+                   Word3: "marries"}
+  "trans" {Anchor: "love"}}
+
+defentry {
+  "verb" {Word1: "persuade"
+                   Word2: "persuaded"
+                   Word3: "persuades"}
+  "subjobjcont" {Anchor: "persuade"}}
+
+defentry {
+  "verb" {Word1: "promise"
+                   Word2: "promised"
+                   Word3: "promises"}
+  "itsubjsubjcont" {Anchor: "promise"}}
+
+defentry {
+  "verb" {Word1: "read"
+                   Word2: "read"
+                   Word3: "reads"}
+  ("intrans" {Anchor: "read"} |
+   "trans" {Anchor: "read"})}
+
+defentry {
+  "verb" {Word1: "say"
+                   Word2: "said"
+                   Word3: "says"}
+  "isentemb" {Anchor: "say"}}
+
+defentry {
+  "verb" {Word1: "see"
+                   Word2: "seen"
+                   Word3: "sees"}
+  "trans" {Anchor: "see"}}
+
+defentry {
+  "verb" {Word1: "seem"
+                   Word2: "seemed"
+                   Word3: "seems"}
+  "isubjsubjrais" {Anchor: "seem"}}
+
+defentry {
+  "verb" {Word1: "sleep"
+                   Word2: "slept"
+                   Word3: "sleeps"}
+  "intrans" {Anchor: "laugh"}}
+
+defentry {
+  "verb" {Word1: "smile"
+                   Word2: "smiled"
+                   Word3: "smiles"}
+  "intrans" {Anchor: "smile"}}
+
+defentry {
+  "verb" {Word1: "try"
+                   Word2: "tried"
+                   Word3: "tries"}
+  "isubjsubjcont" {Anchor: "try"}}
+
+defentry {
+  "verb" {Word1: "understand"
+                   Word2: "understood"
+                   Word3: "understands"}
+  ("intrans" {Anchor: "understand"} |
+   "trans" {Anchor: "understand"})}
+
+defentry {
+  "verb" {Word1: "visit"
+                   Word2: "visited"
+                   Word3: "visits"}
+  "trans" {Anchor: "visit"}}
+
+defentry {
+  "verb" {Word1: "want"
+                   Word2: "wanted"
+                   Word3: "wants"}
+  "isubjsubjcont" {Anchor: "want"}}
+
+%% common nouns
+defentry {
+  "cnoun" {Word1: "book"
+                    Word2: "books"
+                    Anchor: "book"}}
+
+defentry {
+  "cnoun" {Word1: "company"
+                    Word2: "companies"
+                    Anchor: "company"}}
+
+defentry {
+  "cnoun" {Word1: "department"
+                    Word2: "departments"
+                    Anchor: "department"}}
+
+defentry {
+  "cnoun" {Word1: "man"
+                    Word2: "men"
+                    Anchor: "man"}}
+
+defentry {
+  "cnoun" {Word1: "product"
+                    Word2: "products"
+                    Anchor: "product"}}
+
+defentry {
+  "cnoun" {Word1: "politician"
+                    Word2: "politicians"
+                    Anchor: "politician"}}
+
+defentry {
+  "cnoun" {Word1: "professor"
+                    Word2: "professors"
+                    Anchor: "professor"}}
+
+defentry {
+  "cnoun" {Word1: "programmer"
+                    Word2: "programmers"
+                    Anchor: "programmer"}}
+
+defentry {
+  "cnoun" {Word1: "researcher"
+                    Word2: "researchers"
+                    Anchor: "researcher"}}
+
+defentry {
+  "cnoun" {Word1: "sample"
+                    Word2: "samples"
+                    Anchor: "sample"}}
+
+defentry {
+  "cnoun" {Word1: "student"
+                    Word2: "students"
+                    Anchor: "student"}}
+
+defentry {
+  "cnoun" {Word1: "task"
+                    Word2: "tasks"
+                    Anchor: "task"}}
+
+defentry {
+  "cnoun" {Word1: "telescope"
+                    Word2: "telescopes"
+                    Anchor: "telescope"}}
+
+defentry {
+  "cnoun" {Word1: "university"
+                    Word2: "universities"
+                    Anchor: "university"}}
+
+defentry {
+  "cnoun" {Word1: "vegetable"
+                    Word2: "vegetables"
+                    Anchor: "vegetable"}}
+
+defentry {
+  "cnoun" {Word1: "woman"
+                    Word2: "women"
+                    Anchor: "woman"}}
+
+%% proper names
+defentry {
+  "pname" {Word: "John"
+                    Anchor: "John"}}
+defentry {
+  "pname" {Word: "Peter"
+                    Anchor: "Peter"}}
+defentry {
+  "pname" {Word: "Mary"
+                    Anchor: "Mary"}}
+defentry {
+  "pname" {Word: "Mozart"
+                    Anchor: "Mozart"}}
+
+defentry {
+  "pname" {Word: "broccoli"
+                    Anchor: "broccoli"}}
+
+%% determiners
+defentry {
+  "detsg" {Word: "a"
+                    Anchor: "a"}}
+defentry {
+  "detpl" {Word: "all"
+                    Anchor: "all"}}
+defentry {
+  "detsg" {Word: "every"
+                    Anchor: "every"}}
+defentry {
+  "detpl" {Word: "most"
+                    Anchor: "most"}}
+defentry {
+  "det" {Word: "some"
+                  Anchor: "some"}}
+defentry {
+  "det" {Word: "the"
+                  Anchor: "the"}}
+
+%% prepositions
+defentry {
+  "prep" {Word: "of"
+                   Prep: of}
+  "padj" {Anchor: "of"}}
+
+defentry {
+  "prep" {Word: "with"
+                   Prep: with}
+  ("padj" {Anchor: "with"} |
+   "padv" {Anchor: "with"})}
+
+defentry {
+  "prep" {Word: "to"
+                   Prep: to}
+  "pcase"}
+
+defentry {
+  "prep" {Word: "by"
+                   Prep: by}
+  "pcase"}
+
+%% adverbs
+defentry {
+  "adv" {Word: "not"
+                  Anchor: "not"}}
+defentry {
+  "adv" {Word: "violently"
+                  Anchor: "violently"}}
+
+%% particles
+defentry { "part" {Word: "to"} }
+
+%% relative pronouns
+defentry { "relp" {Word1: "who"
+                            Word2: "whom"} }
+
+%% adjectives
+defentry {
+  "adj" {Word: "foreign"
+                  Anchor: "foreign"}}
+
+defentry {
+  "adj" {Word: "good"
+                  Anchor: "good"}}

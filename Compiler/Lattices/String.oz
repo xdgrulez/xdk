@@ -1,0 +1,111 @@
+%% Copyright 2001-2011
+%% by Ralph Debusmann <rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier <duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni <jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz <info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+   
+   Helpers(a2CIL encode decode pretty multiply appendList) at 'Helpers.ozf'
+
+   Flat(make) at 'Flat.ozf'
+export
+   Make
+define
+   A2S = Atom.toString
+   %%
+   S2A = String.toAtom
+   %%
+   %% Make: U -> Lat
+   %% Makes a string lattice.
+   %% SL = A.
+   fun {Make}
+      FlatLat = {Flat.make}
+      %% top
+      Top = FlatLat.top
+      %% bot
+      Bot = FlatLat.bot
+      %% glb
+      Glb = FlatLat.glb
+      %% select
+      Select = FlatLat.select
+      %% makeVar
+      MakeVar = FlatLat.makeVar
+      %% encode
+      fun {EncodeProc IL Extra}
+	 Coord = {CondSelect IL coord noCoord}
+	 File = {CondSelect IL file noFile}
+      in
+	 case IL
+	 of elem(tag: constant
+		 data: A ...) then
+	    [A]
+	 [] elem(tag: concat
+		 args: ILs ...) then
+	    Ass = {Map ILs
+		   fun {$ IL}
+		      As = {Encode IL Extra}
+		   in
+		      As
+		   end}
+	    Ass1 = {Helpers.multiply Ass}
+	    As1 = {Map Ass1
+		   fun {$ As1}
+		      Ss1 = {Map As1 A2S}
+		      S1 = {Helpers.appendList Ss1}
+		      A1 = {S2A S1}
+		   in
+		      A1
+		   end}
+	 in
+	    As1
+	 else
+	    raise error1('functor':'Compiler/Lattices/String.ozf' 'proc':'EncodeProc' msg:'Illformed IL expression.' info:o(IL) coord:Coord file:File) end
+	 end
+      end
+      fun {Encode IL Extra} {Helpers.encode IL Lat Extra} end
+      %% decode
+      fun {DecodeDetProc A}
+	 if A==Top then elem(tag: top)
+	 elseif A==Bot then elem(tag: bot)
+	 else
+	    CIL = {Helpers.a2CIL A}
+	 in
+	    CIL
+	 end
+      end
+      fun {DecodeNonDetProc _}
+	 elem(tag: '_'
+	      args: nil)
+      end
+      fun {Decode SL}
+	 {Helpers.decode SL DecodeDetProc DecodeNonDetProc}
+      end
+      %% pretty
+      fun {PrettyDetProc A AbbrB} A end
+      fun {PrettyNonDetProc _ AbbrB} '_' end
+      fun {Pretty SL AbbrB}
+	 {Helpers.pretty SL PrettyDetProc PrettyNonDetProc Top Bot AbbrB}
+      end
+      %% count
+      Count = FlatLat.count
+      %% build lattice
+      Lat =
+      elem(tag: string
+	   top: Top
+	   bot: Bot
+	   glb: Glb
+	   select: Select
+	   makeVar: MakeVar
+	   encode: Encode
+	   decode: Decode
+	   pretty: Pretty
+	   count: Count
+	   %%
+	   encodeProc: EncodeProc)
+   in
+      Lat
+   end
+end

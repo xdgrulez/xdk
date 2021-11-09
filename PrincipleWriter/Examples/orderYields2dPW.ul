@@ -1,0 +1,15 @@
+defprinciple "principle.orderYields2dPW" {
+  dims {D ORD}
+  constraints {
+
+forall V::node: ~exists V1::node: edge(V V1 "^" D)
+
+forall V::node: forall L::label(D): forall L1::label(D):
+  [L L1] in V.D.entry.order =>
+    ( L="^" => forall V1::node: dom(V V1 L1 D) => edge(V V1 ORD)) &
+    ( L1="^" => forall V1::node: dom(V V1 L D) => edge(V1 V ORD)) &
+    ( forall V1::node: forall V2::node: 
+	(dom(V V1 L D) & dom(V V2 L1 D) => edge(V1 V2 ORD) )
+    )
+  }
+}

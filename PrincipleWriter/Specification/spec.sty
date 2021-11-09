@@ -1,0 +1,291 @@
+\documentclass[a4paper,11pt]{scrartcl}
+
+%%
+\usepackage{a4wide}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[german,english]{babel}
+\usepackage{harvard}
+\usepackage[latin1]{inputenc}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\graphicspath{{pix/}}
+\usepackage[usenames]{color}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{mathptmx}
+\usepackage[scaled]{helvet}
+\usepackage{courier}
+\usepackage{longtable}
+\usepackage{jochen}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{MyDarkBlue}{rgb}{0,0,0.90}
+\definecolor{MyDarkPurple}{rgb}{0.50,0,0.50}
+\definecolor{MyDarkOrange}{rgb}{0.60,0.30,0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\Sc}[2]{\scalebox{#1}{#2}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\TT}[1]{\mathtt{#1}}
+
+\newcommand{\Ulb}[1]{\TT{#1}}
+\newcommand{\Ulp}[1]{\TT{\textcolor{MyDarkPurple}{#1}}}
+\newcommand{\Ulo}[1]{\TT{\textcolor{MyDarkOrange}{#1}}}
+
+\newcommand{\Ozb}[1]{\TT{#1}}
+\newcommand{\Ozl}[1]{\TT{\textcolor{MyDarkBlue}{#1}}}
+\newcommand{\Ozp}[1]{\TT{\textcolor{MyDarkPurple}{#1}}}
+\newcommand{\Ozo}[1]{\TT{\textcolor{MyDarkOrange}{#1}}}
+
+\newcommand{\XMLb}[1]{\TT{#1}}
+\newcommand{\XMLl}[1]{\TT{\textcolor{MyDarkBlue}{#1}}}
+\newcommand{\XMLp}[1]{\TT{\textcolor{MyDarkPurple}{#1}}}
+\newcommand{\XMLo}[1]{\TT{\textcolor{MyDarkOrange}{#1}}}
+
+\newcommand{\File}[1]{\TT{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\EQAB}{\mathrm{EQAB}}
+\newcommand{\ANBN}{\mathrm{ANBN}}
+\newcommand{\ANBNCN}{\mathrm{ANBNCN}}
+\newcommand{\SCR}{\mathrm{SCR}}
+\newcommand{\CSD}{\mathrm{CSD}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\Agr}{\mathit{Agr}}
+\newcommand{\Anc}{{\uparrow}}
+\newcommand{\Backs}{\backslash}
+\newcommand{\Bot}{\bot}
+\newcommand{\Caret}{^\wedge}
+\newcommand{\Cat}[1]{\mathrm{#1}}
+\newcommand{\Concat}{\,@\,}
+\newcommand{\Conj}{\,\&\,}
+\newcommand{\Const}[1]{\mathit{#1}}
+\newcommand{\Def}{\stackrel{\mathrm{def}}{=}}
+\newcommand{\Disj}{\,|\,}
+\newcommand{\Dom}{\lhd^*}
+\newcommand{\Fun}[1]{\mathit{#1}}
+\newcommand{\Infer}[2]{\begin{array}{@{}c@{}}#1\\\hline#2\end{array}}
+\newcommand{\La}[1]{\mathsf{#1}}
+\newcommand{\Lexicon}{\mathit{lex}}
+\newcommand{\MAt}{\mathit{At}}
+\newcommand{\MLexa}{Lexa}
+\newcommand{\MNonlexa}{Nonlexa}
+\newcommand{\MCon}{\mathit{Con}}
+\newcommand{\MDim}{\mathit{Dim}}
+\newcommand{\MDom}{\mathit{Dom}}
+\newcommand{\MD}{D}
+\newcommand{\ME}{E}
+\newcommand{\ML}{L}
+\newcommand{\MLex}{Lex}
+\newcommand{\MMT}{\mathit{MT}}
+\newcommand{\MMint}[1]{\MM(#1)}
+\newcommand{\MM}{M}
+\newcommand{\MP}{P}
+\newcommand{\MTe}{\mathit{Te}}
+\newcommand{\MTy}{\mathit{Ty}}
+\newcommand{\MV}{V}
+\newcommand{\MWord}{\mathit{Word}}
+\newcommand{\MW}{W}
+\newcommand{\Margs}[1]{_{#1}}
+\newcommand{\Mlexa}{lexa}
+\newcommand{\Mnonlexa}{nonlexa}
+\newcommand{\Mlab}{\mathit{lab}}
+\newcommand{\Mlex}{\mathit{lex}}
+\newcommand{\Mnonlex}{\mathit{nonlex}}
+\newcommand{\Mw}{w}
+\newcommand{\NLex}[2]{(\mathit{Lex}_{#2}\ #1)}
+\newcommand{\NNonlex}[2]{(\mathit{Nonlex}_{#2}\ #1)}
+\newcommand{\NW}[1]{(W\ #1)}
+\newcommand{\Prec}[2]{{#1}<{#2}}
+\newcommand{\Rec}[1]{\{#1\}}
+\newcommand{\Set}[1]{{\{{#1}\}}}
+\newcommand{\Sq}{\texttt{'}}
+\newcommand{\Dq}{\texttt{"}}
+\newcommand{\Str}[1]{\textit{#1}}
+\newcommand{\Tbool}{\mathsf{B}}
+\newcommand{\Tdom}[1]{\{#1\}}
+\newcommand{\Tnode}{\mathsf{V}}
+\newcommand{\Top}{\top}
+\newcommand{\Trec}[1]{\{#1\}}
+\newcommand{\Tset}[1]{\mathit{set}(#1)}
+\newcommand{\Ttup}[1]{\mathit{tuple}(#1)}
+\newcommand{\Tup}[1]{(#1)}
+\newcommand{\Tvalency}[1]{\mathit{valency}(#1)}
+\newcommand{\Tvec}[2]{\mathit{vec}(#1,#2)}
+\newcommand{\Uscore}{\_}
+\newcommand{\dotneq}{\dot{\neq}}
+
+\newcommand{\UlConstant}{\mathrm{Constant}}
+\newcommand{\UlConstraints}{\mathrm{Constraints}}
+\newcommand{\UlDefPrinciple}{\mathrm{DefPrinciple}}
+\newcommand{\UlDefType}{\mathrm{DefType}}
+\newcommand{\UlDims}{\mathrm{Dims}}
+\newcommand{\UlDom}{\mathrm{Dom}}
+\newcommand{\UlExpr}{\mathrm{Expr}}
+\newcommand{\UlForm}{\mathrm{Form}}
+\newcommand{\UlInteger}{\mathrm{Integer}}
+\newcommand{\UlSetgen}{\mathrm{Setgen}}
+\newcommand{\UlS}{\mathrm{S}}
+\newcommand{\UlTerm}{\mathrm{Term}}
+\newcommand{\UlTuple}{\mathrm{Tuple}}
+\newcommand{\UlType}{\mathrm{Type}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\Dim}[1]{\textsc{#1}}
+
+\newcommand{\CFG}{\Dim{cfg}}
+\newcommand{\CFGI}{\Dim{cfg1}}
+\newcommand{\CFGII}{\Dim{cfg2}}
+\newcommand{\CLLS}{\Dim{clls}}
+\newcommand{\DERI}{\Dim{deri}}
+\newcommand{\IDLP}{\Dim{id/lp}}
+\newcommand{\IDPA}{\Dim{id/pa}}
+\newcommand{\ID}{\Dim{id}}
+\newcommand{\IS}{\Dim{is}}
+\newcommand{\LP}{\Dim{lp}}
+\newcommand{\PASC}{\Dim{pa/sc}}
+\newcommand{\PA}{\Dim{pa}}
+\newcommand{\PL}{\Dim{pl}}
+\newcommand{\PSIS}{\Dim{ps/is}}
+\newcommand{\PS}{\Dim{ps}}
+\newcommand{\SC}{\Dim{sc}}
+\newcommand{\SEM}{\Dim{sem}}
+\newcommand{\SYNSEM}{\Dim{synsem}}
+\newcommand{\SYN}{\Dim{syn}}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\Edge}[4]{#1\,{\rightarrow}_{#3}^{#4}\,#2}
+\newcommand{\Ledge}[5]{#1\,{\stackrel{#3}{\longrightarrow}}_{#4}^{#5}\,#2}
+
+\newcommand{\DaughtersL}[4]{\Ledge{#1}{#2}{#3}{#4}{}}
+\newcommand{\Daughters}[3]{\Edge{#1}{#2}{#3}{}}
+\newcommand{\DownL}[4]{\Ledge{#1}{}{#3}{#4}{}\Edge{}{#2}{#4}{*}}
+\newcommand{\Down}[3]{\Edge{#1}{#2}{#3}{+}}
+\newcommand{\EqDown}[3]{\Edge{#1}{#2}{#3}{*}}
+\newcommand{\EqUp}[3]{\Edge{#2}{#1}{#3}{*}}
+\newcommand{\MothersL}[4]{\Ledge{#2}{#1}{#3}{#4}{}}
+\newcommand{\Mothers}[3]{\Edge{#2}{#1}{#3}{}}
+\newcommand{\Up}[3]{\Edge{#2}{#1}{#3}{+}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\Feat}[1]{\mathit{#1}}
+
+\newcommand{\Fagree}{\Feat{agree}}
+\newcommand{\Fagrs}{\Feat{agrs}}
+\newcommand{\Fagr}{\Feat{agr}}
+\newcommand{\Farg}{\Feat{arg}}
+\newcommand{\Fbars}{\Feat{bars}}
+\newcommand{\Fblocks}{\Feat{blocks}}
+\newcommand{\FdaughtersL}{\Feat{daughtersL}}
+\newcommand{\FexceptAbove}{\Feat{exceptAbove}}
+\newcommand{\Fgovern}{\Feat{govern}}
+\newcommand{\Findex}{\Feat{index}}
+\newcommand{\Fin}{\Feat{in}}
+\newcommand{\Fkey}{\Feat{key}}
+\newcommand{\Flex}{\Feat{lex}}
+\newcommand{\FlinkAboveBelowStartor}{\Feat{linkAboveBelow1or2Start}}
+\newcommand{\FlinkAboveEnd}{\Feat{linkAboveEnd}}
+\newcommand{\FlinkBelowStartor}{\Feat{linkBelow1or2Start}}
+\newcommand{\FlinkBelowStart}{\Feat{linkBelowStart}}
+\newcommand{\FlinkDaughterEnd}{\Feat{linkDaughterEnd}}
+\newcommand{\FlinkEnd}{\Feat{linkEnd}}
+\newcommand{\FlinkMother}{\Feat{linkMother}}
+\newcommand{\FlockDaughters}{\Feat{lockDaughters}}
+\newcommand{\Fmodel}{\Feat{model}}
+\newcommand{\Fmod}{\Feat{mod}}
+\newcommand{\FnodeSet}{\Feat{nodeSet}}
+\newcommand{\Forder}{\Feat{order}}
+\newcommand{\Fout}{\Feat{out}}
+\newcommand{\Fprojs}{\Feat{projs}}
+\newcommand{\FsubgraphsStart}{\Feat{subgraphsStart}}
+\newcommand{\Ftruth}{\Feat{truth}}
+\newcommand{\Fword}{\Feat{word}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\Emphm}[2]{\emph{#1}\index{#2}}
+\newcommand{\Emph}[1]{\emph{#1}\index{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\Inc}[2]{%
+  \includegraphics[scale=#2]{#1}%
+  }
+\newcommand{\Finc}[4]{\begin{figure}[!ht]%
+    \centering%
+    \includegraphics[scale=#2]{#1}%
+    \caption{#3}\label{#4}%
+  \end{figure}}
+\newcommand{\FincI}[5]{\begin{figure}[!ht]%
+    \centering%
+    \begin{tabular}{cc}%
+      #1&\includegraphics[scale=#3]{#2}
+    \end{tabular}%
+    \caption{#4}\label{#5}%
+  \end{figure}}
+\newcommand{\FincII}[7]{\begin{figure}[!ht]%
+    \centering%
+    \begin{tabular}{cc}%
+      #1&\includegraphics[scale=#5]{#2}\\\\
+      #3&\includegraphics[scale=#5]{#4}%
+    \end{tabular}%
+    \caption{#6}\label{#7}%
+  \end{figure}}
+\newcommand{\FincIII}[9]{\begin{figure}[!ht]%
+    \centering%
+    \begin{tabular}{cc}%
+      #1&\includegraphics[scale=#7]{#2}\\\\
+      #3&\includegraphics[scale=#7]{#4}\\\\
+      #5&\includegraphics[scale=#7]{#6}%
+    \end{tabular}%
+    \caption{#8}\label{#9}%
+\end{figure}}
+\newcommand{\FincIIa}[5]{\begin{figure}[!ht]%
+    \centering%
+    \begin{tabular}{c@{\hspace{50pt}}c}%
+      \includegraphics[scale=#3]{#1}&
+      \includegraphics[scale=#3]{#2}%
+    \end{tabular}%
+    \caption{#4}\label{#5}%
+  \end{figure}}
+\newcommand{\FincIIIa}[6]{\begin{figure}[!ht]%
+    \centering%
+    \begin{tabular}{c@{\hspace{20pt}}c@{\hspace{20pt}}c}%
+      \includegraphics[scale=#4]{#1}&
+      \includegraphics[scale=#4]{#2}&
+      \includegraphics[scale=#4]{#3}%
+    \end{tabular}%
+    \caption{#5}\label{#6}%
+  \end{figure}}
+
+\newcommand{\Einc}[3]{\begin{equation}\label{#3}\begin{array}{c}\includegraphics[scale=#2]{#1}\end{array}\end{equation}}
+\newcommand{\Equl}[3]{\begin{equation}\label{#3}\begin{array}{#1}#2\end{array}\end{equation}}
+\newcommand{\Equsl}[4]{\begin{equation}\label{#4}\scalebox{#2}{$\begin{array}{#1}#3\end{array}$}\end{equation}}
+\newcommand{\Equs}[3]{\begin{equation}\scalebox{#2}{$\begin{array}{#1}#3\end{array}$}\end{equation}}
+\newcommand{\Equ}[2]{\begin{equation}\begin{array}{#1}#2\end{array}\end{equation}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{Definition}{Definition}
+\newtheorem{Principle}{Principle}
+\newtheorem{Language}{Language}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{equ}[1]{\begin{equation}\begin{array}{#1}}{\end{array}\end{equation}}
+\newenvironment{rec}{\left\{\begin{array}{r@{\hspace{4pt}}c@{\hspace{4pt}}l}}{\end{array}\right\}}

@@ -1,0 +1,109 @@
+<html lang="en">
+<head>
+<title>Out - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="OrderWithCuts.html#OrderWithCuts" title="OrderWithCuts">
+<link rel="next" href="PL.html#PL" title="PL">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Out"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="PL.html#PL">PL</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="OrderWithCuts.html#OrderWithCuts">OrderWithCuts</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.58 Out principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.out</code>
+<li>dimension variables: <code>D</code>
+<li>argument variables:<br>
+<code>Out: valency(label(D))</code>
+<li>default values:<br>
+<code>Out: _.D.entry.out</code>
+<li>model record: empty
+<li>constraints: <code>Out</code> (priority 130)
+</ul>
+
+   <p>This principle assumes that the Graph principle (<a href="Graph.html#Graph">Graph</a>) is used
+on dimension <code>D</code>.
+
+   <p>The <code>Out</code> argument variable defines the set of <em>possible
+outgoing edge labels</em>. 
+<a name="index-outgoing-edge-label-303"></a><a name="index-outgoing-edge-labels-304"></a><a name="index-out-specification-305"></a><a name="index-possible-outgoing-edge-labels-306"></a>Its default value is lexicalized by the lexical entry feature
+<code>out</code> on <code>D</code>.
+
+   <p>It stipulates for all nodes v that:
+     <ul>
+<li>the outgoing edges of v must satisfy the
+outgoing edge labels cardinality specification
+</ul>
+
+   <p>The Out principle is symmetric to the In1 principle (<a href="In1.html#In1">In1</a>), and
+is now mostly superseded by the Valency principle (<a href="Valency1.html#Valency1">Valency1</a>).
+
+   <p>Here is the definition of the <code>Out</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+   
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+prepare
+   RecordForAllInd = Record.forAllInd
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      ArgRecProc = Principle.argRecProc
+      %%
+      DIDA = {DVA2DIDA 'D'}
+   in
+      %% check features
+      if {Helpers.checkModel 'Out.oz' Nodes
+	  [DIDA#daughtersL]} then
+	 for Node in Nodes do
+	    LAOutMRec = {ArgRecProc 'Out' o('_': Node)}
+	 in
+	    {RecordForAllInd LAOutMRec
+	     proc {$ LA OutM}
+		%% |daughterset_l(v)| in out_l(v)
+		CardDaughtersLD = {FS.card Node.DIDA.model.daughtersL.LA}
+	     in
+		{FS.include CardDaughtersLD OutM}
+	     end}
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

@@ -1,0 +1,193 @@
+<html lang="en">
+<head>
+<title>Installation - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Overview.html#Overview" title="Overview">
+<link rel="next" href="Compiler.html#Compiler" title="Compiler">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Installation"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Compiler.html#Compiler">Compiler</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Overview.html#Overview">Overview</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">3 Installation</h2>
+
+<p>In this chapter, we explain the installation of the XDK and
+supplementary software.
+
+<h3 class="section">3.1 XDK</h3>
+
+<p>Before you install please check whether you really have the newest
+version of the XDK.  The newest version of the XDK is available at this
+URL:<br>
+<a href="http://www.ps.uni-sb.de/~rade/mogul/publish/doc/debusmann-xdk/">http://www.ps.uni-sb.de/~rade/mogul/publish/doc/debusmann-xdk/</a>.
+
+   <p>The XDK is written in Mozart/Oz.  The current version has been developed
+for <em>Mozart/Oz</em> 1.4.0,
+<a name="index-Mozart_002fOz-17"></a>which can be downloaded from the Mozart/Oz homepage at URL
+<a href="http://www.mozart-oz.org/">http://www.mozart-oz.org/</a>. Mozart/Oz is available for all popular
+platforms, including Windows, Linux, and MacOS X. For all these
+platforms, we offer source releases of the XDK.  For Windows, we also
+offer a binary release which is much easier to install.
+
+   <p>To install a source release (archived in an <em>ozmake</em>
+<a name="index-ozmake-18"></a>package), you need to do the following:
+
+     <ol type=1 start=1>
+<li>Install Mozart/Oz. 
+<li>(Windows only) Install Cygwin.<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>  Select at least the packages containing the C/C++
+compiler gcc. 
+<li>(Windows only, optional) Install Emacs.<a rel="footnote" href="#fn-2" name="fnd-2"><sup>2</sup></a>
+<li>Go into the directory into which you wish to install the XDK and extract the XDK package into it:
+<code>ozmake --extract -p debusmann-xdk.pkg</code>
+<li>Go into the XDK directory: <code>cd debusmann-xdk</code>
+<li>Prepare the installation. <code>sh scripts/prepinstall</code>
+<li>Compile the XDK: <code>ozmake</code>
+<li>(optional) you can now install the XDK globally (into the directory
+<code>~/.oz</code>) by calling <code>ozmake -i</code> (first install) or
+<code>ozmake -U</code> (updating your already installed XDK).
+        </ol>
+
+   <p>Installing the binary release for Windows (archived in a ZIP file)
+consists of only two steps:
+     <ol type=1 start=1>
+<li>Install Mozart/Oz. 
+<li>Extract the XDK binary release archive into a directory of your choice.
+        </ol>
+
+   <p>Optionally, you can now add the path to the scripts to your path (e.g. 
+in your <code>~/.bashrc</code> if you use bash). If installed locally (or from
+a binary release), that path is <code>scripts/</code> (relative to the XDK
+directory), and if installed globally,
+<code>~/.oz/1.4.0/cache/x-ozlib/debusmann/xdk/scripts/</code>. In the latter
+case, you also need to set the executable bit for the scripts:
+<pre class="example">     chmod u+x ~/.oz/1.4.0/cache/x-ozlib/debusmann/xdk/scripts/*
+</pre>
+   <h3 class="section">3.2 Supplementary Software</h3>
+
+<h4 class="subsection">3.2.1 Emacs mode for User Language files</h4>
+
+<p>We provide an Emacs mode for syntax highlighting of <em>User Language</em>
+(<em>UL</em>)
+<a name="index-User-Language-19"></a><a name="index-UL-20"></a>grammar files. The Emacs mode can either be invoked manually each time
+you need it, or automatically for each UL grammar file.
+
+   <p>The Emacs mode can be invoked manually as follows:
+     <ol type=1 start=1>
+<li><code>M-x load-file</code> (press ALT and x, then type &ldquo;load-file&rdquo;)
+<li>select the file <code>ul.el</code> (in the XDK top directory if XDK is
+locally installed, otherwise
+<code>~/.oz/1.4.0/cache/x-ozlib/debusmann/xdk/ul.el</code>
+<li><code>M-x ul-mode</code>
+        </ol>
+
+   <p>The Emacs mode can be invoked automatically upon the launch of Emacs
+by adding the line:
+<pre class="example">     (load-file "&lt;path to ul.el&gt;")
+</pre>
+   <p>to your emacs configuration file (<code>~/.emacs</code>).  <code>&lt;path
+to ul.el&gt;</code> corresponds to the path to the file <code>ul.el</code>.
+
+<h4 class="subsection">3.2.2 XTAG grammar generator</h4>
+
+<p>The XDK version of the large-scale English TAG grammar developed in the
+XTAG project is not implemented as a single static XDK grammar but as a
+<em>grammar generator</em>. 
+<a name="index-grammar-generator-21"></a>We have found out that the implementation of a single static XDK grammar
+is not feasible. The XTAG grammar generator is a server application
+which generates a new XDK grammar for each input sentence. The trick is
+that the generated XDK grammar only contains the part of the lexicon
+required for the input sentence. This significantly brings down memory
+consumption.
+
+   <p>To be on the safe side with respect to licensing, the XDK distribution
+does not include the original XTAG grammar files required for the
+building the grammar generator. If you are interested in the grammar
+generator, you first have to get the following files and put them into
+the directory <code>XTAG/Grammar</code> of the XDK distribution:
+     <ul>
+<li><code>syntax.flat</code>
+<li><code>treefams.dat</code>
+<li><code>treenames.dat</code>
+<li><code>xtag.trees.dat</code>
+</ul>
+   The files are taken from the <em>lem parser</em>
+<a name="index-lem-parser-22"></a>distribution available here:
+<a href="ftp://ftp.cis.upenn.edu/pub/xtag/lem/lem-0.14.0.tgz">ftp://ftp.cis.upenn.edu/pub/xtag/lem/lem-0.14.0.tgz</a>.  Within the
+archive, the files can be found in the directory:
+<code>lem-0.14.0/data/english</code>.
+
+   <p>For additional XTAG functionality, i.e., the function <code>Compare lem
+solutions</code> in <code>xdk.exe</code> and the output functor
+<code>output.xTAGDerivation</code>, the lem parser
+(<a href="ftp://ftp.cis.upenn.edu/pub/xtag/lem/lem-0.14.0.tgz">ftp://ftp.cis.upenn.edu/pub/xtag/lem/lem-0.14.0.tgz</a>) must be
+installed and its executables must be put into the search path. 
+Comparing the output of the lem parser with that of the XDK solver for
+the XTAG grammar generator is more accurate if you use the lem parser
+preferences file <code>xtag.prefs</code> included in the XDK distribution. It
+must be copied into the <code>lem-0.14.0/lib/</code> directory of the lem
+parser installation. This file sets the lem parser preferences to values
+that correspond to the settings of the XDK version of the XTAG grammar.
+
+<h4 class="subsection">3.2.3 IOzSeF</h4>
+
+<p>To use Guido Tack's <em>IOzSeF</em>
+<a name="index-IOzSeF-23"></a>exploration tool instead of the <em>Explorer</em>
+<a name="index-Explorer-24"></a>for the GUI, you need to install the appropriate package available in
+MOGUL at URL
+<a href="http://www.mozart-oz.org/mogul/info/tack/iozsef.html">http://www.mozart-oz.org/mogul/info/tack/iozsef.html</a>, and also
+the package <em>TkTreeWidget</em>
+<a name="index-TkTreeWidget-25"></a>available at
+<a href="http://www.mozart-oz.org/mogul/info/tack/TkTreeWidget.html">http://www.mozart-oz.org/mogul/info/tack/TkTreeWidget.html</a>.  For
+your convenience, we have included the two packages in the XDK
+distribution: <code>tack-iozsef-1.1.pkg</code> and
+<code>tack-TkTreeWidget-0.7.pkg</code>. To install, type:
+<pre class="example">     ozmake -i -p tack-iozsef-1.1.pkg
+     ozmake -i -p tack-TkTreeWidget-0.7.pkg
+</pre>
+   <h4 class="subsection">3.2.4 CLLS output functor</h4>
+
+<p>The CLLS output functor requires Joachim Niehren's <em>daVinci</em>
+<a name="index-daVinci-26"></a>package from MOGUL:
+<a href="http://www.mozart-oz.org/mogul/info/niehren/davinci.html">http://www.mozart-oz.org/mogul/info/niehren/davinci.html</a>.  Note
+that the CLLS output functor is untested with recent versions of daVinci.
+
+<!-- ************************************************************ -->
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> 
+<em>Cygwin</em> is a Linux-like environment which you can obtain at URL
+<a href="http://www.cygwin.com/">http://www.cygwin.com/</a>. It is required for compiling the XDK
+under Windows.</p>
+
+   <p class="footnote"><small>[<a name="fn-2" href="#fnd-2">2</a>]</small> <em>Emacs</em> is a powerful
+editor available as an additional package at URL
+<a href="http://www.mozart-oz.org/">http://www.mozart-oz.org/</a>. It is well integrated into Mozart/Oz
+and the XDK (e.g. the XDK provides an Emacs mode for syntax highlighting
+of grammar files).</p>
+
+   <hr></div>
+
+   </body></html>
+

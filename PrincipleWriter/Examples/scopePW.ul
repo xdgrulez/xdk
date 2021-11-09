@@ -1,0 +1,11 @@
+defprinciple "principle.scopePW" {
+  dims {D1 D2}
+  constraints {
+
+forall V: forall L:
+  L in V.D1.entry.link =>
+    forall V1:
+      edge(V V1 L D2) => dom(V1 V D1)
+
+  }
+}

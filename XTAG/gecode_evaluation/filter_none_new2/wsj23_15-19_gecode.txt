@@ -1,0 +1,83 @@
+15-19/4712.fzn1
+futures traders say the Iraqi was signaling that the Iraqi could fall as much as three points .
+
+	runtime:       1.80097e+06
+	solutions:     0
+	propagators:   50566
+	propagations:  794794069
+	failures:      46662
+	clones:        46672
+	commits:       175667
+	peak memory:   74951 KB
+No solution
+15-19/4712.fzn2
+but the exchange will look at the performance of all specialists in all stocks .
+
+	runtime:       708650
+	solutions:     1
+	propagators:   43541
+	propagations:  373379330
+	failures:      15650
+	clones:        15661
+	commits:       62690
+	peak memory:   57287 KB
+15-19/4712.fzn3
+ideally , we 'd like to be the operator of the project and a modest equity investor .
+
+	runtime:       1.80139e+06
+	solutions:     0
+	propagators:   50086
+	propagations:  925858659
+	failures:      36720
+	clones:        36729
+	commits:       147542
+	peak memory:   86790 KB
+No solution
+15-19/4712.fzn4
+on top of everything else , Iraqi confronts a disaster at its plant in Iraqi , Iraqi .
+
+	runtime:       1.49462e+06
+	solutions:     0
+	propagators:   58315
+	propagations:  351957651
+	failures:      35204
+	clones:        35203
+	commits:       85316
+	peak memory:   71061 KB
+No solution
+15-19/4712.fzn5
+the balance is supplied by a host of smaller exporters , such as Australia and Venezuela .
+
+	runtime:       1.80103e+06
+	solutions:     0
+	propagators:   47839
+	propagations:  984977753
+	failures:      31525
+	clones:        31531
+	commits:       140036
+	peak memory:   65477 KB
+No solution
+15-19/4712.fzn6
+with the help of Iraqi Iraqi , Iraqi 's share is now estimated to be three percent .
+
+	runtime:       1.80093e+06
+	solutions:     0
+	propagators:   57637
+	propagations:  982815523
+	failures:      28068
+	clones:        28081
+	commits:       112371
+	peak memory:   101576 KB
+No solution
+15-19/4712.fzn7
+but with so many brands vying for space , that 's no longer the case .
+
+	runtime:       1.80101e+06
+	solutions:     0
+	propagators:   48516
+	propagations:  1034024283
+	failures:      42605
+	clones:        42615
+	commits:       159096
+	peak memory:   81287 KB
+No solution

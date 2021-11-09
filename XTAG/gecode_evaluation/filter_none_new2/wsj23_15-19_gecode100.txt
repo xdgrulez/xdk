@@ -1,0 +1,23 @@
+15-19/4712.fzn2
+but the exchange will look at the performance of all specialists in all stocks .
+
+	runtime:       709110
+	solutions:     100
+	propagators:   43541
+	propagations:  373793999
+	failures:      15669
+	clones:        15780
+	commits:       63031
+	peak memory:   59654 KB
+15-19/4712.fzn4
+on top of everything else , Iraqi confronts a disaster at its plant in Iraqi , Iraqi .
+
+	runtime:       1.50237e+06
+	solutions:     0
+	propagators:   58315
+	propagations:  351957651
+	failures:      35204
+	clones:        35203
+	commits:       85316
+	peak memory:   71061 KB
+No solution

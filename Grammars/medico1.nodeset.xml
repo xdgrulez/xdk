@@ -1,0 +1,1217 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<set>
+  <record>
+    <feature data="index">
+      <integer data="1"/>
+    </feature>
+    <feature data="anno">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughtersL">
+              <record>
+                <feature data="type">
+                  <set>
+                    <integer data="2"/>
+                  </set>
+                </feature>
+                <feature data="disease">
+                  <set>
+                    <integer data="3"/>
+                  </set>
+                </feature>
+                <feature data="trial">
+                  <set>
+                    <integer data="5"/>
+                  </set>
+                </feature>
+                <feature data="diseaseName">
+                  <set/>
+                </feature>
+                <feature data="sameAs">
+                  <set/>
+                </feature>
+                <feature data="degree">
+                  <set/>
+                </feature>
+              </record>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="owl">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="rdf">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughtersL">
+              <record>
+                <feature data="type">
+                  <set>
+                    <integer data="2"/>
+                  </set>
+                </feature>
+                <feature data="cond">
+                  <set/>
+                </feature>
+                <feature data="related">
+                  <set/>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="label">
+                  <set/>
+                </feature>
+                <feature data="degree">
+                  <set/>
+                </feature>
+              </record>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+  </record>
+  <record>
+    <feature data="index">
+      <integer data="2"/>
+    </feature>
+    <feature data="anno">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothersL">
+              <record>
+                <feature data="type">
+                  <set>
+                    <integer data="1"/>
+                  </set>
+                </feature>
+                <feature data="disease">
+                  <set/>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="diseaseName">
+                  <set/>
+                </feature>
+                <feature data="sameAs">
+                  <set/>
+                </feature>
+                <feature data="degree">
+                  <set/>
+                </feature>
+              </record>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="owl">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="rdf">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothersL">
+              <record>
+                <feature data="type">
+                  <set>
+                    <integer data="1"/>
+                  </set>
+                </feature>
+                <feature data="cond">
+                  <set/>
+                </feature>
+                <feature data="related">
+                  <set/>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="label">
+                  <set/>
+                </feature>
+                <feature data="degree">
+                  <set/>
+                </feature>
+              </record>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+  </record>
+  <record>
+    <feature data="index">
+      <integer data="3"/>
+    </feature>
+    <feature data="anno">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothersL">
+              <record>
+                <feature data="type">
+                  <set/>
+                </feature>
+                <feature data="disease">
+                  <set>
+                    <integer data="1"/>
+                  </set>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="diseaseName">
+                  <set/>
+                </feature>
+                <feature data="sameAs">
+                  <set>
+                    <integer data="8"/>
+                  </set>
+                </feature>
+                <feature data="degree">
+                  <set/>
+                </feature>
+              </record>
+            </feature>
+            <feature data="daughtersL">
+              <record>
+                <feature data="type">
+                  <set/>
+                </feature>
+                <feature data="disease">
+                  <set/>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="diseaseName">
+                  <set>
+                    <integer data="9"/>
+                  </set>
+                </feature>
+                <feature data="sameAs">
+                  <set>
+                    <integer data="8"/>
+                  </set>
+                </feature>
+                <feature data="degree">
+                  <set>
+                    <integer data="13"/>
+                  </set>
+                </feature>
+              </record>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="owl">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothersL">
+              <record>
+                <feature data="sameAs">
+                  <bounds>
+                    <top/>
+                    <bot/>
+                  </bounds>
+                </feature>
+              </record>
+            </feature>
+            <feature data="daughtersL">
+              <record>
+                <feature data="sameAs">
+                  <bounds>
+                    <set>
+                      <integer data="8"/>
+                    </set>
+                    <bot/>
+                  </bounds>
+                </feature>
+              </record>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="rdf">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughtersL">
+              <record>
+                <feature data="type">
+                  <set>
+                    <integer data="4"/>
+                  </set>
+                </feature>
+                <feature data="cond">
+                  <set/>
+                </feature>
+                <feature data="related">
+                  <set/>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="label">
+                  <set/>
+                </feature>
+                <feature data="degree">
+                  <set/>
+                </feature>
+              </record>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+  </record>
+  <record>
+    <feature data="index">
+      <integer data="4"/>
+    </feature>
+    <feature data="anno">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="owl">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="rdf">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothersL">
+              <record>
+                <feature data="type">
+                  <set>
+                    <integer data="3"/>
+                  </set>
+                </feature>
+                <feature data="cond">
+                  <set/>
+                </feature>
+                <feature data="related">
+                  <set/>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="label">
+                  <set/>
+                </feature>
+                <feature data="degree">
+                  <set/>
+                </feature>
+              </record>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+  </record>
+  <record>
+    <feature data="index">
+      <integer data="5"/>
+    </feature>
+    <feature data="anno">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set>
+                <integer data="1"/>
+              </set>
+            </feature>
+            <feature data="mothersL">
+              <record>
+                <feature data="type">
+                  <set/>
+                </feature>
+                <feature data="disease">
+                  <set/>
+                </feature>
+                <feature data="trial">
+                  <set>
+                    <integer data="1"/>
+                  </set>
+                </feature>
+                <feature data="diseaseName">
+                  <set/>
+                </feature>
+                <feature data="sameAs">
+                  <set/>
+                </feature>
+                <feature data="degree">
+                  <set/>
+                </feature>
+              </record>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="owl">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="rdf">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothersL">
+              <record>
+                <feature data="type">
+                  <set/>
+                </feature>
+                <feature data="cond">
+                  <set/>
+                </feature>
+                <feature data="related">
+                  <set>
+                    <integer data="7"/>
+                  </set>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="label">
+                  <set/>
+                </feature>
+                <feature data="degree">
+                  <set/>
+                </feature>
+              </record>
+            </feature>
+            <feature data="daughtersL">
+              <record>
+                <feature data="type">
+                  <set>
+                    <integer data="6"/>
+                  </set>
+                </feature>
+                <feature data="cond">
+                  <set>
+                    <integer data="7"/>
+                  </set>
+                </feature>
+                <feature data="related">
+                  <set/>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="label">
+                  <set/>
+                </feature>
+                <feature data="degree">
+                  <set/>
+                </feature>
+              </record>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+  </record>
+  <record>
+    <feature data="index">
+      <integer data="6"/>
+    </feature>
+    <feature data="anno">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="owl">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="rdf">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothersL">
+              <record>
+                <feature data="type">
+                  <set>
+                    <integer data="5"/>
+                  </set>
+                </feature>
+                <feature data="cond">
+                  <set/>
+                </feature>
+                <feature data="related">
+                  <set/>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="label">
+                  <set/>
+                </feature>
+                <feature data="degree">
+                  <set/>
+                </feature>
+              </record>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+  </record>
+  <record>
+    <feature data="index">
+      <integer data="7"/>
+    </feature>
+    <feature data="anno">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="owl">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="rdf">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothersL">
+              <record>
+                <feature data="type">
+                  <set/>
+                </feature>
+                <feature data="cond">
+                  <set>
+                    <integer data="5"/>
+                  </set>
+                </feature>
+                <feature data="related">
+                  <set/>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="label">
+                  <set/>
+                </feature>
+                <feature data="degree">
+                  <set/>
+                </feature>
+              </record>
+            </feature>
+            <feature data="daughtersL">
+              <record>
+                <feature data="type">
+                  <set>
+                    <integer data="8"/>
+                  </set>
+                </feature>
+                <feature data="cond">
+                  <set/>
+                </feature>
+                <feature data="related">
+                  <set>
+                    <integer data="5"/>
+                  </set>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="label">
+                  <set>
+                    <integer data="9"/>
+                  </set>
+                </feature>
+                <feature data="degree">
+                  <set/>
+                </feature>
+              </record>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+  </record>
+  <record>
+    <feature data="index">
+      <integer data="8"/>
+    </feature>
+    <feature data="anno">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothersL">
+              <record>
+                <feature data="type">
+                  <set/>
+                </feature>
+                <feature data="disease">
+                  <set/>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="diseaseName">
+                  <set/>
+                </feature>
+                <feature data="sameAs">
+                  <set>
+                    <integer data="3"/>
+                  </set>
+                </feature>
+                <feature data="degree">
+                  <set/>
+                </feature>
+              </record>
+            </feature>
+            <feature data="daughtersL">
+              <record>
+                <feature data="type">
+                  <set/>
+                </feature>
+                <feature data="disease">
+                  <set/>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="diseaseName">
+                  <set/>
+                </feature>
+                <feature data="sameAs">
+                  <set>
+                    <integer data="3"/>
+                  </set>
+                </feature>
+                <feature data="degree">
+                  <set/>
+                </feature>
+              </record>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="owl">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothersL">
+              <record>
+                <feature data="sameAs">
+                  <bounds>
+                    <set>
+                      <integer data="3"/>
+                    </set>
+                    <bot/>
+                  </bounds>
+                </feature>
+              </record>
+            </feature>
+            <feature data="daughtersL">
+              <record>
+                <feature data="sameAs">
+                  <bounds>
+                    <set>
+                      <integer data="13"/>
+                    </set>
+                    <bot/>
+                  </bounds>
+                </feature>
+              </record>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="rdf">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothersL">
+              <record>
+                <feature data="type">
+                  <set>
+                    <integer data="7"/>
+                  </set>
+                </feature>
+                <feature data="cond">
+                  <set/>
+                </feature>
+                <feature data="related">
+                  <set/>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="label">
+                  <set/>
+                </feature>
+                <feature data="degree">
+                  <set/>
+                </feature>
+              </record>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+  </record>
+  <record>
+    <feature data="index">
+      <integer data="9"/>
+    </feature>
+    <feature data="anno">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothersL">
+              <record>
+                <feature data="type">
+                  <set/>
+                </feature>
+                <feature data="disease">
+                  <set/>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="diseaseName">
+                  <set>
+                    <integer data="3"/>
+                  </set>
+                </feature>
+                <feature data="sameAs">
+                  <set/>
+                </feature>
+                <feature data="degree">
+                  <set/>
+                </feature>
+              </record>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="owl">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="rdf">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothersL">
+              <record>
+                <feature data="type">
+                  <set/>
+                </feature>
+                <feature data="cond">
+                  <set/>
+                </feature>
+                <feature data="related">
+                  <set/>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="label">
+                  <set>
+                    <integer data="7"/>
+                  </set>
+                </feature>
+                <feature data="degree">
+                  <set/>
+                </feature>
+              </record>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+  </record>
+  <record>
+    <feature data="index">
+      <integer data="10"/>
+    </feature>
+    <feature data="anno">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="owl">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="rdf">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+  </record>
+  <record>
+    <feature data="index">
+      <integer data="11"/>
+    </feature>
+    <feature data="anno">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="owl">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="rdf">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+  </record>
+  <record>
+    <feature data="index">
+      <integer data="12"/>
+    </feature>
+    <feature data="anno">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="owl">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="rdf">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughtersL">
+              <record>
+                <feature data="type">
+                  <set>
+                    <integer data="14"/>
+                  </set>
+                </feature>
+                <feature data="cond">
+                  <set/>
+                </feature>
+                <feature data="related">
+                  <set/>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="label">
+                  <set/>
+                </feature>
+                <feature data="degree">
+                  <set>
+                    <integer data="13"/>
+                  </set>
+                </feature>
+              </record>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+  </record>
+  <record>
+    <feature data="index">
+      <integer data="13"/>
+    </feature>
+    <feature data="anno">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothersL">
+              <record>
+                <feature data="type">
+                  <set/>
+                </feature>
+                <feature data="disease">
+                  <set/>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="diseaseName">
+                  <set/>
+                </feature>
+                <feature data="sameAs">
+                  <set/>
+                </feature>
+                <feature data="degree">
+                  <set>
+                    <integer data="3"/>
+                  </set>
+                </feature>
+              </record>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="owl">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothersL">
+              <record>
+                <feature data="sameAs">
+                  <bounds>
+                    <set>
+                      <integer data="8"/>
+                    </set>
+                    <bot/>
+                  </bounds>
+                </feature>
+              </record>
+            </feature>
+            <feature data="daughtersL">
+              <record>
+                <feature data="sameAs">
+                  <bounds>
+                    <top/>
+                    <bot/>
+                  </bounds>
+                </feature>
+              </record>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="rdf">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothersL">
+              <record>
+                <feature data="type">
+                  <set/>
+                </feature>
+                <feature data="cond">
+                  <set/>
+                </feature>
+                <feature data="related">
+                  <set/>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="label">
+                  <set/>
+                </feature>
+                <feature data="degree">
+                  <set>
+                    <integer data="12"/>
+                  </set>
+                </feature>
+              </record>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+  </record>
+  <record>
+    <feature data="index">
+      <integer data="14"/>
+    </feature>
+    <feature data="anno">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="owl">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothers">
+              <set/>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+    <feature data="rdf">
+      <record>
+        <feature data="model">
+          <record>
+            <feature data="mothersL">
+              <record>
+                <feature data="type">
+                  <set>
+                    <integer data="12"/>
+                  </set>
+                </feature>
+                <feature data="cond">
+                  <set/>
+                </feature>
+                <feature data="related">
+                  <set/>
+                </feature>
+                <feature data="trial">
+                  <set/>
+                </feature>
+                <feature data="label">
+                  <set/>
+                </feature>
+                <feature data="degree">
+                  <set/>
+                </feature>
+              </record>
+            </feature>
+            <feature data="daughters">
+              <set/>
+            </feature>
+          </record>
+        </feature>
+      </record>
+    </feature>
+  </record>
+</set>

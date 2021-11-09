@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+<title>Dag12 - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Outputs.html#Outputs" title="Outputs">
+<link rel="prev" href="Dag11.html#Dag11" title="Dag11">
+<link rel="next" href="Dag13.html#Dag13" title="Dag13">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Dag12"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Dag13.html#Dag13">Dag13</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Dag11.html#Dag11">Dag11</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Outputs.html#Outputs">Outputs</a>
+<hr>
+</div>
+
+<h3 class="section">9.13 Dag2</h3>
+
+<p>This section explains the Dag2 output functor.  The Dag2 output
+functor assumes that the graph principle is used on the output
+dimension.
+
+     <ul>
+<li>identifier: <code>output.dag2</code>
+<li>open method: opens a window displaying all known edges (and all
+known edge labels and all known node labels) of the directed acyclic
+graph on the output dimension, and all known dominance edges. 
+Compares the previous analysis with the current one. 
+<li>close method: closes all of these windows opened on the
+output dimension and resets the comparison (i.e. the next output does
+not compare). 
+</ul>
+
+   <p>Compared with the Dag output functor (<a href="Dag1.html#Dag1">Dag1</a>), the Dag2 functor
+adds the following features:
+     <ul>
+<li>it includes dominance edges
+<li>it compares analyses
+</ul>
+
+   <p>Compared with the Dag1 output functor (<a href="Dag11.html#Dag11">Dag11</a>), the Dag2 functor
+     <ul>
+<li>does not ghost nodes, and
+<li>does not ghost edges
+</ul>
+
+<!-- ************************************************************ -->
+   </body></html>
+

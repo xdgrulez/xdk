@@ -1,0 +1,4 @@
+#!/bin/bash
+cp Solver/Principles/Lib/Opti_on.oz Solver/Principles/Lib/Opti.oz
+cp Solver/Principles/Lib/Opti_on.ozf Solver/Principles/Lib/Opti.ozf
+echo "The native IsIn optimization is now turned on."

@@ -1,0 +1,4 @@
+defclass "noun" Word {
+  dim id {in: {n!}}
+  dim lp {in: {"1"!}}
+  dim lex {word: Word}}

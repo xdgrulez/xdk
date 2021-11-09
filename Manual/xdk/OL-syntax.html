@@ -1,0 +1,363 @@
+<html lang="en">
+<head>
+<title>OL syntax - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Outputs.html#Outputs" title="Outputs">
+<link rel="prev" href="XTAGDerivation.html#XTAGDerivation" title="XTAGDerivation">
+<link rel="next" href="Output-record.html#Output-record" title="Output record">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="OL-syntax"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Output-record.html#Output-record">Output record</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="XTAGDerivation.html#XTAGDerivation">XTAGDerivation</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Outputs.html#Outputs">Outputs</a>
+<hr>
+</div>
+
+<h3 class="section">9.36 Output Language</h3>
+
+<p>In this section, we describe how to transform <em>Solver Language (SL)</em>
+<a name="index-Solver-Language-327"></a><a name="index-SL-328"></a>expressions into <em>Output Language (OL)</em>
+<a name="index-Output-Language-329"></a><a name="index-OL-330"></a>expressions.
+
+   <p>Notice that the XDK also provides output in abbreviated form: the
+abbreviated OL syntax is like the OL syntax, but with the following
+abbreviations to make the output a little less cluttered:
+     <ul>
+<li>top values are abbreviated with <code>top</code>
+<li>bottom values are abbreviated with <code>bot</code>
+<li>sets of tuples of which all projections are finite domains
+of constants are abbreviated using set generator expressions
+<li>undetermined sets of tuples of which all projections are finite domains
+of constants are abbreviated using set generator expressions
+<li>undetermined tuples of which all projections are finite domains
+of constants are abbreviated using set generator expressions
+</ul>
+
+   <p>The abbreviated OL syntax is used by the Pretty and output functors to
+visualize all the information contained in a solution.
+
+<h4 class="subsection">9.36.1 Feature path</h4>
+
+<p>Here is the syntax of a SL feature path:
+
+<pre class="example">     featurepath(root: RootA
+                 dimension: DVA
+                 dimension_idref: IDA
+                 aspect: AspectA
+                 fields: FieldAs)
+</pre>
+   <p>The corresponding OL expression is an Oz atom made up of the following
+parts:
+
+<pre class="example">     '&lt;root&gt;.&lt;dim var&gt;(&lt;dim id&gt;).&lt;aspect&gt;.&lt;field_1&gt;.....&lt;field_n&gt;'
+</pre>
+   <p><code>&lt;root&gt;</code> corresponds to (<code>RootA</code>), <code>&lt;dim var&gt;</code> to
+<code>DVA</code>, <code>&lt;dim id&gt;</code> to <code>IDA</code>, <code>&lt;aspect&gt;</code> to
+<code>AspectA</code>, and <code>&lt;field_i&gt;</code> (<code>1&lt;=i&lt;=n</code>) to
+<code>FieldAs</code>.
+
+<h4 class="subsection">9.36.2 Cardinality set</h4>
+
+<p>Here is the syntax of SL cardinality sets:
+<pre class="example">     M
+</pre>
+   <p>where <code>M</code> is an Oz finite set encoding the cardinality set
+<code>IL</code>.
+
+   <p>And here is the corresponding OL expression:
+<pre class="example">     OL
+</pre>
+   <p>where <code>OL</code> is the OL expression encoding the cardinality set
+<code>M</code>.
+
+<h4 class="subsection">9.36.3 Constraint</h4>
+
+<p>Undefined.
+
+<h4 class="subsection">9.36.4 Domain</h4>
+
+<p>Here is the syntax of SL constants:
+<pre class="example">     I
+</pre>
+   <p><code>I</code> is an Oz integer encoding the constant.
+
+   <p>And here is the corresponding OL expression:
+<pre class="example">     A
+</pre>
+   <p><code>A</code> is the constant encoded by <code>I</code>.
+
+<h4 class="subsection">9.36.5 Integer</h4>
+
+<p>Here is the syntax of SL integers:
+<pre class="example">     I
+</pre>
+   <p>And here is the corresponding OL expression:
+<pre class="example">     I
+</pre>
+   <p><code>I</code> stays the same.
+
+<h4 class="subsection">9.36.6 List</h4>
+
+<p>Here is the syntax of SL lists:
+<pre class="example">     SLs
+</pre>
+   <p><code>SLs</code> is an Oz list of SL expressions.
+
+   <p>And here is the corresponding OL expression:
+<pre class="example">     OLs
+</pre>
+   <p><code>OLs</code> is an Oz list of OL expressions encoding <code>SLs</code>.
+
+<h4 class="subsection">9.36.7 Map</h4>
+
+<p>See Record.
+
+<h4 class="subsection">9.36.8 Record</h4>
+
+<p>Here is the syntax of SL records:
+<pre class="example">     o(A1:SL1
+       ...
+       An:SLn)
+</pre>
+   <p><code>Ai:SLi</code> (<code>1&lt;=i&lt;=n</code>) is a feature of an Oz atom <code>Ai</code>
+(the field) and a SL expression <code>SLi</code> (the value).
+
+   <p>And here is the corresponding OL expression:
+<pre class="example">     o(A1:OL1
+       ...
+       An:OLn)
+</pre>
+   <p><code>Ai</code> (<code>1&lt;=i&lt;=n</code>) stays the same, and <code>OLi</code> is the OL
+expression encoding <code>SLi</code>.
+
+<h4 class="subsection">9.36.9 Set</h4>
+
+<p>The syntax of SL sets differs depending on the type of the domain of
+the set:
+     <ol type=1 start=1>
+<li>a finite domain of constants
+<li>a tuple of which all projections are finite domains of constants
+<li>any other type
+        </ol>
+
+   <p>Here is the syntax of SL sets for the different cases:
+     <ol type=1 start=1>
+<li>
+     <pre class="example">          M
+</pre>
+     <p><code>M</code> is an Oz finite set of integers encoding the constants in the
+set. 
+<li>(see 1.) 
+<li>
+     <pre class="example">          SLs
+</pre>
+     <p><code>SLs</code> is an Oz list of SL expressions in the set.
+        </ol>
+
+   <p>And here is the syntax of the corresponding OL expressions:
+     <ol type=1 start=1>
+<li>
+     <pre class="example">          As
+</pre>
+     <p><code>As</code> is an Oz list of Oz atoms encoding the set <code>M</code>. 
+<li>
+     <pre class="example">          Tups
+</pre>
+     <p><code>Tups</code> is an Oz list of Oz tuples encoded in set <code>M</code>. 
+<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>
+<li>
+     <pre class="example">          OLs
+</pre>
+     <p><code>OLs</code> is an Oz list of OL expressions encoding <code>SLs</code>.
+        </ol>
+
+<h4 class="subsection">9.36.10 String</h4>
+
+<p>Here is the syntax of SL strings:
+<pre class="example">     A
+</pre>
+   <p><code>A</code> is an Oz atom encoding the string.
+
+   <p>And here is the OL syntax:
+<pre class="example">     A
+</pre>
+   <p><code>A</code> stays the same.
+
+<h4 class="subsection">9.36.11 Tuple</h4>
+
+<p>The syntax of SL tuples differs depending on the type of the
+projections of the tuple:
+     <ol type=1 start=1>
+<li>all projections are finite domains of constants
+<li>at least one projection is not a finite domain of constants
+        </ol>
+
+   <p>Here is the syntax of SL tuples for the different cases:
+     <ol type=1 start=1>
+<li>
+     <pre class="example">          I
+</pre>
+     <p><code>I</code> is an Oz integer encoding the tuple. 
+<li>
+     <pre class="example">          [SL1 ... SLn]
+</pre>
+     <p><code>SLi</code> is the SL expression on projection <code>i</code>
+(<code>1&lt;=i&lt;=n</code>) of the tuple.
+        </ol>
+
+   <p>And here is the syntax of the corresponding OL expressions:
+     <ol type=1 start=1>
+<li>
+     <pre class="example">          OL1#...#OLn
+</pre>
+     <p><code>OLi</code> is the OL expression encoding <code>SLi</code> (<code>1&lt;=i&lt;=n</code>). 
+<li>(see 1.)
+        </ol>
+
+<h4 class="subsection">9.36.12 Undetermined values</h4>
+
+<p>The XDK solver can also yield <em>partial solutions</em>
+<a name="index-partial-solution-331"></a>in which not all values in the node record are determined; instead
+some of the values are still variables. In the following, we show how
+these variables are represented in the OL.
+
+<h5 class="subsubsection">9.36.12.1 Undetermined constants</h5>
+
+<p>This is the OL syntax for undetermined constants (i.e. constant
+variables):
+<pre class="example">     '_'(DSpec)
+</pre>
+   <p><code>DSpec</code> is a <em>domain specification</em>
+<a name="index-domain-specification-332"></a>representing the set of constants which can still be bound to the
+constant variable.
+
+<h5 class="subsubsection">9.36.12.2 Undetermined integers</h5>
+
+<p>This is the OL syntax for undetermined integers (i.e. integer
+variables):
+<pre class="example">     '_'(DSpec)
+</pre>
+   <p><code>DSpec</code> is a domain specification representing the set of integers
+which can still be bound to the integer variable.
+
+<h5 class="subsubsection">9.36.12.3 Undetermined lists</h5>
+
+<p>This is the OL syntax for undetermined lists (i.e. list variables):
+
+<pre class="example">     '_'
+</pre>
+   <h5 class="subsubsection">9.36.12.4 Undetermined sets</h5>
+
+<p>The OL syntax for undetermined sets (i.e. set variables) differs
+depending on the domain of the set:
+     <ol type=1 start=1>
+<li>a finite
+domain of constants or a tuple of which all projections are finite
+domains of constants
+<li>any other type
+        </ol>
+
+   <p>Here is the OL syntax of undetermined sets for the different cases:
+     <ol type=1 start=1>
+<li>
+     <pre class="example">          '_'(MSpec1 MSpec2 DSpec)
+</pre>
+     <p><code>MSpec1</code> is a set specification, representing the set of
+constants which are already known to be in the set
+variable.<a rel="footnote" href="#fn-2" name="fnd-2"><sup>2</sup></a>
+
+     <p><code>MSpec2</code> is a set specification representing the set of constants
+which could still end up in the set variable.<a rel="footnote" href="#fn-3" name="fnd-3"><sup>3</sup></a>
+
+     <p><code>DSpec</code> is a domain specification representing the set of integers
+which can still be bound to the integer variable representing the
+cardinality of the set variable.
+
+     <li>
+     <pre class="example">          '_'
+</pre>
+     </ol>
+
+<h5 class="subsubsection">9.36.12.5 Undetermined strings</h5>
+
+<p>This is the OL syntax for undetermined strings (i.e. string variables):
+
+<pre class="example">     '_'
+</pre>
+   <h5 class="subsubsection">9.36.12.6 Undetermined tuples</h5>
+
+<p>The OL syntax for undetermined tuples (i.e. tuple variables) differs
+depending on the projections of the tuple:
+     <ol type=1 start=1>
+<li>all projections are finite domains of constants
+<li>at least one of the projections is no finite domain of constants
+        </ol>
+
+   <p>Here is the OL syntax of undetermined tuples for the different cases:
+     <ol type=1 start=1>
+<li>
+     <pre class="example">          '_'(Tups)
+</pre>
+     <p><code>Tups</code> is an Oz list of tuples representing the the set of tuples
+which can still be bound to the tuple variable.<a rel="footnote" href="#fn-4" name="fnd-4"><sup>4</sup></a>
+<li>
+     <pre class="example">          '_'
+</pre>
+     </ol>
+
+<h5 class="subsubsection">9.36.12.7 Undetermined cardinality sets in valencies</h5>
+
+<p>This is the OL syntax for undetermined cardinality sets (i.e. 
+cardinality set variables) in valencies:
+<pre class="example">     '_'(OL1 OL2)
+</pre>
+   <p><code>OL1</code> is the cardinality set representing the set of integers
+which are already known to be in the cardinality set variable. 
+<code>OL2</code> is the cardinality set representing the set of integers
+which can still be bound to the cardinality set variable.
+
+<!-- ************************************************************ -->
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> The abbreviated OL syntax is <code>A</code>, and <code>A</code> is a set
+generator expression encoding the set of tuples <code>M</code>.</p>
+
+   <p class="footnote"><small>[<a name="fn-2" href="#fnd-2">2</a>]</small> The abbreviated OL syntax is <code>A</code>, and <code>A</code>
+is a set generator expression representing the set of constants which
+are already known to be in the set variable (if the set is over a
+tuple of which all projections are finite sets of constants).</p>
+
+   <p class="footnote"><small>[<a name="fn-3" href="#fnd-3">3</a>]</small> The abbreviated
+OL syntax is <code>A</code>, and <code>A</code> is a set generator expression
+representing the set of constants which are already known to be in the
+set variable (if the set is over a tuple of which all projections are
+finite sets of constants).</p>
+
+   <p class="footnote"><small>[<a name="fn-4" href="#fnd-4">4</a>]</small> The
+abbreviated OL syntax is <code>'_'(A)</code>, and <code>A</code> is a set
+generator expression representing the set of tuples which can still be
+bound to the tuple variable.</p>
+
+   <hr></div>
+
+   </body></html>
+

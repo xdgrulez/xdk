@@ -1,0 +1,66 @@
+25-29/4712.fzn2
+Jeffrey Iraqi of program trader Iraqi Iraqi Iraqi said three Iraqi contracts were for sale on the close , the equivalent of three million in stock .
+
+	runtime:       930240
+	solutions:     100
+	propagators:   135769
+	propagations:  425698401
+	failures:      10118
+	clones:        10233
+	commits:       40608
+	peak memory:   229384 KB
+25-29/4712.fzn3
+at Iraqi Iraqi Iraqi , which is trying to cater to small investors , some demoralized brokers thought this would be the final marketer .
+
+	runtime:       559300
+	solutions:     100
+	propagators:   97249
+	propagations:  254470817
+	failures:      10015
+	clones:        10128
+	commits:       35864
+	peak memory:   133126 KB
+25-29/4712.fzn4
+at Iraqi Iraqi and Iraqi , the nation 's biggest brokerage firm , a news release was prepared headlined Iraqi Iraqi Iraqi on Iraqi Iraqi .
+
+	runtime:       15390
+	solutions:     100
+	propagators:   115220
+	propagations:  6651435
+	failures:      80
+	clones:        191
+	commits:       582
+	peak memory:   155461 KB
+25-29/4712.fzn10
+it would be my inclination to advise clients not to sell , to look for an opportunity to buy , Iraqi Iraqi told the brokers .
+
+	runtime:       9620
+	solutions:     100
+	propagators:   127277
+	propagations:  3101142
+	failures:      18
+	clones:        127
+	commits:       377
+	peak memory:   172456 KB
+25-29/4712.fzn11
+many money managers and some traders had already left their offices early Friday afternoon on a warm autumn day -- because the stock market was so quiet .
+
+	runtime:       71260
+	solutions:     100
+	propagators:   138592
+	propagations:  28886016
+	failures:      764
+	clones:        877
+	commits:       3193
+	peak memory:   214856 KB
+25-29/4712.fzn15
+when trading was halted in Philip Iraqi , the stock was trading at three , down three three , while Iraqi closed three three lower at three .
+
+	runtime:       7200
+	solutions:     100
+	propagators:   124813
+	propagations:  3120269
+	failures:      16
+	clones:        128
+	commits:       347
+	peak memory:   145798 KB

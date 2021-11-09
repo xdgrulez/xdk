@@ -1,0 +1,307 @@
+<html lang="en">
+<head>
+<title>Lexicon - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Compiler.html#Compiler" title="Compiler">
+<link rel="prev" href="Outputs1.html#Outputs1" title="Outputs1">
+<link rel="next" href="Lattices.html#Lattices" title="Lattices">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Lexicon"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Lattices.html#Lattices">Lattices</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Outputs1.html#Outputs1">Outputs1</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Compiler.html#Compiler">Compiler</a>
+<hr>
+</div>
+
+<h3 class="section">4.6 Lexicon</h3>
+
+<p>In this section, we explain how to write the <em>lexicon</em>
+<a name="index-lexicon-110"></a> of an XDG grammar. The XDG lexicon is a mapping from words to sets of
+<em>lexical entries</em>
+<a name="index-lexical-entry-111"></a><a name="index-entry-112"></a>for that word.  Lexical entries can be constructed using a hierarchy
+of parametrized <em>lexical classes</em>. 
+<a name="index-lexical-class-113"></a><a name="index-class-114"></a>
+
+<h4 class="subsection">4.6.1 Disjunction</h4>
+
+<p>The grammar file compiler supports a kind of <em>disjunction</em>
+<a name="index-disjunction-115"></a>to express lexical generalizations. The idea stems from Marie-Helene
+Candito's work on <em>Metagrammar</em>
+<a name="index-Metagrammar-116"></a>(<cite>Generating an LTAG out of a Principle-based Hierarchical
+Representation</cite>, <a href="References.html#References">References</a>) for LTAG. Disjunction corresponds
+to Candito's notion of <em>crossings</em>. 
+<a name="index-crossing-117"></a>The Metagrammar approach is pursued further by Benoit Crabbe and Denys
+Duchier (<cite>A Metagrammatical Formalism for Lexicalized TAGs</cite>,
+<cite>Lexical Classes for Structuring the Lexicon of a TAG</cite>,
+<cite>Metagrammar Redux</cite>), and Denys Duchier actually had the idea to
+incorporate crossings under the disguise of disjunction into the XDK
+grammar file compiler (<a href="References.html#References">References</a>).
+
+<h4 class="subsection">4.6.2 Defining lexical entries</h4>
+
+<p>A lexical entry is divided into <em>entry dimensions</em>
+<a name="index-entry-dimension-118"></a>corresponding to the individual used dimensions. The type of an entry
+dimension for dimension d equals the entry type for d. 
+In the following, we call the value of entry dimension for a dimension
+d the <em>d entry</em>. 
+<a name="index-d-entry-119"></a>
+Obligatorily, each lexical entry must define the <code>word</code> feature
+on the lex dimension. This is the <em>key</em>
+<a name="index-key-120"></a>of the lexical entry.
+
+   <p>In the UL, a lexical entry is written as follows:
+<pre class="example">     defentry {
+       dim d_1 &lt;term_1&gt;
+       ...
+       dim d_n &lt;term_n&gt; }
+</pre>
+   <p>where <code>&lt;term_i&gt;</code> is the value of the entry dimension for
+dimension <code>d_i</code>, i.e. the <code>d_i</code> entry (<code>1&lt;=i&lt;=n</code>).
+
+<h5 class="subsubsection">4.6.2.1 Example (lexical entry)</h5>
+
+<p>Below, we show an example lexical entry. It follows the type
+definitions of our example grammar file <code>Grammars/Acl01.ul</code>:
+
+<pre class="example">     defentry {
+       dim id {in: {det}
+               out: {}
+               agrs: ($ fem &amp; (dat|gen) &amp; sg &amp; def)
+               agree: {}
+               govern: {det: $ ()
+                        subj: $ ()
+                        obj: $ ()
+                        vbse: $ ()
+                        vprt: $ ()
+                        vinf: $ ()
+                        prt: $ ()}}
+       dim lp {in: {df}
+               out: {}
+               on: {d}}
+       dim idlp {blocks: {}
+                 end: {d: {}
+                       df: {}
+                       n: {}
+                       mf: {}
+                       vcf: {}
+                       p: {}
+                       pf: {}
+                       v: {}
+                       vxf: {}}
+       dim lex {word: "der"}}
+</pre>
+   <p>The id entry sets the <code>in</code> field to value <code>{det}</code>, i.e. a
+singleton set containing the constant <code>det</code>. It sets the
+<code>out</code> field to value <code>{}</code>, i.e. the empty set. The
+<code>agrs</code> field is set to <code>($ fem &amp; (dat|gen) &amp; sg &amp; def)</code>
+which is a <em>set generator expression</em>. 
+<a name="index-set-generator-expression-121"></a><a name="index-set-generator-122"></a>We explain set generator expressions in <a href="Types-reference.html#Types-reference">Types reference</a>. Suffice
+to say here that set generator expressions describe sets of tuples of
+a certain type, using set generator conjunction <code>&amp;</code> and set
+generator disjunction <code>|</code>. Here, the set generator expression
+describes all tuples with feminine gender (<code>fem</code>), either dative
+or genitive case (<code>(dat|gen)</code>), singular (<code>sg</code>), and
+definite (<code>def</code>).  The <code>agree</code> field is set the empty set,
+and the <code>govern</code> field to a record which maps each edge label on
+the id dimension to an empty set generator expression. The empty set
+generator expression denotes all possible tuples of the corresponding
+type.
+
+   <p>The lp entry sets the <code>in</code> field to value <code>{df}</code>,
+<code>out</code> to <code>{}</code>, and <code>on</code> to <code>{d}</code>.
+
+   <p>The idlp entry sets the <code>blocks</code> field to <code>{}</code>. The
+<code>link</code> field is set to a record which maps each edge label on the
+lp dimension to the empty set.
+
+   <p>The value of <code>word</code> on the lex dimension is &ldquo;der&rdquo;; i.e. the
+dimension record for the lex dimension sets the key for the entire
+lexical entry to &ldquo;der&rdquo;
+
+<h4 class="subsection">4.6.3 Defining lexical classes</h4>
+
+<p>Lexical entries can be build more conveniently using <em>lexical
+classes</em>. 
+<a name="index-lexical-class-123"></a><a name="index-class-124"></a>A lexical class is a lexical entry with the difference that the value
+of the feature <code>word</code> on the lex dimension does not have to be
+defined. Instead each lexical class has its unique <em>class
+identifier</em>. 
+<a name="index-class-identifier-125"></a>
+In the UL, a lexical class is written as follows:
+<pre class="example">     defclass &lt;constant&gt; {
+       dim d_1 &lt;term_1&gt;
+       ...
+       dim d_n &lt;term_n&gt; }
+</pre>
+   <p>where the constant is the class identifier, and <code>&lt;term_i&gt;</code> is the
+<code>d_i</code> entry (<code>1&lt;=i&lt;=n</code>).
+
+<h5 class="subsubsection">4.6.3.1 Example (lexical class)</h5>
+
+<p>Here is an example lexical class:
+<pre class="example">     defclass "det" {
+       dim id {in: {det}
+               out: {}
+               agrs: ($ fem &amp; (dat|gen) &amp; sg &amp; def)
+               agree: {}
+               govern: {det: $ ()
+                        subj: $ ()
+                        obj: $ ()
+                        vbse: $ ()
+                        vprt: $ ()
+                        vinf: $ ()
+                        prt: $ ()}}
+       dim lp {in: {df}
+               out: {}
+               on: {d}}
+       dim idlp {blocks: {}
+                 end: {d: {}
+                       df: {}
+                       n: {}
+                       mf: {}
+                       vcf: {}
+                       p: {}
+                       pf: {}
+                       v: {}
+                       vxf: {}}
+       dim lex {word: "der"}}
+</pre>
+   <p>The only difference to the lexical entry above is that the class has
+the identifier &ldquo;det&rdquo; in addition to its key &ldquo;der&rdquo;.
+
+<h5 class="subsubsection">4.6.3.2 Class parameters</h5>
+
+<p>Classes can introduce an arbitrary number of variables called
+<em>class parameters</em>.
+
+   <p>In the UL, class parameters are introduced after the class identifier and
+must begin with an upper case letter:
+<pre class="example">     defclass &lt;constant&gt; &lt;variable_1&gt; ... &lt;variable_m&gt; {
+       dim d_1 &lt;term_1&gt;
+       ...
+       dim d_n &lt;term_n&gt; }
+</pre>
+   <p>where <code>&lt;variable_j&gt;</code> (<code>1&lt;=j&lt;=m</code>) correspond to the class
+parameters.
+
+<h5 class="subsubsection">4.6.3.3 Example (lexical class with parameters)</h5>
+
+<p>Here is an example of a class with class parameters:
+
+<pre class="example">     defclass "det" Word Agrs {
+       dim id {in: {det}
+               out: {}
+               agrs: Agrs
+               agree: {}
+               govern: {det: $ ()
+                        subj: $ ()
+                        obj: $ ()
+                        vbse: $ ()
+                        vprt: $ ()
+                        vinf: $ ()
+                        prt: $ ()}}
+       dim lp {in: {df}
+               out: {}
+               on: {d}}
+       dim idlp {blocks: {}
+                 link: {d: {}
+                        df: {}
+                        n: {}
+                        mf: {}
+                        vcf: {}
+                        p: {}
+                        pf: {}
+                        v: {}
+                        vxf: {}}
+       dim lex {word: Word}}
+</pre>
+   <p>The lexical class has two parameters, <code>Word</code> and
+<code>Agrs</code>. <code>Word</code> is the value of the <code>word</code> feature on
+the lex dimension, and <code>Agrs</code> is the value of the <code>agrs</code>
+feature on the id dimension.
+
+<h4 class="subsection">4.6.4 Using lexical classes</h4>
+
+<p>Lexical classes can used to construct other lexical classes or to
+construct lexical entries.  All parameters of a class must be
+instantiated upon use.
+
+   <p>In the UL, a class use is written as follows:
+<pre class="example">     useclass &lt;constant&gt; {
+       &lt;variable_1&gt; : &lt;term_1&gt;
+       ...
+       &lt;variable_m&gt; : &lt;term_m&gt; }
+</pre>
+   <p>where the constant is the class identifier, and parameter
+<code>&lt;variable_j&gt;</code> is bound to <code>&lt;term_j&gt;</code> (<code>1&lt;=j&lt;=m</code>).
+
+   <p>Notice that you can omit the <code>useclass</code> keyword for convenience.
+
+<h5 class="subsubsection">4.6.4.1 Example (class use)</h5>
+
+<p>In the example below, we construct a lexical entry for the word
+&ldquo;der&rdquo; using the lexical class <code>det</code> defined above (note that we
+omit the <code>useclass</code> keyword here):
+
+<pre class="example">     defentry {
+       "det" {Word: "der"
+              Agrs: ($ fem &amp; (dat|gen) &amp; sg &amp; def)}}
+</pre>
+   <p>The resulting lexical entry is identical to the lexical entry in the
+example given above.
+
+<h4 class="subsection">4.6.5 Disjunction</h4>
+
+<p>The XDK grammar file compiler supports the use of <em>disjunction</em>,
+<a name="index-disjunction-126"></a>as a powerful tool to model lexical generalizations.  If a value can
+be either A or B, you write that down: A or B. In
+the resulting lexicon, the XDK grammar file compiler compiles out all
+possibilities into separate lexical entries.
+
+   <p>In the UL, disjunction is written using the <code>|</code> operator.
+
+<h5 class="subsubsection">4.6.5.1 Example (disjunction of set generator expressions)</h5>
+
+<p>In the example below, we use disjunction to express that the
+determiner &ldquo;der&rdquo; in German can have three different agreement
+values:
+
+<pre class="example">     defentry {
+       "det" {Word: "der"
+             Agrs: (($ masc &amp; nom &amp; sg &amp; def) |
+                    ($ fem &amp; (dat|gen) &amp; sg &amp; def) |
+                    ($ gen &amp; pl &amp; def))}}
+</pre>
+   <p>I.e., the agreement value is either <code>($ masc &amp; nom &amp; sg &amp; def)</code>,
+<code>($ fem &amp; (dat|gen) &amp; sg &amp; def)</code>, or <code>($ gen &amp; pl &amp;
+def)</code>. In the resulting lexicon, the expression above yields three
+lexical entries, differing only in the value of their agreement
+(i.e. the value of the feature <code>agrs</code> on the id
+dimension). Notice that the <code>|</code> operator within the second set
+generator expression (<code>($ fem &amp; (dat|gen) &amp; sg &amp; def)</code> stands for
+set generator disjunction which is a different form of disjunction
+inside set generators. Set generator disjunction does not yield
+additional lexical entries.
+
+<!-- ************************************************************ -->
+   </body></html>
+

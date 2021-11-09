@@ -1,0 +1,290 @@
+@section Lattices
+The XDK grammar file compiler uses lattices to model the notions of
+@emph{default values}
+@cindex default value
+@cindex default
+and @emph{conjunction}. Each type corresponds to a
+@cindex conjunction
+@emph{lattice}
+@cindex lattice
+having a @emph{top value},
+@cindex top value
+@cindex top
+a @emph{bottom value},
+@cindex bottom value
+@cindex bottom
+a @emph{greatest lower bound operation},
+@cindex greatest lower bound operation
+and a @emph{least upper bound operation}.
+@cindex least upper bound operation
+The XDK grammar file compiler only utilizes the top value, bottom
+value, and the greatest lower bound operation; it does not use the
+least upper bound operation. I.e., lattices are only traversed
+downwards, not upwards.
+
+@subsection Top values
+The XDK grammar file compiler sets values which are not provided in a
+lexical class or lexical to the top value of the type.  As we give a
+complete list of types and their corresponding lattices in @ref{Types
+reference}, for the present purposes, it suffices to say that:
+@itemize @bullet
+@item the top value of an intersective set is the full set (containing all
+elements of the domain of the set)
+@item the top value of an accumulative set is the empty set
+@item the top value of a valency is the empty set
+@item the top value of a record is defined recursively: it is the record
+where each feature has its appropriate top value
+@end itemize
+
+Currently, top values serve two purposes:
+@enumerate
+@item they provide @emph{default values}
+@cindex default value
+@cindex default
+for omitted values
+@item they are used to make the output of the
+@emph{pretty}
+@cindex pretty
+output functor more readable (values with top values are
+abbreviated to @code{top})
+@end enumerate
+
+In the UL, the top value can be obtained by 1) writing @code{top}, 2)
+omitting the value.
+
+@subsubsection Example (top values)
+We come back to the example lexical entry for ``der'' in @ref{Lexicon}
+above, repeated below:
+
+@example
+defentry @{
+  dim id @{in: @{det@}
+          out: @{@}
+          agrs: ($ fem & (dat|gen) & sg & def)
+          agree: @{@}
+          govern: @{det: $ ()
+                   subj: $ ()
+                   obj: $ ()
+                   vbse: $ ()
+                   vprt: $ ()
+                   vinf: $ ()
+                   prt: $ ()@}@}
+  dim lp @{in: @{df@}
+          out: @{@}
+          on: @{d@}@}
+  dim idlp @{blocks: @{@}
+            end: @{d: @{@}
+                  df: @{@}
+                  n: @{@}
+                  mf: @{@}
+                  vcf: @{@}
+                  p: @{@}
+                  pf: @{@}
+                  v: @{@}
+                  vxf: @{@}
+  dim lex @{word: "der"@}@}
+@end example
+
+First, we replace all values which are identical to the default values
+by @code{top}:
+
+@example
+defentry @{
+  dim id @{in: @{det@}
+          out: top
+          agrs: ($ fem & (dat|gen) & sg & def)
+          agree: top
+          govern: top@}
+  dim lp @{in: @{df@}
+          out: top
+          on: @{d@}@}
+  dim idlp @{blocks: top
+            end: top@}
+  dim lex @{word: "der"@}@}
+@end example
+
+Next, we remove all these features. What we end up with is a much more
+succinct lexical entry:
+
+@example
+defentry @{
+  dim id @{in: @{det@}
+          agrs: ($ fem & (dat|gen) & sg & def)
+  dim lp @{in: @{df@}
+          on: @{d@}
+  dim lex @{word: "der"@}@}
+@end example
+
+@subsection Bottom values
+All types have bottom values.  As we give a complete list of types and
+their corresponding lattices in @ref{Types reference}, it suffices to say
+here that the bottom value of an accumulative set is the full set
+(containing all elements of the domain of the set).
+
+Currently, bottom values serve two purposes:
+@enumerate
+@item for accumulative sets, they can be used as an abbreviation
+replacing an explicit specification of the full set
+@item they are used to make the output of the
+@emph{pretty}
+@cindex pretty
+output functor more readable (values with bottom values are
+abbreviated to @code{bot})
+@end enumerate
+
+In the UL, the bottom value can be obtained by writing @code{bot}.
+
+@subsubsection Example (bottom values)
+As an example, consider the following definition of the class
+@code{fin}:
+
+@example
+defclass "fin" Word Agrs @{
+  dim id @{in: @{@}
+          out: @{subj@}
+          agrs: Agrs
+          agree: @{subj@}
+          govern: @{subj: $ nom@}@}
+  dim lp @{in: @{@}
+          out: @{mf* vxf?@}
+          on: @{v@}@}
+  dim idlp @{blocks: @{det subj obj vbse vprt vinf prt@}@}
+  dim lex @{word: Word@}@}
+@end example
+
+The value of @code{blocks} on the idlp dimension includes all elements
+of the domain of the set (@code{@{det subj obj vbse vprt vinf prt@}}).
+The type of @code{blocks} is @emph{accumulative set};
+@cindex accumulative set
+i.e. its bottom value is the full set. Thus, we can replace the value
+of @code{blocks} by its bottom value to obtain a more succinct lexical
+class:
+
+@example
+defclass "fin" Word Agrs @{
+  dim id @{in: @{@}
+          out: @{subj@}
+          agrs: Agrs
+          agree: @{subj@}
+          govern: @{subj: $ nom@}@}
+  dim lp @{in: @{@}
+          out: @{mf* vxf?@}
+          on: @{v@}@}
+  dim idlp @{blocks: bot@}
+  dim lex @{word: Word@}@}
+@end example
+
+@subsection Greatest lower bound operation
+As we give a complete list of types and their corresponding lattices in
+@ref{Types reference}, for the present purposes, it suffices to say here that
+@itemize @bullet
+@item the greatest lower bound of two intersective sets is their intersection
+@item the greatest lower bound of two accumulative sets is their union
+@end itemize
+
+The greatest lower bound operation has only the purpose of
+specializing values. It can be thought of as what is called @emph{lexical
+inheritance}
+@cindex lexical inheritance
+@cindex inheritance
+in other grammar formalisms.
+
+In the following, we will call the greatest lower bound operation
+@emph{conjunction}
+@cindex conjunction
+
+@subsubsection Example (greatest lower bound operation; accumulative sets)
+Here is a second example. First, we define the two lexical classes
+@code{block_subj} and @code{block_obj}:
+
+@example
+defclass "blocks_subj" @{
+  dim idlp @{blocks: @{subj@}@}@}
+
+defclass "blocks_obj" @{
+  dim idlp @{blocks: @{obj@}@}@}
+@end example
+
+Next, we use the greatest lower bound operation (conjunction) to
+combine the two lexical classes:
+
+@example
+defclass "blocks_subj_obj" @{
+  "blocks_subj" &
+  "blocks_obj"@}
+@end example
+
+The type of the @code{blocks} feature on the idlp dimension is
+@emph{accumulative set}.
+@cindex accumulative set
+Hence in the resulting lexical class, the @code{blocks} value on the lp
+dimension is the @emph{union}
+@cindex set union
+@cindex union
+of the @code{blocks} value of the class @code{blocks_subj}
+(@code{@{subj@}}) and the @code{blocks} value of the class
+@code{blocks_obj} (@code{@{obj@}}), i.e. @code{@{subj obj@}}.
+
+If the type of the feature would be @emph{intersective set},
+@cindex intersective set
+we would have used @emph{intersection}
+@cindex set intersection
+@cindex intersection
+instead of union.
+
+@subsubsection Example (combining conjunction and disjunction)
+Conjunction and disjunction can be combined.  Here is an
+example. First, we define five lexical classes:
+
+@example
+defclass "class_1" @{ @dots{} @}
+
+defclass "class_2" @{ @dots{} @}
+
+defclass "class_3" @{ @dots{} @}
+
+defclass "class_4" @{ @dots{} @}
+
+defclass "class_5" @{ @dots{} @}
+@end example
+
+Next, we combine the classes using both conjunction and disjunction in
+a @code{defentry} expression:
+
+@example
+defentry @{
+  ("class_1" |
+   "class_2" |
+   "class_3") &
+  ("class_4" |
+   "class_5")@}
+@end example
+
+The expression defines six lexical entries which we could write less
+succinctly without disjunction as:
+
+@example
+defentry @{
+  "class_1" &
+  "class_4"@}
+  
+defentry @{
+  "class_1" &
+  "class_5"@}
+
+defentry @{
+  "class_2" &
+  "class_4"@}
+
+defentry @{
+  "class_2" &
+  "class_5"@}
+
+defentry @{
+  "class_3" &
+  "class_4"@}
+
+defentry @{
+  "class_3" &
+  "class_5"@}
+@end example

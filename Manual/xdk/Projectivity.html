@@ -1,0 +1,94 @@
+<html lang="en">
+<head>
+<title>Projectivity - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Principles-list.html#Principles-list" title="Principles list">
+<link rel="prev" href="PartialAgreement.html#PartialAgreement" title="PartialAgreement">
+<link rel="next" href="Relative.html#Relative" title="Relative">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Projectivity"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Relative.html#Relative">Relative</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="PartialAgreement.html#PartialAgreement">PartialAgreement</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Principles-list.html#Principles-list">Principles list</a>
+<hr>
+</div>
+
+<h4 class="subsection">7.2.61 Projectivity principle</h4>
+
+     <ul>
+<li>identifier: <code>principle.projectivity</code>
+<li>dimension variables: <code>D</code>
+<li>argument variables: none
+<li>default values: none
+<li>model record: empty
+<li>constraints: <code>Projectivity</code> (priority 130)
+<li>edge constraints: none
+</ul>
+
+   <p>This principle assumes that the Graph principle (<a href="Graph.html#Graph">Graph</a>) is used
+on dimension <code>D</code>.
+
+   <p>The operation of this principle depends on whether on <code>D</code>, a
+principle is used that introduces the <code>yield</code> feature, i.e.,
+typically an order principle. If the <code>yield</code> feature is present,
+then the principle states that for each node on <code>D</code>, its
+<code>yield</code> set must be convex (i.e. without holes), otherwise, the
+<code>eqdown</code> set must be convex.
+
+   <p>Here is the definition of the <code>Projectivity</code> constraint functor:
+<pre class="verbatim">%% Copyright 2001-2011
+%% by Ralph Debusmann &lt;rade@ps.uni-sb.de> (Saarland University) and
+%%    Denys Duchier &lt;duchier@ps.uni-sb.de> (LIFO, Orleans) and
+%%    Jorge Marques Pelizzoni &lt;jpeliz@icmc.usp.br> (ICMC, Sao Paulo) and
+%%    Jochen Setz &lt;info@jochensetz.de> (Saarland University)
+%%
+functor
+import
+%   System(show)
+   
+   Helpers(checkModel) at 'Helpers.ozf'
+export
+   Constraint
+define
+   proc {Constraint Nodes G Principle FD FS Select}
+      DVA2DIDA = Principle.dVA2DIDA
+      %%
+      DIDA = {DVA2DIDA 'D'}
+   in
+      %% check features
+      if {Helpers.checkModel 'Projectivity.oz' Nodes
+	  [DIDA#eqdown]} then
+	 for Node in Nodes do
+	    if {HasFeature Node.DIDA.model yield} then
+	       {FS.int.convex Node.DIDA.model.yield}
+	    else
+	       {FS.int.convex Node.DIDA.model.eqdown}
+	    end
+	 end
+      end
+   end
+end
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

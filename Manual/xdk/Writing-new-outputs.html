@@ -1,0 +1,131 @@
+<html lang="en">
+<head>
+<title>Writing new outputs - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Outputs.html#Outputs" title="Outputs">
+<link rel="prev" href="Output-record.html#Output-record" title="Output record">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Writing-new-outputs"></a>
+<p>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Output-record.html#Output-record">Output record</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Outputs.html#Outputs">Outputs</a>
+<hr>
+</div>
+
+<h3 class="section">9.38 Writing new outputs</h3>
+
+<p>In this section, we explain how you can write new outputs in
+Mozart/Oz. You may also choose to do post-processing using another
+programming language, building on one of the XML output functors.
+
+   <p>In order to write an output in Mozart/Oz, you need to provide two
+things:
+     <ol type=1 start=1>
+<li>the <em>output definition</em>
+<a name="index-output-definition-341"></a><li>the <em>output functor</em>
+<a name="index-output-functor-342"></a>
+        </ol>
+
+<h4 class="subsection">9.38.1 Output definition</h4>
+
+<p>You write the output definition in the IL, and add it to the list of
+output definitions bound to the Oz variable <code>Outputs</code> at the top of
+the functor <code>Outputs/Outputs.oz</code>.
+
+<h5 class="subsubsection">9.38.1.1 Example (dag output)</h5>
+
+<p>Here is an example output definition of the output <code>output.dag</code>:
+<pre class="example">     elem(tag: outputdef
+          id: elem(tag: constant
+                   data: 'output.dag')
+          'functor': elem(tag: constant
+                          data: 'Dag'))
+</pre>
+   <p>The value of the <code>id</code> feature is an IL constant denoting the unique
+output identifier. The value of the <code>'functor'</code> feature is an IL constant
+denoting the filename of the Oz functor implementing the output (modulo
+the suffix <code>.ozf</code>).
+
+<h5 class="subsubsection">9.38.1.2 Integrate the output definition</h5>
+
+<p>In order to integrate the output definition into the XDK, you need to
+add the identifier of the new output to the XML file
+<code>Outputs/outputs.xml</code>. Here, for each new output, you add a line
+like the following for the Dag output:
+
+<pre class="example">     &lt;outputDef id="output.Dag"/&gt;
+</pre>
+   <p>This step is necessary because XML language grammar files contain only
+output chooses and uses, but not output definitions. Therefore, the
+output identifiers of the chosen/used outputs are only referred to
+but not defined in XML language grammar files, which leads to errors
+running an XML validator on them.
+
+<h4 class="subsection">9.38.2 Output functor</h4>
+
+<p>You write the output functor as an Oz functor exporting two procedures:
+     <ul>
+<li><code>Open: DIDA I OutputRec -&gt; U</code> (open the output for dimension <code>DIDA</code>)
+<li><code>Close: DIDA -&gt; U</code> (close all windows opened by this output for dimension <code>DIDA</code>)
+</ul>
+
+   <p><code>Open</code> has three arguments:
+     <ol type=1 start=1>
+<li><code>DIDA</code> is a dimension identifier
+denoting the output dimension
+<li><code>I</code> is an Oz integer denoting the number of the
+solution
+<li><code>OutputRec</code> is the output record providing the
+decoded information contained in the solution
+        </ol>
+
+   <p><code>Close</code> has one argument:
+     <ol type=1 start=1>
+<li><code>DIDA</code> is a dimension identifier
+denoting the output dimension
+        </ol>
+
+   <p>The output functor has to reside in <code>Outputs/Lib</code>. Its file name must
+match the value of the <code>'functor'</code> feature in the output definition,
+i.e. for <code>Dag</code>, it must be <code>Dag.oz</code>.
+
+<h5 class="subsubsection">9.38.2.1 Integrate the output functor</h5>
+
+<p>In order to integrate the output definition into the XDK, you need to
+add the output functor to the <code>ozmake</code> makefile in
+<code>Outputs/Lib</code> (<code>Outputs/Lib/makefile.oz</code>).
+
+<h5 class="subsubsection">9.38.2.2 Check cycles helper procedure</h5>
+
+<p>The functor <code>Outputs/Lib/Helpers.oz</code> exports the procedure
+<code>CheckCycles: DIDA NodeOLs -&gt; U</code>. <code>CheckCycles</code> checks
+whether a graph has a cycle. It has two arguments:
+     <ul>
+<li><code>DIDA</code>: a dimension identifier of the dimension which shall be checked
+<li><code>NodeOLs</code>: a list of node records in the OL, denoting a solution. 
+</ul>
+
+   <p>The procedure assumes that the graph principle (or the graph1
+principle) is used on dimension <code>DIDA</code>.
+
+<!-- ************************************************************ -->
+   </body></html>
+

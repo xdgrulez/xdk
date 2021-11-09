@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE statistics SYSTEM "Extras/statistics.dtd">
+<statistics>
+  <grammar data="4712.ulsocket"/>
+  <examples data="XTAG/XDK_evaluation/wsj23_35-39.txt" count="185"/>
+  <date data="Jun 8, 2007 11:28:46"/>
+  <solutions data="1"/>
+  <failures data="9999"/>
+  <timeout data="1800"/>
+  <reco data="5"/>
+  <dimensions>
+    <dimension data="id"/>
+    <dimension data="idlp"/>
+    <dimension data="lex"/>
+    <dimension data="lp"/>
+  </dimensions>
+  <principles>
+    <principle data="id principle.graph1Constraints (id)"/>
+    <principle data="id principle.graph1Dist (id)"/>
+    <principle data="id principle.tree (id)"/>
+    <principle data="id principle.in (id)"/>
+    <principle data="id principle.out (id)"/>
+    <principle data="id principle.xTAGRoot (id)"/>
+    <principle data="lp principle.graph1Constraints (lp)"/>
+    <principle data="lp principle.graph1Dist (lp)"/>
+    <principle data="lp principle.tree (lp)"/>
+    <principle data="lp principle.in (lp)"/>
+    <principle data="lp principle.out (lp)"/>
+    <principle data="lp principle.government (lp)"/>
+    <principle data="lp principle.xTAG (lp)"/>
+    <principle data="lp principle.parse (lp)"/>
+    <principle data="idlp principle.xTAGLinking (id,lp,idlp)"/>
+    <principle data="idlp principle.xTAGRedundant (id,lp)"/>
+    <principle data="lex principle.entries ()"/>
+  </principles>
+  <gprofile fd="6" fs="204" fdfs="210" entries="204">
+    <gpnode fd="2" fs="1" fdfs="3"/>
+    <gpattrs fd="0" fs="0" fdfs="0">
+      <gpdimension data="id" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="idlp" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="0" fs="0" fdfs="0"/>
+    </gpattrs>
+    <gpentry fd="2" fs="106" fdfs="108">
+      <gpdimension data="id" fd="0" fs="29" fdfs="29"/>
+      <gpdimension data="idlp" fd="0" fs="25" fdfs="25"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="2" fs="52" fdfs="54"/>
+    </gpentry>
+    <gpmodel fd="2" fs="97" fdfs="99">
+      <gpdimension data="id" fd="1" fs="36" fdfs="37"/>
+      <gpdimension data="idlp" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="1" fs="61" fdfs="62"/>
+    </gpmodel>
+    <gplabel>
+      <gpdimension data="id" label="28"/>
+      <gpdimension data="idlp" label="0"/>
+      <gpdimension data="lex" label="0"/>
+      <gpdimension data="lp" label="25"/>
+    </gplabel>
+  </gprofile>
+  <string id="string4">
+    <words>
+    this confusion effectively halted one form of program trading , stock index arbitrage , that closely links the futures and stock markets , and has been blamed by some for the market 's big swings .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="3758"/>
+    <depth data="96"/>
+    <failed data="3743"/>
+    <succeeded data="0"/>
+    <time data="1800170"/>
+    <sprofile fd="335448" fs="99888" fdfs="435336" pr="573644" entries="8.8056" words="36">
+      <spnode index="1" word="this" entries="2" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="2" word="confusion" entries="10" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="3" word="effectively" entries="4" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="4" word="halted" entries="27" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="5" word="one" entries="2" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="6" word="form" entries="3" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="7" word="of" entries="13" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="8" word="program" entries="10" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="9" word="trading" entries="3" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="10" word="," entries="8" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="11" word="stock" entries="10" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="12" word="index" entries="10" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="13" word="arbitrage" entries="10" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="14" word="," entries="8" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="15" word="that" entries="1" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="16" word="closely" entries="2" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="17" word="links" entries="23" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="18" word="the" entries="2" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="19" word="futures" entries="10" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="20" word="and" entries="11" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="21" word="stock" entries="10" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="22" word="markets" entries="10" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="23" word="," entries="8" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="24" word="and" entries="11" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="25" word="has" entries="29" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="26" word="been" entries="4" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="27" word="blamed" entries="18" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="28" word="by" entries="13" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="29" word="some" entries="2" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="30" word="for" entries="14" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="31" word="the" entries="2" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="32" word="market" entries="10" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="33" word="'s" entries="3" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="34" word="big" entries="9" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="35" word="swings" entries="3" fd="6" fs="213" fdfs="219" pr="335"/>
+      <spnode index="36" word="." entries="2" fd="6" fs="213" fdfs="219" pr="335"/>
+    </sprofile>
+  </string>
+      <spnode index="27" word="contact" entries="13" fd="6" fs="282" fdfs="288" pr="445"/>
+      <spnode index="28" word="with" entries="18" fd="6" fs="282" fdfs="288" pr="445"/>
+      <spnode index="29" word="both" entries="2" fd="6" fs="282" fdfs="288" pr="445"/>
+      <spnode index="30" word="sides" entries="13" fd="6" fs="282" fdfs="288" pr="445"/>
+      <spnode index="31" word="since" entries="5" fd="6" fs="282" fdfs="288" pr="445"/>
+      <spnode index="32" word="the" entries="2" fd="6" fs="282" fdfs="288" pr="445"/>
+      <spnode index="33" word="strike" entries="13" fd="6" fs="282" fdfs="288" pr="445"/>
+      <spnode index="34" word="began" entries="43" fd="6" fs="282" fdfs="288" pr="445"/>
+      <spnode index="35" word="." entries="2" fd="6" fs="282" fdfs="288" pr="445"/>
+    </sprofile>
+  </string>
+  <string id="string15">
+    <words>
+    but Iraqi Iraqi said he thinks the earliest a pact could be struck would be the end of this month , hinting that the company and union may resume negotiations as early as this week .
+    </words>
+    <outputs>

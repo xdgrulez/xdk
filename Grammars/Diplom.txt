@@ -1,0 +1,316 @@
+******************************************
+* Thesis
+
+* Chapter 1
+maria liebt ihn
+
+******************************************
+* Chapter 2
+maria hat einen reichen mann sehr geliebt
+eine huebsche kleine frau lacht
+
+******************************************
+* Chapter 3
+den mann hat maria geliebt
+hat dem mann jemand erlaubt das buch zu lesen
+
+******************************************
+* Chapter 4
+maria hat dem mann einen korb gegeben der lacht
+hat peter maria geliebt
+
+******************************************
+* Chapter 5
+maria hat dem mann einen korb gegeben
+maria gegeben hat dem mann einen korb
+maria lieben wird ihn koennen
+frau des mannes
+des frau mannes
+
+******************************************
+* Chapter 6
+
+******************************************
+* Chapter 7
+
+* ID part
+* Finite verbs
+peter lacht oft
+dass peter oft lacht
+ein mann der oft lacht
+
+* Non-finite verbs
+die frau hat oft mit peter gelacht
+
+* Complementizers
+maria glaubt dass er lacht
+
+* Nouns
+die huebsche kleine frau des mannes
+die frau mit dem teleskop die lacht
+
+* Prepositions
+maria lacht mit dem mann
+
+* LP part
+* vxf and nf
+eine frau versucht zu schlafen die lacht
+eine frau versucht die lacht zu schlafen
+
+* Finite verbs: verb-first, verb-second
+maria hat den mann geliebt
+maria hat versprochen den mann zu lieben
+hat die frau versprochen ihn zu lieben die oft lacht
+
+* Finite verbs: verb-final subordinate
+dass maria den mann zu lieben versucht
+
+* Finite verbs: verb-final relative clause
+den mann zu lieben verspricht maria
+ein mann den zu lieben maria verspricht
+den mann geliebt hat maria
+ein mann den geliebt maria hat
+ein mann den maria zu lieben versucht
+
+* Non-finite verbs: canonical position
+dass maria den mann zu lieben versucht
+
+* Non-finite verbs: non-canonical position
+dass maria versucht den mann zu lieben
+
+* Complementizers
+maria glaubt dass er lacht
+
+* Nouns
+die huebsche kleine frau des mannes
+des mannes huebsche kleine frau
+die des mannes huebsche kleine frau
+
+* Prepositions
+mit dem mann lacht maria
+
+******************************************
+* Chapter 8
+
+* Scrambling
+dass maria einen roman zu schreiben verspricht
+dass einen roman maria zu schreiben verspricht
+
+* VP dislocation
+* Fronting
+einen roman zu schreiben verspricht maria
+
+* Partial fronting
+zu schreiben verspricht maria einen roman
+
+* Extraposition
+dass maria verspricht einen roman zu schreiben
+
+* Partial extraposition
+dass maria einen roman verspricht zu schreiben
+
+* Intraposition
+dass einen roman zu schreiben maria verspricht
+
+* (Partial intraposition)
+dass zu schreiben maria einen roman verspricht
+
+* Auxiliary flip
+* Obligatory head-final placement
+dass maria einen roman schreiben wird
+dass maria einen roman wird schreiben
+
+* Optional auxiliary flip
+dass maria einen roman schreiben koennen wird
+dass maria einen roman wird schreiben koennen
+
+* Obligatory auxiliary flip
+dass maria einen roman hat schreiben koennen
+dass maria einen roman schreiben koennen hat
+
+* V-Projection raising
+dass maria wird einen roman schreiben koennen
+dass maria schreiben einen roman koennen wird
+dass maria schreiben koennen einen roman wird
+
+* VC-split
+dass maria einen roman schreiben wird koennen
+dass maria schreiben wird einen roman koennen
+
+* Relative clauses
+* Pied Piping
+* NP pied piping
+ein mann dessen frau lacht
+
+* PP pied piping
+ein mann mit dem maria lacht
+
+* VP pied piping
+einen roman den zu schreiben maria verspricht
+
+* Relative clause extraposition
+dass maria einen mann liebt der lacht
+
+******************************************
+* Chapter 9
+
+******************************************
+* Chapter 10
+
+******************************************
+* Chapter 11
+
+******************************************
+* Appendix A
+
+* Coherence and incoherence
+dass maria den mann zu lieben scheint
+dass maria scheint den mann zu lieben
+dass maria den mann zu lieben empfiehlt
+dass maria empfiehlt den mann zu lieben
+dass maria den mann zu lieben versucht
+dass maria versucht den mann zu lieben
+
+* Separable verb prefixes
+dass maria heute einkauft
+maria kauft heute ein
+maria kauft heute zu
+
+* Agreement
+der mann lacht
+die maenner lacht
+des mannes lacht
+der reiche mann
+ein reicher mann
+der reicher mann
+ein reiche mann
+
+* Relative clause principle
+ein mann dessen frau lacht
+ein mann eine frau lacht
+ein mann die lacht
+
+******************************************
+* Miscellaneous examples
+
+* separable verb prefixes
+
+maria hat zu versuchen vor einen mann zu lieben
+maria hat vor einen mann zu lieben
+maria kauft heute ein
+
+* scope of adjuncts
+
+dass maria heute einen roman zu lesen versucht
+dass maria heute einen roman lesen kann
+dass maria heute versucht einen roman zu lesen
+dass maria versucht heute einen roman zu lesen
+
+* noun phrases
+
+eine frau eines mannes
+des mannes frau
+eine des mannes frau
+des mannes huebsche frau
+die huebsche frau des mannes
+
+* relative clauses
+
+ein mann der schlaeft schlaeft
+ein mann schlaeft der schlaeft
+ein mann die schlaeft schlaeft
+
+* pied piping
+
+ein mann den maria zu lieben versucht
+ein mann den zu lieben maria versucht
+ein mann mit dem maria lacht
+ein mann dessen frau lacht
+
+* intraposition
+
+dass einen mann zu lieben maria versucht
+
+* genitival objects
+
+er harrt der frau
+
+* dass clauses
+
+peter glaubt dass maria schlaeft
+peter glaubt dass maria einen mann liebt
+peter glaubt dass maria glaubt peter schlaeft
+peter glaubt dass maria glaubt dass peter schlaeft
+peter glaubt dass maria glaubt dass peter glaubt maria schlaeft
+* 11 words
+peter glaubt dass maria glaubt dass peter glaubt dass maria schlaeft
+* 20 words
+peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass maria schlaeft
+* 29 words
+peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass maria glaubt dass maria glaubt dass maria glaubt dass maria schlaeft
+* 38 words
+peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass maria glaubt dass maria glaubt dass maria glaubt dass maria glaubt dass maria glaubt dass maria glaubt dass maria schlaeft
+* 50 words
+peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass maria schlaeft
+* 63 words
+peter liebt eine huebsche frau die heute glaubt dass peter heute glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria schlaeft
+* 64 words
+peter liebt eine huebsche frau die heute glaubt dass peter heute glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria glaubt dass peter glaubt dass maria heute schlaeft
+
+* Reape
+
+dass es ihm jemand zu lesen versprochen hat
+hans hat versprochen dem richter zu gestehen die frau geliebt zu haben
+dem richter zu gestehen die frau geliebt zu haben hat hans versprochen 
+
+******************************************
+* ACL paper
+
+* VP Extraposition
+
+dass maria einen mann zu lieben versucht
+dass maria versucht einen mann zu lieben
+
+* Partial VP Extraposition
+
+dass maria einen mann versucht zu lieben
+
+* Obligatory Head-final Placement
+
+dass maria einen mann lieben wird
+dass maria einen mann wird lieben
+
+* Optional Auxiliary Flip
+
+dass maria einen mann lieben koennen wird
+dass maria einen mann wird lieben koennen
+
+* V-Projection Raising
+
+dass maria wird einen mann lieben koennen
+dass maria lieben einen mann koennen wird
+dass maria lieben koennen einen mann wird
+
+* Intermediate Placement
+
+dass maria einen mann lieben wird koennen
+dass einen mann maria lieben wird koennen
+
+* Obligatory Auxiliary Flip
+
+dass maria einen mann hat lieben koennen
+dass maria hat einen mann lieben koennen
+dass maria einen mann lieben koennen hat
+
+* Double Auxiliary Flip
+
+dass maria wird haben einen mann lieben koennen
+dass maria einen mann wird haben lieben koennen
+dass maria wird einen mann lieben haben koennen
+dass maria einen mann wird lieben haben koennen
+dass maria einen mann lieben wird haben koennen
+
+* Obligatory Coherence
+
+dass maria einen mann zu lieben scheint
+dass maria einen mann scheint zu lieben

@@ -1,0 +1,51 @@
+@chapter Exceptions
+This section describes the standard format for exceptions. We strongly
+encourage all developers to adhere to this format, for two main
+reasons:
+@itemize @bullet
+@item all executables pertaining to the XDK expect this format
+(e.g. the GUI expects it to correctly create the appropriate exception
+windows)
+@item consistency
+@end itemize
+
+A typical exception from the XDK looks is a record with label
+@code{error1}, and features @code{'functor'}, @code{'proc'},
+@code{info}, @code{msg}, @code{coord} and @code{file}. The latter
+three features are obligatory, the others optional. The obligatory
+features are always printed out by the error handling procedures of
+the executables pertaining to the XDK. The other features are
+typically only to be seen when the debug mode is on.
+
+Here is an example exception:
+
+@example
+error1('functor':'Compiler/TypeCollector.ozf'
+       'proc':'CollectTypes1'
+       info:o(AttrsType 'dimension') 
+       msg:'Attributes type must be a record.'
+       coord:AttrsCoord
+       file:AttrsFile)
+@end example
+
+The value of @code{'functor'} must be an atom representing
+the path to the functor in which the exception was raised.
+
+The value of @code{'proc'} must be an atom representing the name of
+the procedure in which the exception was raised.
+
+The value of @code{info} is a tuple with label @code{o} with arbitrary
+projections providing extra information (in addition to the message,
+see below) for debugging purposes.
+
+The value of @code{msg} is a virtual string representing the message
+to be printed by the error handling procedures.
+
+The value of @code{coord} is either the atom @code{noCoord}, a pair
+@code{I1#I2} of two integers @code{I1} and @code{I2}, or just an
+integer @code{I}, denoting the range of lines or just the line of an
+error which occurred when compiling a grammar file.
+
+The value of @code{file} is either the atom @code{noFile}, or an atom
+@code{A} denoting the filename of the grammar file where the error
+occurred.

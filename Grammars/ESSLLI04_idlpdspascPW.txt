@@ -1,0 +1,56 @@
+maria einen roman zu schreiben verspricht .
+einen roman maria verspricht zu schreiben .
+einen roman maria zu schreiben verspricht .
+
+peter einen mann ueberredet maria zu lieben .
+
+peter einen mann zu lieben scheint .
+
+maria einen mann liebt .
+
+******************************************
+* ACL paper
+
+* VP Extraposition
+
+maria einen mann zu lieben versucht .
+maria versucht einen mann zu lieben .
+
+* Partial VP Extraposition
+
+maria einen mann versucht zu lieben .
+
+* Obligatory Head-final Placement
+
+maria einen mann lieben wird .
+maria einen mann wird lieben .
+
+* Optional Auxiliary Flip
+
+maria einen mann lieben koennen wird .
+maria einen mann wird lieben koennen .
+
+* V-Projection Raising
+
+maria wird einen mann lieben koennen .
+maria lieben einen mann koennen wird .
+maria lieben koennen einen mann wird .
+
+* Intermediate Placement
+
+maria einen mann lieben wird koennen .
+einen mann maria lieben wird koennen .
+
+* Obligatory Auxiliary Flip
+
+maria einen mann hat lieben koennen .
+maria hat einen mann lieben koennen .
+maria einen mann lieben koennen hat .
+
+* Double Auxiliary Flip
+
+maria wird haben einen mann lieben koennen .
+maria einen mann wird haben lieben koennen .
+maria wird einen mann lieben haben koennen .
+maria einen mann wird lieben haben koennen .
+maria einen mann lieben wird haben koennen .

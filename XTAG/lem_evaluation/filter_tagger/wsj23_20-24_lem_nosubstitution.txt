@@ -1,0 +1,134 @@
+sent: 24: i just think it 's nonproductive at this point to get into a debate if index arbitrage would have helped or hurt things . 
+done parsing...
+time(CPU): 950.650000
+parsed 1 from a total of 1
+
+sent: 20: a major reason is that investors already have sharply scaled back their purchases of stock funds since Black Monday . 
+done parsing...
+time(CPU): 6.750000
+parsed 0 from a total of 1
+
+sent: 24: if they croak stocks like that , he said , it presents an opportunity that is the kind of thing you dream about . 
+done parsing...
+time(CPU): 144.740000
+parsed 0 from a total of 1
+
+sent: 23: some early selling is likely to stem from investors and portfolio managers who want to lock in this year 's fat profits . 
+done parsing...
+time(CPU): 716.580000
+parsed 1 from a total of 1
+
+sent: 24: he added that the company miscalculated the union 's resolve and the workers ' disgust with being forced to work many hours overtime . 
+done parsing...
+time(CPU): 662.150000
+parsed 1 from a total of 1
+
+sent: 20: there are really very few companies that have adequate capital to buy properties in a raw state for cash . 
+done parsing...
+time(CPU): 405.210000
+parsed 1 from a total of 1
+
+sent: 22: having just passed through one of the most profitable periods in their history , these producers now see their prices eroding . 
+done parsing...
+time(CPU): 814.240000
+parsed 0 from a total of 1
+
+sent: 21: and the financial decline of some looks steep only in comparison with the heady period that is just behind them . 
+done parsing...
+time(CPU): 11.090000
+parsed 0 from a total of 1
+
+sent: 22: in recent months the price of polyethylene , even more than that of other commodity plastics , has taken a dive . 
+done parsing...
+time(CPU): 91.480000
+parsed 0 from a total of 1
+
+sent: 21: meanwhile , the price of ethylene , the chemical building block of polyethylene , has not dropped nearly so fast . 
+done parsing...
+time(CPU): 533.730000
+parsed 0 from a total of 1
+
+sent: 22: by many accounts , an early hint of a price rout in the making came at the start of this year . 
+done parsing...
+time(CPU): 238.590000
+parsed 1 from a total of 1
+
+sent: 21: no one knows , however , whether the new posted prices will stick once producers and customers start to haggle . 
+done parsing...
+time(CPU): 26.590000
+parsed 0 from a total of 1
+
+sent: 20: he argues that efforts to firm up prices will be undermined by producers ' plans to expand production capacity . 
+done parsing...
+time(CPU): 185.820000
+parsed 1 from a total of 1
+
+sent: 23: some viewed his response -- that company directors review the dividend regularly -- as nothing more than the standard line from executives . 
+done parsing...
+time(CPU): 42.940000
+parsed 0 from a total of 1
+
+sent: 20: but the numbers become trickier -- and subject to dickering between insured and insurer -- when demand is shifting . 
+done parsing...
+time(CPU): 1.880000
+parsed 0 from a total of 1
+
+sent: 24: the plant expansion should strengthen the company 's sway in the polyethylene business , where market share is often taken through sheer capacity . 
+done parsing...
+time(CPU): 1084.560000
+parsed 1 from a total of 1
+
+sent: 20: and retailers are expected to embrace the product , in part because it will take up less shelf space . 
+done parsing...
+time(CPU): 124.680000
+parsed 1 from a total of 1
+
+sent: 21: she said the trade imbalance was mainly due to macroeconomic factors and should not be tackled by setting quantitative targets . 
+done parsing...
+time(CPU): 45.840000
+parsed 0 from a total of 1
+
+sent: 24: my impression was that you would be a scary old lady , he said , drawing a few nervous chuckles from his colleagues . 
+done parsing...
+time(CPU): 41.200000
+parsed 1 from a total of 1
+
+sent: 20: but i am relieved to see that you are beautiful and gentle and intelligent and a person of integrity . 
+done parsing...
+time(CPU): 13.450000
+parsed 0 from a total of 1
+
+sent: 23: typical is what happened to the price of ethylene , a major commodity chemical produced in vast amounts by many oil companies . 
+done parsing...
+time(CPU): 460.740000
+parsed 0 from a total of 1
+
+sent: 23: now , greatly increased supplies are on the market , while the dollar is stronger , and domestic economic growth is slower . 
+done parsing...
+time(CPU): 49.810000
+parsed 1 from a total of 1
+
+sent: 23: oil company refineries ran flat out to prepare for a robust holiday driving season in July and August that did not materialize . 
+done parsing...
+time(CPU): 496.360000
+parsed 1 from a total of 1
+
+sent: 20: traders will be watching to see how long and how far the price decline that began Friday will go . 
+done parsing...
+time(CPU): 184.060000
+parsed 1 from a total of 1
+
+sent: 24: analysts generally cite a lack of bearish developments as well as rumors of a possible tightening of supplies of some fuels and crudes . 
+done parsing...
+time(CPU): 46.020000
+parsed 1 from a total of 1
+
+sent: 24: a spokeswoman would not elaborate , but the company said the discontinued product has never been a major source of revenue or profit . 
+done parsing...
+time(CPU): 114.800000
+parsed 1 from a total of 1
+
+sent: 20: it said it is considering all of its options in light of the decision , including a possible appeal . 
+done parsing...
+time(CPU): 90.180000
+parsed 0 from a total of 1

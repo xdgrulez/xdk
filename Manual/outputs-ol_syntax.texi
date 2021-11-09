@@ -1,0 +1,337 @@
+@section Output Language
+In this section, we describe how to transform @emph{Solver Language (SL)}
+@cindex Solver Language
+@cindex SL
+expressions into @emph{Output Language (OL)}
+@cindex Output Language
+@cindex OL
+expressions.
+
+Notice that the XDK also provides output in abbreviated form: the
+abbreviated OL syntax is like the OL syntax, but with the following
+abbreviations to make the output a little less cluttered:
+@itemize @bullet
+@item top values are abbreviated with @code{top}
+@item bottom values are abbreviated with @code{bot}
+@item sets of tuples of which all projections are finite domains
+of constants are abbreviated using set generator expressions
+@item undetermined sets of tuples of which all projections are finite domains
+of constants are abbreviated using set generator expressions
+@item undetermined tuples of which all projections are finite domains
+of constants are abbreviated using set generator expressions
+@end itemize
+
+The abbreviated OL syntax is used by the Pretty and output functors to
+visualize all the information contained in a solution.
+
+@subsection Feature path
+Here is the syntax of a SL feature path:
+
+@example
+featurepath(root: RootA
+            dimension: DVA
+            dimension_idref: IDA
+            aspect: AspectA
+            fields: FieldAs)
+@end example
+
+The corresponding OL expression is an Oz atom made up of the following
+parts:
+
+@example
+'<root>.<dim var>(<dim id>).<aspect>.<field_1>.@dots{}.<field_n>'
+@end example
+
+@code{<root>} corresponds to (@code{RootA}), @code{<dim var>} to
+@code{DVA}, @code{<dim id>} to @code{IDA}, @code{<aspect>} to
+@code{AspectA}, and @code{<field_i>} (@code{1<=i<=n}) to
+@code{FieldAs}.
+
+@subsection Cardinality set
+Here is the syntax of SL cardinality sets:
+@example
+M
+@end example
+where @code{M} is an Oz finite set encoding the cardinality set
+@code{IL}.
+
+And here is the corresponding OL expression:
+@example
+OL
+@end example
+where @code{OL} is the OL expression encoding the cardinality set
+@code{M}.
+
+@subsection Constraint
+Undefined.
+
+@subsection Domain
+Here is the syntax of SL constants:
+@example
+I
+@end example
+@code{I} is an Oz integer encoding the constant.
+
+And here is the corresponding OL expression:
+@example
+A
+@end example
+@code{A} is the constant encoded by @code{I}.
+
+@subsection Integer
+Here is the syntax of SL integers:
+@example
+I
+@end example
+
+And here is the corresponding OL expression:
+@example
+I
+@end example
+@code{I} stays the same.
+
+@subsection List
+Here is the syntax of SL lists:
+@example
+SLs
+@end example
+@code{SLs} is an Oz list of SL expressions.
+
+And here is the corresponding OL expression:
+@example
+OLs
+@end example
+@code{OLs} is an Oz list of OL expressions encoding @code{SLs}.
+
+@subsection Map
+See Record.
+
+@subsection Record
+Here is the syntax of SL records:
+@example
+o(A1:SL1
+  @dots{}
+  An:SLn)
+@end example
+@code{Ai:SLi} (@code{1<=i<=n}) is a feature of an Oz atom @code{Ai}
+(the field) and a SL expression @code{SLi} (the value).
+
+And here is the corresponding OL expression:
+@example
+o(A1:OL1
+  @dots{}
+  An:OLn)
+@end example
+@code{Ai} (@code{1<=i<=n}) stays the same, and @code{OLi} is the OL
+expression encoding @code{SLi}.
+
+@subsection Set
+The syntax of SL sets differs depending on the type of the domain of
+the set:
+@enumerate
+@item a finite domain of constants
+@item a tuple of which all projections are finite domains of constants
+@item any other type
+@end enumerate
+
+Here is the syntax of SL sets for the different cases:
+@enumerate
+@item
+@example
+M
+@end example
+@code{M} is an Oz finite set of integers encoding the constants in the
+set.
+@item (see 1.)
+@item 
+@example
+SLs
+@end example
+@code{SLs} is an Oz list of SL expressions in the set.
+@end enumerate
+
+And here is the syntax of the corresponding OL expressions:
+@enumerate
+@item
+@example
+As
+@end example
+@code{As} is an Oz list of Oz atoms encoding the set @code{M}.
+@item
+@example
+Tups
+@end example
+@code{Tups} is an Oz list of Oz tuples encoded in set @code{M}.
+@footnote{The abbreviated OL syntax is @code{A}, and @code{A} is a set
+generator expression encoding the set of tuples @code{M}.}
+@item
+@example
+OLs
+@end example
+@code{OLs} is an Oz list of OL expressions encoding @code{SLs}.
+@end enumerate
+
+@subsection String
+Here is the syntax of SL strings:
+@example
+A
+@end example
+@code{A} is an Oz atom encoding the string.
+
+And here is the OL syntax:
+@example
+A
+@end example
+@code{A} stays the same.
+
+@subsection Tuple
+The syntax of SL tuples differs depending on the type of the
+projections of the tuple:
+@enumerate
+@item all projections are finite domains of constants
+@item at least one projection is not a finite domain of constants
+@end enumerate
+
+Here is the syntax of SL tuples for the different cases:
+@enumerate
+@item
+@example
+I
+@end example
+@code{I} is an Oz integer encoding the tuple.
+@item
+@example
+[SL1 @dots{} SLn]
+@end example
+@code{SLi} is the SL expression on projection @code{i}
+(@code{1<=i<=n}) of the tuple.
+@end enumerate
+
+And here is the syntax of the corresponding OL expressions:
+@enumerate
+@item
+@example
+OL1#@dots{}#OLn
+@end example
+@code{OLi} is the OL expression encoding @code{SLi} (@code{1<=i<=n}).
+@item
+(see 1.)
+@end enumerate
+
+@subsection Undetermined values
+The XDK solver can also yield @emph{partial solutions}
+@cindex partial solution
+in which not all values in the node record are determined; instead
+some of the values are still variables. In the following, we show how
+these variables are represented in the OL.
+
+@subsubsection Undetermined constants
+This is the OL syntax for undetermined constants (i.e. constant
+variables):
+@example
+'_'(DSpec)
+@end example
+@code{DSpec} is a @emph{domain specification}
+@cindex domain specification
+representing the set of constants which can still be bound to the
+constant variable.
+
+@subsubsection Undetermined integers
+This is the OL syntax for undetermined integers (i.e. integer
+variables):
+@example
+'_'(DSpec)
+@end example
+@code{DSpec} is a domain specification representing the set of integers
+which can still be bound to the integer variable.
+
+@subsubsection Undetermined lists
+This is the OL syntax for undetermined lists (i.e. list variables):
+
+@example
+'_'
+@end example
+
+@subsubsection Undetermined sets
+The OL syntax for undetermined sets (i.e. set variables) differs
+depending on the domain of the set:
+@enumerate
+@item a finite
+domain of constants or a tuple of which all projections are finite
+domains of constants
+@item any other type
+@end enumerate
+
+Here is the OL syntax of undetermined sets for the different cases:
+@enumerate
+@item 
+@example
+'_'(MSpec1 MSpec2 DSpec)
+@end example
+
+@code{MSpec1} is a set specification, representing the set of
+constants which are already known to be in the set
+variable.@footnote{The abbreviated OL syntax is @code{A}, and @code{A}
+is a set generator expression representing the set of constants which
+are already known to be in the set variable (if the set is over a
+tuple of which all projections are finite sets of constants).}
+
+@code{MSpec2} is a set specification representing the set of constants
+which could still end up in the set variable.@footnote{The abbreviated
+OL syntax is @code{A}, and @code{A} is a set generator expression
+representing the set of constants which are already known to be in the
+set variable (if the set is over a tuple of which all projections are
+finite sets of constants).}
+
+@code{DSpec} is a domain specification representing the set of integers
+which can still be bound to the integer variable representing the
+cardinality of the set variable.
+
+@item
+@example
+'_'
+@end example
+@end enumerate
+
+@subsubsection Undetermined strings
+This is the OL syntax for undetermined strings (i.e. string variables):
+
+@example
+'_'
+@end example
+
+@subsubsection Undetermined tuples
+The OL syntax for undetermined tuples (i.e. tuple variables) differs
+depending on the projections of the tuple:
+@enumerate
+@item all projections are finite domains of constants
+@item at least one of the projections is no finite domain of constants
+@end enumerate
+
+Here is the OL syntax of undetermined tuples for the different cases:
+@enumerate
+@item
+@example
+'_'(Tups)
+@end example
+@code{Tups} is an Oz list of tuples representing the the set of tuples
+which can still be bound to the tuple variable.@footnote{The
+abbreviated OL syntax is @code{'_'(A)}, and @code{A} is a set
+generator expression representing the set of tuples which can still be
+bound to the tuple variable.}
+@item
+@example
+'_'
+@end example
+@end enumerate
+
+@subsubsection Undetermined cardinality sets in valencies
+This is the OL syntax for undetermined cardinality sets (i.e.
+cardinality set variables) in valencies:
+@example
+'_'(OL1 OL2)
+@end example
+@code{OL1} is the cardinality set representing the set of integers
+which are already known to be in the cardinality set variable.
+@code{OL2} is the cardinality set representing the set of integers
+which can still be bound to the cardinality set variable.

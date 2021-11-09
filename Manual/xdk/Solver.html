@@ -1,0 +1,101 @@
+<html lang="en">
+<head>
+<title>Solver - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="XTAG.html#XTAG" title="XTAG">
+<link rel="next" href="Oracles.html#Oracles" title="Oracles">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Solver"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Oracles.html#Oracles">Oracles</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="XTAG.html#XTAG">XTAG</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">7 Solver</h2>
+
+<p>This chapter presents the heart of the XDG development kit, viz. the
+XDK solver, a solver for specialized <em>constraint satisfaction
+problems (CSPs)</em>. 
+<a name="index-constraint-satisfaction-problem-215"></a><a name="index-CSP-216"></a>These CSPs are defined by:
+
+     <ol type=1 start=1>
+<li>a list of tokens that we call <em>words</em>
+<a name="index-word-217"></a><li>the <em>lexicon</em>
+<a name="index-lexicon-218"></a>which maps each word to a set of possible <em>lexical entries</em>. 
+<a name="index-lexical-entry-219"></a><li>the set of used <em>dimensions</em>
+<a name="index-dimension-220"></a>and the set of <em>principles</em>
+<a name="index-principle-221"></a>used on them
+        </ol>
+
+   <p>The CSP is split up into a set of dimensions, each of which uses a set
+of principles.
+
+   <p>The principles are either taken from a predefined <em>principle library</em>,
+<a name="index-principle-library-222"></a>or can be conveniently written in a First-Order Logic using the
+principle compiler <a href="PrincipleWriter.html#PrincipleWriter">PrincipleWriter</a>.
+
+   <p>A principle definition includes:
+
+     <ul>
+<li>the <em>principle identifier</em>
+<a name="index-principle-identifier-223"></a><li>the set of <em>dimension variables</em>
+<a name="index-dimension-variable-224"></a><li>the set of <em>argument variables</em> and their types
+<a name="index-argument-variable-225"></a><li><em>default values</em>
+<a name="index-default-value-226"></a>for the argument variables
+<li>the type of the <em>model record</em>
+<a name="index-model-record-227"></a>introduced by the principle
+<li>the set of <em>constraints</em>
+<a name="index-constraint-228"></a>and their <em>priorities</em>
+<a name="index-priority-229"></a>which implement the principle. The higher the priority, the earlier the
+constraint is executed by the solver. By convention, node constraints
+have priority &gt;=100 for constraints doing propagation, and &lt;100 for
+those doing distribution. 
+</ul>
+
+   <p>We give an overview of the library in Principle overview
+(<a href="Principles-overview.html#Principles-overview">Principles overview</a>). In Principle list (<a href="Principles-list.html#Principles-list">Principles list</a>), we explain the whole range of principles in the current
+library.
+
+   <p>Developers only: The <em>node record</em>
+<a name="index-node-record-230"></a>is the internal representation of a node in a solution.  We explicate
+it in <a href="Node-record.html#Node-record">Node record</a>.  In <a href="Writing-new-principles.html#Writing-new-principles">Writing new principles</a> we explain
+how to write new principles.
+
+<ul class="menu">
+<li><a accesskey="1" href="Principles-overview.html#Principles-overview">Principles overview</a>:        Principles overview
+
+<li><a accesskey="2" href="Principles-list.html#Principles-list">Principles list</a>:            Principles list
+
+</li></ul>
+<p>-- developers only --
+
+</p>
+<ul class="menu">
+<li><a accesskey="3" href="Node-record.html#Node-record">Node record</a>:                Node record
+
+<li><a accesskey="4" href="Writing-new-principles.html#Writing-new-principles">Writing new principles</a>:     Writing new principles
+</ul>
+
+<!-- ************************************************************ -->
+   </body></html>
+

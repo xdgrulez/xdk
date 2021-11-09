@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE statistics SYSTEM "Extras/statistics.dtd">
+<statistics>
+  <grammar data="4712.ulsocket"/>
+  <examples data="XTAG/XDK_evaluation/wsj23_20-24_new1000.txt" count="1"/>
+  <mode data="parse"/>
+  <date data="Nov 7, 2007 23:35:28"/>
+  <solutions data="1000"/>
+  <failures data="99999"/>
+  <timeout data="1800"/>
+  <reco data="5"/>
+  <dimensions>
+    <dimension data="id"/>
+    <dimension data="idlp"/>
+    <dimension data="lex"/>
+    <dimension data="lp"/>
+  </dimensions>
+  <principles>
+    <principle data="id principle.graph1Constraints (id)"/>
+    <principle data="id principle.graph1Dist (id)"/>
+    <principle data="id principle.tree (id)"/>
+    <principle data="id principle.in (id)"/>
+    <principle data="id principle.out (id)"/>
+    <principle data="id principle.xTAGRoot (id)"/>
+    <principle data="lp principle.graph1Constraints (lp)"/>
+    <principle data="lp principle.graph1Dist (lp)"/>
+    <principle data="lp principle.tree (lp)"/>
+    <principle data="lp principle.in (lp)"/>
+    <principle data="lp principle.out (lp)"/>
+    <principle data="lp principle.government (lp)"/>
+    <principle data="lp principle.xTAG (lp)"/>
+    <principle data="idlp principle.xTAGLinking (id,lp,idlp)"/>
+    <principle data="idlp principle.xTAGRedundant (id,lp)"/>
+    <principle data="lex principle.entries ()"/>
+  </principles>
+  <gprofile fd="4" fs="328" fdfs="332" entries="589">
+    <gpnode fd="2" fs="2" fdfs="4"/>
+    <gpattrs fd="0" fs="0" fdfs="0">
+      <gpdimension data="id" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="idlp" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="0" fs="0" fdfs="0"/>
+    </gpattrs>
+    <gpentry fd="2" fs="180" fdfs="182">
+      <gpdimension data="id" fd="0" fs="31" fdfs="31"/>
+      <gpdimension data="idlp" fd="0" fs="49" fdfs="49"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="2" fs="100" fdfs="102"/>
+    </gpentry>
+    <gpmodel fd="0" fs="146" fdfs="146">
+      <gpdimension data="id" fd="0" fs="38" fdfs="38"/>
+      <gpdimension data="idlp" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lex" fd="0" fs="0" fdfs="0"/>
+      <gpdimension data="lp" fd="0" fs="108" fdfs="108"/>
+    </gpmodel>
+    <gplabel>
+      <gpdimension data="id" label="30"/>
+      <gpdimension data="idlp" label="0"/>
+      <gpdimension data="lex" label="0"/>
+      <gpdimension data="lp" label="49"/>
+    </gplabel>
+  </gprofile>
+  <string id="string1">
+    <words>
+    earlier the company announced it would sell its aging fleet of Iraqi Iraqi Iraqis because of increasing maintenance costs .
+    </words>
+    <outputs>
+    </outputs>
+    <choices data="1216"/>
+    <depth data="39"/>
+    <failed data="198"/>
+    <succeeded data="1000"/>
+    <time data="85680"/>
+    <sprofile fd="177980" fs="57083" fdfs="235063" pr="316217" entries="31.7" words="20">
+      <spnode index="1" word="earlier" entries="25" fd="4" fs="328" fdfs="332" pr="518"/>
+      <spnode index="2" word="the" entries="2" fd="4" fs="328" fdfs="332" pr="518"/>
+      <spnode index="3" word="company" entries="71" fd="4" fs="328" fdfs="332" pr="518"/>
+      <spnode index="4" word="announced" entries="58" fd="4" fs="328" fdfs="332" pr="518"/>
+      <spnode index="5" word="it" entries="1" fd="4" fs="328" fdfs="332" pr="518"/>
+      <spnode index="6" word="would" entries="2" fd="4" fs="328" fdfs="332" pr="518"/>
+      <spnode index="7" word="sell" entries="100" fd="4" fs="328" fdfs="332" pr="518"/>
+      <spnode index="8" word="its" entries="2" fd="4" fs="328" fdfs="332" pr="518"/>
+      <spnode index="9" word="aging" entries="70" fd="4" fs="328" fdfs="332" pr="518"/>
+      <spnode index="10" word="fleet" entries="69" fd="4" fs="328" fdfs="332" pr="518"/>
+      <spnode index="11" word="of" entries="28" fd="4" fs="328" fdfs="332" pr="518"/>
+      <spnode index="12" word="Iraqi" entries="17" fd="4" fs="328" fdfs="332" pr="518"/>
+      <spnode index="13" word="Iraqi" entries="17" fd="4" fs="328" fdfs="332" pr="518"/>
+      <spnode index="14" word="Iraqis" entries="3" fd="4" fs="328" fdfs="332" pr="518"/>
+      <spnode index="15" word="because" entries="27" fd="4" fs="328" fdfs="332" pr="518"/>
+      <spnode index="16" word="of" entries="28" fd="4" fs="328" fdfs="332" pr="518"/>
+      <spnode index="17" word="increasing" entries="51" fd="4" fs="328" fdfs="332" pr="518"/>
+      <spnode index="18" word="maintenance" entries="19" fd="4" fs="328" fdfs="332" pr="518"/>
+      <spnode index="19" word="costs" entries="42" fd="4" fs="328" fdfs="332" pr="518"/>
+      <spnode index="20" word="." entries="2" fd="4" fs="328" fdfs="332" pr="518"/>
+    </sprofile>
+  </string>
+  <counts>
+    <cchoices min="1216" max="1216" average="1216.0"/>
+    <cdepth min="39" max="39" average="39.0"/>
+    <cfailed min="198" max="198" average="198.0"/>
+    <csucceeded min="1000" max="1000" average="1000.0"/>
+    <ctime min="85680" max="85680" average="85680.0"/>
+  </counts>
+  <profilecounts>
+    <cfd min="177980" max="177980" average="1.7798e05"/>
+    <cfs min="57083" max="57083" average="57083.0"/>
+    <cfdfs min="235063" max="235063" average="2.3506e05"/>
+    <cpr min="316217" max="316217" average="3.1622e05"/>
+    <cwords min="20" max="20" average="20.0"/>
+    <centries min="1" max="100" average="31.7"/>
+  </profilecounts>
+</statistics>

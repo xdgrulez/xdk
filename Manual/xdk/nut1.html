@@ -1,0 +1,242 @@
+<html lang="en">
+<head>
+<title>nut1 - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Grammars.html#Grammars" title="Grammars">
+<link rel="prev" href="nut.html#nut" title="nut">
+<link rel="next" href="nut1PW.html#nut1PW" title="nut1PW">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="nut1"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="nut1PW.html#nut1PW">nut1PW</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="nut.html#nut">nut</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Grammars.html#Grammars">Grammars</a>
+<hr>
+</div>
+
+<h3 class="section">5.46 nut</h3>
+
+<p>This is an English toy grammar written for the nutshell chapter of the
+dissertation by Ralph Debusmann. Compared to <a href="nut.html#nut">nut</a>, it uses
+lexical classes for economic lexicon generation.
+
+<pre class="verbatim">usedim syn
+usedim sem
+usedim synsem
+usedim lex
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension syn
+defdim syn {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "syn.person" {"1" "2" "3"}
+  deftype "syn.number" {sg pl}
+  deftype "syn.agr" tuple("syn.person" "syn.number")
+  deftype "syn.label" {root subj part obj vinf adv "^"}
+
+  deflabeltype "syn.label"
+  defattrstype {agr: "syn.agr"}
+  defentrytype {in: valency("syn.label")
+                out: valency("syn.label")
+                order: set(tuple("syn.label" "syn.label"))
+                agrs: iset("syn.agr")
+                agree: set("syn.label")}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph" { dims {D: syn} }
+  useprinciple "principle.tree" { dims {D: syn} }
+  useprinciple "principle.valency" { dims {D: syn} }
+  useprinciple "principle.agr" { dims {D: syn} }
+  useprinciple "principle.agreement" { dims {D: syn} }
+  useprinciple "principle.order2" { dims {D: syn} }
+  useprinciple "principle.projectivity" { dims {D: syn} }
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.decode"
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension sem
+defdim sem {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "sem.label" {root del ag pat th}
+  deflabeltype "sem.label"
+  defentrytype {in: valency("sem.label")
+                out: valency("sem.label")}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graph" { dims {D: sem} }
+  useprinciple "principle.dag" { dims {D: sem}
+                                 args {Connected: false
+                                       DisjointDaughters: false} }
+  useprinciple "principle.valency" { dims {D: sem} }
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.decode"
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension synsem
+defdim synsem {
+  defentrytype {arg: vec("sem.label" set("syn.label"))
+                mod: set("sem.label")}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.linkingEnd" {
+    dims {D1: sem
+          D2: syn
+          D3: synsem}
+    args {End: ^.D3.entry.arg}}
+  useprinciple "principle.linkingMother" {
+    dims {D1: sem
+          D2: syn
+          D3: synsem}
+    args {Which: ^.D3.entry.mod}}
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lex
+defdim lex {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype {word: string}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dags1"
+  output "output.dags2"
+  output "output.latexs1"
+  output "output.latexs2"
+  useoutput "output.dags1"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define classes
+defclass "noun" Word Agrs {
+  dim lex {word: Word}
+  dim syn {in: {subj? obj?}
+           agrs: Agrs}
+  dim sem {in: {ag* pat*}}}
+
+defentry { "noun" {Word: "Peter"
+                   Agrs: {["3" sg]}} }
+
+defentry { "noun" {Word: "Mary"
+                   Agrs: {["3" sg]}} }
+
+defentry { "noun" {Word: "spaghetti"
+                   Agrs: {["3" sg]}} }
+
+defclass "root" Word {
+  dim lex {word: Word}
+  dim syn {in: {}
+           out: {root!}
+           order: &lt;root "^">}
+  dim sem {in: {}
+           out: {root* del*}}}
+
+defentry { "root" {Word: "."} }
+
+defclass "adv" Word {
+  dim lex {word: Word}
+  dim syn {in: {adv?}}
+  dim sem {in: {root!}
+           out: {th!}}
+  dim synsem {mod: {th}}}
+
+defentry { "adv" {Word: "today"} }
+
+defclass "part" Word {
+  dim lex {word: Word}
+  dim syn {in: {part?}}
+  dim sem {in: {del!}}}
+
+defentry { "part" {Word: "to"} }
+
+defclass "inf" Word {
+  dim lex {word: Word}
+  dim syn {in: {vinf?}
+           out: {part!}
+           order: &lt;part "^" obj vinf adv>}}
+
+defclass "fin" Word Agrs {
+  dim lex {word: Word}
+  dim syn {in: {root?}
+           out: {subj!}
+           order: &lt;subj "^" obj vinf adv>
+           agrs: Agrs
+           agree: {subj}}}
+
+defclass "verb" {
+  dim syn {out: {adv*}}
+  dim sem {in: {root! th*}}}
+
+defclass "intrans" {
+  dim sem {out: {ag!}}
+  dim synsem {arg: {ag: {subj}}}}
+
+defclass "trans" {
+  "intrans"
+  dim syn {out: {obj!}}
+  dim sem {out: {pat!}}
+  dim synsem {arg: {pat: {obj}}}}
+
+defclass "vinfc" {
+  dim syn {out: {vinf!}}
+  dim sem {out: {th!}}
+  dim synsem {arg: {th: {vinf}}}}
+
+defentry {
+  "verb"
+  ("intrans" | "trans")
+  "vinfc"
+  "fin" {Word: "wants"
+         Agrs: {["3" sg]}}}
+
+defentry {
+  "verb"
+  ("intrans" | "trans")
+  "vinfc"
+  "fin" {Word: "want"
+         Agrs: {["1" sg] ["2" sg] ["1" pl] ["2" pl] ["3" pl]}}}
+
+defentry {
+  "verb"
+  "intrans" | "trans"
+  "fin" {Word: "eats"
+         Agrs: {["3" sg]}}}
+
+defentry {
+  "verb"
+  "intrans" | "trans"
+  "fin" {Word: "eat"
+%         Agrs: {["1" sg] ["2" sg] ["1" pl] ["2" pl] ["3" pl]}}}
+         Agrs: $ (("1"|"2") |  ("3" &amp; sg))}}
+
+defentry {
+  "verb"
+  "intrans" | "trans"
+  "inf" {Word: "eat"}}
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

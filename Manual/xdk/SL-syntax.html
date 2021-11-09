@@ -1,0 +1,394 @@
+<html lang="en">
+<head>
+<title>SL syntax - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Compiler.html#Compiler" title="Compiler">
+<link rel="prev" href="IL-syntax.html#IL-syntax" title="IL syntax">
+<link rel="next" href="Grammar-record.html#Grammar-record" title="Grammar record">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="SL-syntax"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Grammar-record.html#Grammar-record">Grammar record</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="IL-syntax.html#IL-syntax">IL syntax</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Compiler.html#Compiler">Compiler</a>
+<hr>
+</div>
+
+<h3 class="section">4.13 SL syntax</h3>
+
+<p>In this section, we describe how to transform
+<em>Intermediate Language (IL)</em>
+<a name="index-Intermediate-Language-197"></a><a name="index-IL-198"></a>expressions into <em>Solver Language (SL)</em>
+<a name="index-Solver-Language-199"></a><a name="index-SL-200"></a>expressions which are used in the XDK solver.
+
+<h4 class="subsection">4.13.1 Feature path</h4>
+
+<p>Here is the syntax of IL feature paths:
+
+<pre class="example">     elem(tag: featurepath
+          root: RootA
+          dimension: VIL
+          dimension_idref: IDA
+          aspect: AspectA
+          fields: FieldCILs)
+</pre>
+   <p><code>RootA</code> is an Oz atom corresponding to the root variable,
+<code>VIL</code> is an IL variable corresponding to the dimension variable,
+<code>IDA</code> is an Oz atom corresponding to the dimension identifier,
+<code>AspectA</code> is an Oz atom corresponding to the aspect, and
+<code>FieldCILs</code> is a list of IL constants corresponding to the fields
+of the feature path.
+
+   <p>And here is the corresponding SL expression:
+
+<pre class="example">     featurepath(root: RootA
+                 dimension: DVA
+                 dimension_idref: IDA
+                 aspect: AspectA
+                 fields: FieldAs)
+</pre>
+   <p><code>RootA</code>, <code>IDA</code> and <code>AspectA</code> stay the same. <code>DVA</code>
+is an Oz atom corresponding to <code>VIL</code>, and <code>FieldAs</code> is a
+list of Oz atoms corresponding to <code>FieldCILs</code>.
+
+<h4 class="subsection">4.13.2 Cardinality set</h4>
+
+<p>Here is the syntax of IL cardinalities:
+
+<pre class="example">     elem(tag: 'card.wild'
+          arg: IL)
+     
+     elem(tag: 'card.set'
+          args: IILs)
+     
+     elem(tag: 'card.interval'
+          arg1: IIL1
+          arg2: IIL2)
+</pre>
+   <p>And here is the corresponding SL expression:
+<pre class="example">     M
+</pre>
+   <p>where <code>M</code> is the Oz finite set encoding the cardinality.
+
+<h4 class="subsection">4.13.3 Domain</h4>
+
+<p>Here is the syntax of IL constants:
+
+<pre class="example">     elem(tag: constant
+          data: A)
+</pre>
+   <p><code>A</code> is an Oz atom corresponding to the constant itself.
+
+   <p>And here is the corresponding SL expression:
+
+<pre class="example">     I
+</pre>
+   <p><code>I</code> is an Oz integer encoding <code>A</code>.
+
+<h4 class="subsection">4.13.4 Integer</h4>
+
+<p>Here is the syntax of IL integers:
+
+<pre class="example">     elem(tag: integer
+          data: I)
+</pre>
+   <p><code>I</code> is an Oz integer corresponding to the integer.
+
+   <p>And here is the corresponding SL expression:
+
+<pre class="example">     I
+</pre>
+   <p><code>I</code> stays the same.
+
+<h4 class="subsection">4.13.5 List</h4>
+
+<p>Here is the syntax of IL lists:
+
+<pre class="example">     elem(tag: list
+          args: ILs)
+</pre>
+   <p><code>ILs</code> is an Oz list of IL expressions.
+
+   <p>And here is the corresponding SL expression:
+
+<pre class="example">     SLs
+</pre>
+   <p><code>SLs</code> is an Oz list of SL expressions encoding <code>ILs</code>.
+
+<h4 class="subsection">4.13.6 Record</h4>
+
+<p>Here is the syntax of IL records:
+
+<pre class="example">     elem(tag: record
+          args: [CIL1#IL1
+                 ...
+                 CILn#ILn])
+</pre>
+   <p>The value of the <code>args</code> feature is a list of pairs
+<code>CILi#ILi</code> of an IL constant and an IL expression
+(<code>1&lt;=i&lt;=n</code>).
+
+   <p>And here is the corresponding SL expression:
+
+<pre class="example">     o(A1:SL1
+       ...
+       An:SLn)
+</pre>
+   <p><code>Ai</code> is the Oz atom encoding <code>CILi</code>, and <code>SLi</code> the SL
+expression encoding <code>ILi</code> (<code>1&lt;=i&lt;=n</code>).
+
+<h4 class="subsection">4.13.7 Set</h4>
+
+<p>Here is the syntax of IL sets:
+
+<pre class="example">     elem(tag: set
+          args: ILs)
+</pre>
+   <p><code>ILs</code> is an Oz list of IL expressions.
+
+   <p>The corresponding SL expression is different depending on the type of
+the domain of the set:
+     <ol type=1 start=1>
+<li>a finite domain of constants or a tuple whose projections are all
+finite domains of constants
+<li>integer
+<li>any other type
+        </ol>
+
+     <ol type=1 start=1>
+<li>Here is the corresponding SL expression:
+     <pre class="example">          M
+</pre>
+     <p><code>M</code> is an Oz finite set of integers encoding the constants in the set. 
+<li>See 1. 
+<li>Here is the corresponding SL expression:
+     <pre class="example">          SLs
+</pre>
+     <p><code>SLs</code> is an Oz list of SL expressions encoding <code>ILs</code>.
+        </ol>
+
+<h4 class="subsection">4.13.8 Order</h4>
+
+<p>Here is the syntax of order generators:
+
+<pre class="example">     elem(tag: order
+          args: ILs)
+</pre>
+   <p><code>ILs</code> is an Oz list of IL expressions.
+
+   <p>The corresponding SL expression is the encoding of the set of all tuples
+representing the order relation described by <code>ILs</code>. For instance,
+the encoding of:
+<pre class="example">     elem(tag: order
+          args: [elem(tag: constant
+                      data: a)
+                 elem(tag: constant
+                      data: b)
+                 elem(tag: constant
+                      data: c)])
+</pre>
+   <p>is:
+<pre class="example">     elem(tag: set
+          args: [elem(tag: list
+                      args: [elem(tag: constant
+                                  data: a)
+                             elem(tag: constant
+                                  data: b)])
+                 elem(tag: list
+                      args: [elem(tag: constant
+                                  data: a)
+                             elem(tag: constant
+                                  data: c)])
+                 elem(tag: list
+                      args: [elem(tag: constant
+                                  data: b)
+                             elem(tag: constant
+                                  data: c)])])
+</pre>
+   <h4 class="subsection">4.13.9 String</h4>
+
+<p>Here is the syntax of IL strings:
+
+<pre class="example">     elem(tag: constant
+          data: A)
+</pre>
+   <p><code>A</code> is an Oz atom corresponding to the string.
+
+   <p>And here is the corresponding SL expression:
+<pre class="example">     A
+</pre>
+   <p><code>A</code> stays the same.
+
+<h4 class="subsection">4.13.10 Concat</h4>
+
+<p>Here is the syntax of concatenation:
+
+<pre class="example">     elem(tag: concat
+          args: ILs)
+</pre>
+   <p><code>ILs</code> is an Oz list of IL expressions.
+
+   <p>The corresponding SL expression is the concatenation of the IL
+expressions <code>ILs</code>. Concatenation is restricted to strings.
+
+<h4 class="subsection">4.13.11 Tuple</h4>
+
+<p>Here is the syntax of IL tuples:
+
+<pre class="example">     elem(tag: list
+          args: ILs)
+</pre>
+   <p>The corresponding SL expression is different depending on the type of
+the projections of the tuple:
+     <ol type=1 start=1>
+<li>all projections are finite domains of constants
+<li>at least one projection is not a finite domain of constants
+        </ol>
+
+     <ol type=1 start=1>
+<li>Here is the corresponding SL expression:
+     <pre class="example">          I
+</pre>
+     <p><code>I</code> is an Oz integer encoding the tuple. 
+<li>Here is the corresponding SL expression:
+     <pre class="example">          SLs
+</pre>
+     <p><code>SLs</code> is an Oz list of SL expressions encoding <code>ILs</code>.
+        </ol>
+
+<h4 class="subsection">4.13.12 Undetermined values</h4>
+
+<p>The XDK solver can also yield <em>partial solutions</em>
+<a name="index-partial-solution-201"></a>in which not all values in the node record are determined; instead
+some of the values are still undetermined variables. In the following,
+we show how these variables are represented in the SL.
+
+<h5 class="subsubsection">4.13.12.1 Undetermined cardinality sets</h5>
+
+<p>This is the SL syntax for undetermined cardinality sets (i.e. 
+cardinality set variables) in valencies:
+
+<pre class="example">     MSpec1#MSpec2#DSpec
+</pre>
+   <p><code>MSpec1</code> is a set specification representing the set of integers
+which are already known to be in the cardinality set variable.
+
+   <p><code>MSpec2</code> is a set specification representing the set of integers
+which could still end up in the cardinality set variable.
+
+   <p><code>DSpec</code> is a domain specification
+representing the set of integers which can still be bound to the
+integer variable representing the cardinality of the cardinality set
+variable.
+
+<h5 class="subsubsection">4.13.12.2 Undetermined constants</h5>
+
+<p>This is the SL syntax for undetermined constants (i.e. constant
+variables):
+
+<pre class="example">     DSpec
+</pre>
+   <p><code>DSpec</code> is a domain specification, representing the set of
+constants which can still be bound to the constant variable.
+
+<h5 class="subsubsection">4.13.12.3 Undetermined integers</h5>
+
+<p>This is the SL syntax for undetermined integers (i.e. integer
+variables):
+
+<pre class="example">     DSpec
+</pre>
+   <p><code>DSpec</code> is a domain specification representing the set of integers
+which can still be bound to the integer variable.
+
+<h5 class="subsubsection">4.13.12.4 Undetermined lists</h5>
+
+<p>This is the SL syntax for undetermined lists (i.e. list variables):
+
+<pre class="example">     _
+</pre>
+   <h5 class="subsubsection">4.13.12.5 Undetermined sets</h5>
+
+<p>The SL syntax for undetermined sets (i.e. set variables) differs
+depending on the domain of the set:
+     <ol type=1 start=1>
+<li>a finite domain of constants or a tuple of which all projections
+are finite domains of constants
+<li>any other type
+        </ol>
+
+     <ol type=1 start=1>
+<li>Below, we show the SL syntax for undetermined sets over finite
+domains of constants or tuples of which all projections are finite
+domains of constants:
+
+     <pre class="example">          MSpec1#MSpec2#DSpec
+</pre>
+     <p><code>MSpec1</code> is a set specification, representing the set of constants
+which are already known to be in the set variable.
+
+     <p><code>MSpec2</code> is a set specification representing the set of constants
+which could still end up in the set variable.
+
+     <p><code>DSpec</code> is a domain specification representing the set of integers
+which can still be bound to the integer variable representing the
+cardinality of the set variable.
+
+     <li>Below, we show the SL syntax for undetermined sets over any other
+domain:
+     <pre class="example">          _
+</pre>
+     </ol>
+
+<h5 class="subsubsection">4.13.12.6 Undetermined strings</h5>
+
+<p>This is the SL syntax for undetermined strings (i.e. string variables):
+
+<pre class="example">     _
+</pre>
+   <h5 class="subsubsection">4.13.12.7 Undetermined tuples</h5>
+
+<p>The SL syntax for undetermined tuples (i.e. tuple variables) differs
+depending on the projections of the tuple:
+     <ol type=1 start=1>
+<li>all projections are finite domains of constants
+<li>at least one of the projections is not a finite domain of
+constants
+        </ol>
+
+     <ol type=1 start=1>
+<li>Below, we show the SL syntax for undetermined tuples where all
+projections are finite domains of constants:
+     <pre class="example">          DSpec
+</pre>
+     <p><code>DSpec</code> is a domain specification representing the set of tuples
+which can still be bound to the tuple variable.
+
+     <p>2) Below, we show the SL syntax for undetermined tuples where at least
+one projection is not a finite domain of constants:
+
+     <pre class="example">          _
+</pre>
+     </ol>
+
+<!-- ************************************************************ -->
+   </body></html>
+

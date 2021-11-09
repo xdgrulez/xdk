@@ -1,0 +1,8 @@
+defprinciple "principle.testPW" {
+  dims {}
+  constraints {
+
+1 = 1
+
+  }
+}

@@ -1,0 +1,153 @@
+@section Overview
+The purpose of the @emph{grammar file compiler}
+@cindex grammar file compiler
+is to compile @emph{grammar files}
+@cindex grammar file
+in one of the various grammar file input languages into a grammar
+usable by the XDK solver.
+
+@subsection Grammar files
+
+Grammar files serve two purposes:
+@enumerate
+@item they specify the particular @emph{XDG instance},
+@cindex XDG instance
+@cindex instance
+@item they specify the @emph{lexicon}.
+@cindex lexicon.
+@end enumerate
+
+For 1., each grammar file defines the @emph{dimensions}
+@cindex dimension
+used by the instance, and on each of these dimensions,
+the @emph{principles}
+@cindex principle
+and parameters which apply to it.  Additionally, the
+grammar file specifies on each dimension which @emph{outputs}
+@cindex output
+apply to it.  The XDK includes libraries of predefined principles
+(@emph{principle library})
+@cindex principle library
+and of predefined outputs (@emph{output library}).
+@cindex output library
+These libraries can be extended by new principles and new outputs
+according to the interfaces described in the developer sections.
+
+For 2., each grammar file defines a number of @emph{lexical classes}
+@cindex class
+@cindex lexical class
+and a number of unexpanded @emph{lexical entries}.
+@cindex entry
+@cindex lexical entry
+
+@subsection Grammar file languages
+Grammar files can be written in various languages. In the current
+version of the XDK, you can choose between the @emph{User Language}
+(UL),
+@cindex User Language
+@cindex UL
+the @emph{XML language},
+@cindex XML language
+@cindex XML
+and the @emph{Intermediate Language (IL)}.
+@cindex Intermediate Language
+@cindex IL
+We recommend the UL for handcrafted grammar development. The XML
+language is better suited for electronic processing of grammars.  The
+IL is designed to be the internal language for the grammar file
+compiler - we do not recommend to write grammars in that language.  It
+is rather hard to read, and, more importantly, if you write your
+grammars in the IL directly, the grammar file compiler cannot tell you
+the whereabouts of an error. The grammar file compiler first converts
+each UL and XML grammar file into an IL grammar file, which can be
+processed uniformly from then on.
+
+All programs of XDK can open grammar files in the following formats
+(with the following default file name suffixes):
+@itemize @bullet
+@item the UL (default suffix: @code{ul})
+@item the XML language (@code{xml})
+@item IL @emph{Oz pickles},
+@cindex Oz pickle
+@cindex pickle
+(@code{ilp})
+@item IL @emph{Oz functors}
+@cindex Oz functor
+@cindex functor
+exporting the grammar under the key @code{grammar} (@code{ozf})
+@item SL @emph{Oz pickles} in the @emph{Solver Language (SL)}
+@cindex Solver Language
+@cindex SL
+(@code{slp}).
+@end itemize
+
+@subsection Type checking
+Grammar files are @emph{statically typed}.
+@cindex statically typed
+The grammar file compiler performs @emph{type checking}
+@cindex type checking
+on used principles and lexical classes and entries.
+
+@subsection Compilation
+After type checking, the grammar file compiler transforms the type
+checked IL grammar file into a grammar file in the @emph{Solver
+Language (SL)}
+@cindex Solver Language
+@cindex SL
+which can be fed into the XDK solver. The lexicon of the SL grammar
+file does not contain lexical classes anymore: it contains only the
+lexical entries which result from compiling out the lexical entries in
+the IL grammar file.
+
+An arbitrary number of grammars can be @emph{merged}
+@cindex merge
+into one. The prerequisite for merging is that all the grammars must
+share the same type definitions.
+
+@subsection Summary
+In the picture below, we summarize of the stages of processing the
+grammar file compiler performs:
+@sp 1
+@image{pix/compiler}
+
+That is:
+@enumerate
+@item it converts grammar files in either the
+User Language (UL) or the XML language into an IL grammar file
+@item it adds the definitions of the predefined principles and outputs to the IL grammar file
+@item it performs type checking on the IL grammar file
+@item it compiles the IL grammar file into a SL grammar which can be fed into the
+XDK solver
+@end enumerate
+
+@subsection Developers only
+
+Internally, the functors @code{Compiler/UL/Parser.oz} and then@*
+@code{Compiler/UL/2ILConverter.oz} convert UL grammar files into IL
+grammar files.
+
+The functors @code{Compiler/XML/Parser.oz} and then
+@code{Compiler/XML/2ILConverter.oz} convert XML language grammar files
+into IL grammar files.
+
+Then, the functor @code{Compiler/TypeCollector.oz} collects all the
+types defined in the IL grammar file.
+
+Then, the functor @code{Compiler/TypeChecker.oz} type-checks the IL
+grammar file.
+
+Then, the functor @code{Compiler/Encoder.oz} encodes the IL grammar
+file using the lattice functors corresponding to the types (defined in
+@code{Compiler/Lattices/}). This step yields a stateless @emph{Solver
+Language (SL)}
+@cindex Solver Language
+@cindex SL
+@emph{grammar record}
+@cindex grammar record
+which can be saved to disk and loaded again (i.e. @emph{pickled}
+@cindex pickle
+in Oz terminology).
+
+Finally, the functor @code{Compiler/Compiler.oz} compiles the
+stateless SL grammar into a stateful SL grammar record which can be
+used by the XDK solver.

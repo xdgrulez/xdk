@@ -1,0 +1,136 @@
+<html lang="en">
+<head>
+<title>Set (intersective) - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Types-reference.html#Types-reference" title="Types reference">
+<link rel="prev" href="Set-_0028accumulative_0029.html#Set-_0028accumulative_0029" title="Set (accumulative)">
+<link rel="next" href="String.html#String" title="String">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Set-(intersective)"></a>
+<a name="Set-_0028intersective_0029"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="String.html#String">String</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Set-_0028accumulative_0029.html#Set-_0028accumulative_0029">Set (accumulative)</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Types-reference.html#Types-reference">Types reference</a>
+<hr>
+</div>
+
+<h4 class="subsection">4.9.10 Intersective set</h4>
+
+<p>A set over a domain.  Different lattices depending on the domain, which
+can be:
+     <ol type=1 start=1>
+<li>a finite domain of constants
+<li>integer
+<li>a tuple of which all projections are finite domains of constants
+        </ol>
+
+<h5 class="subsubsection">4.9.10.1 Set generator expressions</h5>
+
+<p>If the domain of the intersective set is a tuple of which all
+projections are finite domains of constants (case 2), the set can be
+specified using a <em>set generator expression</em>. 
+<a name="index-set-generator-expression-163"></a><a name="index-set-generator-164"></a>Set generator expressions describe sets of tuples over finite domains
+of constants, using <em>set generator conjunction</em>
+<a name="index-set-generator-conjunction-165"></a>(<code>&amp;</code> operator) and <em>set generator disjunction</em>
+<a name="index-set-generator-disjunction-166"></a>(<code>|</code> operator).<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>  Here is the semantics of set generator conjunction:
+     <ul>
+<li>a constant in a set generator conjunction must be in the
+appropriate projection of all described tuples
+<li>a constant in a set generator disjunction must be in the
+appropriate projection of at least one described tuple
+</ul>
+
+<h5 class="subsubsection">4.9.10.2 Example (set generator expressions)</h5>
+
+<p>As an example from our grammar file <code>Grammars/Acl01.ul</code>, consider
+the set generator expression <code>($ fem &amp; (dat|gen) &amp; sg &amp; def)</code>. 
+The corresponding type has identifier <code>id.agrs</code>, and corresponds to
+the type definitions below:
+<pre class="example">       deftype "id.person" {first second third}
+       deftype "id.number" {sg pl}
+       deftype "id.gender" {masc fem neut}
+       deftype "id.case" {nom gen dat acc}
+       deftype "id.def" {def indef undef}
+       deftype "id.agr" tuple(ref("id.person")
+                              ref("id.number")
+                              ref("id.gender")
+                              ref("id.case")
+                              ref("id.def"))
+       deftype "id.agrs" iset(ref("id.agr"))
+</pre>
+   <p>The set generator expression <code>($ fem &amp; (dat|gen) &amp; sg &amp; def)</code>
+describes the set of all tuples with constant <code>fem</code> at the third
+projection (corresponding to the finite domain <code>id.gender</code>),
+either <code>dat</code> or <code>gen</code> at the fourth projection
+(<code>id.case</code>), <code>sg</code> a the second projection
+(<code>id.number</code>), and <code>def</code> at the fifth projection
+(<code>id.def</code>). The first projection (<code>id.person</code>) is not
+specified, i.e. it can be any of the constants in the domain
+(<code>first</code>, <code>second</code>, or <code>third</code>).
+
+<h5 class="subsubsection">4.9.10.3 Top value</h5>
+
+     <ol type=1 start=1>
+<li>the full set (containing all constants in the domain)
+<li>the set of all integers
+<li>the full set (containing all tuples in the domain)
+     </ol>
+
+<h5 class="subsubsection">4.9.10.4 Bottom value</h5>
+
+     <ol type=1 start=1>
+<li>empty set
+<li>empty set
+<li>empty set
+     </ol>
+
+<h5 class="subsubsection">4.9.10.5 Greatest lower bound operation</h5>
+
+     <ol type=1 start=1>
+<li>set intersection
+<li>set intersection
+<li>set intersection
+     </ol>
+
+<h5 class="subsubsection">4.9.10.6 Example</h5>
+
+<p>Here is an example intersective set type definition with domain type
+<code>ref("type")</code>:
+
+<pre class="example">     deftype "iset" ref("type")
+</pre>
+   <!-- ************************************************************ -->
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> Set generator conjunction <code>&amp;</code> and
+set generator disjunction <code>|</code> are different from conjunction and
+disjunction in the lexicon. Set generator disjunction is restricted to
+set generator expressions and set generator disjunction does not lead
+to an increase of the the number of lexical entries. On the other
+hand, conjunction and disjunction in the lexicon can be used for all
+terms, and disjunction leads to an increase of the number of lexical
+entries.</p>
+
+   <hr></div>
+
+   </body></html>
+

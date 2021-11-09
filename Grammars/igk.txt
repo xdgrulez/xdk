@@ -1,0 +1,81 @@
+Marcel_L+H* proved_LH% completeness_H*_LL% .
+Marcel proved_LH% completeness_H*_LL% .
+Marcel_LH% proved completeness_H*_LL% .
+
+%
+
+Marcel_H*_LL% proved completeness_L+H*_LH% .
+Marcel proved_L+H*_LH% completeness_H*_LL% .
+Marcel proved completeness_H*_LL% .
+
+Marcel_L+H*_LH% proved completeness_H*_LL% .
+Marcel_L+H* proved_LH% completeness_H*_LL% .
+Marcel_L+H*_LH% proved completeness_H*_LL% .
+
+Marcel proved_L+H*_LH%  completeness_H*_LL% .
+Marcel_L+H* proved_LH% completeness_H*_LL% .
+Marcel_L+H*_LH% proved_H* completeness_LL% .
+
+Marcel_L+H*_LH% proved_H*_LL% completeness_L+H*_LH% .
+Marcel_H*_LL% proved_L+H*_LH% completeness_H*_LL% .
+Marcel_H*_LL% proved completeness_L+H*_LH% .
+
+Marcel_H* proved_LL% completeness_L+H*_LH% .
+Marcel proved completeness_H*_LL% .
+Marcel_H* proved completeness_LL% .
+
+% topicalization
+completeness_L+H*_LH% Marcel_H* proved_LL% .
+completeness_L+H*_LH% Marcel_L+H*_LH% proved_H*_LL% .
+completeness_L+H*_LH% Marcel proved_H*_LL% .
+completeness_H*_LL% Marcel_L+H* proved_LH% .
+
+% interesting cases
+Marcel_L+H*_LH% proved_H* completeness_H*_LL% .
+Marcel_H* proved_H*_LL% completeness_L+H*_LH% .
+Marcel_H* proved completeness_LH% .
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% data-set
+Marcel_H*_LL% proved completeness_L+H*_LH% .
+Marcel proved_L+H*_LH% completeness_H*_LL% .
+Marcel proved completeness_H*_LL% .
+%Marcel admires_L+H*_LH% the woman who directed_H* the musical_LL% .
+%Marcel gave_L+H*_LH% a book_H*_LL% to Fred_L+H*_LH% .
+%There is orange_H* juice_LH% and apple_H* juice_LL% .
+
+%% test-examples
+Annie_L+H*_LH% married Manny_H*_LL% .
+Annie married_L+H*_LH%  Manny_H*_LL% .
+Annie_L+H* married_LH% Manny_H*_LL% .
+Annie_L+H*_LH% married_H* Manny_LL% .
+Annie_L+H*_LH% married_H* Manny_H*_LL% .
+Annie_L+H*_LH% married_H*_LL% Manny_L+H*_LH% .
+
+Annie_H*_LL% married_L+H*_LH% Manny_H*_LL% .
+Annie_H*_LL% married Manny_L+H*_LH% .
+Annie_H* married_LL% Manny_L+H*_LH% .
+Annie_H* married_H*_LL% Manny_L+H*_LH% .
+
+Annie married Manny_H*_LL% .
+Annie_H* married Manny_LL% .
+Annie_H*_LL% married Manny_LL% .
+
+Manny_L+H*_LH% Annie_H* married_LL% .
+Manny_L+H*_LH% Annie_L+H*_LH% married_H*_LL% .
+Manny_L+H*_LH% Annie married_H*_LL% .
+% ^Would like to have the unmarked theme analysis for "Annie"
+
+%it was Manny_H*_LL% Annie married_LL% .
+%it was Manny_H*_LL% Annie_L+H* married_LL% .
+%it was Manny_H*_LL% who married Annie_L+H*_LL% .
+%it was Manny_H*_LL% who married_L+H* Annie_LL% .
+
+the little_L+H* man_L+H*_LH% married a big_H* woman_H*_LL% .
+the little man_L+H* married_LH% a big_H* woman_H*_LL% .
+the little man_L+H*_LH% married the big woman_H*_LL% .
+a little_H* man_H*_LL% married the big_L+H* woman_L+H*_LH% .
+a little man_H*_LL% married the big_L+H* woman_LH% .
+a little man_H*_LL% married the big woman_L+H*_LH% .
+the little_H* man_LL% married the big_L+H* woman_LH% .

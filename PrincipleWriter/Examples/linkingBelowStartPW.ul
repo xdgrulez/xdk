@@ -1,0 +1,10 @@
+defprinciple "principle.linkingBelowStartPW" {
+  dims {D1 D2 D3}
+  constraints {
+
+forall V: forall V1: forall L:
+  edge(V V1 L D1) & (exists L1: [L L1] in V.D3.entry.linkBelowStart) =>
+    exists L1: [L L1] in V.D3.entry.linkBelowStart & dom(V V1 L1 D2)
+
+  }
+}

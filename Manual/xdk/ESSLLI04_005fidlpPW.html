@@ -1,0 +1,430 @@
+<html lang="en">
+<head>
+<title>ESSLLI04_idlpPW - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Grammars.html#Grammars" title="Grammars">
+<link rel="prev" href="ESSLLI04_005fidlp.html#ESSLLI04_005fidlp" title="ESSLLI04_idlp">
+<link rel="next" href="ESSLLI04_005fidlpds.html#ESSLLI04_005fidlpds" title="ESSLLI04_idlpds">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="ESSLLI04_idlpPW"></a>
+<a name="ESSLLI04_005fidlpPW"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="ESSLLI04_005fidlpds.html#ESSLLI04_005fidlpds">ESSLLI04_idlpds</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="ESSLLI04_005fidlp.html#ESSLLI04_005fidlp">ESSLLI04_idlp</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Grammars.html#Grammars">Grammars</a>
+<hr>
+</div>
+
+<h3 class="section">5.19 ESSLLI04_idlpPW</h3>
+
+<p>This grammar is the same as <a href="ESSLLI04_005fidlp.html#ESSLLI04_005fidlp">ESSLLI04_idlp</a> except that it only
+uses PW principles.
+
+<pre class="verbatim">usedim id
+usedim lp
+usedim lpid
+usedim lex
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension id
+defdim id {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "id.agr" {nom acc}
+  deftype "id.attrs" {agr: "id.agr"}
+  deftype "id.entry" {in: set(tuple("id.label" {"!" "?" "+" "*"}))
+                      out: set(tuple("id.label" {"!" "?" "+" "*"}))
+                      agrs: set("id.agr")
+                      agree: set("id.label")
+                      govern1: set(tuple("id.label" "id.agr"))}
+  deftype "id.label" {det subj obj vbse vprt vinf part root}
+  defattrstype "id.attrs"
+  defentrytype "id.entry"
+  deflabeltype "id.label"
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graphPW" { dims {D: id} }
+  useprinciple "principle.treePW" { dims {D: id} }
+  useprinciple "principle.valencyPW" { dims {D: id} }
+  useprinciple "principle.agrPW" { dims {D: id} }
+  useprinciple "principle.agreementPW" { dims {D: id} }
+  useprinciple "principle.government1PW" { dims {D: id} }
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.latex"
+  output "output.latex1"
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lp
+defdim lp {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "lp.entry" {in: set(tuple("lp.label" {"!" "?" "+" "*"}))
+                      out: set(tuple("lp.label" {"!" "?" "+" "*"}))
+                      order: set(tuple("lp.label" "lp.label"))}
+  deftype "lp.label" {df mf vcf pf vxf root "^"}
+  defentrytype "lp.entry"
+  deflabeltype "lp.label"
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graphPW" { dims {D: lp} }
+  useprinciple "principle.treePW" { dims {D: lp} }
+  useprinciple "principle.valencyPW" { dims {D: lp} }
+  useprinciple "principle.orderPW" { dims {D: lp} }
+  useprinciple "principle.projectivityPW" { dims {D: lp} }
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.latex"
+  output "output.latex1"
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lpid
+defdim lpid {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype {blocks: set("id.label")}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.climbingPW" {
+    dims {D1: lp
+          D2: id}}
+  useprinciple "principle.barriersPW" {
+    dims {D1: lp
+          D2: id
+          D3: lpid}}
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lex
+defdim lex {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype {word: string}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.dags"
+  output "output.dags1"
+  %%
+  useoutput "output.dags1"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lexical classes
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% general classes
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% id
+defclass "root_id" {
+  dim id {in: {}
+          out: {root!}}}
+
+defclass "det_id" {
+  dim id {in: {det? root?}}}
+
+defclass "cnoun_id" {
+  dim id {in: {subj? obj? root?}
+          out: {det!}
+          agree: {det}}}
+
+defclass "pname_id" {
+  dim id {in: {subj? obj? root?}}}
+
+defclass "fin_id" {
+  dim id {in: {root?}
+          out: {subj!}
+          govern1: {[subj nom]}}}
+
+defclass "part_id" {
+  dim id {in: {part? root?}}}
+
+defclass "vbse_id" {
+  dim id {in: {vbse? root?}}}
+
+defclass "vinf_id" {
+  dim id {in: {vinf? root?}
+          out: {part!}}}
+
+defclass "vprt_id" {
+  dim id {in: {vprt? root?}}}
+
+defclass "ersatz_id" {
+  dim id {in: {vbse? vprt? root?}}}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% lp
+
+defclass "root_lp" {
+  dim lp {in: {}
+          out: {root!}
+          order: &lt;root "^">}}
+
+defclass "det_lp" {
+  dim lp {in: {df? root?}}}
+
+defclass "cnoun_lp" {
+  dim lp {in: {mf? root?}
+          out: {df!}
+          order: &lt;df "^">}
+  dim lpid {blocks: {det}}}
+
+defclass "pname_lp" {
+  dim lp {in: {mf? root?}}}
+
+defclass "fin_lp" {
+  dim lp {in: {root?}
+          out: {mf* vcf? vxf?}
+          order: &lt;mf vcf "^" vxf>}
+  dim lpid {blocks: {subj obj vbse vprt vinf part}}}
+
+defclass "part_lp" {
+  dim lp {in: {pf? root?}}}
+
+defclass "vinf_lp" {
+  dim lp {out: {pf!}}}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% altogether
+defclass "root" Word {
+  "root_id"
+  "root_lp"
+  dim lex {word: Word}}
+
+defclass "det" Word Agrs {
+  "det_id"
+  "det_lp"
+  dim id {agrs: Agrs}
+  dim lex {word: Word}}
+
+defclass "cnoun" Word Agrs {
+  "cnoun_id"
+  "cnoun_lp"
+  dim id {agrs: Agrs}
+  dim lex {word: Word}}
+
+defclass "pname" Word {
+  "pname_id"
+  "pname_lp"
+  dim lex {word: Word}}
+
+defclass "part" Word {
+  "part_id"
+  "part_lp"
+  dim lex {word: Word}}
+
+defclass "fin" Word {
+  "fin_id"
+  "fin_lp"
+  dim lex {word: Word}}
+
+defclass "vbse" Word {
+  "vbse_id"
+  dim lex {word: Word}}
+
+defclass "vinf" Word {
+  "vinf_id"
+  "vinf_lp"
+  dim lex {word: Word}}
+
+defclass "vprt" Word {
+  "vprt_id"
+  dim lex {word: Word}}
+
+defclass "ersatz" Word {
+  "ersatz_id"
+  dim lex {word: Word}}
+
+defclass "mainverb" Word1 Word2 Word3 {
+    "fin" {Word: Word1}
+  | ("vbse" {Word: Word2} &amp; "can")
+  | ("vprt" {Word: Word3} &amp; "can")
+  | ("vinf" {Word: Word2} &amp; ("can" | "noncan"))}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% special classes
+
+%% requiring an object (in accusative case)
+defclass "objc" {
+  dim id {out: {obj!}
+          govern1: {[obj acc]}}}
+
+%% requiring an infinite verb with id label Label
+defclass "Labelc" Label {
+  dim id {out: {Label!}}}
+
+%% verbs in canonical position
+defclass "can" {
+  dim lp {in: {vcf? root?}
+          out: {vcf?}
+          order: &lt;vcf pf "^">}}
+
+%% verbs in non-canonical position
+defclass "noncan" {
+  dim lp {in: {vxf? root?}
+          out: {mf* vcf? vxf?}
+          order: &lt;mf vcf pf "^" vxf>}}
+
+%% intransitive verbs
+defclass "intransitive" {}
+
+%% transitive verbs
+defclass "transitive" {
+  "objc"}
+
+%% subject-to-subject raising
+defclass "subjraising" {
+  "Labelc" {Label: vinf}}
+
+%% subject-to-subject control
+defclass "subjcontrol" {
+  "subjraising"}
+
+%% subject-to-object control
+defclass "objcontrol" {
+  "Labelc" {Label: vinf}
+  "objc"}
+
+%% auxiliaries
+defclass "aux" Label {
+  "Labelc" {Label: Label}}
+
+%% auxiliaries (past participle)
+defclass "auxprt" { "aux" {Label: vprt} }
+
+%% auxiliaries (bare infinitive), also used for modals
+defclass "auxbse" { "aux" {Label: vbse} }
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define entries
+
+% Roots
+defentry {
+  "root" {Word: "."}}
+
+% Determiners
+defentry {
+  "det" {Agrs: {nom}
+         Word: "ein"}}
+defentry {
+  "det" {Agrs: {acc}
+         Word: "einen"}}
+defentry {
+  "det" {Agrs: {nom acc}
+         Word: "eine"}}
+
+% Common nouns
+defentry {
+  "cnoun" {Agrs: {nom acc}
+           Word: "frau"}}
+
+defentry {
+  "cnoun" {Agrs: {nom acc}
+           Word: "mann"}}
+
+defentry {
+  "cnoun" {Agrs: {nom acc}
+           Word: "roman"}}
+
+% Proper names
+defentry {
+  "pname" {Word: "maria"}}
+
+defentry {
+  "pname" {Word: "peter"}}
+
+defentry {
+  "pname" {Word: "hans"}}
+
+% zu-particle
+defentry {
+  "part" {Word: "zu"}}
+
+% Auxiliaries
+defentry {
+  "fin" {Word: "wird"}
+  "auxbse"}
+
+defentry {
+  "fin" {Word: "hat"}
+  "auxprt"}
+
+defentry {
+  "vbse" {Word: "haben"}
+  "auxprt"
+  "noncan"}
+
+% Modals
+defentry {
+  "vbse" {Word: "koennen"}
+  "auxbse"
+  "can"}
+defentry {
+  "ersatz" {Word: "koennen"}
+  "auxbse"
+  "noncan"}
+
+% Main verbs
+defentry {
+  "intransitive"
+  "mainverb" {Word1: "lacht"
+              Word2: "lachen"
+              Word3: "gelacht"}}
+
+defentry {
+  "transitive"
+  "mainverb" {Word1: "liebt"
+              Word2: "lieben"
+              Word3: "geliebt"}}
+
+defentry {
+  "transitive"
+  "mainverb" {Word1: "schreibt"
+              Word2: "schreiben"
+              Word3: "geschrieben"}}
+
+defentry {
+  "subjraising"
+  "mainverb" {Word1: "scheint"
+              Word2: "scheinen"
+              Word3: "geschienen"}}
+
+defentry {
+  "subjcontrol"
+  "mainverb" {Word1: "versucht"
+              Word2: "versuchen"
+              Word3: "versucht"}}
+
+defentry {
+  "subjcontrol"
+  "mainverb" {Word1: "verspricht"
+              Word2: "versprechen"
+              Word3: "versprochen"}}
+
+defentry {
+  "objcontrol"
+  "mainverb" {Word1: "ueberredet"
+              Word2: "ueberreden"
+              Word3: "ueberredet"}}
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

@@ -1,0 +1,216 @@
+{
+{index: 1
+ anno: {model: {mothers: {}
+                daughtersL: {type: {2}
+                             disease: {3}
+                             trial: {5}
+			     diseaseName: {}
+                             sameAs: {}
+			     degree: {}}}}
+ owl: {model: {mothers: {}
+               daughters: {}}}
+ rdf: {model: {mothers: {}
+               daughtersL: {type: {2}
+                            cond: {}
+                            related: {}
+                            trial: {}
+                            "label": {}
+                            degree: {}}}}}
+{index: 2
+ anno: {model: {mothersL: {type: {1}
+                           disease: {}
+                           trial: {}
+			   diseaseName: {}
+                           sameAs: {}
+			   degree: {}}
+                daughters: {}}}
+ owl: {model: {mothers: {}
+               daughters: {}}}
+ rdf: {model: {mothersL: {type: {1}
+                          cond: {}
+                          related: {}
+                          trial: {}
+                          "label": {}
+                          degree: {}}
+               daughters: {}}}}
+{index: 3
+ anno: {model: {mothersL: {type: {}
+                           disease: {1}
+                           trial: {}
+			   diseaseName: {}
+                           sameAs: {8}
+			   degree: {}}
+                daughtersL: {type: {}
+                             disease: {}
+                             trial: {}
+			     diseaseName: {9}
+                             sameAs: {8}
+			     degree: {13}}}}
+ owl: {model: {mothersL: {sameAs: top/bot}
+               daughtersL: {sameAs: {8}/bot}}}
+ rdf: {model: {mothers: {}
+               daughtersL: {type: {4}
+                            cond: {}
+                            related: {}
+                            trial: {}
+                            "label": {}
+                            degree: {}}}}}
+{index: 4
+ anno: {model: {mothers: {}
+                daughters: {}}}
+ owl: {model: {mothers: {}
+               daughters: {}}}
+ rdf: {model: {mothersL: {type: {3}
+                          cond: {}
+                          related: {}
+                          trial: {}
+                          "label": {}
+                          degree: {}}
+               daughters: {}}}}
+{index: 5
+ anno: {model: {mothers: {1}
+                mothersL: {type: {}
+                           disease: {}
+                           trial: {1}
+			   diseaseName: {}
+                           sameAs: {}
+			   degree: {}}
+                daughters: {}}}
+ owl: {model: {mothers: {}
+               daughters: {}}}
+ rdf: {model: {mothersL: {type: {}
+                          cond: {}
+                          related: {7}
+                          trial: {}
+                          "label": {}
+                          degree: {}}
+               daughtersL: {type: {6}
+                            cond: {7}
+                            related: {}
+                            trial: {}
+                            "label": {}
+                            degree: {}}}}}
+{index: 6
+ anno: {model: {mothers: {}
+                daughters: {}}}
+ owl: {model: {mothers: {}
+               daughters: {}}}
+ rdf: {model: {mothersL: {type: {5}
+                          cond: {}
+                          related: {}
+                          trial: {}
+                          "label": {}
+                          degree: {}}
+               daughters: {}}}}
+{index: 7
+ anno: {model: {mothers: {}
+                daughters: {}}}
+ owl: {model: {mothers: {}
+               daughters: {}}}
+ rdf: {model: {mothersL: {type: {}
+                          cond: {5}
+                          related: {}
+                          trial: {}
+                          "label": {}
+                          degree: {}}
+               daughtersL: {type: {8}
+                            cond: {}
+                            related: {5}
+                            trial: {}
+                            "label": {9}
+                            degree: {}}}}}
+{index: 8
+ anno: {model: {mothersL: {type: {}
+                           disease: {}
+                           trial: {}
+			   diseaseName: {}
+                           sameAs: {3}
+			   degree: {}}
+                daughtersL: {type: {}
+                             disease: {}
+                             trial: {}
+                             diseaseName: {}
+                             sameAs: {3}
+			     degree: {}}}}
+ owl: {model: {mothersL: {sameAs: {3}/bot}
+               daughtersL: {sameAs: {13}/bot}}}
+ rdf: {model: {mothersL: {type: {7}
+                          cond: {}
+                          related: {}
+                          trial: {}
+                          "label": {}
+                          degree: {}}
+               daughters: {}}}}
+{index: 9
+ anno: {model: {mothersL: {type: {}
+                           disease: {}
+                           trial: {}
+			   diseaseName: {3}
+                           sameAs: {}
+			   degree: {}}
+                daughters: {}}}
+ owl: {model: {mothers: {}
+               daughters: {}}}
+ rdf: {model: {mothersL: {type: {}
+                          cond: {}
+                          related: {}
+                          trial: {}
+                          "label": {7}
+                          degree: {}}
+               daughters: {}}}}
+{index: 10
+ anno: {model: {mothers: {}
+                daughters: {}}}
+ owl: {model: {mothers: {}
+               daughters: {}}}
+ rdf: {model: {mothers: {}
+               daughters: {}}}}
+{index: 11
+ anno: {model: {mothers: {}
+                daughters: {}}}
+ owl: {model: {mothers: {}
+               daughters: {}}}
+ rdf: {model: {mothers: {}
+               daughters: {}}}}
+{index: 12
+ anno: {model: {mothers: {}
+                daughters: {}}}
+ owl: {model: {mothers: {}
+               daughters: {}}}
+ rdf: {model: {mothers: {}
+               daughtersL: {type: {14}
+                            cond: {}
+                            related: {}
+                            trial: {}
+                            "label": {}
+                            degree: {13}}}}}
+{index: 13
+ anno: {model: {mothersL: {type: {}
+                           disease: {}
+                           trial: {}
+			   diseaseName: {}
+                           sameAs: {}
+			   degree: {3}}
+                daughters: {}}}
+ owl: {model: {mothersL: {sameAs: {8}/bot}
+               daughtersL: {sameAs: top/bot}}}
+ rdf: {model: {mothersL: {type: {}
+                          cond: {}
+                          related: {}
+                          trial: {}
+                          "label": {}
+                          degree: {12}}
+               daughters: {}}}}
+{index: 14
+ anno: {model: {mothers: {}
+                daughters: {}}}
+ owl: {model: {mothers: {}
+               daughters: {}}}
+ rdf: {model: {mothersL: {type: {12}
+                          cond: {}
+                          related: {}
+                          trial: {}
+                          "label": {}
+                          degree: {}}
+               daughters: {}}}}
+}

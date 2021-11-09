@@ -1,0 +1,139 @@
+<html lang="en">
+<head>
+<title>SATPW - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Grammars.html#Grammars" title="Grammars">
+<link rel="prev" href="SAT.html#SAT" title="SAT">
+<link rel="next" href="SCR.html#SCR" title="SCR">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="SATPW"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="SCR.html#SCR">SCR</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="SAT.html#SAT">SAT</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Grammars.html#Grammars">Grammars</a>
+<hr>
+</div>
+
+<h3 class="section">5.33 SATPW</h3>
+
+<p>This grammar is the same as <a href="SAT.html#SAT">SAT</a> except that it only uses PW
+principles.
+
+<pre class="verbatim">usedim pl
+usedim bars
+usedim plbars
+usedim lex
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension pl
+defdim pl {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  deftype "pl.label" {arg1 arg2 bar "^"}
+  deflabeltype "pl.label"
+  defentrytype {in: set(tuple("pl.label" {"!" "?" "+" "*"}))
+                out: set(tuple("pl.label" {"!" "?" "+" "*"}))
+                order: set(tuple("pl.label" "pl.label"))}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graphPW" { dims {D: pl} }
+  useprinciple "principle.treePW" { dims {D: pl} }
+  useprinciple "principle.valencyPW" { dims {D: pl} }
+  useprinciple "principle.orderPW" { dims {D: pl} }
+  useprinciple "principle.projectivityPW" { dims {D: pl} }
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension bars
+defdim bars {
+  deftype "bars.label" {bars}
+  deflabeltype "bars.label"
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.graphPW" { dims {D: bars} }
+  useprinciple "principle.barsPW" { dims {D: bars} }
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension plbars
+defdim plbars {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defattrstype {truth: {true false}}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.plPW" { dims {D1: pl D2: bars D3: plbars} }
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.pretty"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define dimension lex
+defdim lex {
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% define types
+  defentrytype {word: string}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use principles
+  useprinciple "principle.entries" {}
+  %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% use and choose outputs
+  output "output.allDags1"
+  output "output.latexs1"
+  useoutput "output.allDags1"
+}
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define lexicon
+%% i.e., the ordered fragments
+
+%% implications
+defentry {
+  dim pl {in: {arg1? arg2?}
+          out: {arg1! arg2!}
+          order: &lt;"^" arg1 arg2>}
+  dim lex {word: "impl"}}
+
+%% zeros
+defentry {
+  dim pl {in: {arg1? arg2?}}
+  dim lex {word: "0"}}
+
+%% variables
+defentry {
+  dim pl {in: {arg1? arg2?}
+          out: {bar!}
+          order: &lt;"^" bar>} 
+  dim lex {word: "var"}}
+
+%% bars
+defentry {
+  dim pl {in: {bar!}
+          out: {bar?}
+          order: &lt;"^" bar>}
+  dim lex {word: "I"}}
+</pre>
+<!-- ************************************************************ -->
+
+   </body></html>
+

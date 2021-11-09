@@ -1,0 +1,10 @@
+defprinciple "principle.linkingEndDissPW" {
+  dims {D1 D2}
+  constraints {
+
+forall V: forall V1:
+  ( edge(V V1 mf1 D1) => exists V2: edge(V2 V1 iobj D2) ) &
+  ( edge(V V1 mf2 D1) => exists V2: edge(V2 V1 obj D2) )
+
+  }
+}

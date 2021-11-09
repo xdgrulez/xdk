@@ -1,0 +1,526 @@
+\input spec.sty
+
+\begin{document}
+
+\title{Specification of PrincipleWriter}
+
+\author{Jochen Setz and Ralph Debusmann}
+
+\date{} 
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}\label{sec:intro}
+\inter{vlrec}{varec}{mode}{type}{content}   
+
+
+In this document, we specify the \emph{PrincipleWriter (PW)}, a
+compiler for \emph{Extensible Dependency Grammar (XDG)}
+\cite{Debusmann06} principles into \emph{Mozart/Oz} \cite{Mozart07}
+constraints usable in the \emph{XDG Development Kit (XDK)}
+\cite{DebusmannEtal04MOZ}, \cite{DebusmannDuchier07XDK}.
+
+We begin the specification by a number of proto-typical principles
+from \cite{Debusmann06}, rewritten to adhere to the latest
+formalization of XDG, viz.\ first-order XDG, in
+section~\ref{sec:prifoxdg}. Then, we present the same principles
+written in the PW User Language (PW UL), a variant of the XDK User
+Language (XDK UL) in section~\ref{sec:priul}.  Next, we present the
+syntax of the PW UL (section~\ref{sec:syn}) and their semantics, i.e.,
+the interpretation of PW UL as Mozart/Oz constraint programs
+(section~\ref{sec:sem}). Section~\ref{sec:tc} concludes with
+explaining the type checking rules for the PW UL, which help to detect
+errors as early as possible.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Principles (First-Order XDG)}\label{sec:prifoxdg}
+
+prifoxdg
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Principles (PW User Language)}\label{sec:priul}
+
+priul
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{PW User Language Syntax}\label{sec:syn}
+
+% 
+\Equsl{rclr}{1.0}{%
+  \UlS&::=&\UlDefType* \UlDefPrinciple+}{eq:S}
+%
+
+% 
+\Equsl{rclr}{1.0}{%
+  \UlDefType&::=&\Ulp{deftype}\ \UlConstant\ \UlType&\text{(type definition)}}{eq:DefType}
+%
+
+% 
+\Equsl{rclr}{1.0}{%
+  \UlDefPrinciple&::=&\Ulp{defprinciple}\ \UlConstant\ \Ulp{\{}\ \UlDims\ \UlConstraints\ \Ulp{\}}&\text{(principle definition)}}{eq:DefPrinciple}
+%
+
+% 
+\Equsl{rclr}{1.0}{%
+  \UlDims&::=&\Ulp{dims}\ \Ulp{\{}\ \UlConstant+ \Ulp{\}}&\text{(dimensions)}}{eq:Dims}
+%
+
+% 
+\Equsl{rclr}{1.0}{%
+  \UlConstraints&::=&\Ulp{constraints}\ \Ulp{\{}\ \UlForm+ \Ulp{\}}&\text{(constraints)}}{eq:Constraints}
+%
+
+% 
+\Equsl{rclr}{1.0}{%
+  \UlDom&::=&\Ulp{\{}\UlConstant+\Ulp{\}}&\text{(domain)}\\
+  &|&\Ulp{label(}\UlConstant\Ulp{)}&\text{(edge labels)}\\
+  &|&\Ulp{node}&\text{(nodes)}\\
+  &|&\Ulp{dim}&\text{(dimensions)}\\
+  &|&\Ulp{attr}&\text{(attributes)}\\
+  &|&\Ulp{word}&\text{(words)}\\
+  &|&\UlConstant&\text{(type reference)}}{eq:Dom}
+%
+
+% 
+\Equsl{rclr}{1.0}{%
+  \UlType&::=&\UlDom&\text{(domain)}\\
+  &|&\Ulp{set(}\UlDom\Ulp{)}&\text{(set)}\\
+  &|&\Ulp{tuple(}\UlDom+\Ulp{)}&\text{(tuple)}\\
+  &|&\Ulp{set(tuple(}\UlDom+\Ulp{))}&\text{(set of tuples)}\\
+  &|&\Ulp{dom(}\UlType\Ulp{)}&\text{(domain of a set)}\\
+  &|&\Ulp{proj(}\UlType\ \UlInteger\Ulp{)}&\text{(projection of a tuple)}\\
+  &|&\Ulp{(}\UlType\Ulp{)}&\text{(bracketing)}}{eq:Type}
+%
+
+% 
+\Equsl{rclr}{1.0}{%
+  \UlTerm&::=&\UlConstant&\text{(constant)}\\
+  &|&\UlInteger&\text{(integer)}}{eq:Term}
+%
+
+%
+\Equsl{rclr}{1.0}{%
+  \UlTuple&::=&\Ulp{[}\UlTerm+\Ulp{]}&\text{(tuple)}}{eq:Tuple}
+%
+
+%
+\Equsl{rclr}{1.0}{%
+  \UlSetgen&::=&\UlConstant&\text{(constant)}\\
+  &|&\UlSetgen\ \Ulp{\&}\ \UlSetgen&\text{(conjunction)}\\
+  &|&\UlSetgen\ \Ulp{|}\ \UlSetgen&\text{(disjunction)}\\
+  &|&\Ulp{(}\UlSetgen\Ulp{)}&\text{(bracketing)}}{eq:Setgen}
+%
+
+% 
+\Equsl{rclr}{1.0}{%
+  \UlExpr&::=&\UlTerm&\text{(term)}\\
+  &|&\Ulp{\{}\UlTerm*\Ulp{\}}&\text{(set)}\\
+  &|&\UlTuple&\text{(tuple)}\\
+  &|&\Ulp{\{}\UlTuple+\Ulp{\}}&\text{(set of tuples)}\\
+  &|&\UlExpr\ \Ulp{::}\ \UlType&\text{(type annotation)}\\
+  &|&\UlTerm\ \Ulp{.}\ \UlConstant_1\ \Ulp{.}\ \Ulp{entry}\ \Ulp{.}\ \UlConstant_2&\text{(lexical attributes access)}\\
+  &|&\UlTerm\ \Ulp{.}\ \UlConstant_1\ \Ulp{.}\ \Ulp{attrs}\ \Ulp{.}\ \UlConstant_2&\text{(non-lexical attributes access)}\\
+  &|&\Ulp{\$}\ \UlSetgen&\text{(set generator)}\\
+  &|&\Ulp{(}\UlExpr\Ulp{)}&\text{(bracketing)}}{eq:Expr}
+%
+
+% 
+\Equsl{rclr}{1.0}{%
+  \UlForm&::=&\Ulp{\textasciitilde}\ \UlForm&\text{(negation)}\\
+  &|&\UlForm_1\ \Ulp{\&}\ \UlForm_2&\text{(conjunction)}\\
+  &|&\UlForm_1\ \Ulp{|}\ \UlForm_2&\text{(disjunction)}\\
+  &|&\UlForm_1\ \Ulp{=>}\ \UlForm_2&\text{(implication)}\\
+  &|&\UlForm_1\ \Ulp{<=>}\ \UlForm_2&\text{(equivalence)}\\
+  &|&\Ulp{exists}\ \UlExpr\ \Ulp{:}\ \UlForm&\text{(existential quantification)}\\
+  &|&\Ulp{existsone}\ \UlExpr\ \Ulp{:}\ \UlForm&\text{(one-existential quantification)}\\
+  &|&\Ulp{forall}\ \UlExpr\ \Ulp{:}\ \UlForm&\text{(universal quantification)}\\
+  &|&\UlExpr_1\ \Ulp{=}\ \UlExpr_2&\text{(equality)}\\
+  &|&\UlExpr_1\ \Ulp{\textasciitilde=}\ \UlExpr_2&\text{(inequality)}\\
+  \\
+  &|&\UlExpr_1\ \Ulp{in}\ \UlExpr_2&\text{(element)}\\
+  &|&\UlExpr_1\ \Ulp{notin}\ \UlExpr_2&\text{(not element)}\\
+  &|&\UlExpr_1\ \Ulp{subseteq}\ \UlExpr_2&\text{(subset)}\\
+  &|&\UlExpr_1\ \Ulp{disjoint}\ \UlExpr_2&\text{(disjointness)}\\
+  &|&\UlExpr_1\ \Ulp{intersect}\ \UlExpr_2\ \Ulp{=}\ \UlExpr_3&\text{(intersection)}\\
+  &|&\UlExpr_1\ \Ulp{union}\ \UlExpr_2\ \Ulp{=}\ \UlExpr_3&\text{(union)}\\
+  &|&\UlExpr_1\ \Ulp{minus}\ \UlExpr_2\ \Ulp{=}\ \UlExpr_3&\text{(minus)}\\
+  \\
+  &|&\Ulp{edge(}\UlTerm_1\ \UlTerm_2\ \UlTerm_3\ \UlTerm_4\Ulp{)}&\text{(labeled edge (v v l d))}\\
+  &|&\Ulp{edge(}\UlTerm_1\ \UlTerm_2\ \UlTerm_3\Ulp{)}&\text{(edge (v v d)))}\\
+  &|&\Ulp{dom(}\UlTerm_1\ \UlTerm_2\ \UlTerm_3\ \UlTerm_4\Ulp{)}&\text{(labeled strict dominance (v v l d))}\\
+  &|&\Ulp{dom(}\UlTerm_1\ \UlTerm_2\ \UlTerm_3\Ulp{)}&\text{(strict dominance (v v d))}\\
+  &|&\Ulp{domeq(}\UlTerm_1\ \UlTerm_2\ \UlTerm_3\Ulp{)}&\text{(dominance (v v d))}\\
+  &|&\UlTerm_1\ \Ulp{<}\ \UlTerm_2&\text{(precedence)}\\
+  &|&\UlTerm_1\ \Ulp{.}\ \Ulp{word}\ \Ulp{=}\ \UlTerm_2&\text{(word)}\\
+  \\
+  &|&\Ulp{(}\UlForm\Ulp{)}&\text{(bracketing)}}{eq:Form}
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{PW User Language Semantics}\label{sec:sem}
+
+VI:= Variable:OZ-Integer-Variable\\
+VA:= Variable:OZ-Atom-Variable\\
+VN:= Variable:OZ-Node-Variable\\
+$V= \left\{ \begin{array}{c}
+a:VA\\
+i:VI\\
+n:VN
+\end{array} \right\}$\\
+M (Mode) = \{i,a,n\} ~~~i=Integer, a=Atom, n=Node\\
+T (Type): Type Assumption\\[1cm]
+\begin{center}
+\begin{tabular}{r c l}
+\inter{Constant} & = & if \{Char.isAlpha \{Atom.toString\ Constant\}.1\} andthen\\
+ & & \tab \{Char.isUpper \{Atom.toString\ Constant\}.1\} andthen\\
+ & & \tab \{List.all \{Atom.toString Constant\}\\
+ & & \ttab fun \{\$ Ch\} \{Char.isAlpha Ch\} orelse \{Char.isDigit Ch\} end\}\} then\\
+ & & \tab if M == i then\\
+ & & \ttab if T == node then\\
+ & & \tab\ttab V.n.Constant.index\\
+ & & \ttab else\\
+ & & \tab\ttab V.i.Constant\\
+ & & \ttab end \\
+ & & \tab elseif M == a then \\
+ & & \ttab V.a.Constant\\
+ & & \tab else\\
+ & & \ttab V.n.Constant\\ 
+ & & \tab end\\
+ & & else \\
+ & & \tab if M == i then\\
+ & & \ttab {\tt '\{\{T2Lat '\#}T{\tt \#'\}.a2I '\#}Constant{\tt \#'\}'}\\
+ & & \tab elseif M == a then\\ 
+ & & \ttab Constant\\
+ & & \tab end\\
+ & & end\\
+\end{tabular}
+\end{center}
+%\vspace*{2ex}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{Integer} & = & if T == node then\\
+ & & \tab if M == i then\\
+ & & \ttab Integer\\
+ & & \tab else\\
+ & & \ttab {\tt '\{Nth NodesRecs '\#}Integer{\tt \#'\}'}\\
+ & & \tab end\\
+ & & end\\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\fullinter{V}{M}{set(Dom)}{\{Term+\}} & = & local\\
+ & & \tab Vs = \{Map Term+ fun \{\$ Term\} \fullinter{V}{i}{Dom}{Term} end\}\\
+ & & \tab V = '[`\#\{FoldL Vs fun \{\$ AccV V\} AccV\#' '\#V end\}\#']'\\
+ & & in\\
+ & & \tab {\tt '\{FS.value.make '\#}V{\tt \#'\}'}\\
+ & & end\\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\fullinter{V}{M}{tuple(Dom+)}{[Term+]} & = & local\\
+ & & \tab Vs = \{List.mapInd Term+\\
+ & & \ttab fun \{\$ I Term\}\\
+ & & \ttab \tab Dom = \{Nth Dom+ I\}\\
+ & & \ttab in\\
+ & & \ttab \tab \fullinter{V}{a}{Dom}{Term}\\
+ & & \ttab end\}\\
+ & & \tab V = '[`\#\{FoldL Vs fun \{\$ AccV V\} AccV\#' '\#V end\}\#']'\\
+ & & in\\
+ & & \tab {\tt '\{\{T2Lat '\#}tuple(Dom+){\tt \#'\}.as2I '\#}V{\tt \#\}'}\\
+ & & end\\
+\end{tabular}
+\end{center}
+
+
+\begin{center}
+\begin{tabular}{r c l}
+\fullinter{V}{M}{set(tuple(Dom+))}{[Term+]+} & = & if M == i then\\
+ & & \ttab Vs = \{Map [Term+]+\\
+ & & \ttab \tab fun \{\$ Term+\}\\
+ & & \ttab \ttab \fullinter{V}{M}{tuple(Dom+)}{Term+}\\
+ & & \ttab \tab end\}\\
+ & & \ttab V = '[`\#\{FoldL Vs fun \{\$ AccV V\} AccV\#' '\#V end\}\#']'\\
+ & & \tab in\\
+ & & \ttab {\tt '\{FS.value.make '\#}V{\tt\#'\}'}\\
+ & & \tab end\\
+\end{tabular}
+\end{center}
+
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{Expr::Type} & = & \fullinter{V}{M}{Type}{Expr}\\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{Term_1.Term_2.entry.Constant} & = & \fullinter{V}{n}{node}{Term_1} \#'.'\#\\
+ & & \fullinter{V}{a}{dim}{Term_2} \#'{\tt .entry.'}\#\\
+ & & \fullinter{V}{a}{attr}{Constant}
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{Term_1.Term_2.attrs.Constant} & = & \fullinter{V}{n}{node}{Term_1} \#'.'\#\\
+ & & \fullinter{V}{a}{dim}{Term_2} \#'{\tt .attrs.'}\#\\
+ & & \fullinter{V}{a}{attr}{Constant}
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{(Expr)} & = & \inter{Expr}\\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{\sim ~ Form} & = & {\tt '\{PW.nega '\#~\inter{Form}\#'\}'}\\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{Form_1 ~ \& ~ Form_2} & = & {\tt '\{PW.conj '\#}\\
+ & & \tab {\tt \inter{Form_1}\#'~'\#}\\
+ & & \tab {\tt \inter{Form_2}\#}\\
+ & & {\tt '\}'}\\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{Form_1 ~ | ~ Form_2} & = & {\tt '\{PW.disj '\#}\\
+ & & \tab {\tt \inter{Form_1}\#'~'\#}\\
+ & & \tab {\tt \inter{Form_2}\#}\\
+ & & {\tt '\}'}\\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{Form_1 ~ => ~ Form_2} & = & {\tt '\{PW.impl '\#}\\
+ & & \tab {\tt \inter{Form_1}\#'~'\#}\\
+ & & \tab {\tt \inter{Form_2}\#}\\
+ & & {\tt '\}'}\\
+\end{tabular}\\
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{Form_1 ~ <=> ~ Form_2} & = & {\tt '\{PW.equi '\#}\\
+ & & \tab {\tt \inter{Form_1}\#'~'\#}\\
+ & & \tab {\tt \inter{Form_2}\#}\\
+ & & {\tt '\}'}\\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{exists ~ Constant::Dom:Form} & = & if Dom == node then\\
+ & & \tab NodeRecV = Constant\#{\tt 'NodeRec'}\\
+ & & in\\
+ & & \tab {\tt '\{PW.existsNodes NodeRecs}\\
+ & & \ttab {\tt fun \{\$ '\#}NodeRecV{\tt \#'\}'\#}\\
+ & & \ttab \tab \fullinter{\left( \begin{array}{c}V.n \cup \{Constant:NodeRecV\}\end{array}\right)}{M}{T}{Form}{\tt \#}\\
+ & & \ttab {\tt end\}'}\\
+ & & else\\
+ & & \tab AV = Constant\#{\tt 'A'}\\
+ & & \tab IV = Constant\#{\tt 'I'}\\
+ & & in\\
+ & & \tab {\tt '\{PW.existsDom \{T2Lat '\#}Dom{\tt \#'\}}\\
+ & & \ttab \ttab \ttab \fullinter{\left( \begin{array}{c}V.a \cup \{Constant:AV\}\\
+V.i \cup \{Constant:IV\}\end{array}\right)}{M}{T}{Form}{\tt \#}\\
+ & & \ttab {\tt end\}'}\\
+ & & end\\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{existsone ~ Constant::Dom:Form} & = & if Dom == node then\\
+ & & \tab NodeRecV = Constant\#{\tt 'NodeRec'}\\
+ & & in\\
+ & & \tab {\tt '\{PW.existsOneNodes NodeRecs}\\
+ & & \ttab {\tt fun \{\$ '\#}NodeRecV{\tt \#'\}'\#}\\
+ & & \ttab \tab \fullinter{\left( \begin{array}{c}V.n \cup \{Constant:NodeRecV\}\end{array}\right)}{M}{T}{Form}{\tt \#}\\
+ & & \ttab {\tt end\}'}\\
+ & & else\\
+ & & \tab AV = Constant\#{\tt 'A'}\\
+ & & \tab IV = Constant\#{\tt 'I'}\\
+ & & in\\
+ & & \tab {\tt '\{PW.existsOneDom \{T2Lat '\#}Dom{\tt \#'\}}\\
+ & & \ttab \ttab \ttab \fullinter{\left( \begin{array}{c}V.a \cup \{Constant:AV\}\\
+V.i \cup \{Constant:IV\}\end{array}\right)}{M}{T}{Form}{\tt \#}\\
+ & & \ttab {\tt end\}'}\\
+ & & end\\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{forall ~ Constant::Dom:Form} & = & if Dom == node then\\
+ & & \tab NodeRecV = Constant\#{\tt 'NodeRec'}\\
+ & & in\\
+ & & \tab {\tt '\{PW.forAllNodes NodeRecs}\\
+ & & \ttab {\tt fun \{\$ '\#}NodeRecV{\tt \#'\}'\#}\\
+ & & \ttab \tab \fullinter{\left( \begin{array}{c}V.n \cup \{Constant:NodeRecV\}\end{array}\right)}{M}{T}{Form}{\tt \#}\\
+ & & \ttab {\tt end\}'}\\
+ & & else\\
+ & & \tab AV = Constant\#{\tt 'A'}\\
+ & & \tab IV = Constant\#{\tt 'I'}\\
+ & & in\\
+ & & \tab {\tt '\{PW.forAllDom \{T2Lat '\#}Dom{\tt \#'\}}\\
+ & & \ttab \ttab \ttab \fullinter{\left( \begin{array}{c}V.a \cup \{Constant:AV\}\\
+V.i \cup \{Constant:IV\}\end{array}\right)}{M}{T}{Form}{\tt \#}\\
+ & & \ttab {\tt end\}'}\\
+ & & end\\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{Expr_1 ~ = ~ Expr_2} & = & {\tt '\{PW.equals '\#}\fullinter{V}{i}{T}{Expr_1}{\tt \#' '\#}\fullinter{V}{i}{T}{Expr_2}{\tt \#\}'}
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{Expr_1 ~ in ~ Expr_2} & = & {\tt '\{PW.'in' '\#}\fullinter{V}{i}{T}{Expr_1}{\tt \#' '\#}\fullinter{V}{i}{T}{Expr_2}{\tt \#\}'}
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{Expr_1 ~ notin ~ Expr_2} & = & {\tt '\{PW.notin '\#}\fullinter{V}{i}{T}{Expr_1}{\tt \#' '\#}\fullinter{V}{i}{T}{Expr_2}{\tt \#\}'}
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{Expr_1 ~ subseteq ~ Expr_2} & = & {\tt '\{PW.subseteq '\#}\fullinter{V}{i}{T}{Expr_1}{\tt \#' '\#}\fullinter{V}{i}{T}{Expr_2}{\tt \#\}'}
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{Expr_1 ~ disjoint ~ Expr_2} & = & {\tt '\{PW.disjoint '\#}\fullinter{V}{i}{T}{Expr_1}{\tt \#' '\#}\fullinter{V}{i}{T}{Expr_2}{\tt \#\}'}
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{Expr_1 ~ intersect ~ Expr_2 ~ = ~ Expr_3} & = & {\tt '\{PW.intersect '\#}\\
+& & \tab \fullinter{V}{i}{T}{Expr_1}{\tt \#' '\#}\fullinter{V}{i}{T}{Expr_2}{\tt \#' '\#}\fullinter{V}{i}{T}{Expr_3}{\tt \#\}'}
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{Expr_1 ~ union ~ Expr_2 ~ = ~ Expr_3} & = & {\tt '\{PW.union '\#}\\
+& & \tab \fullinter{V}{i}{T}{Expr_1}{\tt \#' '\#}\fullinter{V}{i}{T}{Expr_2}{\tt \#' '\#}\fullinter{V}{i}{T}{Expr_3}{\tt \#\}'}
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{Expr_1 ~ minus ~ Expr_2 ~ = ~ Expr_3} & = & {\tt '\{PW.minus '\#}\\
+& & \tab \fullinter{V}{i}{T}{Expr_1}{\tt \#' '\#}\fullinter{V}{i}{T}{Expr_2}{\tt \#' '\#}\fullinter{V}{i}{T}{Expr_3}{\tt \#\}'}
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{verse}
+\inter{edge(Expr_1 ~ Expr_2 ~ Expr_3 ~ Expr_4}  =  \\
+\tab\tab {\tt '\{PW.labeledEdge '\#}\\
+\tab\tab\tab {\tt \fullinter{V}{n}{node}{Expr_1}\#' '\#}\\
+\tab\tab\tab {\tt \fullinter{V}{n}{node}{Expr_2}\#' '\#}\\
+\tab\tab\tab {\tt \fullinter{V}{a}{label(Expr_4)}{Expr_3}\#' '\#}\\
+\tab\tab\tab {\tt \fullinter{V}{a}{dim}{Expr_4}\#'\}'}
+\end{verse}
+\end{center}
+
+\begin{center}
+\begin{verse}
+\inter{edge(Expr_1 ~ Expr_2 ~ Expr_3}  =  \\
+\tab\tab {\tt '\{PW.edge '\#}\\
+\tab\tab\tab {\tt \fullinter{V}{n}{node}{Expr_1}\#' '\#}\\
+\tab\tab\tab {\tt \fullinter{V}{n}{node}{Expr_2}\#' '\#}\\
+\tab\tab\tab {\tt \fullinter{V}{a}{dim}{Expr_3}\#'\}'}
+\end{verse}
+\end{center}
+
+\begin{center}
+\begin{verse}
+\inter{dom(Expr_1 ~ Expr_2 ~ Expr_3 ~ Expr_4}  =  \\
+\tab\tab {\tt '\{PW.labeledStrictDominance '\#}\\
+\tab\tab\tab {\tt \fullinter{V}{n}{node}{Expr_1}\#' '\#}\\
+\tab\tab\tab {\tt \fullinter{V}{n}{node}{Expr_2}\#' '\#}\\
+\tab\tab\tab {\tt \fullinter{V}{a}{label(Expr_4)}{Expr_3}\#' '\#}\\
+\tab\tab\tab {\tt \fullinter{V}{a}{dim}{Expr_4}\#'\}'}
+\end{verse}
+\end{center}
+
+\begin{center}
+\begin{verse}
+\inter{dom(Expr_1 ~ Expr_2 ~ Expr_3}  =  \\
+\tab\tab {\tt '\{PW.strictDominance '\#}\\
+\tab\tab\tab {\tt \fullinter{V}{n}{node}{Expr_1}\#' '\#}\\
+\tab\tab\tab {\tt \fullinter{V}{n}{node}{Expr_2}\#' '\#}\\
+\tab\tab\tab {\tt \fullinter{V}{a}{dim}{Expr_3}\#'\}'}
+\end{verse}
+\end{center}
+
+\begin{center}
+\begin{verse}
+\inter{domeq(Expr_1 ~ Expr_2 ~ Expr_3}  =  \\
+\tab\tab {\tt '\{PW.dominance '\#}\\
+\tab\tab\tab {\tt \fullinter{V}{n}{node}{Expr_1}\#' '\#}\\
+\tab\tab\tab {\tt \fullinter{V}{n}{node}{Expr_2}\#' '\#}\\
+\tab\tab\tab {\tt \fullinter{V}{a}{dim}{Expr_3}\#'\}'}
+\end{verse}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{Expr_1 ~ < ~ Expr_2} & = & {\tt '\{PW.prec \#'}\fullinter{V}{n}{node}{Expr_1}{\tt \#' '\#}\fullinter{V}{n}{node}{Expr_2}{\tt \#'\}'}
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{Expr_1.word ~ = ~ Expr_2} & = & {\tt '\{PW.word \#'}\fullinter{V}{n}{node}{Expr_1}{\tt \#' '\#}\fullinter{V}{a}{word}{Expr_2}{\tt \#'\}'}
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{r c l}
+\inter{(Form)} & = & \inter{Form}\\
+\end{tabular}
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{PW User Language Type Checking}\label{sec:tc}
+
+tc
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{agsm}
+\bibliography{spec}
+\end{document}

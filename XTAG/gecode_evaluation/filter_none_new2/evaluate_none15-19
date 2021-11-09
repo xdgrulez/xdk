@@ -1,0 +1,12 @@
+#!/bin/bash
+
+n=0
+until [[ $n = 8 ]]
+do
+  ((n++))
+  file="15-19/4712.fzn$n"
+  echo $file
+  line=`sed -n -e "$n"p ../wsj23_15-19_new2.txt`
+  echo $line
+  fz -solutions 1 -mode stat -time 1800000 $file
+done

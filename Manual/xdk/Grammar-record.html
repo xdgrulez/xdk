@@ -1,0 +1,278 @@
+<html lang="en">
+<head>
+<title>Grammar record - Manual of the XDG Development Kit (XDK)</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Manual of the XDG Development Kit (XDK)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Compiler.html#Compiler" title="Compiler">
+<link rel="prev" href="SL-syntax.html#SL-syntax" title="SL syntax">
+<link rel="next" href="Lattice-functors.html#Lattice-functors" title="Lattice functors">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Grammar-record"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Lattice-functors.html#Lattice-functors">Lattice functors</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="SL-syntax.html#SL-syntax">SL syntax</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Compiler.html#Compiler">Compiler</a>
+<hr>
+</div>
+
+<h3 class="section">4.14 Grammar record</h3>
+
+<p>The <em>grammar record</em> is the result of compilation of a grammar
+file, and represents all the information contained in the grammar
+file. The XDK makes use of two different kinds of grammar records:
+     <ol type=1 start=1>
+<li>stateless grammar records
+<li>stateful grammar records
+        </ol>
+Stateless grammar records can be saved to disk. Before the XDK solver
+can actually use the grammar for solving, it has to be transformed
+into a stateful grammar record (an extension of the stateless grammar
+record).
+
+<h4 class="subsection">4.14.1 Stateless grammar record</h4>
+
+<p>Below, we display the type definition of the stateless grammar record:
+
+<pre class="example">     grammar(
+        usedDIDAs: DIDAs
+        allDIDAs: DIDAs
+        dIDADimension1Rec: DIDASLERec
+        pnPrinciple1Rec: PnSLERec
+        usedPns: Pns
+        chosenPns: Pns
+        pnCAPriITups: PnCAITups
+        dIDAUsedOnsRec: DIDAOnsRec
+        onOutput1Rec: OnSLERec
+        chosenOns: Ons
+        usedOns: Ons
+        aEntriesRec: ASLERec
+        as: As
+        entriesI: I
+        entry1Tn: Tn
+        nodeTn: Tn
+        node1Tn: Tn
+        tnTypeRec: TnILTCoRec)
+</pre>
+   <p>The value of the <code>usedDIDAs</code> feature is a list of dimension
+identifiers (<code>DIDAs</code>) which are the used dimensions.
+
+   <p>The value of the <code>allDIDAs</code> feature is a list of dimension
+identifiers (<code>DIDAs</code>) which are all the dimensions defined in the
+grammar.
+
+   <p>The value of the <code>dIDADimension1Rec</code> feature is a record mapping
+dimension identifiers (<code>DIDA</code>) to encoded dimension definitions
+(<code>SLE</code>).
+
+   <p>The value of the <code>pnPrinciple1Rec</code> feature is a record mapping
+<em>principle names</em>
+<a name="index-principle-name-202"></a>(<code>Pn</code>) to encoded principle uses (<code>SLE</code>). A principle name is
+a unique name for a principle chosen on a dimension.<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>
+
+   <p>The value of the <code>usedPns</code> feature is a list of principle names
+(<code>Pns</code>) which are the used principles.
+
+   <p>The value of the <code>chosenPns</code> feature is a list of principle names
+(<code>Pns</code>) which are all the principles chosen in the
+grammar.<a rel="footnote" href="#fn-2" name="fnd-2"><sup>2</sup></a>
+
+   <p>The value of the <code>pnCAPriITups</code> feature is a list of tuples
+<code>Pn#CA#I</code> of a principle name (<code>Pn</code>), a principle constraint
+name <code>CA</code>, and a priority (<code>I</code>). These are all principle
+constraints.
+
+   <p>The value of the <code>dIDAUsedOnsRec</code> feature is a record mapping
+dimension identifiers (<code>DIDA</code>) to the <em>output names</em>
+<a name="index-output-name-203"></a>of the outputs used used on that dimension. An output name is a unique
+name for an output chosen on a dimension.<a rel="footnote" href="#fn-3" name="fnd-3"><sup>3</sup></a>
+
+   <p>The value of the <code>onOutput1Rec</code> feature is a record mapping
+output names (<code>On</code>) to encoded output definitions (<code>SLE</code>).
+
+   <p>The value of the <code>chosenOns</code> feature is a list of the chosen output
+names.
+
+   <p>The value of the <code>usedOns</code> feature is a list of the used output
+names.
+
+   <p>The value of the <code>aEntriesRec</code> feature is a record mapping words
+(<code>A</code>) to their corresponding encoded lexical entries (<code>SLE</code>). 
+This record is empty if the lexicon is stored into a database.
+
+   <p>The value of the <code>as</code> feature is the list of all words
+(<code>As</code>) in the lexicon.
+
+   <p>The value of the <code>entriesI</code> feature is an integer denoting the
+number of lexical entries of the grammar.
+
+   <p>The value of the <code>entry1Tn</code> feature is the type name (<code>Tn</code>)
+corresponding to the type of a lexical entry.
+
+   <p>The value of the <code>nodeTn</code> feature is the type name (<code>Tn</code>)
+corresponding to the type of a node record, including the features
+<code>word</code>, <code>index</code>, <code>nodeSet</code> and <code>entryIndex</code>, and
+excluding the subrecords corresponding to the dimensions.
+
+   <p>The value of the <code>node1Tn</code> feature is the type name (<code>Tn</code>)
+corresponding to the type of a complete node record, including the
+features of the type <code>nodeTn</code> plus the <code>attrs</code>, <code>entry</code>
+and <code>model</code> features from the individual dimensions.
+
+   <p>The value of the <code>tnTypeRec</code> feature is a record mapping type names
+(<code>Tn</code>) to their corresponding types (<code>ILTCo</code>).
+
+   <p>Notice that <code>ILTCo</code> types are different form <code>IL</code> types in
+various respects:
+     <ul>
+<li>all type references are resolved
+<li>all label type references are resolved
+<li>in all domain types, all constants in the <code>args</code> of the type
+are converted from IL constants to Oz atoms
+<li>in all record types, all a record type specification consisting
+of pairs <code>CIL_i#IL_i</code> (<code>1&lt;=i&lt;=n</code>) is converted to an Oz
+record containing features <code>A_i:IL_i</code> (where Oz atom <code>A_i</code>
+corresponds to IL constant <code>CIL_i</code>). 
+</ul>
+
+<h4 class="subsection">4.14.2 Stateful grammar record</h4>
+
+<p>Below, we display the type definition of the features extending a
+stateless grammar record into a stateful grammar record:
+
+<pre class="example">     grammar(
+        dIDADimensionRec: DIDASLCRec
+        dIDA2AttrsLat: DIDA2Lat
+        dIDA2EntryLat: DIDA2Lat
+        dIDA2LabelLat: DIDA2Lat
+        pnPrincipleRec: PnSLCRec
+        pn2Principle: Pn2SLC
+        pn2ModelLat: Pn2Lat
+        pn2DIDA: Pn2DIDA
+        pnIsActive: PnIsActive
+        procProcPnCAPriITups: ProcProcPnCAITups
+        onOutputRec: OnSLCRec
+        onOutputTups: OnSLCTups
+        checkAsInEntries: As2U
+        as2ABRec: As2ABRec
+        as2AEntriesRec: As2AEntriesRec
+        entry1Lat: Lat
+        nodeLat: Lat
+        node1Lat: Lat)
+</pre>
+   <p>The value of the <code>dIDADimensionRec</code> feature is a record mapping
+dimension identifiers (<code>DIDA</code>) to compiled dimension definitions
+(<code>SLC</code>).
+
+   <p>The value of the <code>dIDA2AttrsLat</code> feature is a function from
+dimension identifiers (<code>DIDA</code>) to the lattice corresponding to the
+attributes type on that dimension (<code>Lat</code>).
+
+   <p>The value of the <code>dIDA2EntryLat</code> feature is a function from
+dimension identifiers (<code>DIDA</code>) to the lattice corresponding to the
+entry type on that dimension (<code>Lat</code>).
+
+   <p>The value of the <code>dIDA2LabelLat</code> feature is a function from
+dimension identifiers (<code>DIDA</code>) to the lattice corresponding to the
+label type on that dimension (<code>Lat</code>).
+
+   <p>The value of the <code>pnPrincipleRec</code> feature is a record mapping
+principle names (<code>Pn</code>) to compiled principle uses
+(<code>SLC</code>).
+
+   <p>The value of the <code>pn2Principle</code> feature is a function from
+principle names (<code>Pn</code>) to compiled principle uses (<code>SLC</code>).
+
+   <p>The value of the <code>pn2ModelLat</code> feature is a function from
+principle names (<code>Pn</code>) to the lattice corresponding to the type
+of the model record introduced by that principle
+(<code>Lat</code>).
+
+   <p>The value of the <code>pn2DIDA</code> feature is a function from principle
+names (<code>Pn</code>) to dimension identifiers corresponding to the
+dimension on which the principle is used (<code>DIDA</code>).
+
+   <p>The value of the <code>pnIsActive</code> feature is the function
+<code>PnIsActive: Pn UsedDIDAs UsedPns -&gt; B</code>, returning for principle
+<code>Pn</code>, whether it is active given used dimension IDs
+<code>UsedDIDAs</code> and used principle names <code>UsedPns</code>.
+
+   <p>The value of the <code>procProcPnCAPriITups</code> feature is a list of
+tuples <code>Proc#Proc1#Pn#CA#I</code> of a constraint procedure
+(<code>Proc</code>), a profile procedure (<code>Proc1</code>), a principle name
+(<code>Pn</code>), a principle constraint name (<code>CA</code>) and a priority
+(<code>I</code>). These are all principle constraints.
+
+   <p>The value of the <code>onOutputRec</code> feature is a record mapping output
+names (<code>On</code>) to compiled output uses (<code>SLC</code>).
+
+   <p>The value of the <code>onOutputTups</code> feature is a list of tuples
+<code>On#Output</code> of an output name (<code>On</code>) and an output
+(<code>Output</code>).  These tuples represent the mapping already contained
+in the value of the <code>onOutputRec</code> feature. The difference is that
+they are ordered alphabetically (by their name and their dimension
+name) to match the order of the outputs in the Outputs menu in the
+GUI.
+
+   <p>The value of the <code>checkAsInEntries</code> feature is a function from
+lists of words (<code>As</code>) to unit (<code>U</code>), raising an exception if
+any word <code>A</code> in <code>As</code> is not contained in the lexicon.
+
+   <p>The value of the <code>as2ABRec</code> feature is a function from lists of
+words (<code>As</code>) to records mapping words (<code>A</code>) to bool
+(<code>B</code>). For all <code>A</code> in <code>As</code>, <code>B</code> is true if
+<code>A</code> is contained in the lexicon, and false otherwise.
+
+   <p>The value of the <code>as2Entries</code> feature is a function from lists of
+words (<code>As</code>) to records mapping words (<code>A</code>) to lists of
+compiled lexical entries for that word (<code>Entries</code>).
+
+   <p>The value of the <code>entry1Lat</code> feature is the lattice (<code>Lat</code>)
+corresponding to the type of a lexical entry.
+
+   <p>The value of the <code>nodeLat</code> feature is the lattice (<code>Lat</code>)
+corresponding to the type of a node record, including the features
+<code>word</code>, <code>index</code>, <code>nodeSet</code> and <code>entryIndex</code>, and
+excluding the subrecords corresponding to the dimensions.
+
+   <p>The value of the <code>node1Lat</code> feature is the lattice (<code>Lat</code>)
+corresponding to the type of a node record, including the features
+<code>word</code>, <code>index</code>, <code>nodeSet</code> and <code>entryIndex</code>, and
+the subrecords corresponding to the dimensions.
+
+<!-- ************************************************************ -->
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> Contrary to
+principle names, principle identifiers are not unique because the same
+principle can be used on several dimensions.</p>
+
+   <p class="footnote"><small>[<a name="fn-2" href="#fnd-2">2</a>]</small> The distinction between chosen and used principles
+makes sense for the graphical user interface: here, the
+<code>Principles</code> pull-down menu displays all chosen principles, of which
+only the selected principles are actually used for solving.</p>
+
+   <p class="footnote"><small>[<a name="fn-3" href="#fnd-3">3</a>]</small> Like principles,
+contrary to output names, output identifiers are not unique because the
+same output can be chosen on several dimensions.</p>
+
+   <hr></div>
+
+   </body></html>
+

@@ -1,0 +1,400 @@
+@section SL syntax
+In this section, we describe how to transform
+@emph{Intermediate Language (IL)}
+@cindex Intermediate Language
+@cindex IL
+expressions into @emph{Solver Language (SL)}
+@cindex Solver Language
+@cindex SL
+expressions which are used in the XDK solver.
+
+@subsection Feature path
+Here is the syntax of IL feature paths:
+
+@example
+elem(tag: featurepath
+     root: RootA
+     dimension: VIL
+     dimension_idref: IDA
+     aspect: AspectA
+     fields: FieldCILs)
+@end example
+
+@code{RootA} is an Oz atom corresponding to the root variable,
+@code{VIL} is an IL variable corresponding to the dimension variable,
+@code{IDA} is an Oz atom corresponding to the dimension identifier,
+@code{AspectA} is an Oz atom corresponding to the aspect, and
+@code{FieldCILs} is a list of IL constants corresponding to the fields
+of the feature path.
+
+And here is the corresponding SL expression:
+
+@example
+featurepath(root: RootA
+            dimension: DVA
+            dimension_idref: IDA
+            aspect: AspectA
+            fields: FieldAs)
+@end example
+
+@code{RootA}, @code{IDA} and @code{AspectA} stay the same. @code{DVA}
+is an Oz atom corresponding to @code{VIL}, and @code{FieldAs} is a
+list of Oz atoms corresponding to @code{FieldCILs}.
+
+@subsection Cardinality set
+Here is the syntax of IL cardinalities:
+
+@example
+elem(tag: 'card.wild'
+     arg: IL)
+
+elem(tag: 'card.set'
+     args: IILs)
+
+elem(tag: 'card.interval'
+     arg1: IIL1
+     arg2: IIL2)
+@end example
+
+And here is the corresponding SL expression:
+@example
+M
+@end example
+where @code{M} is the Oz finite set encoding the cardinality.
+
+@subsection Domain
+Here is the syntax of IL constants:
+
+@example
+elem(tag: constant
+     data: A)
+@end example
+
+@code{A} is an Oz atom corresponding to the constant itself.
+
+And here is the corresponding SL expression:
+
+@example
+I
+@end example
+
+@code{I} is an Oz integer encoding @code{A}.
+
+@subsection Integer
+Here is the syntax of IL integers:
+
+@example
+elem(tag: integer
+     data: I)
+@end example
+
+@code{I} is an Oz integer corresponding to the integer.
+
+And here is the corresponding SL expression:
+
+@example
+I
+@end example
+
+@code{I} stays the same.
+
+@subsection List
+Here is the syntax of IL lists:
+
+@example
+elem(tag: list
+     args: ILs)
+@end example
+
+@code{ILs} is an Oz list of IL expressions.
+
+And here is the corresponding SL expression:
+
+@example
+SLs
+@end example
+
+@code{SLs} is an Oz list of SL expressions encoding @code{ILs}.
+
+@subsection Record
+Here is the syntax of IL records:
+
+@example
+elem(tag: record
+     args: [CIL1#IL1
+            @dots{}
+            CILn#ILn])
+@end example
+
+The value of the @code{args} feature is a list of pairs
+@code{CILi#ILi} of an IL constant and an IL expression
+(@code{1<=i<=n}).
+
+And here is the corresponding SL expression:
+
+@example
+o(A1:SL1
+  @dots{}
+  An:SLn)
+@end example
+
+@code{Ai} is the Oz atom encoding @code{CILi}, and @code{SLi} the SL
+expression encoding @code{ILi} (@code{1<=i<=n}).
+
+@subsection Set
+Here is the syntax of IL sets:
+
+@example
+elem(tag: set
+     args: ILs)
+@end example
+
+@code{ILs} is an Oz list of IL expressions.
+
+The corresponding SL expression is different depending on the type of
+the domain of the set:
+@enumerate
+@item a finite domain of constants or a tuple whose projections are all 
+finite domains of constants
+@item integer
+@item any other type
+@end enumerate
+
+@enumerate
+@item Here is the corresponding SL expression:
+@example
+M
+@end example
+@code{M} is an Oz finite set of integers encoding the constants in the set.
+@item See 1.
+@item Here is the corresponding SL expression:
+@example
+SLs
+@end example
+@code{SLs} is an Oz list of SL expressions encoding @code{ILs}.
+@end enumerate
+
+@subsection Order
+Here is the syntax of order generators:
+
+@example
+elem(tag: order
+     args: ILs)
+@end example
+
+@code{ILs} is an Oz list of IL expressions.
+
+The corresponding SL expression is the encoding of the set of all tuples
+representing the order relation described by @code{ILs}. For instance,
+the encoding of:
+@example
+elem(tag: order
+     args: [elem(tag: constant
+                 data: a)
+            elem(tag: constant
+                 data: b)
+            elem(tag: constant
+                 data: c)])
+@end example
+is:
+@example
+elem(tag: set
+     args: [elem(tag: list
+                 args: [elem(tag: constant
+                             data: a)
+                        elem(tag: constant
+                             data: b)])
+            elem(tag: list
+                 args: [elem(tag: constant
+                             data: a)
+                        elem(tag: constant
+                             data: c)])
+            elem(tag: list
+                 args: [elem(tag: constant
+                             data: b)
+                        elem(tag: constant
+                             data: c)])])
+@end example
+
+@subsection String
+Here is the syntax of IL strings:
+
+@example
+elem(tag: constant
+     data: A)
+@end example
+
+@code{A} is an Oz atom corresponding to the string.
+
+And here is the corresponding SL expression:
+@example
+A
+@end example
+
+@code{A} stays the same.
+
+@subsection Concat
+Here is the syntax of concatenation:
+
+@example
+elem(tag: concat
+     args: ILs)
+@end example
+
+@code{ILs} is an Oz list of IL expressions.
+
+The corresponding SL expression is the concatenation of the IL
+expressions @code{ILs}. Concatenation is restricted to strings.
+
+@subsection Tuple
+Here is the syntax of IL tuples:
+
+@example
+elem(tag: list
+     args: ILs)
+@end example
+
+The corresponding SL expression is different depending on the type of
+the projections of the tuple:
+@enumerate
+@item all projections are finite domains of constants
+@item at least one projection is not a finite domain of constants
+@end enumerate
+
+@enumerate
+@item Here is the corresponding SL expression:
+@example
+I
+@end example
+@code{I} is an Oz integer encoding the tuple.
+@item Here is the corresponding SL expression:
+@example
+SLs
+@end example
+
+@code{SLs} is an Oz list of SL expressions encoding @code{ILs}.
+@end enumerate
+
+@subsection Undetermined values
+The XDK solver can also yield @emph{partial solutions}
+@cindex partial solution
+in which not all values in the node record are determined; instead
+some of the values are still undetermined variables. In the following,
+we show how these variables are represented in the SL.
+
+@subsubsection Undetermined cardinality sets
+This is the SL syntax for undetermined cardinality sets (i.e.
+cardinality set variables) in valencies:
+
+@example
+MSpec1#MSpec2#DSpec
+@end example
+
+@code{MSpec1} is a set specification representing the set of integers
+which are already known to be in the cardinality set variable.
+
+@code{MSpec2} is a set specification representing the set of integers
+which could still end up in the cardinality set variable.
+
+@code{DSpec} is a domain specification
+representing the set of integers which can still be bound to the
+integer variable representing the cardinality of the cardinality set
+variable.
+
+@subsubsection Undetermined constants
+This is the SL syntax for undetermined constants (i.e. constant
+variables):
+
+@example
+DSpec
+@end example
+
+@code{DSpec} is a domain specification, representing the set of
+constants which can still be bound to the constant variable.
+
+@subsubsection Undetermined integers
+This is the SL syntax for undetermined integers (i.e. integer
+variables):
+
+@example
+DSpec
+@end example
+
+@code{DSpec} is a domain specification representing the set of integers
+which can still be bound to the integer variable.
+
+@subsubsection Undetermined lists
+This is the SL syntax for undetermined lists (i.e. list variables):
+
+@example
+_
+@end example
+
+@subsubsection Undetermined sets
+The SL syntax for undetermined sets (i.e. set variables) differs
+depending on the domain of the set:
+@enumerate
+@item a finite domain of constants or a tuple of which all projections
+are finite domains of constants
+@item any other type
+@end enumerate
+
+@enumerate
+@item Below, we show the SL syntax for undetermined sets over finite
+domains of constants or tuples of which all projections are finite
+domains of constants:
+
+@example
+MSpec1#MSpec2#DSpec
+@end example
+
+@code{MSpec1} is a set specification, representing the set of constants
+which are already known to be in the set variable.
+
+@code{MSpec2} is a set specification representing the set of constants
+which could still end up in the set variable.
+
+@code{DSpec} is a domain specification representing the set of integers
+which can still be bound to the integer variable representing the
+cardinality of the set variable.
+
+@item Below, we show the SL syntax for undetermined sets over any other
+domain:
+@example
+_
+@end example
+@end enumerate
+
+@subsubsection Undetermined strings
+This is the SL syntax for undetermined strings (i.e. string variables):
+
+@example
+_
+@end example
+
+@subsubsection Undetermined tuples
+The SL syntax for undetermined tuples (i.e. tuple variables) differs
+depending on the projections of the tuple:
+@enumerate
+@item all projections are finite domains of constants
+@item at least one of the projections is not a finite domain of
+constants
+@end enumerate
+
+@enumerate
+@item Below, we show the SL syntax for undetermined tuples where all
+projections are finite domains of constants:
+@example
+DSpec
+@end example
+
+@code{DSpec} is a domain specification representing the set of tuples
+which can still be bound to the tuple variable.
+
+2) Below, we show the SL syntax for undetermined tuples where at least
+one projection is not a finite domain of constants:
+
+@example
+_
+@end example
+@end enumerate

@@ -1,0 +1,237 @@
+sent: 24: i just think it 's nonproductive at this point to get into a debate if index arbitrage would have helped or hurt things . 
+
+sent: 20: a major reason is that investors already have sharply scaled back their purchases of stock funds since Black Monday . 
+done parsing...
+time(CPU): 29.110000
+parsed 0 from a total of 1
+
+sent: 24: if they croak stocks like that , he said , it presents an opportunity that is the kind of thing you dream about . 
+done parsing...
+time(CPU): 517.430000
+parsed 0 from a total of 1
+
+sent: 23: some early selling is likely to stem from investors and portfolio managers who want to lock in this year 's fat profits . 
+
+sent: 24: he added that the company miscalculated the union 's resolve and the workers ' disgust with being forced to work many hours overtime . 
+
+sent: 20: there are really very few companies that have adequate capital to buy properties in a raw state for cash . 
+
+sent: 22: having just passed through one of the most profitable periods in their history , these producers now see their prices eroding . 
+
+sent: 21: and the financial decline of some looks steep only in comparison with the heady period that is just behind them . 
+done parsing...
+time(CPU): 268.770000
+parsed 1 from a total of 1
+
+sent: 22: in recent months the price of polyethylene , even more than that of other commodity plastics , has taken a dive . 
+
+sent: 21: meanwhile , the price of ethylene , the chemical building block of polyethylene , has not dropped nearly so fast . 
+done parsing...
+time(CPU): 606.840000
+parsed 1 from a total of 1
+
+sent: 22: by many accounts , an early hint of a price rout in the making came at the start of this year . 
+
+sent: 21: no one knows , however , whether the new posted prices will stick once producers and customers start to haggle . 
+done parsing...
+time(CPU): 547.120000
+parsed 1 from a total of 1
+
+sent: 20: he argues that efforts to firm up prices will be undermined by producers ' plans to expand production capacity . 
+
+sent: 23: some viewed his response -- that company directors review the dividend regularly -- as nothing more than the standard line from executives . 
+done parsing...
+time(CPU): 25.680000
+parsed 1 from a total of 1
+
+sent: 20: but the numbers become trickier -- and subject to dickering between insured and insurer -- when demand is shifting . 
+done parsing...
+time(CPU): 24.470000
+parsed 1 from a total of 1
+
+sent: 24: the plant expansion should strengthen the company 's sway in the polyethylene business , where market share is often taken through sheer capacity . 
+done parsing...
+time(CPU): 854.140000
+parsed 1 from a total of 1
+
+sent: 20: and retailers are expected to embrace the product , in part because it will take up less shelf space . 
+done parsing...
+time(CPU): 333.910000
+parsed 1 from a total of 1
+
+sent: 21: she said the trade imbalance was mainly due to macroeconomic factors and should not be tackled by setting quantitative targets . 
+done parsing...
+time(CPU): 36.160000
+parsed 1 from a total of 1
+
+sent: 24: my impression was that you would be a scary old lady , he said , drawing a few nervous chuckles from his colleagues . 
+done parsing...
+time(CPU): 548.130000
+parsed 1 from a total of 1
+
+sent: 20: but i am relieved to see that you are beautiful and gentle and intelligent and a person of integrity . 
+done parsing...
+time(CPU): 4.520000
+parsed 0 from a total of 1
+
+sent: 23: typical is what happened to the price of ethylene , a major commodity chemical produced in vast amounts by many oil companies . 
+done parsing...
+time(CPU): 855.910000
+parsed 0 from a total of 1
+
+sent: 23: now , greatly increased supplies are on the market , while the dollar is stronger , and domestic economic growth is slower . 
+done parsing...
+time(CPU): 5.230000
+parsed 0 from a total of 1
+
+sent: 23: oil company refineries ran flat out to prepare for a robust holiday driving season in July and August that did not materialize . 
+
+sent: 20: traders will be watching to see how long and how far the price decline that began Friday will go . 
+done parsing...
+time(CPU): 321.050000
+parsed 1 from a total of 1
+
+sent: 24: analysts generally cite a lack of bearish developments as well as rumors of a possible tightening of supplies of some fuels and crudes . 
+done parsing...
+time(CPU): 423.070000
+parsed 1 from a total of 1
+
+sent: 24: a spokeswoman would not elaborate , but the company said the discontinued product has never been a major source of revenue or profit . 
+done parsing...
+time(CPU): 32.400000
+parsed 1 from a total of 1
+
+sent: 20: it said it is considering all of its options in light of the decision , including a possible appeal . 
+done parsing...
+time(CPU): 503.580000
+parsed 1 from a total of 1
+
+sent: 23: the company is praised by analysts for sharply lowering its costs in recent years and shedding numerous companies with low profit margins . 
+done parsing...
+time(CPU): 21.950000
+parsed 0 from a total of 1
+
+sent: 22: a spokesman said the company 's first quarter is historically soft , and computer companies in general are experiencing slower sales . 
+done parsing...
+time(CPU): 101.530000
+parsed 1 from a total of 1
+
+sent: 21: her friend Diana 's father was a professional thief ; they did not seem to have any bedrooms at all . 
+done parsing...
+time(CPU): 23.790000
+parsed 1 from a total of 1
+
+sent: 20: when Rosie died , her uncles moved in -- and let her make the sleeping and other household arrangements . 
+done parsing...
+time(CPU): 79.730000
+parsed 1 from a total of 1
+
+sent: 24: the four justices are no newcomers to dissent , often joining forces in the past decade to criticize the court 's conservative drift . 
+done parsing...
+time(CPU): 841.700000
+parsed 1 from a total of 1
+
+sent: 22: but his level of frustration showed in a recent , impassioned speech to a group of hundreds of lawyers in Chicago . 
+done parsing...
+time(CPU): 543.310000
+parsed 1 from a total of 1
+
+sent: 23: the buyers will also be locked into deposit rates for just two weeks , as has been the case with previous deals . 
+done parsing...
+time(CPU): 357.130000
+parsed 1 from a total of 1
+
+sent: 20: it 's not a show of weakness ; they are improving the quality of circulation while insuring their profits . 
+done parsing...
+time(CPU): 692.140000
+parsed 1 from a total of 1
+
+sent: 21: it is bigger , faster and more profitable than the news divisions of any of the three major broadcast networks . 
+done parsing...
+time(CPU): 27.030000
+parsed 0 from a total of 1
+
+sent: 20: networks , like other consumer products , develop images in peoples ' minds that are not easy to change . 
+done parsing...
+time(CPU): 550.250000
+parsed 0 from a total of 1
+
+sent: 24: we 're asking the court for a number of things he can grant in addition to the thrill of victory , he says . 
+
+sent: 20: ten of the nation 's governors , meanwhile , called on the justices to reject efforts to limit abortions . 
+done parsing...
+time(CPU): 235.340000
+parsed 1 from a total of 1
+
+sent: 23: all year , energy prices have skewed the producer price index , which measures changes in the prices producers receive for goods . 
+done parsing...
+time(CPU): 1252.220000
+parsed 1 from a total of 1
+
+sent: 22: some analysts expect oil prices to remain relatively stable in the months ahead , leaving the future pace of inflation uncertain . 
+done parsing...
+time(CPU): 67.770000
+parsed 0 from a total of 1
+
+sent: 21: although all the price data were adjusted for normal seasonal fluctuations , car prices rose beyond the customary autumn increase . 
+done parsing...
+time(CPU): 99.260000
+parsed 1 from a total of 1
+
+sent: 24: the suspension of a preferred stock dividend is a serious step that signals that regulators have deep concerns about an institution 's health . 
+done parsing...
+time(CPU): 1342.270000
+parsed 1 from a total of 1
+
+sent: 24: most analysts and thrift executives had expected a decision on the proposed transaction , which was announced in July , long before now . 
+done parsing...
+time(CPU): 1374.460000
+parsed 1 from a total of 1
+
+sent: 23: while there are some popular action and drama series , few boast the high culture and classy production values one might expect . 
+done parsing...
+time(CPU): 396.100000
+parsed 1 from a total of 1
+
+sent: 20: it was front-page news in Italy earlier this year when the fictional inspector was gunned down in the series . 
+done parsing...
+time(CPU): 71.880000
+parsed 1 from a total of 1
+
+sent: 22: thus , Europe has begun the recent crusade to produce more worthy shows of its own , programs with broader appeal . 
+done parsing...
+time(CPU): 220.990000
+parsed 0 from a total of 1
+
+sent: 20: until recently , national governments in Europe controlled most of the air time and allowed little or no advertising . 
+done parsing...
+time(CPU): 60.330000
+parsed 1 from a total of 1
+
+sent: 23: while the earnings picture confuses , observers say the major forces expected to shape the industry in the coming year are clearer . 
+
+sent: 24: meanwhile , competition between various operating systems , which control the basic functions of a computer , spells trouble for software firms generally . 
+
+sent: 24: what has changed is that more of the young elderly are living with spouses rather than with other relatives , such as children . 
+done parsing...
+time(CPU): 161.290000
+parsed 0 from a total of 1
+
+sent: 22: the council 's action is yet another blow to a sport that its fans claim has been maligned unjustly for years . 
+done parsing...
+time(CPU): 889.290000
+parsed 1 from a total of 1
+
+sent: 22: with today 's tougher drunk driving laws , he adds , people do not want to just sit around and drink . 
+
+sent: 21: the revelations embarrassed town officials , although they argued that the problems were not as severe as the media suggested . 
+done parsing...
+time(CPU): 2.950000
+parsed 1 from a total of 1
+
+sent: 24: in the hands of a zealot like Lenny Bruce , this double-edged blade could cut both the self and the audience to ribbons . 
+
+sent: 21: to some extent , this tendency emerges whenever the show tries to enlighten us about ethnic stereotypes by reversing them . 
+done parsing...
+time(CPU): 468.590000
+parsed 1 from a total of 1

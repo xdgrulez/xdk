@@ -1,0 +1,22 @@
+#!/bin/bash
+xdks.exe -g Grammars/ww.ul -i "a a b a a b" -s print
+mv Grammars/ww.csp1 CSPs/ww_sols1_failures47.csp
+xdks.exe -g Grammars/EQAB.ul -i "a b b a" -s print
+mv Grammars/EQAB.csp1 CSPs/EQAB_sols4_failures0.csp
+xdks.exe -g Grammars/Diplom.ul -i "maria hat einen reichen mann sehr geliebt" -s print
+mv Grammars/Diplom.csp1 CSPs/Diplom_sols2_failures0.csp
+xdks.exe -g Grammars/diss.ul -i "mary_L+H*_LH% sees a student with a book_H*_LL% ." -s print
+mv Grammars/diss.csp1 CSPs/diss_sols17_failures3.csp
+#
+xdks.exe -g Grammars/ww.ul -i "a a b a a b" -s flatzinc
+mv Grammars/ww.fzn1 CSPs/ww_sols1_failures47.fzn
+xdks.exe -g Grammars/EQAB.ul -i "a b b a" -s flatzinc
+mv Grammars/EQAB.fzn1 CSPs/EQAB_sols4_failures0.fzn
+xdks.exe -g Grammars/Diplom.ul -i "maria hat einen reichen mann sehr geliebt" -s flatzinc
+mv Grammars/Diplom.fzn1 CSPs/Diplom_sols2_failures0.fzn
+xdks.exe -g Grammars/diss.ul -i "mary_L+H*_LH% sees a student with a book_H*_LL% ." -s flatzinc
+mv Grammars/diss.fzn1 CSPs/diss_sols17_failures3.fzn
+#
+tar cvzf CSPs.tgz CSPs/
+mv CSPs.tgz ~/public_html
+chmod o+r ~/public_html/CSPs.tgz
