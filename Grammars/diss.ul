@@ -2165,6 +2165,13 @@ defentry {
 
 %%
 
+% gert70
+defentry {
+  "verb" {W3sg: "gets"
+          Wnon3sg: "get"
+          Wprt: "got"}
+  "trans"}
+
 defentry {
   "verb" {W3sg: "admires"
           Wnon3sg: "admire"
@@ -2403,6 +2410,11 @@ defentry {
 %%%%%%%%%%%%%%%
 %% proper nouns
 
+% gert70
+defentry {
+  "pnoun" {W: "Gert"
+           A: ($ third & sg & masc)}}
+
 defentry {
   "pnoun" {W: "annie"
            A: ($ third & sg & fem)}}
@@ -2429,7 +2441,7 @@ defentry {
 
 defentry {
   "pnoun" {W: "peter"
-           A: ($ third & sg & fem)}}
+           A: ($ third & sg & masc)}}
 
 defentry {
   "pnoun" {W: "completeness"
@@ -2444,6 +2456,13 @@ defentry {
            A: ($ third & pl & neut)}}
 
 %% common nouns
+
+% gert70
+defentry {
+  "cnoun" {Wsg: "present"
+           Wpl: "presents"
+           A: ($ third & neut)}}
+
 defentry {
   "cnoun" {Wsg: "basket"
            Wpl: "baskets"
@@ -2614,6 +2633,10 @@ defentry {
            A: ($ third & neut)}}
 
 %% determiners
+
+defentry {
+  "detsg" {W: "ein"}}
+
 defentry {
   "detsg" {W: "a"}}
 
